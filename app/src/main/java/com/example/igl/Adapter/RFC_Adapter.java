@@ -68,7 +68,8 @@ public class RFC_Adapter extends RecyclerView.Adapter<RFC_Adapter.ViewHolder> im
         holder.bp_no_text.setText(Bp_No_array.getBp_number());
         holder.user_name_text.setText(Bp_No_array.getFirst_name());
         holder.mobile_text.setText(Bp_No_array.getMobile_number());
-        holder.descreption_text.setVisibility(View.GONE);
+
+
         holder.mobile_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -221,13 +222,13 @@ public class RFC_Adapter extends RecyclerView.Adapter<RFC_Adapter.ViewHolder> im
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;
-        public TextView bp_no_text,user_name_text,address_text,date_text,status_text,mobile_text,descreption_text;
+        public TextView bp_no_text,user_name_text,address_text,date_text,status_text,mobile_text,descreption_text,cont_id;
         public CardView linearLayout;
         public Button info_button,jobstart_button;
         public ViewHolder(View itemView) {
             super(itemView);
             mobile_text=(TextView)itemView.findViewById(R.id.mobile_text);
-            descreption_text=(TextView)itemView.findViewById(R.id.descreption_text);
+
             date_text = (TextView) itemView.findViewById(R.id.date_text);
             bp_no_text = (TextView) itemView.findViewById(R.id.bp_no_text);
             user_name_text = (TextView) itemView.findViewById(R.id.user_name_text);
@@ -235,6 +236,7 @@ public class RFC_Adapter extends RecyclerView.Adapter<RFC_Adapter.ViewHolder> im
             status_text= (TextView) itemView.findViewById(R.id.status_text);
             info_button= (Button) itemView.findViewById(R.id.info_button);
             jobstart_button = itemView.findViewById(R.id.job_start_button);
+            cont_id = itemView.findViewById(R.id.contid_text);
         }
     }
     @Override

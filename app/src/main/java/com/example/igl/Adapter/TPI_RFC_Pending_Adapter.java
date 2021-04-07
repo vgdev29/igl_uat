@@ -86,6 +86,7 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
         holder.user_name_text.setText(Bp_No_array.getFirstName());
         holder.address_text.setText(Bp_No_array.getHouseNo() + " " + Bp_No_array.getSociety() + " " + Bp_No_array.getArea() + " " + Bp_No_array.getCityRegion());
         holder.zone_text.setText(Bp_No_array.getZoneCode());
+        holder.mobile_text.setText(Bp_No_array.getMobileNumber());
         //logic for cliam and unclaimed button
         Log.d("claimflag", "" + Bp_No_array.getClaimFlag());
         if (Bp_No_array.getClaimFlag().equals("null") || Bp_No_array.getClaimFlag().equalsIgnoreCase("1")) {
@@ -166,7 +167,7 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;
-        public TextView bp_no_text, user_name_text, address_text, date_text, status_text, zone_text;
+        public TextView bp_no_text, user_name_text, address_text, date_text, status_text, zone_text,mobile_text;
 
         Button claimed_button, unclaimed_button, job_start_button, rfc_info;
 
@@ -182,6 +183,7 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
             job_start_button = (Button) itemView.findViewById(R.id.job_start_button);
             zone_text = itemView.findViewById(R.id.zone_text);
             rfc_info = itemView.findViewById(R.id.rfcinfo_text);
+            mobile_text = itemView.findViewById(R.id.mobile_text);
         }
     }
 
