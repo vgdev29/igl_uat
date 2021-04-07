@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@color/rad"
+        android:weightSum="3"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+
+            android:layout_weight="1.2"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center"
+                android:background="@drawable/back"
+                android:layout_margin="@dimen/_3sdp"
+                />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight=".6"
+            android:text="BP No Detail"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+
+            android:textColor="@color/white"/>
+        <LinearLayout
+            android:id="@+id/todo_creation"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+
+            android:layout_weight="1.2"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+
+                android:text="Appointment"
+                android:textSize="@dimen/_8sdp"
+                android:textStyle="bold"
+
+                android:textColor="@color/white"/>
+        </LinearLayout>
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="@color/white"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_90sdp"
+        android:weightSum="2"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/bp_no_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/green"
+                android:text="BP Number"
+                android:textIsSelectable="true"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:textStyle="bold"
+                android:textSize="@dimen/_13sdp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/tpi_button"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:textStyle="bold"
+                android:text="Feasibility"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:layout_weight="1"
+                android:visibility="gone"
+                android:textColor="@color/white"
+                android:background="@drawable/shape_cornor_radious"/>
+            <Button
+                android:id="@+id/rfc_button"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:textStyle="bold"
+                android:text="RFC"
+                android:visibility="gone"
+                android:layout_marginLeft="@dimen/_2sdp"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:background="@drawable/shape_cornor_radious"/>
+            <Button
+                android:id="@+id/ng_button"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginLeft="@dimen/_2sdp"
+                android:textStyle="bold"
+                android:text="NG"
+                android:visibility="gone"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:background="@drawable/shape_cornor_radious"/>
+        </LinearLayout>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Address"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
+
+            <TextView
+                android:id="@+id/address_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_gray"
+                android:text="Indraprast Gas Limted IGL Gas Limted Noida Sector 12 PinCode 201306"
+                android:textSize="@dimen/_9sdp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:weightSum="2"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Name"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
+
+            <TextView
+                android:id="@+id/name_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_gray"
+                android:text="MANOJ"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+
+            android:weightSum="2"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="BP Creation Date"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
+
+            <TextView
+                android:id="@+id/date_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_gray"
+                android:text="14-10-2020"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+
+            android:weightSum="2"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Mobile No"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
+
+            <TextView
+                android:id="@+id/mobile_no_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_gray"
+                android:text="9654544323"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:textSize="@dimen/_12sdp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+
+            android:weightSum="2"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Email Id"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
+
+            <TextView
+                android:id="@+id/email_id_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_gray"
+                android:text="demo@gmail.com"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:textSize="@dimen/_12sdp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:visibility="gone"
+            android:weightSum="2"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Created By Person"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
+
+            <TextView
+                android:id="@+id/created_by_person_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_gray"
+                android:text="Ashim Kholi"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+
+            android:weightSum="2"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Lead No"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
+
+            <TextView
+                android:id="@+id/lead_no_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_gray"
+                android:text="134564424"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:visibility="gone"
+            android:weightSum="2"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Aadhaar Number"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
+
+            <TextView
+                android:id="@+id/ca_no_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_gray"
+                android:text=""
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:textSize="@dimen/_12sdp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:visibility="gone"
+            android:weightSum="2"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Customer Type"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
+
+            <TextView
+                android:id="@+id/tpi_status_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_gray"
+                android:text="pending"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:visibility="gone"
+            android:weightSum="2"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="TPI Date"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
+
+            <TextView
+                android:id="@+id/tpi_date_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_gray"
+                android:text="12-12-2020"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:weightSum="2"
+            android:visibility="gone"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Unique Lpg Id"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
+
+            <TextView
+                android:id="@+id/resedential_type_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_gray"
+                android:text="Rent"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
+
+        </LinearLayout>
+        <Button
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:textStyle="bold"
+            android:text="PDF URL"
+            android:visibility="gone"
+            android:layout_margin="@dimen/_10sdp"
+            android:textColor="@color/white"
+            android:background="@drawable/shape_cornor_radious"/>
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout>

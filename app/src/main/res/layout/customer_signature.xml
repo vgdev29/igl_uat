@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="@dimen/_270sdp"
+    android:layout_height="@dimen/_320sdp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/crose_img"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_margin="@dimen/_2sdp"
+            android:background="@drawable/cancel"
+            android:layout_gravity="right"/>
+        <TextView
+            android:id="@+id/owner_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_5sdp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:textSize="@dimen/_13sdp"
+            android:text="Owner Name &amp; Signature" />
+        <EditText
+            android:id="@+id/ownar_name_no"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/_25sdp"
+            android:hint="Owner Name"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_3sdp"
+            android:paddingLeft="@dimen/_5sdp"
+            android:background="@drawable/shape_blue_border"
+            android:textSize="@dimen/_10sdp"
+            android:singleLine="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:layout_margin="@dimen/_10sdp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/signature_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/red_shape_round"
+                android:layout_weight="1"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:textSize="@dimen/_10sdp"
+                android:text="Signature Select" />
+            <TextView
+                android:id="@+id/image_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:background="@drawable/red_shape_round"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:textSize="@dimen/_12sdp"
+                android:text="Image Select" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/signature_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_5sdp"
+        android:padding="@dimen/_2sdp"
+        android:background="@drawable/shape_blue_border"
+        android:orientation="vertical">
+    <com.kyanogen.signatureview.SignatureView
+        xmlns:sign="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ownar_signature_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_140sdp"
+        sign:penSize="5dp"
+        sign:backgroundColor="#ffffff"
+        sign:penColor="#000000"
+        sign:enableSignature="true"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:orientation="horizontal">
+        <Button
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/save"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:background="@drawable/red_shape_round"
+            android:layout_margin="@dimen/_10sdp"
+            android:text="save"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/clear"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:background="@drawable/red_shape_round"
+            android:text="clear"/>
+
+    </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/image_capture_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            android:layout_marginTop="@dimen/_5sdp">
+
+            <ImageView
+                android:id="@+id/adhar_owner_image"
+                android:layout_centerVertical="true"
+                android:layout_width="@dimen/_140sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:padding="@dimen/_1sdp"
+
+                android:scaleType="fitXY"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:background="@drawable/shape_blue_border"
+                android:text="PAN Card" />
+
+            <Button
+                android:id="@+id/adhar_button"
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_25sdp"
+
+                android:layout_gravity="center"
+                android:textSize="@dimen/_10sdp"
+                android:text="Image Select"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:textColor="@color/white" />
+
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/save_select"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_5sdp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@drawable/red_shape_round"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/_10sdp"
+            android:textSize="@dimen/_12sdp"
+            android:text="Save" />
+
+
+
+
+
+    </LinearLayout>
+</LinearLayout>

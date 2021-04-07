@@ -1,0 +1,501 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomLayout">
+
+        <LinearLayout
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_5sdp"
+            android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:textSize="@dimen/_14sdp"
+                android:text="Account holder" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="right"
+                android:gravity="right"
+
+                >
+            <TextView
+                android:id="@+id/death_process"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:visibility="gone"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:background="@color/rad"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:textSize="@dimen/_14sdp"
+                android:text=" Death Claim" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:weightSum="2"
+               android:orientation="horizontal">
+
+               <com.google.android.material.textfield.TextInputLayout
+                   android:layout_width="fill_parent"
+                   android:layout_weight="1"
+                   android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fullname"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40.0dip"
+                    android:hint="Full Name"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:background="@drawable/shape_blue_border"
+                    android:textSize="@dimen/_10sdp"
+                    android:inputType="textCapWords"
+                    android:singleLine="true" />
+               </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="fill_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/father_husbandname"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40.0dip"
+                    android:hint="Father/Husband Name"
+
+                    android:textSize="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_3sdp"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:background="@drawable/shape_blue_border"
+                    android:singleLine="true"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+           </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:orientation="horizontal">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_weight="1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/mobile_no"
+                        android:layout_width="fill_parent"
+                        android:layout_height="40.0dip"
+                        android:hint="Mobile No"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_3sdp"
+                        android:paddingLeft="@dimen/_5sdp"
+                        android:background="@drawable/shape_blue_border"
+                        android:textSize="@dimen/_10sdp"
+                        android:maxLength="10"
+                        android:inputType="number"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="fill_parent"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/contect_no"
+                        android:layout_width="fill_parent"
+                        android:layout_height="40.0dip"
+                        android:hint="Contect No"
+                        android:inputType="number"
+                        android:maxLength="12"
+
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:layout_marginRight="@dimen/_5sdp"                       android:paddingLeft="@dimen/_5sdp"
+                        android:background="@drawable/shape_blue_border"
+                        android:singleLine="true"
+                         />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:orientation="horizontal">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_weight="1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/aadhaar_no"
+                        android:layout_width="fill_parent"
+                        android:layout_height="40.0dip"
+                        android:hint="Aadhaar No"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_3sdp"
+                        android:paddingLeft="@dimen/_5sdp"
+                        android:background="@drawable/shape_blue_border"
+                        android:textSize="@dimen/_10sdp"
+                        android:inputType="textCapWords"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="fill_parent"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/email_id"
+                        android:layout_width="fill_parent"
+                        android:layout_height="40.0dip"
+                        android:hint="Email Id"
+                        android:inputType="textEmailAddress"
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:paddingLeft="@dimen/_5sdp"
+                        android:background="@drawable/shape_blue_border"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:textSize="@dimen/_14sdp"
+                android:text="Address" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:orientation="horizontal">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_weight="1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true">
+
+                    <EditText
+
+                        android:layout_width="fill_parent"
+                        android:layout_height="40.0dip"
+                        android:hint="House No"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_3sdp"
+                        android:paddingLeft="@dimen/_5sdp"
+                        android:background="@drawable/shape_blue_border"
+                        android:textSize="@dimen/_10sdp"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="fill_parent"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+
+                        android:layout_width="fill_parent"
+                        android:layout_height="40.0dip"
+                        android:hint="Floor"
+
+
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:paddingLeft="@dimen/_5sdp"
+                        android:background="@drawable/shape_blue_border"
+                        android:singleLine="true"
+                         />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:orientation="horizontal">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_weight="1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true">
+
+                    <EditText
+
+                        android:layout_width="fill_parent"
+                        android:layout_height="40.0dip"
+                        android:hint="Street/Area/Society"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_3sdp"
+                        android:paddingLeft="@dimen/_5sdp"
+                        android:background="@drawable/shape_blue_border"
+                        android:textSize="@dimen/_10sdp"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="fill_parent"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+
+                        android:layout_width="fill_parent"
+                        android:layout_height="40.0dip"
+                        android:hint="State"
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:paddingLeft="@dimen/_5sdp"
+                        android:background="@drawable/shape_blue_border"
+                        android:singleLine="true"
+                         />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:orientation="horizontal">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true">
+
+                    <EditText
+
+                        android:layout_width="fill_parent"
+                        android:layout_height="40.0dip"
+                        android:hint="Pincode"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_3sdp"
+                        android:paddingLeft="@dimen/_5sdp"
+                        android:background="@drawable/shape_blue_border"
+                        android:textSize="@dimen/_10sdp"
+                        android:inputType="number"
+                        android:maxLines="6"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="fill_parent"
+                    android:layout_weight="1"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+
+                        android:layout_width="fill_parent"
+                        android:layout_height="40.0dip"
+                        android:hint="Father/Husband Name"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:visibility="gone"
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:paddingLeft="@dimen/_5sdp"
+                        android:background="@drawable/shape_blue_border"
+                        android:singleLine="true"
+                        android:textColor="@color/white" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_14sdp"
+                android:text="Type of Ownership" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/owner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:textSize="@dimen/_10sdp"
+                    android:text="Owner" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rents"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="@dimen/_10sdp"
+                    android:text="Rented" />
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@color/black"
+                android:textStyle="italic"
+                android:textSize="@dimen/_7sdp"
+                android:text="If rented or otherwise, please submit NOC*(to be issues by the lawful owner of the proprty) OR the valid rent agreement with the lawful owner of the premise." />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_14sdp"
+                android:text="Proof of Residence" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Electricity Bill"
+                    android:id="@+id/cb1"
+                    android:layout_below="@+id/tvCb"
+                    android:layout_centerHorizontal="true"
+                    android:checked="false"/>
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Water Bill"
+                    android:id="@+id/cb2"
+                    android:layout_below="@+id/cb1"
+                    android:layout_centerHorizontal="true"
+                    android:checked="false"/>
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sale Deed"
+                    android:id="@+id/cb3"
+                    android:layout_below="@+id/cb2"
+                    android:layout_centerHorizontal="true"
+                    android:checked="false"/>
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="House Tax Receipt"
+                    android:id="@+id/cb4"
+                    android:layout_below="@+id/cb3"
+                    android:layout_centerHorizontal="true"
+                    android:checked="false"/>
+
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Allotment Letter"
+                    android:id="@+id/cb5"
+                    android:layout_below="@+id/cb3"
+                    android:layout_centerHorizontal="true"
+                    android:checked="false"/>
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Mutation Certificate"
+                    android:id="@+id/cb6"
+                    android:layout_below="@+id/cb3"
+                    android:layout_centerHorizontal="true"
+                    android:checked="false"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <RelativeLayout
+        android:padding="@dimen/_10sdp"
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:visibility="gone"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/backBT"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/_100sdp"
+            android:text="@string/backBT"
+            android:textColor="@color/white" />
+
+        <Button
+            android:layout_alignParentRight="true"
+            android:id="@+id/nextBT"
+            android:background="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/_80sdp"
+            android:minHeight="@dimen/_27sdp"
+            android:textSize="@dimen/_10sdp"
+            android:text="@string/nextBT"
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

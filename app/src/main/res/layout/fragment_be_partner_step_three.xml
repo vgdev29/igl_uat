@@ -1,0 +1,143 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_10sdp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+
+
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/image_signature"
+                    android:layout_centerVertical="true"
+                    android:layout_width="@dimen/_140sdp"
+                    android:layout_height="@dimen/_90sdp"
+                    android:padding="@dimen/_10sdp"
+                    android:background="@drawable/shape_blue_border"
+                    android:text="PAN Card" />
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                         android:layout_gravity="center|right"
+                    android:gravity="right"
+                    android:layout_height="match_parent">
+                <Button
+                    android:id="@+id/signature_button"
+                    android:background="@color/colorPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/_20sdp"
+                    android:paddingRight="@dimen/_20sdp"
+                    android:layout_gravity="center|right"
+
+                    android:text="upload"
+                    android:gravity="center|right"
+
+                    android:textColor="@color/white" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/generat_pdf_button"
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_margin="@dimen/_20sdp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_alignParentBottom="true"
+                android:text="Generate PDF File"
+                android:textColor="@color/white" />
+
+            <RelativeLayout
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_centerVertical="true"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:background="@drawable/pdf_icon"
+                    />
+
+
+                <Button
+                    android:id="@+id/pdf_button"
+                    android:background="@color/colorPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:minWidth="@dimen/_100sdp"
+                    android:gravity="center"
+                    android:layout_alignParentBottom="true"
+                    android:text="upload"
+                    android:visibility="gone"
+                    android:textColor="@color/white" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <RelativeLayout
+        android:padding="@dimen/_10sdp"
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:layout_alignParentLeft="true"
+            android:id="@+id/backBT"
+            android:background="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/backBT"
+            android:minWidth="@dimen/_80sdp"
+            android:minHeight="@dimen/_27sdp"
+            android:textSize="@dimen/_10sdp"
+            android:textColor="@color/white" />
+
+        <Button
+            android:layout_alignParentRight="true"
+            android:id="@+id/nextBT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/_80sdp"
+            android:minHeight="@dimen/_27sdp"
+            android:textSize="@dimen/_10sdp"
+            android:background="@color/colorPrimary"
+            android:text="@string/nextBT"
+
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

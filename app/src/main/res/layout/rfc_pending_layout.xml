@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/liner_layout"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="@drawable/shape_white">
+
+        <LinearLayout
+            android:id="@+id/ll_details"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/date_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="13 Mar 2020"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/zone_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="GND"
+                android:textColor="@color/green"
+                android:textIsSelectable="true"
+                android:textSize="15sp" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/bp_no_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BP 1205620"
+                    android:textColor="@color/green"
+                    android:textIsSelectable="true"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/rfcinfo_text"
+                    android:layout_width="60dp"
+                    android:layout_height="25dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toEndOf="@+id/bp_no_text"
+                    android:background="@drawable/shape_cornor_radious"
+                    android:fontFamily="@font/abhayalibre_regular"
+                    android:gravity="center"
+                    android:text="Rfc info"
+                    android:textColor="@color/white"
+                    android:textAllCaps="false"
+                    android:textSize="15sp" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/user_name_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rajeev Malik"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/address_text"
+                android:layout_width="@dimen/_170sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Mayur Vihar-Phase III"
+                android:textColor="@color/dark_gray"
+                android:textSize="@dimen/_9sdp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/ll_details"
+            android:padding="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/status_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="RFC Pending"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="@color/green"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+                <Button
+                    android:id="@+id/unclaimed_button"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:background="@drawable/shape_cornor_radious"
+                    android:text="UnClaim"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_7sdp"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+                <Button
+                    android:id="@+id/claimed_button"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:background="@drawable/shape_cornor_radious"
+                    android:text="Claim"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_7sdp"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/job_start_button"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:background="@drawable/shape_cornor_radious"
+                android:text="Start Job"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_7sdp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:visibility="visible" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</LinearLayout>

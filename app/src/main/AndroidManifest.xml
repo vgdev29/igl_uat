@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.igl">
+    <!--
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.Manifest.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+
+    <permission
+        android:name="android.permission.BLUETOOTH"
+        android:label="BLUETOOTH" />
+    <permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission
+        android:name="android.permission.INTERACT_ACROSS_USERS_FULL"
+        android:protectionLevel="normal" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature
+        android:name="android.hardware.camera.flash"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application
+        android:name=".Helper.AppController"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Activity.NgAssignmentDetailsActivity"></activity>
+        <activity android:name=".Activity.NgUserDetailsActivity" />
+        <activity android:name=".Activity.Splash_Screen">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+        <activity android:name=".Activity.NgUserListActivity">
+
+        </activity>
+        <activity
+            android:name=".Activity.Login_Activity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Activity.Sign_Up_Activty"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Regestar_View_Pager"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.HomePage_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Attendance_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Activities_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Learning_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.To_DoList_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Location_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Selfie_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Task_List_Astivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.New_Regestration"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Kyc_Foram_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.KYC_Listing"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.New_Regestration_Form"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.New_BP_No_Listing"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.New_Regestration_DetailPage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.NG_Connection_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.RFC_Connection_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.To_Do_Task_Creation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Leave_Approval_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.TPI_Connection_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.View_Leave_LIsting_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.View_Attendance_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.TPI_Connection_Lisitng"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.RFC_Connection_Listing"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.TPI_ViewPager_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.RFC_StatusMastar_Page"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.TPI_Inspection_RFC_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.To_Do_Task_Creation_TPI"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.WebView_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Waveview_NewData"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Tab_Host_Pager"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Fragment.Ready_Inspection_Tpi_Fragment"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Fragment.Feasibility_Tpi_Fragment"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Forgot_Password"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.OTP_Forgot_Password"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Tab_Host_EKYC"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.KYC_Verification_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Video_View"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Tab_Host_DMA"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Document_Varification_List"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Document_varification_Detail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.PMCSI_Approval_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Tab_Host_Inspection"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Tab_Host_PMC"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.PoolTask_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.TPI_Approval_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.RFC_Declined_Listing"
+            android:screenOrientation="portrait" />
+        <!--
+ <activity android:name=".Activity.CompletePlayerActivity"
+            android:showOnLockScreen="true"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.veer.exvidplayer.VideoPlayer.ExVidPlayerActivity"
+            android:showOnLockScreen="true"
+            android:configChanges="orientation|screenSize"></activity>
+        -->
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <provider
+            android:name=".Activity.GenericFileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <meta-data
+            android:name="android.app.searchable"
+            android:resource="@xml/searchable" />
+
+        <service android:name=".Helper.LocationMonitoringService" />
+        <service
+            android:name=".MataData.MyService"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name=".location.LocationUpdatesIntentService"
+            android:exported="false" />
+        <service
+            android:name=".tracker.MyIntentService"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+
+        <receiver
+            android:name=".location.LocationUpdatesBroadcastReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.igl.location.LocationUpdatesBroadcastReceiver.ACTION_PROCESS_UPDATES" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
