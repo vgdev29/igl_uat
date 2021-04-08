@@ -46,6 +46,7 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.igl.Helper.AppController;
+import com.example.igl.Helper.CommonUtils;
 import com.example.igl.Helper.Constants;
 import com.example.igl.Helper.SharedPrefs;
 import com.example.igl.R;
@@ -97,7 +98,7 @@ public class RFC_StatusMastar_Page extends Activity {
     ArrayList<String> Igl_Pipe_line = new ArrayList<>();
 
     Spinner spinner_master,spinner_sub_master,spinner_pipe_line;
-    String type_of_master,type_of_sub_master,type_of_master_id,igl_code,igl_code_group,igl_catagory,catid_Sub_Master;
+    String type_of_master,type_of_sub_master="",type_of_master_id,igl_code,igl_code_group,igl_catagory,catid_Sub_Master;
     String igl_code_Master,igl_code_group_Maaster,igl_catagory_Master,catid_Master;
     EditText descreption_edit;
     Button approve_button,decline_button;
@@ -221,7 +222,8 @@ public class RFC_StatusMastar_Page extends Activity {
             }
         });
 
-        Pipe_Line_Catagory();
+       // Pipe_Line_Catagory();
+      loadSpinnerType_Master();
     }
 
     private void inflateData() {
@@ -410,13 +412,13 @@ public class RFC_StatusMastar_Page extends Activity {
             complete_igl_code_group=igl_code_group;
             complete_igl_catagory=igl_catagory;
             complete_catid=catid_Sub_Master;
-            Log.d(log,"json array sub master data = "+complete_igl_code+"  "+complete_igl_code_group+"  "+complete_igl_catagory+"  "+complete_catid);
+            Log.d(log,"json array sub master data = "+complete_igl_code+"  "+complete_igl_code_group+"  "+complete_igl_catagory+"  "+complete_catid + type_of_master + type_of_sub_master);
         }else{
             complete_igl_code=igl_code_Master;
             complete_igl_code_group=igl_code_group_Maaster;
             complete_igl_catagory=igl_catagory_Master;
             complete_catid=catid_Master;
-            Log.d(log,"json array master data = "+complete_igl_code+"  "+complete_igl_code_group+"  "+complete_igl_catagory+"  "+complete_catid);
+            Log.d(log,"json array sub master data = "+complete_igl_code+"  "+complete_igl_code_group+"  "+complete_igl_catagory+"  "+complete_catid + type_of_master + type_of_sub_master);
 
         }
         materialDialog = new MaterialDialog.Builder(this)
@@ -426,7 +428,7 @@ public class RFC_StatusMastar_Page extends Activity {
         Log.d(log,"tpi approval api = "+Constants.RFCApproval+"?lead_no="+getIntent().getStringExtra("lead_no")+"&bp_no="+getIntent().getStringExtra("Bp_number")+"&cat_id="
         +complete_catid+"&igl_code="+complete_igl_code+"&igl_code_group="+complete_igl_code_group+"&igl_catalog="+complete_igl_catagory+"&mobile_no="+getIntent().getStringExtra("Mobile_number")+
                 "&email_id="+getIntent().getStringExtra("Email_id"));
-       /* String login_request = "login_request";
+        String login_request = "login_request";
         StringRequest jr = new StringRequest(Request.Method.POST, Constants.RFCApproval,
                 new Response.Listener<String>() {
                     @Override
@@ -440,11 +442,14 @@ public class RFC_StatusMastar_Page extends Activity {
 
                             if(Success.equals("true")){
                                 String holdCode=json.getString("holdCode");
+                                String msg = json.getString("Message");
                                 Log.d(log,"hold code =  "+ holdCode);
                                 if(holdCode.equals("0")){
+                                    CommonUtils.toast_msg(RFC_StatusMastar_Page.this,msg);
                                     finish();
+
                                 }else {
-                                    Toast.makeText(RFC_StatusMastar_Page.this, "" + "Successfully", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RFC_StatusMastar_Page.this, "" + "Proceed for Connection", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(RFC_StatusMastar_Page.this, RFC_Connection_Activity.class);
                                     intent.putExtra("Bp_number", getIntent().getStringExtra("Bp_number"));
                                     intent.putExtra("First_name", getIntent().getStringExtra("First_name"));
@@ -460,6 +465,7 @@ public class RFC_StatusMastar_Page extends Activity {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Log.d(log,"catch = "+e.getMessage());
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -496,6 +502,8 @@ public class RFC_StatusMastar_Page extends Activity {
                     Log.d(log,"igl_catalog"+ complete_igl_catagory);
                     Log.d(log,"mobile_no"+ getIntent().getStringExtra("Mobile_number"));
                     Log.d(log,"email_id"+ getIntent().getStringExtra("Email_id"));
+                    Log.d(log,"status "+ type_of_master);
+                    Log.d(log,"reason"+ type_of_sub_master);
 
                     // params.put("id", sharedPrefs.getUUID());
                     params.put("lead_no",getIntent().getStringExtra("lead_no"));
@@ -507,13 +515,15 @@ public class RFC_StatusMastar_Page extends Activity {
                     params.put("mobile_no", getIntent().getStringExtra("Mobile_number"));
                     params.put("email_id", getIntent().getStringExtra("Email_id"));
                     params.put("pipeline_id", getIntent().getStringExtra("PipeLine_Length_Id"));
+                    params.put("status", type_of_master);
+                    params.put("reason", type_of_sub_master);
 
 
                 } catch (Exception e) {
                 }
                 return params;
             }
-         *//*   @Override
+           /* @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
                 headers.put("X-Requested-With", "XMLHttpRequest");
@@ -521,11 +531,11 @@ public class RFC_StatusMastar_Page extends Activity {
                 headers.put("Accept", "application/json");
                 headers.put("Authorization", "Bearer " +sharedPrefs.getToken());
                 return headers;
-            }*//*
+            }*/
         };
         jr.setRetryPolicy(new DefaultRetryPolicy(20 * 10000, 20, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         jr.setTag(login_request);
-        AppController.getInstance().addToRequestQueue(jr, login_request);*/
+        AppController.getInstance().addToRequestQueue(jr, login_request);
     }
 
     private void Signature_Method() {

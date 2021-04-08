@@ -2,12 +2,12 @@ package com.example.igl.Helper;
 
 public class Constants {
 
-   /* LIVE URL*/
- // public static String BASE_URL="http://49.50.65.107:8081/";
+    /* LIVE URL*/
+   //  public static String BASE_URL="http://49.50.65.107:8081/";
 
-   /* UAT URL*/
-   public static String BASE_URL="http://49.50.118.112:8080/";
-    public static String START_CLICKED="false";
+    /* UAT URL*/
+    public static String BASE_URL = "http://49.50.118.112:8080/";
+    public static String START_CLICKED = "false";
     //public static final String Logout=BASE_URL+"/logout";
     public static final int LOCATION_INTERVAL = 10000;
     public static final int FASTEST_LOCATION_INTERVAL = 5000;
@@ -35,7 +35,7 @@ public class Constants {
     public static final String GET_LEAVE_LIST = BASE_URL + "ekyc/bp_details/getLeave_listing/"; //56
     public static final String GET_ATTENDENCE_LIST = BASE_URL + "ekyc/bp_details/get_attendence_listing/";
     public static final String APPLY_LEAVE = BASE_URL + "ekyc/bp_details/applyLeave/";
-    public static final String  TYPE_MASTER_STATUS = BASE_URL + "ekyc/bp_details/statusDropdown/";
+    public static final String TYPE_MASTER_STATUS = BASE_URL + "ekyc/bp_details/statusDropdown/";
     public static final String FESABILITY_ADD = BASE_URL + "ekyc/bp_details/fesabilityAdd";
     public static final String FESABILITY_ADD_Declined = BASE_URL + "ekyc/bp_details/fesabilityAddDeclined";
     public static final String TYPE_SUBMASTER_STATUS = BASE_URL + "ekyc/bp_details/substatusDropdown/";
@@ -53,7 +53,7 @@ public class Constants {
     public static final String MeterNo = BASE_URL + "ekyc/bp_details/meterNo";
     public static final String RFCtodo = BASE_URL + "ekyc/bp_details/RFCtodo";
     public static final String DeleteTODO = BASE_URL + "ekyc/bp_details/deleteTODO";  //todo_id=85
-    public static final String Forgot_Password= BASE_URL + "ekyc/bp_details/deleteTODO";  //todo_id=85
+    public static final String Forgot_Password = BASE_URL + "ekyc/bp_details/deleteTODO";  //todo_id=85
     public static final String Update_Password = BASE_URL + "ekyc/bp_details/deleteTODO";  //todo_id=85
     public static final String ClaimUnclaim = BASE_URL + "ekyc/bp_details/ClaimUnclaim/";
     public static final String JobStart = BASE_URL + "ekyc/bp_details/JobStart/";  //todo_id=85
@@ -62,10 +62,18 @@ public class Constants {
 
     public static final String TPI_FEASIBILITY_PENDING = BASE_URL + "ekyc/bp_details/feasibility_pending_Listing/";
     public static final String TPI_RFC_PENDING = BASE_URL + "ekyc/bp_details/rfc_pending_Listing/";
-    public static final String TPI_RFC_APPROVAl = BASE_URL + "ekyc/bp_details/rfc_approval_Listing/";
-    public static final String  RFC_PENDING = BASE_URL + "ekyc/bp_details/rfc_pending";
 
 
+
+
+    public static final String TPI_RFC_APPROVAl = BASE_URL + "ekyc/bp_details/rfc_onHold_Listing/";
+    public static final String TPI_RFCDONE_APPROVAl_Data = BASE_URL + "ekyc/bp_details/Tpi_Listing_Done?bpno=";
+    public static final String TPI_RFC_APPROVAl_DECLINE = BASE_URL + "ekyc/bp_details/TPI_ApprovalDecline";
+    public static final String TPI_RFC_HOLD_APPROVAl_DECLINE = BASE_URL + "ekyc/bp_details/TPIOnHold";
+    public static final String TPI_RFCHOLD_APPROVAl_Data = BASE_URL + "ekyc/bp_details/Tpi_Listing_Hold?bpno=";
+
+
+    public static final String RFC_PENDING = BASE_URL + "ekyc/bp_details/rfc_pending";
 
 
 }

@@ -15,6 +15,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.igl.Activity.TPI_Connection_Activity;
+import com.example.igl.Activity.TPI_RfcDone_Approval_Activity;
+import com.example.igl.Activity.TPI_RfcHold_Approval_Activity;
 import com.example.igl.Fragment.Feasibility_Tpi_Fragment;
 import com.example.igl.MataData.Bp_No_Item;
 import com.example.igl.Model.BpDetail;
@@ -71,13 +73,13 @@ public class TPI_Fesivility_Adapter extends RecyclerView.Adapter<TPI_Fesivility_
             }else {
                 //holder.status_text.setVisibility(View.GONE);
             }
-            if(Bp_No_array.getIglStatus().equals("2")){
-                holder.status_text.setVisibility(View.VISIBLE);
-                holder.status_text.setText("RFC Pending");
-            }
             if(Bp_No_array.getIglStatus().equals("3")){
                 holder.status_text.setVisibility(View.VISIBLE);
-                holder.status_text.setText("TPI Approval Pending");
+                holder.status_text.setText("Approval Pending \n RFC Done");
+            }
+            if(Bp_No_array.getIglStatus().equals("111")){
+                holder.status_text.setVisibility(View.VISIBLE);
+                holder.status_text.setText("Approval Pending \n RFC on Hold");
             }
         }
 
@@ -112,38 +114,18 @@ public class TPI_Fesivility_Adapter extends RecyclerView.Adapter<TPI_Fesivility_
                String lead_no = bp_no_list_array.get(position).getLeadNo();
                String ownerName = bp_no_list_array.get(position).getOwnerName();
                String igl_code_group = bp_no_list_array.get(position).getIglCodeGroup();
-
-               Intent intent=new Intent(context, TPI_Connection_Activity.class);
-               intent.putExtra("First_name",First_name);
-               intent.putExtra("Middle_name",Middle_name);
-               intent.putExtra("Last_name",Last_name);
-               intent.putExtra("Mobile_number",Mobile_number);
-               intent.putExtra("Email_id",Email_id);
-               intent.putExtra("Aadhaar_number",Aadhaar_number);
-               intent.putExtra("City_region",City_region);
-               intent.putExtra("Area",Area);
-               intent.putExtra("Society",Society);
-               intent.putExtra("Landmark",Landmark);
-               intent.putExtra("House_type",House_type);
-               intent.putExtra("House_no",House_no);
-               intent.putExtra("Block_qtr_tower_wing",Block_qtr_tower_wing);
-               intent.putExtra("Floor",Floor);
-               intent.putExtra("Street_gali_road",Street_gali_road);
-               intent.putExtra("Pincode",Pincode);
-               intent.putExtra("Customer_type",Customer_type);
-               intent.putExtra("Lpg_company",Lpg_company);
-               intent.putExtra("Bp_number",Bp_number);
-               intent.putExtra("Bp_date",Bp_date);
-               intent.putExtra("IGL_Status",IGL_Status);
-               intent.putExtra("lpg_distributor",lpg_distributor);
-               intent.putExtra("lpg_conNo",lpg_conNo);
-               intent.putExtra("Unique_lpg_Id",Unique_lpg_Id);
-               intent.putExtra("lead_no",lead_no);
-               intent.putExtra("ownerName",ownerName);
-               intent.putExtra("igl_code_group",igl_code_group);
-               intent.putExtra("TPI_Status_Code","0");
-               intent.putExtra("Feasibility_Type","0");
-               context.startActivity(intent);
+               if (Bp_No_array.getIglStatus().equalsIgnoreCase("3")) {
+                   Intent intent = new Intent(context, TPI_RfcDone_Approval_Activity.class);
+                   intent.putExtra("bpno", Bp_number);
+                   intent.putExtra("leadno", lead_no);
+                   context.startActivity(intent);
+               }
+               else {
+                   Intent intent = new Intent(context, TPI_RfcHold_Approval_Activity.class);
+                   intent.putExtra("bpno", Bp_number);
+                   intent.putExtra("leadno", lead_no);
+                   context.startActivity(intent);
+               }
            }
        });
     }
