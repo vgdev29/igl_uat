@@ -124,6 +124,8 @@
                        android:fontFamily="@font/sourcesanspro_regular"
                        android:textColor="@color/green" />
                </LinearLayout>
+
+
                <LinearLayout
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
@@ -265,7 +267,7 @@
                <TextView
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:text="Hold/Failed Details"
+                   android:text="RFC Details"
                    android:textColor="@color/colorAccent"
                    android:fontFamily="@font/playfairdisplay_regular"
                    android:textSize="20sp"
@@ -431,6 +433,502 @@
                        android:textColor="@color/green" />
                </LinearLayout>
 
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="2dp"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="140dp"
+                       android:layout_height="wrap_content"
+                       android:fontFamily="@font/sourcesanspro_regular"
+                       android:text="RFC Contractor"
+                       android:textColor="#808080"
+                       android:textSize="16sp"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text=": "
+                       android:textColor="#808080"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:id="@+id/txt_rfccontractor"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="10dp"
+                       android:textSize="16sp"
+                       android:text=""
+                       android:fontFamily="@font/sourcesanspro_regular"
+                       android:textColor="@color/green" />
+               </LinearLayout>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="2dp"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="140dp"
+                       android:layout_height="wrap_content"
+                       android:fontFamily="@font/sourcesanspro_regular"
+                       android:text="Contractor No."
+                       android:textColor="#808080"
+                       android:textSize="16sp"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text=": "
+                       android:textColor="#808080"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:id="@+id/txt_rfccontno"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="10dp"
+                       android:textSize="16sp"
+                       android:text=""
+                       android:fontFamily="@font/sourcesanspro_regular"
+                       android:textColor="@color/green" />
+               </LinearLayout>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="2dp"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="140dp"
+                       android:layout_height="wrap_content"
+                       android:fontFamily="@font/sourcesanspro_regular"
+                       android:text="RFC Supervisor"
+                       android:textColor="#808080"
+                       android:textSize="16sp"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text=": "
+                       android:textColor="#808080"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:id="@+id/txt_rfcsupname"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="10dp"
+                       android:textSize="16sp"
+                       android:text=""
+                       android:fontFamily="@font/sourcesanspro_regular"
+                       android:textColor="@color/green" />
+               </LinearLayout>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="2dp"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="140dp"
+                       android:layout_height="wrap_content"
+                       android:fontFamily="@font/sourcesanspro_regular"
+                       android:text="Supervisor No."
+                       android:textColor="#808080"
+                       android:textSize="16sp"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text=": "
+                       android:textColor="#808080"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:id="@+id/txt_rfcsupno"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="10dp"
+                       android:textSize="16sp"
+                       android:text=""
+                       android:fontFamily="@font/sourcesanspro_regular"
+                       android:textColor="@color/green" />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="2dp"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="140dp"
+                       android:layout_height="wrap_content"
+                       android:fontFamily="@font/sourcesanspro_regular"
+                       android:text="Feasibility TPI"
+                       android:textColor="#808080"
+                       android:textSize="16sp"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text=": "
+                       android:textColor="#808080"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:id="@+id/txt_rfcfeasibility"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="10dp"
+                       android:textSize="16sp"
+                       android:text=""
+                       android:fontFamily="@font/sourcesanspro_regular"
+                       android:textColor="@color/green" />
+               </LinearLayout>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="2dp"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="140dp"
+                       android:layout_height="wrap_content"
+                       android:fontFamily="@font/sourcesanspro_regular"
+                       android:text="Feasibility TPi No"
+                       android:textColor="#808080"
+                       android:textSize="16sp"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text=": "
+                       android:textColor="#808080"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:id="@+id/txt_rfcfesibilityno"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="10dp"
+                       android:textSize="16sp"
+                       android:text=""
+                       android:fontFamily="@font/sourcesanspro_regular"
+                       android:textColor="@color/green" />
+               </LinearLayout>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="2dp"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="140dp"
+                       android:layout_height="wrap_content"
+                       android:fontFamily="@font/sourcesanspro_regular"
+                       android:text="Follow-Up Date"
+                       android:textColor="#808080"
+                       android:textSize="16sp"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text=": "
+                       android:textColor="#808080"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:id="@+id/txt_rfcfollowup"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="10dp"
+                       android:textSize="16sp"
+                       android:text=""
+                       android:fontFamily="@font/sourcesanspro_regular"
+                       android:textColor="@color/green" />
+               </LinearLayout>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="2dp"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="140dp"
+                       android:layout_height="wrap_content"
+                       android:fontFamily="@font/sourcesanspro_regular"
+                       android:text="Cat Id"
+                       android:textColor="#808080"
+                       android:textSize="16sp"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text=": "
+                       android:textColor="#808080"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:id="@+id/txt_rfccatid"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="10dp"
+                       android:textSize="16sp"
+                       android:text=""
+                       android:fontFamily="@font/sourcesanspro_regular"
+                       android:textColor="@color/green" />
+               </LinearLayout>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="2dp"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="140dp"
+                       android:layout_height="wrap_content"
+                       android:fontFamily="@font/sourcesanspro_regular"
+                       android:text="Code Group"
+                       android:textColor="#808080"
+                       android:textSize="16sp"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text=": "
+                       android:textColor="#808080"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:id="@+id/txt_rfccodegroup"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="10dp"
+                       android:textSize="16sp"
+                       android:text=""
+                       android:fontFamily="@font/sourcesanspro_regular"
+                       android:textColor="@color/green" />
+               </LinearLayout>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="2dp"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="140dp"
+                       android:layout_height="wrap_content"
+                       android:fontFamily="@font/sourcesanspro_regular"
+                       android:text="Code"
+                       android:textColor="#808080"
+                       android:textSize="16sp"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text=": "
+                       android:textColor="#808080"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:id="@+id/txt_rfccode"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="10dp"
+                       android:textSize="16sp"
+                       android:text=""
+                       android:fontFamily="@font/sourcesanspro_regular"
+                       android:textColor="@color/green" />
+               </LinearLayout>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="2dp"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="140dp"
+                       android:layout_height="wrap_content"
+                       android:fontFamily="@font/sourcesanspro_regular"
+                       android:text="Catalog"
+                       android:textColor="#808080"
+                       android:textSize="16sp"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text=": "
+                       android:textColor="#808080"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:id="@+id/txt_rfccatalog"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="10dp"
+                       android:textSize="16sp"
+                       android:text=""
+                       android:fontFamily="@font/sourcesanspro_regular"
+                       android:textColor="@color/green" />
+               </LinearLayout>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="2dp"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="140dp"
+                       android:layout_height="wrap_content"
+                       android:fontFamily="@font/sourcesanspro_regular"
+                       android:text="Zone"
+                       android:textColor="#808080"
+                       android:textSize="16sp"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text=": "
+                       android:textColor="#808080"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:id="@+id/txt_rfczone"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="10dp"
+                       android:textSize="16sp"
+                       android:text=""
+                       android:fontFamily="@font/sourcesanspro_regular"
+                       android:textColor="@color/green" />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="2dp"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="140dp"
+                       android:layout_height="wrap_content"
+                       android:fontFamily="@font/sourcesanspro_regular"
+                       android:text="Lead No"
+                       android:textColor="#808080"
+                       android:textSize="16sp"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text=": "
+                       android:textColor="#808080"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:id="@+id/rfc_leadno"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="10dp"
+                       android:textSize="16sp"
+                       android:text=""
+                       android:fontFamily="@font/sourcesanspro_regular"
+                       android:textColor="@color/green" />
+               </LinearLayout>
+
+
+           </LinearLayout>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:layout_marginTop="20dp"
+           android:layout_marginHorizontal="20dp"
+           android:background="@drawable/shape_white">
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Image"
+               android:textColor="@color/colorAccent"
+               android:fontFamily="@font/playfairdisplay_regular"
+               android:textSize="20sp"
+               android:layout_marginVertical="10dp"
+               android:gravity="center"/>
+
+           <ImageView
+               android:id="@+id/holdimage"
+               android:layout_width="match_parent"
+               android:layout_height="150dp"
+               android:layout_marginHorizontal="15dp"
+               android:layout_centerVertical="true"
+               android:layout_weight="1"
+               android:background="@drawable/shape_blue_border"
+               android:padding="@dimen/_1sdp"
+               android:scaleType="fitXY" />
+       </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginHorizontal="15dp"
+               android:layout_marginTop="15dp"
+               android:background="@drawable/shape_white"
+               android:weightSum="1">
+
+               <ImageView
+                   android:id="@+id/signature_image"
+                   android:layout_width="@dimen/_120sdp"
+                   android:layout_height="@dimen/_70sdp"
+                   android:layout_centerVertical="true"
+                   android:background="@drawable/shape_blue_border"
+                   />
+
+
+
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="right|center_vertical|center_horizontal|center"
+                   android:layout_marginTop="@dimen/_5sdp"
+                   android:layout_marginRight="@dimen/_10sdp"
+                   android:layout_weight="1"
+                   android:gravity="right|center_vertical|center_horizontal|center"
+                   android:orientation="horizontal"
+                   android:weightSum="1">
+
+                   <Button
+                       android:id="@+id/signature_button"
+                       android:layout_width="@dimen/_110sdp"
+                       android:layout_height="@dimen/_25sdp"
+                       android:layout_gravity="center"
+                       android:layout_marginRight="@dimen/_10sdp"
+                       android:background="@color/colorPrimary"
+                       android:gravity="center"
+                       android:paddingLeft="@dimen/_10sdp"
+                       android:paddingRight="@dimen/_10sdp"
+                       android:text="Signature"
+                       android:textColor="@color/white"
+                       android:textSize="@dimen/_10sdp" />
+
+               </LinearLayout>
 
            </LinearLayout>
 
@@ -447,7 +945,7 @@
                    android:layout_width="0dp"
                    android:layout_height="@dimen/_28sdp"
                    android:textSize="@dimen/_9sdp"
-                   android:text="Re-Initiate"
+                   android:text="Approve"
                    android:layout_weight="1"
                    android:layout_marginLeft="@dimen/_10sdp"
                    android:layout_marginRight="@dimen/_5sdp"

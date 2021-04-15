@@ -165,6 +165,7 @@ public class RFC_Adapter extends RecyclerView.Adapter<RFC_Adapter.ViewHolder> im
                     String FesabilityTpimobileNo = bp_no_list_array.get(position).getFesabilityTpimobileNo();
                     String VendorMobileNo = bp_no_list_array.get(position).getVendorMobileNo();
                     String Rfcvendorname = bp_no_list_array.get(position).getRfcvendorname();
+                    String rfcAdmin = bp_no_list_array.get(position).getRfcAdmin();
                     Log.e("JobFlag",JobFlag);
                     if (JobFlag.equals("1")) {
 
@@ -204,6 +205,7 @@ public class RFC_Adapter extends RecyclerView.Adapter<RFC_Adapter.ViewHolder> im
                             intent.putExtra("FesabilityTpimobileNo",FesabilityTpimobileNo);
                             intent.putExtra("VendorMobileNo",VendorMobileNo);
                             intent.putExtra("Rfcvendorname",Rfcvendorname);
+                            intent.putExtra("rfcAdmin",rfcAdmin);
                             context.startActivity(intent);
 
                     }else {

@@ -1,8 +1,14 @@
 package com.example.igl.Activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.ColorDrawable;
+import android.media.MediaScannerConnection;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -14,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -36,28 +43,47 @@ import com.example.igl.Helper.SharedPrefs;
 import com.example.igl.MataData.Bp_No_Item;
 import com.example.igl.R;
 import com.google.gson.JsonObject;
+import com.itextpdf.text.pdf.security.SecurityConstants;
+import com.kyanogen.signatureview.SignatureView;
+
+import net.gotev.uploadservice.ContentType;
+import net.gotev.uploadservice.MultipartUploadRequest;
+import net.gotev.uploadservice.ServerResponse;
+import net.gotev.uploadservice.UploadInfo;
+import net.gotev.uploadservice.UploadStatusDelegate;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class TPI_RfcHold_Approval_Activity extends Activity {
+    private static final String IMAGE_DIRECTORY = "/signdemo";
 
     ProgressDialog materialDialog;
     SharedPrefs sharedPrefs;
     ImageView back;
 
     Bp_No_Item bp_no_item = new Bp_No_Item();
-    TextView header_title,bpno,custname,mob,email,adress,status,substatus,description,feasibilitydate,supstatus;
+    TextView header_title,bpno,custname,mob,email,adress,status,substatus,description,feasibilitydate,supstatus,contName,contMob,
+    supName,supMob,fesiName,fesiMob,followup,catid,codegrp,code,catalog,zone,leadno;
     LinearLayout top_layout;
-    Button approve,decline;
-    String BP_NO,LEAD_NO;
+    Button approve,decline,signature_button;
+    String BP_NO,LEAD_NO,signature,statcode,declinedescription;
+    private SignatureView signatureView;
+    private Bitmap bitmap;
+    private ImageView signature_image,holdimage;
 
 
 
@@ -70,8 +96,12 @@ public class TPI_RfcHold_Approval_Activity extends Activity {
         materialDialog.setCancelable(true);
         materialDialog.setCanceledOnTouchOutside(true);
         sharedPrefs = new SharedPrefs(this);
-        BP_NO = getIntent().getStringExtra("bpno");
+
+        BP_NO = getIntent().getStringExtra("Bp_number");
         LEAD_NO = getIntent().getStringExtra("leadno");
+        statcode = getIntent().getStringExtra("iglstatus");
+
+        Log.d("rfchold","bpno = "+BP_NO+"leadno = "+LEAD_NO+" statcode = "+statcode);
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,16 +127,41 @@ public class TPI_RfcHold_Approval_Activity extends Activity {
         supstatus = findViewById(R.id.txt_rfcapprove);
         approve = findViewById(R.id.approve_button);
         decline = findViewById(R.id.decline_button);
+        holdimage= findViewById(R.id.holdimage);
+        contName= findViewById(R.id.txt_rfccontractor);
+        contMob= findViewById(R.id.txt_rfccontno);
+        supName= findViewById(R.id.txt_rfcsupname);
+        supMob= findViewById(R.id.txt_rfcsupno);
+        fesiName= findViewById(R.id.txt_rfcfeasibility);
+        fesiMob= findViewById(R.id.txt_rfcfesibilityno);
+        followup= findViewById(R.id.txt_rfcfollowup);
+        catid= findViewById(R.id.txt_rfccatid);
+        codegrp= findViewById(R.id.txt_rfccodegroup);
+        code= findViewById(R.id.txt_rfccode);
+        catalog= findViewById(R.id.txt_rfccatalog);
+        zone= findViewById(R.id.txt_rfczone);
+        leadno= findViewById(R.id.rfc_leadno);
+        holdimage= findViewById(R.id.holdimage);
+        holdimage= findViewById(R.id.holdimage);
+        holdimage= findViewById(R.id.holdimage);
+        signature_button = findViewById(R.id.signature_button);
+        signature_image = findViewById(R.id.signature_image);
+        signature_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Signature_Method();
+            }
+        });
         approve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tpi_approval_done();
+                TPI_Multipart(signature);
             }
         });
         decline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tpi_decline_done();
+                declineReasonDialog();
             }
         });
         Bp_No_List();
@@ -118,7 +173,7 @@ public class TPI_RfcHold_Approval_Activity extends Activity {
         materialDialog.show();
         String url = Constants.TPI_RFCHOLD_APPROVAl_Data+BP_NO;
         Log.d("tpi",url);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.TPI_RFCHOLD_APPROVAl_Data+BP_NO,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.TPI_RFCHOLD_APPROVAl_Data+BP_NO+"&statcode="+statcode,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -129,10 +184,7 @@ public class TPI_RfcHold_Approval_Activity extends Activity {
                             final JSONObject jsonObject = new JSONObject(response);
                             Log.d("tpi",jsonObject.toString());
                             final JSONArray Bp_Details = jsonObject.getJSONArray("Bp_Details");
-
-
                                 JSONObject data_object=Bp_Details.getJSONObject(0);
-
                                 bp_no_item.setFirst_name(data_object.getString("first_name"));
                                 bp_no_item.setMiddle_name(data_object.getString("middle_name"));
                                 bp_no_item.setLast_name(data_object.getString("last_name"));
@@ -157,10 +209,24 @@ public class TPI_RfcHold_Approval_Activity extends Activity {
 
                                 bp_no_item.setLpg_distributor(data_object.getString("rfcStatus"));
                                 bp_no_item.setLpg_conNo(data_object.getString("rfcReason"));
-                                bp_no_item.setUnique_lpg_Id(data_object.getString("rfcDescription"));
+                                bp_no_item.setUnique_lpg_Id(data_object.getString("rfc_description"));
                                 bp_no_item.setOwnerName(data_object.getString("fesabilityDate"));
                                 bp_no_item.setChequeNo(data_object.getString("approveDeclineSupervisor"));
-                                inflateData();
+                            inflateData();
+                                contName.setText(data_object.getString("rfcAdminName"));
+                            contMob.setText(data_object.getString("rfcAdminMobileNo"));
+                            supName.setText(data_object.getString("rfcVendorName"));
+                            supMob.setText(data_object.getString("rfcVendorMobileNo"));
+                            fesiName.setText(data_object.getString("fesabilityTpiName"));
+                            fesiMob.setText(data_object.getString("fesabilityTpimobileNo"));
+                            followup.setText(data_object.getString("rfc_followup_date"));
+                            catid.setText(data_object.getString("rfcIglCatId"));
+                            catalog.setText(data_object.getString("rfcIglCatalog"));
+                            code.setText(data_object.getString("rfcIglCode"));
+                            codegrp.setText(data_object.getString("igl_code_group"));
+                            zone.setText(data_object.getString("zonecode"));
+                            leadno.setText(data_object.getString("lead_no"));
+
 
 
                         } catch (JSONException e) {
@@ -231,14 +297,148 @@ public class TPI_RfcHold_Approval_Activity extends Activity {
         supstatus.setText(bp_no_item.getChequeNo());
 
     }
+    public void Signature_Method() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(1);
+        getWindow().setLayout(-1, -1);
+        dialog.setContentView(R.layout.signature_dialog_box);
+        dialog.setTitle(SecurityConstants.Signature);
+        dialog.setCancelable(true);
+        signatureView = (SignatureView) dialog.findViewById(R.id.signature_view);
+        Button clear = (Button) dialog.findViewById(R.id.clear);
+        Button save = (Button) dialog.findViewById(R.id.save);
+        clear.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                signatureView.clearCanvas();
+            }
+        });
+        ((ImageView) dialog.findViewById(R.id.crose_img)).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        save.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                bitmap = signatureView.getSignatureBitmap();
+                 signature = saveImage(bitmap);
+                signature_image.setImageBitmap(bitmap);
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+    public String saveImage(Bitmap bitmap2) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap2.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
+        File file = new File(Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY);
+        if (!file.exists()) {
+            file.mkdirs();
+            Log.d("Signature_Page++", file.toString());
+        }
+        try {
+            File file2 = new File(file, Calendar.getInstance().getTimeInMillis() + ".jpg");
+            file2.createNewFile();
+            FileOutputStream fileOutputStream = new FileOutputStream(file2);
+            fileOutputStream.write(byteArrayOutputStream.toByteArray());
+            MediaScannerConnection.scanFile(this, new String[]{file2.getPath()}, new String[]{ContentType.IMAGE_JPEG}, (MediaScannerConnection.OnScanCompletedListener) null);
+            fileOutputStream.close();
+            Log.d("TAG", "File Saved::--->" + file2.getAbsolutePath());
+            return file2.getAbsolutePath();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    public void TPI_Multipart(String str) {
+        if(statcode.equalsIgnoreCase("112"))
+        {
+            statcode = "12";
+        }
+        else if (statcode.equalsIgnoreCase("111")){statcode = "11";}
+        materialDialog.show();
+        try {
+            MultipartUploadRequest multipartUploadRequest = new
+                    MultipartUploadRequest(this, UUID.randomUUID().toString(), Constants.TPI_RFC_HOLD_APPROVAl_DECLINE_CASE2);
+            multipartUploadRequest.addFileToUpload(str, "declinedImage");
+            multipartUploadRequest.addParameter("lead_no", LEAD_NO);
+            multipartUploadRequest.addParameter("bp_no", BP_NO);
+            multipartUploadRequest.addParameter("statcode",statcode);
+            multipartUploadRequest.addParameter("description","Approved by TPI");
+            multipartUploadRequest.setDelegate(new UploadStatusDelegate() {
+                public void onProgress(Context context, UploadInfo uploadInfo) {
+                    materialDialog.show();
+                }
+
+                public void onError(Context context, UploadInfo uploadInfo, Exception exc) {
+                    exc.printStackTrace();
+                    materialDialog.dismiss();
+                    Log.e("Uplodeerror++", uploadInfo.getSuccessfullyUploadedFiles().toString());
+                }
+
+                public void onCompleted(Context context, UploadInfo uploadInfo, ServerResponse serverResponse) {
+                    materialDialog.dismiss();
+                    uploadInfo.getSuccessfullyUploadedFiles().toString();
+                    serverResponse.getHeaders().toString();
+                    Log.e("UPLOADEsinin++", serverResponse.getBodyAsString());
+                    setResult(-1);
+                    Toast.makeText(TPI_RfcHold_Approval_Activity.this, "Succesfull", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+
+                public void onCancelled(Context context, UploadInfo uploadInfo) {
+                    materialDialog.dismiss();
+                }
+            });
+            multipartUploadRequest.setUtf8Charset();
+            multipartUploadRequest.setUsesFixedLengthStreamingMode(true);
+            multipartUploadRequest.setMaxRetries(2);
+            multipartUploadRequest.setAutoDeleteFilesAfterSuccessfulUpload(true);
+            multipartUploadRequest.startUpload();
+            Log.e(NotificationCompat.CATEGORY_STATUS, statcode+status);
+            Log.e(str, "declinedImage");
+        } catch (Exception unused) {
+            Toast.makeText(this, "Please select Image", Toast.LENGTH_SHORT).show();
+            this.materialDialog.dismiss();
+        }
+    }
+
+    public void declineReasonDialog() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(1);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        dialog.setContentView(R.layout.image_upload_dilogbox);
+
+        final EditText descreption_edit =  dialog.findViewById(R.id.descreption_edit);
+
+        (dialog.findViewById(R.id.save_button)).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                if (descreption_edit.getText().toString().trim().isEmpty())
+                {
+                    descreption_edit.setError("*Mandatory to fill");
+                }
+                else {
+                    declinedescription = descreption_edit.getText().toString().trim();
+                    tpi_decline();
+                }
+            }
+        });
+        dialog.findViewById(R.id.crose_img).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
 
 
-    public void tpi_approval_done() {
+    public void tpi_decline (){
 
+        statcode = "2";
 
         materialDialog.show();
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.TPI_RFC_HOLD_APPROVAl_DECLINE,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.TPI_DECLINE,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -282,7 +482,8 @@ public class TPI_RfcHold_Approval_Activity extends Activity {
                 try {
                     params.put("lead_no",LEAD_NO);
                     params.put("bp_no", BP_NO);
-                    params.put("holdFlag", "0");
+                    params.put("statcode", statcode);
+                    params.put("description",declinedescription);
 
 
                 } catch (Exception e) {
@@ -300,75 +501,6 @@ public class TPI_RfcHold_Approval_Activity extends Activity {
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
     }
-
-
-    public void tpi_decline_done() {
-
-
-        materialDialog.show();
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.TPI_RFC_HOLD_APPROVAl_DECLINE,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        materialDialog.dismiss();
-                        try {
-                            final JSONObject jsonObject = new JSONObject(response);
-                            String msg = jsonObject.getString("Message");
-                            Log.d("Response++",jsonObject.toString());
-                            CommonUtils.toast_msg(TPI_RfcHold_Approval_Activity.this,msg);
-                            finish();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }catch (NullPointerException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        materialDialog.dismiss();
-                        NetworkResponse response = error.networkResponse;
-                        if (error instanceof ServerError && response != null) {
-                            try {
-                                String res = new String(response.data,
-                                        HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                                JSONObject obj = new JSONObject(res);
-                            } catch (UnsupportedEncodingException e1) {
-                                e1.printStackTrace();
-                            } catch (JSONException e2) {
-                                e2.printStackTrace();
-                            }
-                        }
-                    }
-                }) {
-
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                try {
-                    params.put("lead_no",LEAD_NO);
-                    params.put("bp_no", BP_NO);
-                    params.put("holdFlag", "1");
-
-
-                } catch (Exception e) {
-                }
-                return params;
-            }
-
-
-        };
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
-                12000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-    }
-
 
 
 

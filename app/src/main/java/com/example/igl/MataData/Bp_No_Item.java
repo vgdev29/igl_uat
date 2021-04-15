@@ -53,6 +53,15 @@ public class Bp_No_Item {
     String holdStatus;
     String text;
     String declinedDescription;
+    String rfcAdmin;
+
+    public String getRfcAdmin() {
+        return rfcAdmin;
+    }
+
+    public void setRfcAdmin(String rfcAdmin) {
+        this.rfcAdmin = rfcAdmin;
+    }
 
     public String getDeclinedDescription() {
         return declinedDescription;

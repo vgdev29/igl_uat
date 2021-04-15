@@ -751,7 +751,7 @@ public class TPI_Connection_Activity  extends Activity {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setContentView(R.layout.image_upload_dilogbox);
         //dialog.setCancelable(false);
-        image_upload=dialog.findViewById(R.id.image_upload);
+       // image_upload=dialog.findViewById(R.id.image_upload);
 
 
         Button save_button = (Button) dialog.findViewById(R.id.save_button);

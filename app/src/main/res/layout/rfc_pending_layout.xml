@@ -7,7 +7,7 @@
     <RelativeLayout
         android:id="@+id/liner_layout"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="170dp"
         android:layout_margin="@dimen/_10sdp"
         android:background="@drawable/shape_white">
 
@@ -62,7 +62,7 @@
                     android:background="@drawable/shape_cornor_radious"
                     android:fontFamily="@font/abhayalibre_regular"
                     android:gravity="center"
-                    android:text="Rfc info"
+                    android:text="Cont. info"
                     android:textColor="@color/white"
                     android:textAllCaps="false"
                     android:textSize="15sp" />
@@ -101,7 +101,7 @@
 
         <LinearLayout
             android:id="@+id/ll_buttons"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_toEndOf="@+id/ll_details"
@@ -110,7 +110,7 @@
 
             <TextView
                 android:id="@+id/status_text"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:text="RFC Pending"
@@ -121,8 +121,9 @@
                 android:textStyle="bold" />
 
             <FrameLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="5dp">
                 <Button
                     android:id="@+id/unclaimed_button"

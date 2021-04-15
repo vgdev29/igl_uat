@@ -156,6 +156,19 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
 
             }
         });
+        holder.mobile_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                    callIntent.setData(Uri.parse("tel:" +Bp_No_array.getMobileNumber() ));
+                    context.startActivity(callIntent);
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
 
 
     }
@@ -440,9 +453,9 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
         TextView cont_mob = dialog.findViewById(R.id.cont_mob_no);
         TextView sup_name = dialog.findViewById(R.id.sup_name_text);
         TextView sup_mob = dialog.findViewById(R.id.sup_mob_no);
-        cont_name.setText("Rfc Admin :- " + contractor_Name);
+        cont_name.setText("Cont. :- " + contractor_Name);
         cont_mob.setText("MobNo :- " + contractor_No);
-        sup_name.setText("Rfc Vendor :- " + supervisor);
+        sup_name.setText("Sup. :- " + supervisor);
         sup_mob.setText("MobNo :- " + supMob);
         sup_mob.setOnClickListener(new View.OnClickListener() {
             @Override

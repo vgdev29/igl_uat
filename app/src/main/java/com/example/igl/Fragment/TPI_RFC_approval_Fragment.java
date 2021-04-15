@@ -31,6 +31,7 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.igl.Adapter.TPI_Fesivility_Adapter;
+import com.example.igl.Adapter.TPI_RFC_Approval_Adapter;
 import com.example.igl.Helper.CommonUtils;
 import com.example.igl.Helper.Constants;
 import com.example.igl.Helper.SharedPrefs;
@@ -55,7 +56,7 @@ public class TPI_RFC_approval_Fragment extends Fragment {
     SharedPrefs sharedPrefs;
     RecyclerView recyclerView;
     SwipeRefreshLayout mSwipeRefreshLayout;
-    TPI_Fesivility_Adapter tpi_inspection_adapter;
+    TPI_RFC_Approval_Adapter tpi_inspection_adapter;
     EditText editTextSearch;
     TextView header_title;
     TextView list_count;
@@ -190,6 +191,7 @@ public class TPI_RFC_approval_Fragment extends Fragment {
                                 bp_no_item.setClaimFlag(data_object.getString("claimFlag"));
                                 bp_no_item.setJobFlag(data_object.getString("jobFlag"));
                                 bp_no_item.setRfcTpi(data_object.getString("rfcTpi"));
+                                bp_no_item.setZoneCode(data_object.getString("zonecode"));
                                 bpDetails.add(bp_no_item);
                             }
 
@@ -198,7 +200,7 @@ public class TPI_RFC_approval_Fragment extends Fragment {
                         }catch (NullPointerException e) {
                             e.printStackTrace();
                         }
-                        tpi_inspection_adapter = new TPI_Fesivility_Adapter(context,bpDetails);
+                        tpi_inspection_adapter = new TPI_RFC_Approval_Adapter(context,bpDetails,TPI_RFC_approval_Fragment.this);
                         recyclerView.setAdapter(tpi_inspection_adapter);
                         tpi_inspection_adapter.notifyDataSetChanged();
                     }
