@@ -1,41 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_30sdp"
         android:background="@color/rad"
-        android:weightSum="3"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="3">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_30sdp"
             android:layout_weight="1.3"
             android:orientation="horizontal">
+
             <ImageView
                 android:id="@+id/back"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_gravity="center"
-                android:background="@drawable/back"
                 android:layout_margin="@dimen/_3sdp"
-                />
+                android:background="@drawable/back" />
         </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:gravity="center"
             android:layout_weight=".4"
+            android:gravity="center"
             android:text="RFC Connection"
+            android:textColor="@color/white"
             android:textSize="@dimen/_14sdp"
-            android:textStyle="bold"
 
-            android:textColor="@color/white"/>
+            android:textStyle="bold" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_30sdp"
@@ -43,1241 +46,1482 @@
             android:layout_weight="1.3"
             android:gravity="center"
             android:orientation="horizontal">
+
             <ImageView
                 android:id="@+id/new_regestration"
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_gravity="center"
-                android:visibility="gone"
                 android:background="@drawable/add"
+                android:visibility="gone"
 
                 />
         </LinearLayout>
     </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/_5sdp"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/_2sdp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:layout_weight="1"
-            android:layout_marginLeft="@dimen/_3sdp"
-            android:textSize="@dimen/_14sdp"
-            android:text="RFC Type" />
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="@dimen/_30sdp"
-            android:orientation="horizontal"
-            android:layout_gravity="center_vertical"
-            android:gravity="center_vertical"
-            android:layout_marginTop="@dimen/_3sdp"
-            android:layout_marginRight="@dimen/_3sdp"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:background="@drawable/background_input_mandatory"
-            android:layout_weight="1">
-            <Spinner
-                android:id="@+id/spinner_online_offline"
-                android:layout_width="@dimen/_130sdp"
-                android:layout_height="@dimen/_26sdp"
-                android:layout_margin="3dp"
-                android:layout_marginRight="@dimen/_5sdp"
-                android:layout_weight=".2"
-                android:spinnerMode="dialog"
-                android:autofillHints="City/Region"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:background="@drawable/shape_white"
-                android:dropDownSelector="@null"
-                />
-            <ImageView
-
-                android:layout_centerVertical="true"
-                android:layout_width="@dimen/_11sdp"
-                android:layout_height="@dimen/_11sdp"
-                android:layout_gravity="center"
-                android:layout_marginRight="@dimen/_5sdp"
-                android:background="@drawable/dropdown"
-                />
-        </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/_2sdp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:layout_weight="1"
-            android:layout_marginLeft="@dimen/_3sdp"
-            android:textSize="@dimen/_14sdp"
-            android:text="Meter Details" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:weightSum="2"
-            android:orientation="horizontal">
-        <EditText
-            android:id="@+id/manufacture_editext"
-            android:layout_width="fill_parent"
-            android:layout_height="@dimen/_30sdp"
-            android:hint="Manufacturer/Make"
-            android:layout_weight="1"
-            android:visibility="gone"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:layout_marginRight="@dimen/_3sdp"
-            android:paddingLeft="@dimen/_5sdp"
-            android:inputType="textCapCharacters"
-            android:background="@drawable/background_input_mandatory"
-            android:textSize="@dimen/_10sdp"
-            android:singleLine="true" />
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:orientation="horizontal"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                android:weightSum="1"
-                android:layout_marginRight="@dimen/_5sdp"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:background="@drawable/background_input_mandatory"
-                android:layout_weight="1">
-                <Spinner
-                    android:id="@+id/manufacture_make_spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_26sdp"
-                    android:layout_margin="3dp"
-                    android:layout_weight=".8"
-                    android:spinnerMode="dialog"
-                    android:background="@drawable/shape_white"
-                    android:dropDownSelector="@null"
-                    />
-                <ImageView
-
-                    android:layout_centerVertical="true"
-                    android:layout_width="@dimen/_11sdp"
-                    android:layout_height="@dimen/_11sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:background="@drawable/dropdown"
-                    />
-            </LinearLayout>
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                android:weightSum="1"
-                android:visibility="gone"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:layout_marginRight="@dimen/_5sdp"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:background="@drawable/background_input_mandatory"
-                android:layout_weight="1">
-                <Spinner
-                    android:id="@+id/meater_no_spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_26sdp"
-                    android:layout_margin="3dp"
-                    android:layout_weight=".8"
-                    android:spinnerMode="dialog"
-                    android:background="@drawable/shape_white"
-                    android:dropDownSelector="@null"
-                    />
-                <ImageView
-
-                    android:layout_centerVertical="true"
-                    android:layout_width="@dimen/_11sdp"
-                    android:layout_height="@dimen/_11sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:background="@drawable/dropdown"
-                    />
-            </LinearLayout>
-        <EditText
-            android:id="@+id/type_nr_text"
-            android:layout_width="fill_parent"
-            android:layout_height="@dimen/_30sdp"
-            android:hint="Type (N/R)"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:layout_marginRight="@dimen/_3sdp"
-            android:paddingLeft="@dimen/_5sdp"
-            android:maxLength="25"
-            android:visibility="gone"
-            android:layout_weight="1"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:background="@drawable/shape_blue_border"
-            android:textSize="@dimen/_10sdp"
-            android:singleLine="true" />
-            <TextView
-                android:id="@+id/meter_text"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:hint="Meter No"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginRight="@dimen/_3sdp"
-                android:paddingLeft="@dimen/_5sdp"
-                android:maxLength="25"
-                android:textColor="@color/black"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                android:layout_weight="1"
-
-                android:background="@drawable/shape_blue_border"
-                android:textSize="@dimen/_10sdp"
-                android:singleLine="true" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:weightSum="2"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:orientation="horizontal">
-            <EditText
-                android:id="@+id/meater_no_text"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:hint="Meter No."
-                android:layout_weight="1"
-                android:inputType="number"
-                android:maxLength="30"
-                android:visibility="gone"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginRight="@dimen/_3sdp"
-                android:paddingLeft="@dimen/_5sdp"
-                android:background="@drawable/background_input_mandatory"
-                android:textSize="@dimen/_10sdp"
-                android:singleLine="true" />
-
-
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:orientation="horizontal"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                android:weightSum="1"
-                android:layout_marginRight="@dimen/_5sdp"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:background="@drawable/background_input_mandatory"
-                android:layout_weight="1">
-                <Spinner
-                    android:id="@+id/spinner_metar_length"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_26sdp"
-                    android:layout_margin="3dp"
-                    android:layout_weight=".8"
-                    android:spinnerMode="dialog"
-                    android:background="@drawable/shape_white"
-                    android:dropDownSelector="@null"
-                    />
-                <ImageView
-
-                    android:layout_centerVertical="true"
-                    android:layout_width="@dimen/_11sdp"
-                    android:layout_height="@dimen/_11sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:background="@drawable/dropdown"
-                    />
-            </LinearLayout>
-            <EditText
-                android:id="@+id/initial_metar_reading_text"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:hint="Initial Meter Reading"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginRight="@dimen/_3sdp"
-                android:paddingLeft="@dimen/_5sdp"
-                android:maxLength="10"
-                android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:background="@drawable/background_input_mandatory"
-                android:textSize="@dimen/_10sdp"
-                android:singleLine="true" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:weightSum="2"
-            android:orientation="horizontal">
-            <EditText
-                android:id="@+id/regulater_no_text"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:hint="REGULATOR NO"
-                android:layout_weight="1"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginRight="@dimen/_3sdp"
-                android:paddingLeft="@dimen/_5sdp"
-                android:maxLength="15"
-                android:background="@drawable/background_input_mandatory"
-                android:textSize="@dimen/_10sdp"
-
-                android:singleLine="true" />
-            <EditText
-                android:id="@+id/gi_instalation_text"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:hint="GI Installation (in meter)"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginRight="@dimen/_3sdp"
-                android:paddingLeft="@dimen/_5sdp"
-                android:maxLength="6"
-                android:inputType="numberDecimal"
-                android:layout_weight="1"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:background="@drawable/background_input_mandatory"
-                android:textSize="@dimen/_10sdp"
-                android:singleLine="true" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:weightSum="2"
-            android:orientation="horizontal">
-            <EditText
-                android:id="@+id/cu_instalation_text"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:hint="Cu Installation (in meter)"
-                android:layout_weight="1"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginRight="@dimen/_3sdp"
-                android:paddingLeft="@dimen/_5sdp"
-                android:background="@drawable/background_input_mandatory"
-                android:textSize="@dimen/_10sdp"
-                android:maxLength="6"
-                android:inputType="numberDecimal"
-                android:singleLine="true" />
-            <EditText
-                android:id="@+id/vo_of_iv_text"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:hint="No.Of IV"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginRight="@dimen/_3sdp"
-                android:paddingLeft="@dimen/_5sdp"
-                android:maxLength="6"
-                android:layout_weight="1"
-                android:inputType="number"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:background="@drawable/background_input_mandatory"
-                android:textSize="@dimen/_10sdp"
-                android:singleLine="true" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:weightSum="2"
-            android:orientation="horizontal">
-            <EditText
-                android:id="@+id/no_of_av_text"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:hint="No.Of AV"
-                android:layout_weight="1"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginRight="@dimen/_3sdp"
-                android:paddingLeft="@dimen/_5sdp"
-                android:maxLength="6"
-                android:background="@drawable/background_input_mandatory"
-                android:textSize="@dimen/_10sdp"
-                android:inputType="number"
-                android:singleLine="true" />
-            <EditText
-                android:id="@+id/pile_length_edit"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:hint="Extra Pipe Length"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginRight="@dimen/_3sdp"
-                android:paddingLeft="@dimen/_5sdp"
-                android:maxLength="6"
-                android:inputType="numberDecimal"
-                android:layout_weight="1"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:background="@drawable/shape_blue_border"
-                android:textSize="@dimen/_10sdp"
-                android:singleLine="true" />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/_3sdp"
-            android:weightSum="2"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/_2sdp"
-                android:textColor="@color/black"
-
-                android:layout_weight="1"
-                android:layout_marginLeft="@dimen/_3sdp"
-                android:textSize="@dimen/_12sdp"
-                android:text="Property Type" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/_2sdp"
-                android:textColor="@color/black"
-                android:layout_weight="1"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:textSize="@dimen/_12sdp"
-                android:text="Gas Type" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:weightSum="2"
-            android:orientation="horizontal">
-
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:orientation="horizontal"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                android:weightSum="1"
-
-                android:layout_marginRight="@dimen/_5sdp"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:background="@drawable/background_input_mandatory"
-                android:layout_weight="1">
-                <Spinner
-                    android:id="@+id/property_type_spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_26sdp"
-                    android:layout_margin="3dp"
-                    android:layout_weight=".8"
-                    android:spinnerMode="dialog"
-                    android:background="@drawable/shape_white"
-                    android:dropDownSelector="@null"
-                    />
-                <ImageView
-
-                    android:layout_centerVertical="true"
-                    android:layout_width="@dimen/_11sdp"
-                    android:layout_height="@dimen/_11sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:background="@drawable/dropdown"
-                    />
-            </LinearLayout>
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:orientation="horizontal"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                android:weightSum="1"
-                android:layout_marginRight="@dimen/_5sdp"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:background="@drawable/background_input_mandatory"
-                android:layout_weight="1">
-                <Spinner
-                    android:id="@+id/gas_type_spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_26sdp"
-                    android:layout_margin="3dp"
-                    android:layout_weight=".8"
-                    android:spinnerMode="dialog"
-                    android:background="@drawable/shape_white"
-                    android:dropDownSelector="@null"
-                    />
-                <ImageView
-
-                    android:layout_centerVertical="true"
-                    android:layout_width="@dimen/_11sdp"
-                    android:layout_height="@dimen/_11sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:background="@drawable/dropdown"
-                    />
-            </LinearLayout>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:weightSum="2"
-            android:orientation="horizontal">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:textSize="@dimen/_11sdp"
-            android:text="PVC Sleeve" />
-
-        <RadioGroup
-            android:id="@+id/pvc_sleeve_radioGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:orientation="horizontal">
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/avail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:textSize="@dimen/_10sdp"
-                android:text="Avail" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/not_avail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:textSize="@dimen/_10sdp"
-                android:text="Not Avail" />
-
-        </RadioGroup>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_11sdp"
-                    android:text="Meter Installation " />
-
-                <RadioGroup
-                    android:id="@+id/meater_intalation_radioGroup"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/meater_intalation_ok"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:textSize="@dimen/_10sdp"
-                        android:text="OK" />
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/meater_intalation_not_ok"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:textSize="@dimen/_10sdp"
-                        android:text="Not OK" />
-
-                </RadioGroup>
-            </LinearLayout>
-        </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="2"
-            android:orientation="horizontal">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_11sdp"
-                    android:text="Clamping(GI/PVC)" />
-
-                <RadioGroup
-                    android:id="@+id/clamping_gi_pvc_radioGroup"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/clamping_gi_pvc_done"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:textSize="@dimen/_10sdp"
-                        android:text="Done" />
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/clamping_gi_pvc_not_done"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:textSize="@dimen/_10sdp"
-                        android:text="Not Done" />
-
-                </RadioGroup>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_11sdp"
-                    android:text="Gas Meter testing" />
-
-                <RadioGroup
-                    android:id="@+id/gas_meter_radioGroup"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/gas_meter_done"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:textSize="@dimen/_10sdp"
-                        android:text="Done" />
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/gas_meter_not_done"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:textSize="@dimen/_10sdp"
-                        android:text="Not Done" />
-
-                </RadioGroup>
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:weightSum="2"
-            android:orientation="horizontal">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_11sdp"
-                    android:text="Cementing of Holes" />
-
-                <RadioGroup
-                    android:id="@+id/cementing_of_holes_radioGroup"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/cementing_of_holes_done"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:textSize="@dimen/_10sdp"
-                        android:text="Done" />
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/cementing_of_holes_not_done"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:textSize="@dimen/_10sdp"
-                        android:text="Not Done" />
-
-                </RadioGroup>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_11sdp"
-                    android:text="Painting of GI pipe      " />
-
-                <RadioGroup
-                    android:id="@+id/painting_of_gi_pipe_radioGroup"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/painting_of_gi_pipe_done"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:textSize="@dimen/_10sdp"
-                        android:text="Done" />
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/painting_of_gi_pipe_not_done"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:textSize="@dimen/_10sdp"
-                        android:text="Not Done" />
-
-                </RadioGroup>
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/offline_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:weightSum="2"
-            android:orientation="horizontal">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_8sdp"
-                    android:text="Hole Drilled for entry in Kitchen" />
-
-                <RadioGroup
-                    android:id="@+id/hole_drilled_radioGroup"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/hole_drilled_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:textSize="@dimen/_10sdp"
-                        android:text="Yes" />
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/hole_drilled_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:textSize="@dimen/_10sdp"
-                        android:text="No" />
-
-                </RadioGroup>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_8sdp"
-                    android:text="Meter Control Valve Testing" />
-
-                <RadioGroup
-                    android:id="@+id/meter_control_valve_testing_radioGroup"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/meter_control_valve_testing_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:textSize="@dimen/_10sdp"
-                        android:text="Yes" />
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/meter_control_valve_testing_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:textSize="@dimen/_10sdp"
-                        android:text="No" />
-
-                </RadioGroup>
-            </LinearLayout>
-        </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:textSize="@dimen/_13sdp"
-            android:text="CUSTOMER SATISFACTION " />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:textColor="@color/black"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:textSize="@dimen/_6sdp"
-            android:text="I owner/authorized representative hereby certify that PNG installation work carried out by IGL at above resident has done to the best of my satisfaction. Further, for conversion of my appliance (any of following 2 categories)." />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:weightSum="2"
+            android:layout_margin="@dimen/_5sdp"
             android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_3sdp"
+                android:layout_weight="1"
+                android:padding="@dimen/_2sdp"
+                android:text="RFC Type"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_marginRight="@dimen/_3sdp"
+                android:layout_weight="1"
+                android:background="@drawable/background_input_mandatory"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/spinner_online_offline"
+                    android:layout_width="@dimen/_130sdp"
+                    android:layout_height="@dimen/_26sdp"
+                    android:layout_margin="3dp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight=".2"
+                    android:autofillHints="City/Region"
+                    android:background="@drawable/shape_white"
+                    android:dropDownSelector="@null"
+                    android:spinnerMode="dialog" />
+
+                <ImageView
+
+                    android:layout_width="@dimen/_11sdp"
+                    android:layout_height="@dimen/_11sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:background="@drawable/dropdown" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_3sdp"
+                android:layout_weight="1"
+                android:padding="@dimen/_2sdp"
+                android:text="Meter Details"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_8sdp"
-                    android:text="1- I am ready to get my appliance converted for Natural gas Usage " />
-
-                <RadioGroup
-                    android:id="@+id/natural_gas_usage_radioGroup"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/natural_gas_usage_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:textSize="@dimen/_8sdp"
-                        android:text="Yes" />
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/natural_gas_usage_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:textSize="@dimen/_8sdp"
-                        android:text="No" />
-
-                </RadioGroup>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_8sdp"
-                    android:text="2- I want NG conversion at later date" />
-
-                <RadioGroup
-                    android:id="@+id/ng_conversion_radioGroup"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/ng_conversion_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:textSize="@dimen/_8sdp"
-                        android:text="Yes" />
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/ng_conversion_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:textSize="@dimen/_8sdp"
-                        android:text="No" />
-
-                </RadioGroup>
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:weightSum="2"
-            >
-        <LinearLayout
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_width="match_parent"
-           android:orientation="vertical"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_width="match_parent"
                 android:orientation="horizontal"
-                android:weightSum="2"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_height="wrap_content">
+                android:weightSum="2">
+
+                <EditText
+                    android:id="@+id/manufacture_editext"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_input_mandatory"
+                    android:hint="Manufacturer/Make"
+                    android:inputType="textCapCharacters"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_10sdp"
+                    android:visibility="gone" />
+
                 <LinearLayout
 
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_4sdp"
-                    android:background="@drawable/shape_blue_border"
-                    android:orientation="vertical">
-                    <FrameLayout
-                        android:id="@+id/capture_fragment"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_input_mandatory"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <Spinner
+                        android:id="@+id/manufacture_make_spinner"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        >
-
-
+                        android:layout_height="@dimen/_26sdp"
+                        android:layout_margin="3dp"
+                        android:layout_weight=".8"
+                        android:background="@drawable/shape_white"
+                        android:dropDownSelector="@null"
+                        android:spinnerMode="dialog" />
 
                     <ImageView
-                        android:id="@+id/select_image"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_80sdp"
-                        android:padding="@dimen/_1sdp"
-                        android:scaleType="fitXY"
-                        />
-                        <TextView
-                            android:id="@+id/time_stemp_text"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/_4sdp"
-                            android:layout_marginLeft="@dimen/_2sdp"
-                            android:layout_marginRight="@dimen/_2sdp"
-                            android:layout_marginTop="@dimen/_3sdp"
-                            android:textColor="@color/rad"/>
-                    </FrameLayout>
+
+                        android:layout_width="@dimen/_11sdp"
+                        android:layout_height="@dimen/_11sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:background="@drawable/dropdown" />
                 </LinearLayout>
 
                 <LinearLayout
-
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_4sdp"
-                    android:background="@drawable/shape_blue_border"
-                    android:orientation="vertical">
-                    <FrameLayout
-                        android:id="@+id/capture_fragment1"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_input_mandatory"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <Spinner
+                        android:id="@+id/spinner_metar_length"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="@dimen/_26sdp"
+                        android:layout_margin="3dp"
+                        android:layout_weight=".8"
+                        android:background="@drawable/shape_white"
+                        android:dropDownSelector="@null"
+                        android:spinnerMode="dialog" />
 
+                    <ImageView
 
-
-                        <ImageView
-                            android:id="@+id/select_image1"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_80sdp"
-                            android:padding="@dimen/_1sdp"
-                            android:scaleType="fitXY"
-                            />
-                        <TextView
-                            android:id="@+id/time_stemp_text1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/_4sdp"
-                            android:layout_marginLeft="@dimen/_2sdp"
-                            android:layout_marginRight="@dimen/_2sdp"
-                            android:layout_marginTop="@dimen/_3sdp"
-                            android:textColor="@color/rad"/>
-                    </FrameLayout>
+                        android:layout_width="@dimen/_11sdp"
+                        android:layout_height="@dimen/_11sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:background="@drawable/dropdown" />
                 </LinearLayout>
 
-            </LinearLayout>
 
+                <EditText
+                    android:id="@+id/type_nr_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_blue_border"
+                    android:hint="Type (N/R)"
+                    android:maxLength="25"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_10sdp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/meter_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_blue_border"
+                    android:gravity="center_vertical"
+                    android:hint="Meter No"
+                    android:maxLength="25"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:singleLine="true"
+
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="2"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_height="wrap_content">
-                <Button
-                    android:id="@+id/image_button"
-                    android:background="@color/colorPrimary"
-                    android:layout_width="@dimen/_60sdp"
-                    android:layout_height="@dimen/_25sdp"
-                    android:paddingLeft="@dimen/_10sdp"
-                    android:paddingRight="@dimen/_10sdp"
-                    android:layout_gravity="center"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="Isometric Graph"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:textColor="@color/white" />
-                <Button
-                    android:id="@+id/image_button2"
-                    android:background="@color/colorPrimary"
-                    android:layout_width="@dimen/_60sdp"
-                    android:layout_height="@dimen/_25sdp"
-                    android:paddingLeft="@dimen/_10sdp"
-                    android:paddingRight="@dimen/_10sdp"
-                    android:layout_gravity="center"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="Installation Photo"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:textColor="@color/white" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="2"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_height="wrap_content">
-                <LinearLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_4sdp"
-                    android:background="@drawable/shape_blue_border"
-                    android:orientation="vertical">
-                    <FrameLayout
-                        android:id="@+id/capture_fragment2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-
-
-                        <ImageView
-                            android:id="@+id/select_image2"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_80sdp"
-                            android:padding="@dimen/_1sdp"
-                            android:scaleType="fitXY"
-                            />
-                        <TextView
-                            android:id="@+id/time_stemp_text2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/_4sdp"
-                            android:layout_marginLeft="@dimen/_2sdp"
-                            android:layout_marginRight="@dimen/_2sdp"
-                            android:layout_marginTop="@dimen/_3sdp"
-                            android:textColor="@color/rad"/>
-                    </FrameLayout>
-                </LinearLayout>
-
-                <LinearLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_4sdp"
-                    android:background="@drawable/shape_blue_border"
-                    android:orientation="vertical">
-                    <FrameLayout
-                        android:id="@+id/capture_fragment3"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-
-
-                        <ImageView
-                            android:id="@+id/select_image3"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_80sdp"
-                            android:padding="@dimen/_1sdp"
-                            android:scaleType="fitXY"
-                            />
-                        <TextView
-                            android:id="@+id/time_stemp_text3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/_4sdp"
-                            android:layout_marginLeft="@dimen/_2sdp"
-                            android:layout_marginRight="@dimen/_2sdp"
-                            android:layout_marginTop="@dimen/_3sdp"
-                            android:textColor="@color/rad"/>
-                    </FrameLayout>
-                </LinearLayout>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="2"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_height="wrap_content">
-                <Button
-                    android:id="@+id/image_button3"
-                    android:background="@color/colorPrimary"
-                    android:layout_width="@dimen/_60sdp"
-                    android:layout_height="@dimen/_25sdp"
-                    android:paddingLeft="@dimen/_10sdp"
-                    android:paddingRight="@dimen/_10sdp"
-                    android:layout_gravity="center"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="Drawing"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:textColor="@color/white" />
-                <Button
-                    android:id="@+id/image_button4"
-                    android:background="@color/colorPrimary"
-                    android:layout_width="@dimen/_60sdp"
-                    android:layout_height="@dimen/_25sdp"
-                    android:paddingLeft="@dimen/_10sdp"
-                    android:paddingRight="@dimen/_10sdp"
-                    android:layout_gravity="center"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="Miscellaneous"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:textColor="@color/white" />
-
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="@dimen/_8sdp"
-            android:layout_width="match_parent"
-            android:weightSum="1"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/signature_image"
-                android:layout_centerVertical="true"
-                android:layout_width="@dimen/_120sdp"
-                android:layout_height="@dimen/_70sdp"
-                android:padding="@dimen/_1sdp"
-                android:scaleType="fitXY"
-                android:background="@drawable/shape_blue_border" />
-
-            <LinearLayout
+                android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:layout_width="match_parent"
-                android:weightSum="1"
-                android:layout_weight="1"
-                android:gravity="center|right"
-                android:layout_gravity="center|right"
                 android:orientation="horizontal"
-                android:layout_height="wrap_content">
-                <Button
-                    android:id="@+id/signature_button"
-                    android:background="@color/colorPrimary"
-                    android:layout_width="@dimen/_110sdp"
-                    android:layout_height="@dimen/_25sdp"
-                    android:paddingLeft="@dimen/_10sdp"
-                    android:paddingRight="@dimen/_10sdp"
-                    android:layout_gravity="center"
-                    android:textSize="@dimen/_8sdp"
-                    android:text="Customer Signature"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:gravity="center"
-                    android:textColor="@color/white" />
+                android:weightSum="2">
+
+                <EditText
+                    android:id="@+id/meater_no_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_input_mandatory"
+                    android:hint="Meter No."
+                    android:inputType="number"
+                    android:maxLength="30"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_10sdp"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_input_mandatory"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="visible"
+                    android:weightSum="1">
+
+                    <Spinner
+                        android:id="@+id/meater_no_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_26sdp"
+                        android:layout_margin="3dp"
+                        android:layout_weight=".8"
+                        android:background="@drawable/shape_white"
+                        android:dropDownSelector="@null"
+                        android:spinnerMode="dialog" />
+
+                    <ImageView
+
+                        android:layout_width="@dimen/_11sdp"
+                        android:layout_height="@dimen/_11sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:background="@drawable/dropdown" />
+                </LinearLayout>
+
+
+                <EditText
+                    android:id="@+id/initial_metar_reading_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_input_mandatory"
+                    android:hint="Initial Meter Reading"
+                    android:inputType="numberDecimal"
+                    android:maxLength="10"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_10sdp" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <EditText
+                    android:id="@+id/regulater_no_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_input_mandatory"
+                    android:hint="REGULATOR NO"
+                    android:maxLength="15"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:singleLine="true"
+
+                    android:textSize="@dimen/_10sdp" />
+
+                <EditText
+                    android:id="@+id/gi_instalation_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_input_mandatory"
+                    android:hint="GI Installation (in meter)"
+                    android:inputType="numberDecimal"
+                    android:maxLength="6"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_10sdp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <EditText
+                    android:id="@+id/cu_instalation_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_input_mandatory"
+                    android:hint="Cu Installation (in meter)"
+                    android:inputType="numberDecimal"
+                    android:maxLength="6"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_10sdp" />
+
+                <EditText
+                    android:id="@+id/vo_of_iv_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_input_mandatory"
+                    android:hint="No.Of IV"
+                    android:inputType="number"
+                    android:maxLength="6"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_10sdp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <EditText
+                    android:id="@+id/no_of_av_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_input_mandatory"
+                    android:hint="No.Of AV"
+                    android:inputType="number"
+                    android:maxLength="6"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_10sdp" />
+
+                <EditText
+                    android:id="@+id/pile_length_edit"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_blue_border"
+                    android:hint="Extra Pipe Length"
+                    android:inputType="numberDecimal"
+                    android:maxLength="6"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/_3sdp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_3sdp"
+                    android:layout_weight="1"
+
+                    android:padding="@dimen/_2sdp"
+                    android:text="Property Type"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/_2sdp"
+                    android:text="Gas Type"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/background_input_mandatory"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <Spinner
+                        android:id="@+id/property_type_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_26sdp"
+                        android:layout_margin="3dp"
+                        android:layout_weight=".8"
+                        android:background="@drawable/shape_white"
+                        android:dropDownSelector="@null"
+                        android:spinnerMode="dialog" />
+
+                    <ImageView
+
+                        android:layout_width="@dimen/_11sdp"
+                        android:layout_height="@dimen/_11sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:background="@drawable/dropdown" />
+                </LinearLayout>
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_input_mandatory"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <Spinner
+                        android:id="@+id/gas_type_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_26sdp"
+                        android:layout_margin="3dp"
+                        android:layout_weight=".8"
+                        android:background="@drawable/shape_white"
+                        android:dropDownSelector="@null"
+                        android:spinnerMode="dialog" />
+
+                    <ImageView
+
+                        android:layout_width="@dimen/_11sdp"
+                        android:layout_height="@dimen/_11sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:background="@drawable/dropdown" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="PVC Sleeve"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/pvc_sleeve_radioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/avail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="Avail"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/not_avail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Not Avail"
+                            android:textSize="@dimen/_10sdp" />
+
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="Meter Installation "
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/meater_intalation_radioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/meater_intalation_ok"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="OK"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/meater_intalation_not_ok"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Not OK"
+                            android:textSize="@dimen/_10sdp" />
+
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="Clamping(GI/PVC)"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/clamping_gi_pvc_radioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/clamping_gi_pvc_done"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="Done"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/clamping_gi_pvc_not_done"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Not Done"
+                            android:textSize="@dimen/_10sdp" />
+
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="Gas Meter testing"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/gas_meter_radioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/gas_meter_done"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="Done"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/gas_meter_not_done"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Not Done"
+                            android:textSize="@dimen/_10sdp" />
+
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="Cementing of Holes"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/cementing_of_holes_radioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/cementing_of_holes_done"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="Done"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/cementing_of_holes_not_done"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Not Done"
+                            android:textSize="@dimen/_10sdp" />
+
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="Painting of GI pipe      "
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/painting_of_gi_pipe_radioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/painting_of_gi_pipe_done"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="Done"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/painting_of_gi_pipe_not_done"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Not Done"
+                            android:textSize="@dimen/_10sdp" />
+
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/offline_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="Hole Drilled for entry in Kitchen"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/hole_drilled_radioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/hole_drilled_yes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="Yes"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/hole_drilled_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="No"
+                            android:textSize="@dimen/_10sdp" />
+
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="Meter Control Valve Testing"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/meter_control_valve_testing_radioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/meter_control_valve_testing_yes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="Yes"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/meter_control_valve_testing_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="No"
+                            android:textSize="@dimen/_10sdp" />
+
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="TF Avail "
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/tf_avail_radioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/tf_avail_done"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="Done"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/tf_avail_not_done"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Not Done"
+                            android:textSize="@dimen/_10sdp" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="Connectivity"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/connectivity_radioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/connectivity_done"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="Done"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/connectivity_not_done"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Not Done"
+                            android:textSize="@dimen/_10sdp" />
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="End Cap"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/ncap_avail_radioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/ncap_avail_yes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="Yes"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/ncap_avail_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="No"
+                            android:textSize="@dimen/_10sdp" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="MCV closed position after testing"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/mcv_closed_radioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/mcv_closed_radiobutton_yes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="Yes"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/mcv_closed_radiobutton_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="No"
+                            android:textSize="@dimen/_10sdp" />
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="CUSTOMER SATISFACTION "
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="I owner/authorized representative hereby certify that PNG installation work carried out by IGL at above resident has done to the best of my satisfaction. Further, for conversion of my appliance (any of following 2 categories)."
+                android:textColor="@color/black"
+                android:textSize="@dimen/_6sdp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="1- I am ready to get my appliance converted for Natural gas Usage "
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_8sdp"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/natural_gas_usage_radioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/natural_gas_usage_yes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="Yes"
+                            android:textSize="@dimen/_8sdp" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/natural_gas_usage_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="No"
+                            android:textSize="@dimen/_8sdp" />
+
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="2- I want NG conversion at later date"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_8sdp"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/ng_conversion_radioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/ng_conversion_yes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="Yes"
+                            android:textSize="@dimen/_8sdp" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/ng_conversion_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="No"
+                            android:textSize="@dimen/_8sdp" />
+
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:orientation="vertical"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_marginRight="@dimen/_4sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/shape_blue_border"
+                            android:orientation="vertical">
+
+                            <FrameLayout
+                                android:id="@+id/capture_fragment"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+
+                                <ImageView
+                                    android:id="@+id/select_image"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_80sdp"
+                                    android:padding="@dimen/_1sdp"
+                                    android:scaleType="fitXY" />
+
+                                <TextView
+                                    android:id="@+id/time_stemp_text"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_2sdp"
+                                    android:layout_marginTop="@dimen/_3sdp"
+                                    android:layout_marginRight="@dimen/_2sdp"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/_4sdp" />
+                            </FrameLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_marginRight="@dimen/_4sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/shape_blue_border"
+                            android:orientation="vertical">
+
+                            <FrameLayout
+                                android:id="@+id/capture_fragment1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+
+                                <ImageView
+                                    android:id="@+id/select_image1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_80sdp"
+                                    android:padding="@dimen/_1sdp"
+                                    android:scaleType="fitXY" />
+
+                                <TextView
+                                    android:id="@+id/time_stemp_text1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_2sdp"
+                                    android:layout_marginTop="@dimen/_3sdp"
+                                    android:layout_marginRight="@dimen/_2sdp"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_4sdp" />
+                            </FrameLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <Button
+                            android:id="@+id/image_button"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginRight="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:background="@color/colorPrimary"
+                            android:gravity="center"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:paddingRight="@dimen/_10sdp"
+                            android:text="Isometric Graph"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <Button
+                            android:id="@+id/image_button2"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginRight="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:background="@color/colorPrimary"
+                            android:gravity="center"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:paddingRight="@dimen/_10sdp"
+                            android:text="Installation Photo"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_10sdp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_marginRight="@dimen/_4sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/shape_blue_border"
+                            android:orientation="vertical">
+
+                            <FrameLayout
+                                android:id="@+id/capture_fragment2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+
+                                <ImageView
+                                    android:id="@+id/select_image2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_80sdp"
+                                    android:padding="@dimen/_1sdp"
+                                    android:scaleType="fitXY" />
+
+                                <TextView
+                                    android:id="@+id/time_stemp_text2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_2sdp"
+                                    android:layout_marginTop="@dimen/_3sdp"
+                                    android:layout_marginRight="@dimen/_2sdp"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_4sdp" />
+                            </FrameLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_marginRight="@dimen/_4sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/shape_blue_border"
+                            android:orientation="vertical">
+
+                            <FrameLayout
+                                android:id="@+id/capture_fragment3"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+
+                                <ImageView
+                                    android:id="@+id/select_image3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_80sdp"
+                                    android:padding="@dimen/_1sdp"
+                                    android:scaleType="fitXY" />
+
+                                <TextView
+                                    android:id="@+id/time_stemp_text3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_2sdp"
+                                    android:layout_marginTop="@dimen/_3sdp"
+                                    android:layout_marginRight="@dimen/_2sdp"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_4sdp" />
+                            </FrameLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <Button
+                            android:id="@+id/image_button3"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginRight="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:background="@color/colorPrimary"
+                            android:gravity="center"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:paddingRight="@dimen/_10sdp"
+                            android:text="Drawing"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <Button
+                            android:id="@+id/image_button4"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginRight="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:background="@color/colorPrimary"
+                            android:gravity="center"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:paddingRight="@dimen/_10sdp"
+                            android:text="Miscellaneous"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_10sdp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <ImageView
+                        android:id="@+id/signature_image"
+                        android:layout_width="@dimen/_120sdp"
+                        android:layout_height="@dimen/_70sdp"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/shape_blue_border"
+                        android:padding="@dimen/_1sdp"
+                        android:scaleType="fitXY" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|right"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:gravity="center|right"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <Button
+                            android:id="@+id/signature_button"
+                            android:layout_width="@dimen/_110sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="@dimen/_10sdp"
+                            android:background="@color/colorPrimary"
+                            android:gravity="center"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:paddingRight="@dimen/_10sdp"
+                            android:text="Customer Signature"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_8sdp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/submit_button"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:background="@drawable/shape_cornor_radious"
+                android:text="@string/submit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp" />
         </LinearLayout>
-        </LinearLayout>
-        <Button
-            android:layout_alignParentRight="true"
-            android:id="@+id/submit_button"
-            android:background="@drawable/shape_cornor_radious"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_30sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:layout_marginRight="@dimen/_5sdp"
-            android:textSize="@dimen/_10sdp"
-            android:layout_marginBottom="@dimen/_20sdp"
-            android:text="@string/submit"
-            android:textColor="@color/white" />
-    </LinearLayout>
     </ScrollView>
 </LinearLayout>

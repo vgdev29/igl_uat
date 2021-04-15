@@ -77,6 +77,12 @@
             android:name=".Activity.Sign_Up_Activty"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".Activity.TPI_RfcHold_Approval_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.TPI_RfcDone_Approval_Activity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".Activity.Regestar_View_Pager"
             android:screenOrientation="portrait" />
         <activity

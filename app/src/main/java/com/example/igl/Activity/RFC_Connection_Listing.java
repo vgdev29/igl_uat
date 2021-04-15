@@ -198,6 +198,7 @@ public class RFC_Connection_Listing extends Activity implements RFC_Adapter.Cont
                                 bp_no_item.setRfcvendorname(data_object.getString("rfctpiname"));
                                 bp_no_item.setRFCMobileNo(data_object.getString("rfcmobileNo"));
                                 bp_no_item.setDeclinedDescription(data_object.getString("declinedDescription"));
+                                bp_no_item.setRfcAdmin(data_object.getString("rfcadmin"));
                                 //fesabilityTpiName : "suruchipmc"
                                 Log.d(log,"bp item = " + bp_no_item.toString());
                                 bp_no_array.add(bp_no_item);
