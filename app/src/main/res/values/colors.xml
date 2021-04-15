@@ -15,4 +15,8 @@
     <color name="rad">#DF2C20</color>
     <color name="red_light">#EFAEAA</color>
     <color name="yellow">#FFEB3B</color>
+    <color name="color_primary_orange_verify">#F48221</color>
+    <color name="ng_fontcolor">#4D4D4D</color>
+    <color name="color_light_gray">#ededed</color>
+    <color name="future_stay_gray">#60646E</color>
 </resources>

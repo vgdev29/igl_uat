@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/button_filter_new"
+        app:actionLayout="@layout/layout_proposed_order"
+        app:showAsAction="always"
+        android:visible="true"
+        android:title="Filter"/>
+
+    <!--<item
+        android:id="@+id/enableScheme"
+        app:showAsAction="never"
+        android:visible="true"
+        android:title="Disable Scheme Application"/>-->
+</menu>

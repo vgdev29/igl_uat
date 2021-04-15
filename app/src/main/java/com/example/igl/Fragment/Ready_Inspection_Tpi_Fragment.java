@@ -32,7 +32,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-//import com.example.igl.Activity.TPI_Inspection_RFC_Activity;
+import com.example.igl.Activity.TPI_Inspection_RFC_Activity;
 import com.example.igl.Adapter.RFC_Approval_Adapter;
 import com.example.igl.Helper.Constants;
 import com.example.igl.Helper.RecyclerItemClickListener;
@@ -74,6 +74,7 @@ public class Ready_Inspection_Tpi_Fragment extends Activity implements RFC_Appro
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_bp_no_listing);
+
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Please wait...");
         progressDialog.setCancelable(false);
@@ -153,7 +154,7 @@ public class Ready_Inspection_Tpi_Fragment extends Activity implements RFC_Appro
                         materialDialog.dismiss();
                         try {
                             final JSONObject jsonObject = new JSONObject(response);
-                            Log.d("Response++",jsonObject.toString());
+                            Log.e("Response++",jsonObject.toString());
                             final JSONObject Bp_Details = jsonObject.getJSONObject("Bp_Details");
                             JSONArray payload=Bp_Details.getJSONArray("users");
                             list_count.setText("Count= "+String.valueOf(payload.length()));
@@ -181,6 +182,7 @@ public class Ready_Inspection_Tpi_Fragment extends Activity implements RFC_Appro
                                 bp_no_item.setBp_number(data_object.getString("bp_number"));
                                 bp_no_item.setBp_date(data_object.getString("bp_date"));
                                 bp_no_item.setIgl_status(data_object.getString("igl_status"));
+
                                 bp_no_item.setLpg_distributor(data_object.getString("lpg_distributor"));
                                 bp_no_item.setLpg_conNo(data_object.getString("lpg_conNo"));
                                 bp_no_item.setUnique_lpg_Id(data_object.getString("unique_lpg_Id"));
@@ -196,6 +198,7 @@ public class Ready_Inspection_Tpi_Fragment extends Activity implements RFC_Appro
                                 bp_no_item.setClaimFlag(data_object.getString("claimFlag"));
                                 bp_no_item.setJobFlag(data_object.getString("jobFlag"));
                                 bp_no_item.setRfcTpi(data_object.getString("rfcTpi"));
+
                                 bp_no_array.add(bp_no_item);
 
                             }

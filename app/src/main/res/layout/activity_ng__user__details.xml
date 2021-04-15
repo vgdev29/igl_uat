@@ -44,6 +44,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
+
             android:layout_weight="1.3"
             android:gravity="center"
             android:orientation="horizontal">
@@ -133,7 +134,7 @@
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:paddingLeft="@dimen/_5sdp"
-                        android:text="54002521152154125"
+
                         android:textColor="@color/green"
                         android:textSize="@dimen/_10sdp"
 
@@ -178,7 +179,7 @@
                         android:gravity="center_vertical"
                         android:paddingLeft="@dimen/_5sdp"
                         android:singleLine="true"
-                        android:text="B-0 ground floor"
+
                         android:textSize="@dimen/_10sdp" />
 
                 </LinearLayout>
@@ -213,7 +214,7 @@
                         android:gravity="center_vertical"
                         android:paddingLeft="@dimen/_5sdp"
                         android:singleLine="true"
-                        android:text="B-0 ground floor"
+
                         android:textSize="@dimen/_10sdp" />
 
                 </LinearLayout>
@@ -248,10 +249,11 @@
                         android:gravity="center_vertical"
                         android:paddingLeft="@dimen/_5sdp"
                         android:singleLine="true"
-                        android:text="block and tower"
                         android:textSize="@dimen/_10sdp" />
 
                 </LinearLayout>
+
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -283,7 +285,6 @@
                         android:gravity="center_vertical"
                         android:paddingLeft="@dimen/_5sdp"
                         android:singleLine="true"
-                        android:text="Area"
                         android:textSize="@dimen/_10sdp" />
 
                 </LinearLayout>
@@ -318,7 +319,6 @@
                         android:gravity="center_vertical"
                         android:paddingLeft="@dimen/_5sdp"
                         android:singleLine="true"
-                        android:text="mobile"
                         android:textSize="@dimen/_10sdp" />
 
                 </LinearLayout>
@@ -353,7 +353,6 @@
                         android:gravity="center_vertical"
                         android:paddingLeft="@dimen/_5sdp"
                         android:singleLine="true"
-                        android:text="alternate no"
                         android:textSize="@dimen/_10sdp" />
 
                 </LinearLayout>
@@ -388,7 +387,6 @@
                         android:gravity="center_vertical"
                         android:paddingLeft="@dimen/_5sdp"
                         android:singleLine="true"
-                        android:text="preferred date"
                         android:textSize="@dimen/_10sdp" />
 
                 </LinearLayout>
@@ -423,7 +421,6 @@
                         android:gravity="center_vertical"
                         android:paddingLeft="@dimen/_5sdp"
                         android:singleLine="true"
-                        android:text="preferred date"
                         android:textSize="@dimen/_10sdp" />
 
                 </LinearLayout>
@@ -458,7 +455,6 @@
                         android:gravity="center_vertical"
                         android:paddingLeft="@dimen/_5sdp"
                         android:singleLine="true"
-                        android:text="city"
                         android:textSize="@dimen/_10sdp" />
 
                 </LinearLayout>
@@ -480,7 +476,7 @@
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:paddingLeft="@dimen/_5sdp"
-                        android:text="Service Name :"
+                        android:text="Customer Type :"
                         android:textSize="@dimen/_10sdp" />
 
                     <TextView
@@ -493,7 +489,6 @@
                         android:gravity="center_vertical"
                         android:paddingLeft="@dimen/_5sdp"
                         android:singleLine="true"
-                        android:text="service name"
                         android:textSize="@dimen/_10sdp" />
 
                 </LinearLayout>
@@ -528,7 +523,6 @@
                         android:gravity="center_vertical"
                         android:paddingLeft="@dimen/_5sdp"
                         android:singleLine="true"
-                        android:text="category name"
                         android:textSize="@dimen/_10sdp" />
 
                 </LinearLayout>
@@ -562,7 +556,6 @@
                         android:gravity="center_vertical"
                         android:paddingLeft="@dimen/_5sdp"
                         android:singleLine="true"
-                        android:text="preferred date"
                         android:textSize="@dimen/_10sdp" />
 
                 </LinearLayout>
@@ -665,29 +658,291 @@
                             android:text="PAN Card" />
                     </LinearLayout>
                 </LinearLayout>
+
+
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@color/red_light"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rb_complete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:textSize="@dimen/_10sdp"
+                        android:text="Complete"
+
+                        />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rb_delay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="@dimen/_10sdp"
+                        android:text="Delay" />
+
+                </RadioGroup>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:weightSum="2"
-                    android:id="@+id/ll_ngStatusReasonRemarks"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:orientation="horizontal">
+                    android:visibility="gone"
+                    android:id="@+id/ll_meterReading"
 
-                    <EditText
-                        android:id="@+id/et_enterRemarks"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:orientation="vertical"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2"
+                        android:visibility="visible"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:orientation="horizontal"
+                        >
+
+
+                        <TextView
+                            android:id="@+id/tv_initialReading"
+                            android:layout_width="fill_parent"
+                            android:layout_height="@dimen/_25sdp"
+                            android:text="Initial Reading"
+                            android:layout_weight="1.5"
+                            android:textSize="@dimen/_10sdp"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center"
+                            />
+                        <EditText
+                            android:id="@+id/et_initialReading"
+                            android:layout_width="fill_parent"
+                            android:layout_height="@dimen/_25sdp"
+                            android:hint="Initial Reading"
+                            android:layout_weight=".6"
+                            android:gravity="center"
+                            android:background="@drawable/background_input_mandatory"
+                            android:textSize="@dimen/_10sdp"
+
+                            android:inputType="number"
+                            android:singleLine="true"
+                            />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:orientation="horizontal"
+                        >
+
+
+                        <TextView
+                            android:id="@+id/burnerDetails"
+                            android:layout_width="fill_parent"
+                            android:layout_height="@dimen/_25sdp"
+                            android:text="Burner Details"
+                            android:layout_weight="1.5"
+                            android:textSize="@dimen/_10sdp"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center"
+                            />
+                        <EditText
+                            android:id="@+id/et_burnerDetails"
+                            android:layout_width="fill_parent"
+                            android:layout_height="@dimen/_25sdp"
+                            android:hint="Burner details"
+                            android:layout_weight=".6"
+                            android:gravity="center"
+                            android:background="@drawable/background_input_mandatory"
+                            android:textSize="@dimen/_10sdp"
+
+                            android:inputType="number"
+                            android:singleLine="true"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:orientation="horizontal"
+                        >
+
+
+                        <TextView
+                            android:id="@+id/tv_conversationDate"
+                            android:layout_width="fill_parent"
+                            android:layout_height="@dimen/_25sdp"
+                            android:text="Conversation Date"
+                            android:layout_weight="1.5"
+                            android:textSize="@dimen/_10sdp"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center"
+                            />
+                        <EditText
+                            android:id="@+id/et_conversationDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_marginLeft="@dimen/_3sdp"
+                            android:layout_marginRight="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:hint="Select Delay Date"
+                            android:background="@drawable/background_input_mandatory"
+                            android:inputType="datetime"
+                            android:clickable="false"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+
+                            android:textColor="@color/green"
+                            android:textSize="@dimen/_10sdp"
+
+                            />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone"
+                    android:id="@+id/ll_delayDate"
+
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+
+                    <TextView
+                        android:id="@+id/tv_delayDate"
                         android:layout_width="fill_parent"
-                        android:layout_height="@dimen/_26sdp"
-                        android:hint="Enter Remarks"
+                        android:layout_height="@dimen/_25sdp"
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_marginRight="@dimen/_3sdp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
                         android:paddingLeft="@dimen/_5sdp"
-                        android:background="@drawable/shape_blue_border"
+                        android:text="Select Date:"
+                        android:textSize="@dimen/_10sdp" />
+
+
+                    <Button
+                        android:id="@+id/et_delayDateValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/_5sdp"
+                        android:text="Select Delay Date"
+                        android:background="@drawable/background_input_mandatory"
+
+                        android:textColor="@color/green"
                         android:textSize="@dimen/_10sdp"
-                        android:maxLength="12"
-                        android:singleLine="true" />
+
+                        />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_width="match_parent"
+                    android:id="@+id/ll_audioFile"
+                    android:visibility="gone"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_height="wrap_content">
 
 
 
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_gravity="center|left"
+                        android:visibility="visible"
+                        android:gravity="left"
+                        android:weightSum="2"
+                        android:orientation="horizontal"
+                        android:paddingRight="@dimen/_5sdp"
+                        android:layout_height="match_parent">
+                        <Button
+                            android:id="@+id/audioFile_button"
+                            android:background="@color/colorPrimary"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_26sdp"
+                            android:layout_weight="1"
+
+                            android:layout_gravity="center"
+                            android:textSize="@dimen/_10sdp"
+                            android:text="Audio File"
+                            android:gravity="center"
+                            android:textColor="@color/white" />
+                        <TextView
+                            android:id="@+id/filename1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:text="FileName 1: " />
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_width="match_parent"
+                    android:id="@+id/ll_hold_image"
+                    android:visibility="gone"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/hold_image"
+                        android:layout_centerVertical="true"
+                        android:layout_width="@dimen/_140sdp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:padding="@dimen/_1sdp"
+                        android:scaleType="fitXY"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:background="@drawable/shape_blue_border"
+                        />
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_gravity="center|right"
+                        android:gravity="right"
+                        android:paddingRight="@dimen/_5sdp"
+                        android:layout_height="match_parent">
+                        <Button
+                            android:id="@+id/picture_button"
+                            android:background="@color/colorPrimary"
+                            android:layout_width="@dimen/_120sdp"
+                            android:layout_height="@dimen/_26sdp"
+                            android:layout_gravity="center"
+                            android:textSize="@dimen/_10sdp"
+                            android:text="Picture"
+                            android:gravity="center"
+
+                            android:textColor="@color/white" />
+                    </LinearLayout>
                 </LinearLayout>
                 <RelativeLayout
                     android:padding="@dimen/_10sdp"

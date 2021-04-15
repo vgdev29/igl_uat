@@ -20,6 +20,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <permission
         android:name="android.permission.BLUETOOTH"
@@ -49,7 +50,7 @@
         android:name=".Helper.AppController"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:requestLegacyExternalStorage="true"
@@ -57,17 +58,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.NgAssignmentDetailsActivity"></activity>
+        <activity android:name=".Activity.CustomPdfViewActivity"></activity>
+
+        <activity android:name=".Activity.NgUserClaimListActivity" />
+        <activity android:name=".Activity.NgAssignmentDetailsActivity" />
         <activity android:name=".Activity.NgUserDetailsActivity" />
+        <activity android:name=".Activity.NgUserListActivity" />
         <activity android:name=".Activity.Splash_Screen">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
-        <activity android:name=".Activity.NgUserListActivity">
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".Activity.Login_Activity"
@@ -75,12 +77,6 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".Activity.Sign_Up_Activty"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activity.TPI_RfcHold_Approval_Activity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activity.TPI_RfcDone_Approval_Activity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.Regestar_View_Pager"
@@ -179,11 +175,33 @@
             android:name=".Activity.Tab_Host_Pager"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".Activity.Tab_Host_Pager_TPI_Claim"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name=".Fragment.NgClaim_Tpi_Fragment"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+
+        <activity
+            android:name=".Fragment.Ng_Pending_Fragment"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name=".Fragment.Ng_Decline_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Fragment.Ng_Done_Fragment"
+            android:screenOrientation="portrait" />
+
+
+        <activity
             android:name=".Fragment.Ready_Inspection_Tpi_Fragment"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Fragment.Feasibility_Tpi_Fragment"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".Activity.Forgot_Password"
             android:screenOrientation="portrait" />

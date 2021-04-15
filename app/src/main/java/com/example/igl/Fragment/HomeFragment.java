@@ -45,18 +45,19 @@ import com.example.igl.Activity.KYC_Listing;
 import com.example.igl.Activity.Learning_Activity;
 import com.example.igl.Activity.Login_Activity;
 import com.example.igl.Activity.New_BP_No_Listing;
+import com.example.igl.Activity.NgUserClaimListActivity;
+import com.example.igl.Activity.NgUserListActivity;
 import com.example.igl.Activity.PMCSI_Approval_Activity;
 import com.example.igl.Activity.RFC_Connection_Activity;
 import com.example.igl.Activity.RFC_Connection_Listing;
-import com.example.igl.Activity.RFC_Declined_Listing;
 import com.example.igl.Activity.RFC_StatusMastar_Page;
-import com.example.igl.Activity.TPI_Connection_Lisitng;
 import com.example.igl.Activity.TPI_ViewPager_Activity;
 import com.example.igl.Activity.Tab_Host_DMA;
 import com.example.igl.Activity.Tab_Host_EKYC;
-/*import com.example.igl.Activity.Tab_Host_Inspection;
+import com.example.igl.Activity.Tab_Host_Inspection;
 import com.example.igl.Activity.Tab_Host_PMC;
-import com.example.igl.Activity.Tab_Host_Pager;*/
+import com.example.igl.Activity.Tab_Host_Pager;
+import com.example.igl.Activity.Tab_Host_Pager_TPI_Claim;
 import com.example.igl.Activity.To_DoList_Activity;
 import com.example.igl.Activity.Tracking_Activity;
 import com.example.igl.Activity.View_Attendance_Activity;
@@ -92,7 +93,8 @@ public class HomeFragment extends Fragment {
     View root;
     SharedPrefs sharedPrefs;
     VideoListData1[] myListData;
-    LinearLayout attendance_layout,to_do_list,learning_layout,new_regestration_layout,ekyc_layout,tpi_layout,rfc_layout,pmc_layout;
+    LinearLayout attendance_layout,to_do_list,learning_layout,new_regestration_layout,ekyc_layout,tpi_layout,
+            rfc_layout,pmc_layout,ng_pending_layout,ng_conversion_layout;
     MaterialDialog materialDialog;
     private static final String TAG = Tracking_Activity.class.getSimpleName();
    // private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
@@ -152,8 +154,10 @@ public class HomeFragment extends Fragment {
         new_regestration_layout=(LinearLayout)root.findViewById(R.id.new_regestration_layout);
         ekyc_layout=(LinearLayout)root.findViewById(R.id.ekyc_layout);
         tpi_layout=(LinearLayout)root.findViewById(R.id.tpi_layout);
+        ng_pending_layout=(LinearLayout)root.findViewById(R.id.ng_pending_layout);
         rfc_layout=(LinearLayout)root.findViewById(R.id.rfc_layout);
         pmc_layout=(LinearLayout)root.findViewById(R.id.pmc_layout);
+        ng_conversion_layout=(LinearLayout)root.findViewById(R.id.ng_conversion_layout);
        /* new_regestration_layout.setVisibility(View.GONE);
         ekyc_layout.setVisibility(View.GONE);
         tpi_layout.setVisibility(View.GONE);
@@ -163,28 +167,36 @@ public class HomeFragment extends Fragment {
             new_regestration_layout.setVisibility(View.VISIBLE);
             ekyc_layout.setVisibility(View.GONE);
             tpi_layout.setVisibility(View.GONE);
+            ng_pending_layout.setVisibility(View.GONE);
             rfc_layout.setVisibility(View.GONE);
+            ng_conversion_layout.setVisibility(View.GONE);
             pmc_layout.setVisibility(View.GONE);
         }
         else if (sharedPrefs.getType_User().equals("TPI")){
             new_regestration_layout.setVisibility(View.GONE);
             ekyc_layout.setVisibility(View.GONE);
             tpi_layout.setVisibility(View.VISIBLE);
+            ng_pending_layout.setVisibility(View.VISIBLE);
             rfc_layout.setVisibility(View.GONE);
+            ng_conversion_layout.setVisibility(View.GONE);
             pmc_layout.setVisibility(View.GONE);
         }
         else if (sharedPrefs.getType_User().equals("RFC")){
             new_regestration_layout.setVisibility(View.GONE);
             ekyc_layout.setVisibility(View.GONE);
             tpi_layout.setVisibility(View.GONE);
+            ng_pending_layout.setVisibility(View.GONE);
             rfc_layout.setVisibility(View.VISIBLE);
+            ng_conversion_layout.setVisibility(View.VISIBLE);
             pmc_layout.setVisibility(View.GONE);
         }
         else if (sharedPrefs.getType_User().equals("EKYC")){
             new_regestration_layout.setVisibility(View.GONE);
             ekyc_layout.setVisibility(View.VISIBLE);
             tpi_layout.setVisibility(View.GONE);
+            ng_pending_layout.setVisibility(View.GONE);
             rfc_layout.setVisibility(View.GONE);
+            ng_conversion_layout.setVisibility(View.GONE);
             pmc_layout.setVisibility(View.GONE);
             attendance_layout.setVisibility(View.GONE);
         }else if (sharedPrefs.getType_User().equals("PMCSI")){
@@ -193,7 +205,9 @@ public class HomeFragment extends Fragment {
 
             ekyc_layout.setVisibility(View.GONE);
             tpi_layout.setVisibility(View.GONE);
+            ng_pending_layout.setVisibility(View.GONE);
             rfc_layout.setVisibility(View.GONE);
+            ng_conversion_layout.setVisibility(View.GONE);
         }else {
             sharedPrefs.setLoginStatus("false");
             Intent intent = new Intent(getActivity(), Login_Activity.class);
@@ -235,13 +249,6 @@ public class HomeFragment extends Fragment {
                 startActivity(attendance);
             }
         });
-        rfc_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent rfcintent = new Intent(getActivity(), RFC_Connection_Listing.class);
-                startActivity(rfcintent);
-            }
-        });
         tpi_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -250,7 +257,40 @@ public class HomeFragment extends Fragment {
                 startActivity(tpiIntent);
             }
         });
-       
+        ng_pending_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               /* Intent attendance=new Intent(getActivity(), Tab_Host_Pager.class);
+                attendance.putExtra("heading","TPI");
+
+                startActivity(attendance);*/
+               Intent intent = new Intent(getActivity(), Tab_Host_Pager_TPI_Claim.class);
+               startActivity(intent);
+            }
+        });
+        rfc_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent rfcintent = new Intent(getActivity(), RFC_Connection_Listing.class);
+                startActivity(rfcintent);
+            }
+        });
+        ng_conversion_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent attendance=new Intent(getActivity(), NgUserListActivity.class);
+                startActivity(attendance);
+            }
+        });
+        pmc_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent attendance=new Intent(getActivity(), Tab_Host_PMC.class);
+                attendance.putExtra("heading","PMC");
+                startActivity(attendance);
+            }
+        });
+        //requestCameraAndStorage();
 
 
     }

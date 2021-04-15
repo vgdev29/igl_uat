@@ -45,7 +45,7 @@
             android:padding="2dp"
             android:background="@drawable/shape_oval"
             android:orientation="horizontal">
-            <ImageView
+           <ImageView
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_gravity="center"
@@ -65,6 +65,18 @@
                 android:paddingLeft="@dimen/_1sdp"
 
                 />
+            <!--<SearchView
+                android:id="@+id/mSearchView"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:clickable="true"
+                app:searchHintIcon="@drawable/search"
+                android:layout_gravity="center"
+                android:focusable="false"
+                android:visibility="visible"
+                android:layout_below="@+id/toolbar"
+
+                />-->
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -86,13 +98,6 @@
                />
         </LinearLayout>
     </LinearLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_ngAssignment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible"
-        />
-
     <RelativeLayout
         android:id="@+id/rel_noNgUserListingData"
         android:layout_width="match_parent"
@@ -117,8 +122,8 @@
             android:layout_below="@+id/iv_cloudOff_attendance"
             android:layout_centerHorizontal="true"
             android:padding="10dp"
-            android:text="No internet connection.Make sure Wi-Fi
-             or cellular data is turned on "
+            android:gravity="center"
+            android:text="No data found "
             android:textSize="15sp"
             android:visibility="visible" />
 
@@ -134,6 +139,19 @@
             android:visibility="visible" />
     </RelativeLayout>
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeToRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_ngAssignment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        />
 
 
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>

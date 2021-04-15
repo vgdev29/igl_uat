@@ -35,7 +35,7 @@
             android:layout_gravity="center"
             android:layout_weight=".4"
             android:gravity="center"
-            android:text="NG User Details"
+            android:text="NG Verfication Details"
             android:textColor="@color/white"
             android:textSize="@dimen/_14sdp"
 
@@ -98,7 +98,6 @@
                     android:id="@+id/tv_customerIdvalues"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_25sdp"
-                    android:text="545555525255245212"
                     android:textColor="@color/white"
                     android:layout_weight="1"
                     android:paddingLeft="@dimen/_5sdp"
@@ -133,7 +132,8 @@
                     android:id="@+id/tv_assignedTimeValues"
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_25sdp"
-                    android:text="23/03/2021 11:18:19  am"
+
+
                     android:layout_weight=".8"
                     android:paddingLeft="@dimen/_5sdp"
                     android:textSize="@dimen/_10sdp"
@@ -172,7 +172,6 @@
                     android:id="@+id/tv_startWorkValues"
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_25sdp"
-                    android:text="23/03/2021 11:18:19  am"
                     android:layout_weight=".8"
                     android:paddingLeft="@dimen/_5sdp"
                     android:textSize="@dimen/_10sdp"
@@ -188,7 +187,7 @@
                 android:background="@color/black"
                 android:layout_below="@+id/ll_assignedTime"
                 />
-            <LinearLayout
+            <!--<LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:weightSum="2"
@@ -199,7 +198,7 @@
                     android:id="@+id/tv_endWork"
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_25sdp"
-                    android:text="Assigned Time"
+                    android:text="End Work"
                     android:layout_weight="1.2"
                     android:paddingLeft="@dimen/_5sdp"
                     android:textColor="#757575"
@@ -211,7 +210,7 @@
                     android:id="@+id/tv_endWorkValues"
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_25sdp"
-                    android:text="23/03/2021 11:18:19  am"
+
                     android:layout_weight=".8"
                     android:paddingLeft="@dimen/_5sdp"
                     android:textSize="@dimen/_10sdp"
@@ -220,7 +219,7 @@
                     android:layout_gravity="center_vertical"
                     android:gravity="center_vertical"
                     />
-            </LinearLayout>
+            </LinearLayout>-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -371,7 +370,46 @@
                     android:textColor="@color/white" />
 
             </LinearLayout>
-            <RadioGroup
+            <LinearLayout
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/signature_image"
+                    android:layout_centerVertical="true"
+                    android:layout_width="@dimen/_140sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:padding="@dimen/_1sdp"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:background="@drawable/shape_blue_border"
+                    />
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center|right"
+                    android:gravity="right"
+                    android:paddingRight="@dimen/_5sdp"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/signature_button"
+                        android:layout_width="@dimen/_120sdp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Signature"
+                        android:textColor="@color/white"
+
+                        android:textSize="@dimen/_10sdp" />
+                </LinearLayout>
+            </LinearLayout>
+            <!--<RadioGroup
                 android:id="@+id/radioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -397,110 +435,125 @@
                     android:textSize="@dimen/_10sdp"
                     android:text="Delay" />
 
-            </RadioGroup>
+            </RadioGroup>-->
 
-            <LinearLayout
+            <!--<LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
+                android:visibility="gone"
+                android:id="@+id/ll_meterReading"
+
                 android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 >
 
-
-                <TextView
-                    android:id="@+id/tv_initialReading"
-                    android:layout_width="fill_parent"
-                    android:layout_height="@dimen/_25sdp"
-                    android:text="Initial Reading"
-                    android:layout_weight="1.5"
-                    android:textSize="@dimen/_10sdp"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center"
-                    />
-                <EditText
-                    android:id="@+id/et_initialReading"
-                    android:layout_width="fill_parent"
-                    android:layout_height="@dimen/_25sdp"
-                    android:hint="Initial Reading"
-                    android:layout_weight=".6"
-                   android:gravity="center"
-                    android:background="@drawable/background_input_mandatory"
-                    android:textSize="@dimen/_10sdp"
-
-                    android:inputType="textCapCharacters"
-                    android:singleLine="true"
-                    />
-            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:visibility="visible"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:orientation="horizontal"
+                    >
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal"
-                >
+                    <TextView
+                        android:id="@+id/tv_initialReading"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:text="Initial Reading"
+                        android:layout_weight="1.5"
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        />
+                    <EditText
+                        android:id="@+id/et_initialReading"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:hint="Initial Reading"
+                        android:layout_weight=".6"
+                        android:gravity="center"
+                        android:background="@drawable/background_input_mandatory"
+                        android:textSize="@dimen/_10sdp"
+
+                        android:inputType="textCapCharacters"
+                        android:singleLine="true"
+                        />
+                </LinearLayout>
 
 
-                <TextView
-                    android:id="@+id/burnerDetails"
-                    android:layout_width="fill_parent"
-                    android:layout_height="@dimen/_25sdp"
-                    android:text="Burner Details"
-                    android:layout_weight="1.5"
-                    android:textSize="@dimen/_10sdp"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center"
-                    />
-                <EditText
-                    android:id="@+id/et_burnerDetails"
-                    android:layout_width="fill_parent"
-                    android:layout_height="@dimen/_25sdp"
-                    android:hint="Burner details"
-                    android:layout_weight=".6"
-                    android:gravity="center"
-                    android:background="@drawable/background_input_mandatory"
-                    android:textSize="@dimen/_10sdp"
-
-                    android:inputType="number"
-                    android:singleLine="true"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal"
-                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:orientation="horizontal"
+                    >
 
 
-                <TextView
-                    android:id="@+id/tv_conversationDate"
-                    android:layout_width="fill_parent"
-                    android:layout_height="@dimen/_25sdp"
-                    android:text="Conversation Date"
-                    android:layout_weight="1.5"
-                    android:textSize="@dimen/_10sdp"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center"
-                    />
-                <EditText
-                    android:id="@+id/et_conversationDate"
-                    android:layout_width="fill_parent"
-                    android:layout_height="@dimen/_25sdp"
-                    android:hint="Conversation Date"
-                    android:layout_weight=".6"
-                    android:gravity="center"
-                    android:background="@drawable/background_input_mandatory"
-                    android:textSize="@dimen/_10sdp"
+                    <TextView
+                        android:id="@+id/burnerDetails"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:text="Burner Details"
+                        android:layout_weight="1.5"
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        />
+                    <EditText
+                        android:id="@+id/et_burnerDetails"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:hint="Burner details"
+                        android:layout_weight=".6"
+                        android:gravity="center"
+                        android:background="@drawable/background_input_mandatory"
+                        android:textSize="@dimen/_10sdp"
 
-                    android:inputType="datetime"
-                    android:singleLine="true"
-                    />
-            </LinearLayout>
+                        android:inputType="number"
+                        android:singleLine="true"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:orientation="horizontal"
+                    >
+
+
+                    <TextView
+                        android:id="@+id/tv_conversationDate"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:text="Conversation Date"
+                        android:layout_weight="1.5"
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        />
+                    <EditText
+                        android:id="@+id/et_conversationDate"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:hint="Conversation Date"
+                        android:layout_weight=".6"
+                        android:gravity="center"
+                        android:background="@drawable/background_input_mandatory"
+                        android:textSize="@dimen/_10sdp"
+
+                        android:inputType="datetime"
+                        android:singleLine="true"
+                        />
+                </LinearLayout>
+
+
+            </LinearLayout>-->
+
 
             <LinearLayout
                 android:layout_marginTop="@dimen/_10sdp"
@@ -509,18 +562,19 @@
                 android:weightSum="1"
                 android:gravity="center"
                 android:layout_gravity="right"
-                android:layout_marginBottom="@dimen/_10sdp"
+
                 android:background="@color/rad"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/tv_viewJmrForm"
+                <Button
+                    android:id="@+id/btn_viewJmrForm"
                     android:layout_width="50dp"
                     android:layout_height="@dimen/_25sdp"
                     android:text="VIEW JMR FORM"
                     android:layout_weight="1.2"
                     android:paddingLeft="@dimen/_5sdp"
                     android:textColor="@color/white"
+                    android:background="@color/rad"
 
                     android:textSize="@dimen/_10sdp"
                     android:layout_gravity="center"

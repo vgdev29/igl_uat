@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:layout_marginTop="2dp"
+
+        app:srcCompat="@drawable/ic_filter_list_black_24dp" />
+
+    <!--<com.gz.vitalwires.widgets.CustomCircularImageView
+        android:id="@+id/tv_proposedOrderFiltersCount"
+        android:layout_width="@dimen/value_6dp"
+        android:layout_height="@dimen/value_6dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="4dp"
+        android:background="@color/red"
+        />-->
+    <com.gz.vitalwires.widgets.CircularTextView
+        android:id="@+id/tv_FiltersIndicator"
+        android:layout_width="6dp"
+        android:layout_height="6dp"
+        android:layout_gravity="top|end"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="4dp"
+        />
+
+</FrameLayout>

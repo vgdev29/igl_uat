@@ -8,18 +8,28 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.Html;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.igl.Adapter.NgUserListAdapter;
+import com.example.igl.Fragment.NgClaim_Tpi_Fragment;
 import com.example.igl.Model.NguserListModel;
 import com.example.igl.NgUserListViewModel;
 import com.example.igl.R;
+import com.example.igl.utils.Utils;
 import com.example.rest.Api;
 
 import java.util.ArrayList;
@@ -35,27 +45,37 @@ public class NgUserListActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView_ngAssignment;
     private NgUserListAdapter adapter;
-    //private SwipeRefreshLayout mSwipeRefreshLayout;
-    private NgUserListViewModel ngUserListViewModel;
+    private ImageView back;
     private LinearLayout ll_sort;
     private RelativeLayout rel_noNgUserListingData;
 
     private List<NguserListModel> ngUserList;
     private Button btnTryAgain;
+    private TextView tv_ngUserListdata;
+    private EditText editTextSearch;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ng_user_list);
+
         btnTryAgain = findViewById(R.id.btnTryAgain);
+        back = findViewById(R.id.back);
+        tv_ngUserListdata = findViewById(R.id.tv_ngUserListdata);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
+
         recyclerView_ngAssignment = findViewById(R.id.recyclerView_ngAssignment);
         recyclerView_ngAssignment.setHasFixedSize(true);
         recyclerView_ngAssignment.setLayoutManager(new LinearLayoutManager(this));
         ngUserList = new ArrayList<>();
+
         rel_noNgUserListingData = findViewById(R.id.rel_noNgUserListingData);
-        loadNgUserList();
+        editTextSearch=findViewById(R.id.editTextSearch);
+
 
         ll_sort = findViewById(R.id.ll_sort);
+
         ll_sort.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +89,55 @@ public class NgUserListActivity extends AppCompatActivity {
                 loadNgUserList();
             }
         });
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
+        editTextSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //  bookadapter.getFilter().filter(s.toString());
+                if (adapter!=null)
+                adapter.getFilter().filter(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                try {
+                    //bp_no_array.clear();
+                    //Feasivility_List();
+                    if(Utils.isNetworkConnected(NgUserListActivity.this)){
+                        loadNgUserList();
+
+                    }else {
+                        Utils.showToast(NgUserListActivity.this,"Please check your connectivity");
+                        rel_noNgUserListingData.setVisibility(View.VISIBLE);
+                        tv_ngUserListdata.setText("Please check your connectivity!!");
+                        recyclerView_ngAssignment.setVisibility(View.GONE);
+                    }
+                    mSwipeRefreshLayout.setRefreshing(false);
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        loadNgUserList();
+
     }
     private void loadNgUserList() {
 
@@ -78,7 +147,7 @@ public class NgUserListActivity extends AppCompatActivity {
                 .build();
 
         Api api = retrofit.create(Api.class);
-        Call<ArrayList<NguserListModel>> call = api.getNgUserList();
+        Call<ArrayList<NguserListModel>> call = api.getClaimUnclaimList("1");
 
 
         call.enqueue(new Callback<ArrayList<NguserListModel>>() {
@@ -87,8 +156,27 @@ public class NgUserListActivity extends AppCompatActivity {
 
                 //finally we are setting the list to our MutableLiveData
                 //ngUserList.setValue(response.body());
-                ngUserList = response.body();
-                setListData(ngUserList);
+                if (response.body()!=null) {
+                    ngUserList = response.body();
+                    if (ngUserList.size()>0){
+                        setListData(ngUserList);
+                    }else {
+
+                        recyclerView_ngAssignment.setVisibility(View.GONE);
+                        rel_noNgUserListingData.setVisibility(View.VISIBLE);
+                        tv_ngUserListdata.setText("No data found!!");
+                    }
+                }else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            recyclerView_ngAssignment.setVisibility(View.GONE);
+                            rel_noNgUserListingData.setVisibility(View.VISIBLE);
+                            tv_ngUserListdata.setText("Failed o fetch data due to some problem please try after some time!!");
+                        }
+                    });
+
+                }
             }
 
             @Override

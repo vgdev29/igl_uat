@@ -4,31 +4,54 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.ImageFormat;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.example.igl.Model.NguserListModel;
 import com.example.igl.R;
+import com.example.igl.utils.Utils;
+import com.example.rest.Api;
+import com.kyanogen.signatureview.SignatureView;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.os.Environment.getExternalStorageDirectory;
 
@@ -37,29 +60,61 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
     private final int PICK_IMAGE_REQUEST_METR_PHOTO = 2;
     private final int PICK_IMAGE_REQUEST_INSTALLATION = 3;
     private final int PICK_IMAGE_REQUEST_SERVICE_CARD = 4;
+    private final int PICK_CUSTOMER_IMAGE_SIGNATURE = 5;
     protected static final int CAMERA_REQUEST_HOME_ADDRESS = 200;
     protected static final int CAMERA_REQUEST_METER_PHOTO = 201;
     protected static final int CAMERA_REQUEST_INSTALLATION = 202;
     protected static final int CAMERA_REQUEST_SERVICE_CARD = 203;
     private static final String IMAGE_DIRECTORY = "/signdemo";
 
-    private Button btn_home_address, btn_meterPhoto,btn_installation,btn_serviceCard;
-    private ImageView iv_homeAddress,iv_meterPhoto,iv_installation,iv_serviceCard;
+    private Button btn_home_address, btn_meterPhoto, btn_installation, btn_serviceCard;
+    private ImageView iv_homeAddress, iv_meterPhoto, iv_installation, iv_serviceCard;
 
-    String image_path_HomeAddress,image_path_address,owner_image_select;
+    String image_path_HomeAddress, image_path_address, owner_image_select;
+    private TextView tv_startWorkValues,tv_assignedTimeValues;
 
     private Uri filePath;
     Bitmap mBitmap;
-    private RadioGroup radioGroup;
+    //private RadioGroup radioGroup;
     private String Type_Of_Status;
-    RadioButton genderradioButton;
+    //RadioButton genderradioButton;
+    private Button submit_button;
+    private String homeAddress_pic_binary,signatureBinary;
+    private LinearLayout ll_meterReading;
+    private NguserListModel nguserListModel;
+    private  String jmrNo,assignDate;
+    private String initialReading ,burnerDetails,conversationDate;
+    private Button btn_viewJmrForm,signature_button;
+    private ImageView signature_image;
+    private int responseCode;
+    private MaterialDialog materialDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ng_assignment_details);
+        if (getIntent()!=null) {
+            jmrNo = getIntent().getStringExtra("jmrNo");
+            assignDate = getIntent().getStringExtra("mAssignDate");
+            initialReading = getIntent().getStringExtra("initialReading");
+            burnerDetails = getIntent().getStringExtra("burnerDetails");
+            conversationDate = getIntent().getStringExtra("conversationDate");
+        }
+        nguserListModel = new NguserListModel();
+        if (TextUtils.isEmpty(initialReading)
+                || TextUtils.isEmpty(burnerDetails) ||
+                TextUtils.isEmpty(conversationDate)){
+
+        }else {
+            nguserListModel.setInitialReading(initialReading);
+            nguserListModel.setBurnerDetails(burnerDetails);
+            nguserListModel.setConversionDate(conversationDate);
+            nguserListModel.setJmrNo(jmrNo);
+        }
 
         mFindViewById();
         clickEvent();
+        setText();
 
     }
 
@@ -72,7 +127,21 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
         iv_meterPhoto = findViewById(R.id.iv_meterPhoto);
         iv_installation = findViewById(R.id.iv_installation);
         iv_serviceCard = findViewById(R.id.iv_serviceCard);
+        submit_button = findViewById(R.id.submit_button);
+        ll_meterReading = findViewById(R.id.ll_meterReading);
+        btn_viewJmrForm = findViewById(R.id.btn_viewJmrForm);
+        tv_startWorkValues = findViewById(R.id.tv_startWorkValues);
+        tv_assignedTimeValues = findViewById(R.id.tv_assignedTimeValues);
+        signature_button = findViewById(R.id.signature_button);
+        signature_image = findViewById(R.id.signature_image);
 
+
+
+    }
+    private void setText(){
+        String currentDateTimeString = java.text.DateFormat.getDateTimeInstance().format(new Date());
+        tv_startWorkValues.setText(currentDateTimeString);
+        tv_assignedTimeValues.setText(assignDate);
 
     }
 
@@ -80,54 +149,214 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
         btn_home_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text= btn_home_address.getText().toString().trim();
+                String text = btn_home_address.getText().toString().trim();
                 selectImage(text);
             }
         });
         btn_meterPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text= btn_meterPhoto.getText().toString().trim();
+                String text = btn_meterPhoto.getText().toString().trim();
                 selectImage(text);
             }
         });
         btn_installation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text= btn_installation.getText().toString().trim();
+                String text = btn_installation.getText().toString().trim();
                 selectImage(text);
             }
         });
         btn_serviceCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text= btn_serviceCard.getText().toString().trim();
+                String text = btn_serviceCard.getText().toString().trim();
                 selectImage(text);
             }
         });
-        radioGroup = (RadioGroup)findViewById(R.id.radioGroup);
-        final int selectedId = radioGroup.getCheckedRadioButtonId();
-        genderradioButton = (RadioButton)findViewById(selectedId);
 
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.rb_complete:
-                        //Toast.makeText(New_Regestration_Form.this, "Type", Toast.LENGTH_LONG).show();
-                        Type_Of_Status="Complete";
-                        break;
-                    case R.id.rb_delay:
+        submit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!TextUtils.isEmpty(jmrNo))
+                submitData(nguserListModel);
+            }
+        });
 
-                        Type_Of_Status="Delay";
-                        //Ownar_Signature();
-                        break;
+
+        btn_viewJmrForm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!TextUtils.isEmpty(jmrNo)){
+                    String url = "http://49.50.68.240:8080/api/jmr/pdfprint/"+jmrNo+"/customer";
+                    Intent intent = new Intent(NgAssignmentDetailsActivity.this, CustomPdfViewActivity.class);
+                    intent.putExtra("DownloadUrl", url);
+                    startActivity(intent);
                 }
-                if(selectedId==-1){
-                    Toast.makeText(NgAssignmentDetailsActivity.this,"Nothing selected", Toast.LENGTH_SHORT).show();
+            }
+        });
+        signature_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Signature_Method();
+                Customer_Signature1();
+            }
+        });
+    }
+
+    private void Customer_Signature1() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        dialog.setContentView(R.layout.customer_signature);
+        dialog.setTitle("Signature");
+        dialog.setCancelable(true);
+        TextView owner_name = dialog.findViewById(R.id.owner_name);
+        owner_name.setVisibility(View.GONE);
+        ImageView adhar_owner_image = dialog.findViewById(R.id.adhar_owner_image);
+        Button adhar_button = dialog.findViewById(R.id.adhar_button);
+        TextView signature_select = dialog.findViewById(R.id.signature_select);
+        TextView image_select = dialog.findViewById(R.id.image_select);
+        image_select.setVisibility(View.GONE);
+        TextView save_select = dialog.findViewById(R.id.save_select);
+        final LinearLayout signature_layout = dialog.findViewById(R.id.signature_layout);
+        final LinearLayout image_capture_layout = dialog.findViewById(R.id.image_capture_layout);
+        ImageView crose_img = dialog.findViewById(R.id.crose_img);
+        EditText ownar_name_no = dialog.findViewById(R.id.ownar_name_no);
+        ownar_name_no.setVisibility(View.GONE);
+        //final ImageView signature_image = dialog.findViewById(R.id.signature_image);
+        final SignatureView signatureView = (SignatureView) dialog.findViewById(R.id.ownar_signature_view);
+        Button clear = (Button) dialog.findViewById(R.id.clear);
+        Button save = (Button) dialog.findViewById(R.id.save);
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signatureView.clearCanvas();
+            }
+        });
+        crose_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bitmap signatureBitmap = signatureView.getSignatureBitmap();
+                String customer_image_select = saveImage(signatureBitmap);
+                if (signatureBitmap != null) {
+                    signatureBinary = change_to_binary(signatureBitmap);
+                    nguserListModel.setCustomerSign(signatureBinary);
+                    signature_image.setImageBitmap(signatureBitmap);
                 }
-                else{
-                    Toast.makeText(NgAssignmentDetailsActivity.this,genderradioButton.getText(), Toast.LENGTH_SHORT).show();
+
+                dialog.dismiss();
+            }
+        });
+        signature_select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signature_layout.setVisibility(View.VISIBLE);
+                image_capture_layout.setVisibility(View.GONE);
+            }
+        });
+
+
+        adhar_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                User_Signature_Image();
+            }
+        });
+        save_select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+    private void User_Signature_Image() {
+        AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
+        myAlertDialog.setTitle("Upload Pictures Option");
+        myAlertDialog.setMessage("How do you want to set your picture?");
+        myAlertDialog.setPositiveButton("Gallery",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_CUSTOMER_IMAGE_SIGNATURE);
+                    }
+                });
+
+        myAlertDialog.show();
+    }
+
+    public String saveImage(Bitmap myBitmap) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+        File wallpaperDirectory = new File(
+                getExternalStorageDirectory() + IMAGE_DIRECTORY /*iDyme folder*/);
+        if (!wallpaperDirectory.exists()) {
+            wallpaperDirectory.mkdirs();
+            Log.d("Signature_Page++", wallpaperDirectory.toString());
+        }
+        try {
+            File f = new File(wallpaperDirectory, Calendar.getInstance().getTimeInMillis() + ".jpg");
+            f.createNewFile();
+            FileOutputStream fo = new FileOutputStream(f);
+            fo.write(bytes.toByteArray());
+            MediaScannerConnection.scanFile(this, new String[]{f.getPath()}, new String[]{"image/jpeg"}, null);
+            fo.close();
+            Log.d("TAG", "File Saved::--->" + f.getAbsolutePath());
+
+            return f.getAbsolutePath();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        return "";
+    }
+    private void submitData(NguserListModel nguserListModel) {
+        materialDialog = new MaterialDialog.Builder(this)
+                .content("Please wait....")
+                .progress(true, 0)
+                .cancelable(false)
+                .show();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        Api api = retrofit.create(Api.class);
+        Call<List<NguserListModel>> call = api.getPostPhoto(jmrNo, nguserListModel);
+
+        call.enqueue(new Callback<List<NguserListModel>>() {
+            @Override
+            public void onResponse(Call<List<NguserListModel>> call, Response<List<NguserListModel>> response) {
+                responseCode = response.code();
+                materialDialog.dismiss();
+                if (response.body()!=null) {
+                    if (responseCode==200) {
+                        Log.e("Mysucess>>>>>>>>>>", "weldone............");
+
+                        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                    }
+                }else {
+                    if (responseCode==400){
+                        Toast.makeText(getApplicationContext(), "Failed to submit", Toast.LENGTH_SHORT).show();
+                    }
                 }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<NguserListModel>> call, Throwable t) {
+                materialDialog.dismiss();
+                Log.e("My error", "error comes");
+                Toast.makeText(getApplicationContext(), "Failed to submit", Toast.LENGTH_SHORT).show();
+
             }
         });
     }
@@ -143,13 +372,13 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
                         Intent intent = new Intent();
                         intent.setType("image/*");
                         intent.setAction(Intent.ACTION_GET_CONTENT);
-                        if (text.equalsIgnoreCase(btn_home_address.getText().toString().trim())){
+                        if (text.equalsIgnoreCase(btn_home_address.getText().toString().trim())) {
                             startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_HOME_ADDRESS);
-                        }else  if (text.equalsIgnoreCase(btn_meterPhoto.getText().toString().trim())){
+                        } else if (text.equalsIgnoreCase(btn_meterPhoto.getText().toString().trim())) {
                             startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_METR_PHOTO);
-                        }else  if (text.equalsIgnoreCase(btn_installation.getText().toString().trim())){
+                        } else if (text.equalsIgnoreCase(btn_installation.getText().toString().trim())) {
                             startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_INSTALLATION);
-                        }else  if (text.equalsIgnoreCase(btn_serviceCard.getText().toString().trim())){
+                        } else if (text.equalsIgnoreCase(btn_serviceCard.getText().toString().trim())) {
                             startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_SERVICE_CARD);
                         }
 
@@ -163,20 +392,36 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
                         Uri photoURI = FileProvider.getUriForFile(NgAssignmentDetailsActivity.this, getApplicationContext().getPackageName() + ".provider", f);
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                        if (text.equalsIgnoreCase(btn_home_address.getText().toString().trim())){
-                            startActivityForResult(intent,CAMERA_REQUEST_HOME_ADDRESS);
-                        }else if (text.equalsIgnoreCase(btn_meterPhoto.getText().toString().trim())){
-                            startActivityForResult(intent,CAMERA_REQUEST_METER_PHOTO);
-                        }else if (text.equalsIgnoreCase(btn_installation.getText().toString().trim())){
-                            startActivityForResult(intent,CAMERA_REQUEST_INSTALLATION);
-                        }else if (text.equalsIgnoreCase(btn_serviceCard.getText().toString().trim())){
-                            startActivityForResult(intent,CAMERA_REQUEST_SERVICE_CARD);
+                        if (text.equalsIgnoreCase(btn_home_address.getText().toString().trim())) {
+                            startActivityForResult(intent, CAMERA_REQUEST_HOME_ADDRESS);
+                        } else if (text.equalsIgnoreCase(btn_meterPhoto.getText().toString().trim())) {
+                            startActivityForResult(intent, CAMERA_REQUEST_METER_PHOTO);
+                        } else if (text.equalsIgnoreCase(btn_installation.getText().toString().trim())) {
+                            startActivityForResult(intent, CAMERA_REQUEST_INSTALLATION);
+                        } else if (text.equalsIgnoreCase(btn_serviceCard.getText().toString().trim())) {
+                            startActivityForResult(intent, CAMERA_REQUEST_SERVICE_CARD);
                         }
                         //startActivityForResult(intent, CAMERA_REQUEST);
                     }
                 });
         myAlertDialog.show();
     }
+
+    private String change_to_binary(Bitmap bitmapOrg) {
+        ByteArrayOutputStream bao = new ByteArrayOutputStream();
+        bitmapOrg.compress(Bitmap.CompressFormat.JPEG, 50, bao);
+        byte[] ba = bao.toByteArray();
+        String ba1 = Base64.encodeToString(ba, Base64.DEFAULT);
+        return ba1;
+    }
+
+    private String convertToString() {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        byte[] imgByte = byteArrayOutputStream.toByteArray();
+        return Base64.encodeToString(imgByte, Base64.DEFAULT);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -190,6 +435,14 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
                         iv_homeAddress.setImageBitmap(mBitmap);
                         //address_image.setImageBitmap(bitmap1);
                         image_path_HomeAddress = getPath(filePath);
+                        //String image = convertToString();
+                        //nguserListModel.setHome_address(image_path_HomeAddress);
+                        if (mBitmap != null) {
+                            homeAddress_pic_binary = change_to_binary(mBitmap);
+
+
+                            nguserListModel.setHome_address(homeAddress_pic_binary);
+                        }
 
                         //  new ImageCompressionAsyncTask(this).execute(image_path_aadhar, getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Silicompressor/images");
                         Log.e("image_path_aadhar+,", "" + image_path_HomeAddress);
@@ -199,7 +452,7 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
                 }
                 break;
             case PICK_IMAGE_REQUEST_METR_PHOTO:
-                if (requestCode ==  PICK_IMAGE_REQUEST_METR_PHOTO&& resultCode == this.RESULT_OK && data != null && data.getData() != null) {
+                if (requestCode == PICK_IMAGE_REQUEST_METR_PHOTO && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
                     filePath = data.getData();
                     try {
                         mBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePath);
@@ -207,6 +460,11 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
                         iv_meterPhoto.setImageBitmap(mBitmap);
                         //address_image.setImageBitmap(bitmap1);
                         image_path_HomeAddress = getPath(filePath);
+                        if (mBitmap != null) {
+                            homeAddress_pic_binary = change_to_binary(mBitmap);
+                            nguserListModel.setMeter_photo(homeAddress_pic_binary);
+                            //primaryOrderHeader.setImage_binary(pic_binary);
+                        }
 
                         //  new ImageCompressionAsyncTask(this).execute(image_path_aadhar, getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Silicompressor/images");
                         Log.e("image_path_aadhar+,", "" + image_path_HomeAddress);
@@ -227,6 +485,12 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
 
                         //  new ImageCompressionAsyncTask(this).execute(image_path_aadhar, getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Silicompressor/images");
                         Log.e("image_path_aadhar+,", "" + image_path_HomeAddress);
+
+                        if (mBitmap != null) {
+                            homeAddress_pic_binary = change_to_binary(mBitmap);
+                            nguserListModel.setInstallation_photo(homeAddress_pic_binary);
+                            //primaryOrderHeader.setImage_binary(pic_binary);
+                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -241,6 +505,12 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
                         iv_serviceCard.setImageBitmap(mBitmap);
                         //address_image.setImageBitmap(bitmap1);
                         image_path_HomeAddress = getPath(filePath);
+
+                        if (mBitmap != null) {
+                            homeAddress_pic_binary = change_to_binary(mBitmap);
+                            nguserListModel.setService_photo(homeAddress_pic_binary);
+                            //primaryOrderHeader.setImage_binary(pic_binary);
+                        }
 
                         //  new ImageCompressionAsyncTask(this).execute(image_path_aadhar, getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Silicompressor/images");
                         Log.e("image_path_aadhar+,", "" + image_path_HomeAddress);
@@ -407,6 +677,7 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
                 break;
         }
     }
+
     private String getPath(Uri uri) {
         String path = null;
         try {
@@ -423,7 +694,7 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
             cursor.close();
         } catch (NullPointerException e) {
             e.printStackTrace();
-        }catch (CursorIndexOutOfBoundsException e){
+        } catch (CursorIndexOutOfBoundsException e) {
             e.printStackTrace();
         }
         return path;

@@ -20,7 +20,7 @@ public class NguserListModel implements Serializable {
     private String meterNo;
     @SerializedName("customer_name")
     @Expose
-    private String customerName;
+    private String customer_Name;
     @SerializedName("burner_details")
     @Expose
     private String burnerDetails;
@@ -35,7 +35,7 @@ public class NguserListModel implements Serializable {
     private String caNo;
     @SerializedName("meter_type")
     @Expose
-    private String meterType;
+    private String meter_Type;
     @SerializedName("meter_make")
     @Expose
     private String meterMake;
@@ -47,16 +47,16 @@ public class NguserListModel implements Serializable {
     private String mobileNo;
     @SerializedName("rfc_date")
     @Expose
-    private String rfcDate;
+    private String rfC_Date;
     @SerializedName("amount_charged")
     @Expose
-    private Double amountCharged;
+    private Double amount_to_be_Charged;
     @SerializedName("house_no")
     @Expose
     private String houseNo;
     @SerializedName("block_qtr")
     @Expose
-    private String blockQtr;
+    private String block_Qtr;
     @SerializedName("society")
     @Expose
     private String society;
@@ -68,22 +68,28 @@ public class NguserListModel implements Serializable {
     private String floor;
     @SerializedName("street")
     @Expose
-    private String street;
+    private String street_gali_Road;
+
+
+    @SerializedName("code_group")
+    @Expose
+    private String Code_Group;
     @SerializedName("area")
+
     @Expose
     private String area;
-    @SerializedName("photo1")
+    @SerializedName("home_address")
     @Expose
-    private String photo1;
-    @SerializedName("photo2")
+    private String home_address;
+    @SerializedName("meter_photo")
     @Expose
-    private String photo2;
-    @SerializedName("photo3")
+    private String meter_photo;
+    @SerializedName("service_photo")
     @Expose
-    private String photo3;
-    @SerializedName("photo4")
+    private String service_photo;
+    @SerializedName("installation_photo")
     @Expose
-    private String photo4;
+    private String installation_photo;
     @SerializedName("customer_sign")
     @Expose
     private String customerSign;
@@ -116,15 +122,53 @@ public class NguserListModel implements Serializable {
     private Boolean claim;
     @SerializedName("email_id")
     @Expose
-    private String emailId;
+    private String email_ID;
     @SerializedName("alt_number")
     @Expose
-    private String altNumber;
+    private String alt_Number;
     @SerializedName("landmark")
     @Expose
     private String landmark;
 
+    @SerializedName("contractor_id")
+    @Expose
+    private String contractor_id;
 
+    @SerializedName("tpi_id")
+    @Expose
+    private String tpi_id;
+
+    @SerializedName("zi_id")
+    @Expose
+    private String zi_id;
+
+    @SerializedName("supervisor_id")
+    @Expose
+    private String supervisor_id;
+
+    @SerializedName("crm_status")
+    @Expose
+    private String crm_status;
+
+    @SerializedName("crm_reason")
+    @Expose
+    private String crm_reason;
+
+    @SerializedName("lead_no")
+    @Expose
+    private String lead_no;
+
+    @SerializedName("start_job")
+    @Expose
+    private Boolean start_job;
+
+    public Boolean getStart_job() {
+        return start_job;
+    }
+
+    public void setStart_job(Boolean start_job) {
+        this.start_job = start_job;
+    }
 
     public String getBpNo() {
         return bpNo;
@@ -141,16 +185,6 @@ public class NguserListModel implements Serializable {
     public void setMeterNo(String meterNo) {
         this.meterNo = meterNo;
     }
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-
 
 
 
@@ -171,15 +205,6 @@ public class NguserListModel implements Serializable {
     }
 
 
-
-    public String getMeterType() {
-        return meterType;
-    }
-
-    public void setMeterType(String meterType) {
-        this.meterType = meterType;
-    }
-
     public String getMeterMake() {
         return meterMake;
     }
@@ -190,25 +215,6 @@ public class NguserListModel implements Serializable {
 
 
 
-
-
-
-    public String getRfcDate() {
-        return rfcDate;
-    }
-
-    public void setRfcDate(String rfcDate) {
-        this.rfcDate = rfcDate;
-    }
-
-    public Double getAmountCharged() {
-        return amountCharged;
-    }
-
-    public void setAmountCharged(Double amountCharged) {
-        this.amountCharged = amountCharged;
-    }
-
     public String getHouseNo() {
         return houseNo;
     }
@@ -217,13 +223,7 @@ public class NguserListModel implements Serializable {
         this.houseNo = houseNo;
     }
 
-    public String getBlockQtr() {
-        return blockQtr;
-    }
 
-    public void setBlockQtr(String blockQtr) {
-        this.blockQtr = blockQtr;
-    }
 
     public String getSociety() {
         return society;
@@ -249,13 +249,6 @@ public class NguserListModel implements Serializable {
         this.floor = floor;
     }
 
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
 
     public String getArea() {
         return area;
@@ -265,36 +258,36 @@ public class NguserListModel implements Serializable {
         this.area = area;
     }
 
-    public String getPhoto1() {
-        return photo1;
+    public String getHome_address() {
+        return home_address;
     }
 
-    public void setPhoto1(String photo1) {
-        this.photo1 = photo1;
+    public void setHome_address(String home_address) {
+        this.home_address = home_address;
     }
 
-    public String getPhoto2() {
-        return photo2;
+    public String getMeter_photo() {
+        return meter_photo;
     }
 
-    public void setPhoto2(String photo2) {
-        this.photo2 = photo2;
+    public void setMeter_photo(String meter_photo) {
+        this.meter_photo = meter_photo;
     }
 
-    public String getPhoto3() {
-        return photo3;
+    public String getService_photo() {
+        return service_photo;
     }
 
-    public void setPhoto3(String photo3) {
-        this.photo3 = photo3;
+    public void setService_photo(String service_photo) {
+        this.service_photo = service_photo;
     }
 
-    public String getPhoto4() {
-        return photo4;
+    public String getInstallation_photo() {
+        return installation_photo;
     }
 
-    public void setPhoto4(String photo4) {
-        this.photo4 = photo4;
+    public void setInstallation_photo(String installation_photo) {
+        this.installation_photo = installation_photo;
     }
 
     public String getCustomerSign() {
@@ -371,21 +364,7 @@ public class NguserListModel implements Serializable {
         this.claim = claim;
     }
 
-    public String getEmailId() {
-        return emailId;
-    }
 
-    public void setEmailId(String emailId) {
-        this.emailId = emailId;
-    }
-
-    public String getAltNumber() {
-        return altNumber;
-    }
-
-    public void setAltNumber(String altNumber) {
-        this.altNumber = altNumber;
-    }
 
     public String getLandmark() {
         return landmark;
@@ -449,6 +428,79 @@ public class NguserListModel implements Serializable {
 
     public void setPriority(String priority) {
         this.priority = priority;
+    }
+
+
+    public String getCustomer_Name() {
+        return customer_Name;
+    }
+
+    public void setCustomer_Name(String customer_Name) {
+        this.customer_Name = customer_Name;
+    }
+
+    public String getMeter_Type() {
+        return meter_Type;
+    }
+
+    public void setMeter_Type(String meter_Type) {
+        this.meter_Type = meter_Type;
+    }
+
+    public String getRfC_Date() {
+        return rfC_Date;
+    }
+
+    public void setRfC_Date(String rfC_Date) {
+        this.rfC_Date = rfC_Date;
+    }
+
+    public Double getAmount_to_be_Charged() {
+        return amount_to_be_Charged;
+    }
+
+    public void setAmount_to_be_Charged(Double amount_to_be_Charged) {
+        this.amount_to_be_Charged = amount_to_be_Charged;
+    }
+
+    public String getBlock_Qtr() {
+        return block_Qtr;
+    }
+
+    public void setBlock_Qtr(String block_Qtr) {
+        this.block_Qtr = block_Qtr;
+    }
+
+    public String getStreet_gali_Road() {
+        return street_gali_Road;
+    }
+
+    public void setStreet_gali_Road(String street_gali_Road) {
+        this.street_gali_Road = street_gali_Road;
+    }
+
+    public String getCode_Group() {
+        return Code_Group;
+    }
+
+    public void setCode_Group(String code_Group) {
+        Code_Group = code_Group;
+    }
+
+    public String getEmail_ID() {
+        return email_ID;
+    }
+
+    public void setEmail_ID(String email_ID) {
+        this.email_ID = email_ID;
+    }
+
+    public String getAlt_Number() {
+        return alt_Number;
+    }
+
+    public void setAlt_Number(String alt_Number) {
+        this.alt_Number = alt_Number;
     }
 }
 

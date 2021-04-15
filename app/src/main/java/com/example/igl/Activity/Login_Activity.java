@@ -43,6 +43,7 @@ import com.example.igl.Helper.SharedPrefs;
 import com.example.igl.MainActivity;
 import com.example.igl.R;
 import com.example.igl.tracker.MyIntentService;
+import com.example.igl.utils.Utils;
 import com.nabinbhandari.android.permissions.PermissionHandler;
 import com.nabinbhandari.android.permissions.Permissions;
 
@@ -74,7 +75,6 @@ public class Login_Activity extends Activity {
     JSONObject login_value;
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
     public static final String MESSENGER_INTENT_KEY = "msg-intent-key";
-    private String LOG = "loginActivity";
 
 
     public static final int REQUEST_CODE_PERMISSIONS = 101;
@@ -85,7 +85,6 @@ public class Login_Activity extends Activity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         _prefrence = PreferenceManager.getDefaultSharedPreferences(this);
         android_id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-        Log.d(LOG,"android id = "+android_id);
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Please wait...");
         progressDialog.setCancelable(false);
@@ -103,7 +102,13 @@ public class Login_Activity extends Activity {
         user_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SendLoginRequest_User();
+                if (Utils.isNetworkConnected(Login_Activity.this)){
+                    SendLoginRequest_User();
+                }else {
+                    Utils.showToast(Login_Activity.this,"Please check internet connection");
+                }
+
+
             }
         });
 
@@ -119,7 +124,8 @@ public class Login_Activity extends Activity {
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         date_select = date_format.format(c);
-        Log.d(LOG,  "date select = "+date_select);
+        Log.d("CurrentDate",  date_select);
+
         statusCheck();
     }
 
@@ -128,8 +134,8 @@ public class Login_Activity extends Activity {
         progressDialog.show();
         try {
             login_value = new JSONObject();
-            login_value.put("username", email.getText().toString().trim());
-            login_value.put("password", password.getText().toString().trim());
+            login_value.put("username", email.getText().toString());
+            login_value.put("password", password.getText().toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -142,7 +148,7 @@ public class Login_Activity extends Activity {
                     public void onResponse(JSONObject response) {
                         progressDialog.dismiss();
 
-                        Log.d(LOG, response.toString());
+                        Log.e("Response", response.toString());
                         try {
                             user_token = response.getString("jwt");
                             sharedPrefs.setToken(response.getString("jwt"));
@@ -257,7 +263,7 @@ public class Login_Activity extends Activity {
                         //User_Admin_Id="2";
                         try {
                             JSONObject json = new JSONObject(response);
-                            Log.d(LOG, json.toString());
+                            Log.e("Access token", json.toString());
                             // if (json.getString("status").equalsIgnoreCase("true")) {
 
                             // JSONObject json_paylode=json.getJSONObject("data");
@@ -267,7 +273,7 @@ public class Login_Activity extends Activity {
                             sharedPrefs.setName(json.getString("first_name"));
                             sharedPrefs.setType_User(json.getString("type_user"));
                             sharedPrefs.setZone_Code(json.getString("zoneId"));
-                            Log.d(LOG,"type user = "+ json.getString("type_user"));
+                            Log.e("type_user", json.getString("type_user"));
                            /* Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(intent);
                             ///finish();*/
@@ -275,13 +281,13 @@ public class Login_Activity extends Activity {
                             if(sharedPrefs.getType_User().equals("WEB")){
                                 sharedPrefs.setLoginStatus("false");
 
-                                Toast.makeText(Login_Activity.this, "" + "Login Failed due to Web User", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Login_Activity.this, "" + "Login Failed", Toast.LENGTH_SHORT).show();
 
                             }else {
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(intent);
                                 ///finish();
-                               // Toast.makeText(Login_Activity.this, "" + "Succesfully Login", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Login_Activity.this, "" + "Succesfully Login", Toast.LENGTH_SHORT).show();
                             }
                             //sharedPrefs.setState(json_paylode.getString("Status"));
 
@@ -328,8 +334,7 @@ public class Login_Activity extends Activity {
         return super.onKeyDown(keyCode, event);
     }
 
-    public void
-    requestCameraAndStorage() {
+    public void requestCameraAndStorage() {
         String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         Permissions.check(this, permissions, null, null, new PermissionHandler() {
             @Override
