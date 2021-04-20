@@ -55,10 +55,10 @@ public class NgDoneListAdapter  extends RecyclerView.Adapter<NgDoneListAdapter.N
     @Override
     public void onBindViewHolder(@NonNull final NgDoneListViewHolder holder, int position) {
         final NguserListModel ngUserClaimListModel = ngUserClaimList.get(position);
-        holder.tv_bpName.setText(ngUserClaimListModel.getBpNo());
-        holder.tv_address.setText(ngUserClaimListModel.getHouseNo() + ngUserClaimListModel.getCity());
-        holder.tv_dateTime.setText(ngUserClaimListModel.getConversionDate());
-        holder.user_name_text.setText(ngUserClaimListModel.getCustomer_Name());
+        holder.tv_bpName.setText(ngUserClaimListModel.getBp_no());
+        holder.tv_address.setText(ngUserClaimListModel.getHouse_no() + ngUserClaimListModel.getCity());
+        holder.tv_dateTime.setText(ngUserClaimListModel.getConversion_date());
+        holder.user_name_text.setText(ngUserClaimListModel.getCustomer_name());
         if(!TextUtils.isEmpty((ngUserClaimListModel.getStatus()))){
             holder.status_text.setText(ngUserClaimListModel.getStatus());
         }else {
@@ -119,7 +119,7 @@ public class NgDoneListAdapter  extends RecyclerView.Adapter<NgDoneListAdapter.N
                 } else {
                     List<NguserListModel> filteredList = new ArrayList<>();
                     for (NguserListModel row : new_ngUserClaimList) {
-                        if (row.getBpNo().toLowerCase().contains(charString.toLowerCase()) || row.getCustomer_Name().toLowerCase().contains(charString.toLowerCase())) {
+                        if (row.getBp_no().toLowerCase().contains(charString.toLowerCase()) || row.getCustomer_name().toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(row);
                         }
                     }

@@ -6,8 +6,10 @@ import androidx.core.content.FileProvider;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
 import android.graphics.Bitmap;
@@ -33,6 +35,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.example.igl.Model.TpiDetailResponse;
 import com.example.igl.utils.Utils;
 import com.example.rest.Api;
 import com.example.igl.Model.NguserListModel;
@@ -64,6 +68,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.os.Environment.getExternalStorageDirectory;
 import static com.example.igl.utils.Utils.change_to_binary;
+import static com.example.igl.utils.Utils.isNetworkConnected;
 
 
 public class NgUserDetailsActivity extends AppCompatActivity {
@@ -78,7 +83,7 @@ public class NgUserDetailsActivity extends AppCompatActivity {
     private boolean startJob;
     private List<NguserListModel> nguserdetails;
     private TextView tv_ngUserName, tv_cutomerIdValue, tv_houseNoValue, tv_societyValue, tv_preferredDateValue,
-            tv_blockValue, tv_areaValue, tv_mobileNoValue, tv_alternateNoValue, tv_cityvalue, tv_categoryNameValue, tv_delayDate;
+            tv_blockValue, tv_areaValue, tv_mobileNoValue, tv_alternateNoValue, tv_cityvalue, tv_categoryNameValue, tv_delayDate,tv_floorValue;
     private Button submit_button, picture_button;
     private String ngStatus, ngStatusReason;
     private LinearLayout ll_ngStatusreason, ll_delayDate, ll_meterReading, ll_audioFile, ll_hold_image;
@@ -97,8 +102,11 @@ public class NgUserDetailsActivity extends AppCompatActivity {
     private Uri filePath_address;
     private String image_path_address = "";
     private Bitmap bitmap;
+    private TextView tv_serviceNameValue;
 
     private NguserListModel ngUserListModel;
+    private MaterialDialog materialDialog;
+
 
 
 
@@ -129,7 +137,7 @@ public class NgUserDetailsActivity extends AppCompatActivity {
                     ll_ngStatusreason.setVisibility(View.VISIBLE);
                     rb_complete.setVisibility(View.GONE);
                     ll_meterReading.setVisibility(View.GONE);
-                    ngUserListModel.setStatus("OH");
+                    ngUserListModel.setStatus("OP");
                 } else if (ngStatus.equalsIgnoreCase(getResources().getString(R.string.ng_pending))) {
 
                     ll_ngStatusreason.setVisibility(View.VISIBLE);
@@ -139,7 +147,7 @@ public class NgUserDetailsActivity extends AppCompatActivity {
                     ll_audioFile.setVisibility(View.GONE);
                     ll_hold_image.setVisibility(View.GONE);
                     ll_meterReading.setVisibility(View.VISIBLE);
-                    ngUserListModel.setStatus("PG");
+                    ngUserListModel.setStatus("DP");
 
                 } else {
 
@@ -174,6 +182,12 @@ public class NgUserDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 selectImage_address();
 
+            }
+        });
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
         submit_button.setOnClickListener(new View.OnClickListener() {
@@ -222,10 +236,15 @@ public class NgUserDetailsActivity extends AppCompatActivity {
 
                             } else {
                                 if (!TextUtils.isEmpty(holdImageBinary) || !TextUtils.isEmpty(mediaPath1)) {
-                                    ngUserListModel.setSubStatus(ngStatusReason);
-                                    ngUserListModel.setDelayDate(et_delayDateValue.getText().toString().trim());
-                                    ngUserListModel.setJmrNo(jmrNo);
-                                    submitData(ngUserListModel);
+                                    ngUserListModel.setSub_status(ngStatusReason);
+
+                                    ngUserListModel.setDelay_date(et_delayDateValue.getText().toString().trim());
+                                    ngUserListModel.setJmr_no(jmrNo);
+                                    if (isNetworkConnected(NgUserDetailsActivity.this)) {
+                                        submitData(ngUserListModel);
+                                    } else {
+                                        Utils.showToast(NgUserDetailsActivity.this, "Please check internet connection");
+                                    }
                                 } else {
                                     Utils.showToast(NgUserDetailsActivity.this, "Please select image");
                                 }
@@ -387,7 +406,7 @@ public class NgUserDetailsActivity extends AppCompatActivity {
                         //hold_image.setImageBitmap(bitmap);
                         if (bitmap != null) {
                             holdImageBinary = change_to_binary(bitmap);
-                            ngUserListModel.setHoldImages(holdImageBinary);
+                            ngUserListModel.setHold_images(holdImageBinary);
                             hold_image.setImageBitmap(bitmap);
                         }
                         image_path_address = getPath(filePath_address);
@@ -413,7 +432,7 @@ public class NgUserDetailsActivity extends AppCompatActivity {
                                 bitmapOptions);
                         if (bitmap != null) {
                             holdImageBinary = change_to_binary(bitmap);
-                            ngUserListModel.setHoldImages(holdImageBinary);
+                            ngUserListModel.setHold_images(holdImageBinary);
                             hold_image.setImageBitmap(bitmap);
                         }
                         String path = getExternalStorageDirectory().getAbsolutePath();
@@ -517,6 +536,7 @@ public class NgUserDetailsActivity extends AppCompatActivity {
         picture_button = findViewById(R.id.picture_button);
         hold_image = findViewById(R.id.hold_image);
         tv_delayDate = findViewById(R.id.tv_delayDate);
+        tv_floorValue = findViewById(R.id.tv_delayDate);
 
         ll_delayDate = findViewById(R.id.ll_delayDate);
         ll_audioFile = findViewById(R.id.ll_audioFile);
@@ -535,9 +555,29 @@ public class NgUserDetailsActivity extends AppCompatActivity {
         et_initialReading = findViewById(R.id.et_initialReading);
         et_burnerDetails = findViewById(R.id.et_burnerDetails);
         et_conversationDate = findViewById(R.id.et_conversationDate);
+        back = findViewById(R.id.back);
+        tv_serviceNameValue = findViewById(R.id.tv_serviceNameValue);
 
 
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        SharedPreferences sh = getSharedPreferences("MySharedPrefContact", Context.MODE_PRIVATE);
+        String tpiName = sh.getString("TPIName", "");
+        String tpi_code_group = sh.getString("TPI_CODE_GROUP", "");
+        if (!TextUtils.isEmpty(tpi_code_group)){
+            if (tpi_code_group.equalsIgnoreCase("ZLEAD001")){
+                tv_serviceNameValue.setText("Private Normal");
+            }
+            if (tpi_code_group.equalsIgnoreCase("ZLEAD002")){
+                tv_serviceNameValue.setText("Government");
+            }
+            if (tpi_code_group.equalsIgnoreCase("ZLEAD004")){
+                tv_serviceNameValue.setText("Government");
+            }
+            if (tpi_code_group.equalsIgnoreCase("ZLEAD005")){
+                tv_serviceNameValue.setText("Private EMI");
+            }
+
+        }
 
 
     }
@@ -562,8 +602,10 @@ public class NgUserDetailsActivity extends AppCompatActivity {
 
 
     private void loadUser() {
+
+
         NguserListModel nguserListModel = new NguserListModel();
-        nguserListModel.setJmrNo(jmrNo);
+        nguserListModel.setJmr_no(jmrNo);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -580,16 +622,17 @@ public class NgUserDetailsActivity extends AppCompatActivity {
                     if (nguserdetails.size() > 0) {
                         //if (CollectionsUtils.isEmpty)
                         for (NguserListModel nguserListModel : nguserdetails) {
-                            tv_ngUserName.setText(nguserListModel.getCustomer_Name());
-                            tv_cutomerIdValue.setText(nguserListModel.getBpNo());
-                            tv_houseNoValue.setText(nguserListModel.getHouseNo());
+                            tv_ngUserName.setText(nguserListModel.getCustomer_name());
+                            tv_cutomerIdValue.setText(nguserListModel.getBp_no());
+                            tv_houseNoValue.setText(nguserListModel.getHouse_no());
                             tv_societyValue.setText(nguserListModel.getSociety());
-                            tv_blockValue.setText(nguserListModel.getBlock_Qtr());
+                            tv_blockValue.setText(nguserListModel.getBlock_qtr());
                             tv_areaValue.setText(nguserListModel.getArea());
-                            tv_mobileNoValue.setText(nguserListModel.getMobileNo());
-                            tv_alternateNoValue.setText(nguserListModel.getAlt_Number());
+                            tv_mobileNoValue.setText(nguserListModel.getMobile_no());
+                            tv_alternateNoValue.setText(nguserListModel.getAlt_number());
                             tv_cityvalue.setText(nguserListModel.getCity());
-                            tv_preferredDateValue.setText(nguserListModel.getConversionDate());
+                            tv_preferredDateValue.setText(nguserListModel.getConversion_date());
+                            tv_floorValue.setText(nguserListModel.getFloor());
 
 
                         }
@@ -618,6 +661,11 @@ public class NgUserDetailsActivity extends AppCompatActivity {
     }
 
     private void submitData(NguserListModel nguserListModel) {
+        materialDialog = new MaterialDialog.Builder(this)
+                .content("Please wait....")
+                .progress(true, 0)
+                .cancelable(false)
+                .show();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -630,15 +678,19 @@ public class NgUserDetailsActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<NguserListModel>> call, Response<List<NguserListModel>> response) {
                 Log.e("Mysucess>>>>>>>>>>", "weldone............");
-                if (response.code()==200){
-                    if (!TextUtils.isEmpty(mediaPath1)){
+
+                if (response.code() == 200) {
+                    if (!TextUtils.isEmpty(mediaPath1)) {
                         uploadFile();
-                    }else {
+                    } else {
+                        materialDialog.dismiss();
                         Toast.makeText(getApplicationContext(), "Data submitted", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(NgUserDetailsActivity.this, NgUserListActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     }
-                }else {
+                } else {
+                    materialDialog.dismiss();
                     Toast.makeText(getApplicationContext(), "Data not submitted", Toast.LENGTH_SHORT).show();
                 }
 
@@ -647,6 +699,7 @@ public class NgUserDetailsActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<NguserListModel>> call, Throwable t) {
                 Log.e("My error", "error comes");
+                materialDialog.dismiss();
                 Toast.makeText(getApplicationContext(), "Fail to success", Toast.LENGTH_SHORT).show();
 
             }
@@ -654,42 +707,63 @@ public class NgUserDetailsActivity extends AppCompatActivity {
     }
 
     private void uploadFile() {
-        NguserListModel nguserListModel = new NguserListModel();
-        nguserListModel.setRecording(mediaPath1);
-        // Map is used to multipart the file using okhttp3.RequestBody
-        File file = new File(mediaPath1);
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Api.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        // Parsing any Media type file
-        RequestBody description =
-                RequestBody.create(
-                        okhttp3.MultipartBody.FORM, jmrNo);
-        RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
-        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("recording", file.getName(), requestBody);
-        MultipartBody.Part jmr_no = MultipartBody.Part.createFormData("jmr_no", jmrNo, requestBody);
-        RequestBody filename = RequestBody.create(MediaType.parse("text/plain"), file.getName());
+        try {
 
 
-        Api api = retrofit.create(Api.class);
-        Call<List<NguserListModel>> call = api.uploadFile(jmrNo, fileToUpload, description);
-        //Call<ServerResponse> call = getResponse.uploadFile(fileToUpload, filename);
-        call.enqueue(new Callback<List<NguserListModel>>() {
-            @Override
-            public void onResponse(Call<List<NguserListModel>> call, Response<List<NguserListModel>> response) {
-                Log.v("Response", response.toString());
+            NguserListModel nguserListModel = new NguserListModel();
+            nguserListModel.setRecording(mediaPath1);
+            // Map is used to multipart the file using okhttp3.RequestBody
+            File file = new File(mediaPath1);
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(Api.BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            // Parsing any Media type file
+            RequestBody description =
+                    RequestBody.create(
+                            okhttp3.MultipartBody.FORM, jmrNo);
+            RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
+            MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("recording", file.getName(), requestBody);
+            MultipartBody.Part jmr_no = MultipartBody.Part.createFormData("jmr_no", jmrNo, requestBody);
+            RequestBody filename = RequestBody.create(MediaType.parse("text/plain"), file.getName());
 
 
-            }
+            Api api = retrofit.create(Api.class);
+            Call<List<NguserListModel>> call = api.uploadFile(jmrNo, fileToUpload, description);
+            //Call<ServerResponse> call = getResponse.uploadFile(fileToUpload, filename);
+            call.enqueue(new Callback<List<NguserListModel>>() {
+                @Override
+                public void onResponse(Call<List<NguserListModel>> call, Response<List<NguserListModel>> response) {
+                    Log.v("Response", response.toString());
+                    materialDialog.dismiss();
 
-            @Override
-            public void onFailure(Call<List<NguserListModel>> call, Throwable t) {
-                Log.v("Response", t.toString());
+                    if (response.code() == 200) {
+                        Toast.makeText(getApplicationContext(), "Audio file submitted successfully", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(NgUserDetailsActivity.this, NgUserListActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
 
-            }
-        });
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Audio file not submitted please try again!!", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                }
+
+                @Override
+                public void onFailure(Call<List<NguserListModel>> call, Throwable t) {
+                    Log.v("Response", t.toString());
+                    materialDialog.dismiss();
+                    Utils.showToast(getApplicationContext(), "Error for uploading data");
+
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+            materialDialog.dismiss();
+            Utils.showToast(getApplicationContext(), "server error");
+        }
     }
 
 

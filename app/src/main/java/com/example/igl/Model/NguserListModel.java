@@ -1,81 +1,76 @@
 package com.example.igl.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class NguserListModel implements Serializable {
-    @SerializedName("jmr_id")
-    @Expose
-    private String jmrId;
     @SerializedName("jmr_no")
     @Expose
-    private String jmrNo;
+    private String jmr_no;
     @SerializedName("bp_no")
     @Expose
-    private String bpNo;
+    private String bp_no;
     @SerializedName("meter_no")
     @Expose
-    private String meterNo;
+    private String meter_no;
     @SerializedName("customer_name")
     @Expose
-    private String customer_Name;
+    private String customer_name;
     @SerializedName("burner_details")
     @Expose
-    private String burnerDetails;
+    private String burner_details;
     @SerializedName("ng_update_date")
     @Expose
-    private String ngUpdateDate;
+    private String ng_update_date;
     @SerializedName("conversion_date")
     @Expose
-    private String conversionDate;
+    private String conversion_date;
     @SerializedName("ca_no")
     @Expose
-    private String caNo;
+    private String ca_no;
     @SerializedName("meter_type")
     @Expose
-    private String meter_Type;
+    private String meter_type;
     @SerializedName("meter_make")
     @Expose
-    private String meterMake;
+    private String meter_make;
     @SerializedName("initial_reading")
     @Expose
-    private String initialReading;
+    private String initial_reading;
     @SerializedName("mobile_no")
     @Expose
-    private String mobileNo;
+    private String mobile_no;
     @SerializedName("rfc_date")
     @Expose
-    private String rfC_Date;
+    private String rfc_date;
     @SerializedName("amount_charged")
     @Expose
-    private Double amount_to_be_Charged;
+    private String amount_charged;
     @SerializedName("house_no")
     @Expose
-    private String houseNo;
+    private String house_no;
     @SerializedName("block_qtr")
     @Expose
-    private String block_Qtr;
+    private String block_qtr;
     @SerializedName("society")
     @Expose
     private String society;
     @SerializedName("city")
     @Expose
     private String city;
+    @SerializedName("zone")
+    @Expose
+    private String zone;
     @SerializedName("floor")
     @Expose
     private String floor;
     @SerializedName("street")
     @Expose
-    private String street_gali_Road;
-
-
-    @SerializedName("code_group")
-    @Expose
-    private String Code_Group;
+    private String street;
     @SerializedName("area")
-
     @Expose
     private String area;
     @SerializedName("home_address")
@@ -92,28 +87,28 @@ public class NguserListModel implements Serializable {
     private String installation_photo;
     @SerializedName("customer_sign")
     @Expose
-    private String customerSign;
+    private String customer_sign;
     @SerializedName("executive_sign")
     @Expose
-    private String executiveSign;
+    private String executive_sign;
     @SerializedName("status")
     @Expose
     private String status;
     @SerializedName("sub_status")
     @Expose
-    private String subStatus;
+    private String sub_status;
     @SerializedName("remarks")
     @Expose
     private String remarks;
     @SerializedName("delay_date")
     @Expose
-    private String delayDate;
+    private String delay_date;
     @SerializedName("recording")
     @Expose
     private String recording;
     @SerializedName("hold_images")
     @Expose
-    private String holdImages;
+    private String hold_images;
     @SerializedName("priority")
     @Expose
     private String priority;
@@ -122,108 +117,175 @@ public class NguserListModel implements Serializable {
     private Boolean claim;
     @SerializedName("email_id")
     @Expose
-    private String email_ID;
+    private String email_id;
     @SerializedName("alt_number")
     @Expose
-    private String alt_Number;
+    private String alt_number;
     @SerializedName("landmark")
     @Expose
     private String landmark;
-
     @SerializedName("contractor_id")
     @Expose
     private String contractor_id;
-
     @SerializedName("tpi_id")
     @Expose
     private String tpi_id;
-
     @SerializedName("zi_id")
     @Expose
     private String zi_id;
-
     @SerializedName("supervisor_id")
     @Expose
     private String supervisor_id;
-
     @SerializedName("crm_status")
     @Expose
     private String crm_status;
-
     @SerializedName("crm_reason")
     @Expose
     private String crm_reason;
-
     @SerializedName("lead_no")
     @Expose
     private String lead_no;
-
     @SerializedName("start_job")
     @Expose
     private Boolean start_job;
+    @SerializedName("code_group")
+    @Expose
+    private String code_group;
+    @SerializedName("old")
+    @Expose
+    private Boolean old;
+    @SerializedName("pushed_to_crm")
+    @Expose
+    private Boolean pushed_to_crm;
 
-    public Boolean getStart_job() {
-        return start_job;
+
+    public String getJmr_no() {
+        return jmr_no;
     }
 
-    public void setStart_job(Boolean start_job) {
-        this.start_job = start_job;
+    public void setJmr_no(String jmr_no) {
+        this.jmr_no = jmr_no;
     }
 
-    public String getBpNo() {
-        return bpNo;
+    public String getBp_no() {
+        return bp_no;
     }
 
-    public void setBpNo(String bpNo) {
-        this.bpNo = bpNo;
+    public void setBp_no(String bp_no) {
+        this.bp_no = bp_no;
     }
 
-    public String getMeterNo() {
-        return meterNo;
+    public String getMeter_no() {
+        return meter_no;
     }
 
-    public void setMeterNo(String meterNo) {
-        this.meterNo = meterNo;
+    public void setMeter_no(String meter_no) {
+        this.meter_no = meter_no;
     }
 
-
-
-    public String getNgUpdateDate() {
-        return ngUpdateDate;
+    public String getCustomer_name() {
+        return customer_name;
     }
 
-    public void setNgUpdateDate(String ngUpdateDate) {
-        this.ngUpdateDate = ngUpdateDate;
+    public void setCustomer_name(String customer_name) {
+        this.customer_name = customer_name;
     }
 
-    public String getConversionDate() {
-        return conversionDate;
+    public String getBurner_details() {
+        return burner_details;
     }
 
-    public void setConversionDate(String conversionDate) {
-        this.conversionDate = conversionDate;
+    public void setBurner_details(String burner_details) {
+        this.burner_details = burner_details;
     }
 
-
-    public String getMeterMake() {
-        return meterMake;
+    public String getNg_update_date() {
+        return ng_update_date;
     }
 
-    public void setMeterMake(String meterMake) {
-        this.meterMake = meterMake;
+    public void setNg_update_date(String ng_update_date) {
+        this.ng_update_date = ng_update_date;
     }
 
-
-
-    public String getHouseNo() {
-        return houseNo;
+    public String getConversion_date() {
+        return conversion_date;
     }
 
-    public void setHouseNo(String houseNo) {
-        this.houseNo = houseNo;
+    public void setConversion_date(String conversion_date) {
+        this.conversion_date = conversion_date;
     }
 
+    public String getCa_no() {
+        return ca_no;
+    }
 
+    public void setCa_no(String ca_no) {
+        this.ca_no = ca_no;
+    }
+
+    public String getMeter_type() {
+        return meter_type;
+    }
+
+    public void setMeter_type(String meter_type) {
+        this.meter_type = meter_type;
+    }
+
+    public String getMeter_make() {
+        return meter_make;
+    }
+
+    public void setMeter_make(String meter_make) {
+        this.meter_make = meter_make;
+    }
+
+    public String getInitial_reading() {
+        return initial_reading;
+    }
+
+    public void setInitial_reading(String initial_reading) {
+        this.initial_reading = initial_reading;
+    }
+
+    public String getMobile_no() {
+        return mobile_no;
+    }
+
+    public void setMobile_no(String mobile_no) {
+        this.mobile_no = mobile_no;
+    }
+
+    public String getRfc_date() {
+        return rfc_date;
+    }
+
+    public void setRfc_date(String rfc_date) {
+        this.rfc_date = rfc_date;
+    }
+
+    public String getAmount_charged() {
+        return amount_charged;
+    }
+
+    public void setAmount_charged(String amount_charged) {
+        this.amount_charged = amount_charged;
+    }
+
+    public String getHouse_no() {
+        return house_no;
+    }
+
+    public void setHouse_no(String house_no) {
+        this.house_no = house_no;
+    }
+
+    public String getBlock_qtr() {
+        return block_qtr;
+    }
+
+    public void setBlock_qtr(String block_qtr) {
+        this.block_qtr = block_qtr;
+    }
 
     public String getSociety() {
         return society;
@@ -241,6 +303,14 @@ public class NguserListModel implements Serializable {
         this.city = city;
     }
 
+    public String getZone() {
+        return zone;
+    }
+
+    public void setZone(String zone) {
+        this.zone = zone;
+    }
+
     public String getFloor() {
         return floor;
     }
@@ -249,6 +319,13 @@ public class NguserListModel implements Serializable {
         this.floor = floor;
     }
 
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
 
     public String getArea() {
         return area;
@@ -290,20 +367,20 @@ public class NguserListModel implements Serializable {
         this.installation_photo = installation_photo;
     }
 
-    public String getCustomerSign() {
-        return customerSign;
+    public String getCustomer_sign() {
+        return customer_sign;
     }
 
-    public void setCustomerSign(String customerSign) {
-        this.customerSign = customerSign;
+    public void setCustomer_sign(String customer_sign) {
+        this.customer_sign = customer_sign;
     }
 
-    public String getExecutiveSign() {
-        return executiveSign;
+    public String getExecutive_sign() {
+        return executive_sign;
     }
 
-    public void setExecutiveSign(String executiveSign) {
-        this.executiveSign = executiveSign;
+    public void setExecutive_sign(String executive_sign) {
+        this.executive_sign = executive_sign;
     }
 
     public String getStatus() {
@@ -314,12 +391,12 @@ public class NguserListModel implements Serializable {
         this.status = status;
     }
 
-    public String getSubStatus() {
-        return subStatus;
+    public String getSub_status() {
+        return sub_status;
     }
 
-    public void setSubStatus(String subStatus) {
-        this.subStatus = subStatus;
+    public void setSub_status(String sub_status) {
+        this.sub_status = sub_status;
     }
 
     public String getRemarks() {
@@ -330,12 +407,12 @@ public class NguserListModel implements Serializable {
         this.remarks = remarks;
     }
 
-    public String getDelayDate() {
-        return delayDate;
+    public String getDelay_date() {
+        return delay_date;
     }
 
-    public void setDelayDate(String delayDate) {
-        this.delayDate = delayDate;
+    public void setDelay_date(String delay_date) {
+        this.delay_date = delay_date;
     }
 
     public String getRecording() {
@@ -346,80 +423,12 @@ public class NguserListModel implements Serializable {
         this.recording = recording;
     }
 
-    public String getHoldImages() {
-        return holdImages;
+    public String getHold_images() {
+        return hold_images;
     }
 
-    public void setHoldImages(String holdImages) {
-        this.holdImages = holdImages;
-    }
-
-
-
-    public Boolean getClaim() {
-        return claim;
-    }
-
-    public void setClaim(Boolean claim) {
-        this.claim = claim;
-    }
-
-
-
-    public String getLandmark() {
-        return landmark;
-    }
-
-    public void setLandmark(String landmark) {
-        this.landmark = landmark;
-    }
-
-    public String getJmrId() {
-        return jmrId;
-    }
-
-    public void setJmrId(String jmrId) {
-        this.jmrId = jmrId;
-    }
-
-    public String getJmrNo() {
-        return jmrNo;
-    }
-
-    public void setJmrNo(String jmrNo) {
-        this.jmrNo = jmrNo;
-    }
-
-    public String getBurnerDetails() {
-        return burnerDetails;
-    }
-
-    public void setBurnerDetails(String burnerDetails) {
-        this.burnerDetails = burnerDetails;
-    }
-
-    public String getCaNo() {
-        return caNo;
-    }
-
-    public void setCaNo(String caNo) {
-        this.caNo = caNo;
-    }
-
-    public String getInitialReading() {
-        return initialReading;
-    }
-
-    public void setInitialReading(String initialReading) {
-        this.initialReading = initialReading;
-    }
-
-    public String getMobileNo() {
-        return mobileNo;
-    }
-
-    public void setMobileNo(String mobileNo) {
-        this.mobileNo = mobileNo;
+    public void setHold_images(String hold_images) {
+        this.hold_images = hold_images;
     }
 
     public String getPriority() {
@@ -430,77 +439,123 @@ public class NguserListModel implements Serializable {
         this.priority = priority;
     }
 
-
-    public String getCustomer_Name() {
-        return customer_Name;
+    public Boolean getClaim() {
+        return claim;
     }
 
-    public void setCustomer_Name(String customer_Name) {
-        this.customer_Name = customer_Name;
+    public void setClaim(Boolean claim) {
+        this.claim = claim;
     }
 
-    public String getMeter_Type() {
-        return meter_Type;
+    public String getEmail_id() {
+        return email_id;
     }
 
-    public void setMeter_Type(String meter_Type) {
-        this.meter_Type = meter_Type;
+    public void setEmail_id(String email_id) {
+        this.email_id = email_id;
     }
 
-    public String getRfC_Date() {
-        return rfC_Date;
+    public String getAlt_number() {
+        return alt_number;
     }
 
-    public void setRfC_Date(String rfC_Date) {
-        this.rfC_Date = rfC_Date;
+    public void setAlt_number(String alt_number) {
+        this.alt_number = alt_number;
     }
 
-    public Double getAmount_to_be_Charged() {
-        return amount_to_be_Charged;
+    public String getLandmark() {
+        return landmark;
     }
 
-    public void setAmount_to_be_Charged(Double amount_to_be_Charged) {
-        this.amount_to_be_Charged = amount_to_be_Charged;
+    public void setLandmark(String landmark) {
+        this.landmark = landmark;
     }
 
-    public String getBlock_Qtr() {
-        return block_Qtr;
+    public String getContractor_id() {
+        return contractor_id;
     }
 
-    public void setBlock_Qtr(String block_Qtr) {
-        this.block_Qtr = block_Qtr;
+    public void setContractor_id(String contractor_id) {
+        this.contractor_id = contractor_id;
     }
 
-    public String getStreet_gali_Road() {
-        return street_gali_Road;
+    public String getTpi_id() {
+        return tpi_id;
     }
 
-    public void setStreet_gali_Road(String street_gali_Road) {
-        this.street_gali_Road = street_gali_Road;
+    public void setTpi_id(String tpi_id) {
+        this.tpi_id = tpi_id;
     }
 
-    public String getCode_Group() {
-        return Code_Group;
+    public String getZi_id() {
+        return zi_id;
     }
 
-    public void setCode_Group(String code_Group) {
-        Code_Group = code_Group;
+    public void setZi_id(String zi_id) {
+        this.zi_id = zi_id;
     }
 
-    public String getEmail_ID() {
-        return email_ID;
+    public String getSupervisor_id() {
+        return supervisor_id;
     }
 
-    public void setEmail_ID(String email_ID) {
-        this.email_ID = email_ID;
+    public void setSupervisor_id(String supervisor_id) {
+        this.supervisor_id = supervisor_id;
     }
 
-    public String getAlt_Number() {
-        return alt_Number;
+    public String getCrm_status() {
+        return crm_status;
     }
 
-    public void setAlt_Number(String alt_Number) {
-        this.alt_Number = alt_Number;
+    public void setCrm_status(String crm_status) {
+        this.crm_status = crm_status;
+    }
+
+    public String getCrm_reason() {
+        return crm_reason;
+    }
+
+    public void setCrm_reason(String crm_reason) {
+        this.crm_reason = crm_reason;
+    }
+
+    public String getLead_no() {
+        return lead_no;
+    }
+
+    public void setLead_no(String lead_no) {
+        this.lead_no = lead_no;
+    }
+
+    public Boolean getStart_job() {
+        return start_job;
+    }
+
+    public void setStart_job(Boolean start_job) {
+        this.start_job = start_job;
+    }
+
+    public String getCode_group() {
+        return code_group;
+    }
+
+    public void setCode_group(String code_group) {
+        this.code_group = code_group;
+    }
+
+    public Boolean getOld() {
+        return old;
+    }
+
+    public void setOld(Boolean old) {
+        this.old = old;
+    }
+
+    public Boolean getPushed_to_crm() {
+        return pushed_to_crm;
+    }
+
+    public void setPushed_to_crm(Boolean pushed_to_crm) {
+        this.pushed_to_crm = pushed_to_crm;
     }
 }
-

@@ -24,7 +24,10 @@ import com.example.igl.Model.BpDetail;
 import com.example.igl.Model.NguserListModel;
 import com.example.igl.Model.TpiDetailResponse;
 import com.example.igl.R;
+import com.example.igl.interfaces.ListDataPasser;
+import com.example.igl.utils.Utils;
 import com.example.rest.Api;
+import com.example.rest.DBManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,16 +42,21 @@ import static android.content.Context.MODE_PRIVATE;
 import static com.example.constants.Constant.JMR_NO;
 import static com.example.constants.Constant.PREFS_JMR_NO;
 
-public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.NguserListViewHolder> implements Filterable  {
+public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.NguserListViewHolder> implements Filterable, ListDataPasser {
 
     private Context mctx;
     private List<NguserListModel> nguserList ;
     private List<NguserListModel> dataset;
 
+    private ArrayList<TpiDetailResponse> mTpiDetailResponse;
+    private TpiDetailResponse tpiDetailResponse;
+
     public NgUserListAdapter(Context context, List<NguserListModel> nguserList) {
         this.nguserList = nguserList;
         this.mctx= context;
         this.dataset = nguserList;
+        mTpiDetailResponse = new ArrayList<TpiDetailResponse>();
+        tpiDetailResponse= new TpiDetailResponse();
 
     }
 
@@ -63,33 +71,38 @@ public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.Ng
     @Override
     public void onBindViewHolder(@NonNull NguserListViewHolder holder, final int position) {
         final NguserListModel nguserListModel =nguserList.get(position);
-        if (!TextUtils.isEmpty(nguserListModel.getBpNo())) {
-            holder.tv_bpName.setText(nguserListModel.getBpNo());
+        if (!TextUtils.isEmpty(nguserListModel.getBp_no())) {
+            holder.tv_bpName.setText(nguserListModel.getBp_no());
         }
-        if (!TextUtils.isEmpty(nguserListModel.getAlt_Number())) {
-            holder.tv_contactNo.setText(nguserListModel.getAlt_Number());
+        if (!TextUtils.isEmpty(nguserListModel.getAlt_number())) {
+            holder.tv_contactNo.setText(nguserListModel.getAlt_number());
         }
-        if (!TextUtils.isEmpty(nguserListModel.getHouseNo()) && !TextUtils.isEmpty(nguserListModel.getFloor())
-                && !TextUtils.isEmpty(nguserListModel.getStreet_gali_Road())
-                && !TextUtils.isEmpty(nguserListModel.getBlock_Qtr())
+        if (!TextUtils.isEmpty(nguserListModel.getHouse_no()) && !TextUtils.isEmpty(nguserListModel.getFloor())
+                && !TextUtils.isEmpty(nguserListModel.getStreet())
+                && !TextUtils.isEmpty(nguserListModel.getBlock_qtr())
                 && !TextUtils.isEmpty(nguserListModel.getArea())
                 && !TextUtils.isEmpty(nguserListModel.getCity())){
-            holder.tv_address.setText(nguserListModel.getHouseNo() + " " + nguserListModel.getCity());
+            holder.tv_address.setText(nguserListModel.getHouse_no() + " " + nguserListModel.getCity());
 
+        }
+        if (nguserListModel.getStart_job()){
+            holder.job_status.setText("Job Started");
+        }else {
+            holder.job_status.setText("Job Not Started");
         }
         holder.tv_perferedTime.setText("- - -");
         //nguserListModel.getConversionDate();
-        if (!TextUtils.isEmpty(nguserListModel.getConversionDate())){
-            holder.tv_perferedTime.setText(nguserListModel.getConversionDate());
+        if (!TextUtils.isEmpty(nguserListModel.getConversion_date())){
+            holder.tv_perferedTime.setText(nguserListModel.getConversion_date());
         }else {
             holder.tv_perferedTime.setText("- - -");
         }
         if ((nguserListModel.getClaim())){
             holder.status_text.setText("Claimed");
         }else {
-            holder.tv_perferedTime.setText("UnClaimed");
+            holder.status_text.setText("UnClaimed");
         }
-        holder.user_name_text.setText(nguserListModel.getCustomer_Name());
+        holder.user_name_text.setText(nguserListModel.getCustomer_name());
 
 
         // priority - 2 is for high color is red
@@ -117,11 +130,16 @@ public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.Ng
             @Override
             public void onClick(View v) {
                 //Toast.makeText(mctx,"click" + position,Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(mctx, NgUserDetailsActivity.class);
-                intent.putExtra("jmr_no", nguserListModel.getJmrNo());
-                intent.putExtra("mAssignDate", nguserListModel.getRfC_Date());
-                intent.putExtra("startJob",nguserListModel.getStart_job());
-                mctx.startActivity(intent);
+                if (nguserListModel.getStart_job()) {
+                    Intent intent = new Intent(mctx, NgUserDetailsActivity.class);
+                    intent.putExtra("jmr_no", nguserListModel.getJmr_no());
+                    intent.putExtra("mAssignDate", nguserListModel.getRfc_date());
+                    intent.putExtra("startJob", nguserListModel.getStart_job());
+                    mctx.startActivity(intent);
+                }else {
+                    Utils.showToast(mctx,"Job Not Started");
+                }
+
 
             }
         });
@@ -130,13 +148,6 @@ public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.Ng
         holder.btn_tpiDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Vender_Name = bp_no_list_array.get(position).getRfcvendorname();
-                //Vender_No = bp_no_list_array.get(position).getRFCMobileNo();
-                //Log.e("Vender_Name",Vender_Name);
-                //Log.e("Vender_No",Vender_No);
-                //String tpiName = nguserListModel.getCustomerName();
-                //BP_N0_DilogBox("ishu","9897922586");
-
                 loadTpiDetails();
             }
         });
@@ -145,7 +156,7 @@ public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.Ng
         holder.tv_contactNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String num= nguserListModel.getAlt_Number();
+                String num= nguserListModel.getAlt_number();
                 Intent intent = new Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse("tel:" + num));
                 mctx.startActivity(intent);
@@ -153,7 +164,7 @@ public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.Ng
             }
         });
         SharedPreferences.Editor editor = mctx.getSharedPreferences(PREFS_JMR_NO, MODE_PRIVATE).edit();
-        editor.putString(JMR_NO, nguserListModel.getJmrNo());
+        editor.putString(JMR_NO, nguserListModel.getJmr_no());
         editor.apply();
 
 
@@ -171,23 +182,28 @@ public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.Ng
             @Override
             public void onResponse(Call<ArrayList<TpiDetailResponse>> call, Response<ArrayList<TpiDetailResponse>> response) {
                 Log.e("MyError" , "error.............");
+                mTpiDetailResponse= response.body();
+                for (TpiDetailResponse tpiDetailResponse1: mTpiDetailResponse){
+                    tpiDetailResponse.setTpiName(tpiDetailResponse1.getTpiName());
+                    tpiDetailResponse.setCodeGroup(tpiDetailResponse1.getCodeGroup());
+
+                    SharedPreferences sharedPreferences = mctx.getSharedPreferences("MySharedPrefContact", MODE_PRIVATE);
+                    SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                    myEdit.putString("TPIName", tpiDetailResponse1.getTpiName());
+                    myEdit.putString("TPI_CODE_GROUP", tpiDetailResponse1.getCodeGroup());
+                    myEdit.apply();
+                }
+                BP_N0_DilogBox(tpiDetailResponse);
 
             }
-
             @Override
             public void onFailure(Call<ArrayList<TpiDetailResponse>> call, Throwable t) {
                 Log.e("MyError" , "error.............");
 
             }
-
         });
-
-
-
-
-
     }
-    private void BP_N0_DilogBox(String vender_Name, final String vender_No) {
+    private void BP_N0_DilogBox(TpiDetailResponse tpiDetailResponse) {
         final Dialog dialog = new Dialog(mctx);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
@@ -195,14 +211,21 @@ public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.Ng
         //dialog.setTitle("Signature");
         TextView bp_no_text=dialog.findViewById(R.id.bp_no_text);
         TextView  vendar_no=dialog.findViewById(R.id.vendar_no);
-        bp_no_text.setText("TPI Name: "+vender_Name);
-        vendar_no.setText("TPI No: "+vender_No);
+        /*for (TpiDetailResponse tpiDetailResponse1: tpiDetailResponse) {
+            bp_no_text.setText("TPI Name: " + tpiDetailResponse1.getTpiName());
+            vendar_no.setText("TPI No: " + tpiDetailResponse1.get);
+        }*/
+
+        bp_no_text.setText("TPI Name: " + tpiDetailResponse.getTpiName());
+        vendar_no.setText("TPI No: " + tpiDetailResponse.getBpNumber());
+        final String tpiNo= tpiDetailResponse.getBpNumber();
+
         vendar_no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
                     Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                    callIntent.setData(Uri.parse("tel:"+ vender_No));
+                    callIntent.setData(Uri.parse("tel:"+ tpiNo));
                     mctx.startActivity(callIntent);
                 } catch (NullPointerException e) {
                     e.printStackTrace();
@@ -227,8 +250,26 @@ public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.Ng
         return nguserList.size();
     }
 
+    @Override
+    public void notifyDataPasser(ArrayList list) {
+
+        //for (TpiDetailResponse tpiDetailResponse : list){
+        //}
+
+    }
+
+    @Override
+    public void notifyFailurePasser(ArrayList list) {
+
+    }
+
+    @Override
+    public void notifyLowNetworkPasser(ArrayList list) {
+
+    }
+
     public class NguserListViewHolder extends RecyclerView.ViewHolder {
-        TextView tv_bpName,tv_contactNo,tv_perferedTime,tv_priority,tv_address,status_text,user_name_text;
+        TextView tv_bpName,tv_contactNo,tv_perferedTime,tv_priority,tv_address,status_text,user_name_text,job_status;
         LinearLayout ll_bpNumber;
         Button btn_tpiDetails;
         public NguserListViewHolder(View itemView) {
@@ -243,6 +284,7 @@ public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.Ng
             ll_bpNumber= itemView.findViewById(R.id.ll_bpNumber);
             btn_tpiDetails= itemView.findViewById(R.id.btn_tpiDetails);
             user_name_text= itemView.findViewById(R.id.user_name_text);
+            job_status= itemView.findViewById(R.id.job_status);
         }
     }
     @Override
@@ -256,7 +298,7 @@ public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.Ng
                 } else {
                     List<NguserListModel> filteredList = new ArrayList<>();
                     for (NguserListModel row : dataset) {
-                        if (row.getBpNo().toLowerCase().contains(charString.toLowerCase()) || row.getCustomer_Name().toLowerCase().contains(charString.toLowerCase())) {
+                        if (row.getBp_no().toLowerCase().contains(charString.toLowerCase()) || row.getCustomer_name().toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(row);
                         }
                     }

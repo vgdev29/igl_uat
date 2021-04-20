@@ -61,10 +61,10 @@ public class NguserDeclineListAdapter extends RecyclerView.Adapter<NguserDecline
 
 
         //nguserListModel.getBpNo();
-        holder.tv_bpName.setText(ngUserClaimListModel.getBpNo());
-        holder.tv_address.setText(ngUserClaimListModel.getHouseNo() + ngUserClaimListModel.getCity());
-        holder.tv_dateTime.setText(ngUserClaimListModel.getConversionDate());
-        holder.user_name_text.setText(ngUserClaimListModel.getCustomer_Name());
+        holder.tv_bpName.setText(ngUserClaimListModel.getBp_no());
+        holder.tv_address.setText(ngUserClaimListModel.getHouse_no() + ngUserClaimListModel.getCity());
+        holder.tv_dateTime.setText(ngUserClaimListModel.getConversion_date());
+        holder.user_name_text.setText(ngUserClaimListModel.getCustomer_name());
         /*if((ngUserClaimListModel.getStart_job())){
             holder.status_text.setText("Job Started");
         }else {
@@ -248,7 +248,7 @@ public class NguserDeclineListAdapter extends RecyclerView.Adapter<NguserDecline
                 } else {
                     List<NguserListModel> filteredList = new ArrayList<>();
                     for (NguserListModel row : new_ngUserClaimList) {
-                        if (row.getBpNo().toLowerCase().contains(charString.toLowerCase()) || row.getCustomer_Name().toLowerCase().contains(charString.toLowerCase())) {
+                        if (row.getBp_no().toLowerCase().contains(charString.toLowerCase()) || row.getCustomer_name().toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(row);
                         }
                     }

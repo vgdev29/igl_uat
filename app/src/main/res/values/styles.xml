@@ -17,4 +17,8 @@
         <item name="android:textColor">@color/future_stay_gray</item>
         <item name="android:textSize">@dimen/value_14dp</item>
     </style>
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/myactivity_slide_up</item>
+        <item name="android:windowExitAnimation">@anim/myactivity_slide_down</item>
+    </style>
 </resources>

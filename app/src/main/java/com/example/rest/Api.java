@@ -44,13 +44,18 @@ public interface Api {
     Call<ArrayList<NguserListModel>> getNgUserListClaimUnclaimList();
 
     @GET("api/jmr")
-    Call<ArrayList<NguserListModel>> getClaimUnclaimList(@Query("claim") String claim);
+    Call<ArrayList<NguserListModel>> getClaimUnclaimList(@Query("claim") String claim,@Query("status") String statusOP);
+
+    @GET("api/jmr")
+    Call<ArrayList<NguserListModel>> getClaimUnclaimList(@Query("status") String statusOP);
 
     @GET("api/jmr")
     Call<ArrayList<NguserListModel>> getNgPendingList(@Query("status") String status);
 
     @GET("api/jmr")
     Call<ArrayList<NguserListModel>> getNgListForApproval(@Query("status") String statusOP,@Query("status") String statusDP,@Query("claim") String claim);
+    @GET("api/jmr")
+    Call<ArrayList<NguserListModel>> getNgListForApproval(@Query("status") String statusOP,@Query("status") String statusDP,@Query("status") String statusOH,@Query("claim") String claim);
 
 
     @GET("api/jmr/")
@@ -75,7 +80,7 @@ public interface Api {
 
                                            @Part ("jmr_no") RequestBody jmr_no
 
-                                       );
+    );
 
 
 

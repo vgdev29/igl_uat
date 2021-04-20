@@ -12,8 +12,10 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import retrofit2.Retrofit;
 
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Retrofit;
+import retrofit2.converter.jackson.JacksonConverterFactory;
 
 
 public class CommunicationApi {
@@ -29,20 +31,14 @@ public class CommunicationApi {
     static ApiInterface getIglService() {
         if (service == null) {
             String url = API_CALLER_URL;
-            /*if (TextUtils.isEmpty(url)) {
-                String urlType = Preferences.getData(AppConstants.PREF_KEYS.URLTYPE, "");
-                if (TextUtils.isEmpty(urlType)) {
-                    SplashScreen.updateUrls("", "");
-                } else if (urlType.equalsIgnoreCase("uatUrls")) {
-                    SplashScreen.uatUrls();
-                } else if (urlType.equalsIgnoreCase("devUrls")) {
-                    SplashScreen.devUrls();
-                } else if (urlType.equalsIgnoreCase("prdUrls")) {
-                    SplashScreen.prdUrls();
-                } else if (urlType.equalsIgnoreCase("alphaUrls")) {
-                    SplashScreen.alphaUrls();
-                }
-            }*/
+            url = DBManager.getApiBaseUrl();
+            service = CommunicationApi.restAdapterGen(url);
+        }
+        return service;
+    }
+    static ApiInterface getIglServiceTPIDETAILS() {
+        if (service == null) {
+            String url = API_CALLER_URL;
             url = DBManager.getApiBaseUrl();
             service = CommunicationApi.restAdapterGen(url);
         }
@@ -53,13 +49,13 @@ public class CommunicationApi {
     private static ApiInterface restAdapterGen(String baseUrl) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
-                //.addConverterFactory(JacksonConverterFactory.create())
-               // .client(getDefaultOkHttpClient())
+                .addConverterFactory(JacksonConverterFactory.create())
+               .client(getDefaultOkHttpClient())
                 .build();
         return retrofit.create(ApiInterface.class);
     }
 
-   /* private static OkHttpClient getDefaultOkHttpClient() {
+    private static OkHttpClient getDefaultOkHttpClient() {
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
 
@@ -97,7 +93,7 @@ public class CommunicationApi {
                 .build();
 
         return client;
-    }*/
+    }
 
 
 }

@@ -19,4 +19,6 @@
     <color name="ng_fontcolor">#4D4D4D</color>
     <color name="color_light_gray">#ededed</color>
     <color name="future_stay_gray">#60646E</color>
+    <color name="color_primary_dark">#5555f9</color>
+    <color name="color_primary_blue">#0095da</color>
 </resources>

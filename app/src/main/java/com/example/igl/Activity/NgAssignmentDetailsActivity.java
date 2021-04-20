@@ -70,16 +70,16 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
     private Button btn_home_address, btn_meterPhoto, btn_installation, btn_serviceCard;
     private ImageView iv_homeAddress, iv_meterPhoto, iv_installation, iv_serviceCard;
 
-    String image_path_HomeAddress, image_path_address, owner_image_select;
+    String image_path_HomeAddress, image_path_meterPhoto,image_path_installation,image_path_service_card;
     private TextView tv_startWorkValues,tv_assignedTimeValues;
 
-    private Uri filePath;
-    Bitmap mBitmap;
+    private Uri filePathHomeAddress,filePathMeterPhoto,filePathInstallation,filePathServiceCard;
+    private Bitmap mBitmapHome,mBitmapmeterPhoto,mBitmapInstallation,mBitmapServiceCard;
     //private RadioGroup radioGroup;
     private String Type_Of_Status;
     //RadioButton genderradioButton;
     private Button submit_button;
-    private String homeAddress_pic_binary,signatureBinary;
+    private String homeAddress_pic_binary,meter_pic_binary,installation_pic_binary,serviceCard_pic_binary,signatureBinary;
     private LinearLayout ll_meterReading;
     private NguserListModel nguserListModel;
     private  String jmrNo,assignDate;
@@ -106,10 +106,10 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
                 TextUtils.isEmpty(conversationDate)){
 
         }else {
-            nguserListModel.setInitialReading(initialReading);
-            nguserListModel.setBurnerDetails(burnerDetails);
-            nguserListModel.setConversionDate(conversationDate);
-            nguserListModel.setJmrNo(jmrNo);
+            nguserListModel.setInitial_reading(initialReading);
+            nguserListModel.setBurner_details(burnerDetails);
+            nguserListModel.setConversion_date(conversationDate);
+            nguserListModel.setJmr_no(jmrNo);
         }
 
         mFindViewById();
@@ -150,28 +150,30 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String text = btn_home_address.getText().toString().trim();
-                selectImage(text);
+                //selectImage(text);
+                selectHomeAddressImage();
             }
         });
         btn_meterPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String text = btn_meterPhoto.getText().toString().trim();
-                selectImage(text);
+                //selectImage(text);
+                selectMeterImage();
             }
         });
         btn_installation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String text = btn_installation.getText().toString().trim();
-                selectImage(text);
+                selectInstallationImage();
             }
         });
         btn_serviceCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String text = btn_serviceCard.getText().toString().trim();
-                selectImage(text);
+                selectServiceCardImage();
             }
         });
 
@@ -179,7 +181,7 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!TextUtils.isEmpty(jmrNo))
-                submitData(nguserListModel);
+                    submitData(nguserListModel);
             }
         });
 
@@ -187,8 +189,9 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
         btn_viewJmrForm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (!TextUtils.isEmpty(jmrNo)){
-                    String url = "http://49.50.68.240:8080/api/jmr/pdfprint/"+jmrNo+"/customer";
+                    String url = "http://49.50.68.239:8080/api/jmr/pdfprint/"+jmrNo+"/customer";
                     Intent intent = new Intent(NgAssignmentDetailsActivity.this, CustomPdfViewActivity.class);
                     intent.putExtra("DownloadUrl", url);
                     startActivity(intent);
@@ -247,7 +250,7 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
                 String customer_image_select = saveImage(signatureBitmap);
                 if (signatureBitmap != null) {
                     signatureBinary = change_to_binary(signatureBitmap);
-                    nguserListModel.setCustomerSign(signatureBinary);
+                    nguserListModel.setCustomer_sign(signatureBinary);
                     signature_image.setImageBitmap(signatureBitmap);
                 }
 
@@ -319,6 +322,14 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
         return "";
     }
     private void submitData(NguserListModel nguserListModel) {
+        if (!TextUtils.isEmpty(homeAddress_pic_binary) && !TextUtils.isEmpty(meter_pic_binary) && !TextUtils.isEmpty(installation_pic_binary)&&
+                !TextUtils.isEmpty(serviceCard_pic_binary)){
+            nguserListModel.setHome_address(homeAddress_pic_binary);
+            nguserListModel.setMeter_photo(meter_pic_binary);
+            nguserListModel.setInstallation_photo(installation_pic_binary);
+            nguserListModel.setService_photo(serviceCard_pic_binary);
+            nguserListModel.setStatus("DP");
+        }
         materialDialog = new MaterialDialog.Builder(this)
                 .content("Please wait....")
                 .progress(true, 0)
@@ -339,13 +350,17 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
                 materialDialog.dismiss();
                 if (response.body()!=null) {
                     if (responseCode==200) {
+
                         Log.e("Mysucess>>>>>>>>>>", "weldone............");
 
-                        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Data submitted successfully", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(NgAssignmentDetailsActivity.this, NgUserListActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                     }
                 }else {
                     if (responseCode==400){
-                        Toast.makeText(getApplicationContext(), "Failed to submit", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Failed to submit please try again", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -355,13 +370,13 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
             public void onFailure(Call<List<NguserListModel>> call, Throwable t) {
                 materialDialog.dismiss();
                 Log.e("My error", "error comes");
-                Toast.makeText(getApplicationContext(), "Failed to submit", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Failed to submit please try again", Toast.LENGTH_SHORT).show();
 
             }
         });
     }
 
-    private void selectImage(final String text) {
+    private void selectHomeAddressImage() {
         AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
         myAlertDialog.setTitle("Upload Pictures Option");
         myAlertDialog.setMessage("How do you want to set your picture?");
@@ -372,15 +387,8 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
                         Intent intent = new Intent();
                         intent.setType("image/*");
                         intent.setAction(Intent.ACTION_GET_CONTENT);
-                        if (text.equalsIgnoreCase(btn_home_address.getText().toString().trim())) {
-                            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_HOME_ADDRESS);
-                        } else if (text.equalsIgnoreCase(btn_meterPhoto.getText().toString().trim())) {
-                            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_METR_PHOTO);
-                        } else if (text.equalsIgnoreCase(btn_installation.getText().toString().trim())) {
-                            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_INSTALLATION);
-                        } else if (text.equalsIgnoreCase(btn_serviceCard.getText().toString().trim())) {
-                            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_SERVICE_CARD);
-                        }
+                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_HOME_ADDRESS);
+
 
                     }
                 });
@@ -392,16 +400,94 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
                         Uri photoURI = FileProvider.getUriForFile(NgAssignmentDetailsActivity.this, getApplicationContext().getPackageName() + ".provider", f);
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                        if (text.equalsIgnoreCase(btn_home_address.getText().toString().trim())) {
-                            startActivityForResult(intent, CAMERA_REQUEST_HOME_ADDRESS);
-                        } else if (text.equalsIgnoreCase(btn_meterPhoto.getText().toString().trim())) {
-                            startActivityForResult(intent, CAMERA_REQUEST_METER_PHOTO);
-                        } else if (text.equalsIgnoreCase(btn_installation.getText().toString().trim())) {
-                            startActivityForResult(intent, CAMERA_REQUEST_INSTALLATION);
-                        } else if (text.equalsIgnoreCase(btn_serviceCard.getText().toString().trim())) {
-                            startActivityForResult(intent, CAMERA_REQUEST_SERVICE_CARD);
-                        }
-                        //startActivityForResult(intent, CAMERA_REQUEST);
+                        startActivityForResult(intent, CAMERA_REQUEST_HOME_ADDRESS);
+                    }
+                });
+        myAlertDialog.show();
+    }
+    private void selectMeterImage() {
+        AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
+        myAlertDialog.setTitle("Upload Pictures Option");
+        myAlertDialog.setMessage("How do you want to set your picture?");
+        myAlertDialog.setPositiveButton("Gallery",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_METR_PHOTO);
+
+
+                    }
+                });
+        myAlertDialog.setNegativeButton("Camera",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+                        Uri photoURI = FileProvider.getUriForFile(NgAssignmentDetailsActivity.this, getApplicationContext().getPackageName() + ".provider", f);
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        startActivityForResult(intent, CAMERA_REQUEST_METER_PHOTO);
+                    }
+                });
+        myAlertDialog.show();
+    }
+    private void selectInstallationImage() {
+        AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
+        myAlertDialog.setTitle("Upload Pictures Option");
+        myAlertDialog.setMessage("How do you want to set your picture?");
+        myAlertDialog.setPositiveButton("Gallery",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_INSTALLATION);
+
+
+                    }
+                });
+        myAlertDialog.setNegativeButton("Camera",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+                        Uri photoURI = FileProvider.getUriForFile(NgAssignmentDetailsActivity.this, getApplicationContext().getPackageName() + ".provider", f);
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        startActivityForResult(intent, CAMERA_REQUEST_INSTALLATION);
+                    }
+                });
+        myAlertDialog.show();
+    }
+    private void selectServiceCardImage() {
+        AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
+        myAlertDialog.setTitle("Upload Pictures Option");
+        myAlertDialog.setMessage("How do you want to set your picture?");
+        myAlertDialog.setPositiveButton("Gallery",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_SERVICE_CARD);
+
+
+                    }
+                });
+        myAlertDialog.setNegativeButton("Camera",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+                        Uri photoURI = FileProvider.getUriForFile(NgAssignmentDetailsActivity.this, getApplicationContext().getPackageName() + ".provider", f);
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        startActivityForResult(intent, CAMERA_REQUEST_SERVICE_CARD);
                     }
                 });
         myAlertDialog.show();
@@ -417,7 +503,7 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
 
     private String convertToString() {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        //mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
         byte[] imgByte = byteArrayOutputStream.toByteArray();
         return Base64.encodeToString(imgByte, Base64.DEFAULT);
     }
@@ -428,20 +514,16 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
         switch (requestCode) {
             case PICK_IMAGE_REQUEST_HOME_ADDRESS:
                 if (requestCode == PICK_IMAGE_REQUEST_HOME_ADDRESS && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
-                    filePath = data.getData();
+                    filePathHomeAddress = data.getData();
                     try {
-                        mBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePath);
-                        // imageView.setImageBitmap(bitmap);
-                        iv_homeAddress.setImageBitmap(mBitmap);
-                        //address_image.setImageBitmap(bitmap1);
-                        image_path_HomeAddress = getPath(filePath);
-                        //String image = convertToString();
-                        //nguserListModel.setHome_address(image_path_HomeAddress);
-                        if (mBitmap != null) {
-                            homeAddress_pic_binary = change_to_binary(mBitmap);
 
+                        mBitmapHome = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathHomeAddress);
 
-                            nguserListModel.setHome_address(homeAddress_pic_binary);
+                        image_path_HomeAddress = getPath(filePathHomeAddress);
+                        if (mBitmapHome != null) {
+                            iv_homeAddress.setImageBitmap(mBitmapHome);
+                            homeAddress_pic_binary = change_to_binary(mBitmapHome);
+                            //nguserListModel.setHome_address(homeAddress_pic_binary);
                         }
 
                         //  new ImageCompressionAsyncTask(this).execute(image_path_aadhar, getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Silicompressor/images");
@@ -453,20 +535,19 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
                 break;
             case PICK_IMAGE_REQUEST_METR_PHOTO:
                 if (requestCode == PICK_IMAGE_REQUEST_METR_PHOTO && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
-                    filePath = data.getData();
+                    filePathMeterPhoto = data.getData();
                     try {
-                        mBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePath);
-                        // imageView.setImageBitmap(bitmap);
-                        iv_meterPhoto.setImageBitmap(mBitmap);
-                        //address_image.setImageBitmap(bitmap1);
-                        image_path_HomeAddress = getPath(filePath);
-                        if (mBitmap != null) {
-                            homeAddress_pic_binary = change_to_binary(mBitmap);
-                            nguserListModel.setMeter_photo(homeAddress_pic_binary);
-                            //primaryOrderHeader.setImage_binary(pic_binary);
-                        }
 
-                        //  new ImageCompressionAsyncTask(this).execute(image_path_aadhar, getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Silicompressor/images");
+                        mBitmapmeterPhoto = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathMeterPhoto);
+                        // imageView.setImageBitmap(bitmap);
+
+                        //address_image.setImageBitmap(bitmap1);
+                        image_path_meterPhoto = getPath(filePathMeterPhoto);
+                        if (mBitmapmeterPhoto != null) {
+                            iv_meterPhoto.setImageBitmap(mBitmapmeterPhoto);
+                            meter_pic_binary = change_to_binary(mBitmapmeterPhoto);
+                            //nguserListModel.setMeter_photo(meter_pic_binary);
+                        }
                         Log.e("image_path_aadhar+,", "" + image_path_HomeAddress);
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -475,20 +556,22 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
                 break;
             case PICK_IMAGE_REQUEST_INSTALLATION:
                 if (requestCode == PICK_IMAGE_REQUEST_INSTALLATION && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
-                    filePath = data.getData();
+                    filePathInstallation = data.getData();
                     try {
-                        mBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePath);
+
+                        mBitmapInstallation = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathInstallation);
                         // imageView.setImageBitmap(bitmap);
-                        iv_installation.setImageBitmap(mBitmap);
+
                         //address_image.setImageBitmap(bitmap1);
-                        image_path_HomeAddress = getPath(filePath);
+                        image_path_installation = getPath(filePathInstallation);
 
                         //  new ImageCompressionAsyncTask(this).execute(image_path_aadhar, getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Silicompressor/images");
                         Log.e("image_path_aadhar+,", "" + image_path_HomeAddress);
+                        iv_installation.setImageBitmap(mBitmapInstallation);
+                        if (mBitmapInstallation != null) {
 
-                        if (mBitmap != null) {
-                            homeAddress_pic_binary = change_to_binary(mBitmap);
-                            nguserListModel.setInstallation_photo(homeAddress_pic_binary);
+                            installation_pic_binary = change_to_binary(mBitmapInstallation);
+                            //nguserListModel.setInstallation_photo(installation_pic_binary);
                             //primaryOrderHeader.setImage_binary(pic_binary);
                         }
                     } catch (IOException e) {
@@ -498,17 +581,19 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
                 break;
             case PICK_IMAGE_REQUEST_SERVICE_CARD:
                 if (requestCode == PICK_IMAGE_REQUEST_SERVICE_CARD && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
-                    filePath = data.getData();
+                    filePathServiceCard = data.getData();
                     try {
-                        mBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePath);
-                        // imageView.setImageBitmap(bitmap);
-                        iv_serviceCard.setImageBitmap(mBitmap);
-                        //address_image.setImageBitmap(bitmap1);
-                        image_path_HomeAddress = getPath(filePath);
 
-                        if (mBitmap != null) {
-                            homeAddress_pic_binary = change_to_binary(mBitmap);
-                            nguserListModel.setService_photo(homeAddress_pic_binary);
+                        mBitmapServiceCard = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathServiceCard);
+                        // imageView.setImageBitmap(bitmap);
+
+                        //address_image.setImageBitmap(bitmap1);
+                        image_path_service_card = getPath(filePathServiceCard);
+                        iv_serviceCard.setImageBitmap(mBitmapServiceCard);
+                        if (mBitmapServiceCard != null) {
+
+                            serviceCard_pic_binary = change_to_binary(mBitmapServiceCard);
+                            //nguserListModel.setService_photo(serviceCard_pic_binary);
                             //primaryOrderHeader.setImage_binary(pic_binary);
                         }
 
@@ -529,10 +614,12 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
                         }
                     }
                     try {
+
                         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
-                        mBitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
+                        mBitmapHome = BitmapFactory.decodeFile(f.getAbsolutePath(),
                                 bitmapOptions);
-                        iv_homeAddress.setImageBitmap(mBitmap);
+
+
                         String path = getExternalStorageDirectory().getAbsolutePath();
                         f.delete();
                         OutputStream outFile = null;
@@ -543,9 +630,15 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
                         //  new ImageCompressionAsyncTask(this).execute(image_path_aadhar, getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Silicompressor/images");
                         try {
                             outFile = new FileOutputStream(image_path_HomeAddress);
-                            mBitmap.compress(Bitmap.CompressFormat.JPEG, 75, outFile);
+                            mBitmapHome.compress(Bitmap.CompressFormat.JPEG, 75, outFile);
                             outFile.flush();
                             outFile.close();
+                            iv_homeAddress.setImageBitmap(mBitmapHome);
+                            if (mBitmapHome!=null){
+
+                                homeAddress_pic_binary = change_to_binary(mBitmapHome);
+                                //nguserListModel.setHome_address(homeAddress_pic_binary);
+                            }
                         } catch (FileNotFoundException e) {
                             e.printStackTrace();
                         } catch (IOException e) {
@@ -568,23 +661,31 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
                         }
                     }
                     try {
+
                         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
-                        mBitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
+                        mBitmapmeterPhoto = BitmapFactory.decodeFile(f.getAbsolutePath(),
                                 bitmapOptions);
-                        iv_meterPhoto.setImageBitmap(mBitmap);
+
+
                         String path = getExternalStorageDirectory().getAbsolutePath();
                         f.delete();
                         OutputStream outFile = null;
                         File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
                         Log.e("Camera_Path++", file.toString());
-                        image_path_HomeAddress = file.toString();
+                        image_path_meterPhoto = file.toString();
                         // image_path_address1 =file.toString();
                         //  new ImageCompressionAsyncTask(this).execute(image_path_aadhar, getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Silicompressor/images");
                         try {
-                            outFile = new FileOutputStream(image_path_HomeAddress);
-                            mBitmap.compress(Bitmap.CompressFormat.JPEG, 75, outFile);
+                            outFile = new FileOutputStream(image_path_meterPhoto);
+                            mBitmapmeterPhoto.compress(Bitmap.CompressFormat.JPEG, 75, outFile);
                             outFile.flush();
                             outFile.close();
+                            iv_meterPhoto.setImageBitmap(mBitmapmeterPhoto);
+                            if (mBitmapmeterPhoto!=null){
+
+                                meter_pic_binary = change_to_binary(mBitmapmeterPhoto);
+                                //nguserListModel.setService_photo(meter_pic_binary);
+                            }
                         } catch (FileNotFoundException e) {
                             e.printStackTrace();
                         } catch (IOException e) {
@@ -607,23 +708,31 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
                         }
                     }
                     try {
+
                         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
-                        mBitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
+                        mBitmapInstallation = BitmapFactory.decodeFile(f.getAbsolutePath(),
                                 bitmapOptions);
-                        iv_installation.setImageBitmap(mBitmap);
+
                         String path = getExternalStorageDirectory().getAbsolutePath();
                         f.delete();
                         OutputStream outFile = null;
                         File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
                         Log.e("Camera_Path++", file.toString());
-                        image_path_HomeAddress = file.toString();
+                        image_path_installation = file.toString();
                         // image_path_address1 =file.toString();
                         //  new ImageCompressionAsyncTask(this).execute(image_path_aadhar, getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Silicompressor/images");
                         try {
-                            outFile = new FileOutputStream(image_path_HomeAddress);
-                            mBitmap.compress(Bitmap.CompressFormat.JPEG, 75, outFile);
+                            outFile = new FileOutputStream(image_path_installation);
+                            mBitmapInstallation.compress(Bitmap.CompressFormat.JPEG, 75, outFile);
                             outFile.flush();
                             outFile.close();
+
+                            iv_installation.setImageBitmap(mBitmapInstallation);
+                            if (mBitmapInstallation!=null){
+
+                                installation_pic_binary = change_to_binary(mBitmapInstallation);
+                                // nguserListModel.setService_photo(installation_pic_binary);
+                            }
                         } catch (FileNotFoundException e) {
                             e.printStackTrace();
                         } catch (IOException e) {
@@ -646,23 +755,30 @@ public class NgAssignmentDetailsActivity extends AppCompatActivity {
                         }
                     }
                     try {
+
                         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
-                        mBitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
+                        mBitmapServiceCard = BitmapFactory.decodeFile(f.getAbsolutePath(),
                                 bitmapOptions);
-                        iv_serviceCard.setImageBitmap(mBitmap);
+
                         String path = getExternalStorageDirectory().getAbsolutePath();
                         f.delete();
                         OutputStream outFile = null;
                         File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
                         Log.e("Camera_Path++", file.toString());
-                        image_path_HomeAddress = file.toString();
+                        image_path_service_card = file.toString();
                         // image_path_address1 =file.toString();
                         //  new ImageCompressionAsyncTask(this).execute(image_path_aadhar, getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Silicompressor/images");
                         try {
-                            outFile = new FileOutputStream(image_path_HomeAddress);
-                            mBitmap.compress(Bitmap.CompressFormat.JPEG, 75, outFile);
+                            outFile = new FileOutputStream(image_path_service_card);
+                            mBitmapServiceCard.compress(Bitmap.CompressFormat.JPEG, 75, outFile);
                             outFile.flush();
                             outFile.close();
+                            iv_serviceCard.setImageBitmap(mBitmapServiceCard);
+                            if (mBitmapServiceCard!=null){
+
+                                serviceCard_pic_binary = change_to_binary(mBitmapServiceCard);
+                                // nguserListModel.setService_photo(serviceCard_pic_binary);
+                            }
                         } catch (FileNotFoundException e) {
                             e.printStackTrace();
                         } catch (IOException e) {

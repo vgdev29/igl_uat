@@ -92,20 +92,22 @@ public class NgUserClaimListAdapter extends RecyclerView.Adapter<NgUserClaimList
 
 
         //nguserListModel.getBpNo();
-        holder.tv_bpName.setText(ngUserClaimListModel.getBpNo());
-        holder.tv_address.setText(ngUserClaimListModel.getHouseNo() + ngUserClaimListModel.getCity());
-        holder.tv_dateTime.setText(ngUserClaimListModel.getConversionDate());
-        holder.user_name_text.setText(ngUserClaimListModel.getCustomer_Name());
-        /*if((ngUserClaimListModel.getStart_job())){
+        holder.tv_bpName.setText(ngUserClaimListModel.getBp_no());
+        holder.tv_address.setText(ngUserClaimListModel.getHouse_no() + ngUserClaimListModel.getCity());
+        holder.tv_dateTime.setText(ngUserClaimListModel.getConversion_date());
+        holder.user_name_text.setText(ngUserClaimListModel.getCustomer_name());
+        if((ngUserClaimListModel.getStart_job())){
             holder.status_text.setText("Job Started");
         }else {
             holder.status_text.setText("Job not Started");
-        }*/
-        if(!TextUtils.isEmpty((ngUserClaimListModel.getStatus()))){
+        }
+        /*if(!TextUtils.isEmpty((ngUserClaimListModel.getStatus()))){
             holder.status_text.setText(ngUserClaimListModel.getStatus());
         }else {
             holder.status_text.setText("--");
-        }
+        }*/
+
+
 
 
 
@@ -126,9 +128,11 @@ public class NgUserClaimListAdapter extends RecyclerView.Adapter<NgUserClaimList
         if (ngUserClaimListModel.getClaim()){
             holder.btn_unclaim.setVisibility(View.VISIBLE);
             holder.btn_claim.setVisibility(View.GONE);
+            holder.btn_startJob.setVisibility(View.VISIBLE);
         }else {
             holder.btn_unclaim.setVisibility(View.GONE);
             holder.btn_claim.setVisibility(View.VISIBLE);
+            holder.btn_startJob.setVisibility(View.GONE);
         }
 
 
@@ -140,9 +144,9 @@ public class NgUserClaimListAdapter extends RecyclerView.Adapter<NgUserClaimList
                 //Toast.makeText(mctx,"claim ",Toast.LENGTH_SHORT).show();
                 NguserListModel nguserListModel = new NguserListModel();
                 nguserListModel.setClaim(true);
-                jmr_number = ngUserClaimListModel.getJmrNo();
-                nguserListModel.setBpNo(ngUserClaimListModel.getBpNo());
-                nguserListModel.setJmrNo(jmr_number);
+                jmr_number = ngUserClaimListModel.getJmr_no();
+                nguserListModel.setBp_no(ngUserClaimListModel.getBp_no());
+                nguserListModel.setJmr_no(jmr_number);
                 ((NgClaim_Tpi_Fragment)mctx).Claimed_API_POST(jmr_number,nguserListModel);
 
             }
@@ -153,9 +157,9 @@ public class NgUserClaimListAdapter extends RecyclerView.Adapter<NgUserClaimList
                 //Toast.makeText(mctx,"unclaim ",Toast.LENGTH_SHORT).show();
                 NguserListModel nguserListModel = new NguserListModel();
                 nguserListModel.setClaim(false);
-                jmr_number = ngUserClaimListModel.getJmrNo();
-                nguserListModel.setBpNo(ngUserClaimListModel.getBpNo());
-                nguserListModel.setJmrNo(jmr_number);
+                jmr_number = ngUserClaimListModel.getJmr_no();
+                nguserListModel.setBp_no(ngUserClaimListModel.getBp_no());
+                nguserListModel.setJmr_no(jmr_number);
                 nguserListModel.setStart_job(false);
                 //UnClaimed_API_POST(jmr_number,nguserListModel);
                 ((NgClaim_Tpi_Fragment)mctx).UnClaimed_API_POST(jmr_number,nguserListModel);
@@ -172,9 +176,9 @@ public class NgUserClaimListAdapter extends RecyclerView.Adapter<NgUserClaimList
                     }else {
                         NguserListModel nguserListModel = new NguserListModel();
                         //nguserListModel.setClaim(false);
-                        jmr_number = ngUserClaimListModel.getJmrNo();
-                        nguserListModel.setBpNo(ngUserClaimListModel.getBpNo());
-                        nguserListModel.setJmrNo(jmr_number);
+                        jmr_number = ngUserClaimListModel.getJmr_no();
+                        nguserListModel.setBp_no(ngUserClaimListModel.getBp_no());
+                        nguserListModel.setJmr_no(jmr_number);
                         nguserListModel.setStart_job(true);
                         //startJob(jmr_number, nguserListModel);
                         ((NgClaim_Tpi_Fragment)mctx).startJob(jmr_number, nguserListModel);
@@ -325,7 +329,7 @@ public class NgUserClaimListAdapter extends RecyclerView.Adapter<NgUserClaimList
                 } else {
                     List<NguserListModel> filteredList = new ArrayList<>();
                     for (NguserListModel row : new_ngUserClaimList) {
-                        if (row.getBpNo().toLowerCase().contains(charString.toLowerCase()) || row.getCustomer_Name().toLowerCase().contains(charString.toLowerCase())) {
+                        if (row.getBp_no().toLowerCase().contains(charString.toLowerCase()) || row.getCustomer_name().toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(row);
                         }
                     }

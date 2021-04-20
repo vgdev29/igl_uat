@@ -1,7 +1,6 @@
 package com.example.igl.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -10,25 +9,19 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.igl.Adapter.NgUserClaimListAdapter;
-import com.example.igl.MataData.Bp_No_Item;
 import com.example.igl.Model.NguserListModel;
 import com.example.igl.NgUserListViewModel;
 import com.example.igl.R;
-import com.example.igl.utils.CircularTextView;
 import com.example.rest.Api;
 
 import java.util.ArrayList;
@@ -47,6 +40,7 @@ public class NgUserClaimListActivity extends AppCompatActivity {
     private TextView tv_ngUserListdata;
     private RelativeLayout rel_noNgUserListingData;
     private ImageView back;
+    private ImageView dummy;
     //private SwipeRefreshLayout mSwipeRefreshLayout;
     private NgUserListViewModel ngUserListViewModel;
     private LinearLayout ll_sort;
