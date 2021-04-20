@@ -45,6 +45,7 @@ import com.example.igl.R;
 import com.google.gson.JsonObject;
 import com.itextpdf.text.pdf.security.SecurityConstants;
 import com.kyanogen.signatureview.SignatureView;
+import com.squareup.picasso.Picasso;
 
 import net.gotev.uploadservice.ContentType;
 import net.gotev.uploadservice.MultipartUploadRequest;
@@ -76,15 +77,16 @@ public class TPI_RfcHold_Approval_Activity extends Activity {
     ImageView back;
 
     Bp_No_Item bp_no_item = new Bp_No_Item();
-    TextView header_title,bpno,custname,mob,email,adress,status,substatus,description,feasibilitydate,supstatus,contName,contMob,
-    supName,supMob,fesiName,fesiMob,followup,catid,codegrp,code,catalog,zone,leadno;
+    TextView header_title,bpno,custname,mob,email,adress,description,feasibilitydate,supstatus,contName,contMob,
+    supName,supMob,fesiName,fesiMob,followup,rfcdate,cadate,substatus,zone,leadno;
     LinearLayout top_layout;
     Button approve,decline,signature_button;
     String BP_NO,LEAD_NO,signature,statcode,declinedescription;
     private SignatureView signatureView;
     private Bitmap bitmap;
     private ImageView signature_image,holdimage;
-
+    private String imagepath;
+    private String audiopath;
 
 
     @Override
@@ -120,11 +122,9 @@ public class TPI_RfcHold_Approval_Activity extends Activity {
         mob = findViewById(R.id.txt_mob);
         email = findViewById(R.id.txt_email);
         adress = findViewById(R.id.txt_address);
-        status = findViewById(R.id.txt_rfcstatus);
         substatus = findViewById(R.id.txt_rfcsubstatus);
         description = findViewById(R.id.txt_rfcdescription);
         feasibilitydate = findViewById(R.id.txt_rfcfeasibilitydate);
-        supstatus = findViewById(R.id.txt_rfcapprove);
         approve = findViewById(R.id.approve_button);
         decline = findViewById(R.id.decline_button);
         holdimage= findViewById(R.id.holdimage);
@@ -135,14 +135,10 @@ public class TPI_RfcHold_Approval_Activity extends Activity {
         fesiName= findViewById(R.id.txt_rfcfeasibility);
         fesiMob= findViewById(R.id.txt_rfcfesibilityno);
         followup= findViewById(R.id.txt_rfcfollowup);
-        catid= findViewById(R.id.txt_rfccatid);
-        codegrp= findViewById(R.id.txt_rfccodegroup);
-        code= findViewById(R.id.txt_rfccode);
-        catalog= findViewById(R.id.txt_rfccatalog);
+        rfcdate= findViewById(R.id.txt_rfcassignment);
+        cadate= findViewById(R.id.txt_rfccadate);
         zone= findViewById(R.id.txt_rfczone);
         leadno= findViewById(R.id.rfc_leadno);
-        holdimage= findViewById(R.id.holdimage);
-        holdimage= findViewById(R.id.holdimage);
         holdimage= findViewById(R.id.holdimage);
         signature_button = findViewById(R.id.signature_button);
         signature_image = findViewById(R.id.signature_image);
@@ -185,47 +181,60 @@ public class TPI_RfcHold_Approval_Activity extends Activity {
                             Log.d("tpi",jsonObject.toString());
                             final JSONArray Bp_Details = jsonObject.getJSONArray("Bp_Details");
                                 JSONObject data_object=Bp_Details.getJSONObject(0);
-                                bp_no_item.setFirst_name(data_object.getString("first_name"));
-                                bp_no_item.setMiddle_name(data_object.getString("middle_name"));
-                                bp_no_item.setLast_name(data_object.getString("last_name"));
-                                bp_no_item.setMobile_number(data_object.getString("mobile_number"));
-                                bp_no_item.setEmail_id(data_object.getString("email_id"));
-                                bp_no_item.setAadhaar_number(data_object.getString("aadhaar_number"));
-                                bp_no_item.setCity_region(data_object.getString("city_region"));
-                                bp_no_item.setArea(data_object.getString("area"));
-                                bp_no_item.setSociety(data_object.getString("society"));
-                                bp_no_item.setLandmark(data_object.getString("landmark"));
-                                bp_no_item.setHouse_type(data_object.getString("house_type"));
-                                bp_no_item.setHouse_no(data_object.getString("house_no"));
-                                bp_no_item.setBlock_qtr_tower_wing(data_object.getString("block_qtr_tower_wing"));
-                                bp_no_item.setFloor(data_object.getString("floor"));
-                                bp_no_item.setStreet_gali_road(data_object.getString("street_gali_road"));
-                                bp_no_item.setPincode(data_object.getString("pincode"));
-                                bp_no_item.setCustomer_type(data_object.getString("customer_type"));
-                                bp_no_item.setLpg_company(data_object.getString("lpg_company"));
-                                bp_no_item.setBp_number(data_object.getString("bp_number"));
-                                bp_no_item.setBp_date(data_object.getString("bp_date"));
-                                bp_no_item.setIgl_status(data_object.getString("igl_status"));
+                                String firstname = data_object.getString("first_name");
+                                String middlename= data_object.getString("middle_name");
+                                String lastname = data_object.getString("last_name");
+                                String mobno = data_object.getString("mobile_number");
+                                String emailid = data_object.getString("email_id");
+                                String cityregion = data_object.getString("city_region");
+                                String area = data_object.getString("area");
+                                String society = data_object.getString("society");
+                                String landmark = data_object.getString("landmark");
+                                String housetype = data_object.getString("house_type");
+                                String houseno = data_object.getString("house_no");
+                                String block = data_object.getString("block_qtr_tower_wing");
+                            String floor =  data_object.getString("floor");
+                            String street =  data_object.getString("street_gali_road");
+                            String pincode = data_object.getString("pincode");
+                            String customertype = data_object.getString("customer_type");
+                            String lpgcompany = data_object.getString("lpg_company");
+                            String bp_no =  data_object.getString("bp_number");
+                            String bpdate =  data_object.getString("bp_date");
+                            String iglstatus =  data_object.getString("igl_status");
 
-                                bp_no_item.setLpg_distributor(data_object.getString("rfcStatus"));
-                                bp_no_item.setLpg_conNo(data_object.getString("rfcReason"));
-                                bp_no_item.setUnique_lpg_Id(data_object.getString("rfc_description"));
-                                bp_no_item.setOwnerName(data_object.getString("fesabilityDate"));
-                                bp_no_item.setChequeNo(data_object.getString("approveDeclineSupervisor"));
-                            inflateData();
-                                contName.setText(data_object.getString("rfcAdminName"));
+                            String rfcstatus =  data_object.getString("rfcStatus");
+                            String rfcreason =  data_object.getString("rfcReason");
+                            String rfcdescription =  data_object.getString("rfc_description");
+                            String fesibilitydate = data_object.getString("fesabilityDate");
+                            String approvedecline =  data_object.getString("approveDeclineSupervisor");
+                            imagepath = data_object.getString("igl_file_path");
+                           // audiopath = data_object.getString("rfc_audio_file");
+
+                            bpno.setText(bp_no);
+                            custname.setText(firstname+" "+ lastname);
+                            mob.setText(mobno);
+                            email.setText(emailid);
+                            adress.setText(houseno+","+housetype+","+floor+"\n"+society+","+area+"\n"+cityregion+"-"+pincode);
+
+                            description.setText(rfcdescription);
+                            substatus.setText(rfcreason);
+                            feasibilitydate.setText(fesibilitydate);
+
+                            Picasso.with(TPI_RfcHold_Approval_Activity.this)
+                                    .load("http://"+imagepath)
+                                    .placeholder(R.color.red_light)
+                                    .into(holdimage);
+                            contName.setText(data_object.getString("rfcAdminName"));
                             contMob.setText(data_object.getString("rfcAdminMobileNo"));
                             supName.setText(data_object.getString("rfcVendorName"));
                             supMob.setText(data_object.getString("rfcVendorMobileNo"));
                             fesiName.setText(data_object.getString("fesabilityTpiName"));
                             fesiMob.setText(data_object.getString("fesabilityTpimobileNo"));
                             followup.setText(data_object.getString("rfc_followup_date"));
-                            catid.setText(data_object.getString("rfcIglCatId"));
-                            catalog.setText(data_object.getString("rfcIglCatalog"));
-                            code.setText(data_object.getString("rfcIglCode"));
-                            codegrp.setText(data_object.getString("igl_code_group"));
                             zone.setText(data_object.getString("zonecode"));
                             leadno.setText(data_object.getString("lead_no"));
+
+
 
 
 
@@ -282,21 +291,7 @@ public class TPI_RfcHold_Approval_Activity extends Activity {
         }
     }
 
-    public void inflateData()
-    {
-        materialDialog.dismiss();
-        bpno.setText(bp_no_item.getBp_number());
-        custname.setText(bp_no_item.getFirst_name() +" "+bp_no_item.getLast_name());
-        mob.setText(bp_no_item.getMobile_number());
-        email.setText(bp_no_item.getEmail_id());
-        adress.setText(bp_no_item.getHouse_no()+","+bp_no_item.getHouse_type()+","+bp_no_item.getFloor()+"\n"+bp_no_item.getSociety()+","+bp_no_item.getArea()+"\n"+bp_no_item.getCity_region()+"-"+bp_no_item.getPincode());
-        status.setText(bp_no_item.getLpg_distributor());
-        description.setText(bp_no_item.getUnique_lpg_Id());
-        substatus.setText(bp_no_item.getLpg_conNo());
-        feasibilitydate.setText(bp_no_item.getOwnerName());
-        supstatus.setText(bp_no_item.getChequeNo());
 
-    }
     public void Signature_Method() {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(1);
@@ -396,7 +391,7 @@ public class TPI_RfcHold_Approval_Activity extends Activity {
             multipartUploadRequest.setMaxRetries(2);
             multipartUploadRequest.setAutoDeleteFilesAfterSuccessfulUpload(true);
             multipartUploadRequest.startUpload();
-            Log.e(NotificationCompat.CATEGORY_STATUS, statcode+status);
+            Log.e(NotificationCompat.CATEGORY_STATUS, statcode);
             Log.e(str, "declinedImage");
         } catch (Exception unused) {
             Toast.makeText(this, "Please select Image", Toast.LENGTH_SHORT).show();

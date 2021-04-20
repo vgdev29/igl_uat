@@ -126,94 +126,94 @@ public class RFC_Adapter extends RecyclerView.Adapter<RFC_Adapter.ViewHolder> im
         });
 
 
-            holder.jobstart_button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String First_name = bp_no_list_array.get(position).getFirst_name();
-                    String Middle_name = bp_no_list_array.get(position).getMiddle_name();
-                    String Last_name = bp_no_list_array.get(position).getLast_name();
-                    String Mobile_number = bp_no_list_array.get(position).getMobile_number();
-                    String Email_id = bp_no_list_array.get(position).getEmail_id();
-                    String Aadhaar_number = bp_no_list_array.get(position).getAadhaar_number();
-                    String City_region = bp_no_list_array.get(position).getCity_region();
-                    String Area = bp_no_list_array.get(position).getArea();
-                    String Society = bp_no_list_array.get(position).getSociety();
-                    String Landmark = bp_no_list_array.get(position).getLandmark();
-                    String House_type = bp_no_list_array.get(position).getHouse_type();
-                    String House_no = bp_no_list_array.get(position).getHouse_no();
-                    String Block_qtr_tower_wing = bp_no_list_array.get(position).getBlock_qtr_tower_wing();
-                    String Floor = bp_no_list_array.get(position).getFloor();
-                    String Street_gali_road = bp_no_list_array.get(position).getStreet_gali_road();
-                    String Pincode = bp_no_list_array.get(position).getPincode();
-                    String Customer_type = bp_no_list_array.get(position).getCustomer_type();
-                    String Lpg_company = bp_no_list_array.get(position).getLpg_company();
-                    String Bp_number = bp_no_list_array.get(position).getBp_number();
-                    String Bp_date = bp_no_list_array.get(position).getBp_date();
-                    String IGL_Status = bp_no_list_array.get(position).getIgl_status();
-                    String lpg_distributor = bp_no_list_array.get(position).getLpg_distributor();
-                    String lpg_conNo = bp_no_list_array.get(position).getLpg_conNo();
-                    String Unique_lpg_Id = bp_no_list_array.get(position).getUnique_lpg_Id();
-                    String lead_no = bp_no_list_array.get(position).getLead_no();
-                    String ownerName = bp_no_list_array.get(position).getOwnerName();
-                    String igl_code_group = bp_no_list_array.get(position).getIgl_code_group();
-                    String Fesibility_TPI_Name = bp_no_list_array.get(position).getFesabilityTpiName();
-                    String PipeLine_Length = bp_no_list_array.get(position).getPipeline_length();
-                    String PipeLine_Length_Id = bp_no_list_array.get(position).getPipeline_length_id();
-                    String RfcTpi = bp_no_list_array.get(position).getRfcTpi();
-                    String RfcVendor = bp_no_list_array.get(position).getRfcVendor();
-                    String JobFlag = bp_no_list_array.get(position).getJobFlag();
-                    String FesabilityTpimobileNo = bp_no_list_array.get(position).getFesabilityTpimobileNo();
-                    String VendorMobileNo = bp_no_list_array.get(position).getVendorMobileNo();
-                    String Rfcvendorname = bp_no_list_array.get(position).getRfcvendorname();
-                    String rfcAdmin = bp_no_list_array.get(position).getRfcAdmin();
-                    Log.e("JobFlag",JobFlag);
-                    if (JobFlag.equals("1")) {
+        holder.jobstart_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String First_name = bp_no_list_array.get(position).getFirst_name();
+                String Middle_name = bp_no_list_array.get(position).getMiddle_name();
+                String Last_name = bp_no_list_array.get(position).getLast_name();
+                String Mobile_number = bp_no_list_array.get(position).getMobile_number();
+                String Email_id = bp_no_list_array.get(position).getEmail_id();
+                String Aadhaar_number = bp_no_list_array.get(position).getAadhaar_number();
+                String City_region = bp_no_list_array.get(position).getCity_region();
+                String Area = bp_no_list_array.get(position).getArea();
+                String Society = bp_no_list_array.get(position).getSociety();
+                String Landmark = bp_no_list_array.get(position).getLandmark();
+                String House_type = bp_no_list_array.get(position).getHouse_type();
+                String House_no = bp_no_list_array.get(position).getHouse_no();
+                String Block_qtr_tower_wing = bp_no_list_array.get(position).getBlock_qtr_tower_wing();
+                String Floor = bp_no_list_array.get(position).getFloor();
+                String Street_gali_road = bp_no_list_array.get(position).getStreet_gali_road();
+                String Pincode = bp_no_list_array.get(position).getPincode();
+                String Customer_type = bp_no_list_array.get(position).getCustomer_type();
+                String Lpg_company = bp_no_list_array.get(position).getLpg_company();
+                String Bp_number = bp_no_list_array.get(position).getBp_number();
+                String Bp_date = bp_no_list_array.get(position).getBp_date();
+                String IGL_Status = bp_no_list_array.get(position).getIgl_status();
+                String lpg_distributor = bp_no_list_array.get(position).getLpg_distributor();
+                String lpg_conNo = bp_no_list_array.get(position).getLpg_conNo();
+                String Unique_lpg_Id = bp_no_list_array.get(position).getUnique_lpg_Id();
+                String lead_no = bp_no_list_array.get(position).getLead_no();
+                String ownerName = bp_no_list_array.get(position).getOwnerName();
+                String igl_code_group = bp_no_list_array.get(position).getIgl_code_group();
+                String Fesibility_TPI_Name = bp_no_list_array.get(position).getFesabilityTpiName();
+                String PipeLine_Length = bp_no_list_array.get(position).getPipeline_length();
+                String PipeLine_Length_Id = bp_no_list_array.get(position).getPipeline_length_id();
+                String RfcTpi = bp_no_list_array.get(position).getRfcTpi();
+                String RfcVendor = bp_no_list_array.get(position).getRfcVendor();
+                String JobFlag = bp_no_list_array.get(position).getJobFlag();
+                String FesabilityTpimobileNo = bp_no_list_array.get(position).getFesabilityTpimobileNo();
+                String VendorMobileNo = bp_no_list_array.get(position).getVendorMobileNo();
+                String Rfcvendorname = bp_no_list_array.get(position).getRfcvendorname();
+                String rfcAdmin = bp_no_list_array.get(position).getRfcAdmin();
+                Log.e("JobFlag",JobFlag);
+                if (JobFlag.equals("1")) {
 
-                            Intent intent=new Intent(context, RFC_StatusMastar_Page.class);
-                            intent.putExtra("First_name",First_name);
-                            intent.putExtra("Middle_name",Middle_name);
-                            intent.putExtra("Last_name",Last_name);
-                            intent.putExtra("Mobile_number",Mobile_number);
-                            intent.putExtra("Email_id",Email_id);
-                            intent.putExtra("Aadhaar_number",Aadhaar_number);
-                            intent.putExtra("City_region",City_region);
-                            intent.putExtra("Area",Area);
-                            intent.putExtra("Society",Society);
-                            intent.putExtra("Landmark",Landmark);
-                            intent.putExtra("House_type",House_type);
-                            intent.putExtra("House_no",House_no);
-                            intent.putExtra("Block_qtr_tower_wing",Block_qtr_tower_wing);
-                            intent.putExtra("Floor",Floor);
-                            intent.putExtra("Street_gali_road",Street_gali_road);
-                            intent.putExtra("Pincode",Pincode);
-                            intent.putExtra("Customer_type",Customer_type);
-                            intent.putExtra("Lpg_company",Lpg_company);
-                            intent.putExtra("Bp_number",Bp_number);
-                            intent.putExtra("Bp_date",Bp_date);
-                            intent.putExtra("IGL_Status",IGL_Status);
-                            intent.putExtra("lpg_distributor",lpg_distributor);
-                            intent.putExtra("lpg_conNo",lpg_conNo);
-                            intent.putExtra("Unique_lpg_Id",Unique_lpg_Id);
-                            intent.putExtra("lead_no",lead_no);
-                            intent.putExtra("ownerName",ownerName);
-                            intent.putExtra("igl_code_group",igl_code_group);
-                            intent.putExtra("Feasibility_Type","1");
-                            intent.putExtra("TPI_Status_Code","1");
-                            intent.putExtra("Fesibility_TPI_Name",Fesibility_TPI_Name);
-                            intent.putExtra("PipeLine_Length",PipeLine_Length);
-                            intent.putExtra("PipeLine_Length_Id",PipeLine_Length_Id);
-                            intent.putExtra("FesabilityTpimobileNo",FesabilityTpimobileNo);
-                            intent.putExtra("VendorMobileNo",VendorMobileNo);
-                            intent.putExtra("Rfcvendorname",Rfcvendorname);
-                            intent.putExtra("rfcAdmin",rfcAdmin);
-                            context.startActivity(intent);
+                    Intent intent=new Intent(context, RFC_StatusMastar_Page.class);
+                    intent.putExtra("First_name",First_name);
+                    intent.putExtra("Middle_name",Middle_name);
+                    intent.putExtra("Last_name",Last_name);
+                    intent.putExtra("Mobile_number",Mobile_number);
+                    intent.putExtra("Email_id",Email_id);
+                    intent.putExtra("Aadhaar_number",Aadhaar_number);
+                    intent.putExtra("City_region",City_region);
+                    intent.putExtra("Area",Area);
+                    intent.putExtra("Society",Society);
+                    intent.putExtra("Landmark",Landmark);
+                    intent.putExtra("House_type",House_type);
+                    intent.putExtra("House_no",House_no);
+                    intent.putExtra("Block_qtr_tower_wing",Block_qtr_tower_wing);
+                    intent.putExtra("Floor",Floor);
+                    intent.putExtra("Street_gali_road",Street_gali_road);
+                    intent.putExtra("Pincode",Pincode);
+                    intent.putExtra("Customer_type",Customer_type);
+                    intent.putExtra("Lpg_company",Lpg_company);
+                    intent.putExtra("Bp_number",Bp_number);
+                    intent.putExtra("Bp_date",Bp_date);
+                    intent.putExtra("IGL_Status",IGL_Status);
+                    intent.putExtra("lpg_distributor",lpg_distributor);
+                    intent.putExtra("lpg_conNo",lpg_conNo);
+                    intent.putExtra("Unique_lpg_Id",Unique_lpg_Id);
+                    intent.putExtra("lead_no",lead_no);
+                    intent.putExtra("ownerName",ownerName);
+                    intent.putExtra("igl_code_group",igl_code_group);
+                    intent.putExtra("Feasibility_Type","1");
+                    intent.putExtra("TPI_Status_Code","1");
+                    intent.putExtra("Fesibility_TPI_Name",Fesibility_TPI_Name);
+                    intent.putExtra("PipeLine_Length",PipeLine_Length);
+                    intent.putExtra("PipeLine_Length_Id",PipeLine_Length_Id);
+                    intent.putExtra("FesabilityTpimobileNo",FesabilityTpimobileNo);
+                    intent.putExtra("VendorMobileNo",VendorMobileNo);
+                    intent.putExtra("Rfcvendorname",Rfcvendorname);
+                    intent.putExtra("rfcAdmin",rfcAdmin);
+                    context.startActivity(intent);
 
-                    }else {
-                        CommonUtils.toast_msg(context,"Pls get claimed to start the job");
-                    }
+                }else {
+                    CommonUtils.toast_msg(context,"Pls get claimed to start the job");
                 }
+            }
 
-            });
+        });
 
 
     }
@@ -303,7 +303,7 @@ public class RFC_Adapter extends RecyclerView.Adapter<RFC_Adapter.ViewHolder> im
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-               // finish();
+                // finish();
             }
         });
 

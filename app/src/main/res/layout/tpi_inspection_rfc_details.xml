@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout 
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:aapt="http://schemas.android.com/aapt"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,7 +40,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_14sdp"
             android:textStyle="bold" />
-        
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -72,7 +72,7 @@
         </LinearLayout>
 
     </LinearLayout>
-    
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -146,7 +146,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -176,7 +176,7 @@
                 </LinearLayout>
 
 
-                
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -206,7 +206,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -240,7 +240,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -273,7 +273,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -306,7 +306,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -340,7 +340,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -374,7 +374,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -407,7 +407,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -440,7 +440,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -474,7 +474,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -508,7 +508,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -542,7 +542,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -576,7 +576,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -610,7 +610,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -644,7 +644,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -677,7 +677,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -711,7 +711,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -744,7 +744,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -778,7 +778,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -812,7 +812,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -846,7 +846,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -881,7 +881,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -915,7 +915,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -949,7 +949,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -983,7 +983,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -1017,7 +1017,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -1051,7 +1051,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -1085,7 +1085,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -1119,7 +1119,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -1153,7 +1153,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -1187,7 +1187,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -1221,7 +1221,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -1254,7 +1254,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -1290,7 +1290,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -1342,7 +1342,7 @@
                     android:padding="@dimen/_1sdp" />
 
 
-                
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1374,7 +1374,7 @@
             </LinearLayout>
 
 
-            
+
 
             <LinearLayout
                 android:layout_width="match_parent"

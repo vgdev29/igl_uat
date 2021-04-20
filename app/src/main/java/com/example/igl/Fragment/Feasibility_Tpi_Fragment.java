@@ -84,18 +84,18 @@ public class Feasibility_Tpi_Fragment extends Activity {
         sharedPrefs = new SharedPrefs(this);
         Layout_ID();
     }
-   /* @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        root= inflater.inflate(R.layout.new_bp_no_listing, container, false);
-        progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setTitle("Please wait...");
-        progressDialog.setCancelable(false);
-        progressDialog.setCanceledOnTouchOutside(false);
-        sharedPrefs = new SharedPrefs(getActivity());
-        Layout_ID();
-        return root;
-    }*/
+    /* @Override
+     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+         // Inflate the layout for this fragment
+         root= inflater.inflate(R.layout.new_bp_no_listing, container, false);
+         progressDialog = new ProgressDialog(getActivity());
+         progressDialog.setTitle("Please wait...");
+         progressDialog.setCancelable(false);
+         progressDialog.setCanceledOnTouchOutside(false);
+         sharedPrefs = new SharedPrefs(getActivity());
+         Layout_ID();
+         return root;
+     }*/
     private void Layout_ID() {
         top_layout=findViewById(R.id.top_layout);
         top_layout.setVisibility(View.GONE);
@@ -292,7 +292,7 @@ public class Feasibility_Tpi_Fragment extends Activity {
                         }
                         //  DesignerToast.Custom(New_BP_No_Listing.this,"Successfully",Gravity.BOTTOM,Toast.LENGTH_SHORT, R.drawable.shape_cornor_radious,15,"#FFFFFF",R.drawable.ic_success, 60, 200);
                         //DesignerToast.Success(New_BP_No_Listing.this, "Successfully", Gravity.BOTTOM, Toast.LENGTH_SHORT);
-                      //  tpi_inspection_adapter = new TPI_Fesivility_Adapter(Feasibility_Tpi_Fragment.this,bp_no_array);
+                        //  tpi_inspection_adapter = new TPI_Fesivility_Adapter(Feasibility_Tpi_Fragment.this,bp_no_array);
                         recyclerView.setAdapter(tpi_inspection_adapter);
                         tpi_inspection_adapter.notifyDataSetChanged();
                     }

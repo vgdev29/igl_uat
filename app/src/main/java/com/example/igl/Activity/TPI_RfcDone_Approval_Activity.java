@@ -43,6 +43,7 @@ import com.example.igl.MataData.Bp_No_Item;
 import com.example.igl.R;
 import com.itextpdf.text.pdf.security.SecurityConstants;
 import com.kyanogen.signatureview.SignatureView;
+import com.squareup.picasso.Picasso;
 
 import net.gotev.uploadservice.ContentType;
 import net.gotev.uploadservice.MultipartUploadRequest;
@@ -85,7 +86,7 @@ public class TPI_RfcDone_Approval_Activity extends Activity {
     Button approve, decline, signature_button, clear, save;
     ImageView image_path, image1_path, image2_path, image3_path, signature_image,image_upload;
     String BP_NO, LEAD_NO, image1, image2, image3, image4, customername, custmob,
-            custemail,signature,status,description,declinedImagePath , tf_avail,Connectivity , bp_no,lead_no,meter_no;
+            custemail,signature,status,description,declinedImagePath , tf_avail="",Connectivity="" , bp_no,lead_no,meter_no;
     SignatureView signatureView;
     Bitmap bitmap;
     protected static final int CAMERA_REQUEST = 1;
@@ -375,10 +376,11 @@ public class TPI_RfcDone_Approval_Activity extends Activity {
                         ncap.setText(ncapavail);
                         holedrilled.setText(hole_drilled);
                         mcvtesting.setText(mcv_testing);
+                        loadImage();
 
 
 
-                        RequestManager with = Glide.with((Activity) TPI_RfcDone_Approval_Activity.this);
+                       /* RequestManager with = Glide.with((Activity) TPI_RfcDone_Approval_Activity.this);
 
                         ((RequestBuilder) with.load(image1).centerCrop()).into(image_path);
                         RequestManager with2 = Glide.with((Activity) TPI_RfcDone_Approval_Activity.this);
@@ -386,7 +388,7 @@ public class TPI_RfcDone_Approval_Activity extends Activity {
                         RequestManager with3 = Glide.with((Activity) TPI_RfcDone_Approval_Activity.this);
                         ((RequestBuilder) with3.load(image3).centerCrop()).into(image2_path);
                         RequestManager with4 = Glide.with((Activity) TPI_RfcDone_Approval_Activity.this);
-                        ((RequestBuilder) with4.load(image4).centerCrop()).into(image3_path);
+                        ((RequestBuilder) with4.load(image4).centerCrop()).into(image3_path);*/
 
                     }
                 } catch (JSONException e) {
@@ -415,6 +417,30 @@ public class TPI_RfcDone_Approval_Activity extends Activity {
         r2.setRetryPolicy(new DefaultRetryPolicy(12000, 1, 1.0f));
     }
 
+    public void loadImage()
+    {
+
+        Log.d("rfcdone","image = "+image1);
+        Log.d("rfcdone","image = "+image2);
+        Log.d("rfcdone","image = "+image3);
+        Log.d("rfcdone","image = "+image4);
+        Picasso.with(TPI_RfcDone_Approval_Activity.this)
+                .load("http://"+image1)
+                .placeholder(R.color.red_light)
+                .into(image_path);
+        Picasso.with(TPI_RfcDone_Approval_Activity.this)
+                .load("http://"+image2)
+                .placeholder(R.color.red_light)
+                .into(image1_path);
+        Picasso.with(TPI_RfcDone_Approval_Activity.this)
+                .load("http://"+image3)
+                .placeholder(R.color.red_light)
+                .into(image2_path);
+        Picasso.with(TPI_RfcDone_Approval_Activity.this)
+                .load("http://"+image4)
+                .placeholder(R.color.red_light)
+                .into(image3_path);
+    }
     @Override
     public void onResume() {
         super.onResume();
@@ -613,8 +639,8 @@ public class TPI_RfcDone_Approval_Activity extends Activity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
                 try {
-                    params.put("lead_no",lead_no);
-                    params.put("bp_no", bp_no);
+                    params.put("lead_no",LEAD_NO);
+                    params.put("bp_no", BP_NO);
                     params.put("statcode", statcode);
                     params.put("description",description);
 

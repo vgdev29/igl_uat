@@ -7,6 +7,8 @@ public class Constants {
 
    /* UAT URL*/
    public static String BASE_URL="http://49.50.118.112:8080/";
+
+    static String  localhost = "http://192.168.31.250:8081/";
     public static String START_CLICKED="false";
     //public static final String Logout=BASE_URL+"/logout";
     public static final int LOCATION_INTERVAL = 10000;
@@ -62,7 +64,11 @@ public class Constants {
     public static final String JobStart = BASE_URL + "ekyc/bp_details/JobStart/";  //todo_id=85
     public static final String Learning = BASE_URL + "ekyc/bp_details/learning";  //todo_id=85
     public static final String UserTracking = BASE_URL + "ekyc/bp_details/userTracking";
+
     public static final String RFCApprovalMultipart = BASE_URL + "ekyc/bp_details/RFCApprovalMultipart";
+
+    //public static final String RFCApprovalMultipart =  localhost+ "/bp_details/RFCApprovalMultipart";
+
     public static final String TPI_FEASIBILITY_PENDING = BASE_URL + "ekyc/bp_details/feasibility_pending_Listing/";
     public static final String TPI_RFC_PENDING = BASE_URL + "ekyc/bp_details/rfc_pending_Listing/";
 

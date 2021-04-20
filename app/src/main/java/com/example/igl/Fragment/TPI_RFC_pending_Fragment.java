@@ -90,11 +90,8 @@ public class TPI_RFC_pending_Fragment extends Fragment {
         top_layout=root.findViewById(R.id.top_layout);
         top_layout.setVisibility(View.GONE);
         list_count=root.findViewById(R.id.list_count);
-
         header_title=root.findViewById(R.id.header_title);
         header_title.setText("TPI");
-
-
         mSwipeRefreshLayout = (SwipeRefreshLayout) root.findViewById(R.id.swipeToRefresh);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

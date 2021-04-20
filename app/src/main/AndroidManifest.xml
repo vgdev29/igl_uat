@@ -93,6 +93,15 @@
         <activity
             android:name=".Activity.Activities_Activity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".Activity.TPI_RfcHold_Approval_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.TPI_RfcDone_Approval_Activity"
+            android:screenOrientation="portrait" />
+
+
         <activity
             android:name=".Activity.Learning_Activity"
             android:screenOrientation="portrait" />

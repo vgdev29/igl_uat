@@ -315,7 +315,7 @@ public class TPI_Connection_Activity  extends Activity {
                     JSONObject jsonObject = new JSONObject(response);
                     // if(jsonObject.getInt("success")==1){
                     Log.e("SubMaster",jsonObject.toString());
-                     jsonArray_SubMaster = jsonObject.getJSONArray("Bp_Details");
+                    jsonArray_SubMaster = jsonObject.getJSONArray("Bp_Details");
                     for (int i = 0; i < jsonArray_SubMaster.length(); i++) {
                         JSONObject jsonObject1 = jsonArray_SubMaster.getJSONObject(i);
                         String society_name_select = jsonObject1.getString("sub_status");
@@ -323,7 +323,7 @@ public class TPI_Connection_Activity  extends Activity {
                         String igl_code = jsonObject1.getString("igl_code");
                         String igl_code_group = jsonObject1.getString("igl_code_group");
                         String igl_catalog = jsonObject1.getString("igl_catalog");
-                         Igl_Code.add(igl_code);
+                        Igl_Code.add(igl_code);
                         Igl_Code_Group.add(igl_code_group);
                         Igl_Catalog.add(igl_catalog);
                         Type_Of_Sub_Master.add(society_name_select);
@@ -519,35 +519,35 @@ public class TPI_Connection_Activity  extends Activity {
             request .addParameter("email_id", getIntent().getStringExtra("Email_id"));
             request .addParameter("pipeline_id", pipeline_catagory);
             request.setDelegate(new UploadStatusDelegate() {
-                        @Override
-                        public void onProgress(Context context,UploadInfo uploadInfo) {
+                @Override
+                public void onProgress(Context context,UploadInfo uploadInfo) {
 
-                        }
-                        @Override
-                        public void onError( Context context,UploadInfo uploadInfo,  Exception exception) {
-                            exception.printStackTrace();
-                            materialDialog.dismiss();
-                            //Dilogbox_Error();
-                            Log.e("Uplodeerror++", uploadInfo.getSuccessfullyUploadedFiles().toString());
-                        }
-                        @Override
-                        public void onCompleted(Context context,UploadInfo uploadInfo, ServerResponse serverResponse) {
-                            materialDialog.dismiss();
-                            String Uplode = uploadInfo.getSuccessfullyUploadedFiles().toString();
-                            String serverResponse1 = serverResponse.getHeaders().toString();
-                            String str = serverResponse.getBodyAsString();
-                            final JSONObject jsonObject;
-                            Log.e("UPLOADEsinin++", str);
-                            setResult(Activity.RESULT_OK);
-                            finish();
-                            Toast.makeText(TPI_Connection_Activity.this, "" + "Succesfully Feasibility Approve", Toast.LENGTH_SHORT).show();
+                }
+                @Override
+                public void onError( Context context,UploadInfo uploadInfo,  Exception exception) {
+                    exception.printStackTrace();
+                    materialDialog.dismiss();
+                    //Dilogbox_Error();
+                    Log.e("Uplodeerror++", uploadInfo.getSuccessfullyUploadedFiles().toString());
+                }
+                @Override
+                public void onCompleted(Context context,UploadInfo uploadInfo, ServerResponse serverResponse) {
+                    materialDialog.dismiss();
+                    String Uplode = uploadInfo.getSuccessfullyUploadedFiles().toString();
+                    String serverResponse1 = serverResponse.getHeaders().toString();
+                    String str = serverResponse.getBodyAsString();
+                    final JSONObject jsonObject;
+                    Log.e("UPLOADEsinin++", str);
+                    setResult(Activity.RESULT_OK);
+                    finish();
+                    Toast.makeText(TPI_Connection_Activity.this, "" + "Succesfully Feasibility Approve", Toast.LENGTH_SHORT).show();
 
-                        }
-                        @Override
-                        public void onCancelled(Context context,UploadInfo uploadInfo) {
-                            progressDialog.dismiss();
-                        }
-                    });
+                }
+                @Override
+                public void onCancelled(Context context,UploadInfo uploadInfo) {
+                    progressDialog.dismiss();
+                }
+            });
             request.setUtf8Charset();
             request.setUsesFixedLengthStreamingMode(true);
             request.setMaxRetries(2);
@@ -751,7 +751,7 @@ public class TPI_Connection_Activity  extends Activity {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setContentView(R.layout.image_upload_dilogbox);
         //dialog.setCancelable(false);
-       // image_upload=dialog.findViewById(R.id.image_upload);
+        // image_upload=dialog.findViewById(R.id.image_upload);
 
 
         Button save_button = (Button) dialog.findViewById(R.id.save_button);

@@ -32,34 +32,34 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/fesibility_date_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="13 Mar 2020"
-                        android:visibility="gone"
-                        android:layout_marginTop="@dimen/_2sdp"
-                        android:textColor="@color/black"/>
-                <TextView
-                    android:id="@+id/date_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="13 Mar 2020"
+                        <TextView
+                            android:id="@+id/fesibility_date_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="13 Mar 2020"
+                            android:visibility="gone"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:id="@+id/date_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="13 Mar 2020"
 
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:textColor="@color/black"/>
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:textColor="@color/black"/>
                     </LinearLayout>
-                <TextView
-                    android:id="@+id/status_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Pending"
-                    android:textStyle="bold"
-                    android:gravity="right"
-                    android:layout_marginTop="@dimen/_1sdp"
-                    android:layout_gravity="center"
-                    android:textSize="@dimen/_12sdp"
-                    android:textColor="@color/green"/>
+                    <TextView
+                        android:id="@+id/status_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Pending"
+                        android:textStyle="bold"
+                        android:gravity="right"
+                        android:layout_marginTop="@dimen/_1sdp"
+                        android:layout_gravity="center"
+                        android:textSize="@dimen/_12sdp"
+                        android:textColor="@color/green"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="@dimen/_60sdp"

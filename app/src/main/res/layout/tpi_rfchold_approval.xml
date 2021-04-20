@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -83,6 +84,7 @@
                android:orientation="vertical"
                android:layout_marginHorizontal="15dp"
                android:layout_marginTop="10dp"
+
                android:background="@drawable/shape_white">
                <TextView
                    android:layout_width="match_parent"
@@ -263,6 +265,7 @@
                android:orientation="vertical"
                android:layout_marginHorizontal="15dp"
                android:layout_marginTop="20dp"
+               android:visibility="visible"
                android:background="@drawable/shape_white">
                <TextView
                    android:layout_width="match_parent"
@@ -272,6 +275,7 @@
                    android:fontFamily="@font/playfairdisplay_regular"
                    android:textSize="20sp"
                    android:gravity="center"/>
+
                <LinearLayout
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
@@ -283,38 +287,6 @@
                        android:layout_height="wrap_content"
                        android:fontFamily="@font/sourcesanspro_regular"
                        android:text="Status"
-                       android:textColor="#808080"
-                       android:textSize="16sp"
-                       android:textStyle="bold" />
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text=": "
-                       android:textColor="#808080"
-                       android:textStyle="bold" />
-
-                   <TextView
-                       android:id="@+id/txt_rfcstatus"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_marginStart="10dp"
-                       android:textSize="16sp"
-                       android:text=""
-                       android:fontFamily="@font/sourcesanspro_regular"
-                       android:textColor="@color/green" />
-               </LinearLayout>
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="2dp"
-                   android:orientation="horizontal">
-
-                   <TextView
-                       android:layout_width="140dp"
-                       android:layout_height="wrap_content"
-                       android:fontFamily="@font/sourcesanspro_regular"
-                       android:text="Sub Status"
                        android:textColor="#808080"
                        android:textSize="16sp"
                        android:textStyle="bold" />
@@ -346,7 +318,7 @@
                        android:layout_width="140dp"
                        android:layout_height="wrap_content"
                        android:fontFamily="@font/sourcesanspro_regular"
-                       android:text="Description"
+                       android:text="Remarks"
                        android:textColor="#808080"
                        android:textSize="16sp"
                        android:textStyle="bold" />
@@ -400,38 +372,7 @@
                        android:fontFamily="@font/sourcesanspro_regular"
                        android:textColor="@color/green" />
                </LinearLayout>
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="2dp"
-                   android:orientation="horizontal">
 
-                   <TextView
-                       android:layout_width="140dp"
-                       android:layout_height="wrap_content"
-                       android:fontFamily="@font/sourcesanspro_regular"
-                       android:text="Sup. Status"
-                       android:textColor="#808080"
-                       android:textSize="16sp"
-                       android:textStyle="bold" />
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text=": "
-                       android:textColor="#808080"
-                       android:textStyle="bold" />
-
-                   <TextView
-                       android:id="@+id/txt_rfcapprove"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_marginStart="10dp"
-                       android:textSize="16sp"
-                       android:text=""
-                       android:fontFamily="@font/sourcesanspro_regular"
-                       android:textColor="@color/green" />
-               </LinearLayout>
 
                <LinearLayout
                    android:layout_width="match_parent"
@@ -658,6 +599,7 @@
                        android:fontFamily="@font/sourcesanspro_regular"
                        android:textColor="@color/green" />
                </LinearLayout>
+
                <LinearLayout
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
@@ -668,7 +610,7 @@
                        android:layout_width="140dp"
                        android:layout_height="wrap_content"
                        android:fontFamily="@font/sourcesanspro_regular"
-                       android:text="Cat Id"
+                       android:text="RFC Assignment"
                        android:textColor="#808080"
                        android:textSize="16sp"
                        android:textStyle="bold" />
@@ -681,7 +623,7 @@
                        android:textStyle="bold" />
 
                    <TextView
-                       android:id="@+id/txt_rfccatid"
+                       android:id="@+id/txt_rfcassignment"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_marginStart="10dp"
@@ -700,7 +642,7 @@
                        android:layout_width="140dp"
                        android:layout_height="wrap_content"
                        android:fontFamily="@font/sourcesanspro_regular"
-                       android:text="Code Group"
+                       android:text="CA Creation date"
                        android:textColor="#808080"
                        android:textSize="16sp"
                        android:textStyle="bold" />
@@ -713,71 +655,7 @@
                        android:textStyle="bold" />
 
                    <TextView
-                       android:id="@+id/txt_rfccodegroup"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_marginStart="10dp"
-                       android:textSize="16sp"
-                       android:text=""
-                       android:fontFamily="@font/sourcesanspro_regular"
-                       android:textColor="@color/green" />
-               </LinearLayout>
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="2dp"
-                   android:orientation="horizontal">
-
-                   <TextView
-                       android:layout_width="140dp"
-                       android:layout_height="wrap_content"
-                       android:fontFamily="@font/sourcesanspro_regular"
-                       android:text="Code"
-                       android:textColor="#808080"
-                       android:textSize="16sp"
-                       android:textStyle="bold" />
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text=": "
-                       android:textColor="#808080"
-                       android:textStyle="bold" />
-
-                   <TextView
-                       android:id="@+id/txt_rfccode"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_marginStart="10dp"
-                       android:textSize="16sp"
-                       android:text=""
-                       android:fontFamily="@font/sourcesanspro_regular"
-                       android:textColor="@color/green" />
-               </LinearLayout>
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="2dp"
-                   android:orientation="horizontal">
-
-                   <TextView
-                       android:layout_width="140dp"
-                       android:layout_height="wrap_content"
-                       android:fontFamily="@font/sourcesanspro_regular"
-                       android:text="Catalog"
-                       android:textColor="#808080"
-                       android:textSize="16sp"
-                       android:textStyle="bold" />
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text=": "
-                       android:textColor="#808080"
-                       android:textStyle="bold" />
-
-                   <TextView
-                       android:id="@+id/txt_rfccatalog"
+                       android:id="@+id/txt_rfccadate"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_marginStart="10dp"
@@ -881,8 +759,53 @@
                android:layout_weight="1"
                android:background="@drawable/shape_blue_border"
                android:padding="@dimen/_1sdp"
+               android:layout_marginBottom="10dp"
                android:scaleType="fitXY" />
        </LinearLayout>
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginHorizontal="15dp"
+               android:orientation="horizontal"
+               android:visibility="gone"
+               android:layout_marginTop="20dp">
+               <FrameLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+
+               <ImageButton
+                   android:id="@+id/play_button"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="15dp"
+                   android:background="@android:color/transparent"
+                   app:srcCompat="@drawable/ic_play_button"/>
+               <ImageButton
+                   android:id="@+id/pause_button"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="15dp"
+                   android:visibility="gone"
+                   android:background="@android:color/transparent"
+                   app:srcCompat="@drawable/ic_pause"/>
+               </FrameLayout>
+
+               <ImageButton
+                   android:id="@+id/stop_button"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="15dp"
+                   android:background="@android:color/transparent"
+                   app:srcCompat="@drawable/ic_stop_button"/>
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Audio file"
+                   android:layout_gravity="center|end"
+                   android:layout_marginStart="20dp"
+                   android:gravity="end"/>
+
+           </LinearLayout>
 
            <LinearLayout
                android:layout_width="match_parent"

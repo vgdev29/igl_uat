@@ -19,19 +19,19 @@
             android:background="@drawable/shape_cornor_radious"
             android:orientation="vertical"
             >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_12sdp"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:fontFamily="@font/playfairdisplay_regular"
-            android:text="Field Mobility Application"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:fontFamily="@font/playfairdisplay_regular"
+                android:text="Field Mobility Application"/>
 
             <TextView
                 android:layout_width="match_parent"

@@ -344,7 +344,7 @@
             android:textStyle="bold"
             android:layout_gravity="center"
             android:gravity="center"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_marginTop="@dimen/_5sdp"
             android:textColor="@color/black"
             android:textSize="@dimen/_12sdp"

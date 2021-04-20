@@ -91,7 +91,7 @@ public class RFC_StatusMastar_Page extends Activity {
     ImageView back;
     MaterialDialog materialDialog;
     ArrayList<String> Type_Of_Sub_Master = new ArrayList<>();
-    ArrayList<String> CatID_Sub_Master= new ArrayList<>();
+    ArrayList<String> CatID_Sub_Master = new ArrayList<>();
     ArrayList<String> Igl_Code = new ArrayList<>();
     ArrayList<String> Igl_Code_Group = new ArrayList<>();
     ArrayList<String> Igl_Catalog = new ArrayList<>();
@@ -105,25 +105,26 @@ public class RFC_StatusMastar_Page extends Activity {
     ArrayList<String> PipeLine_ID = new ArrayList<>();
     ArrayList<String> Igl_Pipe_line = new ArrayList<>();
 
-    Spinner spinner_master,spinner_sub_master,spinner_pipe_line;
-    String type_of_master,type_of_sub_master="",type_of_master_id,igl_code,igl_code_group,igl_catagory,catid_Sub_Master;
-    String igl_code_Master,igl_code_group_Maaster,igl_catagory_Master,catid_Master;
+    Spinner spinner_master, spinner_sub_master, spinner_pipe_line;
+    String type_of_master, type_of_sub_master = "", type_of_master_id, igl_code, igl_code_group, igl_catagory, catid_Sub_Master;
+    String igl_code_Master, igl_code_group_Maaster, igl_catagory_Master, catid_Master;
     EditText descreption_edit;
-    Button approve_button,decline_button,clear,save , select_image , select_audio;
+    Button approve_button, decline_button, clear, save, select_image, select_audio, audioFile_button;
     ImageView image_upload;
-    
+
     protected static final int CAMERA_REQUEST = 1;
     private final int AUDIO_REQUEST = 2;
+
     private Uri filePath_Image;
-    String filePath_img_string,Status_Master;
+    String filePath_img_string, Status_Master;
     Bitmap bitmap;
     JSONArray jsonArray_SubMaster;
-    String TPI_Status_Code,Address,Feasibility_Type;
-    TextView bp_no_text,address_text,header_text,pipleline_text,fesibility_person_name_text,
-            fesibility_person_no_text,rfc_person_no_text,rfc_person_name_text , start_date, start_time;
-    String complete_igl_code,complete_igl_code_group,complete_igl_catagory,complete_catid,pipeline_catagory;
+    String TPI_Status_Code, Address, Feasibility_Type;
+    TextView bp_no_text, address_text, header_text, pipleline_text, fesibility_person_name_text,
+            fesibility_person_no_text, rfc_person_no_text, rfc_person_name_text, start_date, start_time, audioPath;
+    String complete_igl_code, complete_igl_code_group, complete_igl_catagory, complete_catid, pipeline_catagory;
     SignatureView signatureView;
-    String signature,image_path_string;
+    String signature, image_path_string;
     private static final String IMAGE_DIRECTORY = "/signdemo";
     ImageView signature_image;
     LinearLayout pipeline_layout;
@@ -132,8 +133,10 @@ public class RFC_StatusMastar_Page extends Activity {
     DatePickerDialog pickerDialog_Date;
     String am_pm1 = "";
     LinearLayout ll_hold_layout;
+
+    String followup = "", description = "", master_cat_id = "";
+    private String mediaPath1;
     private String audiopath;
-    String followup = "" , description = "" , master_cat_id = "";
 
 
     @Override
@@ -141,33 +144,36 @@ public class RFC_StatusMastar_Page extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rfc_approval_status_mastar);
         sharedPrefs = new SharedPrefs(this);
-        back=findViewById(R.id.back);
-        spinner_master=(Spinner)findViewById(R.id.spinner_master);
-        spinner_sub_master=(Spinner)findViewById(R.id.spinner_sub_master);
-        spinner_pipe_line=(Spinner)findViewById(R.id.spinner_pipe_line);
-        descreption_edit=findViewById(R.id.descreption_edit);
-        approve_button=findViewById(R.id.approve_button);
-        decline_button=findViewById(R.id.decline_button);
-        pipleline_text=findViewById(R.id.pipleline_text);
-        fesibility_person_name_text=findViewById(R.id.fesibility_person_name_text);
-        rfc_person_name_text=findViewById(R.id.rfc_person_name_text);
-        fesibility_person_no_text=findViewById(R.id.fesibility_person_no_text);
-        rfc_person_no_text=findViewById(R.id.rfc_person_no_text);
-        bp_no_text=findViewById(R.id.bp_no_text);
-        address_text=findViewById(R.id.address_text);
-        header_text=findViewById(R.id.header_text);
-        pipeline_layout=findViewById(R.id.pipeline_layout);
+        back = findViewById(R.id.back);
+        spinner_master = (Spinner) findViewById(R.id.spinner_master);
+        audioFile_button = findViewById(R.id.audioFile_button);
+        audioPath = findViewById(R.id.filename1);
+        spinner_sub_master = (Spinner) findViewById(R.id.spinner_sub_master);
+        spinner_pipe_line = (Spinner) findViewById(R.id.spinner_pipe_line);
+        descreption_edit = findViewById(R.id.descreption_edit);
+        approve_button = findViewById(R.id.approve_button);
+        decline_button = findViewById(R.id.decline_button);
+        pipleline_text = findViewById(R.id.pipleline_text);
+        fesibility_person_name_text = findViewById(R.id.fesibility_person_name_text);
+        rfc_person_name_text = findViewById(R.id.rfc_person_name_text);
+        fesibility_person_no_text = findViewById(R.id.fesibility_person_no_text);
+        rfc_person_no_text = findViewById(R.id.rfc_person_no_text);
+        bp_no_text = findViewById(R.id.bp_no_text);
+        address_text = findViewById(R.id.address_text);
+        header_text = findViewById(R.id.header_text);
+        pipeline_layout = findViewById(R.id.pipeline_layout);
         start_date = findViewById(R.id.start_date_text);
         start_time = findViewById(R.id.time_text);
         select_image = findViewById(R.id.image_button);
         select_audio = findViewById(R.id.audio_button);
+        select_audio.setVisibility(View.GONE);
         image_upload = findViewById(R.id.select_image1);
         ll_hold_layout = findViewById(R.id.ll_hold_layout);
 
         inflateData();
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        start_date.setText( df.format(c));
+        start_date.setText(df.format(c));
         String currentTime = new SimpleDateFormat("HH:mm a", Locale.getDefault()).format(new Date());
         start_time.setText(currentTime);
         start_date.setOnClickListener(new View.OnClickListener() {
@@ -188,15 +194,15 @@ public class RFC_StatusMastar_Page extends Activity {
                                 String formattedMonth = "" + month;
                                 String formattedDayOfMonth = "" + dayOfMonth;
 
-                                if(month < 10){
+                                if (month < 10) {
 
                                     formattedMonth = "0" + month;
                                 }
-                                if(dayOfMonth < 10){
+                                if (dayOfMonth < 10) {
 
                                     formattedDayOfMonth = "0" + dayOfMonth;
                                 }
-                                Log.e("Date",year + "-" + (formattedMonth) + "-" + formattedDayOfMonth);
+                                Log.e("Date", year + "-" + (formattedMonth) + "-" + formattedDayOfMonth);
 
                                 start_date.setText(year + "-" + (formattedMonth) + "-" + formattedDayOfMonth);
                             }
@@ -222,28 +228,34 @@ public class RFC_StatusMastar_Page extends Activity {
                                 String formattedHours = "" + hour;
                                 String formattedMinut = "" + minutes;
 
-                                if(hour < 10){
+                                if (hour < 10) {
 
                                     formattedHours = "0" + hour;
                                 }
-                                if(minutes < 10){
+                                if (minutes < 10) {
 
                                     formattedMinut = "0" + minutes;
                                 }
-                                Log.e("Date",(formattedHours) + ":" + formattedMinut);
-                                if(hour > 12) {
-                                     am_pm1 = "PM";
+                                Log.e("Date", (formattedHours) + ":" + formattedMinut);
+                                if (hour > 12) {
+                                    am_pm1 = "PM";
                                     hour = hour - 12;
+                                } else {
+                                    am_pm1 = "AM";
                                 }
-                                else
-                                {
-                                     am_pm1="AM";
-                                }
-                                start_time.setText(formattedHours + ":" + formattedMinut+" "+am_pm1);
+                                start_time.setText(formattedHours + ":" + formattedMinut + " " + am_pm1);
                             }
                         }, hour, minutes, true);
 
                 pickerDialog_Time.show();
+            }
+        });
+        audioFile_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Audio.Media.EXTERNAL_CONTENT_URI);
+                galleryIntent.setType("*/*");
+                startActivityForResult(galleryIntent, AUDIO_REQUEST);
             }
         });
 
@@ -265,7 +277,7 @@ public class RFC_StatusMastar_Page extends Activity {
                 Intent intent_upload = new Intent();
                 intent_upload.setType("audio/*");
                 intent_upload.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent_upload,AUDIO_REQUEST);
+                startActivityForResult(intent_upload, AUDIO_REQUEST);
             }
         });
         back.setOnClickListener(new View.OnClickListener() {
@@ -281,13 +293,12 @@ public class RFC_StatusMastar_Page extends Activity {
             public void onClick(View v) {
                 //TPI_Approve();
 
-                if (master_cat_id.equalsIgnoreCase("EMI_56")||master_cat_id.equalsIgnoreCase("EMI_35")||(master_cat_id.equalsIgnoreCase("EMI_51")))
-                {
+                if (master_cat_id.equalsIgnoreCase("EMI_56") || master_cat_id.equalsIgnoreCase("EMI_35") || (master_cat_id.equalsIgnoreCase("EMI_51"))||(master_cat_id.equalsIgnoreCase("PVT_19"))
+                ||(master_cat_id.equalsIgnoreCase("PVT_59"))||(master_cat_id.equalsIgnoreCase("EMI_51"))||(master_cat_id.equalsIgnoreCase("GC_LEAD_34"))
+                        ||(master_cat_id.equalsIgnoreCase("BC_LEAD_28"))||(master_cat_id.equalsIgnoreCase("GC_LEAD_05"))||(master_cat_id.equalsIgnoreCase("BC_LEAD_06"))) {
                     TPI_Approve();
-                }
-                else
-                {
-                   TPI_Multipart_Update();
+                } else {
+                    TPI_Multipart_Update();
                 }
             }
         });
@@ -297,7 +308,7 @@ public class RFC_StatusMastar_Page extends Activity {
             public void onClick(View v) {
                 try {
                     Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                    callIntent.setData(Uri.parse("tel:"+ getIntent().getStringExtra("FesabilityTpimobileNo")));
+                    callIntent.setData(Uri.parse("tel:" + getIntent().getStringExtra("FesabilityTpimobileNo")));
                     startActivity(callIntent);
                 } catch (NullPointerException e) {
                     e.printStackTrace();
@@ -308,9 +319,9 @@ public class RFC_StatusMastar_Page extends Activity {
         spinner_master.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                String country=  spinner_master.getItemAtPosition(spinner_master.getSelectedItemPosition()).toString();
-                Log.d(log,"Society+= "+country);
-                type_of_master=Type_Of_Master.get(position);
+                String country = spinner_master.getItemAtPosition(spinner_master.getSelectedItemPosition()).toString();
+                Log.d(log, "Society+= " + country);
+                type_of_master = Type_Of_Master.get(position);
                 //type_of_master_id=CatID_Master.get(position);
                 //loadSpinner_reasion_city(city_id);
                 igl_code_Master = Igl_Code_Master.get(position);
@@ -318,8 +329,9 @@ public class RFC_StatusMastar_Page extends Activity {
                 igl_catagory_Master = Igl_Catalog_Master.get(position);
                 catid_Master = CatID_Master.get(position);
                 master_cat_id = CatID_Master.get(position);
-                loadSpinnerType_Of_SubMaster( catid_Master);
+                loadSpinnerType_Of_SubMaster(catid_Master);
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
@@ -328,15 +340,16 @@ public class RFC_StatusMastar_Page extends Activity {
         spinner_sub_master.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                String country=  spinner_sub_master.getItemAtPosition(spinner_sub_master.getSelectedItemPosition()).toString();
-                Log.e("house_type_name+",country);
-                type_of_sub_master=Type_Of_Sub_Master.get(position);
-                igl_code=Igl_Code.get(position);
-                igl_code_group=Igl_Code_Group.get(position);
-                igl_catagory=Igl_Catalog.get(position);
-                catid_Sub_Master=CatID_Sub_Master.get(position);
+                String country = spinner_sub_master.getItemAtPosition(spinner_sub_master.getSelectedItemPosition()).toString();
+                Log.e("house_type_name+", country);
+                type_of_sub_master = Type_Of_Sub_Master.get(position);
+                igl_code = Igl_Code.get(position);
+                igl_code_group = Igl_Code_Group.get(position);
+                igl_catagory = Igl_Catalog.get(position);
+                catid_Sub_Master = CatID_Sub_Master.get(position);
 
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -346,54 +359,54 @@ public class RFC_StatusMastar_Page extends Activity {
         spinner_pipe_line.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                String pipe_line=  spinner_pipe_line.getItemAtPosition(spinner_pipe_line.getSelectedItemPosition()).toString();
-                Log.e("pipe_line+",pipe_line);
-                pipeline_catagory=PipeLine_ID.get(position);
+                String pipe_line = spinner_pipe_line.getItemAtPosition(spinner_pipe_line.getSelectedItemPosition()).toString();
+                Log.e("pipe_line+", pipe_line);
+                pipeline_catagory = PipeLine_ID.get(position);
 
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
 
-       // Pipe_Line_Catagory();
-      loadSpinnerType_Master();
+        // Pipe_Line_Catagory();
+        loadSpinnerType_Master();
     }
 
     private void inflateData() {
 
-        if(getIntent().getStringExtra("PipeLine_Length").equals("null")){
+        if (getIntent().getStringExtra("PipeLine_Length").equals("null")) {
             pipleline_text.setText("");
             // pipeline_layout.setVisibility(View.VISIBLE);
             // pipleline_text.setVisibility(View.GONE);
-        }else {
+        } else {
             pipleline_text.setText(getIntent().getStringExtra("PipeLine_Length"));
-            Log.d(log,"PipeLine_Length = "+getIntent().getStringExtra("PipeLine_Length_Id"));
+            Log.d(log, "PipeLine_Length = " + getIntent().getStringExtra("PipeLine_Length_Id"));
             // pipeline_catagory=getIntent().getStringExtra("PipeLine_Length_Id");
             // pipeline_layout.setVisibility(View.GONE);
             // pipleline_text.setVisibility(View.VISIBLE);
         }
 
-        fesibility_person_name_text.setText("Feasibility TPI: "+getIntent().getStringExtra("Fesibility_TPI_Name"));
-        rfc_person_name_text.setText("RFC Vendor: "+getIntent().getStringExtra("Rfcvendorname"));
-        fesibility_person_no_text.setText("Feasibility TPI No: "+getIntent().getStringExtra("FesabilityTpimobileNo"));
-        rfc_person_no_text.setText("RFC Vendor No: "+getIntent().getStringExtra("VendorMobileNo"));
-        Address=getIntent().getStringExtra("House_no")+" "+getIntent().getStringExtra("House_type")+" "+
-                getIntent().getStringExtra("Landmark")+" "+getIntent().getStringExtra("Society")+" "+getIntent().getStringExtra("Area")+" "
-                +getIntent().getStringExtra("City_region");
+        fesibility_person_name_text.setText("Feasibility TPI: " + getIntent().getStringExtra("Fesibility_TPI_Name"));
+        rfc_person_name_text.setText("RFC Vendor: " + getIntent().getStringExtra("Rfcvendorname"));
+        fesibility_person_no_text.setText("Feasibility TPI No: " + getIntent().getStringExtra("FesabilityTpimobileNo"));
+        rfc_person_no_text.setText("RFC Vendor No: " + getIntent().getStringExtra("VendorMobileNo"));
+        Address = getIntent().getStringExtra("House_no") + " " + getIntent().getStringExtra("House_type") + " " +
+                getIntent().getStringExtra("Landmark") + " " + getIntent().getStringExtra("Society") + " " + getIntent().getStringExtra("Area") + " "
+                + getIntent().getStringExtra("City_region");
         //intent.putExtra("Fesibility_TPI_Name",Fesibility_TPI_Name);
         //intent.putExtra("PipeLine_Length",PipeLine_Length);
         address_text.setText(Address);
         bp_no_text.setText(getIntent().getStringExtra("Bp_number"));
-        Status_Master= getIntent().getStringExtra("igl_code_group");
-        Log.d(log,"Status_Master = "+Status_Master);
-        TPI_Status_Code=getIntent().getStringExtra("TPI_Status_Code");
-        Log.d(log,"TPI_Status_Code = "+TPI_Status_Code);
-        Feasibility_Type=getIntent().getStringExtra("Feasibility_Type");
-        Log.d(log,"feasibility type  = "+Feasibility_Type);
+        Status_Master = getIntent().getStringExtra("igl_code_group");
+        Log.d(log, "Status_Master = " + Status_Master);
+        TPI_Status_Code = getIntent().getStringExtra("TPI_Status_Code");
+        Log.d(log, "TPI_Status_Code = " + TPI_Status_Code);
+        Feasibility_Type = getIntent().getStringExtra("Feasibility_Type");
+        Log.d(log, "feasibility type  = " + Feasibility_Type);
 
     }
-
 
 
     private void loadSpinnerType_Master() {
@@ -406,25 +419,25 @@ public class RFC_StatusMastar_Page extends Activity {
                 .content("Please wait....")
                 .progress(true, 0)
                 .show();
-        Log.d(log,"spinner master url = "+Constants.TYPE_MASTER_STATUS+Status_Master+"?status="+TPI_Status_Code);
-        RequestQueue requestQueue= Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest=new StringRequest(Request.Method.GET, Constants.TYPE_MASTER_STATUS+Status_Master+"?status="+TPI_Status_Code, new Response.Listener<String>() {
+        Log.d(log, "spinner master url = " + Constants.TYPE_MASTER_STATUS + Status_Master + "?status=" + TPI_Status_Code);
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.TYPE_MASTER_STATUS + Status_Master + "?status=" + TPI_Status_Code, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 materialDialog.dismiss();
-                try{
-                    JSONObject jsonObject=new JSONObject(response);
-                    Log.e("master_list",response);
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    Log.e("master_list", response);
                      /*if(jsonObject.getString("Sucess").equals("true")){
                      }*/
-                    JSONArray jsonArray_society=jsonObject.getJSONArray("Bp_Details");
-                    for(int i=0;i<jsonArray_society.length();i++){
-                        JSONObject jsonObject1=jsonArray_society.getJSONObject(i);
-                        String society_name_select=jsonObject1.getString("description");
-                        String Catid_code=jsonObject1.getString("code");
-                        String igl_code_master=jsonObject1.getString("igl_code");
-                        String igl_code_group_master=jsonObject1.getString("igl_code_group");
-                        String igl_catalog_master=jsonObject1.getString("igl_catalog");
+                    JSONArray jsonArray_society = jsonObject.getJSONArray("Bp_Details");
+                    for (int i = 0; i < jsonArray_society.length(); i++) {
+                        JSONObject jsonObject1 = jsonArray_society.getJSONObject(i);
+                        String society_name_select = jsonObject1.getString("description");
+                        String Catid_code = jsonObject1.getString("code");
+                        String igl_code_master = jsonObject1.getString("igl_code");
+                        String igl_code_group_master = jsonObject1.getString("igl_code_group");
+                        String igl_catalog_master = jsonObject1.getString("igl_catalog");
                         CatID_Master.add(Catid_code);
                         Type_Of_Master.add(society_name_select);
                         Igl_Code_Master.add(igl_code_master);
@@ -432,7 +445,9 @@ public class RFC_StatusMastar_Page extends Activity {
                         Igl_Catalog_Master.add(igl_catalog_master);
                     }
                     spinner_master.setAdapter(new ArrayAdapter<String>(RFC_StatusMastar_Page.this, android.R.layout.simple_spinner_dropdown_item, Type_Of_Master));
-                }catch (JSONException e){e.printStackTrace();}
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -456,7 +471,7 @@ public class RFC_StatusMastar_Page extends Activity {
                 .content("Please wait....")
                 .progress(true, 0)
                 .show();
-        Log.d(log,"spinner sub master url = "+Constants.TYPE_SUBMASTER_STATUS + catid_Master);
+        Log.d(log, "spinner sub master url = " + Constants.TYPE_SUBMASTER_STATUS + catid_Master);
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.TYPE_SUBMASTER_STATUS + catid_Master, new Response.Listener<String>() {
             @Override
@@ -479,10 +494,9 @@ public class RFC_StatusMastar_Page extends Activity {
                         Type_Of_Sub_Master.add(society_name_select);
                         CatID_Sub_Master.add(CatId_code);
                     }
-                    if (Type_Of_Sub_Master.size()==0) {
+                    if (Type_Of_Sub_Master.size() == 0) {
                         ll_hold_layout.setVisibility(View.GONE);
-                    }
-                    else {
+                    } else {
                         ll_hold_layout.setVisibility(View.VISIBLE);
                     }
                     spinner_sub_master.setAdapter(new ArrayAdapter<String>(RFC_StatusMastar_Page.this, android.R.layout.simple_spinner_dropdown_item, Type_Of_Sub_Master));
@@ -510,29 +524,31 @@ public class RFC_StatusMastar_Page extends Activity {
                 .content("Please wait....")
                 .progress(true, 0)
                 .show();
-        Log.d(log,"spinner pipeline url = "+ Constants.PIPELINE);
-        RequestQueue requestQueue= Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest=new StringRequest(Request.Method.GET, Constants.PIPELINE, new Response.Listener<String>() {
+        Log.d(log, "spinner pipeline url = " + Constants.PIPELINE);
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.PIPELINE, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 materialDialog.dismiss();
-                try{
-                    JSONObject jsonObject=new JSONObject(response);
-                    Log.e("master_list",response);
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    Log.e("master_list", response);
                     // if(jsonObject.getInt("success")==1){
-                    JSONObject jsonObject_pipeline=jsonObject.getJSONObject("pipeLineList");
-                    JSONArray jsonArray_society=jsonObject_pipeline.getJSONArray("pipelineList");
-                    for(int i=0;i<jsonArray_society.length();i++){
-                        JSONObject jsonObject1=jsonArray_society.getJSONObject(i);
-                        String pileline=jsonObject1.getString("pipelineDescription");
-                        String pipelineId=jsonObject1.getString("pipelineId");
+                    JSONObject jsonObject_pipeline = jsonObject.getJSONObject("pipeLineList");
+                    JSONArray jsonArray_society = jsonObject_pipeline.getJSONArray("pipelineList");
+                    for (int i = 0; i < jsonArray_society.length(); i++) {
+                        JSONObject jsonObject1 = jsonArray_society.getJSONObject(i);
+                        String pileline = jsonObject1.getString("pipelineDescription");
+                        String pipelineId = jsonObject1.getString("pipelineId");
                         PipeLine_Catagory.add(pileline);
                         PipeLine_ID.add(pipelineId);
 
                     }
                     spinner_pipe_line.setAdapter(new ArrayAdapter<String>(RFC_StatusMastar_Page.this, android.R.layout.simple_spinner_dropdown_item, PipeLine_Catagory));
-                    loadSpinnerType_Master( );
-                }catch (JSONException e){e.printStackTrace();}
+                    loadSpinnerType_Master();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -547,26 +563,25 @@ public class RFC_StatusMastar_Page extends Activity {
     }
 
     public void TPI_Multipart_Update() {
-        if(jsonArray_SubMaster!=null&& jsonArray_SubMaster.length()>0){
-            complete_igl_code=igl_code;
-            complete_igl_code_group=igl_code_group;
-            complete_igl_catagory=igl_catagory;
-            complete_catid=catid_Sub_Master;
-            Log.d(log,"json array sub master data = "+complete_igl_code+"  "+complete_igl_code_group+"  "+complete_igl_catagory+"  "+complete_catid + type_of_master + type_of_sub_master);
-        }else{
-            complete_igl_code=igl_code_Master;
-            complete_igl_code_group=igl_code_group_Maaster;
-            complete_igl_catagory=igl_catagory_Master;
-            complete_catid=catid_Master;
-            Log.d(log,"json array sub master data = "+complete_igl_code+"  "+complete_igl_code_group+"  "+complete_igl_catagory+"  "+complete_catid + type_of_master + type_of_sub_master);
+        if (jsonArray_SubMaster != null && jsonArray_SubMaster.length() > 0) {
+            complete_igl_code = igl_code;
+            complete_igl_code_group = igl_code_group;
+            complete_igl_catagory = igl_catagory;
+            complete_catid = catid_Sub_Master;
+            Log.d(log, "json array sub master data = " + complete_igl_code + "  " + complete_igl_code_group + "  " + complete_igl_catagory + "  " + complete_catid + type_of_master + type_of_sub_master);
+        } else {
+            complete_igl_code = igl_code_Master;
+            complete_igl_code_group = igl_code_group_Maaster;
+            complete_igl_catagory = igl_catagory_Master;
+            complete_catid = catid_Master;
+            Log.d(log, "json array sub master data = " + complete_igl_code + "  " + complete_igl_code_group + "  " + complete_igl_catagory + "  " + complete_catid + type_of_master + type_of_sub_master);
 
         }
-        followup = start_date.getText().toString().trim()+" "+start_time.getText().toString().trim();
+        followup = start_date.getText().toString().trim() + " " + start_time.getText().toString().trim();
         description = descreption_edit.getText().toString().trim();
 
 
-
-        Log.d(log,"image path++++ = "+ "" +image_path_string);
+        Log.d(log, "image path++++ = " + "" + image_path_string);
         try {
             materialDialog = new MaterialDialog.Builder(this)
                     .content("Please wait....")
@@ -575,7 +590,8 @@ public class RFC_StatusMastar_Page extends Activity {
             String uploadId = UUID.randomUUID().toString();
             new MultipartUploadRequest(RFC_StatusMastar_Page.this, uploadId, Constants.RFCApprovalMultipart)
                     .addFileToUpload(image_path_string, "image")
-                    .addParameter("lead_no",getIntent().getStringExtra("lead_no"))
+                 //   .addFileToUpload(mediaPath1,"audiofile")
+                    .addParameter("lead_no", getIntent().getStringExtra("lead_no"))
                     .addParameter("bp_no", getIntent().getStringExtra("Bp_number"))
                     .addParameter("cat_id", complete_catid)
                     .addParameter("igl_code", complete_igl_code)
@@ -584,67 +600,71 @@ public class RFC_StatusMastar_Page extends Activity {
                     .addParameter("mobile_no", getIntent().getStringExtra("Mobile_number"))
                     .addParameter("email_id", getIntent().getStringExtra("Email_id"))
                     .addParameter("pipeline_id", getIntent().getStringExtra("PipeLine_Length_Id"))
-                    .addParameter("reason", type_of_master+"\n"+type_of_sub_master)
+                    .addParameter("reason", type_of_master + "\n" + type_of_sub_master)
                     .addParameter("followUp", followup)
                     .addParameter("description", description)
                     .addParameter("master_cat_id", master_cat_id)
+
                     .setDelegate(new UploadStatusDelegate() {
                         @Override
-                        public void onProgress(Context context,UploadInfo uploadInfo) {
+                        public void onProgress(Context context, UploadInfo uploadInfo) {
                         }
+
                         @Override
-                        public void onError(Context context, UploadInfo uploadInfo,  Exception exception) {
+                        public void onError(Context context, UploadInfo uploadInfo, Exception exception) {
                             exception.printStackTrace();
                             materialDialog.dismiss();
                             //Dilogbox_Error();
-                            Log.d(log,"Uplodeerror++"+uploadInfo.getSuccessfullyUploadedFiles().toString());
+                            Log.d(log, "Uplodeerror++" + uploadInfo.getSuccessfullyUploadedFiles().toString());
                         }
+
                         @Override
-                        public void onCompleted(Context context,UploadInfo uploadInfo, ServerResponse serverResponse) {
+                        public void onCompleted(Context context, UploadInfo uploadInfo, ServerResponse serverResponse) {
                             materialDialog.dismiss();
                             String Uplode = uploadInfo.getSuccessfullyUploadedFiles().toString();
                             String serverResponse1 = serverResponse.getHeaders().toString();
                             String str = serverResponse.getBodyAsString();
-                            Log.d(log,"UPLOADEsinin++"+ str);
+                            Log.d(log, "UPLOADEsinin++" + str);
                             final JSONObject jsonObject;
                             try {
-                                jsonObject=new JSONObject(str);
-                                String Success=jsonObject.getString("Sucess");
-                                if(Success.equals("true")){
-                                    String holdCode=jsonObject.getString("holdCode");
+                                jsonObject = new JSONObject(str);
+                                String Success = jsonObject.getString("Sucess");
+                                if (Success.equals("true")) {
+                                    String holdCode = jsonObject.getString("holdCode");
                                     String msg = jsonObject.getString("Message");
-                                    Log.d(log,"hold code =  "+ holdCode);
-                                    if(holdCode.equals("0")){
-                                        CommonUtils.toast_msg(RFC_StatusMastar_Page.this,msg);
+                                    Log.d(log, "hold code =  " + holdCode);
+                                    if (holdCode.equals("0")) {
+                                        CommonUtils.toast_msg(RFC_StatusMastar_Page.this, msg);
                                         finish();
 
-                                    }else {
+                                    } else {
                                         Toast.makeText(RFC_StatusMastar_Page.this, "" + "Proceed for Connection", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(RFC_StatusMastar_Page.this, RFC_Connection_Activity.class);
                                         intent.putExtra("Bp_number", getIntent().getStringExtra("Bp_number"));
                                         intent.putExtra("First_name", getIntent().getStringExtra("First_name"));
                                         intent.putExtra("Last_name", getIntent().getStringExtra("Last_name"));
                                         intent.putExtra("lead_no", getIntent().getStringExtra("lead_no"));
-                                        intent.putExtra("rfcAdmin",getIntent().getStringExtra("rfcAdmin"));
+                                        intent.putExtra("rfcAdmin", getIntent().getStringExtra("rfcAdmin"));
                                         startActivity(intent);
                                         finish();
                                     }
 
-                                }else {
+                                } else {
                                     Toast.makeText(RFC_StatusMastar_Page.this, "" + "UnSuccesful", Toast.LENGTH_SHORT).show();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
+
                         @Override
-                        public void onCancelled(Context context,UploadInfo uploadInfo) {
+                        public void onCancelled(Context context, UploadInfo uploadInfo) {
                             materialDialog.dismiss();
                         }
                     })
                     .setMaxRetries(2)
                     .startUpload(); //Starting the upload
-            Log.d(log,"Multiple_Image_Uplode++");
+            Log.d(log, "Multiple_Image_Uplode++");
         } catch (Exception exc) {
             Toast.makeText(RFC_StatusMastar_Page.this, "Please select Image", Toast.LENGTH_SHORT).show();
             materialDialog.dismiss();
@@ -652,18 +672,18 @@ public class RFC_StatusMastar_Page extends Activity {
     }
 
     public void TPI_Approve() {
-        if(jsonArray_SubMaster!=null&& jsonArray_SubMaster.length()>0){
-            complete_igl_code=igl_code;
-            complete_igl_code_group=igl_code_group;
-            complete_igl_catagory=igl_catagory;
-            complete_catid=catid_Sub_Master;
-            Log.d(log,"json array sub master data = "+complete_igl_code+"  "+complete_igl_code_group+"  "+complete_igl_catagory+"  "+complete_catid + type_of_master + type_of_sub_master);
-        }else{
-            complete_igl_code=igl_code_Master;
-            complete_igl_code_group=igl_code_group_Maaster;
-            complete_igl_catagory=igl_catagory_Master;
-            complete_catid=catid_Master;
-            Log.d(log,"json array sub master data = "+complete_igl_code+"  "+complete_igl_code_group+"  "+complete_igl_catagory+"  "+complete_catid + type_of_master + type_of_sub_master);
+        if (jsonArray_SubMaster != null && jsonArray_SubMaster.length() > 0) {
+            complete_igl_code = igl_code;
+            complete_igl_code_group = igl_code_group;
+            complete_igl_catagory = igl_catagory;
+            complete_catid = catid_Sub_Master;
+            Log.d(log, "json array sub master data = " + complete_igl_code + "  " + complete_igl_code_group + "  " + complete_igl_catagory + "  " + complete_catid + type_of_master + type_of_sub_master);
+        } else {
+            complete_igl_code = igl_code_Master;
+            complete_igl_code_group = igl_code_group_Maaster;
+            complete_igl_catagory = igl_catagory_Master;
+            complete_catid = catid_Master;
+            Log.d(log, "json array sub master data = " + complete_igl_code + "  " + complete_igl_code_group + "  " + complete_igl_catagory + "  " + complete_catid + type_of_master + type_of_sub_master);
 
         }
 
@@ -671,9 +691,9 @@ public class RFC_StatusMastar_Page extends Activity {
                 .content("Please wait....")
                 .progress(true, 0)
                 .show();
-        Log.d(log,"tpi approval api = "+Constants.RFCApproval+"?lead_no="+getIntent().getStringExtra("lead_no")+"&bp_no="+getIntent().getStringExtra("Bp_number")+"&cat_id="
-        +complete_catid+"&igl_code="+complete_igl_code+"&igl_code_group="+complete_igl_code_group+"&igl_catalog="+complete_igl_catagory+"&mobile_no="+getIntent().getStringExtra("Mobile_number")+
-                "&email_id="+getIntent().getStringExtra("Email_id"));
+        Log.d(log, "tpi approval api = " + Constants.RFCApproval + "?lead_no=" + getIntent().getStringExtra("lead_no") + "&bp_no=" + getIntent().getStringExtra("Bp_number") + "&cat_id="
+                + complete_catid + "&igl_code=" + complete_igl_code + "&igl_code_group=" + complete_igl_code_group + "&igl_catalog=" + complete_igl_catagory + "&mobile_no=" + getIntent().getStringExtra("Mobile_number") +
+                "&email_id=" + getIntent().getStringExtra("Email_id"));
         String login_request = "login_request";
         StringRequest jr = new StringRequest(Request.Method.POST, Constants.RFCApproval,
                 new Response.Listener<String>() {
@@ -683,36 +703,36 @@ public class RFC_StatusMastar_Page extends Activity {
 
                         try {
                             JSONObject json = new JSONObject(response);
-                            Log.d(log,"Response Save "+ json.toString());
-                            String Success=json.getString("Sucess");
+                            Log.d(log, "Response Save " + json.toString());
+                            String Success = json.getString("Sucess");
 
-                            if(Success.equals("true")){
-                                String holdCode=json.getString("holdCode");
+                            if (Success.equals("true")) {
+                                String holdCode = json.getString("holdCode");
                                 String msg = json.getString("Message");
-                                Log.d(log,"hold code =  "+ holdCode);
-                                if(holdCode.equals("0")){
-                                    CommonUtils.toast_msg(RFC_StatusMastar_Page.this,msg);
+                                Log.d(log, "hold code =  " + holdCode);
+                                if (holdCode.equals("0")) {
+                                    CommonUtils.toast_msg(RFC_StatusMastar_Page.this, msg);
                                     finish();
 
-                                }else {
+                                } else {
                                     Toast.makeText(RFC_StatusMastar_Page.this, "" + "Proceed for Connection", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(RFC_StatusMastar_Page.this, RFC_Connection_Activity.class);
                                     intent.putExtra("Bp_number", getIntent().getStringExtra("Bp_number"));
                                     intent.putExtra("First_name", getIntent().getStringExtra("First_name"));
                                     intent.putExtra("Last_name", getIntent().getStringExtra("Last_name"));
                                     intent.putExtra("lead_no", getIntent().getStringExtra("lead_no"));
-                                    intent.putExtra("rfcAdmin",getIntent().getStringExtra("rfcAdmin"));
+                                    intent.putExtra("rfcAdmin", getIntent().getStringExtra("rfcAdmin"));
                                     startActivity(intent);
                                     finish();
                                 }
 
-                            }else {
+                            } else {
                                 Toast.makeText(RFC_StatusMastar_Page.this, "" + "UnSuccesful", Toast.LENGTH_SHORT).show();
                             }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Log.d(log,"catch = "+e.getMessage());
+                            Log.d(log, "catch = " + e.getMessage());
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -724,36 +744,37 @@ public class RFC_StatusMastar_Page extends Activity {
                     try {
                         String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
                         JSONObject obj = new JSONObject(res);
-                        Log.d(log,"response = "+obj.toString());
-                        JSONObject error1=obj.getJSONObject("error");
+                        Log.d(log, "response = " + obj.toString());
+                        JSONObject error1 = obj.getJSONObject("error");
 
-                        String error_msg=error1.getString("message");
-                        Log.d(log,"response = "+error_msg);
+                        String error_msg = error1.getString("message");
+                        Log.d(log, "response = " + error_msg);
                         //  Toast.makeText(Forgot_Password_Activity.this, "" + error_msg, Toast.LENGTH_SHORT).show();
                     } catch (UnsupportedEncodingException e1) {
                         e1.printStackTrace();
                     } catch (JSONException e2) {
                         e2.printStackTrace();
                     }
-                }            }
+                }
+            }
         }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
                 try {
-                    Log.d(log , "lead_no"+getIntent().getStringExtra("lead_no"));
-                    Log.d(log,"bp_no"+ getIntent().getStringExtra("Bp_number"));
-                    Log.d(log,"cat_id"+ complete_catid);
-                    Log.d(log,"igl_code"+ complete_igl_code);
-                    Log.d(log,"igl_code_group"+ complete_igl_code_group);
-                    Log.d(log,"igl_catalog"+ complete_igl_catagory);
-                    Log.d(log,"mobile_no"+ getIntent().getStringExtra("Mobile_number"));
-                    Log.d(log,"email_id"+ getIntent().getStringExtra("Email_id"));
-                    Log.d(log,"status "+ type_of_master);
-                    Log.d(log,"reason"+ type_of_sub_master);
+                    Log.d(log, "lead_no" + getIntent().getStringExtra("lead_no"));
+                    Log.d(log, "bp_no" + getIntent().getStringExtra("Bp_number"));
+                    Log.d(log, "cat_id" + complete_catid);
+                    Log.d(log, "igl_code" + complete_igl_code);
+                    Log.d(log, "igl_code_group" + complete_igl_code_group);
+                    Log.d(log, "igl_catalog" + complete_igl_catagory);
+                    Log.d(log, "mobile_no" + getIntent().getStringExtra("Mobile_number"));
+                    Log.d(log, "email_id" + getIntent().getStringExtra("Email_id"));
+                    Log.d(log, "status " + type_of_master);
+                    Log.d(log, "reason" + type_of_sub_master);
 
                     // params.put("id", sharedPrefs.getUUID());
-                    params.put("lead_no",getIntent().getStringExtra("lead_no"));
+                    params.put("lead_no", getIntent().getStringExtra("lead_no"));
                     params.put("bp_no", getIntent().getStringExtra("Bp_number"));
                     params.put("cat_id", complete_catid);
                     params.put("igl_code", complete_igl_code);
@@ -762,7 +783,7 @@ public class RFC_StatusMastar_Page extends Activity {
                     params.put("mobile_no", getIntent().getStringExtra("Mobile_number"));
                     params.put("email_id", getIntent().getStringExtra("Email_id"));
                     params.put("pipeline_id", getIntent().getStringExtra("PipeLine_Length_Id"));
-                    params.put("reason", type_of_master+"\n"+type_of_sub_master);
+                    params.put("reason", type_of_master + "\n" + type_of_sub_master);
                     params.put("followUp", followup);
                     params.put("description", description);
 
@@ -804,7 +825,7 @@ public class RFC_StatusMastar_Page extends Activity {
                 signatureView.clearCanvas();
             }
         });
-        ImageView crose_img=dialog.findViewById(R.id.crose_img);
+        ImageView crose_img = dialog.findViewById(R.id.crose_img);
         crose_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -871,9 +892,9 @@ public class RFC_StatusMastar_Page extends Activity {
                         f.delete();
                         OutputStream outFile = null;
                         File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
-                        Log.d(log,"Camera_Path1++ = "+ file.toString());
+                        Log.d(log, "Camera_Path1++ = " + file.toString());
                         image_path_string = file.toString();
-                        Log.d(log,"image path++ = "+ image_path_string);
+                        Log.d(log, "image path++ = " + image_path_string);
 
                         try {
                             outFile = new FileOutputStream(file);
@@ -894,7 +915,7 @@ public class RFC_StatusMastar_Page extends Activity {
                 break;
 
             case AUDIO_REQUEST:
-                if (resultCode == RESULT_OK && requestCode == AUDIO_REQUEST){
+               /* if (resultCode == RESULT_OK && requestCode == AUDIO_REQUEST){
                     Uri uri = data.getData();
                     try {
                         String uriString = uri.toString();
@@ -914,21 +935,42 @@ public class RFC_StatusMastar_Page extends Activity {
                             CommonUtils.toast_msg(RFC_StatusMastar_Page.this,"Can't Upload..sorry file size is large");
                         } else {
                             audiopath = path2;
-
                         }
                     } catch (Exception e) {
                         //handle exception
-                       // Toast.makeText(GroupDetailsActivity.this, "Unable to process,try again", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(GroupDetailsActivity.this, "Unable to process,try again", Toast.LENGTH_SHORT).show();
                     }
                     //   String path1 = uri.getPath();
 
+                }*/
+                try {
+                    if (requestCode == AUDIO_REQUEST && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
+                        Uri selectedVideo = data.getData();
+                        String[] filePathColumn = {MediaStore.Audio.Media.DATA};
+
+                        Cursor cursor = getContentResolver().query(selectedVideo, filePathColumn, null, null, null);
+                        assert cursor != null;
+                        cursor.moveToFirst();
+
+                        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+
+                        mediaPath1 = cursor.getString(columnIndex);
+                        Log.d(log,"mediapatha = "+mediaPath1);
+                        audioPath.setText(cursor.getString(columnIndex));
+                        cursor.close();
+                    } else {
+                        Toast.makeText(this, "You haven't picked recording file", Toast.LENGTH_LONG).show();
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();
                 }
+                break;
 
 
         }
     }
 
-   // This function is use for absolute path of audio file
+    // This function is use for absolute path of audio file
     private String getAudioPath(Uri uri) {
         String[] data = {MediaStore.Audio.Media.DATA};
         CursorLoader loader = new CursorLoader(getApplicationContext(), uri, data, null, null, null);
@@ -937,6 +979,7 @@ public class RFC_StatusMastar_Page extends Activity {
         cursor.moveToFirst();
         return cursor.getString(column_index);
     }
+
     public String getPath(Uri uri) {
         Cursor cursor = getContentResolver().query(uri, null, null, null, null);
         cursor.moveToFirst();

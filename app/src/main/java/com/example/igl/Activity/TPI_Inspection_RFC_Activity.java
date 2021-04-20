@@ -42,7 +42,7 @@ import com.example.igl.R;
 import com.example.igl.Helper.AppController;
 import com.example.igl.Helper.Constants;
 import com.example.igl.Helper.SharedPrefs;
- 
+
 import com.iceteck.silicompressorr.FileUtils;
 import com.itextpdf.text.pdf.security.SecurityConstants;
 import com.itextpdf.text.xml.xmp.DublinCoreProperties;
@@ -202,7 +202,7 @@ public class TPI_Inspection_RFC_Activity extends Activity {
         this.approve_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Status = "0";
-                 TPI_Multipart(signature);
+                TPI_Multipart(signature);
             }
         });
         this.decline_button.setOnClickListener(new View.OnClickListener() {
@@ -226,7 +226,7 @@ public class TPI_Inspection_RFC_Activity extends Activity {
         this.save = (Button) dialog.findViewById(R.id.save);
         this.clear.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                 signatureView.clearCanvas();
+                signatureView.clearCanvas();
             }
         });
         ((ImageView) dialog.findViewById(R.id.crose_img)).setOnClickListener(new View.OnClickListener() {
@@ -236,9 +236,9 @@ public class TPI_Inspection_RFC_Activity extends Activity {
         });
         this.save.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-              bitmap = signatureView.getSignatureBitmap();
-              signature = saveImage(bitmap);
-              signature_image.setImageBitmap(bitmap);
+                bitmap = signatureView.getSignatureBitmap();
+                signature = saveImage(bitmap);
+                signature_image.setImageBitmap(bitmap);
                 dialog.dismiss();
             }
         });
@@ -284,15 +284,15 @@ public class TPI_Inspection_RFC_Activity extends Activity {
                     JSONArray jSONArray = jSONObject.getJSONArray("File_Path");
                     int i = 0;
                     for (int i2 = 0; i2 <= jSONArray.length(); i2++) {
-                         image_path = jSONArray.getJSONObject(0).getString("files0");
-                         image1_path = jSONArray.getJSONObject(1).getString("files1");
-                         image2_path = jSONArray.getJSONObject(2).getString("files2");
-                         image3_path = jSONArray.getJSONObject(3).getString("files3");
+                        image_path = jSONArray.getJSONObject(0).getString("files0");
+                        image1_path = jSONArray.getJSONObject(1).getString("files1");
+                        image2_path = jSONArray.getJSONObject(2).getString("files2");
+                        image3_path = jSONArray.getJSONObject(3).getString("files3");
                     }
                     JSONArray jSONArray2 = jSONObject.getJSONObject("RFCdetails").getJSONArray("rfc");
                     for (i =0; i<jSONArray2.length();i++) {
                         JSONObject jSONObject2 = jSONArray2.getJSONObject(i);
-                       String meter_make= jSONObject2.getString("meter_make");
+                        String meter_make= jSONObject2.getString("meter_make");
                         String metertype = jSONObject2.getString("meter_type");
                         String meter_no = jSONObject2.getString("meter_no");
                         String initialReading = jSONObject2.getString("initial_meter_reading");
@@ -307,10 +307,10 @@ public class TPI_Inspection_RFC_Activity extends Activity {
                         String gas_meter_testing = jSONObject2.getString("gas_meter_testing");
                         String cementing_of_holes = jSONObject2.getString("cementing_of_holes");
                         String painting_of_giPipe = jSONObject2.getString("painting_of_giPipe");
-                       String customer1 = jSONObject2.getString("customer1");
-                       String customer2 = jSONObject2.getString("customer2");
+                        String customer1 = jSONObject2.getString("customer1");
+                        String customer2 = jSONObject2.getString("customer2");
                         String bp = jSONObject2.getString("bp");
-                       String status=  jSONObject2.getString("status");
+                        String status=  jSONObject2.getString("status");
                         String tpiName = jSONObject2.getString("tpiName");
                         String tpiLastName = jSONObject2.getString("tpiLastName");
                         String vendorName = jSONObject2.getString("vendorName");
@@ -516,7 +516,7 @@ public class TPI_Inspection_RFC_Activity extends Activity {
                 File file = new File(Environment.getExternalStorageDirectory(), "temp.jpg");
                 TPI_Inspection_RFC_Activity tPI_Inspection_RFC_Activity = TPI_Inspection_RFC_Activity.this;
                 intent.putExtra("output", FileProvider.getUriForFile(tPI_Inspection_RFC_Activity, getApplicationContext().getPackageName() + ".provider", file));
-               // intent.addFlags(1);
+                // intent.addFlags(1);
                 startActivityForResult(intent, 1);
             }
         });

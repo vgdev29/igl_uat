@@ -80,44 +80,44 @@ public class RFC_Approval_Adapter extends RecyclerView.Adapter<RFC_Approval_Adap
         holder.user_name_text.setText(Bp_No_array.getFirst_name());
         holder.address_text.setText(Bp_No_array.getHouse_no()+" "+Bp_No_array.getSociety()+" "+Bp_No_array.getArea()+" "+Bp_No_array.getCity_region());
 
-         if(Bp_No_array.getClaimFlag().equals("null")){
-             holder.unclaimed_button.setVisibility(View.GONE);
-             holder.job_start_button.setVisibility(View.GONE);
-         }else {
-             if(Bp_No_array.getClaimFlag().equals("0")){
-                 holder.claimed_button.setVisibility(View.GONE);
-                 holder.unclaimed_button.setVisibility(View.VISIBLE);
-                 holder.job_start_button.setVisibility(View.VISIBLE);
+        if(Bp_No_array.getClaimFlag().equals("null")){
+            holder.unclaimed_button.setVisibility(View.GONE);
+            holder.job_start_button.setVisibility(View.GONE);
+        }else {
+            if(Bp_No_array.getClaimFlag().equals("0")){
+                holder.claimed_button.setVisibility(View.GONE);
+                holder.unclaimed_button.setVisibility(View.VISIBLE);
+                holder.job_start_button.setVisibility(View.VISIBLE);
 
-                 Log.e("RfcTpi",Bp_No_array.getRfcTpi());
-                 Log.e("login id",sharedPrefs.getUUID());
-                 if(Bp_No_array.getRfcTpi().equals(sharedPrefs.getUUID())){
-                     holder.job_start_button.setVisibility(View.VISIBLE);
-                     holder.unclaimed_button.setOnClickListener(new View.OnClickListener() {
-                         @Override
-                         public void onClick(View v) {
-                             Claim_Flage="1";
-                             BP_N0=bp_no_list_array.get(position).getBp_number();
-                             Claimed_API_POST();
-                         }
-                     });
+                Log.e("RfcTpi",Bp_No_array.getRfcTpi());
+                Log.e("login id",sharedPrefs.getUUID());
+                if(Bp_No_array.getRfcTpi().equals(sharedPrefs.getUUID())){
+                    holder.job_start_button.setVisibility(View.VISIBLE);
+                    holder.unclaimed_button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Claim_Flage="1";
+                            BP_N0=bp_no_list_array.get(position).getBp_number();
+                            Claimed_API_POST();
+                        }
+                    });
 
-                     holder.job_start_button.setOnClickListener(new View.OnClickListener() {
-                         @Override
-                         public void onClick(View v) {
-                             BP_N0=bp_no_list_array.get(position).getBp_number();
-                             Job_Start_API_POST();
-                         }
-                     });
+                    holder.job_start_button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            BP_N0=bp_no_list_array.get(position).getBp_number();
+                            Job_Start_API_POST();
+                        }
+                    });
 
-                 }else {
+                }else {
                     holder.unclaimed_button.setVisibility(View.GONE);
-                     holder.job_start_button.setVisibility(View.GONE);
-                 }
-             }else {
+                    holder.job_start_button.setVisibility(View.GONE);
+                }
+            }else {
                 // holder.job_start_button.setVisibility(View.GONE);
-             }
-         }
+            }
+        }
 
         if(Bp_No_array.getIgl_status().equals("null")){
             holder.status_text.setVisibility(View.GONE);
@@ -254,30 +254,30 @@ public class RFC_Approval_Adapter extends RecyclerView.Adapter<RFC_Approval_Adap
     }
     @Override
     public Filter getFilter() { return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence charSequence) {
-                String charString = charSequence.toString();
-                if (charString.isEmpty()) {
-                    bp_no_list_array = New_bp_no_list_array;
-                } else {
-                    List<Bp_No_Item> filteredList = new ArrayList<>();
-                    for (Bp_No_Item row : New_bp_no_list_array) {
-                        if (row.getBp_number().toLowerCase().contains(charString.toLowerCase()) || row.getFirst_name().toLowerCase().contains(charString.toLowerCase())) {
-                            filteredList.add(row);
-                        }
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            String charString = charSequence.toString();
+            if (charString.isEmpty()) {
+                bp_no_list_array = New_bp_no_list_array;
+            } else {
+                List<Bp_No_Item> filteredList = new ArrayList<>();
+                for (Bp_No_Item row : New_bp_no_list_array) {
+                    if (row.getBp_number().toLowerCase().contains(charString.toLowerCase()) || row.getFirst_name().toLowerCase().contains(charString.toLowerCase())) {
+                        filteredList.add(row);
                     }
-                    bp_no_list_array = filteredList;
                 }
-                FilterResults filterResults = new FilterResults();
-                filterResults.values = bp_no_list_array;
-                return filterResults;
+                bp_no_list_array = filteredList;
             }
-            @Override
-            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                bp_no_list_array = (ArrayList<Bp_No_Item>) filterResults.values;
-                notifyDataSetChanged();
-            }
-        };
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = bp_no_list_array;
+            return filterResults;
+        }
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            bp_no_list_array = (ArrayList<Bp_No_Item>) filterResults.values;
+            notifyDataSetChanged();
+        }
+    };
     }
 
     public interface ContactsAdapterListener {

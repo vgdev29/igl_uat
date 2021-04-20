@@ -356,7 +356,7 @@
                         android:layout_width="140dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sourcesanspro_regular"
-                        android:text="Agency Name"
+                        android:text="Contractor Name"
                         android:textColor="#808080"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -389,7 +389,7 @@
                         android:layout_width="140dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sourcesanspro_regular"
-                        android:text="RFC Vendor"
+                        android:text="Supervisor Name"
                         android:textColor="#808080"
                         android:textSize="16sp"
                         android:textStyle="bold" />

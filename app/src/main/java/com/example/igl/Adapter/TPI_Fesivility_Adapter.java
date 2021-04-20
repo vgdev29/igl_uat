@@ -34,7 +34,7 @@ public class TPI_Fesivility_Adapter extends RecyclerView.Adapter<TPI_Fesivility_
     public TPI_Fesivility_Adapter(Context context, ArrayList<BpDetail> New_bp_no_list_array/*, TPI_Fesivility_Adapter.ContactsAdapterListener listener*/) {
         this.bp_no_list_array = New_bp_no_list_array;
         this.New_bp_no_list_array = New_bp_no_list_array;
-     //   this.listener = listener;
+        //   this.listener = listener;
         this.context = context;
     }
 
@@ -83,51 +83,51 @@ public class TPI_Fesivility_Adapter extends RecyclerView.Adapter<TPI_Fesivility_
             }
         }
 
-       holder.liner_layout.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               String First_name = bp_no_list_array.get(position).getFirstName();
-               String Middle_name = bp_no_list_array.get(position).getMiddleName();
-               String Last_name = bp_no_list_array.get(position).getLastName();
-               String Mobile_number = bp_no_list_array.get(position).getMobileNumber();
-               String Email_id = bp_no_list_array.get(position).getEmailId();
-               String Aadhaar_number = bp_no_list_array.get(position).getAadhaarNumber();
-               String City_region = bp_no_list_array.get(position).getCityRegion();
-               String Area = bp_no_list_array.get(position).getArea();
-               String Society = bp_no_list_array.get(position).getSociety();
-               String Landmark = bp_no_list_array.get(position).getLandmark();
-               String House_type = bp_no_list_array.get(position).getHouseType();
-               String House_no = bp_no_list_array.get(position).getHouseNo();
-               String Block_qtr_tower_wing = bp_no_list_array.get(position).getBlockQtrTowerWing();
-               String Floor = bp_no_list_array.get(position).getFloor();
-               String Street_gali_road = bp_no_list_array.get(position).getStreetGaliRoad();
-               String Pincode = bp_no_list_array.get(position).getPincode();
-               String Customer_type = bp_no_list_array.get(position).getCustomerType();
-               String Lpg_company = bp_no_list_array.get(position).getLpgCompany();
-               String Bp_number = bp_no_list_array.get(position).getBpNumber();
-               String Bp_date = bp_no_list_array.get(position).getBpDate();
-               String IGL_Status = bp_no_list_array.get(position).getIglStatus();
+        holder.liner_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String First_name = bp_no_list_array.get(position).getFirstName();
+                String Middle_name = bp_no_list_array.get(position).getMiddleName();
+                String Last_name = bp_no_list_array.get(position).getLastName();
+                String Mobile_number = bp_no_list_array.get(position).getMobileNumber();
+                String Email_id = bp_no_list_array.get(position).getEmailId();
+                String Aadhaar_number = bp_no_list_array.get(position).getAadhaarNumber();
+                String City_region = bp_no_list_array.get(position).getCityRegion();
+                String Area = bp_no_list_array.get(position).getArea();
+                String Society = bp_no_list_array.get(position).getSociety();
+                String Landmark = bp_no_list_array.get(position).getLandmark();
+                String House_type = bp_no_list_array.get(position).getHouseType();
+                String House_no = bp_no_list_array.get(position).getHouseNo();
+                String Block_qtr_tower_wing = bp_no_list_array.get(position).getBlockQtrTowerWing();
+                String Floor = bp_no_list_array.get(position).getFloor();
+                String Street_gali_road = bp_no_list_array.get(position).getStreetGaliRoad();
+                String Pincode = bp_no_list_array.get(position).getPincode();
+                String Customer_type = bp_no_list_array.get(position).getCustomerType();
+                String Lpg_company = bp_no_list_array.get(position).getLpgCompany();
+                String Bp_number = bp_no_list_array.get(position).getBpNumber();
+                String Bp_date = bp_no_list_array.get(position).getBpDate();
+                String IGL_Status = bp_no_list_array.get(position).getIglStatus();
 
-               String lpg_distributor = bp_no_list_array.get(position).getLpgDistributor();
-               String lpg_conNo = bp_no_list_array.get(position).getLpgConNo();
-               String Unique_lpg_Id = bp_no_list_array.get(position).getUniqueLpgId();
-               String lead_no = bp_no_list_array.get(position).getLeadNo();
-               String ownerName = bp_no_list_array.get(position).getOwnerName();
-               String igl_code_group = bp_no_list_array.get(position).getIglCodeGroup();
-               if (Bp_No_array.getIglStatus().equalsIgnoreCase("3")) {
-                   Intent intent = new Intent(context, TPI_RfcDone_Approval_Activity.class);
-                   intent.putExtra("bpno", Bp_number);
-                   intent.putExtra("leadno", lead_no);
-                   context.startActivity(intent);
-               }
-               else {
-                   Intent intent = new Intent(context, TPI_RfcHold_Approval_Activity.class);
-                   intent.putExtra("bpno", Bp_number);
-                   intent.putExtra("leadno", lead_no);
-                   context.startActivity(intent);
-               }
-           }
-       });
+                String lpg_distributor = bp_no_list_array.get(position).getLpgDistributor();
+                String lpg_conNo = bp_no_list_array.get(position).getLpgConNo();
+                String Unique_lpg_Id = bp_no_list_array.get(position).getUniqueLpgId();
+                String lead_no = bp_no_list_array.get(position).getLeadNo();
+                String ownerName = bp_no_list_array.get(position).getOwnerName();
+                String igl_code_group = bp_no_list_array.get(position).getIglCodeGroup();
+                if (Bp_No_array.getIglStatus().equalsIgnoreCase("3")) {
+                    Intent intent = new Intent(context, TPI_RfcDone_Approval_Activity.class);
+                    intent.putExtra("bpno", Bp_number);
+                    intent.putExtra("leadno", lead_no);
+                    context.startActivity(intent);
+                }
+                else {
+                    Intent intent = new Intent(context, TPI_RfcHold_Approval_Activity.class);
+                    intent.putExtra("bpno", Bp_number);
+                    intent.putExtra("leadno", lead_no);
+                    context.startActivity(intent);
+                }
+            }
+        });
     }
     @Override
     public int getItemCount() {

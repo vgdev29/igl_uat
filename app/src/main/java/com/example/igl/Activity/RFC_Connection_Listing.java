@@ -203,12 +203,11 @@ public class RFC_Connection_Listing extends Activity implements RFC_Adapter.Cont
                                 Log.d(log,"bp item = " + bp_no_item.toString());
                                 bp_no_array.add(bp_no_item);
                             }
-                        } catch (JSONException e) {
+                        }catch (JSONException e) {
                             e.printStackTrace();
                         }catch (NullPointerException e) {
                             e.printStackTrace();
-                        }
-                        catch (Exception e) {
+                        }catch (Exception e) {
                             e.printStackTrace();
                         }
                         adapter = new RFC_Adapter(RFC_Connection_Listing.this,bp_no_array,RFC_Connection_Listing.this);
