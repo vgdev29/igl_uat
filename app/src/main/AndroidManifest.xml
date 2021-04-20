@@ -64,6 +64,7 @@
         <activity android:name=".Activity.NgAssignmentDetailsActivity" />
         <activity android:name=".Activity.NgUserDetailsActivity" />
         <activity android:name=".Activity.NgUserListActivity" />
+        <activity android:name=".Activity.ViewNgDetaillsActivity" />
         <activity android:name=".Activity.Splash_Screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

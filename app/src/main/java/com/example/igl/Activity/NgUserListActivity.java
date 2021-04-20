@@ -52,17 +52,6 @@ public class NgUserListActivity extends AppCompatActivity implements ListDataPas
     private EditText editTextSearch;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RetrofitCancelOberver retrofitCancelOberver;
-    private CircularTextView tv_FiltersIndicator;
-    private  void runAnimation(CircularTextView tv_FiltersIndicator) {
-        PropertyValuesHolder pvhx = PropertyValuesHolder.ofFloat(View.SCALE_X, 1.5f, .5f);
-        PropertyValuesHolder pvhy = PropertyValuesHolder.ofFloat(View.SCALE_Y, 1.5f, .5f);
-        ObjectAnimator anim = ObjectAnimator.ofPropertyValuesHolder(tv_FiltersIndicator, pvhx, pvhy);
-        anim.setRepeatCount(ValueAnimator.INFINITE);
-        anim.setRepeatMode(ValueAnimator.REVERSE);
-        anim.setDuration(2000);
-        anim.start();
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +60,6 @@ public class NgUserListActivity extends AppCompatActivity implements ListDataPas
         retrofitCancelOberver = new RetrofitCancelOberver();
         getLifecycle().addObserver(retrofitCancelOberver);
 
-        tv_FiltersIndicator = findViewById(R.id.tv_FiltersIndicator);
-        tv_FiltersIndicator.setSolidColor("#FF0000");
-        tv_FiltersIndicator.setVisibility(View.GONE);
         btnTryAgain = findViewById(R.id.btnTryAgain);
         back = findViewById(R.id.back);
         tv_ngUserListdata = findViewById(R.id.tv_ngUserListdata);
@@ -156,58 +142,6 @@ public class NgUserListActivity extends AppCompatActivity implements ListDataPas
         Call call = DBManager.loadNgUserList(NgUserListActivity.this, "AS");
         retrofitCancelOberver.addlist(call);
     }
-
-
-    /*private void loadNgUserList() {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Api.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        Api api = retrofit.create(Api.class);
-        Call<ArrayList<NguserListModel>> call = api.getClaimUnclaimList("AS");
-
-
-        call.enqueue(new Callback<ArrayList<NguserListModel>>() {
-            @Override
-            public void onResponse(Call<ArrayList<NguserListModel>> call, Response<ArrayList<NguserListModel>> response) {
-
-                //finally we are setting the list to our MutableLiveData
-                //ngUserList.setValue(response.body());
-                if (response.body() != null) {
-                    ngUserList = response.body();
-                    if (ngUserList.size() > 0) {
-                        setListData(ngUserList);
-                    } else {
-
-                        recyclerView_ngAssignment.setVisibility(View.GONE);
-                        rel_noNgUserListingData.setVisibility(View.VISIBLE);
-                        tv_ngUserListdata.setText("No data found!!");
-                    }
-                } else {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            recyclerView_ngAssignment.setVisibility(View.GONE);
-                            rel_noNgUserListingData.setVisibility(View.VISIBLE);
-                            tv_ngUserListdata.setText("Failed o fetch data due to some problem please try after some time!!");
-                        }
-                    });
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<NguserListModel>> call, Throwable t) {
-                Log.e("MyError", "error.............");
-
-                rel_noNgUserListingData.setVisibility(View.VISIBLE);
-                recyclerView_ngAssignment.setVisibility(View.GONE);
-            }
-        });
-    }*/
-
     private void setListData(final List<NguserListModel> ngUserList) {
         runOnUiThread(new Runnable() {
             @Override
@@ -222,21 +156,6 @@ public class NgUserListActivity extends AppCompatActivity implements ListDataPas
                     rel_noNgUserListingData.setVisibility(View.VISIBLE);
                 }
 
-                if ( mSelectedId == CLAIM || mSelectedId == UNCLAIM || mSelectedId == PRIORITY) {
-                    tv_FiltersIndicator.setVisibility(View.VISIBLE);
-                    //scheduleAnimation(true);
-                    runAnimation(tv_FiltersIndicator);
-
-                } else {
-                    tv_FiltersIndicator.setVisibility(View.GONE);
-
-                }
-
-                if ( mSelectedId == CLAIM || mSelectedId == UNCLAIM|| mSelectedId == UNCLAIM) {
-                    tv_FiltersIndicator.setVisibility(View.VISIBLE);
-                } else {
-                    tv_FiltersIndicator.setVisibility(View.GONE);
-                }
                 /*if (adapter != null && updateListFlag) {
                     adapter.updateList(activity, prodLineItems, retailer, actionId, dialog2);
                 }*/
@@ -302,16 +221,6 @@ public class NgUserListActivity extends AppCompatActivity implements ListDataPas
                 radioButton_ngWithPriority.setChecked(false);
                 radioButton_ngWithUncalim.setChecked(false);
                 radioButton_ngWithcalim.setChecked(false);
-
-                if (mSelectedId == CLAIM || mSelectedId == UNCLAIM|| mSelectedId == PRIORITY) {
-                    tv_FiltersIndicator.setVisibility(View.VISIBLE);
-                    runAnimation(tv_FiltersIndicator);
-
-                } else {
-                    tv_FiltersIndicator.setVisibility(View.GONE);
-                }
-                /*if (r != null)
-                    baseRecyclerAdapter.notifyDataSetChanged();*/
             }
         });
         radioButton_ngWithcalim.setOnClickListener(new View.OnClickListener() {

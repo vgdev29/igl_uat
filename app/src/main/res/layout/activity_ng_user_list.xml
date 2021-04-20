@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_5sdp"
-            android:layout_weight=".3"
+            android:layout_weight=".2"
             android:padding="2dp"
             android:background="@drawable/shape_oval"
             android:orientation="horizontal">
@@ -82,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/_5sdp"
-            android:layout_weight=".7"
+            android:layout_weight=".8"
             android:weightSum="2"
             android:id="@+id/ll_sort"
 
@@ -99,14 +99,7 @@
 
                />
 
-            <com.example.igl.widgets.CircularTextView
-                android:id="@+id/tv_FiltersIndicator"
-                android:layout_width="16dp"
-                android:layout_height="7dp"
-                android:layout_gravity="top|end"
-                android:layout_marginTop="18dp"
-                android:layout_marginRight="12dp"
-                 android:layout_weight="1"/>
+
 
         </RelativeLayout>
     </LinearLayout>

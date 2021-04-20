@@ -67,7 +67,7 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
     private Uri filePath_address;
     private String image_path_address = "";
     private Bitmap bitmap;
-   private Button btn_tpidecline,btn_tpiApprove;
+    private Button btn_tpidecline,btn_tpiApprove;
 
 
     private TextView tv_ngStatusValue;
