@@ -281,6 +281,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_marginBottom="7.20dp"
                     android:layout_marginRight="@dimen/_5sdp"
                     android:layout_weight="1"
                     android:background="@drawable/background_input_mandatory"
@@ -294,11 +295,22 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_26sdp"
                         android:layout_margin="3dp"
+
                         android:layout_weight=".8"
                         android:background="@drawable/shape_white"
                         android:dropDownSelector="@null"
                         android:spinnerMode="dialog" />
 
+                    <TextView
+                        android:id="@+id/tv_meater_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_26sdp"
+                        android:layout_margin="3dp"
+                        android:layout_weight=".8"
+                        android:visibility="gone"
+                        android:background="@drawable/shape_white"
+                        android:dropDownSelector="@null"
+                        android:spinnerMode="dialog" />
                     <ImageView
 
                         android:layout_width="@dimen/_11sdp"
@@ -325,6 +337,18 @@
                     android:singleLine="true"
                     android:textSize="@dimen/_10sdp" />
             </LinearLayout>
+            <ImageView
+                android:id="@+id/mScanbar"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_alignParentRight="true"
+
+                android:layout_below="@+id/mCounter"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/barcode_meter_no"
+                android:text=""
+                android:layout_centerVertical="true"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -364,6 +388,7 @@
                     android:singleLine="true"
                     android:textSize="@dimen/_10sdp" />
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"

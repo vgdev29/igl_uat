@@ -80,6 +80,9 @@ import com.example.igl.Helper.SharedPrefs;
 import com.example.igl.MainActivity;
 import com.example.igl.MataData.Bp_No_Item;
 import com.example.igl.R;
+import com.google.zxing.client.android.Intents;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.kyanogen.signatureview.SignatureView;
 
 import net.gotev.uploadservice.MultipartUploadRequest;
@@ -145,6 +148,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
     protected static final int CAMERA_REQUEST3 = 3;
     protected static final int CAMERA_REQUEST4 = 4;
     private final int PICK_CUSTOMER_IMAGE_SIGNATURE = 5;
+    protected static final int BARCODE_SCANNER_REQUEST = 6;
     private final int PICK_IMAGE_REQUEST = 8;
     private Uri filePath_Image, Multiple_file_IMG;
     String image_path_string, image_path_string1, image_path_string2, image_path_string3;
@@ -186,6 +190,11 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
     String LOG = "rfcConnection";
     String rfcAdmin;
     private String tf_avail_Done, connectivity_Done, ncap_avail_Done,igl_rfc_status;
+
+
+    private  ImageView mScan;
+    private String scanMeterNo;
+    private TextView tv_meater_no;
 
 
     @Override
@@ -240,6 +249,17 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
             public void onClick(View v) {
                 Log.d(LOG, "on click event - ");
                 takeScreenshot();
+            }
+        });
+        mScan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IntentIntegrator integrator = new IntentIntegrator(RFC_Connection_Activity.this);
+                integrator.setOrientationLocked(false);
+                integrator.setBeepEnabled(true);
+                integrator.setRequestCode(BARCODE_SCANNER_REQUEST);
+                integrator.initiateScan();
+
             }
         });
         tf_avail_Done = "Yes";
@@ -504,7 +524,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
 
                 meter_type_string = Meter_type_Id.get(position);
                 // igl_code_group_Maaster=Igl_Code_Group_Master.get(position);
-                Meter_No(meter_type_string);
+                    Meter_No(meter_type_string);
             }
 
             @Override
@@ -576,6 +596,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
         property_type_spinner = findViewById(R.id.property_type_spinner);
         gas_type_spinner = findViewById(R.id.gas_type_spinner);
         meter_text = findViewById(R.id.meter_text);
+        tv_meater_no = findViewById(R.id.tv_meater_no);
         // FrameLayout
         capture_fragment = findViewById(R.id.capture_fragment);
         capture_fragment1 = findViewById(R.id.capture_fragment1);
@@ -602,6 +623,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
         tf_avail_radioGroup=findViewById(R.id.tf_avail_radioGroup);
         connectivity_radioGroup=findViewById(R.id.connectivity_radioGroup);
         ncap_avail_radioGroup=findViewById(R.id.ncap_avail_radioGroup);
+        mScan = findViewById(R.id.mScanbar);
 
         List<String> list = new ArrayList<String>();
         list.add("Online");
@@ -713,6 +735,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case CAMERA_REQUEST:
@@ -897,7 +920,29 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                     }
                 }
                 break;
+            case BARCODE_SCANNER_REQUEST:
+                //if (requestCode==BARCODE_SCANNER_REQUEST && resultCode== this.RESULT_OK && data !=null && data.getData()!=null){
+                    IntentResult result = IntentIntegrator.parseActivityResult(resultCode, data);
+
+                    if(result.getContents() == null) {
+                        Intent originalIntent = result.getOriginalIntent();
+                        if (originalIntent == null) {
+                            Log.d("MainActivity", "Cancelled scan");
+                            Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
+                        } else if(originalIntent.hasExtra(Intents.Scan.MISSING_CAMERA_PERMISSION)) {
+                            Log.d("MainActivity", "Cancelled scan due to missing camera permission");
+                            Toast.makeText(this, "Cancelled due to missing camera permission", Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+                        Log.d("MainActivity", "Scanned");
+                        scanMeterNo = result.getContents();
+                        Meter_no.add(0,scanMeterNo);
+                        barCodeMeterNo();
+                        Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+                    }
+                //}
         }
+
     }
 
 
@@ -1415,6 +1460,12 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
     }
 
 
+    private void barCodeMeterNo(){
+        meater_no_adapter = new ArrayAdapter<String>(RFC_Connection_Activity.this, android.R.layout.simple_spinner_dropdown_item, Meter_no);
+        meater_no_spinner.setAdapter(meater_no_adapter);
+        RFC_Data();
+
+    }
     private void Meter_No(final String meter_type_string) {
         Meter_no.clear();
         Meter_no_type.clear();
