@@ -85,6 +85,12 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
         nguserdetails = new ArrayList<>();
         findViews();
         loadUser();
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
         btn_tpiApprove.setOnClickListener(new View.OnClickListener() {
@@ -97,19 +103,7 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
                 } else if (ngUserListModel1.getStatus().equalsIgnoreCase("DP")) {
                     nguserListModel.setStatus("DN");
                 }
-
                 approveTbyTPI(jmrNo, nguserListModel);
-
-
-               /* if (ngUserClaimListModel.getStatus().equalsIgnoreCase("OP")) {
-                    nguserListModel.setStatus("OH");
-                } else if (ngUserClaimListModel.getStatus().equalsIgnoreCase("DP")) {
-                    nguserListModel.setStatus("DN");
-                }
-
-                jmr_number = ngUserClaimListModel.getJmrNo();
-                nguserListModel.setBpNo(ngUserClaimListModel.getBpNo());
-                nguserListModel.setJmrNo(jmr_number);*/
             }
         });
         btn_tpidecline.setOnClickListener(new View.OnClickListener() {
@@ -281,6 +275,7 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
         btn_tpiApprove = findViewById(R.id.approve_button);
         tv_floorValue = findViewById(R.id.tv_floorValue);
         hold_image = findViewById(R.id.hold_image);
+        back = findViewById(R.id.back);
 
 
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
