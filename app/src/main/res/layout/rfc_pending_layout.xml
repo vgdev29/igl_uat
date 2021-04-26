@@ -7,7 +7,7 @@
     <RelativeLayout
         android:id="@+id/liner_layout"
         android:layout_width="match_parent"
-        android:layout_height="170dp"
+        android:layout_height="190dp"
         android:layout_margin="@dimen/_10sdp"
         android:background="@drawable/shape_white">
 

@@ -1,6 +1,5 @@
 package com.example.igl.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,38 +8,25 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.example.igl.Activity.Login_Activity;
-import com.example.igl.Activity.New_BP_No_Listing;
-import com.example.igl.Adapter.Bp_no_Adapter;
 import com.example.igl.Helper.AppController;
 import com.example.igl.Helper.Constants;
 import com.example.igl.Helper.SharedPrefs;
-import com.example.igl.MainActivity;
-import com.example.igl.MataData.Bp_No_Item;
 import com.example.igl.R;
 
 import androidx.fragment.app.Fragment;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 

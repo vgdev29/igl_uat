@@ -1,54 +1,32 @@
 package com.example.igl.Adapter;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.ServerError;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.StringRequest;
-import com.example.igl.Activity.TPI_Inspection_RFC_Activity;
 import com.example.igl.Activity.TPI_RfcDone_Approval_Activity;
 import com.example.igl.Activity.TPI_RfcHold_Approval_Activity;
-import com.example.igl.Helper.AppController;
-import com.example.igl.Helper.Constants;
 import com.example.igl.Helper.SharedPrefs;
 import com.example.igl.MataData.Bp_No_Item;
 import com.example.igl.Model.BpDetail;
 import com.example.igl.R;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class TPI_RFC_Approval_Adapter extends RecyclerView.Adapter<TPI_RFC_Approval_Adapter.ViewHolder> implements Filterable {
@@ -85,7 +63,9 @@ public class TPI_RFC_Approval_Adapter extends RecyclerView.Adapter<TPI_RFC_Appro
         holder.date_text.setText(Bp_No_array.getBpDate());
         holder.bp_no_text.setText(Bp_No_array.getBpNumber());
         holder.user_name_text.setText(Bp_No_array.getFirstName());
-        holder.address_text.setText(Bp_No_array.getHouseNo() + " " + Bp_No_array.getSociety() + " " + Bp_No_array.getArea() + " " + Bp_No_array.getCityRegion());
+        holder.address_text.setText(Bp_No_array.getHouseNo()+" "+Bp_No_array.getFloor()+" "+Bp_No_array.getHouseType()+" "+Bp_No_array.getSociety()+" \n"
+                +Bp_No_array.getBlockQtrTowerWing()+" "+Bp_No_array.getStreetGaliRoad()+" "+Bp_No_array.getLandmark()+" "+Bp_No_array.getCityRegion()
+                +"\nControl room - "+Bp_No_array.getControlRoom());
         holder.zone_text.setText(Bp_No_array.getZoneCode());
         holder.mobile_text.setText(Bp_No_array.getMobileNumber());
         //logic for cliam and unclaimed button
@@ -221,7 +201,10 @@ public class TPI_RFC_Approval_Adapter extends RecyclerView.Adapter<TPI_RFC_Appro
                 } else {
                     ArrayList<BpDetail> filteredList = new ArrayList<>();
                     for (BpDetail row : New_bp_no_list_array) {
-                        if (row.getBpNumber().toLowerCase().contains(charString.toLowerCase()) || row.getFirstName().toLowerCase().contains(charString.toLowerCase())) {
+                        if (row.getBpNumber().toLowerCase().contains(charString.toLowerCase()) || row.getFirstName().toLowerCase().contains(charString.toLowerCase())
+                        ||row.getHouseNo().toLowerCase().contains(charString.toLowerCase())||row.getFloor().toLowerCase().contains(charString.toLowerCase())
+                                ||row.getArea().toLowerCase().contains(charString.toLowerCase())||row.getSociety().toLowerCase().contains(charString.toLowerCase())
+                                ||row.getBlockQtrTowerWing().toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(row);
                         }
                     }

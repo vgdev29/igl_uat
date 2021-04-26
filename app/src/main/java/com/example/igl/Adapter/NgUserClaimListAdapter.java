@@ -1,12 +1,6 @@
 package com.example.igl.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.preference.PreferenceManager;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,51 +9,17 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.afollestad.materialdialogs.MaterialDialog;
-import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.ServerError;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.StringRequest;
-import com.example.constants.Constant;
-import com.example.igl.Activity.New_Regestration_Form;
-import com.example.igl.Activity.NgUserDetailsActivity;
 import com.example.igl.Fragment.NgClaim_Tpi_Fragment;
-import com.example.igl.Fragment.Ng_Pending_Fragment;
-import com.example.igl.Fragment.Ready_Inspection_Tpi_Fragment;
-import com.example.igl.Helper.AppController;
-import com.example.igl.Helper.Constants;
-import com.example.igl.MataData.Bp_No_Item;
 import com.example.igl.Model.NguserListModel;
 import com.example.igl.R;
 import com.example.igl.utils.Utils;
-import com.example.rest.Api;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-import static com.example.constants.Constant.JMR_NO;
 
 
 public class NgUserClaimListAdapter extends RecyclerView.Adapter<NgUserClaimListAdapter.NgUserClaimListViewHolder> implements Filterable {

@@ -131,6 +131,8 @@ public class BpDetail {
     @Expose
     private String ZoneCode;
 
+
+
     public String getAadhaarNumber() {
         return aadhaarNumber;
     }

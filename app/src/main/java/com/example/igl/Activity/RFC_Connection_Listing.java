@@ -2,7 +2,6 @@ package com.example.igl.Activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -29,10 +28,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.igl.Adapter.New_BP_NO_Adapter;
 import com.example.igl.Adapter.RFC_Adapter;
 import com.example.igl.Helper.Constants;
-import com.example.igl.Helper.RecyclerItemClickListener;
+import com.example.igl.Helper.Constants_uat;
 import com.example.igl.Helper.SharedPrefs;
 import com.example.igl.MataData.Bp_No_Item;
 import com.example.igl.R;
@@ -150,7 +148,7 @@ public class RFC_Connection_Listing extends Activity implements RFC_Adapter.Cont
                             final JSONObject Bp_Details = jsonObject.getJSONObject("Bp_Details");
                             JSONArray payload=Bp_Details.getJSONArray("users");
                             list_count.setText("Count\n"+String.valueOf(payload.length()));
-                            for(int i=0; i<=payload.length();i++) {
+                            for(int i=0; i<payload.length();i++) {
                                 JSONObject data_object=payload.getJSONObject(i);
                                 Bp_No_Item bp_no_item = new Bp_No_Item();
                                 bp_no_item.setFirst_name(data_object.getString("first_name"));
@@ -199,15 +197,19 @@ public class RFC_Connection_Listing extends Activity implements RFC_Adapter.Cont
                                 bp_no_item.setRFCMobileNo(data_object.getString("rfcmobileNo"));
                                 bp_no_item.setDeclinedDescription(data_object.getString("declinedDescription"));
                                 bp_no_item.setRfcAdmin(data_object.getString("rfcadmin"));
+                                bp_no_item.setControlRoom(data_object.getString("controlRoom"));
                                 //fesabilityTpiName : "suruchipmc"
                                 Log.d(log,"bp item = " + bp_no_item.toString());
                                 bp_no_array.add(bp_no_item);
                             }
                         }catch (JSONException e) {
+                            Log.d(log,"catch1");
                             e.printStackTrace();
                         }catch (NullPointerException e) {
+                            Log.d(log,"catch2");
                             e.printStackTrace();
                         }catch (Exception e) {
+                            Log.d(log,"catch3");
                             e.printStackTrace();
                         }
                         adapter = new RFC_Adapter(RFC_Connection_Listing.this,bp_no_array,RFC_Connection_Listing.this);
@@ -218,9 +220,11 @@ public class RFC_Connection_Listing extends Activity implements RFC_Adapter.Cont
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        Log.d(log,"error"+error.getMessage()+error.networkResponse);
                         materialDialog.dismiss();
                         NetworkResponse response = error.networkResponse;
                         if (error instanceof ServerError && response != null) {
+                            Log.d(log,"error if");
                             try {
                                 String res = new String(response.data,
                                         HttpHeaderParser.parseCharset(response.headers, "utf-8"));

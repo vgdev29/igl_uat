@@ -18,7 +18,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import androidx.annotation.RequiresApi;
@@ -40,7 +39,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.igl.Adapter.Bp_no_Adapter;
 import com.example.igl.Adapter.View_Attendance_Adapter;
 import com.example.igl.Adapter.View_Leave_Item;
 import com.example.igl.Helper.Constants;
@@ -62,10 +60,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 public class View_Attendance_Activity extends AppCompatActivity implements View_Attendance_Adapter.ContactsAdapterListener, DatePickerListener {
 

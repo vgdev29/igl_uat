@@ -8,14 +8,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,13 +31,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.igl.Adapter.Learning_Adapter;
 import com.example.igl.Adapter.New_BP_NO_Adapter;
-import com.example.igl.Adapter.To_DO_Task_Adapter;
 import com.example.igl.Helper.Constants;
 import com.example.igl.Helper.RecyclerItemClickListener;
 import com.example.igl.Helper.SharedPrefs;
 import com.example.igl.MataData.Bp_No_Item;
-import com.example.igl.MataData.VideoListData;
-import com.example.igl.MataData.VideoListData1;
 import com.example.igl.R;
 
 import org.json.JSONArray;

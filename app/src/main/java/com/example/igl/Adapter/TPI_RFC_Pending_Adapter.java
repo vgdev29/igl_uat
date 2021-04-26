@@ -15,11 +15,9 @@ import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,7 +31,6 @@ import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
-import com.example.igl.Fragment.Ready_Inspection_Tpi_Fragment;
 import com.example.igl.Helper.AppController;
 import com.example.igl.Helper.Constants;
 import com.example.igl.Helper.SharedPrefs;
@@ -85,13 +82,22 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
         holder.date_text.setText(Bp_No_array.getBpDate());
         holder.bp_no_text.setText(Bp_No_array.getBpNumber());
         holder.user_name_text.setText(Bp_No_array.getFirstName());
-        holder.address_text.setText(Bp_No_array.getHouseNo() + " " + Bp_No_array.getSociety() + " " + Bp_No_array.getArea() + " " + Bp_No_array.getCityRegion());
+        holder.address_text.setText(Bp_No_array.getHouseNo()+" "+Bp_No_array.getFloor()+" "+Bp_No_array.getHouseType()+" "+Bp_No_array.getSociety()+" \n"
+                +Bp_No_array.getBlockQtrTowerWing()+" "+Bp_No_array.getStreetGaliRoad()+" "+Bp_No_array.getLandmark()+" "+Bp_No_array.getCityRegion()
+        +"\nControl room - "+Bp_No_array.getControlRoom());
         holder.zone_text.setText(Bp_No_array.getZoneCode());
         holder.mobile_text.setText(Bp_No_array.getMobileNumber());
         //logic for cliam and unclaimed button
         Log.d(log,"claimflag"+" " + Bp_No_array.getClaimFlag()+"  "+Bp_No_array.getBpNumber());
+        //logic for status
+        if (Bp_No_array.getIglStatus().equals("null")) {
+            holder.status_text.setVisibility(View.GONE);
+        } else {
+            holder.status_text.setVisibility(View.VISIBLE);
+            holder.status_text.setText("RFC Pending");
+        }
 
-        if (Bp_No_array.getClaimFlag().equals("null") )
+        if (Bp_No_array.getClaimFlag().equals("null") ||Bp_No_array.getClaimFlag()==null )
         {
             claimFlag = "";
             Log.d(log,"claimflag"+" if" + Bp_No_array.getClaimFlag()+"  "+Bp_No_array.getBpNumber());
@@ -106,27 +112,28 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
             holder.job_start_button.setVisibility(View.GONE);
             Log.d(log, "if RfcTpi = " + Bp_No_array.getClaimFlag()+"  "+Bp_No_array.getBpNumber());
         } else if (claimFlag.equalsIgnoreCase("0")) {
-            holder.claimed_button.setVisibility(View.GONE);
-            holder.unclaimed_button.setVisibility(View.VISIBLE);
-            Log.d(log, "else RfcTpi = " + Bp_No_array.getClaimFlag()+"  "+Bp_No_array.getBpNumber());
-            //LOgic for job start button
-            if (Bp_No_array.getJobFlag().equals("1")) {
-                holder.job_start_button.setVisibility(View.GONE);
+            if ((Bp_No_array.getRfcTpi()!=null||!Bp_No_array.getRfcTpi().equalsIgnoreCase("null")) && Bp_No_array.getRfcTpi().equals(sharedPrefs.getUUID())) {
+                holder.claimed_button.setVisibility(View.GONE);
+                holder.unclaimed_button.setVisibility(View.VISIBLE);
+                Log.d(log, "else RfcTpi = " + Bp_No_array.getClaimFlag() + "  " + Bp_No_array.getBpNumber());
+                //LOgic for job start button
+                if (Bp_No_array.getJobFlag().equals("1")) {
+                    holder.job_start_button.setVisibility(View.GONE);
 
-            } else if (Bp_No_array.getJobFlag().equals("0")) {
-                holder.job_start_button.setVisibility(View.VISIBLE);
+                } else if (Bp_No_array.getJobFlag().equals("0")) {
+                    holder.job_start_button.setVisibility(View.VISIBLE);
+                }
+                Log.d(log, "else RfcTpi = " + Bp_No_array.getClaimFlag() + "  " + Bp_No_array.getBpNumber());
+                Log.d(log, "login id = " + sharedPrefs.getUUID() + "  " + Bp_No_array.getBpNumber());
             }
-            Log.d(log, "else RfcTpi = " + Bp_No_array.getClaimFlag()+"  "+Bp_No_array.getBpNumber());
-            Log.d(log, "login id = " + sharedPrefs.getUUID()+"  "+Bp_No_array.getBpNumber());
+            else {
+                holder.claimed_button.setVisibility(View.GONE);
+                holder.unclaimed_button.setVisibility(View.GONE);
+                holder.job_start_button.setVisibility(View.GONE);
+                holder.status_text.setText("RFC Claimed");
+            }
         }
 
-        //logic for status
-        if (Bp_No_array.getIglStatus().equals("null")) {
-            holder.status_text.setVisibility(View.GONE);
-        } else {
-            holder.status_text.setVisibility(View.VISIBLE);
-            holder.status_text.setText("RFC Pending");
-        }
 
 
         holder.rfc_info.setOnClickListener(new View.OnClickListener() {
@@ -224,7 +231,10 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
                 } else {
                     ArrayList<BpDetail> filteredList = new ArrayList<>();
                     for (BpDetail row : New_bp_no_list_array) {
-                        if (row.getBpNumber().toLowerCase().contains(charString.toLowerCase()) || row.getFirstName().toLowerCase().contains(charString.toLowerCase())) {
+                        if (row.getBpNumber().toLowerCase().contains(charString.toLowerCase()) || row.getFirstName().toLowerCase().contains(charString.toLowerCase())
+                                ||row.getHouseNo().toLowerCase().contains(charString.toLowerCase())||row.getFloor().toLowerCase().contains(charString.toLowerCase())
+                                ||row.getArea().toLowerCase().contains(charString.toLowerCase())||row.getSociety().toLowerCase().contains(charString.toLowerCase())
+                                ||row.getBlockQtrTowerWing().toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(row);
                         }
                     }

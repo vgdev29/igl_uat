@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaScannerConnection;
 import android.os.Bundle;
@@ -32,12 +30,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestBuilder;
-import com.bumptech.glide.RequestManager;
 
 import com.example.igl.Helper.CommonUtils;
 import com.example.igl.Helper.Constants;
+import com.example.igl.Helper.Constants_uat;
 import com.example.igl.Helper.SharedPrefs;
 import com.example.igl.MataData.Bp_No_Item;
 import com.example.igl.R;
@@ -57,19 +53,14 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-
-import static android.os.Environment.getExternalStorageDirectory;
 
 public class TPI_RfcDone_Approval_Activity extends Activity {
 
@@ -85,12 +76,13 @@ public class TPI_RfcDone_Approval_Activity extends Activity {
     LinearLayout top_layout;
     Button approve, decline, signature_button, clear, save;
     ImageView image_path, image1_path, image2_path, image3_path, signature_image,image_upload;
-    String BP_NO, LEAD_NO, image1, image2, image3, image4, customername, custmob,
+    String BP_NO, LEAD_NO,   customername, custmob,
             custemail,signature,status,description,declinedImagePath , tf_avail="",Connectivity="" , bp_no,lead_no,meter_no;
     SignatureView signatureView;
     Bitmap bitmap;
     protected static final int CAMERA_REQUEST = 1;
     private String statcode="4";
+    ArrayList<String> imagelist = new ArrayList<>();
 
 
     @Override
@@ -289,12 +281,11 @@ public class TPI_RfcDone_Approval_Activity extends Activity {
                     Log.e("Response++", jSONObject.toString());
                     JSONArray jSONArray = jSONObject.getJSONArray("File_Path");
                     int i = 0;
-                    for (int i2 = 0; i2 <= jSONArray.length(); i2++) {
-                        image1 = jSONArray.getJSONObject(0).getString("files0");
-                        image2 = jSONArray.getJSONObject(1).getString("files1");
-                        image3 = jSONArray.getJSONObject(2).getString("files2");
-                        image4 = jSONArray.getJSONObject(3).getString("files3");
+                    for (int i2 = 0;i2<jSONArray.length();i2++) {
+                      String  imageSig = jSONArray.getJSONObject(i2).getString("files"+i2);
+                        imagelist.add(imageSig);
                     }
+
                     JSONArray jSONArray2 = jSONObject.getJSONObject("RFCdetails").getJSONArray("rfc");
                     for (i = 0; i < jSONArray2.length(); i++) {
                         JSONObject jSONObject2 = jSONArray2.getJSONObject(i);
@@ -419,27 +410,24 @@ public class TPI_RfcDone_Approval_Activity extends Activity {
 
     public void loadImage()
     {
-
-        Log.d("rfcdone","image = "+image1);
-        Log.d("rfcdone","image = "+image2);
-        Log.d("rfcdone","image = "+image3);
-        Log.d("rfcdone","image = "+image4);
-        Picasso.with(TPI_RfcDone_Approval_Activity.this)
-                .load("http://"+image1)
-                .placeholder(R.color.red_light)
-                .into(image_path);
-        Picasso.with(TPI_RfcDone_Approval_Activity.this)
-                .load("http://"+image2)
-                .placeholder(R.color.red_light)
-                .into(image1_path);
-        Picasso.with(TPI_RfcDone_Approval_Activity.this)
-                .load("http://"+image3)
-                .placeholder(R.color.red_light)
-                .into(image2_path);
-        Picasso.with(TPI_RfcDone_Approval_Activity.this)
-                .load("http://"+image4)
-                .placeholder(R.color.red_light)
-                .into(image3_path);
+        if (imagelist.size()>=4) {
+            Picasso.with(TPI_RfcDone_Approval_Activity.this)
+                    .load("http://" + imagelist.get(imagelist.size()-4))
+                    .placeholder(R.color.red_light)
+                    .into(image_path);
+            Picasso.with(TPI_RfcDone_Approval_Activity.this)
+                    .load("http://" + imagelist.get(imagelist.size()-3))
+                    .placeholder(R.color.red_light)
+                    .into(image1_path);
+            Picasso.with(TPI_RfcDone_Approval_Activity.this)
+                    .load("http://" + imagelist.get(imagelist.size()-2))
+                    .placeholder(R.color.red_light)
+                    .into(image2_path);
+            Picasso.with(TPI_RfcDone_Approval_Activity.this)
+                    .load("http://" + imagelist.get(imagelist.size()-1))
+                    .placeholder(R.color.red_light)
+                    .into(image3_path);
+        }
     }
     @Override
     public void onResume() {

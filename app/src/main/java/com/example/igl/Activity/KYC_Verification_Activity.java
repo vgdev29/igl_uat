@@ -3,7 +3,6 @@ package com.example.igl.Activity;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -38,7 +37,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.igl.Adapter.KYC_Adapter;
 import com.example.igl.Helper.Constants;
-import com.example.igl.Helper.RecyclerItemClickListener;
 import com.example.igl.Helper.SharedPrefs;
 import com.example.igl.MataData.Bp_No_Item;
 import com.example.igl.R;
@@ -66,6 +64,7 @@ public class KYC_Verification_Activity extends AppCompatActivity implements KYC_
     EditText editTextSearch;
     TextView list_count;
     LinearLayout header_layout;
+    String log = "ekyc";
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -195,12 +194,13 @@ public class KYC_Verification_Activity extends AppCompatActivity implements KYC_
          return super.onKeyDown(keyCode, event);
      }*/
     public void Bp_No_List() {
-        Log.e("USERID",sharedPrefs.getUUID());
+        Log.d(log,"USERID= "+sharedPrefs.getUUID());
 
         materialDialog = new MaterialDialog.Builder(this)
                 .content("Please wait....")
                 .progress(true, 0)
                 .show();
+        Log.d(log,"url = "+ Constants.BP_No_Get_Listing+"/"+sharedPrefs.getUUID());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.BP_No_Get_Listing+"/"+sharedPrefs.getUUID(),
                 new Response.Listener<String>() {
                     @Override
@@ -209,11 +209,11 @@ public class KYC_Verification_Activity extends AppCompatActivity implements KYC_
                         try {
                             final JSONObject jsonObject = new JSONObject(response);
                             Log.e("Response++",jsonObject.toString());
-                            final JSONObject Bp_Details = jsonObject.getJSONObject("Bp_Details");
-                            JSONArray payload=Bp_Details.getJSONArray("users1");
-                            list_count.setText("Count= "+String.valueOf(payload.length()));
-                            for(int i=0; i<=payload.length();i++) {
-                                JSONObject data_object=payload.getJSONObject(i);
+                            final JSONArray Bp_Details = jsonObject.getJSONArray("Bp_Details");
+                            // JSONArray payload=Bp_Details.getJSONArray("users");
+                            list_count.setText("Count= "+String.valueOf(Bp_Details.length()));
+                            for(int i=0; i<=Bp_Details.length();i++) {
+                                JSONObject data_object=Bp_Details.getJSONObject(i);
                                 Bp_No_Item bp_no_item = new Bp_No_Item();
                                 bp_no_item.setFirst_name(data_object.getString("first_name"));
                                 bp_no_item.setMiddle_name(data_object.getString("middle_name"));

@@ -29,16 +29,11 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.igl.Adapter.TPI_RFC_Pending_Adapter;
-import com.example.igl.Adapter.TPI_Fesivility_Adapter;
 import com.example.igl.Helper.CommonUtils;
 import com.example.igl.Helper.Constants;
 import com.example.igl.Helper.SharedPrefs;
-import com.example.igl.MataData.Bp_No_Item;
 import com.example.igl.Model.BpDetail;
-import com.example.igl.Model.BpListing;
 import com.example.igl.R;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -134,7 +129,9 @@ public class TPI_RFC_pending_Fragment extends Fragment {
     public void Feasivility_List() {
         bpDetails.clear();
         CommonUtils.startProgressBar(context,"Please wait....");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.TPI_RFC_PENDING,
+        String url = Constants.TPI_RFC_PENDING+sharedPrefs.getZone_Code();
+        Log.d("tpi",url);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.TPI_RFC_PENDING+sharedPrefs.getZone_Code(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -153,7 +150,7 @@ public class TPI_RFC_pending_Fragment extends Fragment {
                             Log.d("Response++",jsonObject.toString());
                             final JSONArray Bp_Details = jsonObject.getJSONArray("Bp_Details");
                             list_count.setText("Count\n"+String.valueOf(Bp_Details.length()));
-                            for(int i=0; i<=Bp_Details.length();i++) {
+                            for(int i=0; i<Bp_Details.length();i++) {
                                 JSONObject data_object = Bp_Details.getJSONObject(i);
                                 BpDetail bp_no_item = new BpDetail();
                                 bp_no_item.setFirstName(data_object.getString("first_name"));
@@ -198,6 +195,7 @@ public class TPI_RFC_pending_Fragment extends Fragment {
                                 bp_no_item.setRfcVendorMobileNo(data_object.getString("rfcVendorMobileNo"));
                                 bp_no_item.setRfcVendorName(data_object.getString("rfcVendorName"));
                                 bp_no_item.setZoneCode(data_object.getString("zonecode"));
+                                bp_no_item.setControlRoom(data_object.getString("controlRoom"));
                                 bpDetails.add(bp_no_item);
                             }
 

@@ -58,6 +58,15 @@ public class Bp_No_Item implements Serializable {
     String text;
     String declinedDescription;
     String rfcAdmin;
+    String controlRoom;
+
+    public String getControlRoom() {
+        return controlRoom;
+    }
+
+    public void setControlRoom(String controlRoom) {
+        this.controlRoom = controlRoom;
+    }
 
     public String getRfcAdmin() {
         return rfcAdmin;

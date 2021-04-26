@@ -7,7 +7,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
 import android.graphics.Bitmap;
@@ -29,7 +28,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.core.content.FileProvider;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -47,7 +45,6 @@ import com.android.volley.toolbox.Volley;
 import com.example.igl.Helper.AppController;
 import com.example.igl.Helper.Constants;
 import com.example.igl.Helper.SharedPrefs;
-import com.example.igl.MainActivity;
 import com.example.igl.R;
 
 import net.gotev.uploadservice.MultipartUploadRequest;

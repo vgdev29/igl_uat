@@ -1,7 +1,6 @@
 package com.example.igl.Fragment;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
@@ -19,7 +18,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -30,15 +28,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.igl.Adapter.TPI_Fesivility_Adapter;
 import com.example.igl.Adapter.TPI_RFC_Approval_Adapter;
 import com.example.igl.Helper.CommonUtils;
 import com.example.igl.Helper.Constants;
+import com.example.igl.Helper.Constants_uat;
 import com.example.igl.Helper.SharedPrefs;
 import com.example.igl.Model.BpDetail;
-import com.example.igl.Model.BpListing;
 import com.example.igl.R;
-import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -137,7 +133,9 @@ public class TPI_RFC_approval_Fragment extends Fragment {
     public void Feasivility_List() {
         bpDetails.clear();
         CommonUtils.startProgressBar(context,"Please wait....");
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.TPI_RFC_APPROVAl,
+        String url = Constants.TPI_RFC_APPROVAl + sharedPrefs.getUUID();
+       //String url = Constants.TPI_RFC_APPROVAl;
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -152,7 +150,7 @@ public class TPI_RFC_approval_Fragment extends Fragment {
                             Log.d("Response++",jsonObject.toString());
                             final JSONArray Bp_Details = jsonObject.getJSONArray("Bp_Details");
                             list_count.setText("Count\n"+String.valueOf(Bp_Details.length()));
-                            for(int i=0; i<=Bp_Details.length();i++) {
+                            for(int i=0; i<Bp_Details.length();i++) {
                                 JSONObject data_object = Bp_Details.getJSONObject(i);
                                 BpDetail bp_no_item = new BpDetail();
                                 bp_no_item.setFirstName(data_object.getString("first_name"));
@@ -192,6 +190,7 @@ public class TPI_RFC_approval_Fragment extends Fragment {
                                 bp_no_item.setJobFlag(data_object.getString("jobFlag"));
                                 bp_no_item.setRfcTpi(data_object.getString("rfcTpi"));
                                 bp_no_item.setZoneCode(data_object.getString("zonecode"));
+                                bp_no_item.setControlRoom(data_object.getString("controlRoom"));
                                 bpDetails.add(bp_no_item);
                             }
 

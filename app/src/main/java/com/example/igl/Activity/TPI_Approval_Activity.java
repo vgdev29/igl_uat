@@ -24,9 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.igl.Adapter.RFC_Approval_Adapter;
 import com.example.igl.Adapter.TPI_Approval_Adapter;
-import com.example.igl.Fragment.Ready_Inspection_Tpi_Fragment;
 import com.example.igl.Helper.Constants;
 import com.example.igl.Helper.SharedPrefs;
 import com.example.igl.MataData.Bp_No_Item;
@@ -38,9 +36,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;

@@ -1,20 +1,15 @@
 package com.example.igl.Activity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.CursorIndexOutOfBoundsException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
@@ -135,7 +130,7 @@ public class RFC_StatusMastar_Page extends Activity {
     LinearLayout ll_hold_layout;
 
     String followup = "", description = "", master_cat_id = "";
-    private String mediaPath1;
+    private String mediaPath1 = "";
     private String audiopath;
 
 
@@ -392,9 +387,10 @@ public class RFC_StatusMastar_Page extends Activity {
         rfc_person_name_text.setText("RFC Vendor: " + getIntent().getStringExtra("Rfcvendorname"));
         fesibility_person_no_text.setText("Feasibility TPI No: " + getIntent().getStringExtra("FesabilityTpimobileNo"));
         rfc_person_no_text.setText("RFC Vendor No: " + getIntent().getStringExtra("VendorMobileNo"));
-        Address = getIntent().getStringExtra("House_no") + " " + getIntent().getStringExtra("House_type") + " " +
-                getIntent().getStringExtra("Landmark") + " " + getIntent().getStringExtra("Society") + " " + getIntent().getStringExtra("Area") + " "
-                + getIntent().getStringExtra("City_region");
+        Address = getIntent().getStringExtra("House_no") + " " + getIntent().getStringExtra("Floor") + " "
+                + getIntent().getStringExtra("House_type") + " " + getIntent().getStringExtra("Society") +"\n"
+                + " " + getIntent().getStringExtra("Block_qtr_tower_wing") +" " +getIntent().getStringExtra("Street_gali_road")  + " "
+                +getIntent().getStringExtra("Landmark") + "\n"+getIntent().getStringExtra("City_region");
         //intent.putExtra("Fesibility_TPI_Name",Fesibility_TPI_Name);
         //intent.putExtra("PipeLine_Length",PipeLine_Length);
         address_text.setText(Address);
@@ -575,22 +571,28 @@ public class RFC_StatusMastar_Page extends Activity {
             complete_igl_catagory = igl_catagory_Master;
             complete_catid = catid_Master;
             Log.d(log, "json array sub master data = " + complete_igl_code + "  " + complete_igl_code_group + "  " + complete_igl_catagory + "  " + complete_catid + type_of_master + type_of_sub_master);
-
         }
         followup = start_date.getText().toString().trim() + " " + start_time.getText().toString().trim();
         description = descreption_edit.getText().toString().trim();
+        if (mediaPath1.isEmpty()||mediaPath1.equalsIgnoreCase("")||mediaPath1==null)
+        {
+            Log.d(log,"mediapath if");
+            mediaPath1= image_path_string;
+        }
 
 
         Log.d(log, "image path++++ = " + "" + image_path_string);
+        Log.d(log, "media path++++ = " + "" + mediaPath1);
         try {
             materialDialog = new MaterialDialog.Builder(this)
                     .content("Please wait....")
                     .progress(true, 0)
                     .show();
+
             String uploadId = UUID.randomUUID().toString();
             new MultipartUploadRequest(RFC_StatusMastar_Page.this, uploadId, Constants.RFCApprovalMultipart)
                     .addFileToUpload(image_path_string, "image")
-                    .addFileToUpload(mediaPath1,"audiofile")
+                    .addFileToUpload(mediaPath1, "audiofile")
                     .addParameter("lead_no", getIntent().getStringExtra("lead_no"))
                     .addParameter("bp_no", getIntent().getStringExtra("Bp_number"))
                     .addParameter("cat_id", complete_catid)
@@ -604,12 +606,10 @@ public class RFC_StatusMastar_Page extends Activity {
                     .addParameter("followUp", followup)
                     .addParameter("description", description)
                     .addParameter("master_cat_id", master_cat_id)
-
                     .setDelegate(new UploadStatusDelegate() {
                         @Override
                         public void onProgress(Context context, UploadInfo uploadInfo) {
                         }
-
                         @Override
                         public void onError(Context context, UploadInfo uploadInfo, Exception exception) {
                             exception.printStackTrace();
@@ -617,7 +617,6 @@ public class RFC_StatusMastar_Page extends Activity {
                             //Dilogbox_Error();
                             Log.d(log, "Uplodeerror++" + uploadInfo.getSuccessfullyUploadedFiles().toString());
                         }
-
                         @Override
                         public void onCompleted(Context context, UploadInfo uploadInfo, ServerResponse serverResponse) {
                             materialDialog.dismiss();
@@ -636,7 +635,6 @@ public class RFC_StatusMastar_Page extends Activity {
                                     if (holdCode.equals("0")) {
                                         CommonUtils.toast_msg(RFC_StatusMastar_Page.this, msg);
                                         finish();
-
                                     } else {
                                         Toast.makeText(RFC_StatusMastar_Page.this, "" + "Proceed for Connection", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(RFC_StatusMastar_Page.this, RFC_Connection_Activity.class);
@@ -648,7 +646,6 @@ public class RFC_StatusMastar_Page extends Activity {
                                         startActivity(intent);
                                         finish();
                                     }
-
                                 } else {
                                     Toast.makeText(RFC_StatusMastar_Page.this, "" + "UnSuccesful", Toast.LENGTH_SHORT).show();
                                 }
@@ -656,7 +653,6 @@ public class RFC_StatusMastar_Page extends Activity {
                                 e.printStackTrace();
                             }
                         }
-
                         @Override
                         public void onCancelled(Context context, UploadInfo uploadInfo) {
                             materialDialog.dismiss();
@@ -722,6 +718,7 @@ public class RFC_StatusMastar_Page extends Activity {
                                     intent.putExtra("Last_name", getIntent().getStringExtra("Last_name"));
                                     intent.putExtra("lead_no", getIntent().getStringExtra("lead_no"));
                                     intent.putExtra("rfcAdmin", getIntent().getStringExtra("rfcAdmin"));
+                                    intent.putExtra("mitd",master_cat_id);
                                     startActivity(intent);
                                     finish();
                                 }
