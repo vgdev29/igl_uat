@@ -263,7 +263,7 @@
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:paddingLeft="@dimen/_5sdp"
-                        android:text="Block/Tower :"
+                        android:text="Floor :"
                         android:textSize="@dimen/_10sdp" />
 
                     <TextView

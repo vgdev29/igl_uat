@@ -536,7 +536,7 @@ public class NgUserDetailsActivity extends AppCompatActivity {
         picture_button = findViewById(R.id.picture_button);
         hold_image = findViewById(R.id.hold_image);
         tv_delayDate = findViewById(R.id.tv_delayDate);
-        tv_floorValue = findViewById(R.id.tv_delayDate);
+        tv_floorValue = findViewById(R.id.tv_floorValue);
 
         ll_delayDate = findViewById(R.id.ll_delayDate);
         ll_audioFile = findViewById(R.id.ll_audioFile);

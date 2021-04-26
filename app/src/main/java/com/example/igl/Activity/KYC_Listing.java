@@ -59,7 +59,8 @@ public class KYC_Listing extends AppCompatActivity implements KYC_Adapter.Contac
     SharedPrefs sharedPrefs;
     ImageView back;
     MaterialDialog materialDialog;
-    private List<Bp_No_Item> bp_no_array;
+    //private List<Bp_No_Item> bp_no_array;
+    private ArrayList<Bp_No_Item> bp_no_array = new ArrayList<>();
     RecyclerView recyclerView;
     SwipeRefreshLayout mSwipeRefreshLayout;
     KYC_Adapter adapter;
@@ -99,7 +100,7 @@ public class KYC_Listing extends AppCompatActivity implements KYC_Adapter.Contac
             }
         });
         header_title.setText("KYC Listing");
-        bp_no_array=new ArrayList<>();
+        //bp_no_array=new ArrayList<>();
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -212,11 +213,13 @@ public class KYC_Listing extends AppCompatActivity implements KYC_Adapter.Contac
                         try {
                             final JSONObject jsonObject = new JSONObject(response);
                             Log.e("Response++",jsonObject.toString());
-                            final JSONObject Bp_Details = jsonObject.getJSONObject("Bp_Details");
-                            JSONArray payload=Bp_Details.getJSONArray("users");
+                            //final JSONObject payload = jsonObject.getJSONObject("Bp_Details");
+                            JSONArray payload=jsonObject.getJSONArray("Bp_Details");
                             list_count.setText("Count= "+String.valueOf(payload.length()));
                             for(int i=0; i<=payload.length();i++) {
-                                JSONObject data_object=payload.getJSONObject(i);
+                                //JSONObject data_object=payload.getJSONObject(i);
+                                //Bp_No_Item bp_no_item = new Bp_No_Item();
+                                JSONObject data_object = payload.getJSONObject(i);
                                 Bp_No_Item bp_no_item = new Bp_No_Item();
                                 bp_no_item.setFirst_name(data_object.getString("first_name"));
                                 bp_no_item.setMiddle_name(data_object.getString("middle_name"));

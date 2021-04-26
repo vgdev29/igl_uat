@@ -98,7 +98,7 @@ public class RFC_StatusMastar_Page extends Activity {
     ArrayList<String> Type_Of_Master = new ArrayList<>();
     ArrayList<String> Type_Of_Master_ID = new ArrayList<>();
     ArrayList<String> CatID_Master = new ArrayList<>();
-    ArrayList<String> Igl_Code_Master = new ArrayList<>();
+    ArrayList<String> Igl_Code_Master = new ArrayList<     >();
     ArrayList<String> Igl_Code_Group_Master = new ArrayList<>();
     ArrayList<String> Igl_Catalog_Master = new ArrayList<>();
     ArrayList<String> PipeLine_Catagory = new ArrayList<>();

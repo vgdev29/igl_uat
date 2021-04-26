@@ -1,6 +1,10 @@
 package com.example.igl.MataData;
 
-public class Bp_No_Item {
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.io.Serializable;
+@JsonIgnoreProperties(ignoreUnknown=false)
+public class Bp_No_Item implements Serializable {
 
     String first_name;
     String middle_name;

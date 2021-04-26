@@ -3,7 +3,7 @@ package com.example.igl.Helper;
 public class Constants {
 
    /* LIVE URL*/
- // public static String BASE_URL="http://49.50.65.107:8081/";
+ //public static String BASE_URL="http://49.50.65.107:8081/";
 
    /* UAT URL*/
    public static String BASE_URL="http://49.50.118.112:8080/";
