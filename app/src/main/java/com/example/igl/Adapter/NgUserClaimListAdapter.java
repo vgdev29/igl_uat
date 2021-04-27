@@ -1,6 +1,9 @@
 package com.example.igl.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +56,10 @@ public class NgUserClaimListAdapter extends RecyclerView.Adapter<NgUserClaimList
 
         //nguserListModel.getBpNo();
         holder.tv_bpName.setText(ngUserClaimListModel.getBp_no());
-        holder.tv_address.setText(ngUserClaimListModel.getHouse_no() + ngUserClaimListModel.getCity());
+        //holder.tv_address.setText(ngUserClaimListModel.getHouse_no() + ngUserClaimListModel.getCity());
+        holder.tv_address.setText(ngUserClaimListModel.getHouse_no()+" "+ngUserClaimListModel.getFloor()+""+ngUserClaimListModel.getSociety()+" \n"
+                +ngUserClaimListModel.getBlock_qtr()+" "+ngUserClaimListModel.getStreet()+" "+ngUserClaimListModel.getLandmark()+" "+ngUserClaimListModel.getCity()
+                );
         holder.tv_dateTime.setText(ngUserClaimListModel.getConversion_date());
         holder.user_name_text.setText(ngUserClaimListModel.getCustomer_name());
         if((ngUserClaimListModel.getStart_job())){
@@ -61,6 +67,13 @@ public class NgUserClaimListAdapter extends RecyclerView.Adapter<NgUserClaimList
         }else {
             holder.status_text.setText("Job not Started");
         }
+        if(!TextUtils.isEmpty(ngUserClaimListModel.getZone())){
+            holder.zone_text.setText(ngUserClaimListModel.getZone());
+        }
+        if(!TextUtils.isEmpty(ngUserClaimListModel.getMobile_no())){
+            holder.mobile_text.setText(ngUserClaimListModel.getMobile_no());
+        }
+
         /*if(!TextUtils.isEmpty((ngUserClaimListModel.getStatus()))){
             holder.status_text.setText(ngUserClaimListModel.getStatus());
         }else {
@@ -95,7 +108,18 @@ public class NgUserClaimListAdapter extends RecyclerView.Adapter<NgUserClaimList
             holder.btn_startJob.setVisibility(View.GONE);
         }
 
-
+        holder.mobile_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                    callIntent.setData(Uri.parse("tel:" + ngUserClaimListModel.getMobile_no()));
+                    mctx.startActivity(callIntent);
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         holder.btn_claim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -171,20 +195,22 @@ public class NgUserClaimListAdapter extends RecyclerView.Adapter<NgUserClaimList
 
 
     class NgUserClaimListViewHolder extends RecyclerView.ViewHolder {
-        TextView tv_bpName, tv_dateTime, tv_perferedTime, tv_address,user_name_text,status_text;
+        TextView tv_bpName, tv_dateTime, tv_perferedTime, tv_address,user_name_text,status_text,mobile_text,zone_text;
         Button btn_claim,btn_unclaim,btn_startJob;
         LinearLayout ll_bpNumber;
         View itemView;
         NgUserClaimListViewHolder(View itemView) {
             super(itemView);
-            tv_bpName = itemView.findViewById(R.id.tv_bpNumber);
-            tv_dateTime = itemView.findViewById(R.id.tv_perferedTime);
-            tv_address = itemView.findViewById(R.id.tv_address);
-            btn_claim = itemView.findViewById(R.id.btn_tpiClaim);
-            btn_unclaim = itemView.findViewById(R.id.btn_tpiUnClaim);
-            btn_startJob = itemView.findViewById(R.id.btn_startJob);
+            tv_bpName = itemView.findViewById(R.id.bp_no_text);
+            tv_dateTime = itemView.findViewById(R.id.date_text);
+            tv_address = itemView.findViewById(R.id.address_text);
+            btn_claim = itemView.findViewById(R.id.claimed_button);
+            btn_unclaim = itemView.findViewById(R.id.unclaimed_button);
+            btn_startJob = itemView.findViewById(R.id.job_start_button);
             user_name_text = itemView.findViewById(R.id.user_name_text);
+            mobile_text = itemView.findViewById(R.id.mobile_text);
             status_text = itemView.findViewById(R.id.status_text);
+            zone_text = itemView.findViewById(R.id.zone_text);
             this.itemView = itemView;
         }
 
@@ -289,7 +315,10 @@ public class NgUserClaimListAdapter extends RecyclerView.Adapter<NgUserClaimList
                 } else {
                     List<NguserListModel> filteredList = new ArrayList<>();
                     for (NguserListModel row : new_ngUserClaimList) {
-                        if (row.getBp_no().toLowerCase().contains(charString.toLowerCase()) || row.getCustomer_name().toLowerCase().contains(charString.toLowerCase())) {
+                        if (row.getBp_no().toLowerCase().contains(charString.toLowerCase()) || row.getCustomer_name().toLowerCase().contains(charString.toLowerCase())
+                                ||row.getHouse_no().toLowerCase().contains(charString.toLowerCase())||row.getFloor().toLowerCase().contains(charString.toLowerCase())
+                                ||row.getArea().toLowerCase().contains(charString.toLowerCase())||row.getSociety().toLowerCase().contains(charString.toLowerCase())
+                                ||row.getBlock_qtr().toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(row);
                         }
                     }
