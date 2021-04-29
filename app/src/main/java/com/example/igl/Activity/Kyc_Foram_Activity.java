@@ -248,12 +248,13 @@ public class Kyc_Foram_Activity extends Activity {
             }
         });
         List<String> list = new ArrayList<String>();
-        list.add("ELECTRICITY BILL");
-        list.add("WATER BILL");
-        list.add("SALE DEEP");
-        list.add("HOUSE TAX RECEIPT");
-        list.add("ALLOTMENT LETTER");
-        list.add("ANY OTHER");
+        list.add("Electricity Bill");
+        list.add("Water Bill");
+        list.add("Sale/Conveyance Deed");
+        list.add("House Tax Receipt");
+        list.add("Mutation Copy");
+        //list.add("ALLOTMENT LETTER");
+        // list.add("ANY OTHER");
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner1.setAdapter(dataAdapter);
@@ -389,6 +390,7 @@ public class Kyc_Foram_Activity extends Activity {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
+        spinner_area.setSelection(0,false);
         spinner_area.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
