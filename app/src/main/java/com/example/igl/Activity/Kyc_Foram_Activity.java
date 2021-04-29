@@ -268,7 +268,7 @@ public class Kyc_Foram_Activity extends Activity {
         ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list1);
         dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner2.setAdapter(dataAdapter1);
-
+        spinner1.setSelection(0,false);
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
@@ -282,6 +282,7 @@ public class Kyc_Foram_Activity extends Activity {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
+        spinner2.setSelection(0,false);
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
@@ -374,8 +375,7 @@ public class Kyc_Foram_Activity extends Activity {
 
         }
         loadSpinnerData();
-
-
+        spinner_city.setSelection(0,false);
         spinner_city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
@@ -405,6 +405,7 @@ public class Kyc_Foram_Activity extends Activity {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
+        spinner_society.setSelection(0,false);
         spinner_society.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
@@ -432,6 +433,7 @@ public class Kyc_Foram_Activity extends Activity {
             }
         });
 
+        spinner_floor.setSelection(0,false);
         spinner_floor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
