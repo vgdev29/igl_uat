@@ -41,6 +41,7 @@ import com.example.igl.utils.Utils;
 import com.example.rest.Api;
 import com.example.igl.Model.NguserListModel;
 import com.example.igl.R;
+import com.example.rest.DBManager;
 
 
 import org.w3c.dom.Text;
@@ -124,6 +125,12 @@ public class NgUserDetailsActivity extends AppCompatActivity {
         loadNgStatusSpinners();
         loadResonSpinner();
         loadUser();
+        if (Utils.isNetworkConnected(this)){
+            loadUser();
+            //DBManager.
+        }else {
+            Utils.showToast(this,"No internet connection!!");
+        }
 
         spinner_ngStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -621,21 +628,21 @@ public class NgUserDetailsActivity extends AppCompatActivity {
                 if (nguserdetails != null) {
                     if (nguserdetails.size() > 0) {
                         //if (CollectionsUtils.isEmpty)
+                        NguserListModel nguserListModel1 = new NguserListModel();
                         for (NguserListModel nguserListModel : nguserdetails) {
-                            tv_ngUserName.setText(nguserListModel.getCustomer_name());
-                            tv_cutomerIdValue.setText(nguserListModel.getBp_no());
-                            tv_houseNoValue.setText(nguserListModel.getHouse_no());
-                            tv_societyValue.setText(nguserListModel.getSociety());
-                            tv_blockValue.setText(nguserListModel.getBlock_qtr());
-                            tv_areaValue.setText(nguserListModel.getArea());
-                            tv_mobileNoValue.setText(nguserListModel.getMobile_no());
-                            tv_alternateNoValue.setText(nguserListModel.getAlt_number());
-                            tv_cityvalue.setText(nguserListModel.getCity());
-                            tv_preferredDateValue.setText(nguserListModel.getConversion_date());
-                            tv_floorValue.setText(nguserListModel.getFloor());
-
-
+                            nguserListModel1.setCustomer_name(nguserListModel.getCustomer_name());
+                            nguserListModel1.setBp_no(nguserListModel.getBp_no());
+                            nguserListModel1.setHouse_no(nguserListModel.getHouse_no());
+                            nguserListModel1.setSociety(nguserListModel.getSociety());
+                            nguserListModel1.setBlock_qtr(nguserListModel.getBlock_qtr());
+                            nguserListModel1.setArea(nguserListModel.getArea());
+                            nguserListModel1.setMobile_no(nguserListModel.getMobile_no());
+                            nguserListModel1.setAlt_number(nguserListModel.getAlt_number());
+                            nguserListModel1.setCity(nguserListModel.getCity());
+                            nguserListModel1.setConversion_date(nguserListModel.getConversion_date());
+                            nguserListModel1.setFloor(nguserListModel.getFloor());
                         }
+                        setText(nguserListModel1);
                     }
                 }
 
@@ -647,6 +654,20 @@ public class NgUserDetailsActivity extends AppCompatActivity {
 
             }
         });
+    }
+    private void setText(NguserListModel nguserListModel){
+        tv_ngUserName.setText(nguserListModel.getCustomer_name());
+        tv_cutomerIdValue.setText(nguserListModel.getBp_no());
+        tv_houseNoValue.setText(nguserListModel.getHouse_no());
+        tv_societyValue.setText(nguserListModel.getSociety());
+        tv_blockValue.setText(nguserListModel.getBlock_qtr());
+        tv_areaValue.setText(nguserListModel.getArea());
+        tv_mobileNoValue.setText(nguserListModel.getMobile_no());
+        tv_alternateNoValue.setText(nguserListModel.getAlt_number());
+        tv_cityvalue.setText(nguserListModel.getCity());
+        tv_preferredDateValue.setText(nguserListModel.getConversion_date());
+        tv_floorValue.setText(nguserListModel.getFloor());
+
     }
 
     private boolean validateData() {

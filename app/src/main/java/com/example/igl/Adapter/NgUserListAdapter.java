@@ -74,17 +74,22 @@ public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.Ng
         if (!TextUtils.isEmpty(nguserListModel.getBp_no())) {
             holder.tv_bpName.setText(nguserListModel.getBp_no());
         }
-        if (!TextUtils.isEmpty(nguserListModel.getAlt_number())) {
-            holder.tv_contactNo.setText(nguserListModel.getAlt_number());
+        if (!TextUtils.isEmpty(nguserListModel.getMobile_no())) {
+            holder.tv_contactNo.setText(nguserListModel.getMobile_no());
         }
-        if (!TextUtils.isEmpty(nguserListModel.getHouse_no()) && !TextUtils.isEmpty(nguserListModel.getFloor())
+        /*if (!TextUtils.isEmpty(nguserListModel.getHouse_no()) && !TextUtils.isEmpty(nguserListModel.getFloor())
                 && !TextUtils.isEmpty(nguserListModel.getStreet())
                 && !TextUtils.isEmpty(nguserListModel.getBlock_qtr())
                 && !TextUtils.isEmpty(nguserListModel.getArea())
                 && !TextUtils.isEmpty(nguserListModel.getCity())){
             holder.tv_address.setText(nguserListModel.getHouse_no() + " " + nguserListModel.getCity());
 
-        }
+        }*/
+        holder.tv_address.setText(nguserListModel.getHouse_no()+" "+nguserListModel.getFloor()+" "
+                +nguserListModel.getSociety()+" \n"
+                +nguserListModel.getBlock_qtr()+" "+nguserListModel.getStreet()+" "+nguserListModel.getLandmark()+" "
+                +nguserListModel.getCity()
+               );
         if (nguserListModel.getStart_job()){
             holder.job_status.setText("Job Started");
         }else {
@@ -156,9 +161,9 @@ public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.Ng
         holder.tv_contactNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String num= nguserListModel.getAlt_number();
+                String num= nguserListModel.getMobile_no();
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:" + num));
+                intent.setData(Uri.parse("tel:" + nguserListModel.getMobile_no()));
                 mctx.startActivity(intent);
 
             }
@@ -275,14 +280,14 @@ public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.Ng
         public NguserListViewHolder(View itemView) {
             super(itemView);
 
-            tv_bpName= itemView.findViewById(R.id.tv_bpName);
-            tv_contactNo= itemView.findViewById(R.id.tv_contactNo);
-            tv_perferedTime= itemView.findViewById(R.id.tv_perferedTime);
-            tv_priority= itemView.findViewById(R.id.tv_priority);
-            tv_address= itemView.findViewById(R.id.tv_address);
+            tv_bpName= itemView.findViewById(R.id.bp_no_text);
+            tv_contactNo= itemView.findViewById(R.id.mobile_text);
+            tv_perferedTime= itemView.findViewById(R.id.date_text);
+            tv_priority= itemView.findViewById(R.id.priority_button);
+            tv_address= itemView.findViewById(R.id.address_text);
             status_text= itemView.findViewById(R.id.status_text);
             ll_bpNumber= itemView.findViewById(R.id.ll_bpNumber);
-            btn_tpiDetails= itemView.findViewById(R.id.btn_tpiDetails);
+            btn_tpiDetails= itemView.findViewById(R.id.info_button);
             user_name_text= itemView.findViewById(R.id.user_name_text);
             job_status= itemView.findViewById(R.id.job_status);
         }

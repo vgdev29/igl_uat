@@ -81,6 +81,7 @@ public class KYC_Listing extends AppCompatActivity implements KYC_Adapter.Contac
        /*getActionBar().setTitle(R.string.toolbar_title);*/
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Please wait...");
+        editTextSearch=findViewById(R.id.editTextSearch);
         progressDialog.setCancelable(false);
         progressDialog.setCanceledOnTouchOutside(false);
         sharedPrefs = new SharedPrefs(this);
@@ -168,7 +169,7 @@ public class KYC_Listing extends AppCompatActivity implements KYC_Adapter.Contac
             }
         }));*/
 
-        editTextSearch=findViewById(R.id.editTextSearch);
+
         editTextSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,int after) {
@@ -179,6 +180,7 @@ public class KYC_Listing extends AppCompatActivity implements KYC_Adapter.Contac
             public void onTextChanged(CharSequence s, int start, int before, int count) {
               //  bookadapter.getFilter().filter(s.toString());
                // bp_no_array.clear();
+                if (adapter!=null)
                 adapter.getFilter().filter(s.toString());
             }
 
