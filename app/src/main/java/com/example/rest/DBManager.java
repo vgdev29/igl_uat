@@ -37,9 +37,9 @@ public class DBManager {
         return API_BASE_URL;
     }
 
-    public static Call loadNgUserList(final Context ctx, final String status) {
+    public static Call loadNgUserList(final Context ctx, String status, final String supervisor_id) {
         try {
-            Call<ArrayList<NguserListModel>> call_retrofit = CommunicationLink.getNgUserListClaimUnclaimList(status);
+            Call<ArrayList<NguserListModel>> call_retrofit = CommunicationLink.getNgUserListClaimUnclaimList(status,supervisor_id);
             call_retrofit.enqueue(new Callback<ArrayList<NguserListModel>>() {
                 @Override
                 public void onResponse(Call<ArrayList<NguserListModel>> call, Response<ArrayList<NguserListModel>> response) {

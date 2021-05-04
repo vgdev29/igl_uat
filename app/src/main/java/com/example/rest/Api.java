@@ -4,8 +4,10 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.example.igl.Model.BpDetail;
+import com.example.igl.Model.NgSupervisorResponse;
 import com.example.igl.Model.NguserListModel;
 import com.example.igl.Model.TpiDetailResponse;
+import com.example.igl.Model.UserDetails;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,8 +39,11 @@ public interface Api {
 
 
     // tpi list for claim and unclaim
+   /* @GET("api/jmr")
+    Call<ArrayList<NguserListModel>> getUnclaimedAssignList(@Query("status") String status);*/
+
     @GET("api/jmr")
-    Call<ArrayList<NguserListModel>> getUnclaimedAssignList(@Query("status") String status);
+    Call<ArrayList<NguserListModel>> getUnclaimedAssignList(@Query("status") String status,@Query("zoneId") String zoneId);
 
     @GET("api/jmr")
     Call<ArrayList<NguserListModel>> getNgUserListClaimUnclaimList();
@@ -81,6 +86,12 @@ public interface Api {
                                            @Part ("jmr_no") RequestBody jmr_no
 
     );
+
+
+
+    @GET("ekyc/bp_details/userDetails")
+    Call<NgSupervisorResponse> getNgAgentData(@Query("emailid") String emailid);
+
 
 
 

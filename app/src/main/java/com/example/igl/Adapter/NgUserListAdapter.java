@@ -153,7 +153,7 @@ public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.Ng
         holder.btn_tpiDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadTpiDetails();
+                loadTpiDetails(nguserListModel.getBp_no());
             }
         });
 
@@ -174,7 +174,7 @@ public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.Ng
 
 
     }
-    private void loadTpiDetails(){
+    private void loadTpiDetails(String bp_no){
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api.BASE_URL_TPI_DETAILS)
@@ -182,7 +182,7 @@ public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.Ng
                 .build();
 
         Api api = retrofit.create(Api.class);
-        Call<ArrayList<TpiDetailResponse>> call = api.getTpiDetails("7000049237");
+        Call<ArrayList<TpiDetailResponse>> call = api.getTpiDetails(bp_no);
         call.enqueue(new Callback<ArrayList<TpiDetailResponse>>() {
             @Override
             public void onResponse(Call<ArrayList<TpiDetailResponse>> call, Response<ArrayList<TpiDetailResponse>> response) {

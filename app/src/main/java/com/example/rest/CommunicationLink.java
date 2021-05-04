@@ -14,9 +14,9 @@ public class CommunicationLink {
 
 
 
-    public static Call<ArrayList<NguserListModel>> getNgUserListClaimUnclaimList(String status) {
+    public static Call<ArrayList<NguserListModel>> getNgUserListClaimUnclaimList(String status ,String supervisor_id) {
         ApiInterface service = CommunicationApi.getIglService();
-        return service.getNgUserListClaimUnclaimList(status);
+        return service.getNgUserListClaimUnclaimList(status,supervisor_id);
     }
     public static Call<ArrayList<NguserListModel>> getClaimedList(String status ,String claimed) {
         ApiInterface service = CommunicationApi.getIglService();

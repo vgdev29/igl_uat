@@ -164,7 +164,7 @@ public class HomeFragment extends Fragment {
             ng_conversion_layout.setVisibility(View.GONE);
             pmc_layout.setVisibility(View.GONE);
         }
-        else if (sharedPrefs.getType_User().equals("RFC")){
+        else if (sharedPrefs.getType_User().equalsIgnoreCase("RFC")){
             new_regestration_layout.setVisibility(View.GONE);
             ekyc_layout.setVisibility(View.GONE);
             tpi_layout.setVisibility(View.GONE);

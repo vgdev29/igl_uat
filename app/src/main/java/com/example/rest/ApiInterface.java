@@ -13,7 +13,7 @@ public interface ApiInterface {
 
 
     @GET("api/jmr")
-    Call<ArrayList<NguserListModel>> getNgUserListClaimUnclaimList(@Query("status") String statusOP);
+    Call<ArrayList<NguserListModel>> getNgUserListClaimUnclaimList(@Query("status") String statusOP,@Query("supervisor_id") String supervisor_id);
 
     //get claim list
     @GET("api/jmr")

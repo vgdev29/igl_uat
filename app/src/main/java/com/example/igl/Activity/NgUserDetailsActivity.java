@@ -247,6 +247,7 @@ public class NgUserDetailsActivity extends AppCompatActivity {
 
                                     ngUserListModel.setDelay_date(et_delayDateValue.getText().toString().trim());
                                     ngUserListModel.setJmr_no(jmrNo);
+                                    ngUserListModel.setClaim(true);
                                     if (isNetworkConnected(NgUserDetailsActivity.this)) {
                                         submitData(ngUserListModel);
                                     } else {

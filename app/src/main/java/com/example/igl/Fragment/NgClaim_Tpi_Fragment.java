@@ -59,6 +59,8 @@ public class NgClaim_Tpi_Fragment extends Activity implements NgUserClaimListAda
     private Button btnTryAgain;
 
 
+
+
     public NgClaim_Tpi_Fragment() {
         // Required empty public constructor
     }
@@ -67,6 +69,7 @@ public class NgClaim_Tpi_Fragment extends Activity implements NgUserClaimListAda
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tpi__claim__un_claim);
+        sharedPrefs = new SharedPrefs(getApplicationContext());
         Layout_ID();
     }
 
@@ -151,6 +154,8 @@ public class NgClaim_Tpi_Fragment extends Activity implements NgUserClaimListAda
     private void loadNgUserList() {
 
         showProgressDialog(this);
+            String zonId = sharedPrefs.getZone_Code();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -158,7 +163,7 @@ public class NgClaim_Tpi_Fragment extends Activity implements NgUserClaimListAda
 
         Api api = retrofit.create(Api.class);
         //Call<ArrayList<NguserListModel>> call = api.getNgUserListClaimUnclaimList();
-        Call<ArrayList<NguserListModel>> call = api.getUnclaimedAssignList("AS");
+        Call<ArrayList<NguserListModel>> call = api.getUnclaimedAssignList("AS",zonId);
         call.enqueue(new Callback<ArrayList<NguserListModel>>() {
             @Override
             public void onResponse(Call<ArrayList<NguserListModel>> call, retrofit2.Response<ArrayList<NguserListModel>> response) {

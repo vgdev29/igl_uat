@@ -200,6 +200,7 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
                 //notifyDataSetChanged();
                 if (response.code()==200){
                     Toast.makeText(getApplicationContext(), "Approve Successfully", Toast.LENGTH_SHORT).show();
+                    finish();
                 }else {
                     Toast.makeText(getApplicationContext(), "Bad Request please try again", Toast.LENGTH_SHORT).show();
                 }

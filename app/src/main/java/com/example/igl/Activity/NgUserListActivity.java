@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.igl.Adapter.NgUserListAdapter;
+import com.example.igl.Helper.SharedPrefs;
 import com.example.igl.Model.NguserListModel;
 import com.example.igl.R;
 import com.example.igl.interfaces.ListDataPasser;
@@ -37,6 +38,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
+
+import static com.example.igl.utils.Utils.hideProgressDialog;
+import static com.example.igl.utils.Utils.showProgressDialog;
 
 public class NgUserListActivity extends AppCompatActivity implements ListDataPasser {
 
@@ -52,6 +56,7 @@ public class NgUserListActivity extends AppCompatActivity implements ListDataPas
     private EditText editTextSearch;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RetrofitCancelOberver retrofitCancelOberver;
+    private SharedPrefs sharedPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +64,7 @@ public class NgUserListActivity extends AppCompatActivity implements ListDataPas
         setContentView(R.layout.activity_ng_user_list);
         retrofitCancelOberver = new RetrofitCancelOberver();
         getLifecycle().addObserver(retrofitCancelOberver);
+        sharedPrefs = new SharedPrefs(getApplicationContext());
 
         btnTryAgain = findViewById(R.id.btnTryAgain);
         back = findViewById(R.id.back);
@@ -139,13 +145,16 @@ public class NgUserListActivity extends AppCompatActivity implements ListDataPas
 
     }
     private void loadNgUserList(){
-        Call call = DBManager.loadNgUserList(NgUserListActivity.this, "AS");
+        showProgressDialog(this);
+        String supervisor_id = sharedPrefs.getEmail();
+        Call call = DBManager.loadNgUserList(NgUserListActivity.this, "AS" ,supervisor_id);
         retrofitCancelOberver.addlist(call);
     }
     private void setListData(final List<NguserListModel> ngUserList) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                hideProgressDialog();
                 if (ngUserList.size() > 0) {
                     recyclerView_ngAssignment.setVisibility(View.VISIBLE);
                     rel_noNgUserListingData.setVisibility(View.GONE);

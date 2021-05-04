@@ -1,28 +1,43 @@
 package com.example.igl.Adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.igl.Fragment.NgClaim_Tpi_Fragment;
+import com.example.igl.Helper.SharedPrefs;
+import com.example.igl.Model.NgSupervisorResponse;
 import com.example.igl.Model.NguserListModel;
+import com.example.igl.Model.TpiDetailResponse;
+import com.example.igl.Model.UserDetails;
 import com.example.igl.R;
 import com.example.igl.utils.Utils;
+import com.example.rest.Api;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.internal.Util;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class NgUserClaimListAdapter extends RecyclerView.Adapter<NgUserClaimListAdapter.NgUserClaimListViewHolder> implements Filterable {
@@ -57,8 +72,7 @@ public class NgUserClaimListAdapter extends RecyclerView.Adapter<NgUserClaimList
         //nguserListModel.getBpNo();
         holder.tv_bpName.setText(ngUserClaimListModel.getBp_no());
         //holder.tv_address.setText(ngUserClaimListModel.getHouse_no() + ngUserClaimListModel.getCity());
-        holder.tv_address.setText(ngUserClaimListModel.getHouse_no()+" "+ngUserClaimListModel.getFloor()+""+ngUserClaimListModel.getSociety()+" \n"
-                +ngUserClaimListModel.getBlock_qtr()+" "+ngUserClaimListModel.getStreet()+" "+ngUserClaimListModel.getLandmark()+" "+ngUserClaimListModel.getCity()
+        holder.tv_address.setText(ngUserClaimListModel.getHouse_no()+" "+ngUserClaimListModel.getFloor() + " " + ngUserClaimListModel.getSociety()+" \n" +ngUserClaimListModel.getBlock_qtr()+" "+ngUserClaimListModel.getStreet()+" "+ngUserClaimListModel.getLandmark()+" "+ngUserClaimListModel.getCity()
                 );
         holder.tv_dateTime.setText(ngUserClaimListModel.getConversion_date());
         holder.user_name_text.setText(ngUserClaimListModel.getCustomer_name());
@@ -73,30 +87,6 @@ public class NgUserClaimListAdapter extends RecyclerView.Adapter<NgUserClaimList
         if(!TextUtils.isEmpty(ngUserClaimListModel.getMobile_no())){
             holder.mobile_text.setText(ngUserClaimListModel.getMobile_no());
         }
-
-        /*if(!TextUtils.isEmpty((ngUserClaimListModel.getStatus()))){
-            holder.status_text.setText(ngUserClaimListModel.getStatus());
-        }else {
-            holder.status_text.setText("--");
-        }*/
-
-
-
-
-
-        /*if (ngUserClaimListModel.getClaim()){
-            holder.btn_claim.setClickable(false);
-            holder.btn_claim.setEnabled(false);
-
-            holder.btn_claim.setVisibility(View.GONE);
-            holder.btn_unclaim.setVisibility(View.VISIBLE);
-
-        }else {
-            holder.btn_unclaim.setClickable(false);
-            holder.btn_unclaim.setEnabled(false);
-            holder.btn_unclaim.setVisibility(View.GONE);
-
-        }*/
 
         if (ngUserClaimListModel.getClaim()){
             holder.btn_unclaim.setVisibility(View.VISIBLE);
@@ -126,11 +116,15 @@ public class NgUserClaimListAdapter extends RecyclerView.Adapter<NgUserClaimList
 
                 //Toast.makeText(mctx,"click",Toast.LENGTH_SHORT).show();
                 //Toast.makeText(mctx,"claim ",Toast.LENGTH_SHORT).show();
+                SharedPrefs sharedPrefs = new SharedPrefs(mctx);
+                String supervisor_id = sharedPrefs.getEmail();
                 NguserListModel nguserListModel = new NguserListModel();
+
                 nguserListModel.setClaim(true);
                 jmr_number = ngUserClaimListModel.getJmr_no();
                 nguserListModel.setBp_no(ngUserClaimListModel.getBp_no());
                 nguserListModel.setJmr_no(jmr_number);
+                nguserListModel.setTpi_id(supervisor_id);
                 ((NgClaim_Tpi_Fragment)mctx).Claimed_API_POST(jmr_number,nguserListModel);
 
             }
@@ -172,8 +166,93 @@ public class NgUserClaimListAdapter extends RecyclerView.Adapter<NgUserClaimList
                 }
             }
         });
+        holder.ngSupervisorinfo_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Utils.isNetworkConnected(mctx)){
+                    Utils.showProgressDialog(mctx);
+                    loadNgAgentInfo(ngUserClaimListModel.getSupervisor_id());
+                }
+
+            }
+        });
 
     }
+    private void loadNgAgentInfo(String supervisor_id){
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.BASE_URL_TPI_DETAILS)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        Api api = retrofit.create(Api.class);
+        Call<NgSupervisorResponse> call = api.getNgAgentData(supervisor_id);
+        call.enqueue(new Callback<NgSupervisorResponse>() {
+
+
+            @Override
+            public void onResponse(Call<NgSupervisorResponse> call, retrofit2.Response<NgSupervisorResponse> response) {
+                Log.e("Mysucess>>>>>>>>>>", "weldone............");
+                Utils.hideProgressDialog();
+                if (response.body()!=null){
+                    UserDetails userDetails = response.body().getUserDetails();
+                    BP_N0_DilogBox(userDetails);
+                }
+                //materialDialog.dismiss();
+
+                //Toast.makeText(mctx, "Approve Successfully", Toast.LENGTH_SHORT).show();
+                //notifyDataSetChanged();
+
+
+            }
+
+            @Override
+            public void onFailure(Call<NgSupervisorResponse> call, Throwable t) {
+                Log.e("My error", "error comes");
+                Utils.hideProgressDialog();
+                Toast.makeText(mctx, "Fail to success", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+    }
+    private void BP_N0_DilogBox(UserDetails userDetails) {
+        final Dialog dialog = new Dialog(mctx);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        dialog.setContentView(R.layout.bp_no_dilogbox);
+        TextView bp_no_text=dialog.findViewById(R.id.bp_no_text);
+        TextView  vendar_no=dialog.findViewById(R.id.vendar_no);
+
+        bp_no_text.setText("Supervisor Name: " + userDetails.getFirstName()+ userDetails.getClass());
+        vendar_no.setText("Supervisor No: " + userDetails.getMobileNo());
+        final String tpiNo= userDetails.getMobileNo();
+
+        vendar_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                    callIntent.setData(Uri.parse("tel:"+ tpiNo));
+                    mctx.startActivity(callIntent);
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        Button ok_button = (Button) dialog.findViewById(R.id.ok_button);
+        ok_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                // finish();
+            }
+        });
+
+
+        dialog.show();
+    }
+
 
     @Override
     public long getItemId(int position){
@@ -196,7 +275,7 @@ public class NgUserClaimListAdapter extends RecyclerView.Adapter<NgUserClaimList
 
     class NgUserClaimListViewHolder extends RecyclerView.ViewHolder {
         TextView tv_bpName, tv_dateTime, tv_perferedTime, tv_address,user_name_text,status_text,mobile_text,zone_text;
-        Button btn_claim,btn_unclaim,btn_startJob;
+        Button btn_claim,btn_unclaim,btn_startJob,ngSupervisorinfo_text;
         LinearLayout ll_bpNumber;
         View itemView;
         NgUserClaimListViewHolder(View itemView) {
@@ -211,98 +290,11 @@ public class NgUserClaimListAdapter extends RecyclerView.Adapter<NgUserClaimList
             mobile_text = itemView.findViewById(R.id.mobile_text);
             status_text = itemView.findViewById(R.id.status_text);
             zone_text = itemView.findViewById(R.id.zone_text);
+            ngSupervisorinfo_text = itemView.findViewById(R.id.ngSupervisorinfo_text);
             this.itemView = itemView;
         }
 
     }
-    /*private void Claimed_API_POST(String jmr_number, NguserListModel nguserListModel) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Api.BASE_URL )
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        Api api = retrofit.create(Api.class);
-        Call<List<NguserListModel>> call = api.getUpdateNgUserField1(jmr_number ,nguserListModel);
-        call.enqueue(new Callback<List<NguserListModel>>() {
-
-
-            @Override
-            public void onResponse(Call<List<NguserListModel>> call, retrofit2.Response<List<NguserListModel>> response) {
-                Log.e("Mysucess>>>>>>>>>>" , "weldone............");
-
-                Toast.makeText(mctx,"Claim Successfully",Toast.LENGTH_SHORT).show();
-                notifyDataSetChanged();
-
-
-            }
-
-            @Override
-            public void onFailure(Call<List<NguserListModel>> call, Throwable t) {
-                Log.e("My error" , "error comes");
-                Toast.makeText(mctx,"Fail to success",Toast.LENGTH_SHORT).show();
-
-            }
-        });
-    }*/
-    /*private void UnClaimed_API_POST(String jmr_number,NguserListModel nguserListModel) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Api.BASE_URL )
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        Api api = retrofit.create(Api.class);
-        Call<List<NguserListModel>> call = api.getUpdateNgUserField1(jmr_number,nguserListModel);
-        //Call<List<NguserListModel>> call =  api.getUpdateNgUserField(preferences.getString("jmr_no" , ""),nguserListModel);
-
-        call.enqueue(new Callback<List<NguserListModel>>() {
-
-
-            @Override
-            public void onResponse(Call<List<NguserListModel>> call, retrofit2.Response<List<NguserListModel>> response) {
-                Log.e("Mysucess>>>>>>>>>>" , "weldone............");
-
-                Toast.makeText(mctx,"UnClaim Successfully ",Toast.LENGTH_SHORT).show();
-
-            }
-
-            @Override
-            public void onFailure(Call<List<NguserListModel>> call, Throwable t) {
-                Log.e("My error" , "error comes");
-                Toast.makeText(mctx,"Fail to success",Toast.LENGTH_SHORT).show();
-
-            }
-        });
-    }*/
-    /*private void startJob(String jmr_number,NguserListModel nguserListModel) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Api.BASE_URL )
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        Api api = retrofit.create(Api.class);
-        Call<List<NguserListModel>> call = api.getUpdateNgUserField1(jmr_number,nguserListModel);
-        //Call<List<NguserListModel>> call =  api.getUpdateNgUserField(preferences.getString("jmr_no" , ""),nguserListModel);
-
-        call.enqueue(new Callback<List<NguserListModel>>() {
-
-
-            @Override
-            public void onResponse(Call<List<NguserListModel>> call, retrofit2.Response<List<NguserListModel>> response) {
-                Log.e("Mysucess>>>>>>>>>>" , "weldone............");
-
-                Toast.makeText(mctx,"Start Job Successfully ",Toast.LENGTH_SHORT).show();
-
-
-            }
-
-            @Override
-            public void onFailure(Call<List<NguserListModel>> call, Throwable t) {
-                Log.e("My error" , "error comes");
-                Toast.makeText(mctx,"Fail to success",Toast.LENGTH_SHORT).show();
-
-            }
-        });
-    }*/
 
     @Override
     public Filter getFilter() {
