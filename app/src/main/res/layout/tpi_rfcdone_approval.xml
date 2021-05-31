@@ -93,6 +93,9 @@
                     android:fontFamily="@font/playfairdisplay_regular"
                     android:gravity="center"
                     android:text="User Details"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/_2sdp"
+                    android:background="@color/peach_light"
                     android:textColor="@color/colorAccent"
                     android:textSize="20sp" />
 
@@ -309,7 +312,9 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/playfairdisplay_regular"
                     android:gravity="center"
+                    android:background="@color/peach_light"
                     android:text="Installation Details"
+                    android:padding="@dimen/_2sdp"
                     android:textColor="@color/colorAccent"
                     android:textSize="20sp" />
 
@@ -788,6 +793,39 @@
                         android:layout_width="140dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sourcesanspro_regular"
+                        android:text="Extra pipe length"
+                        android:textColor="#808080"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=": "
+                        android:textColor="#808080"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_expipelength"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/sourcesanspro_regular"
+                        android:text=""
+                        android:textColor="@color/green"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="140dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sourcesanspro_regular"
                         android:text="Clamping"
                         android:textColor="#808080"
                         android:textSize="16sp"
@@ -1195,74 +1233,47 @@
                     android:fontFamily="@font/playfairdisplay_regular"
                     android:gravity="center"
                     android:text="Image"
+                    android:padding="@dimen/_2sdp"
+                    android:background="@color/peach_light"
                     android:textColor="@color/colorAccent"
                     android:textSize="20sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_70sdp"
-
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_8sdp"
-
-                    android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:orientation="vertical"
+                     >
 
                     <ImageView
                         android:id="@+id/image1"
-                        android:layout_width="@dimen/_120sdp"
-                        android:layout_height="@dimen/_70sdp"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/_10sdp"
-                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_200sdp"
                         android:background="@drawable/shape_blue_border"
-                        android:padding="@dimen/_1sdp"
                         android:scaleType="fitXY" />
 
                     <ImageView
                         android:id="@+id/image2"
-                        android:layout_width="@dimen/_120sdp"
-                        android:layout_height="@dimen/_70sdp"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_200sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/shape_blue_border"
-                        android:padding="@dimen/_1sdp"
                         android:scaleType="fitXY" />
-
-                </LinearLayout>
-
-
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_70sdp"
-
-                    android:layout_marginTop="@dimen/_8sdp"
-
-                    android:orientation="horizontal"
-                    android:weightSum="2">
 
                     <ImageView
                         android:id="@+id/image3"
-                        android:layout_width="@dimen/_120sdp"
-                        android:layout_height="@dimen/_70sdp"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/_10sdp"
-                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_200sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/shape_blue_border"
-                        android:padding="@dimen/_1sdp"
                         android:scaleType="fitXY" />
 
                     <ImageView
                         android:id="@+id/image4"
-                        android:layout_width="@dimen/_120sdp"
-                        android:layout_height="@dimen/_70sdp"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_200sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/shape_blue_border"
-                        android:padding="@dimen/_1sdp"
                         android:scaleType="fitXY" />
 
                 </LinearLayout>
@@ -1277,45 +1288,30 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/shape_white"
-                android:weightSum="1">
+                android:weightSum="2">
 
                 <ImageView
                     android:id="@+id/signature_image"
-                    android:layout_width="@dimen/_120sdp"
-                    android:layout_height="@dimen/_70sdp"
-                    android:layout_centerVertical="true"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.3"
+                    android:layout_height="@dimen/_100sdp"
                     android:background="@drawable/shape_blue_border"
                      />
 
+                <Button
+                    android:id="@+id/signature_button"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_gravity="center"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_weight="0.7"
+                    android:text="Signature"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp" />
 
 
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right|center_vertical|center_horizontal|center"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:layout_weight="1"
-                    android:gravity="right|center_vertical|center_horizontal|center"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
-
-                    <Button
-                        android:id="@+id/signature_button"
-                        android:layout_width="@dimen/_110sdp"
-                        android:layout_height="@dimen/_25sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="@dimen/_10sdp"
-                        android:background="@color/colorPrimary"
-                        android:gravity="center"
-                        android:paddingLeft="@dimen/_10sdp"
-                        android:paddingRight="@dimen/_10sdp"
-                        android:text="Signature"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_10sdp" />
-
-                </LinearLayout>
 
             </LinearLayout>
 

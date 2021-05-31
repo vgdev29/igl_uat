@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 
-    tools:context=".Activity.KYC_Listing">
+    tools:context="com.fieldmobility.igl.Activity.KYC_Pending_Activity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

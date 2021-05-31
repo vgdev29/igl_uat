@@ -23,7 +23,7 @@
         android:clickable="true"
         android:focusable="true" />
 
-    <com.example.igl.Helper.CustomBottomNavigationView1
+    <com.fieldmobility.igl.Helper.CustomBottomNavigationView1
         android:id="@+id/customBottomBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

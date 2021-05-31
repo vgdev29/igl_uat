@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.igl">
+    package="com.fieldmobility.igl">
     <!--
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -8,7 +8,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -58,13 +57,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.CustomScannerActivity"></activity>
+        <activity android:name=".Activity.KYC_VerificationDetails"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.CustomScannerActivity" />
         <activity android:name=".Activity.CustomPdfViewActivity" />
         <activity android:name=".Activity.NgUserClaimListActivity" />
-        <activity android:name=".Activity.NgAssignmentDetailsActivity" />
-        <activity android:name=".Activity.NgUserDetailsActivity" />
-        <activity android:name=".Activity.NgUserListActivity" />
+        <activity android:name=".Activity.NgSupDoneActivity" />
+        <activity android:name=".Activity.NgSupUserDetailsActivity" />
+        <activity android:name=".Activity.NgSupListActivity" />
         <activity android:name=".Activity.ViewNgDetaillsActivity" />
+        <activity android:name=".Activity.PMC_ViewPager_Activity" />
         <activity android:name=".Activity.Splash_Screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -119,10 +121,11 @@
             android:name=".Activity.New_Regestration"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activity.Kyc_Foram_Activity"
+            android:name=".Activity.Kyc_Form_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activity.KYC_Listing"
+            android:name=".Activity.KYC_Pending_Activity"
+
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.New_Regestration_Form"
@@ -186,11 +189,11 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
-            android:name=".Fragment.NgClaim_Tpi_Fragment"
+            android:name=".Activity.TPI_NgPending_Activity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
-            android:name=".Fragment.Ng_Pending_Fragment"
+            android:name=".Activity.TPI_Ng_Approval_Activity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity

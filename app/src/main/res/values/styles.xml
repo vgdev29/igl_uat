@@ -21,4 +21,78 @@
         <item name="android:windowEnterAnimation">@anim/myactivity_slide_up</item>
         <item name="android:windowExitAnimation">@anim/myactivity_slide_down</item>
     </style>
+    <style name="TabWidgetTheme" parent="AppTheme">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorPrimary">@color/white</item>
+    </style>
+
+
+
+     <style name="Home_Title">
+        <item name="android:fontFamily">@font/opensans_regular</item>
+        <item name="fontFamily">@font/opensans_regular</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="row_details">
+        <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="fontFamily">@font/roboto_light</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+<!--roboto regular-->
+    <style name="Home_Heading">
+        <item name="android:fontFamily">@font/playfairdisplay_regular</item>
+        <item name="fontFamily">@font/playfairdisplay_regular</item>
+        <item name="android:textStyle">bold</item>
+
+    </style>
+
+    <style name="See_All">
+        <item name="android:fontFamily">@font/opensans_semibold</item>
+        <item name="fontFamily">@font/opensans_semibold</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:singleLine">false</item>
+    </style>
+    <style name="SubHead">
+        <item name="android:fontFamily">@font/opensans_regular</item>
+        <item name="fontFamily">@font/opensans_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/fade_text</item>
+    </style>
+
+    <style name="See_All_button">
+        <item name="android:fontFamily">@font/playfairdisplay_regular</item>
+        <item name="fontFamily">@font/playfairdisplay_regular</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black_31</item>
+    </style>
+    <style name="Books_Profile_Head">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/opensans_regular</item>
+        <item name="fontFamily">@font/opensans_regular</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="collapsable_Expanded_text">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Books_Profile_SubHead">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/sourcesanspro_regular</item>
+        <item name="fontFamily">@font/sourcesanspro_regular</item>
+        <item name="android:textColor">@color/fade_text2</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:padding">5dp</item>
+    </style>
+
+    <style name="settings_menu">
+        <item name="android:textColor">@color/black_31</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+    </style>
+
 </resources>

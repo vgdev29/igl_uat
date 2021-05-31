@@ -47,7 +47,7 @@
         android:orientation="vertical"
         android:background="@color/white"
         >
-        <com.example.igl.Helper.MyVideoView
+        <com.fieldmobility.igl.Helper.MyVideoView
             android:id="@+id/video_frame"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

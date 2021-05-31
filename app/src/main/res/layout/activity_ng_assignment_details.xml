@@ -16,7 +16,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
-
             android:layout_weight="1.3"
             android:orientation="horizontal">
 
@@ -38,14 +37,12 @@
             android:text="NG Verfication Details"
             android:textColor="@color/white"
             android:textSize="@dimen/_14sdp"
-
             android:textStyle="bold" />
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
-
             android:layout_weight="1.3"
             android:gravity="center"
             android:orientation="horizontal">
@@ -74,45 +71,52 @@
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:weightSum="2"
-                android:id="@+id/ll_customerID"
-                android:background="@color/rad"
-                android:layout_below="@+id/llHeader"
-                android:orientation="horizontal">
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal"
+                android:id="@+id/ll_jmr">
                 <TextView
-                    android:id="@+id/tv_customerId"
+                    android:id="@+id/tv_jmr"
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_25sdp"
-                    android:text="Customer ID"
+                    android:text="JMR No."
                     android:layout_weight="1"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_3sdp"
                     android:paddingLeft="@dimen/_5sdp"
-                    android:layout_gravity="center"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/white"
+                    android:textColor="#757575"
                     android:textSize="@dimen/_10sdp"
+
+                    android:gravity="center"
                     />
                 <TextView
-                    android:id="@+id/tv_customerIdvalues"
-                    android:layout_width="match_parent"
+                    android:id="@+id/tv_jmrValues"
+                    android:layout_width="fill_parent"
                     android:layout_height="@dimen/_25sdp"
-                    android:textColor="@color/white"
                     android:layout_weight="1"
                     android:paddingLeft="@dimen/_5sdp"
                     android:textSize="@dimen/_10sdp"
                     android:layout_marginLeft="@dimen/_3sdp"
                     android:layout_marginRight="@dimen/_5sdp"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
+
+                    android:gravity="center"
                     />
             </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:layout_height="1dp"
+                android:alpha="0.2"
+                android:background="@color/fade_text"
+
+                />
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:weightSum="2"
-                android:layout_below="@+id/ll_customerID"
+                android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:orientation="horizontal"
                 android:id="@+id/ll_assignedTime">
@@ -120,39 +124,123 @@
                     android:id="@+id/tv_assignedTime"
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_25sdp"
-                    android:text="Assigned Time"
-                    android:layout_weight="1.2"
+                    android:text="Assigned Date"
+                    android:layout_weight="1"
                     android:paddingLeft="@dimen/_5sdp"
                     android:textColor="#757575"
                     android:textSize="@dimen/_10sdp"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
+
+                    android:gravity="center"
                     />
                 <TextView
                     android:id="@+id/tv_assignedTimeValues"
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_25sdp"
-
-
-                    android:layout_weight=".8"
+                    android:layout_weight="1"
                     android:paddingLeft="@dimen/_5sdp"
                     android:textSize="@dimen/_10sdp"
                     android:layout_marginLeft="@dimen/_3sdp"
                     android:layout_marginRight="@dimen/_5sdp"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
+
+                    android:gravity="center"
                     />
             </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
+                android:layout_marginHorizontal="20dp"
                 android:layout_height="1dp"
-                android:background="@color/black"
+                android:alpha="0.2"
+                android:background="@color/fade_text"
                 android:layout_below="@+id/ll_assignedTime"
                 />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:weightSum="2"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal"
+                android:id="@+id/ll_inintialreading">
+                <TextView
+                    android:id="@+id/tv_initialreading"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:text="Initial Reading"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:textColor="#757575"
+                    android:textSize="@dimen/_10sdp"
+
+                    android:gravity="center"
+                    />
+                <TextView
+                    android:id="@+id/tv_initialReadingValues"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:textSize="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_3sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+
+                    android:gravity="center"
+                    />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:layout_height="1dp"
+                android:alpha="0.2"
+                android:background="@color/fade_text"
+
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                 android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal"
+                android:id="@+id/ll_burner">
+                <TextView
+                    android:id="@+id/tv_burner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:text="Burner Details"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:textColor="#757575"
+                    android:textSize="@dimen/_10sdp"
+
+                    android:gravity="center"
+                    />
+                <TextView
+                    android:id="@+id/tv_burnerValues"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:textSize="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_3sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+
+                    android:gravity="center"
+                    />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:layout_height="1dp"
+                android:alpha="0.2"
+                android:background="@color/fade_text"
+
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:orientation="horizontal"
                 android:id="@+id/ll_startWork">
@@ -160,33 +248,27 @@
                     android:id="@+id/tv_startaWork"
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_25sdp"
-                    android:text="Start Work"
-                    android:layout_weight="1.2"
+                    android:text="Work Start Date"
+                    android:layout_weight="1"
                     android:paddingLeft="@dimen/_5sdp"
                     android:textColor="#757575"
                     android:textSize="@dimen/_10sdp"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
+                    android:gravity="center"
                     />
                 <TextView
                     android:id="@+id/tv_startWorkValues"
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_25sdp"
-                    android:layout_weight=".8"
+                    android:layout_weight="1"
                     android:paddingLeft="@dimen/_5sdp"
                     android:textSize="@dimen/_10sdp"
                     android:layout_marginLeft="@dimen/_3sdp"
                     android:layout_marginRight="@dimen/_5sdp"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
+
+                    android:gravity="center"
                     />
             </LinearLayout>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"
-                android:layout_below="@+id/ll_assignedTime"
-                />
+
             <!--<LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -220,20 +302,9 @@
                     android:gravity="center_vertical"
                     />
             </LinearLayout>-->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"
-                android:layout_below="@+id/ll_assignedTime"
-                />
 
-            <LinearLayout
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="1"
-                android:background="@color/colorPrimary"
-                android:layout_height="wrap_content">
+
+
 
                 <TextView
                     android:id="@+id/tv_uploadImage"
@@ -241,21 +312,24 @@
                     android:layout_height="@dimen/_25sdp"
                     android:text="Upload Images"
                     android:layout_weight="1.2"
-                    android:paddingLeft="@dimen/_5sdp"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_10sdp"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical" />
+                    style="@style/Home_Heading"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:textColor="@color/black_31"
+                    android:textSize="@dimen/_15sdp"
+                    android:background="@color/peach_light"
+                    android:gravity="center" />
 
 
 
-            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="4"
+                android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="@dimen/_14sdp">
 
                 <ImageView
@@ -311,17 +385,17 @@
                 android:orientation="horizontal"
                 android:weightSum="4"
                 android:id="@+id/ll_photo"
-
+                android:layout_marginHorizontal="15dp"
                 android:layout_height="wrap_content">
 
                 <Button
                     android:id="@+id/home_address_btn"
-                    android:background="@color/colorPrimary"
-                    android:layout_width="match_parent"
+                    android:background="@drawable/shape_blue_border"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:layout_width="@dimen/_140sdp"
                     android:layout_height="@dimen/_25sdp"
-
                     android:layout_gravity="center"
-                    android:textSize="@dimen/_10sdp"
+                    android:textSize="@dimen/_8sdp"
                     android:text="Home Address"
                     android:gravity="center"
                     android:layout_marginLeft="@dimen/_10sdp"
@@ -331,11 +405,12 @@
 
                 <Button
                     android:id="@+id/btn_meterPhoto"
-                    android:background="@color/colorPrimary"
-                    android:layout_width="match_parent"
+                    android:background="@drawable/shape_blue_border"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:layout_width="@dimen/_140sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:layout_gravity="center"
-                    android:textSize="@dimen/_10sdp"
+                    android:textSize="@dimen/_8sdp"
                     android:text="Meter Photo"
                     android:gravity="center"
                     android:layout_weight="1"
@@ -344,11 +419,12 @@
                     android:textColor="@color/white" />
                 <Button
                     android:id="@+id/btn_installation"
-                    android:background="@color/colorPrimary"
-                    android:layout_width="match_parent"
+                    android:background="@drawable/shape_blue_border"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:layout_width="@dimen/_140sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:layout_gravity="center"
-                    android:textSize="@dimen/_10sdp"
+                    android:textSize="@dimen/_8sdp"
                     android:text="Installation"
                     android:gravity="center"
                     android:layout_weight="1"
@@ -357,11 +433,12 @@
                     android:textColor="@color/white" />
                 <Button
                     android:id="@+id/btn_serviceCard"
-                    android:background="@color/colorPrimary"
-                    android:layout_width="match_parent"
+                    android:background="@drawable/shape_blue_border"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:layout_width="@dimen/_140sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:layout_gravity="center"
-                    android:textSize="@dimen/_10sdp"
+                    android:textSize="@dimen/_8sdp"
                     android:text="Service card"
                     android:gravity="center"
                     android:layout_weight="1"
@@ -371,9 +448,10 @@
 
             </LinearLayout>
             <LinearLayout
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:layout_width="match_parent"
-                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginHorizontal="15dp"
                 android:layout_height="wrap_content">
 
                 <ImageView
@@ -398,10 +476,10 @@
                     <Button
                         android:id="@+id/signature_button"
                         android:layout_width="@dimen/_120sdp"
-                        android:layout_height="20dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
-
-                        android:background="@color/colorPrimary"
+                        android:background="@drawable/shape_blue_border"
+                        android:backgroundTint="@color/colorPrimary"
                         android:gravity="center"
                         android:text="Signature"
                         android:textColor="@color/white"
@@ -562,7 +640,7 @@
                 android:weightSum="1"
                 android:gravity="center"
                 android:layout_gravity="right"
-
+                android:visibility="gone"
                 android:background="@color/rad"
                 android:layout_height="wrap_content">
 

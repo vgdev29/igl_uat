@@ -102,7 +102,7 @@
                         android:textIsSelectable="true"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:textSize="@dimen/_14sdp"
-                        android:text=" Death Claim" />
+                        android:text="Bp no" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -1065,11 +1065,11 @@
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:layout_marginRight="@dimen/_3sdp"
                 android:paddingLeft="@dimen/_5sdp"
-                android:background="@drawable/background_input_mandatory"
                 android:textSize="@dimen/_10sdp"
                 android:inputType="text"
                 android:maxLines="6"
                 android:maxLength="15"
+                android:background="@drawable/shape_blue_border"
                 android:layout_weight="1"
                 android:singleLine="true" />
             <LinearLayout
@@ -1616,7 +1616,7 @@
                         android:paddingRight="@dimen/_20sdp"
                         android:layout_gravity="center"
                         android:textSize="@dimen/_8sdp"
-                        android:text="Image select"
+                        android:text="select Signature"
                         android:gravity="center"
                         android:textColor="@color/white" />
                 </LinearLayout>

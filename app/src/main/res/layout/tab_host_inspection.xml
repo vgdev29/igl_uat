@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.Tab_Host_Pager" >
+    tools:context="com.fieldmobility.igl.Activity.Tab_Host_Pager" >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_33sdp"

@@ -21,4 +21,21 @@
     <color name="future_stay_gray">#60646E</color>
     <color name="color_primary_dark">#5555f9</color>
     <color name="color_primary_blue">#0095da</color>
+
+    <color name="green_light">#1B05FBC4</color>
+    <color name="peach_light">#E1F8DC</color>
+    <color name="pink_light">#F0DEFD</color>
+    <color name="red_light_extra">#C4FFCCCB</color>
+    <color name="orange_light">#2DA08943</color>
+    <color name="yellow_light">#63FFFFBF</color>
+    <color name="sky_light">#1187CEFA</color>
+    <color name="magenta_light">#FF80FF</color>
+    <color name="aero_light">#C9FFE5</color>
+    <color name="alice_blue">#F0F8FF</color>
+    <color name="almond_light">#EFDECD</color>
+    <color name="pastel_magenta_light">#66F19CBB</color>
+    <color name="snow_white">#FFFAFA</color>
+    <color name="black_31">#010b13</color>
+    <color name="fade_text2">#A11B1919</color>
+    <color name="fade_text">#B67979</color>
 </resources>

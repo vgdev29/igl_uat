@@ -1,15 +1,23 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('H:\\Ani Data\\IGL_GITLAB\\igl-mobile-app\\IGL_KEYSTORE\\igl(igl@12345).jks')
+            storePassword 'igl@12345'
+            keyAlias = 'igl(igl@12345)'
+            keyPassword 'igl@12345'
+        }
+    }
     compileSdkVersion 29
     useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
-        applicationId "com.example.igl"
+        applicationId "com.fieldmobility.igl"
         minSdkVersion 24
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode 1002
+        versionName "1.2"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

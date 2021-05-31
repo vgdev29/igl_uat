@@ -136,14 +136,7 @@
 
         android:visibility="gone">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_cloudOff_attendance"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:gravity="center"
-            android:visibility="visible"
-            app:srcCompat="@drawable/ic_cloud_off" />
+
 
         <TextView
             android:id="@+id/tv_ngUserListdata"
@@ -158,12 +151,12 @@
 
         <Button
             android:id="@+id/btnTryAgain"
-            android:layout_width="115dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
             android:layout_below="@+id/tv_ngUserListdata"
             android:layout_centerHorizontal="true"
             android:background="#FF0000"
-            android:text="TRY AGAIN"
+            android:text="Refresh"
             android:textColor="@color/white"
             android:visibility="visible" />
     </RelativeLayout>
@@ -179,6 +172,7 @@
         android:id="@+id/recyclerView_claim"
         android:layout_width="match_parent"
         android:focusedByDefault="false"
+        android:overScrollMode="never"
         android:layout_height="match_parent"
         android:visibility="visible"
         android:orientation="vertical"/>

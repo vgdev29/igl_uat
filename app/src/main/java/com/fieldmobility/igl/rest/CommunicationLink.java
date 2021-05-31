@@ -1,0 +1,26 @@
+package com.fieldmobility.igl.rest;
+
+import com.fieldmobility.igl.Model.NguserListModel;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import retrofit2.Call;
+
+public class CommunicationLink {
+    public static <T> T getResponse(Call call) throws IOException {
+        return (T) call.execute().body();
+    }
+
+
+
+    public static Call<ArrayList<NguserListModel>> getNgUserListClaimUnclaimList(String status ,String supervisor_id) {
+        ApiInterface service = CommunicationApi.getIglService();
+        return service.getNgUserListClaimUnclaimList(status,supervisor_id);
+    }
+    public static Call<ArrayList<NguserListModel>> getClaimedList(String status ,String claimed) {
+        ApiInterface service = CommunicationApi.getIglService();
+        return service.getClaimedList(status ,claimed);
+    }
+
+}

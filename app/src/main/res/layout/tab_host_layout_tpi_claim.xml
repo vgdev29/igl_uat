@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/rad"
                 android:nestedScrollingEnabled="true"
-                android:theme="@style/AppTheme">
+                android:theme="@style/TabWidgetTheme">
 
             </TabWidget>
             <View
