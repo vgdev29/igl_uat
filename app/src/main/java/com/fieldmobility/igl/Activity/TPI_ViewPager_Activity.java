@@ -35,7 +35,7 @@ public class TPI_ViewPager_Activity extends AppCompatActivity {
         new_regestration=findViewById(R.id.new_regestration);
         new_regestration.setVisibility(View.GONE);
         header_title=findViewById(R.id.header_title);
-        header_title.setText("TPI");
+        header_title.setText("Feasibility & RFC");
         back =(ImageView)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override

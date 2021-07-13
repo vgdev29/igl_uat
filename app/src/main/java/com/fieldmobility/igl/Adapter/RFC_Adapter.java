@@ -60,7 +60,14 @@ public class RFC_Adapter extends RecyclerView.Adapter<RFC_Adapter.ViewHolder> im
     @Override
     public void onBindViewHolder(RFC_Adapter.ViewHolder holder, final int position) {
         final Bp_No_Item Bp_No_array = bp_no_list_array.get(position);
-        holder.date_text.setText(Bp_No_array.getBp_date());
+        if (Bp_No_array.getIgl_rfcvendor_assigndate().equalsIgnoreCase("null")||Bp_No_array.getIgl_rfcvendor_assigndate().equals(null))
+        {
+            holder.date_text.setText("NA");
+        }
+        else {
+            holder.date_text.setText("Assign Date - " +Bp_No_array.getIgl_rfcvendor_assigndate());
+        }
+
         holder.bp_no_text.setText(Bp_No_array.getBp_number());
         holder.user_name_text.setText(Bp_No_array.getFirst_name());
         holder.mobile_text.setText(Bp_No_array.getMobile_number());
@@ -218,6 +225,14 @@ public class RFC_Adapter extends RecyclerView.Adapter<RFC_Adapter.ViewHolder> im
     @Override
     public int getItemCount() {
         return bp_no_list_array.size();
+    }
+
+    public void setData(List<Bp_No_Item> filterList)
+    {
+        Log.d("rfcLi","setData = "+filterList.size());
+       // this.bp_no_list_array.clear();
+       this.bp_no_list_array = filterList;
+       notifyDataSetChanged();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

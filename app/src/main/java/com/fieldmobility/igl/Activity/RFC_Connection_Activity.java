@@ -163,11 +163,11 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
     ArrayList<String> Manufacture_Make_ID = new ArrayList<>();
   //  ArrayList<String> Meter_no_type = new ArrayList<>();
     //ArrayList<String> Meter_no = new ArrayList<>();
-    Spinner spinner_meter_type, manufacture_make_spinner, meater_no_spinner, property_type_spinner, gas_type_spinner;
+    Spinner manufacture_make_spinner, meater_no_spinner, property_type_spinner, gas_type_spinner;
     ArrayAdapter<String> metar_type_adapter;
     ArrayAdapter<String> manufacture_make_adapter;
     ArrayAdapter<String> meater_no_adapter;
-    String meter_type;
+
     File screenshot_file, screenshot_file1, screenshot_file2, screenshot_file3,screenshot_file_signature;
     String ScreenShot_1, ScreenShot_2, ScreenShot_3, ScreenShot_4,ScreenShot_signature;
     ArrayList<Bp_No_Item> Meter_No = new ArrayList<>();
@@ -178,21 +178,19 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
 
     DropDown_Adapter dropDown_adapter;
     RecyclerView recyclerView;
-    EditText editTextSearch;
-    TextView meter_text;
+    EditText editTextSearch,meter_type_text;
+    TextView meter_text ;
     String meater_no_set_text ;
     static String meter_no;
     final Handler handler = new Handler();
     private Uri filePath_customer;
     ImageView adhar_owner_image;
     EditText ownar_name_no;
-    String customer_image_select;
+    String customer_image_select,customer_image_file;
     String LOG = "rfcconnection";
     String rfcAdmin;
     private String tf_avail_Done, connectivity_Done, ncap_avail_Done,igl_rfc_status;
     boolean mitdCase = false;
-
-
     private  ImageView mScan;
     private String scanMeterNo;
     private TextView tv_meater_no,rfc_conn_bpno;
@@ -543,21 +541,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
         });
 
 
-        spinner_meter_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                String country = spinner_meter_type.getItemAtPosition(spinner_meter_type.getSelectedItemPosition()).toString();
-                Log.e("meter_type_string+", country);
 
-                meter_type_string = Meter_type_Id.get(position);
-                // igl_code_group_Maaster=Igl_Code_Group_Master.get(position);
-                    Meter_No(meter_type_string);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
 
         manufacture_make_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -566,6 +550,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                 Log.e("manufacture_make", country);
 
                 manufacture_make_string =  Manufacture_Make_ID.get(position);
+                // Meter_No();
                 // igl_code_group_Maaster=Igl_Code_Group_Master.get(position);
                 // Meter_Type(manufacture_make_string);
             }
@@ -581,7 +566,8 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
     private void Layout_Id() {
         rfc_conn_bpno = findViewById(R.id.rfc_conn_bpno);
         rfc_conn_bpno.setText("BP NO.:- "+getIntent().getStringExtra("Bp_number"));
-        spinner_meter_type = findViewById(R.id.spinner_metar_length);
+
+        meter_type_text = findViewById(R.id.meter_type);
         manufacture_make_spinner = findViewById(R.id.manufacture_make_spinner);
         meater_no_spinner = (Spinner) findViewById(R.id.meater_no_spinner);
         back = findViewById(R.id.back);
@@ -782,7 +768,9 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
             case CAMERA_REQUEST:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST) {
                     File f = new File(getExternalStorageDirectory().toString());
+                    Log.d(LOG,"file f = "+ f.toString()+" "+f.getName()+f.getPath());
                     for (File temp : f.listFiles()) {
+                        Log.d(LOG,"file temp = "+ temp.toString()+" "+temp.getName()+temp.getPath());
                         if (temp.getName().equals("temp.jpg")) {
                             f = temp;
                             break;
@@ -794,10 +782,11 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                                 bitmapOptions);
                         select_image.setImageBitmap(bitmap);
                         String path = getExternalStorageDirectory().getAbsolutePath();
+                        Log.d(LOG,"path  = "+ path.toString());
                         f.delete();
                         OutputStream outFile = null;
                         File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
-                        Log.e("Camera_Path1++", file.toString());
+                        Log.d(LOG,"Camera_Path1++"+ file.toString());
                         image_path_string = file.toString();
                         // image_path_address1 =file.toString();
                         // TPI_Multipart(filePath_img_string);
@@ -953,7 +942,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                         // imageView.setImageBitmap(bitmap);
                         signature_image.setImageBitmap(bitmap);
                         adhar_owner_image.setImageBitmap(bitmap);
-                        customer_image_select = getPath1(this, filePath_customer);
+                        customer_image_file = getPath1(this, filePath_customer);
                         Log.e("owner_image_select+", "" + customer_image_select);
                         // new ImageCompressionAsyncTask1(this).execute(image_path_address, getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Silicompressor/images");
                     } catch (IOException e) {
@@ -980,7 +969,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                         OutputStream outFile = null;
                         File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
                         Log.e("Camera_Path2++", file.toString());
-                        customer_image_select = file.toString();
+                        customer_image_file = file.toString();
                         // image_path_address1 =file.toString();
                         // TPI_Multipart(filePath_img_string);
 
@@ -1176,7 +1165,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
             @Override
             public void onClick(View v) {
                 bitmap = signatureView.getSignatureBitmap();
-                customer_image_select = saveImage(bitmap);
+                customer_image_file = saveImage(bitmap);
                 signature_image.setImageBitmap(bitmap);
                 dialog.dismiss();
             }
@@ -1228,7 +1217,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
             @Override
             public void onClick(View v) {
                 bitmap = signatureView.getSignatureBitmap();
-                customer_image_select = saveImage(bitmap);
+                customer_image_file = saveImage(bitmap);
                 signature_image.setImageBitmap(bitmap);
                 dialog.dismiss();
             }
@@ -1408,7 +1397,6 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                             Log.d(LOG, "Status_Type = " + Status_Type);
                             JSONArray jSONArray = jsonObject.getJSONArray("File_Path");
 
-
                                 imageSig = jSONArray.getJSONObject(0).getString("files0");
                                 image1 = jSONArray.getJSONObject(1).getString("files1");
                                 image2 = jSONArray.getJSONObject(2).getString("files2");
@@ -1422,7 +1410,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                                 Log.d(LOG, "for rfc= " + i);
                                 JSONObject data_object = payload.getJSONObject(i);
                                 String meter_make = data_object.getString("meter_make");
-                                meter_type = data_object.getString("meter_type");
+                                String meter_type = data_object.getString("meter_type");
                                 meter_no = data_object.getString("meter_no");
                                 String initial_meter_reading = data_object.getString("initial_meter_reading");
                                 String regulator_no = data_object.getString("regulator_no");
@@ -1452,6 +1440,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                                 String met_no = data_object.getString("meter_no");
                                 String tfavail= data_object.getString("tfAvail");
                                 String connct= data_object.getString("connectivity");
+                                String extraPipe = data_object.getString("extraPipeLength");
 
 
                                 manufacture_editext.setText(meter_installation);
@@ -1461,6 +1450,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                                 regulater_no_text.setText(regulator_no);
                                 gi_instalation_text.setText(gi_installation);
                                 cu_instalation_text.setText(cu_installation);
+                                pile_length_edit.setText(extraPipe);
                                 vo_of_iv_text.setText(no_of_iv);
                                 no_of_av_text.setText(no_of_av);
                                 meter_text.setText(meter_no);
@@ -1475,6 +1465,8 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                                 } else {
                                     clamping_gi_pvc_radioButton.setSelected(false);
                                 }
+                                meter_type_text.setText(meter_type);
+                              meter_type_string = meter_type;
 
                                 /*pvc_sleeve_text.setText(pvc_sleeve);
                                 clamping_gi_pvc_text.setText(clamming);
@@ -1486,14 +1478,6 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                                 name_of_tpi.setText(tpiName+" "+tpiLastName);
                                 bp_no_text.setText(bp);*/
 
-                            }
-                            if (Status_Type.equals("true")) {
-
-                            } else {
-                                if (meter_type != null) {
-                                    int spinnerPosition = metar_type_adapter.getPosition(meter_type);
-                                    spinner_meter_type.setSelection(spinnerPosition);
-                                }
                             }
 
 
@@ -1588,7 +1572,8 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                     manufacture_make_spinner.setAdapter(manufacture_make_adapter);
                     // spinner_meter_type.setAdapter(new ArrayAdapter<String>(RFC_Connection_Activity.this, android.R.layout.simple_spinner_dropdown_item, Meter_type));
                     //  RFC_Data();
-                    Meter_Type();
+                    Meter_No();
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -1605,7 +1590,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
         requestQueue.add(stringRequest);
     }
 
-    private void Meter_Type() {
+    private void Meter_Type(String meterNo) {
         Meter_type.clear();
         Meter_type_Id.clear();
         materialDialog = new MaterialDialog.Builder(RFC_Connection_Activity.this)
@@ -1613,7 +1598,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                 .progress(true, 0)
                 .show();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.MeterType, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.MeterType+"?meter_no="+meterNo, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 materialDialog.dismiss();
@@ -1630,8 +1615,9 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                         Meter_type.add(meter_description);
                         Meter_type_Id.add(meterType);
                     }
-                    metar_type_adapter = new ArrayAdapter<String>(RFC_Connection_Activity.this, android.R.layout.simple_spinner_dropdown_item, Meter_type);
-                    spinner_meter_type.setAdapter(metar_type_adapter);
+                    meter_type_text.setText(Meter_type.get(0));
+                    meter_type_string = Meter_type_Id.get(0);
+
 
                     //   Meter_No(  meter_type_string);
                 } catch (JSONException e) {
@@ -1651,13 +1637,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
     }
 
 
-    private void barCodeMeterNo(){
-      //  meater_no_adapter = new ArrayAdapter<String>(RFC_Connection_Activity.this, android.R.layout.simple_spinner_dropdown_item, Meter_no);
-        //meater_no_spinner.setAdapter(meater_no_adapter);
-        //RFC_Data();
-
-    }
-    private void Meter_No(final String meter_type_string) {
+    private void Meter_No() {
        /* Meter_no.clear();
         Meter_no_type.clear();
         Meter_no_type.add("---Select Meter---");
@@ -1670,7 +1650,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                 .show();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
 
-        String url = Constants.MeterNo + "?meterType=" + meter_type_string + "&plantCode=3030" + "&id=" + rfcAdmin;
+        String url = Constants.MeterNo + "?&id=" + rfcAdmin;
         Log.d(LOG, url);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -1693,6 +1673,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                             Meter_No.add(bp_No_Item);
                             meter_no_qr.add(jsonArray_society.getJSONObject(i).getString("meterNo"));
                             meter_text.setText("Select Meter no.");
+
                         }
                     } else {
                           meter_text.setText("N.A");
@@ -1869,7 +1850,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
 
                 Log.d(LOG, "Status_Type = " + Status_Type);
                 if (ValidateData()) {
-                    TPI_Multipart_Update();
+                     TPI_Multipart_Update();
                 }
 
             }
@@ -1908,6 +1889,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                     public void run() {
                         meter_text.setText(meater_no_set_text);
                         meter_no=meter_text.getText().toString();
+                        Meter_Type(meter_no);
                         dialog.dismiss();
                     }
                 }, 500);
@@ -1951,28 +1933,30 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
 
     public  boolean ValidateData()
     {
+
         boolean allOk = true;
         if (TextUtils.isEmpty(manufacture_make_string)) {
             allOk = false;
             Utils.showToast(this, "PLease select Meter Make");
             return allOk;
-        } else if (TextUtils.isEmpty(meter_type_string)) {
-            allOk = false;
-            Utils.showToast(this, "Please select Meter Type");
-            return allOk;
-        }else if (TextUtils.isEmpty(meter_no)) {
+        }else if (TextUtils.isEmpty(meter_text.getText().toString().trim())) {
             allOk = false;
             Utils.showToast(this, "Meter no is empty");
             return allOk;
         }
-        else if (meter_no.equalsIgnoreCase("Select Meter no.")) {
+        else if (meter_text.getText().toString().trim().equalsIgnoreCase("Select Meter no.")) {
             allOk = false;
             Utils.showToast(this, "Please select Meter no");
             return allOk;
         }
-        else if (meter_no.equalsIgnoreCase("N.A")) {
+        else if (meter_text.getText().toString().trim().equalsIgnoreCase("N.A")) {
             allOk = false;
             Utils.showToast(this, "Please select Meter no");
+            return allOk;
+        }
+        else if (TextUtils.isEmpty(meter_type_string)) {
+            allOk = false;
+            Utils.showToast(this, "Please select Meter Type");
             return allOk;
         }
         else if (TextUtils.isEmpty(initial_metar_reading_text.getText().toString())) {
@@ -2016,7 +2000,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
             return allOk;
         }
 
-        else if (TextUtils.isEmpty(customer_image_select)) {
+        else if (TextUtils.isEmpty(customer_image_file)) {
             allOk = false;
             Utils.showToast(this, "Please select Signature");
             return allOk;

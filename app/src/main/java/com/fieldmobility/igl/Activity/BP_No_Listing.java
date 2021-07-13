@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.MataData.Bp_No_Item;
 import com.fieldmobility.igl.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,19 +43,21 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class New_BP_No_Listing extends Activity implements New_BP_NO_Adapter.ContactsAdapterListener{
+public class BP_No_Listing extends Activity implements New_BP_NO_Adapter.ContactsAdapterListener{
 
     ProgressDialog progressDialog;
     SharedPrefs sharedPrefs;
-    ImageView back,new_regestration;
+    ImageView rfc_filter;
+    FloatingActionButton new_regestration;
     MaterialDialog materialDialog;
     private List<Bp_No_Item> bp_no_array;
     RecyclerView recyclerView;
-  SwipeRefreshLayout mSwipeRefreshLayout;
+    SwipeRefreshLayout mSwipeRefreshLayout;
     New_BP_NO_Adapter adapter;
     EditText editTextSearch;
     TextView list_count;
-    TextView header_title;
+
+    LinearLayout top_layout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,24 +71,19 @@ public class New_BP_No_Listing extends Activity implements New_BP_NO_Adapter.Con
     }
 
     private void Layout_ID() {
-        back =(ImageView)findViewById(R.id.back);
-        back.setVisibility(View.GONE);
+
         list_count=findViewById(R.id.list_count);
-        header_title=findViewById(R.id.header_title);
-        header_title.setVisibility(View.GONE);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        rfc_filter = findViewById(R.id.rfc_filter);
+        rfc_filter.setVisibility(View.GONE);
+        top_layout = findViewById(R.id.top_layout);
+        top_layout.setVisibility(View.GONE);
         bp_no_array=new ArrayList<>();
 
         new_regestration=findViewById(R.id.new_regestration);
         new_regestration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(New_BP_No_Listing.this,New_Regestration_Form.class);
+                Intent intent =new Intent(BP_No_Listing.this, BP_Creation_Form.class);
                 startActivity(intent);
             }
         });
@@ -211,7 +210,8 @@ public class New_BP_No_Listing extends Activity implements New_BP_NO_Adapter.Con
                 .content("Please wait....")
                 .progress(true, 0)
                 .show();
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.NEW_BP_No_Get_Listing+"/"+sharedPrefs.getUUID(),
+        Log.d("Bpcreation","url = "+Constants.BP_No_Listing+"/"+sharedPrefs.getUUID());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.BP_No_Listing+"/"+sharedPrefs.getUUID(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -222,7 +222,7 @@ public class New_BP_No_Listing extends Activity implements New_BP_NO_Adapter.Con
                             final JSONObject Bp_Details = jsonObject.getJSONObject("Bp_Details");
                             JSONArray payload=Bp_Details.getJSONArray("users");
                             list_count.setText("Count= "+String.valueOf(payload.length()));
-                            for(int i=0; i<=payload.length();i++) {
+                            for(int i=0; i<payload.length();i++) {
                                 JSONObject data_object=payload.getJSONObject(i);
                                 Bp_No_Item bp_no_item = new Bp_No_Item();
                                 bp_no_item.setFirst_name(data_object.getString("first_name"));
@@ -270,7 +270,7 @@ public class New_BP_No_Listing extends Activity implements New_BP_NO_Adapter.Con
                         }
                       //  DesignerToast.Custom(New_BP_No_Listing.this,"Successfully",Gravity.BOTTOM,Toast.LENGTH_SHORT, R.drawable.shape_cornor_radious,15,"#FFFFFF",R.drawable.ic_success, 60, 200);
                         //DesignerToast.Success(New_BP_No_Listing.this, "Successfully", Gravity.BOTTOM, Toast.LENGTH_SHORT);
-                         adapter = new New_BP_NO_Adapter(New_BP_No_Listing.this,bp_no_array,New_BP_No_Listing.this);
+                         adapter = new New_BP_NO_Adapter(BP_No_Listing.this,bp_no_array, BP_No_Listing.this);
                         recyclerView.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
                     }

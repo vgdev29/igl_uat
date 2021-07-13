@@ -444,7 +444,8 @@ public class TPI_RfcDone_Approval_Activity extends Activity {
         }
         else if (statcode.equalsIgnoreCase("3")){statcode = "4";}
         Log.d("rfc","statcode = "+statcode);
-
+        String url =  Constants.TPI_RFC_APPROVAl_DECLINE_CASE1 + "?lead_no"+lead_no+"&bp_no="+bp_no+"&status="+status+"&meterNo="+meter_no+"&statcode="+statcode;
+        Log.d("tpi approve = ","tpi deline url = "+url);
         materialDialog.show();
         try {
             MultipartUploadRequest multipartUploadRequest = new
@@ -500,6 +501,8 @@ public class TPI_RfcDone_Approval_Activity extends Activity {
         }
         else {statcode = "2";}
         materialDialog.show();
+        String url =  Constants.TPI_DECLINE + "?lead_no"+LEAD_NO+"&bp_no="+BP_NO+"&statcode="+statcode+"&description="+description;
+        Log.d("tpidecline","tpi deline url = "+url);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.TPI_DECLINE,
                 new Response.Listener<String>() {
                     @Override

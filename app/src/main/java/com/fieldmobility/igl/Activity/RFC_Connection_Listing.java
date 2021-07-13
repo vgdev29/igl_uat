@@ -1,15 +1,24 @@
 package com.fieldmobility.igl.Activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +67,13 @@ public class RFC_Connection_Listing extends Activity implements RFC_Adapter.Cont
     TextView list_count;
     LinearLayout top_layout;
     static String log = "rfcListing";
+    ImageView rfc_filter;
+    private Dialog mFilterDialog;
+    private RadioGroup radioGroup;
+
+    private int filtersDialogOpenCount = 0;
+
+    private int mSelectedId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +88,7 @@ public class RFC_Connection_Listing extends Activity implements RFC_Adapter.Cont
         top_layout=findViewById(R.id.top_layout);
         top_layout.setVisibility(View.VISIBLE);
         list_count=findViewById(R.id.list_count);
+        rfc_filter = findViewById(R.id.rfc_filter);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,8 +140,146 @@ public class RFC_Connection_Listing extends Activity implements RFC_Adapter.Cont
 
             }
         });
+
+        rfc_filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              showFiltersDialog();
+            }
+        });
         Bp_No_List();
 
+    }
+
+    public void showFiltersDialog() {
+        //Toast.makeText(getApplicationContext(),"Filter icon",Toast.LENGTH_SHORT).show();
+        mFilterDialog = new Dialog(RFC_Connection_Listing.this);
+        mFilterDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        mFilterDialog.setCanceledOnTouchOutside(false);
+        mFilterDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        mFilterDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        mFilterDialog.setContentView(getLayoutInflater().inflate(R.layout.dialog_filter_rfc_user_list,null));
+        LinearLayout rl_dialog_title =   mFilterDialog.findViewById(R.id.rl_dialog_title);
+        Button btn_applyFilters = (Button) mFilterDialog.findViewById(R.id.btn_applyFilters);
+        Button btn_clearAllFilters = (Button) mFilterDialog.findViewById(R.id.btn_clearAllFilters);
+        ImageButton ibCancel =   mFilterDialog.findViewById(R.id.ib_create_cancel);
+        radioGroup = mFilterDialog.findViewById(R.id.radioGroup);
+
+        if (filtersDialogOpenCount!=0)
+        {
+
+        }
+        rl_dialog_title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filtersDialogOpenCount = 0;
+                mFilterDialog.dismiss();
+
+            }
+        });
+        ibCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filtersDialogOpenCount = 0;
+                mFilterDialog.dismiss();
+            }
+        });
+
+        btn_clearAllFilters.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               radioGroup.clearCheck();
+               clearFilter();
+               mFilterDialog.dismiss();
+            }
+        });
+
+        btn_applyFilters.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                int checkedId = radioGroup.getCheckedRadioButtonId();
+                Log.d(log,"checked id = "+checkedId+" res id = "+R.id.radioButton_rfcClaim);
+                switch (radioGroup.getCheckedRadioButtonId())
+                {
+                    case R.id.radioButton_rfcClaim:
+                        refreshRecyclerClaim();
+                        break;
+                    case R.id.radioButton_rfcUnClaim:
+                        refreshRecyclerUnClaim();
+                        break;
+                    case R.id.radioButton_rfcJnStart:
+                        refreshRecyclerUnClaim();
+                        break;
+                    case R.id.radioButton_rfcJstart:
+                        refreshRecyclerJobstart();
+                        break;
+                }
+
+                mFilterDialog.dismiss();
+                filtersDialogOpenCount = 0;
+            }
+        });
+
+
+        mFilterDialog.show();
+        filtersDialogOpenCount = 1;
+    }
+
+    public void refreshRecyclerClaim()
+    {
+        List<Bp_No_Item> filterList = new ArrayList<>();
+        Log.d(log,"refresh claim");
+        for (Bp_No_Item bpNoItem : bp_no_array)
+        {
+            if (bpNoItem.getClaimFlag().equals("0") && !bpNoItem.getJobFlag().equals("1"))
+            {
+                Log.d(log,"claim if = "+bpNoItem.getClaimFlag());
+                filterList.add(bpNoItem);
+            }
+        }
+        list_count.setText("Count\n"+ filterList.size());
+        adapter.setData(filterList);
+        adapter.notifyDataSetChanged();
+
+    }
+    public void refreshRecyclerUnClaim()
+    {
+        List<Bp_No_Item> filterList = new ArrayList<>();
+        Log.d(log,"refresh claim");
+        for (Bp_No_Item bpNoItem : bp_no_array)
+        {
+            if (bpNoItem.getClaimFlag().equals("null"))
+            {
+                Log.d(log,"claim if = "+bpNoItem.getRfcTpi());
+                filterList.add(bpNoItem);
+            }
+        }
+        list_count.setText("Count\n"+ filterList.size());
+        adapter.setData(filterList);
+        adapter.notifyDataSetChanged();
+
+    }
+    public void refreshRecyclerJobstart()
+    {
+        List<Bp_No_Item> filterList = new ArrayList<>();
+        for (Bp_No_Item bpNoItem : bp_no_array)
+        {
+            if (bpNoItem.getJobFlag().equalsIgnoreCase("1"))
+            {
+                filterList.add(bpNoItem);
+            }
+        }
+        list_count.setText("Count\n"+ filterList.size());
+        adapter.setData(filterList);
+
+    }
+
+    public void  clearFilter()
+    {
+        Log.d(log,"clear filter = "+bp_no_array.size());
+        adapter.setData(bp_no_array);
+        list_count.setText("Count\n"+ bp_no_array.size());
     }
 
 
@@ -197,6 +352,7 @@ public class RFC_Connection_Listing extends Activity implements RFC_Adapter.Cont
                                 bp_no_item.setDeclinedDescription(data_object.getString("declinedDescription"));
                                 bp_no_item.setRfcAdmin(data_object.getString("rfcadmin"));
                                 bp_no_item.setControlRoom(data_object.getString("controlRoom"));
+                                bp_no_item.setIgl_rfcvendor_assigndate(data_object.getString("supervisor_assigndate"));
                                 //fesabilityTpiName : "suruchipmc"
                                 Log.d(log,"bp item = " + bp_no_item.toString());
                                 bp_no_array.add(bp_no_item);

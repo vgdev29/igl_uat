@@ -90,7 +90,7 @@ public class RFC_Declined_Listing extends Activity implements Decline_Adapter.Co
         new_regestration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(RFC_Declined_Listing.this,New_Regestration_Form.class);
+                Intent intent =new Intent(RFC_Declined_Listing.this, BP_Creation_Form.class);
                 startActivity(intent);
             }
         });

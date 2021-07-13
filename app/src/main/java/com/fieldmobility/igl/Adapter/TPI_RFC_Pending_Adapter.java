@@ -44,6 +44,7 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -79,7 +80,14 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
     @Override
     public void onBindViewHolder(final TPI_RFC_Pending_Adapter.ViewHolder holder, final int position) {
         final BpDetail Bp_No_array = bp_no_list_array.get(position);
-        holder.date_text.setText(Bp_No_array.getBpDate());
+
+        if (Bp_No_array.getIgl_rfcvendor_assigndate().equalsIgnoreCase("null")||Bp_No_array.getIgl_rfcvendor_assigndate().equals(null))
+        {
+            holder.date_text.setText("NA");
+        }
+        else{
+            holder.date_text.setText("Assign Date- "+Bp_No_array.getIgl_rfcvendor_assigndate());
+        }
         holder.bp_no_text.setText(Bp_No_array.getBpNumber());
         holder.user_name_text.setText(Bp_No_array.getFirstName());
         holder.address_text.setText(Bp_No_array.getHouseNo()+" "+Bp_No_array.getFloor()+" "+Bp_No_array.getHouseType()+" "+Bp_No_array.getSociety()+" \n"
@@ -196,6 +204,12 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
     @Override
     public int getItemCount() {
         return bp_no_list_array.size();
+    }
+
+    public void setData(ArrayList<BpDetail> filterList)
+    {
+        this.bp_no_list_array = filterList;
+        notifyDataSetChanged();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

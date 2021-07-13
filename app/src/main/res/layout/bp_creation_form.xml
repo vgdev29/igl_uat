@@ -42,44 +42,17 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/_5sdp"
             android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_5sdp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:layout_weight="1"
+                    android:background="@color/peach_light"
+                    android:gravity="center"
                     android:textSize="@dimen/_14sdp"
                     android:text="Personal Details" />
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_gravity="right"
-                    android:gravity="right"
-
-                    >
-                    <TextView
-                        android:id="@+id/death_process"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_5sdp"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:visibility="gone"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:background="@color/rad"
-                        android:layout_marginBottom="@dimen/_5sdp"
-                        android:textSize="@dimen/_14sdp"
-                        android:text=" Death Claim" />
-
-                </LinearLayout>
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -104,8 +77,6 @@
                         android:singleLine="true" />
 
 
-
-
                     <EditText
                         android:id="@+id/middle_name"
                         android:layout_width="fill_parent"
@@ -124,7 +95,6 @@
 
                     <EditText
                         android:id="@+id/lastname"
-
                         android:layout_width="fill_parent"
                         android:layout_height="@dimen/_25sdp"
                         android:hint="Last Name"
@@ -146,7 +116,6 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:orientation="horizontal">
 
-
                     <EditText
                         android:id="@+id/mobile_no"
                         android:layout_width="fill_parent"
@@ -161,8 +130,6 @@
                         android:maxLength="10"
                         android:inputType="number"
                         android:singleLine="true" />
-
-
 
                     <EditText
                         android:id="@+id/email_id"
@@ -207,56 +174,14 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:visibility="gone"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:orientation="horizontal">
-
-
-                <EditText
-                    android:id="@+id/language_edit"
-                    android:layout_width="fill_parent"
-                    android:layout_height="@dimen/_25sdp"
-                    android:hint="Corresponding language"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_3sdp"
-                    android:paddingLeft="@dimen/_5sdp"
-                    android:background="@drawable/shape_blue_border"
-                    android:textSize="@dimen/_10sdp"
-                    android:maxLength="10"
-
-                    android:singleLine="true" />
-
-
-
-                <EditText
-                    android:id="@+id/search_team"
-                    android:layout_width="fill_parent"
-                    android:layout_height="@dimen/_25sdp"
-                    android:hint="Search Term"
-                    android:inputType="textEmailAddress"
-                    android:layout_weight="1"
-                    android:paddingLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_10sdp"
-                    android:visibility="gone"
-                    android:layout_marginLeft="@dimen/_3sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:background="@drawable/shape_blue_border"
-                    android:singleLine="true"
-                    />
-
-            </LinearLayout>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_5sdp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:layout_weight="1"
+                android:background="@color/peach_light"
+                android:gravity="center"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:textSize="@dimen/_14sdp"
                 android:text="Address Details" />
@@ -317,7 +242,6 @@
                         android:dropDownSelector="@null"
                         />
                     <ImageView
-
                         android:layout_centerVertical="true"
                         android:layout_width="@dimen/_11sdp"
                         android:layout_height="@dimen/_11sdp"
@@ -326,25 +250,7 @@
                         android:background="@drawable/dropdown"
                         />
                 </LinearLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_weight="1"
-                    android:visibility="gone"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true">
 
-                    <EditText
-                        android:id="@+id/city_reasion"
-                        android:layout_width="fill_parent"
-                        android:layout_height="40.0dip"
-                        android:hint="City/Region"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:layout_marginRight="@dimen/_3sdp"
-                        android:paddingLeft="@dimen/_5sdp"
-                        android:background="@drawable/shape_blue_border"
-                        android:textSize="@dimen/_10sdp"
-                        android:singleLine="true" />
-                </com.google.android.material.textfield.TextInputLayout>
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_30sdp"
@@ -352,7 +258,6 @@
                     android:layout_gravity="center_vertical"
                     android:gravity="center_vertical"
                     android:layout_marginRight="@dimen/_3sdp"
-
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:background="@drawable/background_input_mandatory"
                     android:layout_weight="1">
@@ -370,7 +275,6 @@
                         android:dropDownSelector="@null"
                         />
                     <ImageView
-
                         android:layout_centerVertical="true"
                         android:layout_width="@dimen/_11sdp"
                         android:layout_height="@dimen/_11sdp"
@@ -379,27 +283,6 @@
                         android:background="@drawable/dropdown"
                         />
                 </LinearLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="fill_parent"
-                    android:layout_weight="1"
-                    android:visibility="gone"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/area"
-                        android:layout_width="fill_parent"
-                        android:layout_height="40.0dip"
-                        android:hint="Area"
-                        android:visibility="gone"
-
-                        android:textSize="@dimen/_10sdp"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:layout_marginLeft="@dimen/_3sdp"
-                        android:paddingLeft="@dimen/_5sdp"
-                        android:background="@drawable/shape_blue_border"
-                        android:singleLine="true"
-                        />
-                </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
             <LinearLayout
@@ -468,67 +351,10 @@
                         />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="@dimen/_30sdp"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
-                    android:layout_marginRight="@dimen/_3sdp"
-
-                    android:visibility="gone"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:background="@drawable/shape_blue_border"
-                    android:layout_weight="1">
-                    <Spinner
-                        android:id="@+id/spinner_landmark"
-                        android:layout_width="@dimen/_130sdp"
-                        android:layout_height="@dimen/_26sdp"
-                        android:layout_margin="3dp"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:layout_weight=".2"
-                        android:spinnerMode="dialog"
-                        android:autofillHints="City/Region"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:background="@drawable/shape_white"
-                        android:dropDownSelector="@null"
-                        />
-                    <ImageView
-
-                        android:layout_centerVertical="true"
-                        android:layout_width="@dimen/_11sdp"
-                        android:layout_height="@dimen/_11sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:background="@drawable/dropdown"
-                        />
-                </LinearLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_weight="1"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:layout_alignParentRight="true">
-
-                    <EditText
-                        android:id="@+id/society"
-                        android:layout_width="fill_parent"
-                        android:layout_height="40.0dip"
-                        android:hint="Society"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:layout_marginRight="@dimen/_3sdp"
-                        android:paddingLeft="@dimen/_5sdp"
-                        android:background="@drawable/shape_blue_border"
-                        android:textSize="@dimen/_10sdp"
-                        android:singleLine="true" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-
                     <EditText
                         android:id="@+id/landmark"
                         android:layout_width="fill_parent"
                         android:layout_height="match_parent"
-
                         android:layout_weight="1"
                         android:inputType="textCapCharacters"
                         android:textSize="@dimen/_10sdp"
@@ -579,7 +405,6 @@
                     android:layout_gravity="center_vertical"
                     android:gravity="center_vertical"
                     android:layout_marginRight="@dimen/_3sdp"
-
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:background="@drawable/shape_blue_border"
                     android:layout_weight="1">
@@ -606,25 +431,12 @@
                         android:background="@drawable/dropdown"
                         />
                 </LinearLayout>
-                    <EditText
-                        android:id="@+id/house_type"
-                        android:layout_width="fill_parent"
-                        android:layout_height="40.0dip"
-                        android:hint="House Type"
-                        android:visibility="gone"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:layout_marginRight="@dimen/_3sdp"
-                        android:paddingLeft="@dimen/_5sdp"
-                        android:background="@drawable/shape_blue_border"
-                        android:textSize="@dimen/_10sdp"
-                        android:singleLine="true" />
+
 
                     <EditText
                         android:id="@+id/house_no"
                         android:layout_width="fill_parent"
                         android:layout_height="match_parent"
-
                         android:layout_weight="1"
                         android:inputType="number"
                         android:textSize="@dimen/_10sdp"
@@ -632,7 +444,6 @@
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:paddingLeft="@dimen/_5sdp"
                         android:background="@drawable/background_input_mandatory"
-
                         android:singleLine="true"
                         />
 
@@ -674,7 +485,6 @@
                     android:layout_height="wrap_content"
                     android:weightSum="2"
                     android:layout_weight="1"
-
                     android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="fill_parent"
@@ -746,19 +556,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/block_tower"
-                        android:layout_width="fill_parent"
-                        android:layout_height="40.0dip"
-                        android:hint="Block/Qtr/Tower/Wing"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:layout_marginRight="@dimen/_3sdp"
-                        android:paddingLeft="@dimen/_5sdp"
-                        android:layout_weight="1"
-                        android:visibility="gone"
-                        android:background="@drawable/shape_blue_border"
-                        android:textSize="@dimen/_10sdp"
-                        android:singleLine="true" />
+
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_30sdp"
@@ -792,20 +590,7 @@
                         android:background="@drawable/dropdown"
                         />
                 </LinearLayout>
-                    <EditText
-                        android:id="@+id/floor"
-                        android:layout_width="fill_parent"
-                        android:layout_height="40.0dip"
-                        android:hint="Floor"
-                        android:visibility="gone"
-                        android:layout_weight="1"
-                        android:textSize="@dimen/_10sdp"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:layout_marginLeft="@dimen/_3sdp"
-                        android:paddingLeft="@dimen/_5sdp"
-                        android:background="@drawable/shape_blue_border"
-                        android:singleLine="true"
-                        />
+
 
             </LinearLayout>
             <LinearLayout
@@ -918,21 +703,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/street_road"
-                        android:layout_width="fill_parent"
-                        android:layout_height="40.0dip"
-                        android:hint="Street/Gali/Road"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:layout_marginRight="@dimen/_3sdp"
-                        android:paddingLeft="@dimen/_5sdp"
-                        android:background="@drawable/shape_blue_border"
-                        android:textSize="@dimen/_10sdp"
-                        android:inputType="text"
-                        android:maxLines="6"
-                        android:visibility="gone"
-                        android:layout_weight="1"
-                        android:singleLine="true" />
+
 
                     <EditText
                         android:id="@+id/pincode"
@@ -966,16 +737,7 @@
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:textSize="@dimen/_10sdp"
                     android:text="Select Lpg Company" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/_1sdp"
-                    android:textColor="@color/dark_gray"
-                    android:layout_weight="1"
-                    android:visibility="gone"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="Select Area " />
+
 
             </LinearLayout>
             <LinearLayout
@@ -1018,40 +780,6 @@
                         android:background="@drawable/dropdown"
                         />
                 </LinearLayout>
-                    <EditText
-                        android:id="@+id/lpg_company"
-                        android:layout_width="fill_parent"
-                        android:layout_height="40.0dip"
-                        android:hint="LPG Company"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:layout_marginRight="@dimen/_3sdp"
-                        android:paddingLeft="@dimen/_5sdp"
-                        android:background="@drawable/background_input_mandatory"
-                        android:textSize="@dimen/_10sdp"
-                        android:inputType="text"
-                        android:maxLines="6"
-                        android:visibility="gone"
-                        android:layout_weight="1"
-                        android:singleLine="true" />
-
-                    <EditText
-
-                        android:layout_width="fill_parent"
-                        android:layout_height="40.0dip"
-                        android:hint="Pin Code"
-                        android:inputType="number"
-                        android:maxLength="10"
-                        android:layout_weight="1"
-                        android:textSize="@dimen/_10sdp"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:paddingLeft="@dimen/_5sdp"
-                        android:visibility="gone"
-                        android:background="@drawable/background_input_mandatory"
-                        android:singleLine="true"
-                        android:textColor="@color/white" />
-
-
             </LinearLayout>
 
             <LinearLayout
@@ -1133,16 +861,7 @@
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:textSize="@dimen/_10sdp"
                     android:text="Unique ID NO" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/_1sdp"
-                    android:textColor="@color/dark_gray"
-                    android:layout_weight="1"
-                    android:visibility="gone"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="Select Area " />
+
 
             </LinearLayout>
             <LinearLayout
@@ -1165,28 +884,17 @@
                     android:maxLength="17"
                     android:inputType="number"
                     android:singleLine="true" />
-                <EditText
-                    android:layout_width="fill_parent"
-                    android:layout_height="@dimen/_25sdp"
-                    android:hint="Email Id"
-                    android:inputType="textEmailAddress"
-                    android:layout_weight="1"
-                    android:visibility="gone"
-                    android:paddingLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_10sdp"
-                    android:layout_marginLeft="@dimen/_3sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:background="@drawable/shape_blue_border"
-                    android:singleLine="true"
-                    />
+
             </LinearLayout>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_5sdp"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/peach_light"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-
                 android:textSize="@dimen/_14sdp"
                 android:text="Type of Ownership" />
 
@@ -1194,7 +902,8 @@
                 android:id="@+id/radioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatRadioButton
@@ -1223,9 +932,12 @@
                 android:textSize="@dimen/_7sdp"
                 android:text="If rented or otherwise, please submit NOC*(to be issues by the lawful owner of the proprty) OR the valid rent agreement with the lawful owner of the premise." />
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/peach_light"
+                android:gravity="center"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="@dimen/_14sdp"
@@ -1266,9 +978,54 @@
             </LinearLayout>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_5sdp"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/peach_light"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:textSize="@dimen/_14sdp"
+                android:text="Annexure" />
+
+            <CheckBox
+                android:id="@+id/multiple_floor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_25sdp"
+                android:text="Ownership of multiple floors"
+                />
+            <CheckBox
+                android:id="@+id/undertaking_gpa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_25sdp"
+                android:text="Undertaking (GPA Case)"
+                />
+            <CheckBox
+                android:id="@+id/undertaking_owner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_25sdp"
+                android:text="UNdertaking (Owner’s Death Case)"
+                />
+            <CheckBox
+                android:id="@+id/address_issue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_25sdp"
+                android:text="Complete Address Issue case"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/peach_light"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_weight="1"
@@ -1345,6 +1102,19 @@
                     android:singleLine="true"
                     />
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/peach_light"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:textSize="@dimen/_14sdp"
+                android:text="Proof Detail" />
         <LinearLayout
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_width="match_parent"
@@ -1475,15 +1245,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/shape_blue_border" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_gravity="center|right"
-                    android:gravity="right"
-                    android:paddingRight="@dimen/_5sdp"
-                    android:visibility="gone"
-                    android:layout_height="match_parent">
 
-                </LinearLayout>
             </LinearLayout>
 
 
@@ -1558,15 +1320,54 @@
                         android:background="@color/colorPrimary"
                         android:layout_width="@dimen/_120sdp"
                         android:layout_height="@dimen/_26sdp"
-
                         android:layout_gravity="center"
                         android:textSize="@dimen/_10sdp"
-                        android:text="Signature"
+                        android:text="Customer Signature"
                         android:gravity="center"
-
                         android:textColor="@color/white" />
                 </LinearLayout>
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_ownersig"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:visibility="gone"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/owner_signature_image"
+                    android:layout_centerVertical="true"
+                    android:layout_width="@dimen/_140sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:padding="@dimen/_1sdp"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:background="@drawable/shape_blue_border"
+                    />
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center|right"
+                    android:gravity="right"
+                    android:paddingRight="@dimen/_5sdp"
+                    android:layout_height="match_parent">
+                    <Button
+                        android:id="@+id/owner_signature_button"
+                        android:background="@color/colorPrimary"
+                        android:layout_width="@dimen/_120sdp"
+                        android:layout_height="@dimen/_26sdp"
+                        android:layout_gravity="center"
+                        android:textSize="@dimen/_10sdp"
+                        android:text="Owner Signature"
+                        android:gravity="center"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+            </LinearLayout>
+
+
         <LinearLayout
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_width="match_parent"
@@ -1606,7 +1407,6 @@
                     android:background="@color/colorPrimary"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_30sdp"
-
                     android:textSize="@dimen/_10sdp"
                     android:text="@string/pdf"
                     android:textColor="@color/white" />
@@ -1625,16 +1425,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">
 
-        <Button
-            android:visibility="gone"
-            android:layout_alignParentLeft="true"
-            android:id="@+id/backBT"
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="@string/backBT"
-            android:textColor="@color/white" />
 
         <Button
             android:layout_alignParentRight="true"

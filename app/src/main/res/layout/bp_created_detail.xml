@@ -32,7 +32,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_weight=".6"
-            android:text="BP No Detail"
+            android:text="Customer Detail"
             android:textSize="@dimen/_14sdp"
             android:textStyle="bold"
 
@@ -64,100 +64,41 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginHorizontal="@dimen/_15sdp"
         android:background="@color/white"
         android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_90sdp"
-        android:weightSum="2"
-        android:orientation="horizontal">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_7sdp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/bp_no_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/green"
-                android:text="BP Number"
-                android:textIsSelectable="true"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:textStyle="bold"
-                android:textSize="@dimen/_13sdp"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="3"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_margin="@dimen/_5sdp"
+            android:weightSum="2"
             android:orientation="horizontal">
-            <Button
-                android:id="@+id/tpi_button"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:textStyle="bold"
-                android:text="Feasibility"
-                android:layout_marginRight="@dimen/_2sdp"
-                android:layout_weight="1"
-                android:visibility="gone"
-                android:textColor="@color/white"
-                android:background="@drawable/shape_cornor_radious"/>
-            <Button
-                android:id="@+id/rfc_button"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:textStyle="bold"
-                android:text="RFC"
-                android:visibility="gone"
-                android:layout_marginLeft="@dimen/_2sdp"
-                android:layout_marginRight="@dimen/_2sdp"
-                android:layout_weight="1"
-                android:textColor="@color/white"
-                android:background="@drawable/shape_cornor_radious"/>
-            <Button
-                android:id="@+id/ng_button"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_marginLeft="@dimen/_2sdp"
-                android:textStyle="bold"
-                android:text="NG"
-                android:visibility="gone"
-                android:layout_weight="1"
-                android:textColor="@color/white"
-                android:background="@drawable/shape_cornor_radious"/>
-        </LinearLayout>
-    </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/_10sdp"
-            android:layout_weight="1"
-            android:orientation="vertical">
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:text="Address"
+                android:text="BP Number"
+                android:layout_weight="1"
                 android:textStyle="bold"
                 android:textSize="@dimen/_12sdp"/>
 
             <TextView
-                android:id="@+id/address_text"
-                android:layout_width="wrap_content"
+                android:id="@+id/bp_no_text"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/dark_gray"
-                android:text="Indraprast Gas Limted IGL Gas Limted Noida Sector 12 PinCode 201306"
-                android:textSize="@dimen/_9sdp"/>
+                android:textColor="@color/rad"
+                android:text="70000565988"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
 
         </LinearLayout>
-    </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
+            android:layout_margin="@dimen/_5sdp"
             android:weightSum="2"
             android:orientation="horizontal">
             <TextView
@@ -183,8 +124,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-
+            android:layout_margin="@dimen/_5sdp"
             android:weightSum="2"
             android:orientation="horizontal">
             <TextView
@@ -210,8 +150,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-
+            android:layout_margin="@dimen/_5sdp"
             android:weightSum="2"
             android:orientation="horizontal">
             <TextView
@@ -237,7 +176,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
+            android:layout_margin="@dimen/_5sdp"
 
             android:weightSum="2"
             android:orientation="horizontal">
@@ -264,7 +203,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
+            android:layout_margin="@dimen/_5sdp"
             android:visibility="gone"
             android:weightSum="2"
             android:orientation="horizontal">
@@ -291,8 +230,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-
+            android:layout_margin="@dimen/_5sdp"
             android:weightSum="2"
             android:orientation="horizontal">
             <TextView
@@ -318,7 +256,34 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
+            android:layout_margin="@dimen/_5sdp"
+            android:weightSum="2"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Address"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
+
+            <TextView
+                android:id="@+id/address_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_gray"
+                android:text="Abcd"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
             android:visibility="gone"
             android:weightSum="2"
             android:orientation="horizontal">
@@ -345,7 +310,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
+            android:layout_margin="@dimen/_5sdp"
             android:visibility="gone"
             android:weightSum="2"
             android:orientation="horizontal">
@@ -371,7 +336,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
+            android:layout_margin="@dimen/_5sdp"
             android:visibility="gone"
             android:weightSum="2"
             android:orientation="horizontal">
@@ -397,7 +362,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
+            android:layout_margin="@dimen/_5sdp"
             android:weightSum="2"
             android:visibility="gone"
             android:orientation="horizontal">
@@ -426,7 +391,7 @@
             android:textStyle="bold"
             android:text="PDF URL"
             android:visibility="gone"
-            android:layout_margin="@dimen/_10sdp"
+            android:layout_margin="@dimen/_5sdp"
             android:textColor="@color/white"
             android:background="@drawable/shape_cornor_radious"/>
     </LinearLayout>

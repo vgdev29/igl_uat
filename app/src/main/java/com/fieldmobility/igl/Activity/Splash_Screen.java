@@ -28,7 +28,6 @@ public class Splash_Screen extends Activity {
     }
     private void Layout_Id() {
         sharedPrefs = new SharedPrefs(this);
-
         confirm_date=sharedPrefs.getLoginDate();
         Log.d("confirm_date",  confirm_date);
         Date c = Calendar.getInstance().getTime();

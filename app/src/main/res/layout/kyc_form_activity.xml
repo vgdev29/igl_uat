@@ -1145,7 +1145,7 @@
             <ImageView
                 android:id="@+id/adhar_image"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_200sdp"
+                android:layout_height="@dimen/_300sdp"
                 android:layout_weight="1"
                 android:scaleType="fitXY"
                 android:background="@drawable/shape_blue_border"
@@ -1227,11 +1227,10 @@
                 <ImageView
                     android:id="@+id/address_image"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_200sdp"
+                    android:layout_height="700dp"
                     android:layout_weight="1"
                     android:scaleType="fitXY"
                     android:background="@drawable/shape_blue_border"
-
                      />
             </LinearLayout>
 

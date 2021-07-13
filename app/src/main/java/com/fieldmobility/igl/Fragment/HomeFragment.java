@@ -21,12 +21,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
@@ -44,7 +42,6 @@ import com.fieldmobility.igl.Activity.RFC_Connection_Listing;
 import com.fieldmobility.igl.Activity.TPI_ViewPager_Activity;
 import com.fieldmobility.igl.Activity.Tab_Host_DMA;
 import com.fieldmobility.igl.Activity.Tab_Host_EKYC;
-import com.fieldmobility.igl.Activity.Tab_Host_PMC;
 import com.fieldmobility.igl.Activity.Tab_Host_Pager_TPI_Claim;
 import com.fieldmobility.igl.Activity.To_DoList_Activity;
 import com.fieldmobility.igl.Activity.Tracking_Activity;
@@ -54,8 +51,10 @@ import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.Helper.LocationMonitoringService;
 import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.MataData.VideoListData1;
+import com.fieldmobility.igl.Mdpe.Mdpe_List_Activity;
 import com.fieldmobility.igl.R;
-import com.fieldmobility.igl.tracker.MyIntentService;
+//import com.fieldmobility.igl.tracker.MyIntentService;
+import com.fieldmobility.igl.Riser.Riser_List_Activity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.material.snackbar.Snackbar;
@@ -78,7 +77,7 @@ public class HomeFragment extends Fragment {
     SharedPrefs sharedPrefs;
     VideoListData1[] myListData;
     LinearLayout attendance_layout,to_do_list,learning_layout,new_regestration_layout,ekyc_layout,tpi_layout,
-            rfc_layout,pmc_layout,ng_pending_layout,ng_conversion_layout;
+            rfc_layout,pmc_layout,ng_pending_layout,ng_conversion_layout,riser_layout, mdpe_layout;
     MaterialDialog materialDialog;
     private static final String TAG = Tracking_Activity.class.getSimpleName();
    // private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
@@ -91,7 +90,7 @@ public class HomeFragment extends Fragment {
 
     // as google doc says
     // Handler for incoming messages from the service.
-    private IncomingMessageHandler mHandler;
+    //private IncomingMessageHandler mHandler;
     private TextView locationMsg;
     Button btnPermissions;
     Handler handler_lat_log=new Handler();
@@ -108,7 +107,7 @@ public class HomeFragment extends Fragment {
         sharedPrefs=new SharedPrefs(getActivity());
         mMsgView=root.findViewById(R.id.msgView);
 
-        mHandler = new IncomingMessageHandler();
+        //mHandler = new IncomingMessageHandler();
 
         handler_lat_log.postDelayed(new Runnable() {
             @Override
@@ -142,6 +141,8 @@ public class HomeFragment extends Fragment {
         rfc_layout=(LinearLayout)root.findViewById(R.id.rfc_layout);
         pmc_layout=(LinearLayout)root.findViewById(R.id.pmc_layout);
         ng_conversion_layout=(LinearLayout)root.findViewById(R.id.ng_conversion_layout);
+        riser_layout = root.findViewById(R.id.riser_layout);
+        mdpe_layout = root.findViewById(R.id.mdpe_layout);
        /* new_regestration_layout.setVisibility(View.GONE);
         ekyc_layout.setVisibility(View.GONE);
         tpi_layout.setVisibility(View.GONE);
@@ -155,8 +156,10 @@ public class HomeFragment extends Fragment {
             rfc_layout.setVisibility(View.GONE);
             ng_conversion_layout.setVisibility(View.GONE);
             pmc_layout.setVisibility(View.GONE);
+            mdpe_layout.setVisibility(View.GONE);
+            riser_layout.setVisibility(View.GONE);
         }
-        else if (sharedPrefs.getType_User().equals("TPI")){
+        else if (sharedPrefs.getType_User().equals("TPI") ||sharedPrefs.getType_User().equals("PMCSI")){
             new_regestration_layout.setVisibility(View.GONE);
             ekyc_layout.setVisibility(View.GONE);
             tpi_layout.setVisibility(View.VISIBLE);
@@ -164,6 +167,8 @@ public class HomeFragment extends Fragment {
             rfc_layout.setVisibility(View.GONE);
             ng_conversion_layout.setVisibility(View.GONE);
             pmc_layout.setVisibility(View.GONE);
+            mdpe_layout.setVisibility(View.GONE);
+            riser_layout.setVisibility(View.GONE);
         }
         else if (sharedPrefs.getType_User().equalsIgnoreCase("RFC")){
             new_regestration_layout.setVisibility(View.GONE);
@@ -173,6 +178,8 @@ public class HomeFragment extends Fragment {
             rfc_layout.setVisibility(View.VISIBLE);
             ng_conversion_layout.setVisibility(View.VISIBLE);
             pmc_layout.setVisibility(View.GONE);
+            mdpe_layout.setVisibility(View.GONE);
+            riser_layout.setVisibility(View.GONE);
         }
         else if (sharedPrefs.getType_User().equalsIgnoreCase("NG")){
             new_regestration_layout.setVisibility(View.GONE);
@@ -182,6 +189,8 @@ public class HomeFragment extends Fragment {
             rfc_layout.setVisibility(View.VISIBLE);
             ng_conversion_layout.setVisibility(View.VISIBLE);
             pmc_layout.setVisibility(View.GONE);
+            mdpe_layout.setVisibility(View.GONE);
+            riser_layout.setVisibility(View.GONE);
         }
         else if (sharedPrefs.getType_User().equals("EKYC")){
             new_regestration_layout.setVisibility(View.GONE);
@@ -192,7 +201,9 @@ public class HomeFragment extends Fragment {
             ng_conversion_layout.setVisibility(View.GONE);
             pmc_layout.setVisibility(View.GONE);
             attendance_layout.setVisibility(View.GONE);
-        }else if (sharedPrefs.getType_User().equals("PMCSI")){
+            mdpe_layout.setVisibility(View.GONE);
+            riser_layout.setVisibility(View.GONE);
+        }/*else if (sharedPrefs.getType_User().equals("PMCSI")){
             new_regestration_layout.setVisibility(View.GONE);
             pmc_layout.setVisibility(View.VISIBLE);
 
@@ -200,8 +211,32 @@ public class HomeFragment extends Fragment {
             tpi_layout.setVisibility(View.GONE);
             ng_pending_layout.setVisibility(View.GONE);
             rfc_layout.setVisibility(View.GONE);
+            ng_conversion_layout.setVisibility(View.VISIBLE);
+            mdpe_layout.setVisibility(View.GONE);
+            riser_layout.setVisibility(View.GONE);
+        }*/
+        else if (sharedPrefs.getType_User().equals("RISER")){
+            new_regestration_layout.setVisibility(View.GONE);
+            riser_layout.setVisibility(View.VISIBLE);
+
+            ekyc_layout.setVisibility(View.GONE);
+            tpi_layout.setVisibility(View.GONE);
+            ng_pending_layout.setVisibility(View.GONE);
+            rfc_layout.setVisibility(View.GONE);
             ng_conversion_layout.setVisibility(View.GONE);
-        }else {
+        }
+        else if (sharedPrefs.getType_User().equals("MDPE")){
+            new_regestration_layout.setVisibility(View.GONE);
+            mdpe_layout.setVisibility(View.VISIBLE);
+
+            ekyc_layout.setVisibility(View.GONE);
+            tpi_layout.setVisibility(View.GONE);
+            ng_pending_layout.setVisibility(View.GONE);
+            rfc_layout.setVisibility(View.GONE);
+            ng_conversion_layout.setVisibility(View.GONE);
+        }
+
+        else {
             sharedPrefs.setLoginStatus("false");
             Intent intent = new Intent(getActivity(), Login_Activity.class);
             startActivity(intent);
@@ -284,6 +319,20 @@ public class HomeFragment extends Fragment {
                 startActivity(attendance);
             }
         });
+        riser_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent riserIntent = new Intent(getActivity(), Riser_List_Activity.class);
+                startActivity(riserIntent);
+            }
+        });
+        mdpe_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mdpeintent = new Intent(getActivity(), Mdpe_List_Activity.class);
+                startActivity(mdpeintent);
+            }
+        });
         //requestCameraAndStorage();
 
 
@@ -335,11 +384,11 @@ public class HomeFragment extends Fragment {
         timer.schedule(doAsynchronousTask, 0, 300000); //execute in every 50000 ms*/
     }
 
-    public void TPI_Approve(final String latitude, final String longitude) {
-        /*materialDialog = new MaterialDialog.Builder(getActivity())
+   /* public void TPI_Approve(final String latitude, final String longitude) {
+        *//*materialDialog = new MaterialDialog.Builder(getActivity())
                 .content("Please wait....")
                 .progress(true, 0)
-                .show();*/
+                .show();*//*
         String login_request = "login_request";
         StringRequest jr = new StringRequest(Request.Method.POST, Constants.UserTracking,
                 new Response.Listener<String>() {
@@ -393,7 +442,7 @@ public class HomeFragment extends Fragment {
         jr.setRetryPolicy(new DefaultRetryPolicy(20 * 10000, 20, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         jr.setTag(login_request);
         AppController.getInstance().addToRequestQueue(jr, login_request);
-    }
+    }*/
     @Override
     public void onResume() {
         super.onResume();
@@ -525,7 +574,7 @@ public class HomeFragment extends Fragment {
         mAlreadyStartedService = false;
         super.onDestroy();
     }
-    class IncomingMessageHandler extends Handler {
+    /*class IncomingMessageHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
             Log.i(TAG, "handleMessage..." + msg.toString());
@@ -545,7 +594,7 @@ public class HomeFragment extends Fragment {
                     break;
             }
         }
-    }
+    }*/
 
     private void requestLocationPermission() {
 
@@ -554,7 +603,7 @@ public class HomeFragment extends Fragment {
                 ContextCompat.checkSelfPermission(getActivity(),Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED;
 
         if (foreground) {
-            boolean background = ActivityCompat.checkSelfPermission(getActivity(),
+           /* boolean background = ActivityCompat.checkSelfPermission(getActivity(),
                     Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED;
 
             if (background) {
@@ -562,11 +611,11 @@ public class HomeFragment extends Fragment {
             } else {
                 ActivityCompat.requestPermissions(getActivity(),
                         new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, REQUEST_CODE_PERMISSIONS);
-            }
+            }*/
         } else {
             ActivityCompat.requestPermissions(getActivity(),
-                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION,
-                            Manifest.permission.ACCESS_BACKGROUND_LOCATION}, REQUEST_CODE_PERMISSIONS);
+                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION/*,
+                            Manifest.permission.ACCESS_BACKGROUND_LOCATION*/}, REQUEST_CODE_PERMISSIONS);
         }
     }
 
@@ -591,7 +640,7 @@ public class HomeFragment extends Fragment {
                     }
                 }
 
-                if (permissions[i].equalsIgnoreCase(Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
+               /* if (permissions[i].equalsIgnoreCase(Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
                     if (grantResults[i] >= 0) {
                         foreground = true;
                         background = true;
@@ -601,34 +650,34 @@ public class HomeFragment extends Fragment {
                         Toast.makeText(getActivity(), "Background location location permission denied", Toast.LENGTH_SHORT).show();
                     }
 
-                }
+                }*/
             }
 
-            if (foreground) {
+            /*if (foreground) {
                 if (background) {
                     handleLocationUpdates();
                 } else {
                     handleForegroundLocationUpdates();
                 }
-            }
+            }*/
         }
     }
 
-    private void handleLocationUpdates() {
+    /*private void handleLocationUpdates() {
         //foreground and background
         Intent startServiceIntent = new Intent(getActivity(), MyIntentService.class);
         Messenger messengerIncoming = new Messenger(mHandler);
         startServiceIntent.putExtra(MESSENGER_INTENT_KEY, messengerIncoming);
         getActivity().startService(startServiceIntent);
         Toast.makeText(getActivity(),"Start Foreground and Background Location Updates",Toast.LENGTH_SHORT).show();
-    }
+    }*/
 
-    private void handleForegroundLocationUpdates() {
+    /*private void handleForegroundLocationUpdates() {
         //handleForeground Location Updates
         Intent startServiceIntent = new Intent(getActivity(), MyIntentService.class);
         Messenger messengerIncoming = new Messenger(mHandler);
         startServiceIntent.putExtra(MESSENGER_INTENT_KEY, messengerIncoming);
         getActivity().startService(startServiceIntent);
         Toast.makeText(getActivity(),"Start foreground location updates",Toast.LENGTH_SHORT).show();
-    }
+    }*/
 }

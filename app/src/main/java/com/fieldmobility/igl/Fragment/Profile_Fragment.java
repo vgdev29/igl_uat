@@ -38,6 +38,7 @@ public class Profile_Fragment extends Fragment {
     View root;
     MaterialDialog materialDialog;
     SharedPrefs sharedPrefs;
+
     public Profile_Fragment() {
         // Required empty public constructor
     }
@@ -54,14 +55,21 @@ public class Profile_Fragment extends Fragment {
         root = inflater.inflate(R.layout.regestration_page_1, container, false);
         sharedPrefs=new SharedPrefs(getActivity());
         name_edit=root.findViewById(R.id.name_edit);
+        name_edit.setText(sharedPrefs.getName());
         email_edit=root.findViewById(R.id.email_edit);
+        email_edit.setText(sharedPrefs.getEmail());
         address_edit=root.findViewById(R.id.address_edit);
+        address_edit.setText(sharedPrefs.getUUID());
         strret_area_society_edit=root.findViewById(R.id.strret_area_society_edit);
+        strret_area_society_edit.setText(sharedPrefs.getCity());
         state_edit=root.findViewById(R.id.state_edit);
+        state_edit.setText(sharedPrefs.getZone_Code());
         mobile_edit=root.findViewById(R.id.mobile_edit);
+        mobile_edit.setText(sharedPrefs.getMobile());
         aadhaar_edit=root.findViewById(R.id.aadhaar_edit);
+        aadhaar_edit.setText(sharedPrefs.getLoginDate());
 
-        User_Authorization();
+        // User_Authorization();
         return root;
     }
 

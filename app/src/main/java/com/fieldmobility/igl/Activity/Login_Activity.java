@@ -17,8 +17,10 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -72,6 +74,9 @@ public class Login_Activity extends Activity {
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
     public static final String MESSENGER_INTENT_KEY = "msg-intent-key";
     String log = "login";
+    ScrollView login_layout;
+    LinearLayout permission_layout;
+    Button allow_permission;
 
 
     public static final int REQUEST_CODE_PERMISSIONS = 101;
@@ -87,8 +92,32 @@ public class Login_Activity extends Activity {
         progressDialog.setCancelable(false);
         progressDialog.setCanceledOnTouchOutside(false);
         sharedPrefs = new SharedPrefs(this);
+        login_layout = findViewById(R.id.login_layout);
+        permission_layout = findViewById(R.id.permission_layout);
+        allow_permission = findViewById(R.id.permission_allow_button);
         Layout_ID();
-        requestCameraAndStorage();
+
+        if ( ContextCompat.checkSelfPermission( this, Manifest.permission.CAMERA ) != PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission( this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission( this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission( this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+        ) {
+            login_layout.setVisibility(View.GONE);
+            permission_layout.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            login_layout.setVisibility(View.VISIBLE);
+            permission_layout.setVisibility(View.GONE);
+        }
+        allow_permission.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestCameraAndStorage();
+            }
+        });
+
+
     }
 
     private void Layout_ID() {
@@ -137,7 +166,7 @@ public class Login_Activity extends Activity {
             e.printStackTrace();
         }
         String login_request = "login_request";
-
+        Log.d("login","login url - "+Constants.Auth_User);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.POST, Constants.Auth_User, login_value,
                 new Response.Listener<JSONObject>() {
@@ -257,6 +286,7 @@ public class Login_Activity extends Activity {
                     @Override
                     public void onResponse(String response) {
                         progressDialog.dismiss();
+
                         //User_Admin_Id="2";
                         try {
                             JSONObject json = new JSONObject(response);
@@ -266,7 +296,8 @@ public class Login_Activity extends Activity {
                             // JSONObject json_paylode=json.getJSONObject("data");
                             sharedPrefs.setUUID(json.getString("id_user"));
                             sharedPrefs.setEmail(json.getString("userName"));
-                            //sharedPrefs.setMobile(json_paylode.getString("mobile"));
+                            sharedPrefs.setMobile(json.getString("mobileNo"));
+                           // sharedPrefs.setCity(json.getString("city"));
                             sharedPrefs.setName(json.getString("first_name"));
                             sharedPrefs.setType_User(json.getString("type_user"));
                             sharedPrefs.setZone_Code(json.getString("zoneId"));
@@ -332,6 +363,7 @@ public class Login_Activity extends Activity {
     }
 
     public void requestCameraAndStorage() {
+        Log.d("login","requestcamera");
         String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         Permissions.check(this, permissions, null, null, new PermissionHandler() {
             @Override
@@ -342,6 +374,7 @@ public class Login_Activity extends Activity {
         });
     }
     public void requestLocation() {
+        Log.d("login","request Loaction");
         String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
         String rationale = "Please provide location permission so that you can ...";
         Permissions.Options options = new Permissions.Options().setRationaleDialogTitle("Info").setSettingsDialogTitle("Warning");
@@ -359,26 +392,28 @@ public class Login_Activity extends Activity {
 
 
     private void requestLocationPermission() {
-
+        Log.d("login","request location permission");
         boolean foreground = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED||
                 ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED;
 
         if (foreground) {
-            boolean background = ActivityCompat.checkSelfPermission(this,
+           /* boolean background = ActivityCompat.checkSelfPermission(getActivity(),
                     Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED;
 
             if (background) {
                 handleLocationUpdates();
             } else {
-                ActivityCompat.requestPermissions(this,
+                ActivityCompat.requestPermissions(getActivity(),
                         new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, REQUEST_CODE_PERMISSIONS);
-            }
+            }*/
         } else {
             ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION,
-                            Manifest.permission.ACCESS_BACKGROUND_LOCATION}, REQUEST_CODE_PERMISSIONS);
+                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION/*,
+                            Manifest.permission.ACCESS_BACKGROUND_LOCATION*/}, REQUEST_CODE_PERMISSIONS);
         }
+        login_layout.setVisibility(View.VISIBLE);
+        permission_layout.setVisibility(View.GONE);
     }
 
     @Override
@@ -402,26 +437,26 @@ public class Login_Activity extends Activity {
                     }
                 }
 
-                if (permissions[i].equalsIgnoreCase(Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
+               /* if (permissions[i].equalsIgnoreCase(Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
                     if (grantResults[i] >= 0) {
                         foreground = true;
                         background = true;
-                        Toast.makeText(this, "Background location permission allowed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Background location location permission allowed", Toast.LENGTH_SHORT).show();
 
                     } else {
-                        Toast.makeText(this, "Background location permission denied", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Background location location permission denied", Toast.LENGTH_SHORT).show();
                     }
 
-                }
+                }*/
             }
 
-            if (foreground) {
+            /*if (foreground) {
                 if (background) {
                     handleLocationUpdates();
                 } else {
                     handleForegroundLocationUpdates();
                 }
-            }
+            }*/
         }
     }
 
@@ -433,7 +468,6 @@ public class Login_Activity extends Activity {
 
     private void handleForegroundLocationUpdates() {
         //handleForeground Location Updates
-
         Toast.makeText(Login_Activity.this,"Start foreground location updates",Toast.LENGTH_SHORT).show();
     }
     public void statusCheck() {

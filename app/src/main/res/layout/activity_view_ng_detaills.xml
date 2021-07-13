@@ -563,6 +563,41 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:visibility="visible"
+                    android:layout_marginHorizontal="15dp"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/tv_rfcdate"
+                        style="@style/row_details"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/_25sdp"
+
+                        android:layout_weight="1"
+                        android:gravity="center"
+
+                        android:text="RFC Date :"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_rfcdate_value"
+                        style="@style/row_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+
+                        android:layout_weight="1"
+                        android:gravity="center"
+
+                        android:singleLine="true"
+                        android:textSize="@dimen/_10sdp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     android:layout_marginHorizontal="15dp"
                     android:visibility="visible"
                     android:weightSum="2">
@@ -915,70 +950,21 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_14sdp"
-                        android:orientation="horizontal"
+                        android:orientation="vertical"
                         android:visibility="visible"
-                        android:weightSum="4">
+                        >
 
                         <ImageView
                             android:id="@+id/iv_homeAddress"
-                            android:layout_width="@dimen/_140sdp"
-                            android:layout_height="@dimen/_80sdp"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_200sdp"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="@dimen/_5sdp"
-                            android:layout_marginRight="@dimen/_5sdp"
-                            android:layout_weight="1"
+
+
                             android:background="@drawable/shape_blue_border"
-                            android:padding="@dimen/_1sdp"
+
                             android:scaleType="fitXY"
                             android:text="Home Address" />
-
-                        <ImageView
-                            android:id="@+id/iv_meterPhoto"
-                            android:layout_width="@dimen/_140sdp"
-                            android:layout_height="@dimen/_80sdp"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="@dimen/_5sdp"
-                            android:layout_marginRight="@dimen/_5sdp"
-                            android:layout_weight="1"
-                            android:background="@drawable/shape_blue_border"
-                            android:padding="@dimen/_1sdp"
-                            android:scaleType="fitXY" />
-
-                        <ImageView
-                            android:id="@+id/iv_installation"
-                            android:layout_width="@dimen/_140sdp"
-                            android:layout_height="@dimen/_80sdp"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="@dimen/_5sdp"
-                            android:layout_marginRight="@dimen/_5sdp"
-                            android:layout_weight="1"
-                            android:background="@drawable/shape_blue_border"
-                            android:padding="@dimen/_1sdp"
-                            android:scaleType="fitXY" />
-
-                        <ImageView
-                            android:id="@+id/iv_serviceCard"
-                            android:layout_width="@dimen/_140sdp"
-                            android:layout_height="@dimen/_80sdp"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="@dimen/_5sdp"
-                            android:layout_marginRight="@dimen/_5sdp"
-                            android:layout_weight="1"
-                            android:background="@drawable/shape_blue_border"
-                            android:padding="@dimen/_1sdp"
-                            android:scaleType="fitXY" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_photo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:orientation="horizontal"
-                        android:visibility="visible"
-
-                        android:weightSum="4">
 
                         <Button
                             android:id="@+id/home_address_btn"
@@ -987,7 +973,7 @@
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/_10sdp"
                             android:layout_marginRight="@dimen/_10sdp"
-                            android:layout_weight="1"
+                            android:layout_marginTop="@dimen/_5sdp"
                             android:background="@drawable/shape_blue_border"
                             android:backgroundTint="@color/rad"
                             android:textSize="@dimen/_8sdp"
@@ -996,6 +982,15 @@
                             android:textColor="@color/white"
                             />
 
+                        <ImageView
+                            android:id="@+id/iv_meterPhoto"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_200sdp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:background="@drawable/shape_blue_border"
+
+                            android:scaleType="fitXY" />
                         <Button
                             android:id="@+id/btn_meterPhoto"
                             android:layout_width="match_parent"
@@ -1003,15 +998,24 @@
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/_10sdp"
                             android:layout_marginRight="@dimen/_10sdp"
-                            android:layout_weight="1"
+                            android:layout_marginTop="@dimen/value_5dp"
                             android:background="@drawable/shape_blue_border"
                             android:backgroundTint="@color/rad"
                             android:textSize="@dimen/_8sdp"
                             android:gravity="center"
                             android:text="Meter Photo"
                             android:textColor="@color/white"
-                              />
+                            />
 
+                        <ImageView
+                            android:id="@+id/iv_installation"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_200sdp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:background="@drawable/shape_blue_border"
+
+                            android:scaleType="fitXY" />
                         <Button
                             android:id="@+id/btn_installation"
                             android:layout_width="match_parent"
@@ -1019,15 +1023,24 @@
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/_10sdp"
                             android:layout_marginRight="@dimen/_10sdp"
-                            android:layout_weight="1"
+                            android:layout_marginTop="@dimen/_5sdp"
                             android:background="@drawable/shape_blue_border"
                             android:backgroundTint="@color/rad"
                             android:textSize="@dimen/_8sdp"
                             android:gravity="center"
                             android:text="Installation"
                             android:textColor="@color/white"
-                             />
+                            />
 
+                        <ImageView
+                            android:id="@+id/iv_serviceCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_200sdp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:background="@drawable/shape_blue_border"
+
+                            android:scaleType="fitXY" />
                         <Button
                             android:id="@+id/btn_serviceCard"
                             android:layout_width="match_parent"
@@ -1035,16 +1048,18 @@
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/_10sdp"
                             android:layout_marginRight="@dimen/_9sdp"
-                            android:layout_weight="1"
+                            android:layout_marginTop="@dimen/_5sdp"
                             android:background="@drawable/shape_blue_border"
                             android:backgroundTint="@color/rad"
                             android:textSize="@dimen/_8sdp"
                             android:gravity="center"
                             android:text="Service card"
                             android:textColor="@color/white"
-                              />
+                            />
 
                     </LinearLayout>
+
+
 
 
                 </LinearLayout>

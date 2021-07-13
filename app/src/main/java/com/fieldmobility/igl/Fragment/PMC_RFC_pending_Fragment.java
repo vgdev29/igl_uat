@@ -202,6 +202,7 @@ public class PMC_RFC_pending_Fragment extends Fragment {
                                 bp_no_item.setRfcVendorName(data_object.getString("rfcVendorName"));
                                 bp_no_item.setZoneCode(data_object.getString("zonecode"));
                                 bp_no_item.setControlRoom(data_object.getString("controlRoom"));
+                                bp_no_item.setIgl_rfcvendor_assigndate(data_object.getString("supervisor_assigndate"));
                                 bpDetails.add(bp_no_item);
                             }
 

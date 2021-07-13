@@ -1,6 +1,7 @@
 package com.fieldmobility.igl.Fragment;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -14,7 +15,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.DefaultRetryPolicy;
@@ -57,6 +60,9 @@ public class TPI_Feasibility_pending_Fragment extends Fragment {
     static String log = "feasibilitypending";
     ArrayList<Bp_No_Item> bpDetails = new ArrayList<>();
     private MaterialDialog materialDialog;
+    ImageView rfc_filter;
+    private Dialog mFilterDialog;
+    private RadioGroup radioGroup;
 
 
     public TPI_Feasibility_pending_Fragment(Activity activity) {
@@ -85,6 +91,8 @@ public class TPI_Feasibility_pending_Fragment extends Fragment {
         top_layout=root.findViewById(R.id.top_layout);
         top_layout.setVisibility(View.GONE);
         list_count=root.findViewById(R.id.list_count);
+        rfc_filter = root.findViewById(R.id.rfc_filter);
+        rfc_filter.setVisibility(View.GONE);
         header_title=root.findViewById(R.id.header_title);
         header_title.setText("TPI");
         mSwipeRefreshLayout = (SwipeRefreshLayout) root.findViewById(R.id.swipeToRefresh);

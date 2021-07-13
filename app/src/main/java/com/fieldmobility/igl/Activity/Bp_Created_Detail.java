@@ -20,12 +20,12 @@ import android.widget.TextView;
 import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.R;
 
-public class New_Regestration_DetailPage extends Activity {
+public class Bp_Created_Detail extends Activity {
 
     ProgressDialog progressDialog;
     SharedPrefs sharedPrefs;
     ImageView back;
-    Button rfc_button,ng_button,tpi_button;
+
     LinearLayout todo_creation;
     String Address,status,sub_status,IGL_Status;
      EditText descreption_edit;
@@ -34,7 +34,7 @@ public class New_Regestration_DetailPage extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.new_regestration_detailpage);
+        setContentView(R.layout.bp_created_detail);
         Layout_Id();
         Implementation_Mentod();
     }
@@ -42,9 +42,7 @@ public class New_Regestration_DetailPage extends Activity {
     private void Layout_Id() {
 
         back=findViewById(R.id.back);
-        tpi_button=findViewById(R.id.tpi_button);
-        rfc_button=findViewById(R.id.rfc_button);
-        ng_button=findViewById(R.id.ng_button);
+
         bp_no_text=findViewById(R.id.bp_no_text);
         address_text=findViewById(R.id.address_text);
         name_txt=findViewById(R.id.name_txt);
@@ -76,15 +74,12 @@ public class New_Regestration_DetailPage extends Activity {
         tpi_status_txt.setText(getIntent().getStringExtra("Customer_type"));
         tpi_date_txt.setText(getIntent().getStringExtra("Lpg_company"));
         resedential_type_txt.setText(getIntent().getStringExtra("Unique_lpg_Id"));
-        tpi_button.setVisibility(View.GONE);
-        rfc_button.setVisibility(View.GONE);
-        ng_button.setVisibility(View.GONE);
+
 
     }
 
     private void Implementation_Mentod() {
-        rfc_button.setVisibility(View.GONE);
-        ng_button.setVisibility(View.GONE);
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,7 +91,7 @@ public class New_Regestration_DetailPage extends Activity {
         todo_creation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(New_Regestration_DetailPage.this,To_Do_Task_Creation.class);
+                Intent intent=new Intent(Bp_Created_Detail.this,To_Do_Task_Creation.class);
                 intent.putExtra("Bp_number",getIntent().getStringExtra("Bp_number"));
                 intent.putExtra("Address",Address);
                 intent.putExtra("Type","1");

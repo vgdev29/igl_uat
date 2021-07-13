@@ -1,32 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+
     <LinearLayout
         android:id="@+id/lCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/category_filters_border"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <RelativeLayout
             android:id="@+id/rl_dialog_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:padding="18dp"
-            >
+            android:padding="18dp">
 
             <ImageButton
                 android:id="@+id/ib_create_cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
                 android:layout_centerVertical="true"
+                android:background="@android:color/transparent"
                 app:srcCompat="@drawable/filter_close_cross_24dp" />
 
             <TextView
@@ -36,61 +34,76 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/ib_create_cancel"
+                android:fontFamily="@font/roboto"
                 android:text="Filter"
                 android:textColor="@color/color_primary_orange_verify"
                 android:textSize="16dp"
-                android:fontFamily="@font/roboto"
                 android:textStyle="normal" />
         </RelativeLayout>
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/radioGroup_Filters"
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/btnLL"
-            android:layout_below="@+id/lCategory"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_25sdp"
 
-            android:background="@color/white"
-            android:padding="20dp"
-            android:paddingLeft="20dp"
-            android:visibility="visible">
+            android:weightSum="1">
 
-            <androidx.appcompat.widget.AppCompatRadioButton
+            <RadioButton
                 android:id="@+id/radioButton_ngWithcalim"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:tag="1"
-                android:text="Claim"
-                android:textColor="@color/color_primary_blue"
-                app:buttonTint="@color/color_primary_blue" />
+                android:checked="false"
+                android:fontFamily="@font/gt_walsheim_web"
+                android:text="Claimed "
+                android:textColor="@color/black_31"
+                android:textSize="@dimen/_16sdp" />
 
-            <androidx.appcompat.widget.AppCompatRadioButton
+            <RadioButton
                 android:id="@+id/radioButton_ngWithUncalim"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-               android:layout_below="@+id/radioButton_ngWithcalim"
-                android:padding="4dp"
-                android:tag="2"
-                android:text="Unclaim"
-                android:textColor="@color/color_primary_blue"
-                app:buttonTint="@color/color_primary_blue" />
+                android:checked="false"
+                android:fontFamily="@font/gt_walsheim_web"
+                android:text="UnClaimed"
+                android:textColor="@color/black_31"
+                android:textSize="@dimen/_16sdp" />
 
-            <androidx.appcompat.widget.AppCompatRadioButton
+            <RadioButton
+                android:id="@+id/radioButton_ngJstart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:fontFamily="@font/gt_walsheim_web"
+                android:text="Job Start"
+                android:textColor="@color/black_31"
+                android:textSize="@dimen/_16sdp" />
+
+            <RadioButton
                 android:id="@+id/radioButton_ngWithPriority"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:tag="3"
-                android:layout_below="@+id/radioButton_ngWithUncalim"
+                android:checked="false"
+                android:fontFamily="@font/gt_walsheim_web"
                 android:text="High Priority"
-                android:textColor="@color/color_primary_blue"
+                android:textColor="@color/black_31"
+                android:textSize="@dimen/_16sdp" />
 
-                app:buttonTint="@color/color_primary_blue" />
-        </RelativeLayout>
+
+        </RadioGroup>
+
+    </LinearLayout>
 
 
     <LinearLayout
@@ -106,8 +119,8 @@
             android:layout_alignParentBottom="true"
             android:layout_weight="1"
             android:background="@drawable/category_filters_border"
-            android:gravity="center"
             android:fontFamily="@font/roboto"
+            android:gravity="center"
             android:padding="7dp"
             android:text="clear"
             android:textAllCaps="false"
@@ -121,10 +134,10 @@
             android:layout_alignParentBottom="true"
             android:layout_weight="1"
             android:background="@color/color_primary_orange_verify"
+            android:fontFamily="@font/roboto"
             android:gravity="center"
             android:padding="7dp"
             android:text="Apply"
-            android:fontFamily="@font/roboto"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_button" />

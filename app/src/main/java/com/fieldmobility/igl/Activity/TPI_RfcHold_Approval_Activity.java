@@ -343,6 +343,8 @@ public class TPI_RfcHold_Approval_Activity extends Activity {
         }
         else if (statcode.equalsIgnoreCase("111")){statcode = "11";}
         materialDialog.show();
+        String url =  Constants.TPI_RFC_HOLD_APPROVAl_DECLINE_CASE2 + "?lead_no"+LEAD_NO+"&bp_no="+BP_NO+"&statcode="+statcode+"&description="+"Approved by TPI";
+        Log.d("tpi hold approve = ","tpi hold url = "+url);
         try {
             MultipartUploadRequest multipartUploadRequest = new
                     MultipartUploadRequest(this, UUID.randomUUID().toString(), Constants.TPI_RFC_HOLD_APPROVAl_DECLINE_CASE2);
@@ -423,6 +425,8 @@ public class TPI_RfcHold_Approval_Activity extends Activity {
         statcode = "2";
 
         materialDialog.show();
+        String url =  Constants.TPI_DECLINE + "?lead_no"+LEAD_NO+"&bp_no="+BP_NO+"&statcode="+statcode+"&description="+declinedescription;
+        Log.d("tpidecline","tpi hold deline url = "+url);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.TPI_DECLINE,
                 new Response.Listener<String>() {
                     @Override

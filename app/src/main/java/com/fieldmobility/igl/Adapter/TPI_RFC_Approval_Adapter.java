@@ -60,7 +60,13 @@ public class TPI_RFC_Approval_Adapter extends RecyclerView.Adapter<TPI_RFC_Appro
     @Override
     public void onBindViewHolder(final TPI_RFC_Approval_Adapter.ViewHolder holder, final int position) {
         final BpDetail Bp_No_array = bp_no_list_array.get(position);
-        holder.date_text.setText(Bp_No_array.getBpDate());
+        if (Bp_No_array.getIgl_rfcvendor_assigndate().equalsIgnoreCase("null")||Bp_No_array.getIgl_rfcvendor_assigndate().equals(null))
+        {
+            holder.date_text.setText("NA");
+        }
+        else{
+            holder.date_text.setText(Bp_No_array.getIgl_rfcvendor_assigndate());
+        }
         holder.bp_no_text.setText(Bp_No_array.getBpNumber());
         holder.user_name_text.setText(Bp_No_array.getFirstName());
         holder.address_text.setText(Bp_No_array.getHouseNo()+" "+Bp_No_array.getFloor()+" "+Bp_No_array.getHouseType()+" "+Bp_No_array.getSociety()+" \n"

@@ -87,7 +87,7 @@ public class TPI_Connection_Lisitng extends Activity implements RFC_Approval_Ada
         new_regestration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(TPI_Connection_Lisitng.this,New_Regestration_Form.class);
+                Intent intent =new Intent(TPI_Connection_Lisitng.this, BP_Creation_Form.class);
                 startActivity(intent);
             }
         });

@@ -280,6 +280,7 @@ public class PMCSI_Approval_Activity extends Activity implements RFC_Approval_Ad
                                 bp_no_item.setClaimFlag(data_object.getString("claimFlag"));
                                 bp_no_item.setJobFlag(data_object.getString("jobFlag"));
                                 bp_no_item.setRfcTpi(data_object.getString("rfcTpi"));
+                                bp_no_item.setIgl_rfcvendor_assigndate(data_object.getString("supervisor_assigndate"));
 
                                 bp_no_array.add(bp_no_item);
 

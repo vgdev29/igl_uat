@@ -106,7 +106,7 @@ public class TPI_Connection_Activity  extends Activity {
     JSONArray jsonArray_SubMaster;
     String TPI_Status_Code,Address,Feasibility_Type;
     TextView bp_no_text,address_text,header_text;
-    String complete_igl_code,complete_igl_code_group,complete_igl_catagory,complete_catid,pipeline_catagory;
+    String complete_igl_code,complete_igl_code_group,complete_igl_catagory,complete_catid,pipeline_catagory,bpno;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -140,6 +140,7 @@ public class TPI_Connection_Activity  extends Activity {
 
         address_text.setText(Address);
         bp_no_text.setText(getIntent().getStringExtra("Bp_number"));
+        bpno = getIntent().getStringExtra("Bp_number");
         CatID_Master=new ArrayList<>();
         Igl_Code_Master=new ArrayList<>();
         Igl_Code_Group_Master=new ArrayList<>();
@@ -249,7 +250,9 @@ public class TPI_Connection_Activity  extends Activity {
                 .progress(true, 0)
                 .show();
         RequestQueue requestQueue= Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest=new StringRequest(Request.Method.GET, Constants.TYPE_MASTER_STATUS+Status_Master+"?status="+TPI_Status_Code, new Response.Listener<String>() {
+
+        Log.d("feas","url status = "+Constants.TYPE_MASTER_STATUS+Status_Master+"?status="+TPI_Status_Code+"&bpno="+bpno);
+        StringRequest stringRequest=new StringRequest(Request.Method.GET, Constants.TYPE_MASTER_STATUS+Status_Master+"?status="+TPI_Status_Code+"&bpno="+bpno, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 materialDialog.dismiss();

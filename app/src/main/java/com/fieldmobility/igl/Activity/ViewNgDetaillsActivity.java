@@ -77,7 +77,7 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
     private NguserListModel ngUserListModel1;
     private String signatureBinary;
     private static final String IMAGE_DIRECTORY = "/signdemo";
-    TextView metermakeValue , meternoValue, metertypeValue, rfcreadingValue,reasonvalue,substatusvalue;
+    TextView metermakeValue , meternoValue, metertypeValue, rfcreadingValue,reasonvalue,substatusvalue , rfcdate_value;
 
 
 
@@ -246,6 +246,7 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
         tv_preferredDateValue = findViewById(R.id.tv_claimDateValue);
         tv_jobstartdateValue = findViewById(R.id.tv_startDateValue);
         tv_ngdate = findViewById(R.id.tv_NgDateValue);
+        rfcdate_value = findViewById(R.id.tv_rfcdate_value);
         signature_button = findViewById(R.id.signature_button);
         ll_ngdone = findViewById(R.id.ll_ngdone);
         ll_nghold = findViewById(R.id.ll_nghold);
@@ -290,6 +291,7 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
         tv_ngdate.setText(nguserListModel.getNg_update_date());
         Log.d("viewNg",nguserListModel.toString());
         tv_houseNoValue.setText(nguserListModel.getHouse_no());
+        rfcdate_value.setText(nguserListModel.getRfc_date());
         tv_societyValue.setText(nguserListModel.getSociety());
         tv_blockValue.setText(nguserListModel.getBlock_qtr());
         tv_areaValue.setText(nguserListModel.getArea());

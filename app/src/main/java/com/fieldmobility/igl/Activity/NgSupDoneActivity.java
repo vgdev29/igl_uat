@@ -70,11 +70,11 @@ public class NgSupDoneActivity extends AppCompatActivity {
     private Button btn_home_address, btn_meterPhoto, btn_installation, btn_serviceCard;
     private ImageView iv_homeAddress, iv_meterPhoto, iv_installation, iv_serviceCard;
 
-    String image_path_HomeAddress, image_path_meterPhoto, image_path_installation, image_path_service_card;
+    String image_path_HomeAddress, image_path_meterPhoto, image_path_installation, image_path_service_card,image_path_signature;
     private TextView tv_startWorkValues, tv_assignedTimeValues, tv_jmrValue, tv_bpValue, tv_initialreadingValue, tv_burnerdetailsValue;
 
-    private Uri filePathHomeAddress, filePathMeterPhoto, filePathInstallation, filePathServiceCard;
-    private Bitmap mBitmapHome, mBitmapmeterPhoto, mBitmapInstallation, mBitmapServiceCard;
+    private Uri filePathHomeAddress, filePathMeterPhoto, filePathInstallation, filePathServiceCard , filePathSignature;
+    private Bitmap mBitmapHome, mBitmapmeterPhoto, mBitmapInstallation, mBitmapServiceCard,mBitmapSignature;
     //private RadioGroup radioGroup;
     private String Type_Of_Status;
     //RadioButton genderradioButton;
@@ -83,7 +83,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
     private String homeAddress_pic_binary, meter_pic_binary, installation_pic_binary, serviceCard_pic_binary, signatureBinary;
     private LinearLayout ll_meterReading;
     private NguserListModel nguserListModel;
-    private String jmrNo, assignDate;
+    private String jmrNo, assignDate,newMob,bpno;
     private String initialReading, burnerDetails, conversationDate;
     private Button btn_viewJmrForm, signature_button;
     private ImageView signature_image;
@@ -96,6 +96,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ng_assignment_details);
         back_button = findViewById(R.id.back);
+        tv_bpValue = findViewById(R.id.tv_bpValues);
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,17 +104,20 @@ public class NgSupDoneActivity extends AppCompatActivity {
             }
         });
         if (getIntent() != null) {
+            bpno = getIntent().getStringExtra("bpno");
             jmrNo = getIntent().getStringExtra("jmrNo");
             assignDate = getIntent().getStringExtra("mAssignDate");
             initialReading = getIntent().getStringExtra("initialReading");
             burnerDetails = getIntent().getStringExtra("burnerDetails");
             conversationDate = getIntent().getStringExtra("conversationDate");
+            newMob = getIntent().getStringExtra("mobile");
             Log.d(log,"date ng update = "+conversationDate);
             nguserListModel = new NguserListModel();
             nguserListModel.setInitial_reading(initialReading);
             nguserListModel.setBurner_details(burnerDetails);
             nguserListModel.setNg_update_date(conversationDate);
             nguserListModel.setJmr_no(jmrNo);
+            nguserListModel.setMobile_no(newMob);
             nguserListModel.setCat_id(getIntent().getStringExtra("catid"));
             nguserListModel.setCatalog(getIntent().getStringExtra("catalog"));
             nguserListModel.setCode(getIntent().getStringExtra("code"));
@@ -151,6 +155,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
         tv_initialreadingValue = findViewById(R.id.tv_initialReadingValues);
         tv_burnerdetailsValue = findViewById(R.id.tv_burnerValues);
         tv_jmrValue.setText(jmrNo);
+        tv_bpValue.setText(bpno);
         tv_initialreadingValue.setText(initialReading);
         tv_burnerdetailsValue.setText(burnerDetails);
 
@@ -221,7 +226,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Signature_Method();
-                Customer_Signature1();
+               User_Signature_Image();
             }
         });
     }
@@ -285,6 +290,8 @@ public class NgSupDoneActivity extends AppCompatActivity {
         Button adhar_button = dialog.findViewById(R.id.adhar_button);
         TextView signature_select = dialog.findViewById(R.id.signature_select);
         TextView image_select = dialog.findViewById(R.id.image_select);
+        TextView nocash = dialog.findViewById(R.id.nopayment_sig);
+        nocash.setVisibility(View.VISIBLE);
         image_select.setVisibility(View.GONE);
         signature_select.setVisibility(View.GONE);
 
@@ -362,6 +369,12 @@ public class NgSupDoneActivity extends AppCompatActivity {
                         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_CUSTOMER_IMAGE_SIGNATURE);
                     }
                 });
+        myAlertDialog.setNegativeButton("Signature",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Customer_Signature1();
+                    }
+                });
 
         myAlertDialog.show();
     }
@@ -397,6 +410,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
         nguserListModel.setMeter_photo(meter_pic_binary);
         nguserListModel.setInstallation_photo(installation_pic_binary);
         nguserListModel.setService_photo(serviceCard_pic_binary);
+        nguserListModel.setCustomer_sign(signatureBinary);
         nguserListModel.setStatus("DP");
 
         materialDialog = new MaterialDialog.Builder(this)
@@ -684,6 +698,36 @@ public class NgSupDoneActivity extends AppCompatActivity {
                     }
                 }
                 break;
+            case PICK_CUSTOMER_IMAGE_SIGNATURE:
+                if (requestCode == PICK_CUSTOMER_IMAGE_SIGNATURE && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
+                    filePathSignature = data.getData();
+                    Log.d(log,"filepathsig= "+filePathSignature);
+                    try {
+
+                        mBitmapSignature = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathSignature);
+                        // imageView.setImageBitmap(bitmap);
+                        Log.d(log,"mBitmapSugnature= "+mBitmapSignature);
+                        //address_image.setImageBitmap(bitmap1);
+                        image_path_signature = getPath(filePathSignature);
+
+                        //  new ImageCompressionAsyncTask(this).execute(image_path_aadhar, getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Silicompressor/images");
+                        Log.e("image_path_aadhar+,", "" + image_path_signature);
+
+
+
+                        signature_image.setImageBitmap(mBitmapSignature);
+                        if (mBitmapSignature != null) {
+
+                            signatureBinary = change_to_binary(mBitmapSignature);
+                            //nguserListModel.setInstallation_photo(installation_pic_binary);
+                            //primaryOrderHeader.setImage_binary(pic_binary);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        Log.d(log,"catch");
+                    }
+                }
+                break;
             case CAMERA_REQUEST_HOME_ADDRESS:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST_HOME_ADDRESS) {
                     File f = new File(getExternalStorageDirectory().toString());
@@ -871,6 +915,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
                     }
                 }
                 break;
+
         }
     }
 

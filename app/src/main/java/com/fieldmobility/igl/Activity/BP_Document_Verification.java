@@ -42,7 +42,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Document_Varification_List extends Activity implements Document_Varification_Adapter.ContactsAdapterListener{
+public class BP_Document_Verification extends Activity implements Document_Varification_Adapter.ContactsAdapterListener{
 
     ProgressDialog progressDialog;
     SharedPrefs sharedPrefs;
@@ -85,7 +85,7 @@ public class Document_Varification_List extends Activity implements Document_Var
         new_regestration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(Document_Varification_List.this,New_Regestration_Form.class);
+                Intent intent =new Intent(BP_Document_Verification.this, BP_Creation_Form.class);
                 startActivity(intent);
             }
         });
@@ -271,7 +271,7 @@ public class Document_Varification_List extends Activity implements Document_Var
                         }
                         //  DesignerToast.Custom(New_BP_No_Listing.this,"Successfully",Gravity.BOTTOM,Toast.LENGTH_SHORT, R.drawable.shape_cornor_radious,15,"#FFFFFF",R.drawable.ic_success, 60, 200);
                         //DesignerToast.Success(New_BP_No_Listing.this, "Successfully", Gravity.BOTTOM, Toast.LENGTH_SHORT);
-                        adapter = new Document_Varification_Adapter(Document_Varification_List.this,bp_no_array,Document_Varification_List.this);
+                        adapter = new Document_Varification_Adapter(BP_Document_Verification.this,bp_no_array, BP_Document_Verification.this);
                         recyclerView.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
                     }

@@ -31,6 +31,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.fieldmobility.igl.Activity.ViewNgDetaillsActivity;
+import com.fieldmobility.igl.Helper.CommonUtils;
 import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.Model.NguserListModel;
 import com.fieldmobility.igl.R;
@@ -79,8 +80,8 @@ public class TPI_NgApproval_Adapter extends RecyclerView.Adapter<TPI_NgApproval_
     @Override
     public void onBindViewHolder(@NonNull NgUserDoneDeclineListViewHolder holder, int position) {
         final NguserListModel ngUserClaimListModel = ngUserClaimList.get(position);
-
-        holder.tv_bpName.setText(ngUserClaimListModel.getJmr_no());
+        holder.tv_dateTime.setText("NG Date- "+ngUserClaimListModel.getNg_update_date());
+        holder.tv_bpName.setText(ngUserClaimListModel.getBp_no());
         holder.tv_address.setText(ngUserClaimListModel.getHouse_no() + " " + ngUserClaimListModel.getFloor() + " " + ngUserClaimListModel.getSociety() + " \n" + ngUserClaimListModel.getBlock_qtr() + " " + ngUserClaimListModel.getStreet() + " " + ngUserClaimListModel.getLandmark() + " " + ngUserClaimListModel.getCity()); holder.tv_dateTime.setText(ngUserClaimListModel.getConversion_date());
         holder.user_name_text.setText(ngUserClaimListModel.getCustomer_name());
         holder.tv_zone.setText(ngUserClaimListModel.getZone());
@@ -109,6 +110,18 @@ public class TPI_NgApproval_Adapter extends RecyclerView.Adapter<TPI_NgApproval_
 
             }
         });*/
+        holder.tv_mobile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                    callIntent.setData(Uri.parse("tel:" + ngUserClaimListModel.getMobile_no()));
+                    mctx.startActivity(callIntent);
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         holder.ngSupervisorinfo_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -370,7 +383,7 @@ public class TPI_NgApproval_Adapter extends RecyclerView.Adapter<TPI_NgApproval_
     }
 
     @Override
-    public Filter getFilter() {
+public Filter    getFilter() {
         return new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence charSequence) {
@@ -379,19 +392,32 @@ public class TPI_NgApproval_Adapter extends RecyclerView.Adapter<TPI_NgApproval_
                     ngUserClaimList = new_ngUserClaimList;
                 } else {
                     List<NguserListModel> filteredList = new ArrayList<>();
-                    for (NguserListModel row : new_ngUserClaimList) {
-                        if (row.getBp_no().toLowerCase().contains(charString.toLowerCase())
-                                || row.getJmr_no().toLowerCase().contains(charString.toLowerCase())
-                                || row.getCustomer_name().toLowerCase().contains(charString.toLowerCase())
-                                || row.getSociety().toLowerCase().contains(charString.toLowerCase())
-                                || row.getArea().toLowerCase().contains(charString.toLowerCase())
-                                || row.getContractor_id().toLowerCase().contains(charString.toLowerCase())
-                                || row.getHouse_no().toLowerCase().contains(charString.toLowerCase())
-                                || row.getCity().toLowerCase().contains(charString.toLowerCase())
-                                || row.getFloor().toLowerCase().contains(charString.toLowerCase())
-                        ) {
-                            filteredList.add(row);
+                    try {
+                        for (NguserListModel row : new_ngUserClaimList) {
+                            if (row.getBp_no().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getJmr_no().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getCustomer_name().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getSociety().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getArea().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getContractor_id().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getHouse_no().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getCity().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getFloor().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getMobile_no().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getControl_room().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getSupervisor_assigned_date().toLowerCase().contains(charString.toLowerCase())
+
+                            ) {
+                                filteredList.add(row);
+                            }
                         }
+                    }
+
+
+
+
+                    catch (Exception e){
+                        CommonUtils.toast_msg(mctx,"Some fields are null");
                     }
                     ngUserClaimList = filteredList;
                 }

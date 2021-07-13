@@ -96,14 +96,14 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
     private boolean startJob;
     private List<NguserListModel> nguserdetails;
     private TextView tv_ngUserName, tv_bp_no, tv_jmr_no, tv_houseNoValue, tv_societyValue, tv_preferredDateValue,
-            tv_blockValue, tv_areaValue, tv_mobileNoValue, tv_alternateNoValue, tv_cityvalue, tv_categoryNameValue, tv_delayDate, tv_floorValue;
+            tv_blockValue, tv_areaValue, tv_alternateNoValue, tv_cityvalue, tv_categoryNameValue, tv_delayDate, tv_floorValue;
     private Button submit_button, picture_button;
 
     private LinearLayout ll_hold, ll_meterReading,ll_ngStatusreason;
     private TextView et_delayDateValue;
     private RadioGroup radioGroup;
 
-    private EditText et_initialReading, et_burnerDetails;
+    private EditText et_initialReading, et_burnerDetails,tv_mobileNoValue;
     private DatePickerDialog pickerDialog_Date;
     private String initialReading, burnerDetails, conversationDate;
     private ImageView hold_image;
@@ -119,7 +119,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
 
     private NguserListModel ngUserListModel;
     private NguserListModel intentngUserListModel;
-    TextView metermakeValue , meternoValue, metertypeValue, rfcreadingValue;
+    TextView metermakeValue , meternoValue, metertypeValue, rfcreadingValue , rfcdate_value;
 
     String log = "nguserdetails";
 
@@ -177,7 +177,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                     // do nothing
                     ll_hold.setVisibility(View.VISIBLE);
                     ll_meterReading.setVisibility(View.GONE);
-                     ll_ngStatusreason.setVisibility(View.VISIBLE);
+                    ll_ngStatusreason.setVisibility(View.VISIBLE);
                     loadResonSpinner();
                     ngUserListModel.setStatus("OP");
                 } else   {
@@ -185,7 +185,6 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                     ll_hold.setVisibility(View.GONE);
                     ll_meterReading.setVisibility(View.VISIBLE);
                     ngUserListModel.setStatus("DP");
-
                 }
             }
             @Override
@@ -243,7 +242,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                             ngUserListModel.setDelay_date(et_delayDateValue.getText().toString().trim());
                             ngUserListModel.setJmr_no(jmrNo);
                             ngUserListModel.setClaim(true);
-
+                            ngUserListModel.setMobile_no(tv_mobileNoValue.getText().toString().trim());
                             ngUserListModel.setCat_id(selected_cat_status);
                             ngUserListModel.setCatalog(selected_catalog_status);
                             ngUserListModel.setCode(selected_code_status);
@@ -260,8 +259,10 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                 } else if (validateDataDone()) {
                     initialReading = et_initialReading.getText().toString().trim();
                     burnerDetails = et_burnerDetails.getText().toString().trim();
+                    String newMob = tv_mobileNoValue.getText().toString().trim();
                     conversationDate = et_conversationDate.getText().toString().trim();
                     Intent intent = new Intent(NgSupUserDetailsActivity.this, NgSupDoneActivity.class);
+                    intent.putExtra("bpno",intentngUserListModel.getBp_no());
                     intent.putExtra("jmrNo", jmrNo);
                     intent.putExtra("mAssignDate", mAssignDate);
                     intent.putExtra("initialReading", initialReading);
@@ -271,7 +272,8 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                     intent.putExtra("catalog",selected_catalog_status);
                     intent.putExtra("code",selected_code_status);
                     intent.putExtra("reason",selected_description_status);
-                    intent.putExtra("substatus",selected_description_substatus);
+                    intent.putExtra("substatus","");
+                    intent.putExtra("mobile",newMob);
                     startActivity(intent);
                 }
 
@@ -526,6 +528,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
         spinner_ngStatusReason = findViewById(R.id.spinner_ngStatusReason);
         ll_hold = findViewById(R.id.ll_hold);
         tv_ngUserName = findViewById(R.id.tv_ngUserName);
+        rfcdate_value = findViewById(R.id.tv_rfcdate_value);
         tv_jmr_no = findViewById(R.id.tv_jmr_no);
         tv_bp_no = findViewById(R.id.tv_bp_no);
         tv_mobileNoValue = findViewById(R.id.tv_mobileNoValue);
@@ -564,9 +567,9 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
         cat_status.clear();
         catalog_status.clear();
         CommonUtils.startProgressBar(NgSupUserDetailsActivity.this,"Loading...");
-        Log.d(log, "spinner master url = " + Api.BASE_URL + "api/statusjmr?group="+"ZLEAD004");
+        Log.d(log, "spinner master url = " + Api.BASE_URL + "api/statusjmr?group="+intentngUserListModel.getCode_group());
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Api.BASE_URL + "api/statusjmr?group="+"ZLEAD004", new com.android.volley.Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Api.BASE_URL + "api/statusjmr?group="+intentngUserListModel.getCode_group(), new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                CommonUtils.dismissProgressBar(NgSupUserDetailsActivity.this);
@@ -615,9 +618,9 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
         cat_substatus.clear();
         catalog_substatus.clear();
         CommonUtils.startProgressBar(NgSupUserDetailsActivity.this,"Loading...");
-        Log.d(log, "spinner master url = " + Api.BASE_URL + "api/substatusjmr?group="+"ZLEAD004");
+        Log.d(log, "spinner master url = " + Api.BASE_URL + "api/substatusjmr?group="+intentngUserListModel.getCode_group());
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Api.BASE_URL + "api/substatusjmr?group="+"ZLEAD004", new com.android.volley.Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Api.BASE_URL + "api/substatusjmr?group="+intentngUserListModel.getCode_group(), new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 CommonUtils.dismissProgressBar(NgSupUserDetailsActivity.this );
@@ -668,6 +671,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
         tv_houseNoValue.setText(nguserListModel.getHouse_no());
         tv_societyValue.setText(nguserListModel.getSociety());
         tv_blockValue.setText(nguserListModel.getBlock_qtr());
+        rfcdate_value.setText(nguserListModel.getRfc_date());
         tv_areaValue.setText(nguserListModel.getArea());
         tv_mobileNoValue.setText(nguserListModel.getMobile_no());
         tv_alternateNoValue.setText(nguserListModel.getAlt_number());
@@ -711,6 +715,19 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
              isDataValid = false;
              return isDataValid;
          }
+         else if (tv_mobileNoValue.getText().toString().trim()==null||tv_mobileNoValue.getText().toString().trim().equalsIgnoreCase("null")||tv_mobileNoValue.getText().toString().trim().length()<10 ||tv_mobileNoValue.getText().toString().trim().isEmpty()) {
+             tv_mobileNoValue.setError("Enter valid Mobile no.");
+             Toast.makeText(NgSupUserDetailsActivity.this, "Enter valid Mobile no.", Toast.LENGTH_SHORT).show();
+             isDataValid = false;
+             return isDataValid;
+         }
+         else if (tv_mobileNoValue.getText().toString().trim().length()>10)
+         {
+             tv_mobileNoValue.setError("Mobile no. in valid");
+             Toast.makeText(NgSupUserDetailsActivity.this, " Invalid Mobile no.", Toast.LENGTH_SHORT).show();
+             isDataValid = false;
+             return isDataValid;
+         }
          else {
             return isDataValid;
         }
@@ -720,14 +737,20 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
         boolean isDataValid = true;
         double initial_reading;
         double rfc_reading;
+        double peak_reading;
+        int burner_reading  ;
         try {
               initial_reading  = Double.parseDouble(et_initialReading.getText().toString().trim());
               rfc_reading = Double.parseDouble(intentngUserListModel.getRfc_initial_reading());
+              peak_reading = rfc_reading+2.0;
+              burner_reading  = Integer.parseInt(et_burnerDetails.getText().toString().trim());
               Log.d(log,"rfc reading = "+rfc_reading+" initial reading = "+initialReading);
         }
         catch (Exception e){
             initial_reading = 0.0;
             rfc_reading = 0.0;
+            peak_reading = rfc_reading+2.0;
+            burner_reading = 0;
         }
 
          if (TextUtils.isEmpty(et_initialReading.getText().toString().trim())) {
@@ -736,7 +759,26 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
             return isDataValid;
         }
          else if (rfc_reading>initial_reading) {
-             et_initialReading.setError("Initial reading can't be greater than RFC reading");
+             et_initialReading.setError("Initial reading can't be smaller than RFC reading");
+             isDataValid = false;
+             return isDataValid;
+         }
+         else if (initial_reading>peak_reading) {
+             et_initialReading.setError("Unexpected Initial reading");
+             CommonUtils.toast_msg(this,"Unexpected increase in Initial reading");
+             isDataValid = false;
+             return isDataValid;
+         }
+         else if (tv_mobileNoValue.getText().toString().trim()==null||tv_mobileNoValue.getText().toString().trim().equalsIgnoreCase("null")||tv_mobileNoValue.getText().toString().trim().length()<10 ||tv_mobileNoValue.getText().toString().trim().isEmpty()) {
+             tv_mobileNoValue.setError("Enter valid Mobile no.");
+             Toast.makeText(NgSupUserDetailsActivity.this, "Enter valid Mobile no.", Toast.LENGTH_SHORT).show();
+             isDataValid = false;
+             return isDataValid;
+         }
+         else if (tv_mobileNoValue.getText().toString().trim().length()>10)
+         {
+             tv_mobileNoValue.setError("Mobile no. in valid");
+             Toast.makeText(NgSupUserDetailsActivity.this, " Invalid Mobile no.", Toast.LENGTH_SHORT).show();
              isDataValid = false;
              return isDataValid;
          }
@@ -745,7 +787,14 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
             et_burnerDetails.setError("Field can't be empty");
             isDataValid = false;
             return isDataValid;
-        } else if (TextUtils.isEmpty(et_conversationDate.getText().toString().trim())) {
+        }
+         else if (burner_reading>6) {
+             et_burnerDetails.setError("Burner reading can't be greater than 6");
+             Toast.makeText(NgSupUserDetailsActivity.this, "Burner reading can't be greater than 6", Toast.LENGTH_SHORT).show();
+             isDataValid = false;
+             return isDataValid;
+         }
+         else if (TextUtils.isEmpty(et_conversationDate.getText().toString().trim())) {
             et_conversationDate.setError("Field can't be empty");
             isDataValid = false;
             return isDataValid;

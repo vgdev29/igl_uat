@@ -64,6 +64,15 @@ public class Bp_No_Item implements Serializable {
     String address_image;
     String customer_image;
     String owner_image;
+    String igl_rfcvendor_assigndate;
+
+    public String getIgl_rfcvendor_assigndate() {
+        return igl_rfcvendor_assigndate;
+    }
+
+    public void setIgl_rfcvendor_assigndate(String igl_rfcvendor_assigndate) {
+        this.igl_rfcvendor_assigndate = igl_rfcvendor_assigndate;
+    }
 
     public String getId_image() {
         return id_image;

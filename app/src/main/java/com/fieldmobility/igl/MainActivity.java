@@ -52,7 +52,7 @@ import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.Helper.CustomBottomNavigationView1;
 import com.fieldmobility.igl.Helper.LocationMonitoringService;
 import com.fieldmobility.igl.Helper.SharedPrefs;
-import com.fieldmobility.igl.tracker.MyIntentService;
+//import com.fieldmobility.igl.tracker.MyIntentService;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
     // as google doc says
     // Handler for incoming messages from the service.
-    private IncomingMessageHandler mHandler;
+   // private IncomingMessageHandler mHandler;
     private TextView locationMsg;
     Button btnPermissions;
     Handler handler_lat_log=new Handler();
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         customBottomNavigationView1.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         loadFragment(new HomeFragment());
 
-        mHandler = new IncomingMessageHandler();
+    //    mHandler = new IncomingMessageHandler();
 
         handler_lat_log.postDelayed(new Runnable() {
             @Override
@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
                    //timer.cancel();
                     timer.purge();
                     doAsynchronousTask.cancel();
-                   stopService(new Intent(MainActivity.this, MyIntentService.class));
+                //   stopService(new Intent(MainActivity.this, MyIntentService.class));
                 } catch (NullPointerException e) {
                     e.printStackTrace();
                 }
@@ -243,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
                 handler.post(new Runnable() {
                     public void run() {
                         try {
-                            TPI_Approve(Latitude,Longitude);
+                           // TPI_Approve(Latitude,Longitude);
                         } catch (Exception e) {
                             // TODO Auto-generated catch block
                         }
@@ -254,11 +254,11 @@ public class MainActivity extends AppCompatActivity {
         timer.schedule(doAsynchronousTask, 0, 300000); //execute in every 50000 ms
     }
 
-    public void TPI_Approve(final String latitude, final String longitude) {
-        /*materialDialog = new MaterialDialog.Builder(getActivity())
+    /*public void TPI_Approve(final String latitude, final String longitude) {
+        *//*materialDialog = new MaterialDialog.Builder(getActivity())
                 .content("Please wait....")
                 .progress(true, 0)
-                .show();*/
+                .show();*//*
         String login_request = "login_request";
         StringRequest jr = new StringRequest(Request.Method.POST, Constants.UserTracking,
                 new Response.Listener<String>() {
@@ -312,7 +312,7 @@ public class MainActivity extends AppCompatActivity {
         jr.setRetryPolicy(new DefaultRetryPolicy(20 * 10000, 20, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         jr.setTag(login_request);
         AppController.getInstance().addToRequestQueue(jr, login_request);
-    }
+    }*/
     @Override
     public void onResume() {
         super.onResume();
@@ -444,7 +444,7 @@ public class MainActivity extends AppCompatActivity {
         mAlreadyStartedService = false;
         super.onDestroy();
     }
-    class IncomingMessageHandler extends Handler {
+    /*class IncomingMessageHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
             Log.i(TAG, "handleMessage..." + msg.toString());
@@ -462,7 +462,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         }
-    }
+    }*/
 
     private void requestLocationPermission() {
         boolean foreground = ContextCompat.checkSelfPermission(this,
@@ -470,19 +470,19 @@ public class MainActivity extends AppCompatActivity {
                 ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED;
 
         if (foreground) {
-            boolean background = ActivityCompat.checkSelfPermission(this,
-                    Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED;
+            /*boolean background = ActivityCompat.checkSelfPermission(this,
+                    Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED;*/
 
-            if (background) {
+           /* if (background) {
                 handleLocationUpdates();
             } else {
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, REQUEST_CODE_PERMISSIONS);
-            }
+            }*/
         } else {
             ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION,
-                            Manifest.permission.ACCESS_BACKGROUND_LOCATION}, REQUEST_CODE_PERMISSIONS);
+                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION/*,
+                            Manifest.permission.ACCESS_BACKGROUND_LOCATION*/}, REQUEST_CODE_PERMISSIONS);
         }
     }
 
@@ -507,7 +507,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
-                if (permissions[i].equalsIgnoreCase(Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
+                /*if (permissions[i].equalsIgnoreCase(Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
                     if (grantResults[i] >= 0) {
                         foreground = true;
                         background = true;
@@ -517,35 +517,35 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(this, "Background location location permission denied", Toast.LENGTH_SHORT).show();
                     }
 
-                }
+                }*/
             }
 
-            if (foreground) {
+            /*if (foreground) {
                 if (background) {
                     handleLocationUpdates();
                 } else {
                     handleForegroundLocationUpdates();
                 }
-            }
+            }*/
         }
     }
 
-    private void handleLocationUpdates() {
+    /*private void handleLocationUpdates() {
         //foreground and background
         Intent startServiceIntent = new Intent(MainActivity.this, MyIntentService.class);
         Messenger messengerIncoming = new Messenger(mHandler);
         startServiceIntent.putExtra(MESSENGER_INTENT_KEY, messengerIncoming);
        startService(startServiceIntent);
         Toast.makeText(MainActivity.this,"Start Foreground and Background Location Updates",Toast.LENGTH_SHORT).show();
-    }
+    }*/
 
-    private void handleForegroundLocationUpdates() {
+   /* private void handleForegroundLocationUpdates() {
         //handleForeground Location Updates
         Intent startServiceIntent = new Intent(MainActivity.this, MyIntentService.class);
         Messenger messengerIncoming = new Messenger(mHandler);
         startServiceIntent.putExtra(MESSENGER_INTENT_KEY, messengerIncoming);
         startService(startServiceIntent);
         Toast.makeText(MainActivity.this,"Start foreground location updates",Toast.LENGTH_SHORT).show();
-    }
+    }*/
 
 }

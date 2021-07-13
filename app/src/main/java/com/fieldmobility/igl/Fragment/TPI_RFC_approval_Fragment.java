@@ -1,6 +1,7 @@
 package com.fieldmobility.igl.Fragment;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -60,6 +63,11 @@ public class TPI_RFC_approval_Fragment extends Fragment {
     LinearLayout top_layout;
     static String log = "rfcapproval";
     ArrayList<BpDetail> bpDetails = new ArrayList<>();
+    ImageView rfc_filter;
+    private Dialog mFilterDialog;
+    private RadioGroup radioGroup;
+
+
     public TPI_RFC_approval_Fragment(Activity activity) {
       this.context = activity;
     }
@@ -86,7 +94,8 @@ public class TPI_RFC_approval_Fragment extends Fragment {
         top_layout=root.findViewById(R.id.top_layout);
         top_layout.setVisibility(View.GONE);
         list_count=root.findViewById(R.id.list_count);
-
+        rfc_filter = root.findViewById(R.id.rfc_filter);
+        rfc_filter.setVisibility(View.GONE);
         header_title=root.findViewById(R.id.header_title);
         header_title.setText("TPI");
 
@@ -191,6 +200,8 @@ public class TPI_RFC_approval_Fragment extends Fragment {
                                 bp_no_item.setRfcTpi(data_object.getString("rfcTpi"));
                                 bp_no_item.setZoneCode(data_object.getString("zonecode"));
                                 bp_no_item.setControlRoom(data_object.getString("controlRoom"));
+                                bp_no_item.setIgl_rfcvendor_assigndate(data_object.getString("supervisor_assigndate"));
+
                                 bpDetails.add(bp_no_item);
                             }
 

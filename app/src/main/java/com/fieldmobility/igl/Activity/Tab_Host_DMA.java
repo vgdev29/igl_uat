@@ -39,12 +39,12 @@ public class Tab_Host_DMA extends TabActivity {
         //Setting up tab 1 name.
         TabMenu1.setIndicator("New Registration");
         //Set tab 1 activity to tab 1 menu.
-        TabMenu1.setContent(new Intent(this, New_BP_No_Listing.class));
+        TabMenu1.setContent(new Intent(this, BP_No_Listing.class));
 
         //Setting up tab 2 name.
         TabMenu2.setIndicator("Document Verify");
         //Set tab 3 activity to tab 1 menu.
-        TabMenu2.setContent(new Intent(this, Document_Varification_List.class));
+        TabMenu2.setContent(new Intent(this, BP_Document_Verification.class));
 
 
         TabHostWindow.addTab(TabMenu1);

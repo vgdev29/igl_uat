@@ -9,7 +9,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
 import android.graphics.Bitmap;
@@ -42,9 +41,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -66,6 +62,8 @@ import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.R;
 import com.iceteck.silicompressorr.SiliCompressor;
 import com.kyanogen.signatureview.SignatureView;
+import com.nabinbhandari.android.permissions.PermissionHandler;
+import com.nabinbhandari.android.permissions.Permissions;
 
 import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.ServerResponse;
@@ -93,59 +91,58 @@ import java.util.UUID;
 
 import static android.os.Environment.getExternalStorageDirectory;
 
-public class New_Regestration_Form extends Activity implements AdapterView.OnItemSelectedListener{
-
+public class BP_Creation_Form extends Activity implements AdapterView.OnItemSelectedListener{
     MaterialDialog materialDialog;
-    ImageView adhar_image,address_image,signature_image;
-    Button signature_button,adhar_button,address_button,viewpdf_button;
-    EditText fullname,middle_name,lastname,mobile_no,email_id,aadhaar_no,city_reasion,area,society,landmark,house_type,house_no,block_tower,
-            floor,street_road,pincode,lpg_company,lpg_distributer,lpg_consumer,unique_id_no,ownar_name_no,chequeno_edit,chequedate_edit,drawnon_edit,amount_edit,search_team,language_edit;
+    ImageView id_imageView, address_imageView, customer_signature_imageview , owner_signature_imageview;
+    Button customer_signature_button, id_button,address_button,viewpdf_button;
+    EditText fullname,middle_name,lastname,mobile_no,email_id,aadhaar_no,landmark,house_no,pincode,lpg_distributer,lpg_consumer,unique_id_no,ownar_name_no,chequeno_edit,chequedate_edit,drawnon_edit,amount_edit;
     Button submit_button;
     SharedPrefs sharedPrefs;
     RadioGroup radioGroup;
     RadioButton genderradioButton;
     Bitmap bitmap,bitmap1;
     Button clear, save;
-    SignatureView signatureView,ownar_signature_view;
-    String Customer_Signature_path ,signature_path,ownar_name,customer_image_select;
-    private final int PICK_IMAGE_REQUEST = 1;
+
+    String owner_signature_path,ownar_name, customer_signature_path;
+    private final int PICK_IMAGE_REQUEST_ID = 1;
     private final int PICK_IMAGE_REQUEST_ADDRESS = 3;
-    private final int PICK_OWNER_IMAGE_REQUEST_ADDRESS = 4;
-    private final int PICK_CUSTOMER_IMAGE_SIGNATURE = 5;
-    protected static final int CAMERA_REQUEST = 200;
-    protected static final int CAMERA_REQUEST_ADDRESS = 201;
-    protected static final int CAMERA_OWNER_REQUEST_ADDRESS = 202;
-    private static final String IMAGE_DIRECTORY = "/signdemo";
-    Spinner spinner1,spinner2;
-    private Uri filePath_aadhaar,filePath_address,filePath_owner,filePath_customer;
-    String image_path_aadhar,image_path_address,owner_image_select;
+    static final int CAMERA_REQUEST_ID = 200;
+    static final int CAMERA_REQUEST_ADDRESS = 201;
+    static final int CAMERA_OWNER_SIGNATURE = 4;
+    static final int CAMERA_CUSTOMER_SIGNATURE = 5;
+
+    static final String IMAGE_DIRECTORY = "/signdemo";
+    Spinner idproof_Spinner, address_spinner;
+    private Uri filePathUri_id, filePathUri_address, filePathUri_owner, filePathUri_customer;
+    String image_path_id,image_path_address,owner_image_select;
     String pdf_file_path;
     ImageView back;
     Spinner spinner_city;
-    ArrayList<String> CityName;
-    ArrayList<String> CityId;
-    ArrayList<String> CityName1;
-    ArrayList<String> CityId1;
-    ArrayList<String> Area;
-    ArrayList<String> Area1;
-    ArrayList<String> Area_ID;
-    ArrayList<String> Area_ID1;
-    ArrayList<String>Society;
-    ArrayList<String>Society1;
-    ArrayList<String>Landmark;
-    ArrayList<String> Customer_Type;
-    ArrayList<String> Customer_Type1;
-    ArrayList<String> House_type_name;
-    ArrayList<String> House_type_name1;
-    ArrayList<String> Floor_name;
-    ArrayList<String> Floor_name1;
-    ArrayList<String> Block_tower_name;
-    ArrayList<String> Block_tower_name1;
-    ArrayList<String> Street_road_name;
-    ArrayList<String> Street_road_name1;
-    ArrayList<String> Lpg_company_name;
-    ArrayList<String> Street_road_type_name;
-    ArrayList<String> Block_tower_type_name;
+    ArrayList<String> CityName = new ArrayList<>();
+    ArrayList<String> CityId = new ArrayList<>();
+    ArrayList<String> CityName1 = new ArrayList<>();
+    ArrayList<String> CityId1 = new ArrayList<>();
+    ArrayList<String> Area = new ArrayList<>();
+    ArrayList<String> Area1 = new ArrayList<>();
+    ArrayList<String> Area_ID = new ArrayList<>();
+    ArrayList<String> Area_ID1 = new ArrayList<>();
+    ArrayList<String>Society = new ArrayList<>();
+    ArrayList<String>Society1 = new ArrayList<>();
+    ArrayList<String>Landmark = new ArrayList<>();
+    ArrayList<String> Customer_Type = new ArrayList<>();
+    ArrayList<String> Customer_Type1 = new ArrayList<>();
+    ArrayList<String> House_type_name = new ArrayList<>();
+    ArrayList<String> House_type_name1 = new ArrayList<>();
+    ArrayList<String> Floor_name = new ArrayList<>();
+    ArrayList<String> Floor_name1 = new ArrayList<>();
+    ArrayList<String> Block_tower_name = new ArrayList<>();
+    ArrayList<String> Block_tower_name1 = new ArrayList<>();
+    ArrayList<String> Street_road_name = new ArrayList<>();
+    ArrayList<String> Street_road_name1 = new ArrayList<>();
+    ArrayList<String> Lpg_company_name = new ArrayList<>();
+    ArrayList<String> Street_road_type_name = new ArrayList<>();
+    ArrayList<String> Block_tower_type_name = new ArrayList<>();
+
     String id_proof,address_proof,Type_Of_Owner;
     String city_id,city_name,customer_type,area_name,area_Id,soceity_name,house_type_name,floor_name,block_tower_name,street_road_name,lpg_company_name,street_road_type_name,block_tower_type_name;
     Spinner spinner_customertype,spinner_area,spinner_society,spinner_house_type,spinner_floor,spinner_block_tower,spinner_street_road,spinner_lpg_company;
@@ -159,53 +156,23 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
     DatePickerDialog pickerDialog_Date;
     String date_select;
     String emailPattern = "@[A-Z][a-z]+\\.+";
+    CheckBox undertaking_gpa , undertaking_owner, address_issue,multiple_floor;
+    LinearLayout ll_ownersig;
+    Button owner_sign_button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.new_regestration_form);
+        setContentView(R.layout.bp_creation_form);
         sharedPrefs=new SharedPrefs(this);
-        CityName=new ArrayList<>();
-        CityId=new ArrayList<>();
-        CityName1=new ArrayList<>();
-        CityId1=new ArrayList<>();
-        Area=new ArrayList<>();
-        Area_ID=new ArrayList<>();
-        Area1=new ArrayList<>();
-        Area_ID1=new ArrayList<>();
-        Society=new ArrayList<>();
-        Society1=new ArrayList<>();
-        Landmark=new ArrayList<>();
-        Customer_Type=new ArrayList<>();
-        Customer_Type1=new ArrayList<>();
-        House_type_name=new ArrayList<>();
-        House_type_name1=new ArrayList<>();
-        Floor_name=new ArrayList<>();
-        Floor_name1=new ArrayList<>();
-        Block_tower_name=new ArrayList<>();
-        Block_tower_name1=new ArrayList<>();
-        Street_road_name=new ArrayList<>();
-        Street_road_name1=new ArrayList<>();
-        Lpg_company_name=new ArrayList<>();
-        Street_road_type_name=new ArrayList<>();
-        Block_tower_type_name=new ArrayList<>();
-
         fullname=findViewById(R.id.fullname);
         middle_name=findViewById(R.id.middle_name);
         lastname=findViewById(R.id.lastname);
         mobile_no=findViewById(R.id.mobile_no);
         email_id=findViewById(R.id.email_id);
         aadhaar_no=findViewById(R.id.aadhaar_no);
-        city_reasion=findViewById(R.id.city_reasion);
-        area=findViewById(R.id.area);
-        society=findViewById(R.id.society);
         landmark=findViewById(R.id.landmark);
-        house_type=findViewById(R.id.house_type);
         house_no=findViewById(R.id.house_no);
-        block_tower=findViewById(R.id.block_tower);
-        floor=findViewById(R.id.floor);
-        street_road=findViewById(R.id.street_road);
         pincode=findViewById(R.id.pincode);
-        lpg_company=findViewById(R.id.lpg_company);
         lpg_distributer=findViewById(R.id.lpg_distributer_edit);
         lpg_consumer=findViewById(R.id.lpg_consumer_edit);
         unique_id_no=findViewById(R.id.unique_id_no_edit);
@@ -213,19 +180,17 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
         chequedate_edit=findViewById(R.id.chequedate_edit);
         drawnon_edit=findViewById(R.id.drawnon_edit);
         amount_edit=findViewById(R.id.amount_edit);
-        search_team=findViewById(R.id.search_team);
-        language_edit=findViewById(R.id.language_edit);
         submit_button=findViewById(R.id.submit_button);
-        spinner1 = (Spinner) findViewById(R.id.spinner1);
-        spinner2 = (Spinner) findViewById(R.id.spinner2);
-        adhar_image=findViewById(R.id.adhar_image);
-        address_image=findViewById(R.id.address_image);
-        signature_image=findViewById(R.id.signature_image);
-        signature_button=findViewById(R.id.signature_button);
-        adhar_button=findViewById(R.id.adhar_button);
+        idproof_Spinner = (Spinner) findViewById(R.id.spinner1);
+        address_spinner = (Spinner) findViewById(R.id.spinner2);
+        id_imageView =findViewById(R.id.adhar_image);
+        address_imageView =findViewById(R.id.address_image);
+        customer_signature_imageview =findViewById(R.id.signature_image);
+        owner_signature_imageview = findViewById(R.id.owner_signature_image);
+        customer_signature_button =findViewById(R.id.signature_button);
+        id_button =findViewById(R.id.adhar_button);
         address_button=findViewById(R.id.address_button);
         viewpdf_button=findViewById(R.id.viewpdf_button);
-
         spinner_city=(Spinner)findViewById(R.id.spinner_city);
         spinner_area=(Spinner)findViewById(R.id.spinner_area);
         spinner_society=(Spinner)findViewById(R.id.spinner_society);
@@ -233,7 +198,6 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
         spinner_floor=(Spinner)findViewById(R.id.spinner_floor);
         spinner_block_tower=(Spinner)findViewById(R.id.spinner_block_tower);
         spinner_street_road=(Spinner)findViewById(R.id.spinner_street_road);
-
         spinner_block_tower_type=(Spinner)findViewById(R.id.spinner_block_tower_type);
         spinner_street_road_type=(Spinner)findViewById(R.id.spinner_street_road_type);
         spinner_customertype=(Spinner)findViewById(R.id.spinner_customertype);
@@ -241,10 +205,19 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
         back=findViewById(R.id.back);
         checkBox_term_cond=findViewById(R.id.checkbox);
         checkbox_text=findViewById(R.id.checkbox_text);
-       Click_Event();
+        undertaking_gpa = findViewById(R.id.undertaking_gpa);
+        undertaking_owner = findViewById(R.id.undertaking_owner);
+        multiple_floor = findViewById(R.id.multiple_floor);
+        address_issue = findViewById(R.id.address_issue);
+        ll_ownersig = findViewById(R.id.ll_ownersig);
+        owner_sign_button = findViewById(R.id.owner_signature_button);
+        checkPermission();
+        Click_Event();
+        loadSpinnerData();
     }
 
     private void Click_Event() {
+
         Type_Of_Owner="Owner";
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -252,17 +225,22 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
                 finish();
             }
         });
-        signature_button.setOnClickListener(new View.OnClickListener() {
+        customer_signature_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // Signature_Method();
-                Customer_Signature1();
+               select_CustomerSignature_Method();
             }
         });
-        adhar_button.setOnClickListener(new View.OnClickListener() {
+        owner_sign_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                select_OwnerSignature_Method();
+            }
+        });
+        id_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectImage_aadhaar();
+                selectImage_id();
             }
         });
         address_button.setOnClickListener(new View.OnClickListener() {
@@ -272,23 +250,7 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
             }
         });
 
-        boolean permissionGranted = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
-        if(permissionGranted) {
 
-            try {
-            } catch (RuntimeException e) {
-                e.printStackTrace();
-            } finally {
-            }
-        } else {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_REQUEST);
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_REQUEST_ADDRESS);
-            try {
-            } catch (RuntimeException e) {
-                e.printStackTrace();
-            } finally {
-            }
-        }
         radioGroup = (RadioGroup)findViewById(R.id.radioGroup);
         int selectedId = radioGroup.getCheckedRadioButtonId();
         genderradioButton = (RadioButton)findViewById(selectedId);
@@ -296,17 +258,17 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.owner:
-                        //Toast.makeText(New_Regestration_Form.this, "Type", Toast.LENGTH_LONG).show();
                         Type_Of_Owner="Owner";
+                        ll_ownersig.setVisibility(View.GONE);
                         break;
                     case R.id.rents:
-
                         Type_Of_Owner="Rented";
-                        Ownar_Signature();
+                        ll_ownersig.setVisibility(View.VISIBLE);
                         break;
                 }
             }
         });
+
         List<String> list = new ArrayList<String>();
         list.add("ELECTRICITY BILL");
         list.add("WATER BILL");
@@ -316,39 +278,43 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
         list.add("ANY OTHER");
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner1.setAdapter(dataAdapter);
+        idproof_Spinner.setAdapter(dataAdapter);
+
         List<String> list1 = new ArrayList<String>();
         list1.add("AADHAAR CARD");
         list1.add("DRIVING LICENCE");
         list1.add("ANY OTHER");
         ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, list1);
         dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner2.setAdapter(dataAdapter1);
-        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        address_spinner.setAdapter(dataAdapter1);
+
+        idproof_Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                 id_proof=  spinner1.getItemAtPosition(spinner1.getSelectedItemPosition()).toString();
+                 id_proof=  idproof_Spinner.getItemAtPosition(idproof_Spinner.getSelectedItemPosition()).toString();
                 if(id_proof.equals("ANY OTHER")){
-                    Edit_text();
+
                 }
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
-        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        address_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                 address_proof=  spinner2.getItemAtPosition(spinner2.getSelectedItemPosition()).toString();
+                 address_proof=  address_spinner.getItemAtPosition(address_spinner.getSelectedItemPosition()).toString();
                 if(address_proof.equals("ANY OTHER")){
-                    Edit_text();
+
                 }
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
-        loadSpinnerData();
+
+
+
         spinner_city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
@@ -478,6 +444,7 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
+
         spinner_street_road_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
@@ -497,7 +464,6 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
         ArrayAdapter<String> spinner_block_tower_Adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Block_tower_type_name);
         spinner_block_tower_Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_block_tower_type.setAdapter(spinner_block_tower_Adapter);
-
         Street_road_type_name.add("");
         Street_road_type_name.add("STREET");
         Street_road_type_name.add("ROAD");
@@ -506,19 +472,8 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
         street_road_type_Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_street_road_type.setAdapter(street_road_type_Adapter);
 
-        viewpdf_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (checkPermission()) {
-                checkPermission();
-            } else {
-                requestPermission();
-            }
-        } else {
-        }
+
+
         String first = "I agree to the ";
         String second = "<font color='#EE0000'> Terms and conditions</font>";
         String third = " of PNG registration.";
@@ -526,7 +481,7 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
         checkbox_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             Intent intent =new Intent(New_Regestration_Form.this,WebView_Activity.class);
+             Intent intent =new Intent(BP_Creation_Form.this,WebView_Activity.class);
              startActivity(intent);
 
             }
@@ -536,11 +491,11 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     checkBox_term_cond.setChecked(true);
-                    Toast.makeText(New_Regestration_Form.this, "You checked the checkbox!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BP_Creation_Form.this, "You checked the checkbox!", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     checkBox_term_cond.setChecked(false);
-                    Toast.makeText(New_Regestration_Form.this, "You unchecked the checkbox!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BP_Creation_Form.this, "You unchecked the checkbox!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -554,16 +509,12 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
                         }
 
                     } else {
-                        Toast.makeText(New_Regestration_Form.this, "Please tick to accept Tearm & Condition", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BP_Creation_Form.this, "Please tick to accept Tearm & Condition", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
 
-       /* Date c = Calendar.getInstance().getTime();
-        System.out.println("Current time => " + c);
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        date_select = df.format(c);
-        start_date_text.setText(date_select);*/
+
         chequedate_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -573,15 +524,13 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
                 int year = cldr.get(Calendar.YEAR);
                 // date picker dialog
 
-                pickerDialog_Date = new DatePickerDialog(New_Regestration_Form.this,
+                pickerDialog_Date = new DatePickerDialog(BP_Creation_Form.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-
                                 int month = monthOfYear + 1;
                                 String formattedMonth = "" + month;
                                 String formattedDayOfMonth = "" + dayOfMonth;
-
                                 if(month < 10){
 
                                     formattedMonth = "0" + month;
@@ -600,7 +549,7 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
         });
     }
 
-    private void selectImage_aadhaar() {
+    private void selectImage_id() {
         AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
         myAlertDialog.setTitle("Upload Pictures Option");
         myAlertDialog.setMessage("How do you want to set your picture?");
@@ -610,7 +559,7 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
                         Intent intent = new Intent();
                         intent.setType("image/*");
                         intent.setAction(Intent.ACTION_GET_CONTENT);
-                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_ID);
                     }
                 });
         myAlertDialog.setNegativeButton("Camera",
@@ -618,10 +567,10 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
                     public void onClick(DialogInterface arg0, int arg1) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                         File f = new File(getExternalStorageDirectory(), "temp.jpg");
-                        Uri photoURI = FileProvider.getUriForFile(New_Regestration_Form.this, getApplicationContext().getPackageName() + ".provider", f);
+                        Uri photoURI = FileProvider.getUriForFile(BP_Creation_Form.this, getApplicationContext().getPackageName() + ".provider", f);
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                        startActivityForResult(intent, CAMERA_REQUEST);
+                        startActivityForResult(intent, CAMERA_REQUEST_ID);
                     }
                 });
         myAlertDialog.show();
@@ -645,7 +594,7 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
                     public void onClick(DialogInterface arg0, int arg1) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                         File f = new File(getExternalStorageDirectory(), "temp.jpg");
-                        Uri photoURI = FileProvider.getUriForFile(New_Regestration_Form.this, getApplicationContext().getPackageName() + ".provider", f);
+                        Uri photoURI = FileProvider.getUriForFile(BP_Creation_Form.this, getApplicationContext().getPackageName() + ".provider", f);
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                         startActivityForResult(intent, CAMERA_REQUEST_ADDRESS);
@@ -653,44 +602,124 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
                 });
         myAlertDialog.show();
     }
-
-
-    private void Owner_address() {
+    private void select_CustomerSignature_Method() {
         AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
         myAlertDialog.setTitle("Upload Pictures Option");
-        myAlertDialog.setMessage("How do you want to set your picture?");
-        myAlertDialog.setPositiveButton("Gallery",
+        myAlertDialog.setMessage("How do you want to set your Signature?");
+        myAlertDialog.setNegativeButton("Camera",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
-                        Intent intent = new Intent();
-                        intent.setType("image/*");
-                        intent.setAction(Intent.ACTION_GET_CONTENT);
-                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_OWNER_IMAGE_REQUEST_ADDRESS);
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+                        Uri photoURI = FileProvider.getUriForFile(BP_Creation_Form.this, getApplicationContext().getPackageName() + ".provider", f);
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        startActivityForResult(intent, CAMERA_CUSTOMER_SIGNATURE);
+                    }
+                });
+        myAlertDialog.setPositiveButton("Signature",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        customer_Signature_View();
                     }
                 });
         myAlertDialog.show();
     }
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case CAMERA_REQUEST: {
-                if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                }
-            }
-            break;
-            case PICK_IMAGE_REQUEST:
-                if (requestCode == CAMERA_REQUEST_ADDRESS) {
-
-                    if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                        Toast.makeText(this, "Permission granted now you can read the storage", Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(this, "Oops you just denied the permission", Toast.LENGTH_LONG).show();
+    private void select_OwnerSignature_Method() {
+        AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
+        myAlertDialog.setTitle("Upload Pictures Option");
+        myAlertDialog.setMessage("How do you want to set your Signature?");
+        myAlertDialog.setNegativeButton("Camera",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+                        Uri photoURI = FileProvider.getUriForFile(BP_Creation_Form.this, getApplicationContext().getPackageName() + ".provider", f);
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        startActivityForResult(intent, CAMERA_OWNER_SIGNATURE);
                     }
-                }
-                break;
-        }
+                });
+        myAlertDialog.setPositiveButton("Signature",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        owner_Signature_View();
+                    }
+                });
+        myAlertDialog.show();
     }
+
+    private void customer_Signature_View() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        dialog.setContentView(R.layout.signature_dialog_box);
+        dialog.setTitle("Signature");
+        dialog.setCancelable(true);
+        ImageView crose_img=dialog.findViewById(R.id.crose_img);
+        SignatureView customer_signatureView = (SignatureView) dialog.findViewById(R.id.signature_view);
+        clear = (Button) dialog.findViewById(R.id.clear);
+        save = (Button) dialog.findViewById(R.id.save);
+        crose_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customer_signatureView.clearCanvas();
+            }
+        });
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bitmap = customer_signatureView.getSignatureBitmap();
+                customer_signature_path = saveImage(bitmap);
+                customer_signature_imageview.setImageBitmap(bitmap);
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+    private void owner_Signature_View() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        dialog.setContentView(R.layout.signature_dialog_box);
+        dialog.setTitle("Signature");
+        dialog.setCancelable(true);
+        ImageView crose_img=dialog.findViewById(R.id.crose_img);
+        SignatureView signatureView = (SignatureView) dialog.findViewById(R.id.signature_view);
+        clear = (Button) dialog.findViewById(R.id.clear);
+        save = (Button) dialog.findViewById(R.id.save);
+        crose_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signatureView.clearCanvas();
+            }
+        });
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bitmap = signatureView.getSignatureBitmap();
+                owner_signature_path = saveImage(bitmap);
+                owner_signature_imageview.setImageBitmap(bitmap);
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+
 
     private void openPdf() {
         File file = new File(pdf_file_path);
@@ -707,33 +736,34 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
             }
             catch(ActivityNotFoundException e)
             {
-                Toast.makeText(New_Regestration_Form.this, "No Application available to view pdf", Toast.LENGTH_LONG).show();
+                Toast.makeText(BP_Creation_Form.this, "No Application available to view pdf", Toast.LENGTH_LONG).show();
             }
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
-            case PICK_IMAGE_REQUEST:
-                if ( requestCode == PICK_IMAGE_REQUEST && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
-                    filePath_aadhaar = data.getData();
+            case PICK_IMAGE_REQUEST_ID:
+                if ( requestCode == PICK_IMAGE_REQUEST_ID && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
+                    filePathUri_id = data.getData();
                     try {
-                        bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePath_aadhaar);
+                        bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathUri_id);
                         // imageView.setImageBitmap(bitmap);
-                        adhar_image.setImageBitmap(bitmap);
+                        id_imageView.setImageBitmap(bitmap);
                         //address_image.setImageBitmap(bitmap1);
-                        image_path_aadhar = getPath(filePath_aadhaar);
+                        image_path_id = getPath(filePathUri_id);
 
                       //  new ImageCompressionAsyncTask(this).execute(image_path_aadhar, getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Silicompressor/images");
-                        Log.e("image_path_aadhar+,", "" + image_path_aadhar);
+                        Log.e("image_path_aadhar+,", "" + image_path_id);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
                 break;
-                case CAMERA_REQUEST:
-                if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST) {
+                case CAMERA_REQUEST_ID:
+                if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST_ID) {
                     File f = new File(getExternalStorageDirectory().toString());
                     for (File temp : f.listFiles()) {
                         if (temp.getName().equals("temp.jpg")) {
@@ -745,13 +775,13 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
                         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
                         bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
                                 bitmapOptions);
-                        adhar_image.setImageBitmap(bitmap);
+                        id_imageView.setImageBitmap(bitmap);
                         String path = getExternalStorageDirectory().getAbsolutePath() ;
                         f.delete();
                         OutputStream outFile = null;
                         File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
                         Log.e("Camera_Path++",file.toString());
-                        image_path_aadhar =file.toString();
+                        image_path_id =file.toString();
                        // image_path_address1 =file.toString();
                       //  new ImageCompressionAsyncTask(this).execute(image_path_aadhar, getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Silicompressor/images");
                         try {
@@ -773,13 +803,13 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
                 break;
                 case PICK_IMAGE_REQUEST_ADDRESS:
                 if ( requestCode == PICK_IMAGE_REQUEST_ADDRESS && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
-                    filePath_address = data.getData();
-                    Log.e("Camera_Pathaddress++",filePath_address.toString());
+                    filePathUri_address = data.getData();
+                    Log.e("Camera_Pathaddress++", filePathUri_address.toString());
                     try {
-                        bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePath_address);
+                        bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathUri_address);
                         // imageView.setImageBitmap(bitmap);
-                        address_image.setImageBitmap(bitmap);
-                        image_path_address = getPath1(filePath_address);
+                        address_imageView.setImageBitmap(bitmap);
+                        image_path_address = getPath1(filePathUri_address);
                         Log.e("image_path_address+", "" + image_path_address);
                        // new ImageCompressionAsyncTask1(this).execute(image_path_address, getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Silicompressor/images");
                     } catch (IOException e) {
@@ -800,7 +830,7 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
                         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
                         bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
                                 bitmapOptions);
-                        address_image.setImageBitmap(bitmap);
+                        address_imageView.setImageBitmap(bitmap);
                         //BitMapToString(bitmap);
                         String path = getExternalStorageDirectory().getAbsolutePath() ;
                         f.delete();
@@ -828,250 +858,95 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
                 }
                 break;
 
-            case PICK_OWNER_IMAGE_REQUEST_ADDRESS:
-                if ( requestCode == PICK_OWNER_IMAGE_REQUEST_ADDRESS && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
-                    filePath_owner = data.getData();
-                    Log.e("Camera_Pathaddress++",filePath_owner.toString());
+            case CAMERA_CUSTOMER_SIGNATURE:
+                if (resultCode == RESULT_OK && requestCode == CAMERA_CUSTOMER_SIGNATURE) {
+                    File f = new File(getExternalStorageDirectory().toString());
+                    for (File temp : f.listFiles()) {
+                        if (temp.getName().equals("temp.jpg")) {
+                            f = temp;
+                            break;
+                        }
+                    }
                     try {
-                        bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePath_owner);
-                        // imageView.setImageBitmap(bitmap);
-                        adhar_owner_image.setImageBitmap(bitmap);
-                        owner_image_select = getPath1(filePath_owner);
-                        Log.e("owner_image_select+", "" + owner_image_select);
-                        // new ImageCompressionAsyncTask1(this).execute(image_path_address, getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Silicompressor/images");
-                    } catch (IOException e) {
+                        BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+                        bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
+                                bitmapOptions);
+                        customer_signature_imageview.setImageBitmap(bitmap);
+                        //BitMapToString(bitmap);
+                        String path = getExternalStorageDirectory().getAbsolutePath() ;
+                        f.delete();
+                        OutputStream outFile = null;
+                        File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
+                        Log.e("Camera_Path++",file.toString());
+                        customer_signature_path =file.toString();
+                        //   new ImageCompressionAsyncTask1(this).execute(image_path_address, getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Silicompressor/images");
+
+                        try {
+                            outFile = new FileOutputStream(file);
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 85, outFile);
+                            outFile.flush();
+                            outFile.close();
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
                 break;
-            case PICK_CUSTOMER_IMAGE_SIGNATURE:
-                if ( requestCode == PICK_CUSTOMER_IMAGE_SIGNATURE && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
-                    filePath_customer = data.getData();
-                    Log.e("filePath_customer",filePath_customer.toString());
+
+            case CAMERA_OWNER_SIGNATURE:
+                if (resultCode == RESULT_OK && requestCode == CAMERA_OWNER_SIGNATURE) {
+                    File f = new File(getExternalStorageDirectory().toString());
+                    for (File temp : f.listFiles()) {
+                        if (temp.getName().equals("temp.jpg")) {
+                            f = temp;
+                            break;
+                        }
+                    }
                     try {
-                        bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePath_customer);
-                        // imageView.setImageBitmap(bitmap);
-                        signature_image.setImageBitmap(bitmap);
-                        adhar_owner_image.setImageBitmap(bitmap);
-                        customer_image_select = getPath1(filePath_customer);
-                        Log.e("owner_image_select+", "" + customer_image_select);
-                        // new ImageCompressionAsyncTask1(this).execute(image_path_address, getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Silicompressor/images");
-                    } catch (IOException e) {
+                        BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+                        bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
+                                bitmapOptions);
+                        owner_signature_imageview.setImageBitmap(bitmap);
+                        //BitMapToString(bitmap);
+                        String path = getExternalStorageDirectory().getAbsolutePath() ;
+                        f.delete();
+                        OutputStream outFile = null;
+                        File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
+                        Log.e("Camera_Path++",file.toString());
+                        owner_signature_path =file.toString();
+                        //   new ImageCompressionAsyncTask1(this).execute(image_path_address, getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Silicompressor/images");
+
+                        try {
+                            outFile = new FileOutputStream(file);
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 85, outFile);
+                            outFile.flush();
+                            outFile.close();
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
                 break;
+
+
         }
     }
-    private void Signature_Method() {
-        final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        dialog.setContentView(R.layout.signature_dialog_box);
-        dialog.setTitle("Signature");
-        dialog.setCancelable(true);
-        ImageView crose_img=dialog.findViewById(R.id.crose_img);
-        signatureView = (SignatureView) dialog.findViewById(R.id.signature_view);
-        clear = (Button) dialog.findViewById(R.id.clear);
-        save = (Button) dialog.findViewById(R.id.save);
-        crose_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signatureView.clearCanvas();
-            }
-        });
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bitmap = signatureView.getSignatureBitmap();
-                Customer_Signature_path = saveImage(bitmap);
-                signature_image.setImageBitmap(bitmap);
-                dialog.dismiss();
-            }
-        });
-        dialog.show();
-    }
-    private void Ownar_Signature() {
-        final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        dialog.setContentView(R.layout.customer_signature);
-        dialog.setTitle("Signature");
-        dialog.setCancelable(true);
-         adhar_owner_image=dialog.findViewById(R.id.adhar_owner_image);
-        Button adhar_button=dialog.findViewById(R.id.adhar_button);
-        TextView signature_select=dialog.findViewById(R.id.signature_select);
-        TextView image_select=dialog.findViewById(R.id.image_select);
-        TextView save_select=dialog.findViewById(R.id.save_select);
-        final LinearLayout signature_layout=dialog.findViewById(R.id.signature_layout);
-        final LinearLayout image_capture_layout=dialog.findViewById(R.id.image_capture_layout);
-        ImageView crose_img=dialog.findViewById(R.id.crose_img);
-        ownar_name_no =dialog.findViewById(R.id.ownar_name_no);
-        ownar_signature_view = (SignatureView) dialog.findViewById(R.id.ownar_signature_view);
-        clear = (Button) dialog.findViewById(R.id.clear);
-        save = (Button) dialog.findViewById(R.id.save);
-        clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ownar_signature_view.clearCanvas();
-            }
-        });
-        crose_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bitmap1 = ownar_signature_view.getSignatureBitmap();
-                signature_path = saveImage1(bitmap1);
-                //signature_image.setImageBitmap(bitmap);
-                dialog.dismiss();
-            }
-        });
-        signature_select.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signature_layout.setVisibility(View.VISIBLE);
-                image_capture_layout.setVisibility(View.GONE);
-            }
-        });
-        image_select.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signature_layout.setVisibility(View.GONE);
-                image_capture_layout.setVisibility(View.VISIBLE);
-            }
-        });
 
-        adhar_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-             Owner_address();
-            }
-        });
-        save_select.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        dialog.show();
-    }
-    private void Customer_Signature1() {
-        final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        dialog.setContentView(R.layout.customer_signature);
-        dialog.setTitle("Signature");
-        dialog.setCancelable(true);
-        TextView owner_name=dialog.findViewById(R.id.owner_name);
-        owner_name.setVisibility(View.GONE);
-        adhar_owner_image=dialog.findViewById(R.id.adhar_owner_image);
-        Button adhar_button=dialog.findViewById(R.id.adhar_button);
-        TextView signature_select=dialog.findViewById(R.id.signature_select);
-        TextView image_select=dialog.findViewById(R.id.image_select);
-        TextView save_select=dialog.findViewById(R.id.save_select);
-        final LinearLayout signature_layout=dialog.findViewById(R.id.signature_layout);
-        final LinearLayout image_capture_layout=dialog.findViewById(R.id.image_capture_layout);
-        ImageView crose_img=dialog.findViewById(R.id.crose_img);
-        ownar_name_no =dialog.findViewById(R.id.ownar_name_no);
-        ownar_name_no.setVisibility(View.GONE);
-        signatureView = (SignatureView) dialog.findViewById(R.id.ownar_signature_view);
-        clear = (Button) dialog.findViewById(R.id.clear);
-        save = (Button) dialog.findViewById(R.id.save);
-        clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signatureView.clearCanvas();
-            }
-        });
-        crose_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bitmap = signatureView.getSignatureBitmap();
-                customer_image_select = saveImage(bitmap);
-                signature_image.setImageBitmap(bitmap);
-                dialog.dismiss();
-            }
-        });
-        signature_select.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signature_layout.setVisibility(View.VISIBLE);
-                image_capture_layout.setVisibility(View.GONE);
-            }
-        });
-        image_select.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signature_layout.setVisibility(View.GONE);
-                image_capture_layout.setVisibility(View.VISIBLE);
-            }
-        });
 
-        adhar_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                User_Signature_Image();
-            }
-        });
-        save_select.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        dialog.show();
-    }
-    private void User_Signature_Image() {
-        AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
-        myAlertDialog.setTitle("Upload Pictures Option");
-        myAlertDialog.setMessage("How do you want to set your picture?");
-        myAlertDialog.setPositiveButton("Gallery",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        Intent intent = new Intent();
-                        intent.setType("image/*");
-                        intent.setAction(Intent.ACTION_GET_CONTENT);
-                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_CUSTOMER_IMAGE_SIGNATURE);
-                    }
-                });
 
-        myAlertDialog.show();
-    }
-    private void Edit_text() {
-        final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        dialog.setContentView(R.layout.edit_text_layout);
-        dialog.setTitle("Signature");
-        dialog.setCancelable(true);
-        EditText any_other_edit = (EditText) dialog.findViewById(R.id.any_other_edit);
-        save = (Button) dialog.findViewById(R.id.save_button);
 
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        dialog.show();
-    }
     public String saveImage(Bitmap myBitmap) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
@@ -1096,7 +971,6 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
         }
         return "";
     }
-
     public String saveImage1(Bitmap myBitmap) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
@@ -1164,39 +1038,35 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
         }
         return path;
     }
-    private boolean checkPermission() {
-        int result = ContextCompat.checkSelfPermission(New_Regestration_Form.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if (result == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        } else {
-            return false;
-        }
+
+    private void checkPermission() {
+        String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        Permissions.check(this, permissions, null, null, new PermissionHandler() {
+            @Override
+            public void onGranted() {
+
+            }
+        });
     }
-    private void requestPermission() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(New_Regestration_Form.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            Toast.makeText(New_Regestration_Form.this, "Write External Storage permission allows us to do store images. Please allow this permission in App Settings.", Toast.LENGTH_LONG).show();
-        } else {
-            ActivityCompat.requestPermissions(New_Regestration_Form.this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, CAMERA_REQUEST);
-        }
-    }
+
     public void uploadMultipart(String Bp_Number) {
-        if(signature_path==null){
-            signature_path=customer_image_select;
-            Log.e("signature_path",signature_path);
+        if(owner_signature_path ==null){
+            owner_signature_path = customer_signature_path;
+            Log.e("signature_path", owner_signature_path);
         }
         try {
-            materialDialog = new MaterialDialog.Builder(New_Regestration_Form.this)
+            materialDialog = new MaterialDialog.Builder(BP_Creation_Form.this)
                     .content("Please wait....")
                     .progress(true, 0)
                     .cancelable(false)
                     .show();
             String uploadId = UUID.randomUUID().toString();
             Log.e("uploadId+,,,,,,,,,,", "" + uploadId);
-            MultipartUploadRequest multipartUploadRequest=   new MultipartUploadRequest(New_Regestration_Form.this, uploadId, Constants.BP_Images+"/"+Bp_Number);
-            multipartUploadRequest.addFileToUpload(image_path_aadhar, "image");
+            MultipartUploadRequest multipartUploadRequest=   new MultipartUploadRequest(BP_Creation_Form.this, uploadId, Constants.BP_Images+"/"+Bp_Number);
+            multipartUploadRequest.addFileToUpload(image_path_id, "image");
             multipartUploadRequest .addFileToUpload(image_path_address, "image");
-            multipartUploadRequest .addFileToUpload(customer_image_select, "image");
-            multipartUploadRequest .addFileToUpload(signature_path, "image");
+            multipartUploadRequest .addFileToUpload(customer_signature_path, "image");
+            multipartUploadRequest .addFileToUpload(owner_signature_path, "image");
             multipartUploadRequest .setDelegate(new UploadStatusDelegate() {
                         @Override
                         public void onProgress(Context context,UploadInfo uploadInfo) {
@@ -1236,10 +1106,10 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
             multipartUploadRequest .setUsesFixedLengthStreamingMode(true);
             multipartUploadRequest .startUpload(); //Starting the upload
 
-            Log.e("aadhaar_file",  image_path_aadhar);
+            Log.e("aadhaar_file", image_path_id);
             Log.e("pan_file",  image_path_address);
-            Log.e("sign_file",  customer_image_select);
-            Log.e("ownerSign",  signature_path);
+            Log.e("sign_file", customer_signature_path);
+            Log.e("ownerSign", owner_signature_path);
             Log.e("Middle_Name",  middle_name.getText().toString());
             Log.e("Last_Name",  lastname.getText().toString());
             Log.e("Mobile_Number",  mobile_no.getText().toString());
@@ -1263,7 +1133,7 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
 
         } catch (Exception exc) {
            // Toast.makeText(New_Regestration_Form.this, exc.getMessage(), Toast.LENGTH_SHORT).show();
-            Toast.makeText(New_Regestration_Form.this, "Please Select ID & Address Proof and Proper Signature", Toast.LENGTH_SHORT).show();
+            Toast.makeText(BP_Creation_Form.this, "Please Select ID & Address Proof and Proper Signature", Toast.LENGTH_SHORT).show();
             materialDialog.dismiss();
         }
     }
@@ -1300,12 +1170,13 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
         });
         dialog.show();
     }
+
     private void loadSpinnerData() {
         CityId.clear();
         CityName.clear();
         CityId1.clear();
         CityName1.clear();
-        materialDialog = new MaterialDialog.Builder(New_Regestration_Form.this)
+        materialDialog = new MaterialDialog.Builder(BP_Creation_Form.this)
                 .content("Please wait....")
                 .progress(true, 0)
                 .show();
@@ -1335,7 +1206,7 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
                     CityName1.add(city_select1);
                     CityName1.addAll(CityName);
 
-                    spinner_city.setAdapter(new ArrayAdapter<String>(New_Regestration_Form.this, android.R.layout.simple_spinner_dropdown_item, CityName1));
+                    spinner_city.setAdapter(new ArrayAdapter<String>(BP_Creation_Form.this, android.R.layout.simple_spinner_dropdown_item, CityName1));
                 }catch (JSONException e){e.printStackTrace();}
             }
         }, new Response.ErrorListener() {
@@ -1349,6 +1220,7 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
         stringRequest.setRetryPolicy(policy);
         requestQueue.add(stringRequest);
     }
+
     private void loadSpinner_reasion_city(final String city_id) {
        // Society.clear();
         Area.clear();
@@ -1365,7 +1237,7 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
         House_type_name1.clear();
         Floor_name.clear();
         Floor_name1.clear();
-        materialDialog = new MaterialDialog.Builder(New_Regestration_Form.this)
+        materialDialog = new MaterialDialog.Builder(BP_Creation_Form.this)
                 .content("Please wait....")
                 .progress(true, 0)
                 .show();
@@ -1443,12 +1315,12 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
                     Floor_name1.add(floor_select1);
                     Floor_name1.addAll(Floor_name);
 
-                    spinner_area.setAdapter(new ArrayAdapter<String>(New_Regestration_Form.this, android.R.layout.simple_spinner_dropdown_item, Area1));
-                    spinner_block_tower.setAdapter(new ArrayAdapter<String>(New_Regestration_Form.this, android.R.layout.simple_spinner_dropdown_item, Block_tower_name1));
-                    spinner_customertype.setAdapter(new ArrayAdapter<String>(New_Regestration_Form.this, android.R.layout.simple_spinner_dropdown_item, Customer_Type1));
-                    spinner_street_road.setAdapter(new ArrayAdapter<String>(New_Regestration_Form.this, android.R.layout.simple_spinner_dropdown_item, Street_road_name1));
-                    spinner_house_type.setAdapter(new ArrayAdapter<String>(New_Regestration_Form.this, android.R.layout.simple_spinner_dropdown_item, House_type_name1));
-                    spinner_floor.setAdapter(new ArrayAdapter<String>(New_Regestration_Form.this, android.R.layout.simple_spinner_dropdown_item, Floor_name1));
+                    spinner_area.setAdapter(new ArrayAdapter<String>(BP_Creation_Form.this, android.R.layout.simple_spinner_dropdown_item, Area1));
+                    spinner_block_tower.setAdapter(new ArrayAdapter<String>(BP_Creation_Form.this, android.R.layout.simple_spinner_dropdown_item, Block_tower_name1));
+                    spinner_customertype.setAdapter(new ArrayAdapter<String>(BP_Creation_Form.this, android.R.layout.simple_spinner_dropdown_item, Customer_Type1));
+                    spinner_street_road.setAdapter(new ArrayAdapter<String>(BP_Creation_Form.this, android.R.layout.simple_spinner_dropdown_item, Street_road_name1));
+                    spinner_house_type.setAdapter(new ArrayAdapter<String>(BP_Creation_Form.this, android.R.layout.simple_spinner_dropdown_item, House_type_name1));
+                    spinner_floor.setAdapter(new ArrayAdapter<String>(BP_Creation_Form.this, android.R.layout.simple_spinner_dropdown_item, Floor_name1));
 
 
                     // loadSpinner_Customer_Type(city_id);
@@ -1465,11 +1337,12 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
         stringRequest.setRetryPolicy(policy);
         requestQueue.add(stringRequest);
     }
+
     private void loadSpinnerSocity(String area_Id) {
 
         Society.clear();
         Society1.clear();
-        materialDialog = new MaterialDialog.Builder(New_Regestration_Form.this)
+        materialDialog = new MaterialDialog.Builder(BP_Creation_Form.this)
                 .content("Please wait....")
                 .progress(true, 0)
                 .show();
@@ -1493,7 +1366,7 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
                     String area_select1="Select Society";
                     Society1.add(area_select1);
                     Society1.addAll(Society);
-                    spinner_society.setAdapter(new ArrayAdapter<String>(New_Regestration_Form.this, android.R.layout.simple_spinner_dropdown_item, Society1));
+                    spinner_society.setAdapter(new ArrayAdapter<String>(BP_Creation_Form.this, android.R.layout.simple_spinner_dropdown_item, Society1));
                 }catch (JSONException e){e.printStackTrace();}
             }
         }, new Response.ErrorListener() {
@@ -1531,6 +1404,7 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
             }
         }
     }
+
     class ImageCompressionAsyncTask1 extends AsyncTask<String, Void, String> {
         Context mContext;
         public ImageCompressionAsyncTask1(Context context) {
@@ -1557,6 +1431,7 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
             }
         }
     }
+
     public void New_Regestration_Form() {
         if(Type_Of_Owner.equals("Owner")){
             ownar_name="null";
@@ -1580,7 +1455,7 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
                             //jsonObject = new JSONObject(str);
                             Log.e("BPCreationResponse++",json.toString());
                             String Msg=json.getString("Message");
-                            Toast.makeText(New_Regestration_Form.this, Msg, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(BP_Creation_Form.this, Msg, Toast.LENGTH_SHORT).show();
                             // if (jsonObject.getString("success").equals("true")) {
                             JSONArray success=json.getJSONArray("Details");
                             for (int i = 0; i < success.length(); i++){
@@ -1725,27 +1600,27 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
         }
         if (city_name.equals("Select City")) {
             isDataValid = false;
-            Toast.makeText(New_Regestration_Form.this,"Enter City",Toast.LENGTH_SHORT).show();
+            Toast.makeText(BP_Creation_Form.this,"Enter City",Toast.LENGTH_SHORT).show();
         }
         if (area_name.equals("Select Area")) {
             isDataValid = false;
-            Toast.makeText(New_Regestration_Form.this,"Enter Area",Toast.LENGTH_SHORT).show();
+            Toast.makeText(BP_Creation_Form.this,"Enter Area",Toast.LENGTH_SHORT).show();
         }
         if (soceity_name.equals("Select Society")) {
             isDataValid = false;
-            Toast.makeText(New_Regestration_Form.this,"Enter Society",Toast.LENGTH_SHORT).show();
+            Toast.makeText(BP_Creation_Form.this,"Enter Society",Toast.LENGTH_SHORT).show();
         }
         if (floor_name.equals("Select Floor")) {
             isDataValid = false;
-            Toast.makeText(New_Regestration_Form.this,"Enter Floor",Toast.LENGTH_SHORT).show();
+            Toast.makeText(BP_Creation_Form.this,"Enter Floor",Toast.LENGTH_SHORT).show();
         }
         if (lpg_company_name.equals("Select LPG Company")) {
             isDataValid = false;
-            Toast.makeText(New_Regestration_Form.this,"Select LPG Company",Toast.LENGTH_SHORT).show();
+            Toast.makeText(BP_Creation_Form.this,"Select LPG Company",Toast.LENGTH_SHORT).show();
         }
         if (customer_type.equals("Select Customer Type")) {
             isDataValid = false;
-            Toast.makeText(New_Regestration_Form.this,"Select Customer Type",Toast.LENGTH_SHORT).show();
+            Toast.makeText(BP_Creation_Form.this,"Select Customer Type",Toast.LENGTH_SHORT).show();
         }
         if (house_no.getText().length() == 0) {
             isDataValid = false;
@@ -1756,13 +1631,13 @@ public class New_Regestration_Form extends Activity implements AdapterView.OnIte
             isDataValid = false;
             pincode.setError("Enter PinCode");
         }
-        if (image_path_aadhar == null) {
+        if (image_path_id == null) {
             isDataValid = false;
-            Toast.makeText(New_Regestration_Form.this,"Please Select Image ID Proof",Toast.LENGTH_SHORT).show();
+            Toast.makeText(BP_Creation_Form.this,"Please Select Image ID Proof",Toast.LENGTH_SHORT).show();
         }
         if (image_path_address== null) {
             isDataValid = false;
-            Toast.makeText(New_Regestration_Form.this,"Please Select Image Address Proof",Toast.LENGTH_SHORT).show();
+            Toast.makeText(BP_Creation_Form.this,"Please Select Image Address Proof",Toast.LENGTH_SHORT).show();
         }
        /* if (Customer_Signature_path== null) {
             isDataValid = false;

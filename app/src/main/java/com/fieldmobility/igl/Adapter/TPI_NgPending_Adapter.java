@@ -31,6 +31,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.fieldmobility.igl.Activity.TPI_NgPending_Activity;
+import com.fieldmobility.igl.Helper.CommonUtils;
 import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.Model.NguserListModel;
@@ -80,6 +81,7 @@ public class TPI_NgPending_Adapter extends RecyclerView.Adapter<TPI_NgPending_Ad
 
         //nguserListModel.getBpNo();
         holder.tv_bpName.setText(ngUserClaimListModel.getBp_no());
+        holder.tv_dateTime.setText("Assign - "+ngUserClaimListModel.getSupervisor_assigned_date());
         //holder.tv_address.setText(ngUserClaimListModel.getHouse_no() + ngUserClaimListModel.getCity());
         holder.tv_address.setText(ngUserClaimListModel.getHouse_no() + " " + ngUserClaimListModel.getFloor() + " " + ngUserClaimListModel.getSociety() + " \n" + ngUserClaimListModel.getBlock_qtr() + " " + ngUserClaimListModel.getStreet() + " " + ngUserClaimListModel.getLandmark() + " " + ngUserClaimListModel.getCity()
         );
@@ -299,6 +301,12 @@ public class TPI_NgPending_Adapter extends RecyclerView.Adapter<TPI_NgPending_Ad
 
     }
 
+    public void setData(List<NguserListModel> ngUserClaimLists)
+    {
+        this.ngUserClaimList = ngUserClaimLists;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemViewType(int position) {
         return position;
@@ -346,16 +354,26 @@ class NgUserClaimListViewHolder extends RecyclerView.ViewHolder {
                     ngUserClaimList = new_ngUserClaimList;
                 } else {
                     List<NguserListModel> filteredList = new ArrayList<>();
-                    for (NguserListModel row : new_ngUserClaimList) {
-                        if (row.getBp_no().toLowerCase().contains(charString.toLowerCase()) || row.getCustomer_name().toLowerCase().contains(charString.toLowerCase())
-                                || row.getHouse_no().toLowerCase().contains(charString.toLowerCase()) || row.getFloor().toLowerCase().contains(charString.toLowerCase())
-                                || row.getArea().toLowerCase().contains(charString.toLowerCase()) || row.getSociety().toLowerCase().contains(charString.toLowerCase())
-                                || row.getBlock_qtr().toLowerCase().contains(charString.toLowerCase())) {
-                            filteredList.add(row);
+                    try {
+                        for (NguserListModel row : new_ngUserClaimList) {
+                            if (row.getBp_no().toLowerCase().contains(charString.toLowerCase()) || row.getCustomer_name().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getHouse_no().toLowerCase().contains(charString.toLowerCase()) || row.getFloor().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getArea().toLowerCase().contains(charString.toLowerCase()) || row.getSociety().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getBlock_qtr().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getMobile_no().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getControl_room().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getSupervisor_assigned_date().toLowerCase().contains(charString.toLowerCase())
+                            ) {
+                                filteredList.add(row);
+                            }
                         }
                     }
-                    ngUserClaimList = filteredList;
-                }
+                    catch (Exception e){
+                        CommonUtils.toast_msg(mctx,"Some fields are null");
+                    }
+                        ngUserClaimList = filteredList;
+                    }
+
                 FilterResults filterResults = new FilterResults();
                 filterResults.values = ngUserClaimList;
                 return filterResults;
@@ -372,6 +390,7 @@ class NgUserClaimListViewHolder extends RecyclerView.ViewHolder {
 public interface ListParser {
     void listParser();
 }
+
 
 
 }

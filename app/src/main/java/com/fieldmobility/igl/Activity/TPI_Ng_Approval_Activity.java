@@ -39,7 +39,7 @@ public class TPI_Ng_Approval_Activity extends Activity implements TPI_NgApproval
 
     private ProgressDialog progressDialog;
     private SharedPrefs sharedPrefs;
-    private ImageView back,new_regestration;
+    private ImageView back,new_regestration , ng_filter;
     private MaterialDialog materialDialog;
     private List<Bp_No_Item> bp_no_array;
     private RecyclerView recyclerView;
@@ -48,7 +48,6 @@ public class TPI_Ng_Approval_Activity extends Activity implements TPI_NgApproval
     private EditText editTextSearch;
     //private TextView header_title;
     private TextView list_count,header_title;
-
     View root;
     private LinearLayout top_layout;
     private int responseCode;
@@ -75,6 +74,9 @@ public class TPI_Ng_Approval_Activity extends Activity implements TPI_NgApproval
         progressDialog.setCancelable(false);
         progressDialog.setCanceledOnTouchOutside(false);
         sharedPrefs = new SharedPrefs(this);
+        list_count = findViewById(R.id.list_count);
+        ng_filter = findViewById(R.id.ng_filter);
+        ng_filter.setVisibility(View.GONE);
         Layout_ID();
     }
 
@@ -185,11 +187,8 @@ public class TPI_Ng_Approval_Activity extends Activity implements TPI_NgApproval
                     }else {
                         setListData(claimUserList,responseCode);
                     }
-
                 //}
-
             }
-
             @Override
             public void onFailure(Call<ArrayList<NguserListModel>> call, Throwable t) {
                 Log.e("MyError" , "error.............");
@@ -202,6 +201,7 @@ public class TPI_Ng_Approval_Activity extends Activity implements TPI_NgApproval
             @Override
             public void run() {
                 if (claimUserList.size()>0) {
+                    list_count.setText("Count\n"+ claimUserList.size());
                     materialDialog.dismiss();
                     adapter = new TPI_NgApproval_Adapter(TPI_Ng_Approval_Activity.this, claimUserList);
                     recyclerView.setAdapter(adapter);

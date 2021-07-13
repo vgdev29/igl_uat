@@ -111,7 +111,7 @@ public class RFC_StatusMastar_Page extends Activity {
     private final int AUDIO_REQUEST = 2;
 
     private Uri filePath_Image;
-    String filePath_img_string, Status_Master;
+    String bpno, Status_Master;
     Bitmap bitmap;
     JSONArray jsonArray_SubMaster;
     String TPI_Status_Code, Address, Feasibility_Type;
@@ -395,6 +395,7 @@ public class RFC_StatusMastar_Page extends Activity {
         address_text.setText(Address);
         bp_no_text.setText(getIntent().getStringExtra("Bp_number"));
         Status_Master = getIntent().getStringExtra("igl_code_group");
+        bpno = getIntent().getStringExtra("Bp_number");
         Log.d(log, "Status_Master = " + Status_Master);
         TPI_Status_Code = getIntent().getStringExtra("TPI_Status_Code");
         Log.d(log, "TPI_Status_Code = " + TPI_Status_Code);
@@ -414,9 +415,9 @@ public class RFC_StatusMastar_Page extends Activity {
                 .content("Please wait....")
                 .progress(true, 0)
                 .show();
-        Log.d(log, "spinner master url = " + Constants.TYPE_MASTER_STATUS + Status_Master + "?status=" + TPI_Status_Code);
+        Log.d(log, "spinner master url = " + Constants.TYPE_MASTER_STATUS + Status_Master + "?status=" + TPI_Status_Code+"&bpno="+bpno);
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.TYPE_MASTER_STATUS + Status_Master + "?status=" + TPI_Status_Code, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.TYPE_MASTER_STATUS + Status_Master + "?status=" + TPI_Status_Code+"&bpno="+bpno, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 materialDialog.dismiss();

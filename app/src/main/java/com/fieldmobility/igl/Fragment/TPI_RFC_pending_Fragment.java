@@ -1,7 +1,10 @@
 package com.fieldmobility.igl.Fragment;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -9,8 +12,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -28,10 +36,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.fieldmobility.igl.Activity.RFC_Connection_Listing;
 import com.fieldmobility.igl.Adapter.TPI_RFC_Pending_Adapter;
 import com.fieldmobility.igl.Helper.CommonUtils;
 import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.Helper.SharedPrefs;
+import com.fieldmobility.igl.MataData.Bp_No_Item;
 import com.fieldmobility.igl.Model.BpDetail;
 import com.fieldmobility.igl.R;
 
@@ -42,6 +52,7 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -59,6 +70,11 @@ public class TPI_RFC_pending_Fragment extends Fragment {
     LinearLayout top_layout;
     static String log = "feasibilitypending";
     ArrayList<BpDetail> bpDetails = new ArrayList<>();
+    ImageView rfc_filter;
+    private Dialog mFilterDialog;
+    private RadioGroup radioGroup;
+
+
     public TPI_RFC_pending_Fragment(Activity activity) {
       this.context = activity;
     }
@@ -85,6 +101,7 @@ public class TPI_RFC_pending_Fragment extends Fragment {
         top_layout=root.findViewById(R.id.top_layout);
         top_layout.setVisibility(View.GONE);
         list_count=root.findViewById(R.id.list_count);
+        rfc_filter = root.findViewById(R.id.rfc_filter);
         header_title=root.findViewById(R.id.header_title);
         header_title.setText("TPI");
         mSwipeRefreshLayout = (SwipeRefreshLayout) root.findViewById(R.id.swipeToRefresh);
@@ -122,8 +139,165 @@ public class TPI_RFC_pending_Fragment extends Fragment {
             }
         });
 
+        rfc_filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFiltersDialog();
+            }
+        });
+
 
         Feasivility_List();
+    }
+
+    public void showFiltersDialog() {
+        //Toast.makeText(getApplicationContext(),"Filter icon",Toast.LENGTH_SHORT).show();
+        mFilterDialog = new Dialog(context);
+        mFilterDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        mFilterDialog.setCanceledOnTouchOutside(false);
+        mFilterDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        mFilterDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        mFilterDialog.setContentView(getLayoutInflater().inflate(R.layout.dialog_filter_tpi_pending_list,null));
+        LinearLayout rl_dialog_title =   mFilterDialog.findViewById(R.id.rl_dialog_title);
+        Button btn_applyFilters = (Button) mFilterDialog.findViewById(R.id.btn_applyFilters);
+        Button btn_clearAllFilters = (Button) mFilterDialog.findViewById(R.id.btn_clearAllFilters);
+        ImageButton ibCancel =   mFilterDialog.findViewById(R.id.ib_create_cancel);
+        radioGroup = mFilterDialog.findViewById(R.id.radioGroup);
+
+
+        rl_dialog_title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mFilterDialog.dismiss();
+
+            }
+        });
+        ibCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mFilterDialog.dismiss();
+            }
+        });
+
+        btn_clearAllFilters.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                radioGroup.clearCheck();
+                clearFilter();
+                mFilterDialog.dismiss();
+            }
+        });
+
+        btn_applyFilters.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                int checkedId = radioGroup.getCheckedRadioButtonId();
+                Log.d(log,"checked id = "+checkedId+" res id = "+R.id.radioButton_rfcClaim);
+                switch (radioGroup.getCheckedRadioButtonId())
+                {
+                    case R.id.radioButton_rfcClaim:
+                        refreshRecyclerClaim();
+                        break;
+                    case R.id.radioButton_rfcUnClaim:
+                        refreshRecyclerUnClaim();
+                        break;
+                    case R.id.radioButton_rfcJnStart:
+                        refreshRecyclerClaimbyOther();
+                        break;
+                    case R.id.radioButton_rfcJstart:
+                        refreshRecyclerJobstart();
+                        break;
+                }
+
+                mFilterDialog.dismiss();
+
+            }
+        });
+
+
+        mFilterDialog.show();
+
+    }
+
+
+    public void refreshRecyclerClaim()
+    {
+        ArrayList<BpDetail> filterList = new ArrayList<>();
+        Log.d(log,"refresh claim");
+        for (BpDetail bpNoItem : bpDetails)
+        {
+            if (bpNoItem.getClaimFlag().equals("0") && !bpNoItem.getJobFlag().equals("1"))
+            {
+                if (bpNoItem.getRfcTpi().equals(sharedPrefs.getUUID())) {
+                    Log.d(log, "claim if = " + bpNoItem.getClaimFlag());
+                    filterList.add(bpNoItem);
+                }
+            }
+        }
+        list_count.setText("Count\n"+ filterList.size());
+        tpi_inspection_adapter.setData(filterList);
+
+
+    }
+    public void refreshRecyclerClaimbyOther()
+    {
+        ArrayList<BpDetail> filterList = new ArrayList<>();
+        Log.d(log,"refresh claim");
+        for (BpDetail bpNoItem : bpDetails)
+        {
+            if (bpNoItem.getClaimFlag().equals("0")  && !bpNoItem.getRfcTpi().equals(sharedPrefs.getUUID()))
+            {
+
+                    Log.d(log, "claim if = " + bpNoItem.getClaimFlag());
+                    filterList.add(bpNoItem);
+
+            }
+        }
+        list_count.setText("Count\n"+ filterList.size());
+        tpi_inspection_adapter.setData(filterList);
+
+
+    }
+    public void refreshRecyclerUnClaim()
+    {
+        ArrayList<BpDetail>  filterList = new ArrayList<>();
+        Log.d(log,"refresh claim");
+        for (BpDetail bpNoItem : bpDetails)
+        {
+            if (bpNoItem.getClaimFlag().equalsIgnoreCase("null") || bpNoItem.getClaimFlag().equalsIgnoreCase("1"))
+            {
+                Log.d(log,"claim if = "+bpNoItem.getRfcTpi());
+                filterList.add(bpNoItem);
+            }
+        }
+        list_count.setText("Count\n"+ filterList.size());
+        tpi_inspection_adapter.setData(filterList);
+
+
+    }
+    public void refreshRecyclerJobstart()
+    {
+        ArrayList<BpDetail>  filterList = new ArrayList<>();
+        for (BpDetail bpNoItem : bpDetails)
+        {
+            if (bpNoItem.getJobFlag().equalsIgnoreCase("1") && bpNoItem.getRfcTpi().equals(sharedPrefs.getUUID()))
+            {
+                filterList.add(bpNoItem);
+            }
+        }
+        list_count.setText("Count\n"+ filterList.size());
+        tpi_inspection_adapter.setData(filterList);
+
+    }
+
+    public void  clearFilter()
+    {
+        Log.d(log,"clear filter = "+bpDetails.size());
+        tpi_inspection_adapter.setData(bpDetails);
+        list_count.setText("Count\n"+ bpDetails.size());
     }
 
     public void Feasivility_List() {
@@ -196,6 +370,8 @@ public class TPI_RFC_pending_Fragment extends Fragment {
                                 bp_no_item.setRfcVendorName(data_object.getString("rfcVendorName"));
                                 bp_no_item.setZoneCode(data_object.getString("zonecode"));
                                 bp_no_item.setControlRoom(data_object.getString("controlRoom"));
+                                 bp_no_item.setIgl_rfcvendor_assigndate(data_object.getString("supervisor_assigndate"));
+
                                 bpDetails.add(bp_no_item);
                             }
 

@@ -14,7 +14,7 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.fieldmobility.igl.Activity.New_Regestration_DetailPage;
+import com.fieldmobility.igl.Activity.Bp_Created_Detail;
 import com.fieldmobility.igl.MataData.Bp_No_Item;
 import com.fieldmobility.igl.R;
 
@@ -47,32 +47,15 @@ public class New_BP_NO_Adapter extends RecyclerView.Adapter<New_BP_NO_Adapter.Vi
     @Override
     public void onBindViewHolder(New_BP_NO_Adapter.ViewHolder holder, final int position) {
         final Bp_No_Item Bp_No_array = bp_no_list_array.get(position);
-        holder.date_text.setText(Bp_No_array.getBp_date());
+        holder.status_text.setVisibility(View.GONE);
+        holder.date_text.setText("Registration Date - "+Bp_No_array.getBp_date());
         holder.bp_no_text.setText(Bp_No_array.getBp_number());
         holder.user_name_text.setText(Bp_No_array.getFirst_name());
-        holder.address_text.setText(Bp_No_array.getHouse_no()+" "+Bp_No_array.getSociety()+" "+Bp_No_array.getArea()+" "+Bp_No_array.getCity_region());
+    //    holder.address_text.setText(Bp_No_array.getHouse_no()+" "+Bp_No_array.getSociety()+" "+Bp_No_array.getArea()+" "+Bp_No_array.getCity_region());
+        holder.address_text.setText(Bp_No_array.getHouse_no()+" "+Bp_No_array.getFloor()+" "+Bp_No_array.getHouse_type()+" "+Bp_No_array.getSociety()+" \n"
+                +Bp_No_array.getBlock_qtr_tower_wing()+" "+Bp_No_array.getStreet_gali_road()+" "+Bp_No_array.getLandmark()+" "+Bp_No_array.getCity_region());
+       holder.mob_text.setText(Bp_No_array.getMobile_number());
 
-
-        if(Bp_No_array.getIgl_status().equals("null")){
-            //holder.status_text.setVisibility(View.GONE);
-            holder.status_text.setText("BP Creation");
-        }else {
-            if(Bp_No_array.getIgl_status().equals("0")){
-                holder.status_text.setVisibility(View.VISIBLE);
-                holder.status_text.setText("Feasibility Pending");
-            }
-            if(Bp_No_array.getIgl_status().equals("6")){
-                holder.status_text.setVisibility(View.VISIBLE);
-                holder.status_text.setText("Document Verification Pending");
-            }else {
-                //holder.status_text.setVisibility(View.GONE);
-                holder.status_text.setVisibility(View.GONE);
-            }
-            /*if(Bp_No_array.getIgl_status().equals("1")){
-                holder.status_text.setVisibility(View.VISIBLE);
-                holder.status_text.setText("RFC Pending");
-            }*/
-        }
 
         holder.liner_layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,20 +81,18 @@ public class New_BP_NO_Adapter extends RecyclerView.Adapter<New_BP_NO_Adapter.Vi
                 String Bp_number = bp_no_list_array.get(position).getBp_number();
                 String Bp_date = bp_no_list_array.get(position).getBp_date();
                 String IGL_Status = bp_no_list_array.get(position).getIgl_status();
-
                 String lpg_distributor = bp_no_list_array.get(position).getLpg_distributor();
                 String lpg_conNo = bp_no_list_array.get(position).getLpg_conNo();
                 String Unique_lpg_Id = bp_no_list_array.get(position).getUnique_lpg_Id();
                 String lead_no = bp_no_list_array.get(position).getLead_no();
                 String ownerName = bp_no_list_array.get(position).getOwnerName();
                 String igl_code_group = bp_no_list_array.get(position).getIgl_code_group();
-
                 String ChequeNo = bp_no_list_array.get(position).getChequeNo();
                 String ChequeDate = bp_no_list_array.get(position).getChequeDate();
                 String DrawnOn = bp_no_list_array.get(position).getDrawnOn();
                 String Amount = bp_no_list_array.get(position).getAmount();
 
-                Intent intent=new Intent(context, New_Regestration_DetailPage.class);
+                Intent intent=new Intent(context, Bp_Created_Detail.class);
                 intent.putExtra("First_name",First_name);
                 intent.putExtra("Middle_name",Middle_name);
                 intent.putExtra("Last_name",Last_name);
@@ -156,7 +137,7 @@ public class New_BP_NO_Adapter extends RecyclerView.Adapter<New_BP_NO_Adapter.Vi
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;
-        public TextView bp_no_text,user_name_text,address_text,date_text,status_text;
+        public TextView bp_no_text,user_name_text,address_text,date_text,status_text,mob_text;
         public LinearLayout liner_layout;
         public CardView linearLayout;
         public ViewHolder(View itemView) {
@@ -166,6 +147,7 @@ public class New_BP_NO_Adapter extends RecyclerView.Adapter<New_BP_NO_Adapter.Vi
             user_name_text = (TextView) itemView.findViewById(R.id.user_name_text);
             address_text = (TextView) itemView.findViewById(R.id.address_text);
             status_text= (TextView) itemView.findViewById(R.id.status_text);
+            mob_text =itemView.findViewById(R.id.mobile_text);
             liner_layout = (LinearLayout) itemView.findViewById(R.id.liner_layout);
         }
     }

@@ -21,6 +21,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.fieldmobility.igl.Activity.NgSupUserDetailsActivity;
+import com.fieldmobility.igl.Helper.CommonUtils;
 import com.fieldmobility.igl.Model.NguserListModel;
 import com.fieldmobility.igl.Model.TpiDetailResponse;
 import com.fieldmobility.igl.Model.TpiDetails;
@@ -98,7 +99,7 @@ public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.Ng
         }
 
         if (!TextUtils.isEmpty(nguserListModel.getConversion_date())){
-            holder.tv_perferedTime.setText(nguserListModel.getConversion_date());
+            holder.tv_perferedTime.setText("Assign - "+nguserListModel.getConversion_date());
         }else {
             holder.tv_perferedTime.setText("- - -");
         }
@@ -265,6 +266,12 @@ public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.Ng
 
     }
 
+    public  void setDataset(List<NguserListModel> nguserListModel)
+    {
+        this.nguserList = nguserListModel;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemViewType(int position) {
         Log.d(log,"getitemview id  = "+position);
@@ -305,20 +312,29 @@ public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.Ng
                     Log.d(log,"filter = "+nguserList.size());
                 } else {
                     List<NguserListModel> filteredList = new ArrayList<>();
-                    for (NguserListModel row : dataset) {
-                        if (row.getBp_no().toLowerCase().contains(charString.toLowerCase())
-                                || row.getCustomer_name().toLowerCase().contains(charString.toLowerCase())
-                                || row.getJmr_no().toLowerCase().contains(charString.toLowerCase())
-                                || row.getSociety().toLowerCase().contains(charString.toLowerCase())
-                                || row.getArea().toLowerCase().contains(charString.toLowerCase())
-                                || row.getContractor_id().toLowerCase().contains(charString.toLowerCase())
-                                || row.getHouse_no().toLowerCase().contains(charString.toLowerCase())
-                                || row.getCity().toLowerCase().contains(charString.toLowerCase())
-                                || row.getFloor().toLowerCase().contains(charString.toLowerCase())
-                        ) {
-                            Log.d(log,"filter loop = "+dataset.size());
-                            filteredList.add(row);
+                    try {
+                        for (NguserListModel row : dataset) {
+                            if (row.getBp_no().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getCustomer_name().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getJmr_no().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getSociety().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getArea().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getContractor_id().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getHouse_no().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getCity().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getFloor().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getControl_room().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getMobile_no().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getSupervisor_assigned_date().toLowerCase().contains(charString.toLowerCase())
+
+                            ) {
+                                Log.d(log, "filter loop = " + dataset.size());
+                                filteredList.add(row);
+                            }
                         }
+                    }
+                    catch (Exception e){
+                        CommonUtils.toast_msg(mctx,"Some fields are null");
                     }
                     nguserList = filteredList;
                 }

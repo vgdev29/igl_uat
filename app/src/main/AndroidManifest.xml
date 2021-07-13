@@ -57,8 +57,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.KYC_VerificationDetails"
-            android:screenOrientation="portrait"/>
+        <activity android:name=".Mdpe.Mdpe_List_Activity"></activity>
+        <activity android:name=".Riser.Riser_List_Activity" />
+        <activity
+            android:name=".Activity.KYC_VerificationDetails"
+            android:screenOrientation="portrait" />
         <activity android:name=".Activity.CustomScannerActivity" />
         <activity android:name=".Activity.CustomPdfViewActivity" />
         <activity android:name=".Activity.NgUserClaimListActivity" />
@@ -125,16 +128,15 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.KYC_Pending_Activity"
-
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activity.New_Regestration_Form"
+            android:name=".Activity.BP_Creation_Form"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activity.New_BP_No_Listing"
+            android:name=".Activity.BP_No_Listing"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activity.New_Regestration_DetailPage"
+            android:name=".Activity.Bp_Created_Detail"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.NG_Connection_Activity"
@@ -227,7 +229,7 @@
             android:name=".Activity.Tab_Host_DMA"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activity.Document_Varification_List"
+            android:name=".Activity.BP_Document_Verification"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.Document_varification_Detail"

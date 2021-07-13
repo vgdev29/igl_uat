@@ -185,6 +185,18 @@ public class NguserListModel implements Serializable {
     @Expose
     private String rfc_initial_reading;
 
+    @SerializedName("supervisor_assigned_date")
+    @Expose
+    private String supervisor_assigned_date;
+
+    public String getSupervisor_assigned_date() {
+        return supervisor_assigned_date;
+    }
+
+    public void setSupervisor_assigned_date(String supervisor_assigned_date) {
+        this.supervisor_assigned_date = supervisor_assigned_date;
+    }
+
     public String getRfc_initial_reading() {
         return rfc_initial_reading;
     }

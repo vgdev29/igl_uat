@@ -130,8 +130,17 @@ public class BpDetail {
     private String rfcAdminName;
     @Expose
     private String ZoneCode;
+    @Expose
+    String igl_rfcvendor_assigndate;
 
 
+    public String getIgl_rfcvendor_assigndate() {
+        return igl_rfcvendor_assigndate;
+    }
+
+    public void setIgl_rfcvendor_assigndate(String igl_rfcvendor_assigndate) {
+        this.igl_rfcvendor_assigndate = igl_rfcvendor_assigndate;
+    }
 
     public String getAadhaarNumber() {
         return aadhaarNumber;

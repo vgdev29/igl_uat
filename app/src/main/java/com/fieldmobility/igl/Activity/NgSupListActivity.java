@@ -19,11 +19,13 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.fieldmobility.igl.Adapter.NgUserListAdapter;
 import com.fieldmobility.igl.Helper.SharedPrefs;
+import com.fieldmobility.igl.MataData.Bp_No_Item;
 import com.fieldmobility.igl.Model.NguserListModel;
 import com.fieldmobility.igl.R;
 import com.fieldmobility.igl.interfaces.ListDataPasser;
@@ -46,15 +48,15 @@ public class NgSupListActivity extends AppCompatActivity implements ListDataPass
     private ImageView back;
     private ImageView ll_sort;
     private RelativeLayout rel_noNgUserListingData;
-
     private ArrayList<NguserListModel> ngUserList=new ArrayList<>();
     private Button btnTryAgain;
-    private TextView tv_ngUserListdata;
+    private TextView tv_ngUserListdata, count_list;
     private EditText editTextSearch;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RetrofitCancelOberver retrofitCancelOberver;
     private SharedPrefs sharedPrefs;
     String log = "nguserlist";
+    private RadioGroup radioGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +65,6 @@ public class NgSupListActivity extends AppCompatActivity implements ListDataPass
         retrofitCancelOberver = new RetrofitCancelOberver();
         getLifecycle().addObserver(retrofitCancelOberver);
         sharedPrefs = new SharedPrefs(getApplicationContext());
-
         btnTryAgain = findViewById(R.id.btnTryAgain);
         back = findViewById(R.id.back);
         tv_ngUserListdata = findViewById(R.id.tv_ngUserListdata);
@@ -73,14 +74,15 @@ public class NgSupListActivity extends AppCompatActivity implements ListDataPass
         recyclerView_ngAssignment.setLayoutManager(new LinearLayoutManager(this));
         rel_noNgUserListingData = findViewById(R.id.rel_noNgUserListingData);
         editTextSearch = findViewById(R.id.editTextSearch);
+        count_list = findViewById(R.id.list_count);
         ll_sort = findViewById(R.id.ll_sort);
         ll_sort.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
               //  Toast.makeText(getApplicationContext(), " Sort", Toast.LENGTH_SHORT).show();
-                if (filtersDialogOpenCount == 0) {
+
                     showFiltersDialog();
-                }
+
             }
         });
         btnTryAgain.setOnClickListener(new View.OnClickListener() {
@@ -155,6 +157,7 @@ public class NgSupListActivity extends AppCompatActivity implements ListDataPass
             public void run() {
                 hideProgressDialog();
                 if (ngUserList.size() > 0) {
+                    count_list.setText("Count\n"+String.valueOf(ngUserList.size()));
                     recyclerView_ngAssignment.setVisibility(View.VISIBLE);
                     rel_noNgUserListingData.setVisibility(View.GONE);
                     adapter = new NgUserListAdapter(NgSupListActivity.this, ngUserList);
@@ -172,16 +175,9 @@ public class NgSupListActivity extends AppCompatActivity implements ListDataPass
     }
 
     private Dialog mFilterDialog;
-    private RadioButton radioButton_ngWithcalim, radioButton_ngWithUncalim, radioButton_ngWithPriority;
-    private boolean flagRadioButtonCheck1 = false;
-    private boolean flagRadioButtonCheck2 = false;
-    private boolean flagRadioButtonCheck3 = false;
-    private int filtersDialogOpenCount = 0;
-    public static final int CLAIM = 2;
-    public static final int UNCLAIM = 3;
-    public static final int PRIORITY = 4;
-    public static final int ALL_NG = 5;
-    private int mSelectedId;
+
+
+
 
     public void showFiltersDialog() {
         //Toast.makeText(getApplicationContext(),"Filter icon",Toast.LENGTH_SHORT).show();
@@ -196,23 +192,11 @@ public class NgSupListActivity extends AppCompatActivity implements ListDataPass
         Button btn_applyFilters = (Button) mFilterDialog.findViewById(R.id.btn_applyFilters);
         Button btn_clearAllFilters = (Button) mFilterDialog.findViewById(R.id.btn_clearAllFilters);
         ImageButton ibCancel = (ImageButton) mFilterDialog.findViewById(R.id.ib_create_cancel);
-        radioButton_ngWithPriority = (RadioButton) mFilterDialog.findViewById(R.id.radioButton_ngWithPriority);
-        radioButton_ngWithUncalim = (RadioButton) mFilterDialog.findViewById(R.id.radioButton_ngWithUncalim);
-        radioButton_ngWithcalim = (RadioButton) mFilterDialog.findViewById(R.id.radioButton_ngWithcalim);
-        if (mSelectedId == CLAIM)
-            radioButton_ngWithcalim.setChecked(true);
-        else {
-            {
-                if (flagRadioButtonCheck2)
-                    flagRadioButtonCheck2 = false;
-            }
-            if (flagRadioButtonCheck1)
-                flagRadioButtonCheck1 = false;
-        }
+        radioGroup = mFilterDialog.findViewById(R.id.radioGroup);
+
         rl_dialog_title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                filtersDialogOpenCount = 0;
                 mFilterDialog.dismiss();
 
             }
@@ -220,7 +204,6 @@ public class NgSupListActivity extends AppCompatActivity implements ListDataPass
         ibCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                filtersDialogOpenCount = 0;
                 mFilterDialog.dismiss();
             }
         });
@@ -228,131 +211,94 @@ public class NgSupListActivity extends AppCompatActivity implements ListDataPass
         btn_clearAllFilters.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                radioButton_ngWithPriority.setChecked(false);
-                radioButton_ngWithUncalim.setChecked(false);
-                radioButton_ngWithcalim.setChecked(false);
+                adapter.setDataset(ngUserList);
+                adapter.notifyDataSetChanged();
+                mFilterDialog.dismiss();
+                count_list.setText("Count\n"+ ngUserList.size());
             }
         });
-        radioButton_ngWithcalim.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (radioButton_ngWithcalim.isChecked()) {
-                    if (!flagRadioButtonCheck1) {
-                        radioButton_ngWithcalim.setChecked(true);
-                        radioButton_ngWithUncalim.setChecked(false);
-                        radioButton_ngWithPriority.setChecked(false);
-                        flagRadioButtonCheck1 = true;
-                        flagRadioButtonCheck2 = false;
-                        flagRadioButtonCheck3 = false;
-                      //  Utils.showToast(NgUserListActivity.this, "claim click");
 
-
-                    } else {
-                        flagRadioButtonCheck1 = false;
-                        radioButton_ngWithcalim.setChecked(false);
-                        radioButton_ngWithUncalim.setChecked(false);
-                        radioButton_ngWithPriority.setChecked(false);
-                    }
-                }
-            }
-        });
-        radioButton_ngWithUncalim.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (radioButton_ngWithUncalim.isChecked()) {
-                    if (!flagRadioButtonCheck2) {
-                        radioButton_ngWithUncalim.setChecked(true);
-                        radioButton_ngWithcalim.setChecked(false);
-                        radioButton_ngWithPriority.setChecked(false);
-                        flagRadioButtonCheck2 = true;
-                        flagRadioButtonCheck1 = false;
-                        flagRadioButtonCheck3 = false;
-
-                    } else {
-                        flagRadioButtonCheck2 = false;
-                        radioButton_ngWithPriority.setChecked(false);
-                        radioButton_ngWithUncalim.setChecked(false);
-                        radioButton_ngWithcalim.setChecked(false);
-                    }
-                }
-            }
-        });
-        radioButton_ngWithPriority.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (radioButton_ngWithPriority.isChecked()) {
-                    if (!flagRadioButtonCheck3) {
-                        radioButton_ngWithPriority.setChecked(true);
-                        radioButton_ngWithcalim.setChecked(false);
-                        radioButton_ngWithUncalim.setChecked(false);
-                        flagRadioButtonCheck3 = true;
-                        flagRadioButtonCheck2 = false;
-                        flagRadioButtonCheck1 = false;
-
-                    } else {
-                        flagRadioButtonCheck3 = false;
-                        radioButton_ngWithcalim.setChecked(false);
-                        radioButton_ngWithUncalim.setChecked(false);
-                        radioButton_ngWithPriority.setChecked(false);
-                    }
-                }
-            }
-        });
         btn_applyFilters.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 //final ProgressDialog dialog2 = ProgressDialog.show(NgUserListActivity.this, null, "Loading... ", true, false);
+                int checkedId = radioGroup.getCheckedRadioButtonId();
+                Log.d(log,"checked id = "+checkedId);
 
-                if (radioButton_ngWithcalim.isChecked()) {
-                    mSelectedId = CLAIM;
-                } else if (radioButton_ngWithUncalim.isChecked()) {
-                    mSelectedId = UNCLAIM;
-                } else if (radioButton_ngWithPriority.isChecked()) {
-                    mSelectedId = PRIORITY;
-                } else {
-                    mSelectedId = ALL_NG;
+                switch (radioGroup.getCheckedRadioButtonId())
+                {
+                    case R.id.radioButton_ngWithcalim:
+                        refreshRecyclerClaim();
+                        break;
+                    case R.id.radioButton_ngWithUncalim:
+                        refreshRecyclerUNClaim();
+                        break;
+                    case R.id.radioButton_ngJstart:
+                        refreshRecyclerJObStarted();
+                        break;
+                    case R.id.radioButton_ngWithPriority:
+                        showPeriority();
+                        break;
                 }
-                showItems(mSelectedId);
-
                 mFilterDialog.dismiss();
-                filtersDialogOpenCount = 0;
+
             }
         });
 
-
         mFilterDialog.show();
-        filtersDialogOpenCount = 1;
     }
 
-    private void showItems(final int actionId) {
-        boolean updateList = true;
-        switch (actionId) {
-            case CLAIM:
-
-               // Utils.showToast(NgUserListActivity.this,"show claim");
-                Call call_calimed = DBManager.getClaimedList(NgSupListActivity.this, "AS","1");
-                retrofitCancelOberver.addlist(call_calimed);
-                break;
-
-            case UNCLAIM:
-                updateList = true;
-               // Utils.showToast(NgUserListActivity.this,"show un-claim");
-                Call call_unclaimed = DBManager.getClaimedList(NgSupListActivity.this, "AS","0");
-                retrofitCancelOberver.addlist(call_unclaimed);
-                break;
-            case PRIORITY:
-                updateList = true;
-               // Call call_unclaimed = DBManager.getClaimedList(NgUserListActivity.this, "AS","2");
-               // Utils.showToast(NgUserListActivity.this,"priority");
-                showPeriority();
-                break;
-            case ALL_NG:
-                updateList = true;
-               // Utils.showToast(NgUserListActivity.this,"all ng list");
-
-                break;
+    public void refreshRecyclerClaim()
+    {
+        List<NguserListModel> filterList = new ArrayList<>();
+        Log.d(log,"refresh claim");
+        for (NguserListModel nguserListModel : ngUserList)
+        {
+            if (nguserListModel.getStatus().equalsIgnoreCase("AS") && nguserListModel.getClaim())
+            {
+                Log.d(log,"claim if = "+nguserListModel.getClaim()+nguserListModel.getStatus());
+                filterList.add(nguserListModel);
+            }
         }
+        count_list.setText("Count\n"+ filterList.size());
+        adapter.setDataset(filterList);
+        adapter.notifyDataSetChanged();
+
+    }
+
+    public void refreshRecyclerJObStarted()
+    {
+        List<NguserListModel> filterList = new ArrayList<>();
+        Log.d(log,"refresh claim");
+        for (NguserListModel nguserListModel : ngUserList)
+        {
+            if (nguserListModel.getStatus().equalsIgnoreCase("AS") && nguserListModel.getClaim() && nguserListModel.getStart_job())
+            {
+                Log.d(log,"claim if = "+nguserListModel.getClaim()+nguserListModel.getStatus());
+                filterList.add(nguserListModel);
+            }
+        }
+        count_list.setText("Count\n"+ filterList.size());
+        adapter.setDataset(filterList);
+        adapter.notifyDataSetChanged();
+
+    }
+    public void refreshRecyclerUNClaim()
+    {
+        List<NguserListModel> filterList = new ArrayList<>();
+        Log.d(log,"refresh unclaim");
+        for (NguserListModel nguserListModel : ngUserList)
+        {
+            if (nguserListModel.getStatus().equalsIgnoreCase("AS") && !nguserListModel.getClaim())
+            {
+                Log.d(log,"claim if = "+nguserListModel.getClaim()+nguserListModel.getStatus());
+                filterList.add(nguserListModel);
+            }
+        }
+        count_list.setText("Count\n"+ filterList.size());
+        adapter.setDataset(filterList);
+        adapter.notifyDataSetChanged();
+
     }
     private void showPeriority(){
         // priority - 2 is for high color is red
@@ -376,8 +322,6 @@ public class NgSupListActivity extends AppCompatActivity implements ListDataPass
         filterList.addAll(moderatePriorityList);
         filterList.addAll(lowPriorityList);
         setListData(filterList);
-
-
     }
 
     @Override

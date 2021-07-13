@@ -664,7 +664,7 @@
                     <ImageView
                         android:id="@+id/image_id"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_120sdp"
+                        android:layout_height="@dimen/_300sdp"
                         android:background="@drawable/shape_blue_border"
                         android:scaleType="fitXY" />
                 <TextView
@@ -680,7 +680,7 @@
                 <ImageView
                     android:id="@+id/image_address"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_120sdp"
+                    android:layout_height="@dimen/_300sdp"
                     android:background="@drawable/shape_blue_border"
                     android:scaleType="fitXY" />
                 <TextView

@@ -21,6 +21,42 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="UserId"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/address_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text=""
+            android:background="@null"
+            android:editable="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13sdp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@color/gray"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:orientation="vertical">
 
@@ -38,8 +74,46 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
-            android:text="Tapan Pal"
+            android:text=""
+            android:editable="false"
             android:background="@null"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13sdp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@color/gray"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="Mobile No"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/mobile_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text=""
+            android:background="@null"
+            android:editable="false"
             android:textColor="@color/black"
             android:textSize="@dimen/_13sdp"
             android:textStyle="bold" />
@@ -109,8 +183,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
-            android:text="tapan@gmail.com"
+            android:text=""
             android:background="@null"
+            android:editable="false"
             android:textColor="@color/black"
             android:textSize="@dimen/_13sdp"
             android:textStyle="bold" />
@@ -122,41 +197,7 @@
             android:layout_marginTop="@dimen/_5sdp"
             android:background="@color/gray"/>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginRight="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:text="Address"
-            android:textColor="@color/gray"
-            android:textSize="@dimen/_10sdp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/address_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:text="Noida sector 7"
-            android:background="@null"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_13sdp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:background="@color/gray"/>
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -180,8 +221,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
-            android:text="Janak Puri"
+            android:text=""
             android:background="@null"
+            android:editable="false"
             android:textColor="@color/black"
             android:textSize="@dimen/_13sdp"
             android:textStyle="bold" />
@@ -206,7 +248,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
-            android:text="State"
+            android:text="Zone"
             android:textColor="@color/gray"
             android:textSize="@dimen/_10sdp"
             android:textStyle="bold" />
@@ -216,8 +258,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
-            android:text="Delhi"
+            android:text=""
             android:background="@null"
+            android:editable="false"
             android:textColor="@color/black"
             android:textSize="@dimen/_13sdp"
             android:textStyle="bold" />
@@ -229,6 +272,8 @@
             android:layout_marginTop="@dimen/_5sdp"
             android:background="@color/gray"/>
     </LinearLayout>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -242,43 +287,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
-            android:text="Mobile No"
-            android:textColor="@color/gray"
-            android:textSize="@dimen/_10sdp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/mobile_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:text="7827156550"
-            android:background="@null"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_13sdp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:background="@color/gray"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginRight="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:text="Adhaar No"
+            android:text="Logged-In Date"
             android:textColor="@color/gray"
             android:textSize="@dimen/_10sdp"
             android:textStyle="bold" />
@@ -288,9 +297,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
-            android:text="935812336783"
+            android:text=""
             android:background="@null"
             android:textColor="@color/black"
+            android:editable="false"
             android:textSize="@dimen/_13sdp"
             android:textStyle="bold" />
 
