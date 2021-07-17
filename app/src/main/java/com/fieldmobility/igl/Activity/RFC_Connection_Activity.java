@@ -222,6 +222,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                 finish();
             }
         });
+
         image_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

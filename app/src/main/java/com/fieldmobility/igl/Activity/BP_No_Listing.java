@@ -216,48 +216,50 @@ public class BP_No_Listing extends Activity implements New_BP_NO_Adapter.Contact
                     @Override
                     public void onResponse(String response) {
                         materialDialog.dismiss();
+                        Log.d("Bpcreation","response = "+response.toString());
                         try {
                             final JSONObject jsonObject = new JSONObject(response);
                             Log.e("Response++",jsonObject.toString());
-                            final JSONObject Bp_Details = jsonObject.getJSONObject("Bp_Details");
-                            JSONArray payload=Bp_Details.getJSONArray("users");
+                         //   final JSONObject Bp_Details = jsonObject.getJSONObject("Bp_Details");
+                         //   Log.e("Response++",Bp_Details.toString());
+                            JSONArray payload=jsonObject.getJSONArray("Bp_Details");
                             list_count.setText("Count= "+String.valueOf(payload.length()));
                             for(int i=0; i<payload.length();i++) {
                                 JSONObject data_object=payload.getJSONObject(i);
                                 Bp_No_Item bp_no_item = new Bp_No_Item();
-                                bp_no_item.setFirst_name(data_object.getString("first_name"));
-                                bp_no_item.setMiddle_name(data_object.getString("middle_name"));
-                                bp_no_item.setLast_name(data_object.getString("last_name"));
-                                bp_no_item.setMobile_number(data_object.getString("mobile_number"));
-                                bp_no_item.setEmail_id(data_object.getString("email_id"));
-                                bp_no_item.setAadhaar_number(data_object.getString("aadhaar_number"));
-                                bp_no_item.setCity_region(data_object.getString("city_region"));
-                                bp_no_item.setArea(data_object.getString("area"));
-                                bp_no_item.setSociety(data_object.getString("society"));
-                                bp_no_item.setLandmark(data_object.getString("landmark"));
-                                bp_no_item.setHouse_type(data_object.getString("house_type"));
-                                bp_no_item.setHouse_no(data_object.getString("house_no"));
-                                bp_no_item.setBlock_qtr_tower_wing(data_object.getString("block_qtr_tower_wing"));
-                                bp_no_item.setFloor(data_object.getString("floor"));
-                                bp_no_item.setStreet_gali_road(data_object.getString("street_gali_road"));
-                                bp_no_item.setPincode(data_object.getString("pincode"));
-                                bp_no_item.setCustomer_type(data_object.getString("customer_type"));
-                                bp_no_item.setLpg_company(data_object.getString("lpg_company"));
-                                bp_no_item.setBp_number(data_object.getString("bp_number"));
-                                bp_no_item.setBp_date(data_object.getString("bp_date"));
+                                bp_no_item.setFirst_name(data_object.getString("igl_first_name"));
+                                bp_no_item.setMiddle_name(data_object.getString("igl_middle_name"));
+                                bp_no_item.setLast_name(data_object.getString("igl_last_name"));
+                                bp_no_item.setMobile_number(data_object.getString("igl_mobile_no"));
+                                bp_no_item.setEmail_id(data_object.getString("igl_email_id"));
+                                bp_no_item.setAadhaar_number(data_object.getString("igl_aadhaar_no"));
+                                bp_no_item.setCity_region(data_object.getString("igl_city_region"));
+                                bp_no_item.setArea(data_object.getString("igl_area"));
+                                bp_no_item.setSociety(data_object.getString("igl_society"));
+                                bp_no_item.setLandmark(data_object.getString("igl_landmark"));
+                                bp_no_item.setHouse_type(data_object.getString("igl_house_type"));
+                                bp_no_item.setHouse_no(data_object.getString("igl_house_no"));
+                                bp_no_item.setBlock_qtr_tower_wing(data_object.getString("igl_Block_Qtr_Tower_Wing"));
+                                bp_no_item.setFloor(data_object.getString("igl_floor"));
+                                bp_no_item.setStreet_gali_road(data_object.getString("igl_street_gali_road"));
+                                bp_no_item.setPincode(data_object.getString("igl_pincode"));
+                                bp_no_item.setCustomer_type(data_object.getString("igl_consumer_type"));
+                                bp_no_item.setLpg_company(data_object.getString("igl_lpg_company"));
+                                bp_no_item.setBp_number(data_object.getString("igl_bp_creation_no"));
+                                bp_no_item.setBp_date(data_object.getString("igl_bp_creation_date"));
                                 bp_no_item.setIgl_status(data_object.getString("igl_status"));
 
-                                bp_no_item.setLpg_distributor(data_object.getString("lpg_distributor"));
-                                bp_no_item.setLpg_conNo(data_object.getString("lpg_conNo"));
-                                bp_no_item.setUnique_lpg_Id(data_object.getString("unique_lpg_Id"));
-                                bp_no_item.setOwnerName(data_object.getString("ownerName"));
-                                bp_no_item.setChequeNo(data_object.getString("chequeNo"));
-                                bp_no_item.setChequeDate(data_object.getString("chequeDate"));
-                                bp_no_item.setLead_no(data_object.getString("lead_no"));
-                                bp_no_item.setDrawnOn(data_object.getString("drawnOn"));
+                                bp_no_item.setLpg_distributor(data_object.getString("id_lpg_distributor"));
+                                bp_no_item.setLpg_conNo(data_object.getString("igl_lpg_consumer_no"));
+                                bp_no_item.setUnique_lpg_Id(data_object.getString("igl_unique_lpg_id"));
+                                bp_no_item.setOwnerName(data_object.getString("owner_name"));
+                                bp_no_item.setChequeNo(data_object.getString("cheque_no"));
+                                bp_no_item.setChequeDate(data_object.getString("cheque_date"));
+                                bp_no_item.setLead_no(data_object.getString("igl_lead_no"));
+                                bp_no_item.setDrawnOn(data_object.getString("drawn_on"));
                                 bp_no_item.setAmount(data_object.getString("amount"));
-                                bp_no_item.setAddressProof(data_object.getString("addressProof"));
-                                bp_no_item.setIdproof(data_object.getString("idproof"));
+                                bp_no_item.setAddressProof(data_object.getString("igl_address_type"));
+                                bp_no_item.setIdproof(data_object.getString("id_proof_type"));
                                 bp_no_item.setIgl_code_group(data_object.getString("igl_code_group"));
                                 bp_no_array.add(bp_no_item);
 
@@ -279,6 +281,7 @@ public class BP_No_Listing extends Activity implements New_BP_NO_Adapter.Contact
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         materialDialog.dismiss();
+                        Log.d("Bpcreation","on error = "+error.getMessage());
                         NetworkResponse response = error.networkResponse;
                         if (error instanceof ServerError && response != null) {
                             try {

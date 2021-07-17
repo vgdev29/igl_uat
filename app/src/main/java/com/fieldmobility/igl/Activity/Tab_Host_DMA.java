@@ -33,7 +33,7 @@ public class Tab_Host_DMA extends TabActivity {
 
         //Creating tab menu.
         TabHost.TabSpec TabMenu1 = TabHostWindow.newTabSpec("New Registration");
-        TabHost.TabSpec TabMenu2 = TabHostWindow.newTabSpec("Document Verify");
+        TabHost.TabSpec TabMenu2 = TabHostWindow.newTabSpec("Doc Resubmission");
 
 
         //Setting up tab 1 name.
@@ -42,7 +42,7 @@ public class Tab_Host_DMA extends TabActivity {
         TabMenu1.setContent(new Intent(this, BP_No_Listing.class));
 
         //Setting up tab 2 name.
-        TabMenu2.setIndicator("Document Verify");
+        TabMenu2.setIndicator("Document Resubmission");
         //Set tab 3 activity to tab 1 menu.
         TabMenu2.setContent(new Intent(this, BP_Document_Verification.class));
 

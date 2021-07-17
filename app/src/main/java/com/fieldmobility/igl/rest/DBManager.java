@@ -30,7 +30,7 @@ public class DBManager {
             call_retrofit.enqueue(new Callback<ArrayList<NguserListModel>>() {
                 @Override
                 public void onResponse(Call<ArrayList<NguserListModel>> call, Response<ArrayList<NguserListModel>> response) {
-                    Log.e("MyError", "error.............");
+                    Log.e("MyError", "error............."+response.toString());
                     if (response.isSuccessful()){
                         if (response.body()!=null){
                             final ArrayList<NguserListModel> nguserListModelArrayList = response.body();
@@ -45,7 +45,7 @@ public class DBManager {
                 }
                 @Override
                 public void onFailure(Call<ArrayList<NguserListModel>> call, Throwable t) {
-                    Log.e("MyError", "error.............");
+                    Log.e("MyError", "error............."+call.toString());
                 }
             });
             return call_retrofit;

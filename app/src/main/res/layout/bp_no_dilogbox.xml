@@ -40,7 +40,7 @@
                 android:fontFamily="@font/abhayalibre_regular"
                 android:textColor="@color/black"
                 android:layout_gravity="center"
-                android:text="Successfully Creating BP NO"
+                android:text="Successfully Created BP NO"
                 />
             <LinearLayout
                 android:layout_width="match_parent"

@@ -133,6 +133,10 @@
             android:name=".Activity.BP_Creation_Form"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".Activity.BP_Creation_Form_step2"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".Activity.BP_No_Listing"
             android:screenOrientation="portrait" />
         <activity

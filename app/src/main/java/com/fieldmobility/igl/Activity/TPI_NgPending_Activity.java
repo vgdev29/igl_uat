@@ -68,6 +68,7 @@ public class TPI_NgPending_Activity extends Activity implements TPI_NgPending_Ad
 
 
 
+
     public TPI_NgPending_Activity() {
         // Required empty public constructor
     }
@@ -203,6 +204,7 @@ public class TPI_NgPending_Activity extends Activity implements TPI_NgPending_Ad
             @Override
             public void run() {
                 if (claimUserList.size()>0) {
+                    list_count.setText("Count\n"+ claimUserList.size());
                     hideProgressDialog();
                     adapter = new TPI_NgPending_Adapter(TPI_NgPending_Activity.this, claimUserList, TPI_NgPending_Activity.this);
                     recyclerView.setAdapter(adapter);

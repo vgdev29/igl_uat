@@ -356,9 +356,12 @@ class NgUserClaimListViewHolder extends RecyclerView.ViewHolder {
                     List<NguserListModel> filteredList = new ArrayList<>();
                     try {
                         for (NguserListModel row : new_ngUserClaimList) {
-                            if (row.getBp_no().toLowerCase().contains(charString.toLowerCase()) || row.getCustomer_name().toLowerCase().contains(charString.toLowerCase())
-                                    || row.getHouse_no().toLowerCase().contains(charString.toLowerCase()) || row.getFloor().toLowerCase().contains(charString.toLowerCase())
-                                    || row.getArea().toLowerCase().contains(charString.toLowerCase()) || row.getSociety().toLowerCase().contains(charString.toLowerCase())
+                            if (row.getBp_no().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getCustomer_name().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getHouse_no().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getFloor().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getArea().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getSociety().toLowerCase().contains(charString.toLowerCase())
                                     || row.getBlock_qtr().toLowerCase().contains(charString.toLowerCase())
                                     || row.getMobile_no().toLowerCase().contains(charString.toLowerCase())
                                     || row.getControl_room().toLowerCase().contains(charString.toLowerCase())
@@ -369,6 +372,7 @@ class NgUserClaimListViewHolder extends RecyclerView.ViewHolder {
                         }
                     }
                     catch (Exception e){
+                        Log.d(log,"ctch = "+e.getMessage());
                         CommonUtils.toast_msg(mctx,"Some fields are null");
                     }
                         ngUserClaimList = filteredList;
