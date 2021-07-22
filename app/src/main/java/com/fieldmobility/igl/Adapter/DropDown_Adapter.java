@@ -8,6 +8,9 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.fieldmobility.igl.Activity.BP_Creation_Form;
+import com.fieldmobility.igl.Listeners.PlainTextListItemSelectListener;
 import com.fieldmobility.igl.MataData.Bp_No_Item;
 import com.fieldmobility.igl.R;
 import java.util.ArrayList;
@@ -25,6 +28,8 @@ public class DropDown_Adapter extends RecyclerView.Adapter<DropDown_Adapter.View
         this.listener = listener;
         this.context = context;
     }
+
+
     @Override
     public DropDown_Adapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
