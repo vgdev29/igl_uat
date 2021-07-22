@@ -261,7 +261,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         List<String> list = new ArrayList<String>();
         list.add("ELECTRICITY BILL");
         list.add("WATER BILL");
-        list.add("SALE DEEP");
+        list.add("SALE DEED");
         list.add("HOUSE TAX RECEIPT");
         list.add("ALLOTMENT LETTER");
         list.add("ANY OTHER");
@@ -678,6 +678,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
                         bitmap_cheque = BitmapFactory.decodeFile(f.getAbsolutePath(),
                                 bitmapOptions);
+                        bitmap_cheque= getResizedBitmap(bitmap_cheque,500);
                         String path = getExternalStorageDirectory().getAbsolutePath() ;
                         f.delete();
                         OutputStream outFile = null;
@@ -1395,7 +1396,20 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         super.onDestroy();
         Log.d("bpcreation","on destroy");
     }
+    public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
+        int width = image.getWidth();
+        int height = image.getHeight();
 
+        float bitmapRatio = (float)width / (float) height;
+        if (bitmapRatio > 1) {
+            width = maxSize;
+            height = (int) (width / bitmapRatio);
+        } else {
+            height = maxSize;
+            width = (int) (height * bitmapRatio);
+        }
+        return Bitmap.createScaledBitmap(image, width, height, true);
+    }
 }
 
 

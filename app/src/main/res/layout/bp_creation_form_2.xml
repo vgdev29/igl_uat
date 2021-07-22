@@ -126,7 +126,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_25sdp"
-                android:text="UNdertaking (Owner’s Death Case)"
+                android:text="Undertaking (Owner’s Death Case)"
                 />
             <CheckBox
                 android:id="@+id/address_issue"
