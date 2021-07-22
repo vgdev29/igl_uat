@@ -316,7 +316,7 @@ public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.Ng
                         for (NguserListModel row : dataset) {
                             if (row.getBp_no().toLowerCase().contains(charString.toLowerCase())
                                     || row.getCustomer_name().toLowerCase().contains(charString.toLowerCase())
-                                    || row.getJmr_no().toLowerCase().contains(charString.toLowerCase())
+                                   /* || row.getJmr_no().toLowerCase().contains(charString.toLowerCase())
                                     || row.getSociety().toLowerCase().contains(charString.toLowerCase())
                                     || row.getArea().toLowerCase().contains(charString.toLowerCase())
                                     || row.getContractor_id().toLowerCase().contains(charString.toLowerCase())
@@ -325,7 +325,7 @@ public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.Ng
                                     || row.getFloor().toLowerCase().contains(charString.toLowerCase())
                                     || row.getControl_room().toLowerCase().contains(charString.toLowerCase())
                                     || row.getMobile_no().toLowerCase().contains(charString.toLowerCase())
-                                    || row.getSupervisor_assigned_date().toLowerCase().contains(charString.toLowerCase())
+                                    || row.getSupervisor_assigned_date().toLowerCase().contains(charString.toLowerCase())*/
 
                             ) {
                                 Log.d(log, "filter loop = " + dataset.size());

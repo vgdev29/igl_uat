@@ -127,6 +127,7 @@ public class TPI_Approval_Activity extends Activity implements TPI_Approval_Adap
                 .content("Please wait....")
                 .progress(true, 0)
                 .show();
+        Log.d("Response++",Constants.RFC_LISTING_TPI_GET+sharedPrefs.getZone_Code()+"?id="+sharedPrefs.getUUID());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.RFC_LISTING_TPI_GET+sharedPrefs.getZone_Code()+"?id="+sharedPrefs.getUUID(),
                 new Response.Listener<String>() {
                     @Override

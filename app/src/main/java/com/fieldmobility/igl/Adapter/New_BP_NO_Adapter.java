@@ -114,14 +114,12 @@ public class New_BP_NO_Adapter extends RecyclerView.Adapter<New_BP_NO_Adapter.Vi
                 intent.putExtra("Bp_number",Bp_number);
                 intent.putExtra("Bp_date",Bp_date);
                 intent.putExtra("IGL_Status",IGL_Status);
-
                 intent.putExtra("lpg_distributor",lpg_distributor);
                 intent.putExtra("lpg_conNo",lpg_conNo);
                 intent.putExtra("Unique_lpg_Id",Unique_lpg_Id);
                 intent.putExtra("lead_no",lead_no);
                 intent.putExtra("ownerName",ownerName);
                 intent.putExtra("igl_code_group",igl_code_group);
-
                 intent.putExtra("ChequeNo",ChequeNo);
                 intent.putExtra("ChequeDate",ChequeDate);
                 intent.putExtra("DrawnOn",DrawnOn);

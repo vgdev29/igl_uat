@@ -62,7 +62,7 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Claimed by you"
+            android:text="Claimed by me/Job not Start"
             android:id="@+id/radioButton_rfcClaim"
             android:textColor="@color/black_31"
             android:fontFamily="@font/gt_walsheim_web"

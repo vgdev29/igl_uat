@@ -241,9 +241,9 @@ public class TPI_NgApproval_Adapter extends RecyclerView.Adapter<TPI_NgApproval_
         TextView cont_mob = dialog.findViewById(R.id.cont_mob_no);
         TextView sup_name = dialog.findViewById(R.id.sup_name_text);
         TextView sup_mob = dialog.findViewById(R.id.sup_mob_no);
-        cont_name.setText("Cont. :- " + conName);
+        cont_name.setText("Contractor:- " + conName);
         cont_mob.setText("MobNo :- " + conMob);
-        sup_name.setText("Sup. :- " + supName);
+        sup_name.setText("Technician:- " + supName);
         sup_mob.setText("MobNo :- " + supMob);
         sup_mob.setOnClickListener(new View.OnClickListener() {
             @Override

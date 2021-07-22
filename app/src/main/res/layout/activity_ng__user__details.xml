@@ -749,7 +749,6 @@
                             android:id="@+id/spinner_ngStatus"
                             android:layout_width="@dimen/_130sdp"
                             android:layout_height="@dimen/_30sdp"
-
                             android:layout_weight=".7"
                             android:background="@drawable/shape_white"
                             android:dropDownSelector="@null" />
@@ -943,7 +942,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     >
                 <LinearLayout
                     android:id="@+id/ll_delayDate"
@@ -990,6 +989,19 @@
                         />
 
                 </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/et_nghold_remarks"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_50sdp"
+                        android:background="@drawable/background_input_mandatory"
+                        android:hint="Remarks"
+                        android:layout_marginHorizontal="15dp"
+                        android:layout_marginVertical="10dp"
+                        android:inputType="text"
+                        android:padding="10dp"
+                        android:singleLine="true"
+                        android:textSize="@dimen/_10sdp" />
 
 
                 <LinearLayout

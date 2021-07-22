@@ -1433,7 +1433,7 @@
                         android:layout_weight="1"
                         android:background="@color/colorPrimary"
                         android:gravity="center"
-                        android:text="Miscellaneous"
+                        android:text="Selfie with meter"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_10sdp" />
 

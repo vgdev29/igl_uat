@@ -21,12 +21,12 @@ import retrofit2.http.Query;
 public interface Api {
 
     //Production
-    String BASE_URL = "http://49.50.65.107:8000/";
-    String BASE_URL_TPI_DETAILS = "http://49.50.65.107:8081/";
+     String BASE_URL = "http://49.50.65.107:8000/";
+     String BASE_URL_TPI_DETAILS = "http://49.50.65.107:8081/";
 
     //UAT
     //String BASE_URL = "http://49.50.68.239:8080/";
-     //String BASE_URL_TPI_DETAILS = "http://49.50.118.112:8080/";
+    //String BASE_URL_TPI_DETAILS = "http://49.50.118.112:8080/";
 
 
     // tpi list for claim and unclaim
