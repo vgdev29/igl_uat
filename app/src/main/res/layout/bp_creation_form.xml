@@ -1,175 +1,173 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         android:background="@color/rad"
         android:orientation="horizontal">
+
         <ImageView
             android:id="@+id/back"
             android:layout_width="@dimen/_23sdp"
             android:layout_height="@dimen/_23sdp"
             android:layout_gravity="center"
-            android:background="@drawable/back"
             android:layout_margin="@dimen/_3sdp"
-            />
+            android:background="@drawable/back" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:layout_marginRight="@dimen/_30sdp"
             android:gravity="center"
             android:text="Form 1"
+            android:textColor="@color/white"
             android:textSize="@dimen/_14sdp"
-            android:textStyle="bold"
-            android:layout_marginRight="@dimen/_30sdp"
-            android:textColor="@color/white"/>
+            android:textStyle="bold" />
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/_40sdp"
-        android:layout_above="@+id/bottomLayout">
+        android:layout_above="@+id/bottomLayout"
+        android:layout_marginTop="@dimen/_40sdp">
 
         <LinearLayout
-            android:focusable="true"
-            android:focusableInTouchMode="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/_5sdp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/_5sdp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:background="@color/peach_light"
-                    android:gravity="center"
-                    android:textSize="@dimen/_14sdp"
-                    android:text="Personal Details" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/green"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:text="Personal Details"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="3"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="3">
 
 
-                    <EditText
-                        android:id="@+id/fullname"
-                        android:layout_width="fill_parent"
-                        android:layout_height="@dimen/_25sdp"
-                        android:hint="First Name"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:layout_marginRight="@dimen/_3sdp"
-                        android:paddingLeft="@dimen/_5sdp"
-                        android:background="@drawable/background_input_mandatory"
-                        android:textSize="@dimen/_10sdp"
-                        android:inputType="textCapCharacters"
-                        android:singleLine="true" />
+                <EditText
+                    android:id="@+id/fullname"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_input_mandatory"
+                    android:hint="First Name"
+                    android:inputType="textCapCharacters"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_10sdp" />
 
 
-                    <EditText
-                        android:id="@+id/middle_name"
-                        android:layout_width="fill_parent"
-                        android:layout_height="@dimen/_25sdp"
-                        android:hint="Middle Name"
-                        android:layout_weight="1"
-                        android:background="@drawable/shape_blue_border"
-                        android:textSize="@dimen/_10sdp"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:layout_marginLeft="@dimen/_3sdp"
-                        android:paddingLeft="@dimen/_5sdp"
-                        android:inputType="textCapCharacters"
-                        android:singleLine="true"
-                        />
+                <EditText
+                    android:id="@+id/middle_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_marginLeft="@dimen/_3sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_blue_border"
+                    android:hint="Middle Name"
+                    android:inputType="textCapCharacters"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_10sdp" />
 
 
-                    <EditText
-                        android:id="@+id/lastname"
-                        android:layout_width="fill_parent"
-                        android:layout_height="@dimen/_25sdp"
-                        android:hint="Last Name"
-                        android:layout_weight="1"
-                        android:background="@drawable/background_input_mandatory"
-                        android:textSize="@dimen/_10sdp"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:layout_marginLeft="@dimen/_3sdp"
-                        android:paddingLeft="@dimen/_5sdp"
-                        android:inputType="textCapCharacters"
-                        android:singleLine="true"
-                        />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/mobile_no"
-                        android:layout_width="fill_parent"
-                        android:layout_height="@dimen/_25sdp"
-                        android:hint="Mobile No"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:layout_marginRight="@dimen/_3sdp"
-                        android:paddingLeft="@dimen/_5sdp"
-                        android:background="@drawable/background_input_mandatory"
-                        android:textSize="@dimen/_10sdp"
-                        android:maxLength="10"
-                        android:inputType="number"
-                        android:singleLine="true" />
-
-                    <EditText
-                        android:id="@+id/email_id"
-                        android:layout_width="fill_parent"
-                        android:layout_height="@dimen/_25sdp"
-                        android:hint="Email Id"
-                        android:inputType="textCapCharacters"
-                        android:layout_weight="1"
-                        android:paddingLeft="@dimen/_5sdp"
-                        android:textSize="@dimen/_10sdp"
-                        android:layout_marginLeft="@dimen/_3sdp"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:background="@drawable/shape_blue_border"
-                        android:singleLine="true"
-
-                        />
+                <EditText
+                    android:id="@+id/lastname"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_marginLeft="@dimen/_3sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_input_mandatory"
+                    android:hint="Last Name"
+                    android:inputType="textCapCharacters"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_10sdp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2">
 
-                    <EditText
-                        android:id="@+id/aadhaar_no"
-                        android:layout_width="fill_parent"
-                        android:layout_height="@dimen/_26sdp"
-                        android:hint="Aadhaar No"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:layout_marginRight="@dimen/_3sdp"
-                        android:paddingLeft="@dimen/_5sdp"
-                        android:background="@drawable/shape_blue_border"
-                        android:textSize="@dimen/_10sdp"
-                        android:maxLength="12"
-                        android:inputType="number"
-                        android:singleLine="true" />
+                <EditText
+                    android:id="@+id/mobile_no"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_input_mandatory"
+                    android:hint="Mobile No"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_10sdp" />
 
+                <EditText
+                    android:id="@+id/email_id"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_marginLeft="@dimen/_3sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_blue_border"
+                    android:hint="Email Id"
+                    android:inputType="textCapCharacters"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_10sdp"
+
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <EditText
+                    android:id="@+id/aadhaar_no"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_26sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:background="@drawable/shape_blue_border"
+                    android:hint="Aadhaar No"
+                    android:inputType="number"
+                    android:maxLength="12"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_10sdp" />
 
 
             </LinearLayout>
@@ -177,382 +175,413 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_5sdp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:background="@color/peach_light"
-                android:gravity="center"
                 android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/green"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:text="Address Details"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_14sdp"
-                android:text="Address Details" />
+                android:textStyle="bold" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_1sdp"
-                    android:textColor="@color/dark_gray"
-                    android:layout_weight="1"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="Select City" />
+                    android:layout_weight="1"
+                    android:padding="@dimen/_1sdp"
+                    android:text="Select City"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/_10sdp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_1sdp"
-                    android:textColor="@color/dark_gray"
-                    android:layout_weight="1"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="Select Area " />
+                    android:layout_weight="1"
+                    android:padding="@dimen/_1sdp"
+                    android:text="Select Area "
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/_10sdp" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2">
 
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_30sdp"
-                    android:orientation="horizontal"
                     android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
-                    android:layout_marginRight="@dimen/_3sdp"
                     android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:layout_weight="1"
                     android:background="@drawable/background_input_mandatory"
-                    android:layout_weight="1">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
                     <Spinner
                         android:id="@+id/spinner_city"
                         android:layout_width="@dimen/_130sdp"
                         android:layout_height="@dimen/_26sdp"
                         android:layout_margin="3dp"
+                        android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:layout_weight=".2"
-                        android:spinnerMode="dialog"
                         android:autofillHints="City/Region"
-                        android:layout_marginLeft="@dimen/_5sdp"
                         android:background="@drawable/shape_white"
                         android:dropDownSelector="@null"
-                        />
+                        android:spinnerMode="dialog" />
+
                     <ImageView
-                        android:layout_centerVertical="true"
                         android:layout_width="@dimen/_11sdp"
                         android:layout_height="@dimen/_11sdp"
+                        android:layout_centerVertical="true"
                         android:layout_gravity="center"
                         android:layout_marginRight="@dimen/_5sdp"
-                        android:background="@drawable/dropdown"
-                        />
+                        android:background="@drawable/dropdown" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_30sdp"
-                    android:orientation="horizontal"
                     android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
-                    android:layout_marginRight="@dimen/_3sdp"
                     android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:layout_weight="1"
                     android:background="@drawable/background_input_mandatory"
-                    android:layout_weight="1">
-                    <Spinner
-                        android:id="@+id/spinner_area"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <!--                    <Spinner-->
+                    <!--                        android:id="@+id/spinner_area"-->
+                    <!--                        android:layout_width="@dimen/_130sdp"-->
+                    <!--                        android:layout_height="@dimen/_26sdp"-->
+                    <!--                        android:layout_margin="3dp"-->
+                    <!--                        android:layout_marginRight="@dimen/_5sdp"-->
+                    <!--                        android:layout_weight=".2"-->
+                    <!--                        android:spinnerMode="dialog"-->
+                    <!--                        android:autofillHints="City/Region"-->
+                    <!--                        android:layout_marginLeft="@dimen/_5sdp"-->
+                    <!--                        android:background="@drawable/shape_white"-->
+                    <!--                        android:dropDownSelector="@null"-->
+                    <!--                        />-->
+                    <TextView
+                        android:id="@+id/tv_select_area"
                         android:layout_width="@dimen/_130sdp"
                         android:layout_height="@dimen/_26sdp"
                         android:layout_margin="3dp"
+                        android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:layout_weight=".2"
-                        android:spinnerMode="dialog"
-                        android:autofillHints="City/Region"
-                        android:layout_marginLeft="@dimen/_5sdp"
                         android:background="@drawable/shape_white"
-                        android:dropDownSelector="@null"
-                        />
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/_4sdp"
+                        android:text="Select Area"
+                        android:textColor="@color/black_31"
+                        android:textSize="@dimen/_12sdp"></TextView>
+
                     <ImageView
-                        android:layout_centerVertical="true"
                         android:layout_width="@dimen/_11sdp"
                         android:layout_height="@dimen/_11sdp"
+                        android:layout_centerVertical="true"
                         android:layout_gravity="center"
                         android:layout_marginRight="@dimen/_5sdp"
-                        android:background="@drawable/dropdown"
-                        />
+                        android:background="@drawable/dropdown" />
                 </LinearLayout>
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_1sdp"
-                    android:textColor="@color/dark_gray"
-                    android:layout_weight="1"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="Select Society" />
+                    android:layout_weight="1"
+                    android:padding="@dimen/_1sdp"
+                    android:text="Select Society"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/_10sdp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_1sdp"
-                    android:textColor="@color/dark_gray"
-                    android:layout_weight="1"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="Landmark" />
+                    android:layout_weight="1"
+                    android:padding="@dimen/_1sdp"
+                    android:text="Landmark"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/_10sdp" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2">
+
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_30sdp"
-                    android:orientation="horizontal"
                     android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
-                    android:layout_marginRight="@dimen/_3sdp"
                     android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:layout_weight="1"
                     android:background="@drawable/background_input_mandatory"
-                    android:layout_weight="1">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
                     <Spinner
                         android:id="@+id/spinner_society"
                         android:layout_width="@dimen/_130sdp"
                         android:layout_height="@dimen/_26sdp"
                         android:layout_margin="3dp"
+                        android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:layout_weight=".2"
-                        android:spinnerMode="dialog"
                         android:autofillHints="City/Region"
-                        android:layout_marginLeft="@dimen/_5sdp"
                         android:background="@drawable/shape_white"
                         android:dropDownSelector="@null"
-                        />
+                        android:spinnerMode="dialog" />
+
                     <ImageView
 
-                        android:layout_centerVertical="true"
                         android:layout_width="@dimen/_11sdp"
                         android:layout_height="@dimen/_11sdp"
+                        android:layout_centerVertical="true"
                         android:layout_gravity="center"
                         android:layout_marginRight="@dimen/_5sdp"
-                        android:background="@drawable/dropdown"
-                        />
+                        android:background="@drawable/dropdown" />
                 </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/landmark"
-                        android:layout_width="fill_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:inputType="textCapCharacters"
-                        android:textSize="@dimen/_10sdp"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:paddingLeft="@dimen/_5sdp"
-                        android:background="@drawable/shape_blue_border"
-                        android:singleLine="true"
-                        />
+                <EditText
+                    android:id="@+id/landmark"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_blue_border"
+                    android:inputType="textCapCharacters"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_10sdp" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_1sdp"
-                    android:textColor="@color/dark_gray"
-                    android:layout_weight="1"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="Select House Type" />
+                    android:layout_weight="1"
+                    android:padding="@dimen/_1sdp"
+                    android:text="Select House Type"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/_10sdp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_1sdp"
-                    android:textColor="@color/dark_gray"
-                    android:layout_weight="1"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="House No" />
+                    android:layout_weight="1"
+                    android:padding="@dimen/_1sdp"
+                    android:text="House No"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/_10sdp" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2">
+
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_30sdp"
-                    android:orientation="horizontal"
                     android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
-                    android:layout_marginRight="@dimen/_3sdp"
                     android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:layout_weight="1"
                     android:background="@drawable/shape_blue_border"
-                    android:layout_weight="1">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
                     <Spinner
                         android:id="@+id/spinner_house_type"
                         android:layout_width="@dimen/_130sdp"
                         android:layout_height="@dimen/_26sdp"
                         android:layout_margin="3dp"
+                        android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:layout_weight=".2"
-                        android:spinnerMode="dialog"
                         android:autofillHints="City/Region"
-                        android:layout_marginLeft="@dimen/_5sdp"
                         android:background="@drawable/shape_white"
                         android:dropDownSelector="@null"
-                        />
+                        android:spinnerMode="dialog" />
+
                     <ImageView
 
-                        android:layout_centerVertical="true"
                         android:layout_width="@dimen/_11sdp"
                         android:layout_height="@dimen/_11sdp"
+                        android:layout_centerVertical="true"
                         android:layout_gravity="center"
                         android:layout_marginRight="@dimen/_5sdp"
-                        android:background="@drawable/dropdown"
-                        />
+                        android:background="@drawable/dropdown" />
                 </LinearLayout>
 
 
-                    <EditText
-                        android:id="@+id/house_no"
-                        android:layout_width="fill_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:inputType="number"
-                        android:textSize="@dimen/_10sdp"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:paddingLeft="@dimen/_5sdp"
-                        android:background="@drawable/background_input_mandatory"
-                        android:singleLine="true"
-                        />
+                <EditText
+                    android:id="@+id/house_no"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_input_mandatory"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_10sdp" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_1sdp"
-                    android:textColor="@color/dark_gray"
-                    android:layout_weight="1"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="Select Block Tower" />
+                    android:layout_weight="1"
+                    android:padding="@dimen/_1sdp"
+                    android:text="Select Block Tower"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/_10sdp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_1sdp"
-                    android:textColor="@color/dark_gray"
-                    android:layout_weight="1"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="Select Floor" />
+                    android:layout_weight="1"
+                    android:padding="@dimen/_1sdp"
+                    android:text="Select Floor"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/_10sdp" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:weightSum="2"
                     android:layout_weight="1"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="@dimen/_30sdp"
-                        android:orientation="horizontal"
                         android:layout_gravity="center_vertical"
-                        android:gravity="center_vertical"
-                        android:layout_marginRight="@dimen/_3sdp"
-
                         android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_3sdp"
+                        android:layout_weight="1"
+
                         android:background="@drawable/shape_blue_border"
-                        android:layout_weight="1">
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
                         <Spinner
                             android:id="@+id/spinner_block_tower_type"
                             android:layout_width="@dimen/_130sdp"
                             android:layout_height="@dimen/_26sdp"
                             android:layout_margin="3dp"
+                            android:layout_marginLeft="@dimen/_5sdp"
                             android:layout_marginRight="@dimen/_5sdp"
                             android:layout_weight=".2"
-                            android:spinnerMode="dialog"
                             android:autofillHints="City/Region"
-                            android:layout_marginLeft="@dimen/_5sdp"
                             android:background="@drawable/shape_white"
                             android:dropDownSelector="@null"
-                            />
+                            android:spinnerMode="dialog" />
+
                         <ImageView
 
-                            android:layout_centerVertical="true"
                             android:layout_width="@dimen/_11sdp"
                             android:layout_height="@dimen/_11sdp"
+                            android:layout_centerVertical="true"
                             android:layout_gravity="center"
                             android:layout_marginRight="@dimen/_5sdp"
-                            android:background="@drawable/dropdown"
-                            />
+                            android:background="@drawable/dropdown" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="@dimen/_30sdp"
-                        android:orientation="horizontal"
                         android:layout_gravity="center_vertical"
-                        android:gravity="center_vertical"
-                        android:layout_marginRight="@dimen/_3sdp"
-
                         android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_3sdp"
+                        android:layout_weight="1"
+
                         android:background="@drawable/shape_blue_border"
-                        android:layout_weight="1">
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
                         <Spinner
                             android:id="@+id/spinner_block_tower"
                             android:layout_width="@dimen/_130sdp"
                             android:layout_height="@dimen/_26sdp"
                             android:layout_margin="3dp"
+                            android:layout_marginLeft="@dimen/_5sdp"
                             android:layout_marginRight="@dimen/_5sdp"
                             android:layout_weight=".2"
-                            android:spinnerMode="dialog"
                             android:autofillHints="City/Region"
-                            android:layout_marginLeft="@dimen/_5sdp"
                             android:background="@drawable/shape_white"
                             android:dropDownSelector="@null"
-                            />
+                            android:spinnerMode="dialog" />
+
                         <ImageView
 
-                            android:layout_centerVertical="true"
                             android:layout_width="@dimen/_11sdp"
                             android:layout_height="@dimen/_11sdp"
+                            android:layout_centerVertical="true"
                             android:layout_gravity="center"
                             android:layout_marginRight="@dimen/_5sdp"
-                            android:background="@drawable/dropdown"
-                            />
+                            android:background="@drawable/dropdown" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -560,329 +589,341 @@
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_30sdp"
-                    android:orientation="horizontal"
                     android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
-                    android:layout_marginRight="@dimen/_3sdp"
                     android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:layout_weight="1"
                     android:background="@drawable/background_input_mandatory"
-                    android:layout_weight="1">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
                     <Spinner
                         android:id="@+id/spinner_floor"
                         android:layout_width="@dimen/_130sdp"
                         android:layout_height="@dimen/_23sdp"
                         android:layout_margin="3dp"
+                        android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:layout_weight=".2"
-                        android:spinnerMode="dialog"
                         android:autofillHints="City/Region"
-                        android:layout_marginLeft="@dimen/_5sdp"
                         android:background="@drawable/shape_white"
                         android:dropDownSelector="@null"
-                        />
+                        android:spinnerMode="dialog" />
+
                     <ImageView
 
-                        android:layout_centerVertical="true"
                         android:layout_width="@dimen/_11sdp"
                         android:layout_height="@dimen/_11sdp"
+                        android:layout_centerVertical="true"
                         android:layout_gravity="center"
                         android:layout_marginRight="@dimen/_5sdp"
-                        android:background="@drawable/dropdown"
-                        />
+                        android:background="@drawable/dropdown" />
                 </LinearLayout>
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_1sdp"
-                    android:textColor="@color/dark_gray"
-                    android:layout_weight="1"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="Select Street Road" />
+                    android:layout_weight="1"
+                    android:padding="@dimen/_1sdp"
+                    android:text="Select Street Road"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/_10sdp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_1sdp"
-                    android:textColor="@color/dark_gray"
-                    android:layout_weight="1"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="Pin Code" />
+                    android:layout_weight="1"
+                    android:padding="@dimen/_1sdp"
+                    android:text="Pin Code"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/_10sdp" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:weightSum="2"
                     android:layout_weight="1"
+                    android:orientation="horizontal"
 
-                    android:orientation="horizontal">
+                    android:weightSum="2">
 
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="@dimen/_30sdp"
-                        android:orientation="horizontal"
                         android:layout_gravity="center_vertical"
-                        android:gravity="center_vertical"
-                        android:layout_marginRight="@dimen/_3sdp"
-
                         android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_3sdp"
+                        android:layout_weight="1"
+
                         android:background="@drawable/shape_blue_border"
-                        android:layout_weight="1">
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
                         <Spinner
                             android:id="@+id/spinner_street_road_type"
                             android:layout_width="@dimen/_130sdp"
                             android:layout_height="@dimen/_26sdp"
                             android:layout_margin="3dp"
+                            android:layout_marginLeft="@dimen/_5sdp"
                             android:layout_marginRight="@dimen/_5sdp"
                             android:layout_weight=".2"
-                            android:spinnerMode="dialog"
                             android:autofillHints="City/Region"
-                            android:layout_marginLeft="@dimen/_5sdp"
                             android:background="@drawable/shape_white"
                             android:dropDownSelector="@null"
-                            />
+                            android:spinnerMode="dialog" />
+
                         <ImageView
 
-                            android:layout_centerVertical="true"
                             android:layout_width="@dimen/_11sdp"
                             android:layout_height="@dimen/_11sdp"
+                            android:layout_centerVertical="true"
                             android:layout_gravity="center"
                             android:layout_marginRight="@dimen/_5sdp"
-                            android:background="@drawable/dropdown"
-                            />
+                            android:background="@drawable/dropdown" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="@dimen/_30sdp"
-                        android:orientation="horizontal"
                         android:layout_gravity="center_vertical"
-                        android:gravity="center_vertical"
-                        android:layout_marginRight="@dimen/_3sdp"
-
                         android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_3sdp"
+                        android:layout_weight="1"
+
                         android:background="@drawable/shape_blue_border"
-                        android:layout_weight="1">
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
                         <Spinner
                             android:id="@+id/spinner_street_road"
                             android:layout_width="@dimen/_130sdp"
                             android:layout_height="@dimen/_26sdp"
                             android:layout_margin="3dp"
+                            android:layout_marginLeft="@dimen/_5sdp"
                             android:layout_marginRight="@dimen/_5sdp"
                             android:layout_weight=".2"
-                            android:spinnerMode="dialog"
                             android:autofillHints="City/Region"
-                            android:layout_marginLeft="@dimen/_5sdp"
                             android:background="@drawable/shape_white"
                             android:dropDownSelector="@null"
-                            />
+                            android:spinnerMode="dialog" />
+
                         <ImageView
 
-                            android:layout_centerVertical="true"
                             android:layout_width="@dimen/_11sdp"
                             android:layout_height="@dimen/_11sdp"
+                            android:layout_centerVertical="true"
                             android:layout_gravity="center"
                             android:layout_marginRight="@dimen/_5sdp"
-                            android:background="@drawable/dropdown"
-                            />
+                            android:background="@drawable/dropdown" />
                     </LinearLayout>
                 </LinearLayout>
 
 
-
-                    <EditText
-                        android:id="@+id/pincode"
-                        android:layout_width="fill_parent"
-                        android:layout_height="@dimen/_29sdp"
-                        android:inputType="number"
-                        android:background="@drawable/background_input_mandatory"
-                        android:maxLength="6"
-                        android:layout_weight="1"
-                        android:textSize="@dimen/_10sdp"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:paddingLeft="@dimen/_5sdp"
-                        android:singleLine="true"
-                         />
+                <EditText
+                    android:id="@+id/pincode"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_29sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_input_mandatory"
+                    android:inputType="number"
+                    android:maxLength="6"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_10sdp" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_1sdp"
-                    android:textColor="@color/dark_gray"
-                    android:layout_weight="1"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="Select Lpg Company" />
+                    android:layout_weight="1"
+                    android:padding="@dimen/_1sdp"
+                    android:text="Select Lpg Company"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/_10sdp" />
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2">
+
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_30sdp"
-                    android:orientation="horizontal"
                     android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
-                    android:layout_marginRight="@dimen/_3sdp"
-
                     android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:layout_weight="1"
+
                     android:background="@drawable/background_input_mandatory"
-                    android:layout_weight="1">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
                     <Spinner
                         android:id="@+id/spinner_lpg_company"
                         android:layout_width="@dimen/_130sdp"
                         android:layout_height="@dimen/_26sdp"
                         android:layout_margin="3dp"
+                        android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:layout_weight=".2"
-                        android:spinnerMode="dialog"
                         android:autofillHints="City/Region"
-                        android:layout_marginLeft="@dimen/_5sdp"
                         android:background="@drawable/shape_white"
                         android:dropDownSelector="@null"
-                        />
+                        android:spinnerMode="dialog" />
+
                     <ImageView
 
-                        android:layout_centerVertical="true"
                         android:layout_width="@dimen/_11sdp"
                         android:layout_height="@dimen/_11sdp"
+                        android:layout_centerVertical="true"
                         android:layout_gravity="center"
                         android:layout_marginRight="@dimen/_5sdp"
-                        android:background="@drawable/dropdown"
-                        />
+                        android:background="@drawable/dropdown" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_1sdp"
-                    android:textColor="@color/dark_gray"
-                    android:layout_weight="1"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="LPG Distributor" />
+                    android:layout_weight="1"
+                    android:padding="@dimen/_1sdp"
+                    android:text="LPG Distributor"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/_10sdp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_1sdp"
-                    android:textColor="@color/dark_gray"
-                    android:layout_weight="1"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="LPG Consumer No" />
+                    android:layout_weight="1"
+                    android:padding="@dimen/_1sdp"
+                    android:text="LPG Consumer No"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/_10sdp" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2">
 
                 <EditText
                     android:id="@+id/lpg_distributer_edit"
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_25sdp"
-                    android:layout_weight="1"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_3sdp"
-                    android:paddingLeft="@dimen/_5sdp"
+                    android:layout_weight="1"
                     android:background="@drawable/shape_blue_border"
-                    android:textSize="@dimen/_10sdp"
                     android:inputType="textCapCharacters"
-                    android:singleLine="true" />
-
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_10sdp" />
 
 
                 <EditText
                     android:id="@+id/lpg_consumer_edit"
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_25sdp"
-                    android:layout_weight="1"
-                    android:paddingLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_10sdp"
-                    android:inputType="number"
-
                     android:layout_marginLeft="@dimen/_3sdp"
                     android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
                     android:background="@drawable/shape_blue_border"
+
+                    android:inputType="number"
+                    android:paddingLeft="@dimen/_5sdp"
                     android:singleLine="true"
-                    />
+                    android:textSize="@dimen/_10sdp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_1sdp"
-                    android:textColor="@color/dark_gray"
-                    android:layout_weight="1"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="Unique ID NO" />
+                    android:layout_weight="1"
+                    android:padding="@dimen/_1sdp"
+                    android:text="Unique ID NO"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/_10sdp" />
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2">
+
                 <EditText
                     android:id="@+id/unique_id_no_edit"
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_25sdp"
 
-                    android:layout_weight="1"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_3sdp"
-                    android:paddingLeft="@dimen/_5sdp"
+                    android:layout_weight="1"
                     android:background="@drawable/shape_blue_border"
-                    android:textSize="@dimen/_10sdp"
-                    android:maxLength="17"
                     android:inputType="number"
-                    android:singleLine="true" />
+                    android:maxLength="17"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_10sdp" />
 
             </LinearLayout>
 
@@ -890,67 +931,68 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:background="@color/peach_light"
+                android:background="@color/green"
                 android:gravity="center"
-                android:textColor="@color/black"
-                android:textStyle="bold"
+                android:padding="@dimen/_5sdp"
+                android:text="Type of Customer"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_14sdp"
-                android:text="Type of Customer" />
+                android:textStyle="bold" />
+
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/_30sdp"
-                android:orientation="horizontal"
                 android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                android:layout_marginRight="@dimen/_3sdp"
-                android:layout_marginTop="@dimen/_4sdp"
-                android:layout_marginBottom="@dimen/_15sdp"
                 android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginRight="@dimen/_3sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:layout_weight="1"
                 android:background="@drawable/background_input_mandatory"
-                android:layout_weight="1">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
                 <Spinner
                     android:id="@+id/spinner_customertype"
                     android:layout_width="@dimen/_130sdp"
                     android:layout_height="@dimen/_26sdp"
                     android:layout_margin="3dp"
+                    android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_5sdp"
                     android:layout_weight=".2"
-                    android:spinnerMode="dialog"
                     android:autofillHints="City/Region"
-                    android:layout_marginLeft="@dimen/_5sdp"
                     android:background="@drawable/shape_white"
                     android:dropDownSelector="@null"
-                    />
+                    android:spinnerMode="dialog" />
+
                 <ImageView
 
-                    android:layout_centerVertical="true"
                     android:layout_width="@dimen/_11sdp"
                     android:layout_height="@dimen/_11sdp"
+                    android:layout_centerVertical="true"
                     android:layout_gravity="center"
                     android:layout_marginRight="@dimen/_5sdp"
-                    android:background="@drawable/dropdown"
-                    />
+                    android:background="@drawable/dropdown" />
             </LinearLayout>
 
 
             <RelativeLayout
-                android:padding="@dimen/_10sdp"
-                 android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true">
+                android:layout_alignParentBottom="true"
+                android:padding="@dimen/_10sdp"
+                android:visibility="gone">
 
                 <Button
-                    android:layout_alignParentRight="true"
                     android:id="@+id/viewpdf_button"
-                    android:background="@color/colorPrimary"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_30sdp"
-                    android:textSize="@dimen/_10sdp"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/colorPrimary"
                     android:text="@string/pdf"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp" />
 
             </RelativeLayout>
 
@@ -960,24 +1002,23 @@
 
 
     <RelativeLayout
-        android:padding="@dimen/_10sdp"
         android:id="@+id/bottomLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
-
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/_10sdp">
 
 
         <Button
-            android:layout_alignParentRight="true"
             android:id="@+id/submit_button"
-            android:background="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_30sdp"
+            android:layout_alignParentRight="true"
+            android:background="@color/colorPrimary"
 
-            android:textSize="@dimen/_10sdp"
-            android:text="Next"
-            android:textColor="@color/white" />
+            android:text="Add Documents"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10sdp" />
 
     </RelativeLayout>
 

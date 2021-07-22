@@ -2,7 +2,11 @@ package com.fieldmobility.igl.MataData;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import org.json.JSONArray;
+
 import java.io.Serializable;
+import java.util.ArrayList;
+
 @JsonIgnoreProperties(ignoreUnknown=false)
 public class Bp_No_Item implements Serializable {
 
@@ -65,6 +69,16 @@ public class Bp_No_Item implements Serializable {
     String customer_image;
     String owner_image;
     String igl_rfcvendor_assigndate;
+
+    public ArrayList<String> getImageList() {
+        return imageList;
+    }
+
+    public void setImageList(ArrayList<String> imageList) {
+        this.imageList = imageList;
+    }
+
+    ArrayList<String> imageList;
 
     public String getIgl_rfcvendor_assigndate() {
         return igl_rfcvendor_assigndate;

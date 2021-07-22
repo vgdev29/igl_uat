@@ -96,30 +96,34 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
     MaterialDialog materialDialog;
     ImageView id_imageView, address_imageView, customer_signature_imageview , owner_signature_imageview;
     Button customer_signature_button, id_button,address_button,viewpdf_button;
-    EditText  owner_name,chequeno_edit,chequedate_edit,drawnon_edit,amount_edit;
+    EditText  owner_name,chequeno_edit,drawnon_edit,amount_edit;
     Button submit_button;
+    TextView chequedate_edit;
     SharedPrefs sharedPrefs;
-    RadioGroup radioGroup;
-    RadioButton genderradioButton;
-    Bitmap bitmap_id,bitmap_address , bitmap_cus , bitmap_own;
+    RadioGroup radioGroup,rg_payment_type;
+    RadioButton genderradioButton,rbPayment;
+    Bitmap bitmap_cheque,bitmap_id,bitmap_address , bitmap_cus , bitmap_own;
     Button clear, save;
+    LinearLayout lt_cheque_image;
 
     String owner_signature_path,ownar_name="", customer_signature_path;
     private final int PICK_IMAGE_REQUEST_ID = 1;
+    private final int PICK_IMAGE_REQUEST_CHEQUE = 6;
     private final int PICK_IMAGE_REQUEST_ADDRESS = 3;
     static final int CAMERA_REQUEST_ID = 200;
+    static final int CAMERA_REQUEST_CHEQUE = 601;
     static final int CAMERA_REQUEST_ADDRESS = 201;
     static final int CAMERA_OWNER_SIGNATURE = 4;
     static final int CAMERA_CUSTOMER_SIGNATURE = 5;
 
     static final String IMAGE_DIRECTORY = "/signdemo";
     Spinner idproof_Spinner, address_spinner;
-    private Uri filePathUri_id, filePathUri_address, filePathUri_owner, filePathUri_customer;
-    String image_path_id,image_path_address,owner_image_select;
+    private Uri filePathUri_cheque,filePathUri_id, filePathUri_address, filePathUri_owner, filePathUri_customer;
+    String image_path_cheque,image_path_id,image_path_address,owner_image_select;
     String pdf_file_path;
     ImageView back;
 
-    String id_proof,address_proof,Type_Of_Owner;
+    String id_proof,address_proof,Type_Of_Owner,typeOfPayment="OFFLINE";
      String Compress_Address_Image,Compress_Adahar_Image;
 
     Uri compressUri = null;
@@ -130,11 +134,11 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
     DatePickerDialog pickerDialog_Date;
     String date_select;
     String emailPattern = "@[A-Z][a-z]+\\.+";
-    ImageView adhar_owner_image;
+    ImageView adhar_owner_image,iv_cheque;
     CheckBox check_undertaking_gpa, check_undertaking_owner, check_address_issue, check_multiple_floor;
     String annexure_gpa="No",annexure_owner="No",annexure_address="No",annexure_floor="No";
     LinearLayout ll_ownersig;
-    Button owner_sign_button;
+    Button owner_sign_button,btn_upload_cheque;
     User_bpData user_bpData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,6 +147,9 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         sharedPrefs=new SharedPrefs(this);
         user_bpData = (User_bpData) getIntent().getSerializableExtra("data");
         Log.d("bpcreation","oncreate");
+        btn_upload_cheque=findViewById(R.id.btn_upload_cheque);
+        lt_cheque_image=findViewById(R.id.lt_cheque_image);
+        iv_cheque=findViewById(R.id.iv_cheque);
         chequeno_edit=findViewById(R.id.chequeno_edit);
         chequedate_edit=findViewById(R.id.chequedate_edit);
         drawnon_edit=findViewById(R.id.drawnon_edit);
@@ -202,6 +209,12 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                 selectImage_id();
             }
         });
+        btn_upload_cheque.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               selectChequeImage();
+            }
+        });
         address_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -223,6 +236,23 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     case R.id.rents:
                         Type_Of_Owner="Rented";
                         ll_ownersig.setVisibility(View.VISIBLE);
+                        break;
+                }
+            }
+        });
+        rg_payment_type= (RadioGroup)findViewById(R.id.rg_payment_type);
+        int selectedpaymentId = rg_payment_type.getCheckedRadioButtonId();
+        rbPayment = (RadioButton)findViewById(selectedpaymentId);
+        rg_payment_type.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.rb_offline:
+                        typeOfPayment="OFFLINE";
+                        lt_cheque_image.setVisibility(View.VISIBLE);
+                        break;
+                    case R.id.rb_online:
+                        typeOfPayment="ONLINE";
+                        lt_cheque_image.setVisibility(View.GONE);
                         break;
                 }
             }
@@ -347,6 +377,34 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
             }
         });
     }
+
+    private void selectChequeImage() {
+        AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
+        myAlertDialog.setTitle("Upload Pictures Option");
+        myAlertDialog.setMessage("How do you want to set your picture?");
+        myAlertDialog.setPositiveButton("Gallery",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_CHEQUE);
+                    }
+                });
+        myAlertDialog.setNegativeButton("Camera",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+                        Uri photoURI = FileProvider.getUriForFile(BP_Creation_Form_step2.this, getApplicationContext().getPackageName() + ".provider", f);
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        startActivityForResult(intent, CAMERA_REQUEST_CHEQUE);
+                    }
+                });
+        myAlertDialog.show();
+    }
+
 
     private void selectImage_id() {
         AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
@@ -579,6 +637,57 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                        try {
                             outFile = new FileOutputStream(file);
                             bitmap_id.compress(Bitmap.CompressFormat.JPEG, 85, outFile);
+                            outFile.flush();
+                            outFile.close();
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
+            case PICK_IMAGE_REQUEST_CHEQUE:
+                if ( requestCode == PICK_IMAGE_REQUEST_CHEQUE && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
+                    filePathUri_cheque = data.getData();
+                    try {
+                        bitmap_cheque = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathUri_cheque);
+                        iv_cheque.setImageBitmap(bitmap_cheque);
+                        image_path_cheque = getPath(filePathUri_cheque);
+                        Log.d("bpcreation","imagepath cheque pick image = "+image_path_cheque);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
+            case CAMERA_REQUEST_CHEQUE:
+                if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST_CHEQUE) {
+                    File f = new File(getExternalStorageDirectory().toString());
+                    for (File temp : f.listFiles()) {
+                        if (temp.getName().equals("temp.jpg")) {
+                            f = temp;
+                            break;
+                        }
+                    }
+                    try {
+                        BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+                        bitmap_cheque = BitmapFactory.decodeFile(f.getAbsolutePath(),
+                                bitmapOptions);
+                        String path = getExternalStorageDirectory().getAbsolutePath() ;
+                        f.delete();
+                        OutputStream outFile = null;
+                        File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
+                        Log.e("Camera_Path++",file.toString());
+                        image_path_cheque =file.toString();
+                        Log.d("bpcreation","imagepath id camera image = "+image_path_cheque);
+                        try {
+                            outFile = new FileOutputStream(file);
+                            bitmap_cheque.compress(Bitmap.CompressFormat.JPEG, 95, outFile);
+                            iv_cheque.setImageBitmap(bitmap_cheque);
                             outFile.flush();
                             outFile.close();
                         } catch (FileNotFoundException e) {
@@ -839,10 +948,11 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
             String uploadId = UUID.randomUUID().toString();
             Log.e("uploadId+,,,,,,,,,,", "" + uploadId);
             MultipartUploadRequest multipartUploadRequest=   new MultipartUploadRequest(BP_Creation_Form_step2.this, uploadId, Constants.BP_Images+"/"+Bp_Number);
-            multipartUploadRequest.addFileToUpload(image_path_id, "image");
-            multipartUploadRequest .addFileToUpload(image_path_address, "image");
-            multipartUploadRequest .addFileToUpload(customer_signature_path, "image");
-            multipartUploadRequest .addFileToUpload(owner_signature_path, "image");
+            multipartUploadRequest.addFileToUpload(image_path_cheque, "image","cheque.jpg");
+            multipartUploadRequest.addFileToUpload(image_path_id, "image","id_proof.jpg");
+            multipartUploadRequest .addFileToUpload(image_path_address, "image","address_proof.jpg");
+            multipartUploadRequest .addFileToUpload(customer_signature_path, "image","customer_signature.jpg");
+            multipartUploadRequest .addFileToUpload(owner_signature_path, "image","owner_signature.jpg");
             multipartUploadRequest .setDelegate(new UploadStatusDelegate() {
                         @Override
                         public void onProgress(Context context,UploadInfo uploadInfo) {
@@ -1061,6 +1171,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     params.put("idProof", id_proof);
                     params.put("adressProof",  address_proof);
                     params.put("type_of_owner",  Type_Of_Owner);
+                    params.put("type_of_payment",  typeOfPayment);
                     params.put("id",  sharedPrefs.getUUID());
                     params.put("correspondingLanguage", "EN");
                    // params.put("SearchTerm",fullname.getText().toString().toUpperCase() );
@@ -1126,7 +1237,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                 return headers;
             }*/
         };
-        jr.setRetryPolicy(new DefaultRetryPolicy(20 * 10000, 20, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        jr.setRetryPolicy(new DefaultRetryPolicy(25 * 10000, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         jr.setTag(login_request);
         AppController.getInstance().addToRequestQueue(jr, login_request);
     }

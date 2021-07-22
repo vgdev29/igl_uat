@@ -48,7 +48,7 @@
     <application
         android:name=".Helper.AppController"
         android:allowBackup="true"
-        android:hardwareAccelerated="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:largeHeap="true"
@@ -57,7 +57,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Mdpe.Mdpe_List_Activity"></activity>
+        <activity android:name=".Mdpe.Mdpe_List_Activity" />
         <activity android:name=".Riser.Riser_List_Activity" />
         <activity
             android:name=".Activity.KYC_VerificationDetails"
@@ -131,17 +131,24 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.BP_Creation_Form"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".Activity.BP_Creation_Form_step2"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+        </activity>
         <activity
             android:name=".Activity.BP_No_Listing"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".Activity.BP_No_Resubmition_Listing"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".Activity.Bp_Created_Detail"
             android:screenOrientation="portrait" />
+        <activity android:name=".Activity.DocumentResumissionDetail"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Activity.NG_Connection_Activity"
             android:screenOrientation="portrait" />

@@ -34,6 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/_40sdp"
+        android:scrollbars="none"
         android:layout_above="@+id/bottomLayout">
 
         <LinearLayout
@@ -134,7 +135,43 @@
                 android:layout_marginHorizontal="@dimen/_25sdp"
                 android:text="Complete Address Issue case"
                 />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/peach_light"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="@dimen/_14sdp"
+                android:text="Type of Payment" />
 
+            <RadioGroup
+                android:id="@+id/rg_payment_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rb_offline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:textSize="@dimen/_10sdp"
+                    android:text="Offline" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rb_online"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="@dimen/_10sdp"
+                    android:text="Online" />
+
+            </RadioGroup>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -167,11 +204,13 @@
                     android:maxLength="6"
                     android:inputType="number"
                     android:singleLine="true" />
-                <EditText
+                <TextView
                     android:id="@+id/chequedate_edit"
                     android:layout_width="fill_parent"
                     android:layout_height="40.0dip"
                     android:hint="Cheque Date"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
                     android:inputType="textEmailAddress"
                     android:layout_weight="1"
 
@@ -218,6 +257,41 @@
                     android:singleLine="true"
                     />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lt_cheque_image"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:layout_marginVertical="@dimen/value_10dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/iv_cheque"
+                    android:layout_centerVertical="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_80sdp"
+                    android:padding="@dimen/_1sdp"
+                    android:scaleType="fitXY"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:background="@drawable/shape_blue_border"
+                    android:text="PAN Card" />
+                <Button
+                    android:id="@+id/btn_upload_cheque"
+                    android:background="#979797"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingVertical="8dp"
+                    android:textSize="@dimen/_10sdp"
+                    android:text="Upload Cheque"
+
+                    android:gravity="center"
+                    android:textColor="@color/white" />
+
+
+            </LinearLayout>
+
 
             <TextView
                 android:layout_width="match_parent"
@@ -281,7 +355,7 @@
                     android:background="@drawable/background_input_mandatory"
                     android:layout_weight=".5">
                     <Spinner
-                        android:id="@+id/spinner1"
+                        android:id="@+id/spinner2"
                         android:layout_width="@dimen/_130sdp"
                         android:layout_height="@dimen/_30sdp"
                         android:layout_margin="3dp"
@@ -311,7 +385,7 @@
                     android:background="@drawable/background_input_mandatory"
                     android:layout_weight=".5">
                     <Spinner
-                        android:id="@+id/spinner2"
+                        android:id="@+id/spinner1"
                         android:layout_width="@dimen/_130sdp"
                         android:layout_height="@dimen/_30sdp"
                         android:layout_margin="3dp"

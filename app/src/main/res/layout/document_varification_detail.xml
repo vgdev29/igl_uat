@@ -215,13 +215,14 @@
                     android:layout_weight="1"
                     android:textStyle="bold"
                     android:textSize="@dimen/_9sdp"/>
-                <TextView
+                <EditText
                     android:id="@+id/first_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/dark_gray"
                     android:text=""
                     android:layout_weight="1"
+                    android:background="@drawable/edittext_shap"
                     android:textStyle="bold"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:textSize="@dimen/_9sdp"/>

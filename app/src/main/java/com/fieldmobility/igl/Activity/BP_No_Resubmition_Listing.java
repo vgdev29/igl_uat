@@ -39,11 +39,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BP_No_Listing extends Activity implements New_BP_NO_Adapter.ContactsAdapterListener{
+public class BP_No_Resubmition_Listing extends Activity implements New_BP_NO_Adapter.ContactsAdapterListener{
 
     ProgressDialog progressDialog;
     SharedPrefs sharedPrefs;
@@ -83,7 +84,7 @@ public class BP_No_Listing extends Activity implements New_BP_NO_Adapter.Contact
         new_regestration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(BP_No_Listing.this, BP_Creation_Form.class);
+                Intent intent =new Intent(BP_No_Resubmition_Listing.this, BP_Creation_Form.class);
                 startActivity(intent);
             }
         });
@@ -211,7 +212,7 @@ public class BP_No_Listing extends Activity implements New_BP_NO_Adapter.Contact
                 .progress(true, 0)
                 .show();
         Log.d("Bpcreation","url = "+Constants.BP_No_Listing+"/"+sharedPrefs.getUUID());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.BP_No_Listing+"/"+sharedPrefs.getUUID(),
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.BP_No_Resubmition_Listing+sharedPrefs.getUUID(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -261,13 +262,6 @@ public class BP_No_Listing extends Activity implements New_BP_NO_Adapter.Contact
                                 bp_no_item.setAddressProof(data_object.getString("igl_address_type"));
                                 bp_no_item.setIdproof(data_object.getString("id_proof_type"));
                                 bp_no_item.setIgl_code_group(data_object.getString("igl_code_group"));
-                                ArrayList<String> imageList= new ArrayList<>();
-                                JSONArray imgArray=data_object.getJSONArray("imageList");
-                                for (int k =0;k<imgArray.length();k++){
-                                    imageList.add(imgArray.getString(k));
-                                }
-
-                                bp_no_item.setImageList(imageList);
                                 bp_no_array.add(bp_no_item);
 
                             }
@@ -279,7 +273,7 @@ public class BP_No_Listing extends Activity implements New_BP_NO_Adapter.Contact
                         }
                       //  DesignerToast.Custom(New_BP_No_Listing.this,"Successfully",Gravity.BOTTOM,Toast.LENGTH_SHORT, R.drawable.shape_cornor_radious,15,"#FFFFFF",R.drawable.ic_success, 60, 200);
                         //DesignerToast.Success(New_BP_No_Listing.this, "Successfully", Gravity.BOTTOM, Toast.LENGTH_SHORT);
-                         adapter = new New_BP_NO_Adapter(BP_No_Listing.this,bp_no_array, BP_No_Listing.this,false);
+                         adapter = new New_BP_NO_Adapter(BP_No_Resubmition_Listing.this,bp_no_array, BP_No_Resubmition_Listing.this,true);
                         recyclerView.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
                     }

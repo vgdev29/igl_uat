@@ -44,7 +44,7 @@ public class Tab_Host_DMA extends TabActivity {
         //Setting up tab 2 name.
         TabMenu2.setIndicator("Document Resubmission");
         //Set tab 3 activity to tab 1 menu.
-        TabMenu2.setContent(new Intent(this, BP_Document_Verification.class));
+        TabMenu2.setContent(new Intent(this, BP_No_Resubmition_Listing.class));
 
 
         TabHostWindow.addTab(TabMenu1);
