@@ -612,6 +612,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                         e.printStackTrace();
                     }
                 }
+
                 break;
                 case CAMERA_REQUEST_ID:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST_ID) {
