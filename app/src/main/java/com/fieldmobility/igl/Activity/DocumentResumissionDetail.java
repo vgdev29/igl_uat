@@ -583,6 +583,20 @@ findViews();
                 break;
         }
     }
+    public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
+        int width = image.getWidth();
+        int height = image.getHeight();
+
+        float bitmapRatio = (float)width / (float) height;
+        if (bitmapRatio > 1) {
+            width = maxSize;
+            height = (int) (width / bitmapRatio);
+        } else {
+            height = maxSize;
+            width = (int) (height * bitmapRatio);
+        }
+        return Bitmap.createScaledBitmap(image, width, height, true);
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -593,6 +607,8 @@ findViews();
                     filePath_aadhaar = data.getData();
                     try {
                         bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePath_aadhaar);
+                        bitmap=getResizedBitmap(bitmap,500);
+
                         // imageView.setImageBitmap(bitmap);
                         adhar_image.setImageBitmap(bitmap);
                         //address_image.setImageBitmap(bitmap1);
@@ -618,6 +634,8 @@ findViews();
                         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
                         bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
                                 bitmapOptions);
+                        bitmap=getResizedBitmap(bitmap,500);
+
                         adhar_image.setImageBitmap(bitmap);
                         String path = getExternalStorageDirectory().getAbsolutePath();
                         f.delete();
@@ -673,6 +691,8 @@ findViews();
                         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
                         bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
                                 bitmapOptions);
+                        bitmap=getResizedBitmap(bitmap,500);
+
                         address_image.setImageBitmap(bitmap);
                         //BitMapToString(bitmap);
                         String path = getExternalStorageDirectory().getAbsolutePath();
@@ -708,6 +728,8 @@ findViews();
                     Log.e("filePath_customer", filePath_customer.toString());
                     try {
                         bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePath_customer);
+                        bitmap=getResizedBitmap(bitmap,500);
+
                         // imageView.setImageBitmap(bitmap);
                         signature_image.setImageBitmap(bitmap);
                         adhar_owner_image.setImageBitmap(bitmap);
