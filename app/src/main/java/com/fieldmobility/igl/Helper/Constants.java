@@ -81,7 +81,8 @@ public class Constants {
     public static final String BP_Images = BASE_URL + "bpcreation/registration/bp_images";
     public static final String Document_POST = BASE_URL + "bpcreation/registration/documents/";
     public static final String BP_No_Listing = BASE_URL + "bpcreation/registration/new_registration_listing";
-    public static final String BP_CITY_LISTING = BASE_URL + "bpcreation/registration/city";
+    public static final String BP_CITY_LISTING = BASE_URL + "bpcreation/registration/city/";
+    public static final String BP_No_Resubmition_Listing = BASE_URL + "bpcreation/registration/documentResubmissionListing/";
 
    /* public static final String BP_Creation = localhost + "/registration/bp_creation";
     public static final String BP_Images = localhost + "/registration/bp_images";
