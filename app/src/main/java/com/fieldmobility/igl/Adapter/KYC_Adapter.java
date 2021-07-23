@@ -105,6 +105,13 @@ public class KYC_Adapter  extends RecyclerView.Adapter<KYC_Adapter.ViewHolder> i
                         intent.putExtra("Customer_type", Customer_type);
                         intent.putExtra("Lpg_company", Lpg_company);
                         intent.putExtra("Bp_number", Bp_number);
+
+                        intent.putExtra("address", bp_no_list_array.get(position).getAddress_image());
+                        intent.putExtra("id", bp_no_list_array.get(position).getId_image());
+                        intent.putExtra("custsig", bp_no_list_array.get(position).getCustomer_image());
+                        intent.putExtra("ownsig", bp_no_list_array.get(position).getOwner_image());
+
+
                         context.startActivity(intent);
                     }
                     else{

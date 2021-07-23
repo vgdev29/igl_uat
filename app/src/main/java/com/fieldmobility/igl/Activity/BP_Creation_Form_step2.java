@@ -118,7 +118,6 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
     static final int CAMERA_REQUEST_ADDRESS = 201;
     static final int CAMERA_OWNER_SIGNATURE = 4;
     static final int CAMERA_CUSTOMER_SIGNATURE = 5;
-    static final int REQUEST_CODE_PDF_PICKER = 1000;
 
     static final String IMAGE_DIRECTORY = "/signdemo";
     Spinner idproof_Spinner, address_spinner;
@@ -1419,7 +1418,10 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         //outState.putParcelable("bitmap_cus",bitmap_cus);
         outState.putString("ownsig", owner_signature_path);
         //outState.putParcelable("bitmap_own",bitmap_own);
-        Log.d("bpcreation", "onSaveInstance" + outState);
+        outState.putString("cheque", image_path_cheque);
+
+        outState.putString("chequeDate", chequedate_edit.getText().toString().trim());
+        Log.d("bpcreation","onSaveInstance"+outState);
         super.onSaveInstanceState(outState);
     }
 
@@ -1448,6 +1450,18 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
             if (savedInstanceState.getString("ownsig") != null && !savedInstanceState.getString("ownsig").isEmpty()) {
 
                 owner_signature_path = savedInstanceState.getString("ownsig");
+                //owner_signature_imageview.setImageBitmap(savedInstanceState.getParcelable("bitmap_own"));
+            }
+
+            if (savedInstanceState.getString("cheque")!=null && !savedInstanceState.getString("cheque").isEmpty()) {
+
+                image_path_cheque = savedInstanceState.getString("cheque");
+                //owner_signature_imageview.setImageBitmap(savedInstanceState.getParcelable("bitmap_own"));
+            }
+            if (savedInstanceState.getString("chequeDate")!=null && !savedInstanceState.getString("chequeDate").isEmpty()) {
+
+                String date = savedInstanceState.getString("chequeDate");
+                chequedate_edit.setText(date);
                 //owner_signature_imageview.setImageBitmap(savedInstanceState.getParcelable("bitmap_own"));
             }
         }

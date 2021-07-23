@@ -771,43 +771,45 @@
                         android:textSize="@dimen/_10sdp" />
 
                 </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="15dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
 
-
-                    <TextView
-                        android:id="@+id/tv_substatus"
-                        style="@style/row_details"
-                        android:layout_width="fill_parent"
-                        android:layout_height="@dimen/_25sdp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="Sub-Status :"
-                        android:textSize="@dimen/_10sdp" />
-
-                    <TextView
-                        android:id="@+id/tv_substatusValue"
-                        style="@style/row_details"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_25sdp"
-
-                        android:layout_weight="1"
-                        android:gravity="center"
-
-                        android:singleLine="true"
-                        android:textSize="@dimen/_10sdp" />
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_nghold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="15dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+
+                        <TextView
+                            android:id="@+id/tv_substatus"
+                            style="@style/row_details"
+                            android:layout_width="fill_parent"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Sub-Status :"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <TextView
+                            android:id="@+id/tv_substatusValue"
+                            style="@style/row_details"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_25sdp"
+
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:singleLine="true"
+                            android:textSize="@dimen/_10sdp" />
+
+                    </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_delayDate"
@@ -978,7 +980,7 @@
                             android:backgroundTint="@color/rad"
                             android:textSize="@dimen/_8sdp"
                             android:gravity="center"
-                            android:text="Home Address"
+                            android:text="Selfie with Meter"
                             android:textColor="@color/white"
                             />
 

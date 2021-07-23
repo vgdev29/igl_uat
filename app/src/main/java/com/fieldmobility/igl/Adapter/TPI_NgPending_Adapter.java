@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -95,9 +96,10 @@ public class TPI_NgPending_Adapter extends RecyclerView.Adapter<TPI_NgPending_Ad
         if (!TextUtils.isEmpty(ngUserClaimListModel.getMobile_no())) {
             holder.mobile_text.setText(ngUserClaimListModel.getMobile_no());
         }
+       // Log.d("tpi",sharedPrefs.getEmail()+" model =  "+ngUserClaimListModel.getTpi_id());
 
         if (ngUserClaimListModel.getClaim()) {
-            if (sharedPrefs.getEmail().equals(ngUserClaimListModel.getTpi_id())) {
+            if (sharedPrefs.getEmail().trim().equalsIgnoreCase(ngUserClaimListModel.getTpi_id().trim())) {
                 holder.btn_unclaim.setVisibility(View.VISIBLE);
                 holder.btn_claim.setVisibility(View.GONE);
                 if ((ngUserClaimListModel.getStart_job())) {
@@ -120,6 +122,23 @@ public class TPI_NgPending_Adapter extends RecyclerView.Adapter<TPI_NgPending_Ad
             holder.btn_unclaim.setVisibility(View.GONE);
             holder.btn_claim.setVisibility(View.VISIBLE);
             holder.btn_startJob.setVisibility(View.GONE);
+        }
+
+        if (!TextUtils.isEmpty(ngUserClaimListModel.getPriority())){
+            if (ngUserClaimListModel.getPriority().equalsIgnoreCase("2")){
+                holder.relativeLayout.setBackgroundColor(Color.parseColor("#97FF7500"));
+                holder.tv_priority.setTextColor(Color.BLACK);
+                holder.tv_priority.setText("High Priority");
+
+            }else if (ngUserClaimListModel.getPriority().equalsIgnoreCase("1")){
+                holder.relativeLayout.setBackgroundColor(Color.parseColor("#59FFEB3B"));
+                holder.tv_priority.setTextColor(Color.BLACK);
+                holder.tv_priority.setText("Moderate Priority");
+            }else if (ngUserClaimListModel.getPriority().equalsIgnoreCase("0")){
+                holder.relativeLayout.setBackgroundColor(Color.parseColor("#FFFAFA"));//
+                holder.tv_priority.setTextColor(Color.BLACK);
+                holder.tv_priority.setText("Low Priority");
+            }
         }
 
         holder.mobile_text.setOnClickListener(new View.OnClickListener() {
@@ -254,9 +273,9 @@ public class TPI_NgPending_Adapter extends RecyclerView.Adapter<TPI_NgPending_Ad
         TextView cont_mob = dialog.findViewById(R.id.cont_mob_no);
         TextView sup_name = dialog.findViewById(R.id.sup_name_text);
         TextView sup_mob = dialog.findViewById(R.id.sup_mob_no);
-        cont_name.setText("Cont. :- " + conName);
+        cont_name.setText("Contractor:- " + conName);
         cont_mob.setText("MobNo :- " + conMob);
-        sup_name.setText("Sup. :- " + supName);
+        sup_name.setText("Technician:- " + supName);
         sup_mob.setText("MobNo :- " + supMob);
         sup_mob.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -320,9 +339,9 @@ public class TPI_NgPending_Adapter extends RecyclerView.Adapter<TPI_NgPending_Ad
 
 
 class NgUserClaimListViewHolder extends RecyclerView.ViewHolder {
-    TextView tv_bpName, tv_dateTime, tv_perferedTime, tv_address, user_name_text, status_text, mobile_text, zone_text,control_room;
+    TextView tv_bpName, tv_dateTime, tv_perferedTime, tv_address, user_name_text, status_text, mobile_text, zone_text,control_room,tv_priority;
     Button btn_claim, btn_unclaim, btn_startJob, ngSupervisorinfo_text;
-    LinearLayout ll_bpNumber;
+    RelativeLayout relativeLayout;
     View itemView;
 
     NgUserClaimListViewHolder(View itemView) {
@@ -338,6 +357,8 @@ class NgUserClaimListViewHolder extends RecyclerView.ViewHolder {
         status_text = itemView.findViewById(R.id.status_text);
         control_room = itemView.findViewById(R.id.control_room);
         zone_text = itemView.findViewById(R.id.zone_text);
+        relativeLayout = itemView.findViewById(R.id.liner_layout);
+        tv_priority = itemView.findViewById(R.id.tv_priority);
         ngSupervisorinfo_text = itemView.findViewById(R.id.ngSupervisorinfo_text);
         this.itemView = itemView;
     }
@@ -358,14 +379,10 @@ class NgUserClaimListViewHolder extends RecyclerView.ViewHolder {
                         for (NguserListModel row : new_ngUserClaimList) {
                             if (row.getBp_no().toLowerCase().contains(charString.toLowerCase())
                                     || row.getCustomer_name().toLowerCase().contains(charString.toLowerCase())
-                                    || row.getHouse_no().toLowerCase().contains(charString.toLowerCase())
-                                    || row.getFloor().toLowerCase().contains(charString.toLowerCase())
-                                    || row.getArea().toLowerCase().contains(charString.toLowerCase())
-                                    || row.getSociety().toLowerCase().contains(charString.toLowerCase())
-                                    || row.getBlock_qtr().toLowerCase().contains(charString.toLowerCase())
-                                    || row.getMobile_no().toLowerCase().contains(charString.toLowerCase())
-                                    || row.getControl_room().toLowerCase().contains(charString.toLowerCase())
-                                    || row.getSupervisor_assigned_date().toLowerCase().contains(charString.toLowerCase())
+
+
+
+
                             ) {
                                 filteredList.add(row);
                             }

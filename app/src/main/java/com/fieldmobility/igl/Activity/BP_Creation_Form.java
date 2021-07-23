@@ -434,6 +434,7 @@ public class BP_Creation_Form extends Activity implements AdapterView.OnItemSele
                 .progress(true, 0)
                 .show();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        Log.d("bpcreation",Constants.BP_CITY_LISTING+sharedPrefs.getZone_Code());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.BP_CITY_LISTING+sharedPrefs.getZone_Code(), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

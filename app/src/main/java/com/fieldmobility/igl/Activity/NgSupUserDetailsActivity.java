@@ -103,7 +103,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
     private TextView et_delayDateValue;
     private RadioGroup radioGroup;
 
-    private EditText et_initialReading, et_burnerDetails,tv_mobileNoValue;
+    private EditText et_initialReading, et_burnerDetails,tv_mobileNoValue , et_nghold_remarks;
     private DatePickerDialog pickerDialog_Date;
     private String initialReading, burnerDetails, conversationDate;
     private ImageView hold_image;
@@ -120,6 +120,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
     private NguserListModel ngUserListModel;
     private NguserListModel intentngUserListModel;
     TextView metermakeValue , meternoValue, metertypeValue, rfcreadingValue , rfcdate_value;
+
 
     String log = "nguserdetails";
 
@@ -247,8 +248,8 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                             ngUserListModel.setCatalog(selected_catalog_status);
                             ngUserListModel.setCode(selected_code_status);
                             ngUserListModel.setReason(selected_description_status);
-                            ngUserListModel.setSub_status(selected_description_substatus);
-
+                            ngUserListModel.setSub_status(selected_description_substatus + " Tech Remarks - "+et_nghold_remarks.getText().toString().trim());
+                            Log.d(log,"sub status  ="+selected_description_substatus + " Tech Remarks - "+et_nghold_remarks.getText().toString().trim());
                             ngUserListModel.setNg_update_date(df.format(c));
                             if (isNetworkConnected(NgSupUserDetailsActivity.this)) {
                                 submitData(ngUserListModel);
@@ -558,6 +559,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
         metermakeValue = findViewById(R.id.tv_metermake_value);
         meternoValue = findViewById(R.id.tv_meter_no_value);
         metertypeValue = findViewById(R.id.tv_metertype_value);
+        et_nghold_remarks = findViewById(R.id.et_nghold_remarks);
     }
 
     private void loadNgStatusSpinners() {
@@ -725,6 +727,13 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
          {
              tv_mobileNoValue.setError("Mobile no. in valid");
              Toast.makeText(NgSupUserDetailsActivity.this, " Invalid Mobile no.", Toast.LENGTH_SHORT).show();
+             isDataValid = false;
+             return isDataValid;
+         }
+         else if (et_nghold_remarks.getText().toString().trim().isEmpty())
+         {
+             et_nghold_remarks.setError("Remarks Mandatory");
+             Toast.makeText(NgSupUserDetailsActivity.this, "Pls enter remarks", Toast.LENGTH_SHORT).show();
              isDataValid = false;
              return isDataValid;
          }

@@ -256,8 +256,6 @@ public class TPI_NgPending_Activity extends Activity implements TPI_NgPending_Ad
 
     @Override
     public void listParser() {
-
-
     }
 
     /*public void refreshList(){
@@ -455,7 +453,7 @@ public class TPI_NgPending_Activity extends Activity implements TPI_NgPending_Ad
         Log.d(log,"refresh claim");
         for (NguserListModel nguserListModel : claimUserList)
         {
-            if (nguserListModel.getClaim() )
+            if (nguserListModel.getClaim() && !nguserListModel.getStart_job() )
             {
                 if (nguserListModel.getTpi_id().equals(sharedPrefs.getEmail())) {
                     Log.d(log, "claim if = " + nguserListModel.getClaim());
