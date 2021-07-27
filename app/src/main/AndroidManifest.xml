@@ -57,6 +57,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Activity.MITDDoneActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden">
+
+        </activity>
+        <activity android:name=".Activity.NICustomerActivity">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
         <activity android:name=".Mdpe.Mdpe_List_Activity" />
         <activity android:name=".Riser.Riser_List_Activity" />
         <activity
@@ -131,13 +143,11 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.BP_Creation_Form"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.BP_Creation_Form_step2"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.BP_No_Listing"
             android:screenOrientation="portrait" />
@@ -147,8 +157,9 @@
         <activity
             android:name=".Activity.Bp_Created_Detail"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activity.DocumentResumissionDetail"
-            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Activity.DocumentResumissionDetail"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.NG_Connection_Activity"
             android:screenOrientation="portrait" />

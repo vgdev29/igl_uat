@@ -232,6 +232,9 @@ public class BP_No_Listing extends Activity implements New_BP_NO_Adapter.Contact
                                 bp_no_item.setLast_name(data_object.getString("igl_last_name"));
                                 bp_no_item.setMobile_number(data_object.getString("igl_mobile_no"));
                                 bp_no_item.setEmail_id(data_object.getString("igl_email_id"));
+                                if (data_object.has("igl_father_name")) {
+                                    bp_no_item.setFather_name(data_object.getString("igl_father_name"));
+                                }
                                 bp_no_item.setAadhaar_number(data_object.getString("igl_aadhaar_no"));
                                 bp_no_item.setCity_region(data_object.getString("igl_city_region"));
                                 bp_no_item.setArea(data_object.getString("igl_area"));

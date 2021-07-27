@@ -1,5 +1,6 @@
 package com.fieldmobility.igl.utils;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -14,6 +15,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.fieldmobility.igl.AppConstant;
@@ -202,6 +204,12 @@ public class Utils {
             e.printStackTrace();
         }
     }*/
-
+    public static void hideKeyboard(Activity activity) {
+        View viewKeyboard = activity.getCurrentFocus();
+        if (viewKeyboard != null) {
+            InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(viewKeyboard.getWindowToken(), 0);
+        }
+    }
 
 }
