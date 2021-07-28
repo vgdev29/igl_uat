@@ -355,7 +355,7 @@
                     android:background="@drawable/background_input_mandatory"
                     android:layout_weight=".5">
                     <Spinner
-                        android:id="@+id/spinner2"
+                        android:id="@+id/spinner1"
                         android:layout_width="@dimen/_130sdp"
                         android:layout_height="@dimen/_30sdp"
                         android:layout_margin="3dp"
@@ -385,7 +385,7 @@
                     android:background="@drawable/background_input_mandatory"
                     android:layout_weight=".5">
                     <Spinner
-                        android:id="@+id/spinner1"
+                        android:id="@+id/spinner2"
                         android:layout_width="@dimen/_130sdp"
                         android:layout_height="@dimen/_30sdp"
                         android:layout_margin="3dp"
@@ -434,6 +434,19 @@
                     android:layout_marginRight="@dimen/_5sdp"
                     android:layout_weight="1"
                     android:background="@drawable/shape_blue_border" />
+                <TextView
+                    android:id="@+id/tv_pdf_path"
+                    android:layout_width="@dimen/_140sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:paddingHorizontal="@dimen/_6sdp"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:hint="Select file to upload"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/shape_blue_border" />
 
 
             </LinearLayout>
@@ -454,7 +467,6 @@
                     android:background="@color/colorPrimary"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_25sdp"
-
                     android:layout_gravity="center"
                     android:textSize="@dimen/_10sdp"
                     android:text="ID Proof"
@@ -477,6 +489,7 @@
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_marginRight="@dimen/_10sdp"
                         android:textColor="@color/white" />
+
 
             </LinearLayout>
 
