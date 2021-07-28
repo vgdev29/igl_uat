@@ -76,6 +76,7 @@ public class Bp_Created_Detail extends Activity {
         ((TextView)findViewById(R.id.tv_lname)).setText(bp_No_Item.getLast_name());
         ((TextView)findViewById(R.id.tv_mobile)).setText(bp_No_Item.getMobile_number());
         ((TextView)findViewById(R.id.tv_email)).setText(bp_No_Item.getEmail_id());
+        ((TextView)findViewById(R.id.tv_father_name)).setText(bp_No_Item.getFather_name());
         ((TextView)findViewById(R.id.tv_aadhaar)).setText(bp_No_Item.getAadhaar_number());
         ((TextView)findViewById(R.id.tv_city)).setText(bp_No_Item.getCity_region());
         ((TextView)findViewById(R.id.tv_area)).setText(bp_No_Item.getArea());

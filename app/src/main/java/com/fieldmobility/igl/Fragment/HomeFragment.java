@@ -36,6 +36,7 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.fieldmobility.igl.Activity.Learning_Activity;
 import com.fieldmobility.igl.Activity.Login_Activity;
+import com.fieldmobility.igl.Activity.MITDDoneActivity;
 import com.fieldmobility.igl.Activity.NgSupListActivity;
 import com.fieldmobility.igl.Activity.PMC_ViewPager_Activity;
 import com.fieldmobility.igl.Activity.RFC_Connection_Listing;
@@ -76,7 +77,7 @@ public class HomeFragment extends Fragment {
     View root;
     SharedPrefs sharedPrefs;
     VideoListData1[] myListData;
-    LinearLayout attendance_layout,to_do_list,learning_layout,new_regestration_layout,ekyc_layout,tpi_layout,
+    LinearLayout mitd_layout,attendance_layout,to_do_list,learning_layout,new_regestration_layout,ekyc_layout,tpi_layout,
             rfc_layout,pmc_layout,ng_pending_layout,ng_conversion_layout,riser_layout, mdpe_layout;
     MaterialDialog materialDialog;
     private static final String TAG = Tracking_Activity.class.getSimpleName();
@@ -133,6 +134,7 @@ public class HomeFragment extends Fragment {
     private void Layout_id() {
         attendance_layout=(LinearLayout)root.findViewById(R.id.attendance_layout);
         to_do_list=(LinearLayout)root.findViewById(R.id.to_do_list);
+        mitd_layout=(LinearLayout)root.findViewById(R.id.mitd_layout);
         learning_layout=(LinearLayout)root.findViewById(R.id.learning_layout);
         new_regestration_layout=(LinearLayout)root.findViewById(R.id.new_regestration_layout);
         ekyc_layout=(LinearLayout)root.findViewById(R.id.ekyc_layout);
@@ -158,6 +160,7 @@ public class HomeFragment extends Fragment {
             pmc_layout.setVisibility(View.GONE);
             mdpe_layout.setVisibility(View.GONE);
             riser_layout.setVisibility(View.GONE);
+            mitd_layout.setVisibility(View.GONE);
         }
         else if (sharedPrefs.getType_User().equals("TPI") ||sharedPrefs.getType_User().equals("PMCSI")){
             new_regestration_layout.setVisibility(View.GONE);
@@ -169,6 +172,8 @@ public class HomeFragment extends Fragment {
             pmc_layout.setVisibility(View.GONE);
             mdpe_layout.setVisibility(View.GONE);
             riser_layout.setVisibility(View.GONE);
+            mitd_layout.setVisibility(View.VISIBLE);
+
         }
         else if (sharedPrefs.getType_User().equalsIgnoreCase("RFC")){
             new_regestration_layout.setVisibility(View.GONE);
@@ -180,6 +185,8 @@ public class HomeFragment extends Fragment {
             pmc_layout.setVisibility(View.GONE);
             mdpe_layout.setVisibility(View.GONE);
             riser_layout.setVisibility(View.GONE);
+            mitd_layout.setVisibility(View.GONE);
+
         }
         else if (sharedPrefs.getType_User().equalsIgnoreCase("NG")){
             new_regestration_layout.setVisibility(View.GONE);
@@ -191,6 +198,8 @@ public class HomeFragment extends Fragment {
             pmc_layout.setVisibility(View.GONE);
             mdpe_layout.setVisibility(View.GONE);
             riser_layout.setVisibility(View.GONE);
+            mitd_layout.setVisibility(View.GONE);
+
         }
         else if (sharedPrefs.getType_User().equals("EKYC")){
             new_regestration_layout.setVisibility(View.GONE);
@@ -203,6 +212,8 @@ public class HomeFragment extends Fragment {
             attendance_layout.setVisibility(View.GONE);
             mdpe_layout.setVisibility(View.GONE);
             riser_layout.setVisibility(View.GONE);
+            mitd_layout.setVisibility(View.GONE);
+
         }/*else if (sharedPrefs.getType_User().equals("PMCSI")){
             new_regestration_layout.setVisibility(View.GONE);
             pmc_layout.setVisibility(View.VISIBLE);
@@ -224,6 +235,8 @@ public class HomeFragment extends Fragment {
             ng_pending_layout.setVisibility(View.GONE);
             rfc_layout.setVisibility(View.GONE);
             ng_conversion_layout.setVisibility(View.GONE);
+            mitd_layout.setVisibility(View.GONE);
+
         }
         else if (sharedPrefs.getType_User().equals("MDPE")){
             new_regestration_layout.setVisibility(View.GONE);
@@ -234,6 +247,8 @@ public class HomeFragment extends Fragment {
             ng_pending_layout.setVisibility(View.GONE);
             rfc_layout.setVisibility(View.GONE);
             ng_conversion_layout.setVisibility(View.GONE);
+            mitd_layout.setVisibility(View.GONE);
+
         }
 
         else {
@@ -253,6 +268,13 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Intent activities=new Intent(getActivity(), To_DoList_Activity.class);
                  activities.putExtra("Type","0");
+                startActivity(activities);
+            }
+        });
+        mitd_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent activities=new Intent(getActivity(), MITDDoneActivity.class);
                 startActivity(activities);
             }
         });

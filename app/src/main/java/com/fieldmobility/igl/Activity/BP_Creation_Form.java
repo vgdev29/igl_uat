@@ -107,7 +107,7 @@ public class BP_Creation_Form extends Activity implements AdapterView.OnItemSele
     Boolean isForResubmission = true;
 
     MaterialDialog materialDialog;
-    EditText fullname, middle_name, lastname, mobile_no, email_id, aadhaar_no, landmark,
+    EditText fullname, middle_name, lastname, mobile_no, email_id, aadhaar_no, landmark,et_father_name,
             house_no, pincode, lpg_distributer, lpg_consumer, unique_id_no;
     Button submit_button;
     SharedPrefs sharedPrefs;
@@ -380,6 +380,7 @@ public class BP_Creation_Form extends Activity implements AdapterView.OnItemSele
                     userBpData.setIgl_mobile_no(mobile_no.getText().toString());
                     userBpData.setIgl_email_id(email_id.getText().toString());
                     userBpData.setIgl_aadhaar_no(aadhaar_no.getText().toString());
+                    userBpData.setIgl_father_name(et_father_name.getText().toString());
                     userBpData.setIgl_city_region(city_name);
                     userBpData.setIgl_area(area_name);
                     userBpData.setIgl_society(soceity_name);
@@ -850,6 +851,7 @@ public class BP_Creation_Form extends Activity implements AdapterView.OnItemSele
         mobile_no = findViewById(R.id.mobile_no);
         email_id = findViewById(R.id.email_id);
         aadhaar_no = findViewById(R.id.aadhaar_no);
+        et_father_name = findViewById(R.id.et_father_name);
         landmark = findViewById(R.id.landmark);
         house_no = findViewById(R.id.house_no);
         pincode = findViewById(R.id.pincode);

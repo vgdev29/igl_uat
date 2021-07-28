@@ -22,6 +22,7 @@
     <color name="future_stay_gray">#60646E</color>
     <color name="color_primary_dark">#5555f9</color>
     <color name="color_primary_blue">#0095da</color>
+    <color name="inactive_tab_text">#9EA0AB</color>
 
     <color name="green_light">#1B05FBC4</color>
     <color name="peach_light">#E1F8DC</color>
@@ -37,6 +38,8 @@
     <color name="pastel_magenta_light">#66F19CBB</color>
     <color name="snow_white">#FFFAFA</color>
     <color name="black_31">#010b13</color>
+    <color name="_313131">#313131</color>
     <color name="fade_text2">#A11B1919</color>
     <color name="fade_text">#B67979</color>
+    <color name="color_202020">#202020</color>
 </resources>

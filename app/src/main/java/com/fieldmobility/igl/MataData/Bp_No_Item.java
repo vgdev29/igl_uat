@@ -16,6 +16,16 @@ public class Bp_No_Item implements Serializable {
     String mobile_number;
     String email_id;
     String aadhaar_number;
+
+    public String getFather_name() {
+        return father_name;
+    }
+
+    public void setFather_name(String father_name) {
+        this.father_name = father_name;
+    }
+
+    String father_name;
     String city_region;
     String area;
     String society;

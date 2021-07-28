@@ -118,7 +118,8 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
     static final int CAMERA_REQUEST_ADDRESS = 201;
     static final int CAMERA_OWNER_SIGNATURE = 4;
     static final int CAMERA_CUSTOMER_SIGNATURE = 5;
-    static final int REQUEST_CODE_PDF_PICKER = 1000;
+    static final int REQUEST_CODE_PDF_PICKER = 1001;
+
 
     static final String IMAGE_DIRECTORY = "/signdemo";
     Spinner idproof_Spinner, address_spinner;
@@ -225,9 +226,9 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
             @Override
             public void onClick(View view) {
                 if (isSaleDeedSelected)
-                selectPdf();
+                    selectPdf();
                 else
-                selectImage_address();
+                    selectImage_address();
 
             }
         });
@@ -1005,18 +1006,17 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
             String uploadId = UUID.randomUUID().toString();
             Log.e("uploadId+,,,,,,,,,,", "" + uploadId);
             MultipartUploadRequest multipartUploadRequest = new MultipartUploadRequest(BP_Creation_Form_step2.this, uploadId, Constants.BP_Images + "/" + Bp_Number);
-            if (image_path_cheque!=null && !image_path_cheque.isEmpty()){
+            if (image_path_cheque != null && !image_path_cheque.isEmpty()) {
                 multipartUploadRequest.addFileToUpload(image_path_cheque, "image", "cheque.jpg");
 
             }
             multipartUploadRequest.addFileToUpload(image_path_id, "image", "id_proof.jpg");
-         if (isSaleDeedSelected){
-             multipartUploadRequest.addFileToUpload(pdf_path, "file", "sale_deed.pdf", ContentType.APPLICATION_PDF);
+            if (isSaleDeedSelected) {
+                multipartUploadRequest.addFileToUpload(pdf_path, "file", "sale_deed.pdf", ContentType.APPLICATION_PDF);
 
-         }
-         else {
-             multipartUploadRequest.addFileToUpload(image_path_address, "image", "address_proof.jpg");
-         }
+            } else {
+                multipartUploadRequest.addFileToUpload(image_path_address, "image", "address_proof.jpg");
+            }
             multipartUploadRequest.addFileToUpload(customer_signature_path, "image", "customer_signature.jpg");
             multipartUploadRequest.addFileToUpload(owner_signature_path, "image", "owner_signature.jpg");
             multipartUploadRequest.setDelegate(new UploadStatusDelegate() {
@@ -1061,8 +1061,8 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
             multipartUploadRequest.setUsesFixedLengthStreamingMode(true);
             multipartUploadRequest.startUpload(); //Starting the upload
 
-            Log.e("aadhaar_file", image_path_id);
-            Log.e("pan_file", image_path_address);
+            Log.e("id_proof", image_path_id);
+            Log.e("address_proof", isSaleDeedSelected? pdf_path: image_path_address);
             Log.e("sign_file", customer_signature_path);
             Log.e("ownerSign", owner_signature_path);
         } catch (Exception exc) {
@@ -1224,6 +1224,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     params.put("Last_Name", user_bpData.getIgl_last_name());
                     params.put("Mobile_Number", user_bpData.getIgl_mobile_no());
                     params.put("Email_ID", user_bpData.getIgl_email_id());
+                    params.put("Father_Name", user_bpData.getIgl_father_name());
                     params.put("Aadhaar_Number", user_bpData.getIgl_aadhaar_no());
                     params.put("City_Region", user_bpData.getIgl_city_region());
                     params.put("Area", user_bpData.getIgl_area());
@@ -1351,7 +1352,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         if (image_path_id == null) {
             isDataValid = false;
             Toast.makeText(BP_Creation_Form_step2.this, "Please Select Image ID Proof", Toast.LENGTH_SHORT).show();
-        } else if (image_path_address == null && pdf_path ==null) {
+        } else if (image_path_address == null && pdf_path == null) {
             isDataValid = false;
             Toast.makeText(BP_Creation_Form_step2.this, "Please Select Image Address Proof", Toast.LENGTH_SHORT).show();
         } else if (customer_signature_path == null) {

@@ -13,6 +13,16 @@ public class User_bpData implements Serializable {
 	    public String igl_mobile_no;
 	    public String igl_email_id;
 	    public String igl_aadhaar_no;
+
+	public String getIgl_father_name() {
+		return igl_father_name;
+	}
+
+	public void setIgl_father_name(String igl_father_name) {
+		this.igl_father_name = igl_father_name;
+	}
+
+	public String igl_father_name;
 	    public String igl_city_region;
 	    public String igl_area;
 	    public String igl_society;

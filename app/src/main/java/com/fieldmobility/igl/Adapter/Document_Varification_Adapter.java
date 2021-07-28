@@ -82,6 +82,7 @@ public class Document_Varification_Adapter extends RecyclerView.Adapter<Document
                 String Last_name = bp_no_list_array.get(position).getLast_name();
                 String Mobile_number = bp_no_list_array.get(position).getMobile_number();
                 String Email_id = bp_no_list_array.get(position).getEmail_id();
+                String Father_Name = bp_no_list_array.get(position).getFather_name();
                 String Aadhaar_number = bp_no_list_array.get(position).getAadhaar_number();
                 String City_region = bp_no_list_array.get(position).getCity_region();
                 String Area = bp_no_list_array.get(position).getArea();
@@ -117,6 +118,7 @@ public class Document_Varification_Adapter extends RecyclerView.Adapter<Document
                 intent.putExtra("Last_name",Last_name);
                 intent.putExtra("Mobile_number",Mobile_number);
                 intent.putExtra("Email_id",Email_id);
+                intent.putExtra("Father_Name",Father_Name);
                 intent.putExtra("Aadhaar_number",Aadhaar_number);
                 intent.putExtra("City_region",City_region);
                 intent.putExtra("Area",Area);

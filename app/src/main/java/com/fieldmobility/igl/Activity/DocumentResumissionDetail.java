@@ -108,7 +108,7 @@ findViews();
 //        Layout_Id();
 //        Implementation_Mentod();
     }
-    EditText tv_fname,tv_mname,tv_lname,tv_mobile,tv_email,tv_aadhaar,tv_landmark,tv_house_no,tv_hfloor,tv_pin,tv_lpg_dist,tv_lpg_cnum,tv_uid;
+    EditText tv_father_name,tv_fname,tv_mname,tv_lname,tv_mobile,tv_email,tv_aadhaar,tv_landmark,tv_house_no,tv_hfloor,tv_pin,tv_lpg_dist,tv_lpg_cnum,tv_uid;
   private void  findViews(){
       checkBox_term_cond=findViewById(R.id.checkbox);
       checkbox_text=findViewById(R.id.checkbox_text);
@@ -117,6 +117,7 @@ findViews();
       tv_lname=findViewById(R.id.tv_lname);
       tv_mobile=findViewById(R.id.tv_mobile);
       tv_email=findViewById(R.id.tv_email);
+      tv_father_name=findViewById(R.id.tv_father_name);
       tv_aadhaar=findViewById(R.id.tv_aadhaar);
       tv_landmark=findViewById(R.id.tv_landmark);
       tv_house_no=findViewById(R.id.tv_house_no);
@@ -146,6 +147,7 @@ findViews();
         tv_mobile.setText(bp_No_Item.getMobile_number());
         tv_email.setText(bp_No_Item.getEmail_id());
         tv_aadhaar.setText(bp_No_Item.getAadhaar_number());
+        tv_father_name.setText(bp_No_Item.getFather_name());
         ((TextView)findViewById(R.id.tv_city)).setText(bp_No_Item.getCity_region());
         ((TextView)findViewById(R.id.tv_area)).setText(bp_No_Item.getArea());
         ((TextView)findViewById(R.id.tv_society)).setText(bp_No_Item.getSociety());

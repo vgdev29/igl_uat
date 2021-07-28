@@ -231,6 +231,9 @@ public class BP_Document_Verification extends Activity implements Document_Varif
                                 bp_no_item.setLast_name(data_object.getString("last_name"));
                                 bp_no_item.setMobile_number(data_object.getString("mobile_number"));
                                 bp_no_item.setEmail_id(data_object.getString("email_id"));
+                                if (data_object.has("father_name")) {
+                                    bp_no_item.setFather_name(data_object.getString("father_name"));
+                                }
                                 bp_no_item.setAadhaar_number(data_object.getString("aadhaar_number"));
                                 bp_no_item.setCity_region(data_object.getString("city_region"));
                                 bp_no_item.setArea(data_object.getString("area"));
