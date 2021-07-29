@@ -63,6 +63,7 @@ import com.fieldmobility.igl.Helper.ScreenshotUtils;
 import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.R;
 import com.kyanogen.signatureview.SignatureView;
+import com.squareup.picasso.Picasso;
 
 
 import net.gotev.uploadservice.MultipartUploadRequest;
@@ -155,6 +156,8 @@ public class Kyc_Form_Activity extends Activity {
     String screenshot_id, screenshot_address, screenshot_custsig, screenshot_ownersig, bp_no;
     EditText owner_name;
 
+    String intent_addressImage ,intent_idImage,intent_cusImage,intent_ownImage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -212,11 +215,36 @@ public class Kyc_Form_Activity extends Activity {
         spinner_street_road_type = (Spinner) findViewById(R.id.spinner_street_road_type);
         bp_no_text.setText("BP-" + getIntent().getStringExtra("Bp_number"));
         bp_no = getIntent().getStringExtra("Bp_number");
+        intent_addressImage = getIntent().getStringExtra("address");
+        intent_idImage = getIntent().getStringExtra("id");
+        intent_cusImage = getIntent().getStringExtra("custsig");
+        intent_ownImage = getIntent().getStringExtra("ownsig");
+
+        Picasso.with(this)
+                .load(intent_addressImage)
+
+                .into(address_image);
+        Picasso.with(this)
+                .load(intent_idImage)
+
+                .into(id_image);
+        Picasso.with(this)
+                .load(intent_cusImage)
+
+                .into(customer_sigimage);
+        Picasso.with(this)
+                .load(intent_ownImage)
+
+                .into(owner_sigimage);
 
 
-        String Address = getIntent().getStringExtra("House_no") + " " + getIntent().getStringExtra("House_type") + " " +
-                getIntent().getStringExtra("Landmark") + " " + getIntent().getStringExtra("Society") + " " + getIntent().getStringExtra("Area") + " "
-                + getIntent().getStringExtra("City_region");
+
+        String Address = getIntent().getStringExtra("House_no") + " " +
+                getIntent().getStringExtra("House_type") + " " +
+                getIntent().getStringExtra("Landmark") + " " +
+                getIntent().getStringExtra("Society") + " " +
+                getIntent().getStringExtra("Area") + " " +
+                getIntent().getStringExtra("City_region");
 
         todo_creation.setOnClickListener(new View.OnClickListener() {
             @Override

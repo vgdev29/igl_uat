@@ -33,6 +33,7 @@ public class Tab_Host_DMA extends TabActivity {
 
         //Creating tab menu.
         TabHost.TabSpec TabMenu1 = TabHostWindow.newTabSpec("New Registration");
+        TabHost.TabSpec TabMenu3 = TabHostWindow.newTabSpec("NIC");
         TabHost.TabSpec TabMenu2 = TabHostWindow.newTabSpec("Doc Resubmission");
 
 
@@ -46,9 +47,15 @@ public class Tab_Host_DMA extends TabActivity {
         //Set tab 3 activity to tab 1 menu.
         TabMenu2.setContent(new Intent(this, BP_No_Resubmition_Listing.class));
 
+        //Setting up tab 2 name.
+        TabMenu3.setIndicator("NIC Listing");
+        //Set tab 3 activity to tab 1 menu.
+        TabMenu3.setContent(new Intent(this, NICListing.class));
+
 
         TabHostWindow.addTab(TabMenu1);
         TabHostWindow.addTab(TabMenu2);
+        TabHostWindow.addTab(TabMenu3);
 
     }
 }

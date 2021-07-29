@@ -31,6 +31,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.fieldmobility.igl.Adapter.SimpleTextSelectorAdapter;
 import com.fieldmobility.igl.Helper.AppController;
+import com.fieldmobility.igl.Helper.CommonUtils;
 import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.Listeners.AddressSelectListener;
@@ -297,7 +298,7 @@ public class NICustomerActivity extends AppCompatActivity implements View.OnClic
                 .show();
 
         String login_request = "NI User Submission";
-        StringRequest jr = new StringRequest(Request.Method.POST, Constants.ni_user_submit+sharedPrefs.getUUID(),
+        StringRequest jr = new StringRequest(Request.Method.POST, Constants.ni_user_submit,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -306,6 +307,8 @@ public class NICustomerActivity extends AppCompatActivity implements View.OnClic
                             JSONObject json = new JSONObject(response);
                             if (json.getString("Code").equals("200")) {
                                 String Msg = json.getString("Message");
+                                CommonUtils.toast_msg(NICustomerActivity.this,Msg);
+                                finish();
 
                             }
                             else {
@@ -355,6 +358,7 @@ public class NICustomerActivity extends AppCompatActivity implements View.OnClic
                     params.put("address",et_address.getText().toString().trim() );
                     params.put("reason", selectedReason);
                     params.put("remarks",et_remarks.getText().toString().trim() );
+                    params.put("user_id",sharedPrefs.getUUID() );
 
 
                 } catch (Exception e) {

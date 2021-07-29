@@ -1,6 +1,6 @@
 package com.fieldmobility.igl.Activity;
 
-import android.Manifest;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -47,9 +47,9 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
+
 import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
+
 import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
@@ -64,8 +64,7 @@ import com.fieldmobility.igl.R;
 import com.fieldmobility.igl.utils.FilePath;
 import com.iceteck.silicompressorr.SiliCompressor;
 import com.kyanogen.signatureview.SignatureView;
-import com.nabinbhandari.android.permissions.PermissionHandler;
-import com.nabinbhandari.android.permissions.Permissions;
+
 
 import net.gotev.uploadservice.ContentType;
 import net.gotev.uploadservice.MultipartUploadRequest;
@@ -558,7 +557,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         dialog.setTitle("Signature");
         dialog.setCancelable(true);
         ImageView crose_img = dialog.findViewById(R.id.crose_img);
-        SignatureView customer_signatureView = (SignatureView) dialog.findViewById(R.id.signature_view);
+        final SignatureView customer_signatureView = (SignatureView) dialog.findViewById(R.id.signature_view);
         clear = (Button) dialog.findViewById(R.id.clear);
         save = (Button) dialog.findViewById(R.id.save);
         crose_img.setOnClickListener(new View.OnClickListener() {
@@ -593,7 +592,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         dialog.setTitle("Signature");
         dialog.setCancelable(true);
         ImageView crose_img = dialog.findViewById(R.id.crose_img);
-        SignatureView signatureView = (SignatureView) dialog.findViewById(R.id.signature_view);
+        final SignatureView signatureView = (SignatureView) dialog.findViewById(R.id.signature_view);
         clear = (Button) dialog.findViewById(R.id.clear);
         save = (Button) dialog.findViewById(R.id.save);
         crose_img.setOnClickListener(new View.OnClickListener() {
@@ -1293,6 +1292,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     Log.d("First_Name", user_bpData.getIgl_first_name());
                     Log.d("Middle_Name", user_bpData.getIgl_middle_name());
                     Log.d("Last_Name", user_bpData.getIgl_last_name());
+                    Log.d("Father_Name", user_bpData.getIgl_father_name());
                     Log.d("Mobile_Number", user_bpData.getIgl_mobile_no());
                     Log.d("Email_ID", user_bpData.getIgl_email_id());
                     Log.d("Aadhaar_Number", user_bpData.getIgl_aadhaar_no());
@@ -1443,20 +1443,16 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
     public void onSaveInstanceState(Bundle outState) {
         outState.putString("idphotopath", image_path_id);
         //outState.putParcelable("bitmap_id",bitmap_id);
-        if (image_path_address != null) {
-            outState.putString("addressphotopath", image_path_address);
-        }
+        outState.putString("addressphotopath", image_path_address);
         //outState.putParcelable("bitmap_address",bitmap_address);
         outState.putString("cussig", customer_signature_path);
         //outState.putParcelable("bitmap_cus",bitmap_cus);
         outState.putString("ownsig", owner_signature_path);
         //outState.putParcelable("bitmap_own",bitmap_own);
-        if (image_path_cheque != null) {
-            outState.putString("cheque", image_path_cheque);
-        }
+        outState.putString("cheque", image_path_cheque);
 
         outState.putString("chequeDate", chequedate_edit.getText().toString().trim());
-        Log.d("bpcreation", "onSaveInstance" + outState);
+        Log.d("bpcreation","onSaveInstance"+outState);
         super.onSaveInstanceState(outState);
     }
 
@@ -1488,12 +1484,12 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                 //owner_signature_imageview.setImageBitmap(savedInstanceState.getParcelable("bitmap_own"));
             }
 
-            if (savedInstanceState.getString("cheque") != null && !savedInstanceState.getString("cheque").isEmpty()) {
+            if (savedInstanceState.getString("cheque")!=null && !savedInstanceState.getString("cheque").isEmpty()) {
 
                 image_path_cheque = savedInstanceState.getString("cheque");
                 //owner_signature_imageview.setImageBitmap(savedInstanceState.getParcelable("bitmap_own"));
             }
-            if (savedInstanceState.getString("chequeDate") != null && !savedInstanceState.getString("chequeDate").isEmpty()) {
+            if (savedInstanceState.getString("chequeDate")!=null && !savedInstanceState.getString("chequeDate").isEmpty()) {
 
                 String date = savedInstanceState.getString("chequeDate");
                 chequedate_edit.setText(date);
