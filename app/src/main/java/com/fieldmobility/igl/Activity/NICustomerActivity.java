@@ -295,6 +295,7 @@ public class NICustomerActivity extends AppCompatActivity implements View.OnClic
                 .progress(true, 0)
                 .cancelable(false)
                 .show();
+
         String login_request = "NI User Submission";
         StringRequest jr = new StringRequest(Request.Method.POST, Constants.ni_user_submit+sharedPrefs.getUUID(),
                 new Response.Listener<String>() {
