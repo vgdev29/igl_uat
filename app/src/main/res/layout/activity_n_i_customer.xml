@@ -143,7 +143,7 @@
                             android:gravity="start"
                             android:hint="Phone number"
                             android:importantForAutofill="no"
-                            android:inputType="phone|textNoSuggestions"
+                            android:inputType="phone"
                             android:maxLength="10"
                             android:maxLines="1"
                             android:paddingLeft="19dp"
@@ -162,7 +162,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/curved_editext_bg"
+                    android:background="@drawable/corner_curved_edittext_bg"
                     android:paddingTop="8dp"
                     android:paddingBottom="16dp"
 
@@ -271,15 +271,15 @@
                     android:textSize="15dp" />
 
 
-                <TextView
+                <EditText
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_85sdp"
                     android:layout_marginTop="@dimen/_12sdp"
-                    android:background="@drawable/corner_curved_edittext_bg"
+                    android:background="@drawable/curved_editext_bg"
                     android:gravity="center_vertical"
                     android:hint="Full Address"
                     android:padding="@dimen/_16sdp"
-                    android:id="@+id/tv_address"
+                    android:id="@+id/et_address"
                     android:textColor="@color/color_202020"
                     android:textSize="15dp" />
 
@@ -291,7 +291,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_16sdp"
                 android:gravity="start"
-                android:text="Address details"
+                android:text="Other Information"
                 android:textColor="@color/color_202020"
                 android:textSize="13sp" />
 
@@ -302,7 +302,46 @@
                 android:background="@drawable/product_white_curved_bg"
                 android:orientation="vertical"
                 android:paddingHorizontal="16dp"
-                android:paddingVertical="16dp"></LinearLayout>
+                android:paddingVertical="16dp">
+                <TextView
+                    android:id="@+id/tv_reason"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="@drawable/curved_editext_bg"
+                    android:drawableRight="@drawable/dropdown"
+                    android:gravity="center"
+                    android:paddingHorizontal="27dp"
+                    android:paddingVertical="@dimen/_12sdp"
+                    android:text="Select Reason"
+                    android:textColor="@color/color_202020"
+                    android:textSize="15dp" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_65sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:background="@drawable/corner_curved_edittext_bg"
+                    android:gravity="center_vertical"
+                    android:hint="Remarks"
+                    android:padding="@dimen/_16sdp"
+                    android:id="@+id/et_remarks"
+                    android:textColor="@color/color_202020"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+            <Button
+                android:layout_alignParentRight="true"
+                android:id="@+id/submit_button"
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="12dp"
+
+                android:textSize="@dimen/_10sdp"
+                android:text="@string/submit"
+                android:textColor="@color/white" />
         </LinearLayout>
     </ScrollView>
 

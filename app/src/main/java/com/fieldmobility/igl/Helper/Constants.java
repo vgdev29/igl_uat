@@ -6,7 +6,7 @@ public class Constants {
 
    //  UAT URL
      public static String BASE_URL = "http://49.50.118.112:8080/";
-     static String localhost = "http://192.168.230.5:8081/";
+     static String localhost = "http://192.168.31.29:8081/";
     public static String START_CLICKED = "false";
     //public static final String Logout=BASE_URL+"/logout";
     public static final int LOCATION_INTERVAL = 100000000;
@@ -86,6 +86,8 @@ public class Constants {
     public static final String BP_No_Listing = BASE_URL + "bpcreation/registration/new_registration_listing";
     public static final String BP_CITY_LISTING = BASE_URL + "bpcreation/registration/city/";
     public static final String BP_No_Resubmition_Listing = BASE_URL + "bpcreation/registration/documentResubmissionListing/";
+    //NI User
+    public static final String ni_user_submit = BASE_URL + "bpcreation/registration/nic/";
    /* public static final String BP_Creation = localhost + "/registration/bp_creation";
     public static final String BP_Images = localhost + "/registration/bp_images";
     public static final String Document_POST = localhost + "/registration/documents/";

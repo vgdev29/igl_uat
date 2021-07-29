@@ -10,6 +10,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -18,14 +19,18 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
+import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.fieldmobility.igl.Adapter.SimpleTextSelectorAdapter;
+import com.fieldmobility.igl.Helper.AppController;
 import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.Listeners.AddressSelectListener;
@@ -36,22 +41,26 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class NICustomerActivity extends AppCompatActivity implements View.OnClickListener, AddressSelectListener {
-    EditText et_mob, et_name, et_email;
-    TextView tv_city, tv_area, tv_society, tv_address;
+    EditText et_mob, et_name, et_email, et_address, et_remarks;
+    TextView tv_city, tv_area, tv_society, tv_reason;
     MaterialDialog materialDialog;
     SharedPrefs sharedPrefs;
+    Button submit_button;
     ArrayList<String> cityNameList = new ArrayList<>();
     ArrayList<String> cityIdList = new ArrayList<>();
     ArrayList<String> areaNameList = new ArrayList<>();
     ArrayList<String> areaIdList = new ArrayList<>();
     ArrayList<String> societyNameList = new ArrayList<>();
-    ArrayList<String> societyIdList = new ArrayList<>();
+    ArrayList<String> reasonList = new ArrayList<>();
     SimpleTextSelectorAdapter bottomsheetAdapter;
-    String selectedCityId = "", selectedAreaId = "", selectedSocietyName = "";
+    String selectedCityId = "", selectedAreaId = "", selectedSocietyName = "", selectedReason = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -189,7 +198,20 @@ public class NICustomerActivity extends AppCompatActivity implements View.OnClic
         tv_area.setOnClickListener(this);
         tv_society = findViewById(R.id.tv_society);
         tv_society.setOnClickListener(this);
-        tv_address = findViewById(R.id.tv_address);
+        et_address = findViewById(R.id.et_address);
+        tv_reason = findViewById(R.id.tv_reason);
+        tv_reason.setOnClickListener(this);
+        et_remarks = findViewById(R.id.et_remarks);
+        submit_button = findViewById(R.id.submit_button);
+        submit_button.setOnClickListener(this);
+        reasonList.add("Central Kitchen / TNF Kitchen");
+        reasonList.add("Already Applied");
+        reasonList.add("Already User");
+        reasonList.add("Customer Happy With LPG");
+        reasonList.add("Appointment Created in App");
+        reasonList.add("Required Doc Not Available With Customer");
+        reasonList.add("Tenant");
+        reasonList.add("Others");
     }
 
     BottomSheetDialog dialog;
@@ -254,8 +276,103 @@ public class NICustomerActivity extends AppCompatActivity implements View.OnClic
             } else
                 Toast.makeText(NICustomerActivity.this, "Please Select the Area", Toast.LENGTH_SHORT).show();
 
+        } else if (v == tv_reason) {
+
+            openSheet("Select Reason");
+
+        } else if (v == submit_button) {
+            if (isValiodData()){
+                callSubmitApi();
+            }
+
         }
 
+    }
+
+    public void callSubmitApi() {
+        materialDialog = new MaterialDialog.Builder(this)
+                .content("Please wait....")
+                .progress(true, 0)
+                .cancelable(false)
+                .show();
+        String login_request = "NI User Submission";
+        StringRequest jr = new StringRequest(Request.Method.POST, Constants.ni_user_submit+sharedPrefs.getUUID(),
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        materialDialog.dismiss();
+                        try {
+                            JSONObject json = new JSONObject(response);
+                            if (json.getString("Code").equals("200")) {
+                                String Msg = json.getString("Message");
+
+                            }
+                            else {
+
+                            }
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                materialDialog.dismiss();
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+                        String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        JSONObject obj = new JSONObject(res);
+                        Log.e("object", obj.toString());
+                        JSONObject error1 = obj.getJSONObject("error");
+                        String error_msg = error1.getString("message");
+                        //  Toast.makeText(Forgot_Password_Activity.this, "" + error_msg, Toast.LENGTH_SHORT).show();
+                    } catch (UnsupportedEncodingException e1) {
+                        e1.printStackTrace();
+                    } catch (JSONException e2) {
+                        e2.printStackTrace();
+                    }
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                try {
+
+                    params.put("customer_name", et_name.getText().toString().trim());
+                    params.put("mobile", et_mob.getText().toString().trim());
+                    params.put("email", et_email.getText().toString().trim());
+                    params.put("city", selectedCityId);
+                    params.put("area", selectedAreaId);
+                    params.put("society", selectedSocietyName);
+                    params.put("address",et_address.getText().toString().trim() );
+                    params.put("reason", selectedReason);
+                    params.put("remarks",et_remarks.getText().toString().trim() );
+
+
+                } catch (Exception e) {
+                }
+                return params;
+            }
+          /*  @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+               // headers.put("X-Requested-With", "XMLHttpRequest");
+                  headers.put(" Content-Type", "multipart/form-data");
+                //headers.put("Accept", "application/json");
+               /// headers.put("Authorization", "Bearer " +sharedPrefs.getToken());
+                return headers;
+            }*/
+        };
+        jr.setRetryPolicy(new DefaultRetryPolicy(25 * 10000, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        jr.setTag(login_request);
+        AppController.getInstance().addToRequestQueue(jr, login_request);
     }
 
     private void openSheet(String title) {
@@ -269,6 +386,9 @@ public class NICustomerActivity extends AppCompatActivity implements View.OnClic
             if (title.equals("Select City")) {
                 bottomsheetAdapter.setIsFor(SimpleTextSelectorAdapter.CITY_SELECTION);
                 bottomsheetAdapter.setData(cityNameList);
+            } else if (title.equals("Select Reason")) {
+                bottomsheetAdapter.setIsFor(SimpleTextSelectorAdapter.REASON_SELECTION);
+                bottomsheetAdapter.setData(reasonList);
             } else {
                 bottomsheetAdapter.setIsFor(SimpleTextSelectorAdapter.SOCIETY_SELECTION);
                 bottomsheetAdapter.setData(societyNameList);
@@ -304,5 +424,72 @@ public class NICustomerActivity extends AppCompatActivity implements View.OnClic
         tv_society.setText(society);
         selectedSocietyName = society;
         dialog.dismiss();
+    }
+
+    @Override
+    public void onReasonSelect(String reason) {
+        tv_reason.setText(reason);
+        selectedReason = reason;
+        dialog.dismiss();
+
+    }
+
+    private boolean isValiodData() {
+        boolean isValidData = false;
+        if (et_name.getText().length() > 0) isValidData = true;
+        else {
+            isValidData = false;
+            Toast.makeText(NICustomerActivity.this, "Please Enter Name", Toast.LENGTH_SHORT).show();
+            et_name.setError("Please Enter Name");
+            return  isValidData;
+        }
+        if (et_mob.getText().length() == 10) isValidData = true;
+        else {
+            isValidData = false;
+            Toast.makeText(NICustomerActivity.this, "Please Enter Valid Mobile No.", Toast.LENGTH_SHORT).show();
+            et_mob.setError("Please Enter Valid Mobile No.");
+            return  isValidData;
+        }
+        if (!selectedCityId.isEmpty()) isValidData = true;
+        else {
+            isValidData = false;
+            Toast.makeText(NICustomerActivity.this, "Please Select City Name", Toast.LENGTH_SHORT).show();
+            return  isValidData;
+        }
+        if (!selectedAreaId.isEmpty()) isValidData = true;
+        else {
+            isValidData = false;
+            Toast.makeText(NICustomerActivity.this, "Please Select Area Name", Toast.LENGTH_SHORT).show();
+            return  isValidData;
+        }
+        if (!selectedSocietyName.isEmpty()) isValidData = true;
+        else {
+            isValidData = false;
+            Toast.makeText(NICustomerActivity.this, "Please Select Society Name", Toast.LENGTH_SHORT).show();
+            return  isValidData;
+        }
+        if (et_address.getText().length() >0) isValidData = true;
+        else {
+            isValidData = false;
+            Toast.makeText(NICustomerActivity.this, "Please Enter Address", Toast.LENGTH_SHORT).show();
+            et_address.setError("Please Enter Address");
+            return  isValidData;
+        }
+        if (!selectedReason.isEmpty()) isValidData = true;
+        else {
+            isValidData = false;
+            Toast.makeText(NICustomerActivity.this, "Please Select Reason", Toast.LENGTH_SHORT).show();
+            return  isValidData;
+        }
+        if (et_remarks.getText().length() >0) isValidData = true;
+        else {
+            isValidData = false;
+            Toast.makeText(NICustomerActivity.this, "Please Enter Remarks", Toast.LENGTH_SHORT).show();
+            et_remarks.setError("Please Enter Remarks");
+            return  isValidData;
+        }
+
+
+        return isValidData;
     }
 }
