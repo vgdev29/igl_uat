@@ -31,6 +31,7 @@ public class SimpleTextSelectorAdapter extends RecyclerView.Adapter<SimpleTextSe
     public static final int CITY_SELECTION = 10;
     public static final int AREA_SELECTION = 11;
     public static final int SOCIETY_SELECTION = 12;
+    public static final int REASON_SELECTION = 13;
     AddressSelectListener listener;
 
     public int getIsFor() {
@@ -100,6 +101,9 @@ public class SimpleTextSelectorAdapter extends RecyclerView.Adapter<SimpleTextSe
                             break;
                         case SOCIETY_SELECTION:
                             listener.onSocietySelect(dataList.get(getAdapterPosition()),getAdapterPosition());
+                            break;
+                        case REASON_SELECTION:
+                            listener.onReasonSelect(dataList.get(getAdapterPosition()));
                             break;
                     }
                 }

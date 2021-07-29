@@ -362,10 +362,12 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
             @Override
             public void onClick(View view) {
                 if (checkBox_term_cond.isChecked()) {
-                    if (validateData()) {
+                    if ((Bp_Number == null || Bp_Number.isEmpty()) && validateData()) {
                         Form_dataSubmit();
                         //uploadMultipart();
                         // BP_N0_DilogBox();
+                    } else if (Bp_Number != null && !Bp_Number.isEmpty() && imgUploadError) {
+                        uploadMultipart(Bp_Number);
                     }
 
                 } else {
@@ -990,6 +992,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         return path;
     }
 
+    boolean imgUploadError = false;
 
     public void uploadMultipart(String Bp_Number) {
         if (owner_signature_path == null) {
@@ -1028,6 +1031,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                 public void onError(Context context, UploadInfo uploadInfo, Exception exception) {
                     exception.printStackTrace();
                     materialDialog.dismiss();
+                    imgUploadError = true;
                     Log.e("Uplodeerror++", uploadInfo.getSuccessfullyUploadedFiles().toString());
                 }
 
@@ -1039,18 +1043,33 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     try {
                         jsonObject = new JSONObject(str);
                         Log.e("Response++", jsonObject.toString());
-                        String Msg = jsonObject.getString("Message");
-                        // Toast.makeText(New_Regestration_Form.this, Msg, Toast.LENGTH_SHORT).show();
-                        // finish();
-                        BP_N0_DilogBox();
+                        if (jsonObject.getInt("Code") == 200) {
+                            if (jsonObject.has("Message")) {
+                                String Msg = jsonObject.getString("Message");
+                                Toast.makeText(BP_Creation_Form_step2.this, Msg, Toast.LENGTH_SHORT).show();
+                            }
+                            imgUploadError = false;
+                            BP_N0_DilogBox();
+                        } else {
+                            imgUploadError = true;
+                            if (jsonObject.has("Message")) {
+                                String Msg = jsonObject.getString("Message");
+                                Toast.makeText(BP_Creation_Form_step2.this, Msg, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
                     } catch (JSONException e) {
+                        imgUploadError = true;
+                        Toast.makeText(BP_Creation_Form_step2.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
                 }
 
                 @Override
                 public void onCancelled(Context context, UploadInfo uploadInfo) {
+                    imgUploadError = true;
                     materialDialog.dismiss();
+
                 }
             });
             multipartUploadRequest.setUtf8Charset();
@@ -1061,10 +1080,11 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
             multipartUploadRequest.startUpload(); //Starting the upload
 
             Log.e("id_proof", image_path_id);
-            Log.e("address_proof", isSaleDeedSelected? pdf_path: image_path_address);
+            Log.e("address_proof", isSaleDeedSelected ? pdf_path : image_path_address);
             Log.e("sign_file", customer_signature_path);
             Log.e("ownerSign", owner_signature_path);
         } catch (Exception exc) {
+            imgUploadError = true;
             Toast.makeText(BP_Creation_Form_step2.this, "Please Select ID & Address Proof and Proper Signature", Toast.LENGTH_SHORT).show();
             materialDialog.dismiss();
         }
@@ -1177,19 +1197,28 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                         try {
                             JSONObject json = new JSONObject(response);
                             //jsonObject = new JSONObject(str);
-                            Log.d("BPCreationResponse++", json.toString());
-                            String Msg = json.getString("Message");
-                            Toast.makeText(BP_Creation_Form_step2.this, Msg, Toast.LENGTH_SHORT).show();
-                            Bp_Number = json.getString("Details");
-                            Log.e("Bp_Number++", Bp_Number);
-                            if (Bp_Number.isEmpty()) {
-                                Toast.makeText(BP_Creation_Form_step2.this, "Bp not created", Toast.LENGTH_SHORT).show();
-                            } else {
-                                uploadMultipart(Bp_Number);
+                            if (json.getString("Code").equals("200")) {
+                                Log.d("BPCreationResponse++", json.toString());
+                                String Msg = json.getString("Message");
+                                Toast.makeText(BP_Creation_Form_step2.this, Msg, Toast.LENGTH_SHORT).show();
+                                Bp_Number = json.getString("Details");
+                                if (Bp_Number.isEmpty()) {
+                                    Toast.makeText(BP_Creation_Form_step2.this, "Bp not created", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    uploadMultipart(Bp_Number);
+                                }
                             }
+                            else {
+                                Toast.makeText(BP_Creation_Form_step2.this, "Bp not created, " +json.getString("Details"), Toast.LENGTH_SHORT).show();
+
+                            }
+
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Toast.makeText(BP_Creation_Form_step2.this, "Error: Bp not created", Toast.LENGTH_SHORT).show();
+
                         }
 
                     }
