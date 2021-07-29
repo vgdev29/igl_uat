@@ -587,7 +587,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
         myAlertDialog.show();
     }
 
-    private String change_to_binary(Bitmap bitmapOrg) {
+    private String  change_to_binary(Bitmap bitmapOrg) {
         ByteArrayOutputStream bao = new ByteArrayOutputStream();
         bitmapOrg.compress(Bitmap.CompressFormat.JPEG, 50, bao);
         byte[] ba = bao.toByteArray();

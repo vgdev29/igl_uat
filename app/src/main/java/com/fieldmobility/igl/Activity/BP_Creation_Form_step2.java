@@ -1,6 +1,6 @@
 package com.fieldmobility.igl.Activity;
 
-import android.Manifest;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -47,9 +47,9 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
+
 import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
+
 import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
@@ -64,8 +64,7 @@ import com.fieldmobility.igl.R;
 import com.fieldmobility.igl.utils.FilePath;
 import com.iceteck.silicompressorr.SiliCompressor;
 import com.kyanogen.signatureview.SignatureView;
-import com.nabinbhandari.android.permissions.PermissionHandler;
-import com.nabinbhandari.android.permissions.Permissions;
+
 
 import net.gotev.uploadservice.ContentType;
 import net.gotev.uploadservice.MultipartUploadRequest;
@@ -556,7 +555,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         dialog.setTitle("Signature");
         dialog.setCancelable(true);
         ImageView crose_img = dialog.findViewById(R.id.crose_img);
-        SignatureView customer_signatureView = (SignatureView) dialog.findViewById(R.id.signature_view);
+        final SignatureView customer_signatureView = (SignatureView) dialog.findViewById(R.id.signature_view);
         clear = (Button) dialog.findViewById(R.id.clear);
         save = (Button) dialog.findViewById(R.id.save);
         crose_img.setOnClickListener(new View.OnClickListener() {
@@ -591,7 +590,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         dialog.setTitle("Signature");
         dialog.setCancelable(true);
         ImageView crose_img = dialog.findViewById(R.id.crose_img);
-        SignatureView signatureView = (SignatureView) dialog.findViewById(R.id.signature_view);
+        final SignatureView signatureView = (SignatureView) dialog.findViewById(R.id.signature_view);
         clear = (Button) dialog.findViewById(R.id.clear);
         save = (Button) dialog.findViewById(R.id.save);
         crose_img.setOnClickListener(new View.OnClickListener() {
@@ -1224,7 +1223,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     params.put("Last_Name", user_bpData.getIgl_last_name());
                     params.put("Mobile_Number", user_bpData.getIgl_mobile_no());
                     params.put("Email_ID", user_bpData.getIgl_email_id());
-                    params.put("Father_Name", user_bpData.getIgl_father_name());
+                 //   params.put("Father_Name", user_bpData.getIgl_father_name());
                     params.put("Aadhaar_Number", user_bpData.getIgl_aadhaar_no());
                     params.put("City_Region", user_bpData.getIgl_city_region());
                     params.put("Area", user_bpData.getIgl_area());
@@ -1264,6 +1263,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     Log.d("First_Name", user_bpData.getIgl_first_name());
                     Log.d("Middle_Name", user_bpData.getIgl_middle_name());
                     Log.d("Last_Name", user_bpData.getIgl_last_name());
+                    Log.d("Father_Name", user_bpData.getIgl_father_name());
                     Log.d("Mobile_Number", user_bpData.getIgl_mobile_no());
                     Log.d("Email_ID", user_bpData.getIgl_email_id());
                     Log.d("Aadhaar_Number", user_bpData.getIgl_aadhaar_no());
