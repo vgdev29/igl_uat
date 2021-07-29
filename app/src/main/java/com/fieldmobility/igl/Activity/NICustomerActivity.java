@@ -61,7 +61,7 @@ public class NICustomerActivity extends AppCompatActivity implements View.OnClic
     ArrayList<String> societyNameList = new ArrayList<>();
     ArrayList<String> reasonList = new ArrayList<>();
     SimpleTextSelectorAdapter bottomsheetAdapter;
-    String selectedCityId = "", selectedAreaId = "", selectedSocietyName = "", selectedReason = "";
+    String selectedCityId = "",selectedCityName = "", selectedAreaId = "",selectedAreaName = "", selectedSocietyName = "", selectedReason = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -352,8 +352,8 @@ public class NICustomerActivity extends AppCompatActivity implements View.OnClic
                     params.put("customer_name", et_name.getText().toString().trim());
                     params.put("mobile", et_mob.getText().toString().trim());
                     params.put("email", et_email.getText().toString().trim());
-                    params.put("city", selectedCityId);
-                    params.put("area", selectedAreaId);
+                    params.put("city", selectedCityName);
+                    params.put("area", selectedAreaName);
                     params.put("society", selectedSocietyName);
                     params.put("address",et_address.getText().toString().trim() );
                     params.put("reason", selectedReason);
@@ -405,6 +405,7 @@ public class NICustomerActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onCitySelect(String city, int position) {
+        selectedCityName=city;
         tv_city.setText(city);
         tv_area.setText("Select Area");
         tv_society.setText("Select Society");
@@ -415,6 +416,7 @@ public class NICustomerActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onAreaSelect(String area) {
+        selectedAreaName=area;
         tv_area.setText(area);
         tv_society.setText("Select Society");
         int originalPosition = areaNameList.indexOf(area);
@@ -455,13 +457,13 @@ public class NICustomerActivity extends AppCompatActivity implements View.OnClic
             et_mob.setError("Please Enter Valid Mobile No.");
             return  isValidData;
         }
-        if (!selectedCityId.isEmpty()) isValidData = true;
+        if (!selectedCityName.isEmpty()) isValidData = true;
         else {
             isValidData = false;
             Toast.makeText(NICustomerActivity.this, "Please Select City Name", Toast.LENGTH_SHORT).show();
             return  isValidData;
         }
-        if (!selectedAreaId.isEmpty()) isValidData = true;
+        if (!selectedAreaName.isEmpty()) isValidData = true;
         else {
             isValidData = false;
             Toast.makeText(NICustomerActivity.this, "Please Select Area Name", Toast.LENGTH_SHORT).show();

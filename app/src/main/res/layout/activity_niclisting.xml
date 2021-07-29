@@ -10,6 +10,7 @@
       android:layout_height="wrap_content"
       android:orientation="horizontal"
       android:background="@color/peach_light"
+      android:visibility="gone"
       android:weightSum="2">
     <LinearLayout
         android:layout_width="0dp"
@@ -40,12 +41,12 @@
           android:layout_marginLeft="@dimen/_3sdp"
           android:paddingLeft="@dimen/_1sdp"
           />
-      <ImageView
-          android:layout_width="0dp"
-          android:layout_height="@dimen/_30sdp"
-          android:layout_weight="0.3"
-          android:src="@drawable/ic_filter_list_black_24dp"
-          android:id="@+id/rfc_filter"/>
+<!--      <ImageView-->
+<!--          android:layout_width="0dp"-->
+<!--          android:layout_height="@dimen/_30sdp"-->
+<!--          android:layout_weight="0.3"-->
+<!--          android:src="@drawable/ic_filter_list_black_24dp"-->
+<!--          android:id="@+id/rfc_filter"/>-->
     </LinearLayout>
     <LinearLayout
         android:layout_width="0dp"

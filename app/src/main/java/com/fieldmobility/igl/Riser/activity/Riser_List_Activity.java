@@ -1,4 +1,4 @@
-package com.fieldmobility.igl.Riser;
+package com.fieldmobility.igl.Riser.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 

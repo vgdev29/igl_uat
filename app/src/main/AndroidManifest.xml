@@ -71,7 +71,7 @@
             </intent-filter>-->
         </activity>
         <activity android:name=".Mdpe.Mdpe_List_Activity" />
-        <activity android:name=".Riser.Riser_List_Activity" />
+        <activity android:name=".Riser.activity.Riser_List_Activity" />
         <activity
             android:name=".Activity.KYC_VerificationDetails"
             android:screenOrientation="portrait" />
