@@ -1252,7 +1252,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     params.put("Last_Name", user_bpData.getIgl_last_name());
                     params.put("Mobile_Number", user_bpData.getIgl_mobile_no());
                     params.put("Email_ID", user_bpData.getIgl_email_id());
-                 //   params.put("Father_Name", user_bpData.getIgl_father_name());
+                    params.put("Father_Name", user_bpData.getIgl_father_name());
                     params.put("Aadhaar_Number", user_bpData.getIgl_aadhaar_no());
                     params.put("City_Region", user_bpData.getIgl_city_region());
                     params.put("Area", user_bpData.getIgl_area());
