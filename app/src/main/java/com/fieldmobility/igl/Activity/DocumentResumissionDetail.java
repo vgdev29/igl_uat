@@ -76,6 +76,7 @@ public class DocumentResumissionDetail extends Activity {
     Button signature_button, adhar_button, address_button, approve_button;
     ImageView adhar_image, address_image, signature_image,adhar_owner_image;
 
+    private final int REQUEST_CODE_GALLERY_SIGN_PICK_CUSTOMER = 1002;
     private final int PICK_IMAGE_REQUEST = 1;
     private final int PICK_IMAGE_REQUEST_ADDRESS = 3;
     private final int PICK_OWNER_IMAGE_REQUEST_ADDRESS = 4;
@@ -231,7 +232,8 @@ findViews();
             @Override
             public void onClick(View view) {
                 // Signature_Method();
-                Customer_Signature1();
+                select_CustomerSignature_Method();
+
             }
         });
         adhar_button.setOnClickListener(new View.OnClickListener() {
@@ -474,6 +476,35 @@ findViews();
 
         return isDataValid;
     }
+    private void select_CustomerSignature_Method() {
+        AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
+        myAlertDialog.setTitle("Upload Pictures Option");
+        myAlertDialog.setMessage("How do you want to set your Signature?");
+        myAlertDialog.setNegativeButton("Gallery",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+//                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+//                        Uri photoURI = FileProvider.getUriForFile(BP_Creation_Form_step2.this, getApplicationContext().getPackageName() + ".provider", f);
+//                        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+//                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                        startActivityForResult(intent, CAMERA_CUSTOMER_SIGNATURE);
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), REQUEST_CODE_GALLERY_SIGN_PICK_CUSTOMER);
+
+                    }
+                });
+        myAlertDialog.setPositiveButton("Signature",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Customer_Signature1();
+                    }
+                });
+        myAlertDialog.show();
+    }
+
     private void Customer_Signature1() {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -743,6 +774,17 @@ findViews();
                     }
                 }
                 break;
+            case REQUEST_CODE_GALLERY_SIGN_PICK_CUSTOMER:
+                if (requestCode == REQUEST_CODE_GALLERY_SIGN_PICK_CUSTOMER && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
+                    Uri filePathUri_customer = data.getData();
+                    try {
+                        Bitmap bitmap_id = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathUri_customer);
+                        signature_image.setImageBitmap(bitmap_id);
+                        customer_signature_path = getPath(filePathUri_customer);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
         }
     }
     public void uploadMultipart() {

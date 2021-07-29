@@ -118,6 +118,8 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
     static final int CAMERA_OWNER_SIGNATURE = 4;
     static final int CAMERA_CUSTOMER_SIGNATURE = 5;
     static final int REQUEST_CODE_PDF_PICKER = 1001;
+    static final int REQUEST_CODE_GALLERY_SIGN_PICK_CUSTOMER = 1002;
+    static final int REQUEST_CODE_GALLERY_SIGN_PICK_OWNER = 1003;
 
 
     static final String IMAGE_DIRECTORY = "/signdemo";
@@ -505,15 +507,20 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
         myAlertDialog.setTitle("Upload Pictures Option");
         myAlertDialog.setMessage("How do you want to set your Signature?");
-        myAlertDialog.setNegativeButton("Camera",
+        myAlertDialog.setNegativeButton("Gallery",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
-                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
-                        Uri photoURI = FileProvider.getUriForFile(BP_Creation_Form_step2.this, getApplicationContext().getPackageName() + ".provider", f);
-                        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                        startActivityForResult(intent, CAMERA_CUSTOMER_SIGNATURE);
+//                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+//                        Uri photoURI = FileProvider.getUriForFile(BP_Creation_Form_step2.this, getApplicationContext().getPackageName() + ".provider", f);
+//                        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+//                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                        startActivityForResult(intent, CAMERA_CUSTOMER_SIGNATURE);
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), REQUEST_CODE_GALLERY_SIGN_PICK_CUSTOMER);
+
                     }
                 });
         myAlertDialog.setPositiveButton("Signature",
@@ -529,15 +536,20 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
         myAlertDialog.setTitle("Upload Pictures Option");
         myAlertDialog.setMessage("How do you want to set your Signature?");
-        myAlertDialog.setNegativeButton("Camera",
+        myAlertDialog.setNegativeButton("Gallery",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
-                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
-                        Uri photoURI = FileProvider.getUriForFile(BP_Creation_Form_step2.this, getApplicationContext().getPackageName() + ".provider", f);
-                        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                        startActivityForResult(intent, CAMERA_OWNER_SIGNATURE);
+//                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+//                        Uri photoURI = FileProvider.getUriForFile(BP_Creation_Form_step2.this, getApplicationContext().getPackageName() + ".provider", f);
+//                        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+//                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                        startActivityForResult(intent, CAMERA_OWNER_SIGNATURE);
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), REQUEST_CODE_GALLERY_SIGN_PICK_OWNER);
+
                     }
                 });
         myAlertDialog.setPositiveButton("Signature",
@@ -891,6 +903,32 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                         e.printStackTrace();
                     }
                 }
+                break;
+            case REQUEST_CODE_GALLERY_SIGN_PICK_CUSTOMER:
+                if (requestCode == REQUEST_CODE_GALLERY_SIGN_PICK_CUSTOMER && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
+                    filePathUri_customer = data.getData();
+                    try {
+                        Bitmap bitmap_ = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathUri_customer);
+                        customer_signature_imageview.setImageBitmap(bitmap_);
+                        customer_signature_path = getPath(filePathUri_customer);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                break;
+            case REQUEST_CODE_GALLERY_SIGN_PICK_OWNER:
+                if (requestCode == REQUEST_CODE_GALLERY_SIGN_PICK_OWNER && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
+                    filePathUri_owner = data.getData();
+                    try {
+                        bitmap_id = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathUri_owner);
+                        owner_signature_imageview.setImageBitmap(bitmap_id);
+                        owner_signature_path = getPath(filePathUri_owner);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
                 break;
 
 
