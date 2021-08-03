@@ -77,7 +77,7 @@ public class Constants {
     public static final String TPI_RFCHOLD_APPROVAl_Data = BASE_URL + "ekyc/bp_details/Tpi_Listing_Hold?bpno=";
     public static final String TPI_DECLINE = BASE_URL + "ekyc/bp_details/TPI_Decline";
     public static final String CON_SUP_DETAILS = BASE_URL + "ekyc/bp_details/userDetails?";
-
+    public static final String MITD_UPDATE = BASE_URL + "ekyc/bp_details/mitd_update/";
 
 
     public static final String BP_Creation = BASE_URL + "bpcreation/registration/bp_creation";
@@ -89,6 +89,11 @@ public class Constants {
     //NI User
     public static final String ni_user_submit = BASE_URL + "bpcreation/registration/nic";
     public static final String ni_user_listing = BASE_URL + "bpcreation/registration/nic_list/";
+
+    // RISER MODULE
+    public static final String RISER_LISTING = BASE_URL + "api/risersuballocations";
+
+
    /* public static final String BP_Creation = localhost + "/registration/bp_creation";
     public static final String BP_Images = localhost + "/registration/bp_images";
     public static final String Document_POST = localhost + "/registration/documents/";
@@ -96,13 +101,11 @@ public class Constants {
     public static final String BP_CITY_LISTING = localhost + "/registration/city"*/;
 
 
-
-    
 //chnges in api
     //rfc_pending_Listing - request param -zone code
     //RFCApprovalMultipart - audio parameter
     //update - doc1 and doc2 enabled on server
-   //  LIVE URL
+    //  LIVE URL
     // public static String BASE_URL="http://49.50.65.107:8081/";
     /*public static String BASE_URL="http://192.168.31.250:8081/";
     // UAT URL
@@ -185,7 +188,6 @@ public class Constants {
     public static final String TPI_DECLINE = BASE_URL + "/bp_details/TPI_Decline";
  public static final String CON_SUP_DETAILS = BASE_URL + "/bp_details/userDetails?";
 */
-
 
 
 }

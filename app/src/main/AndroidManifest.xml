@@ -6,7 +6,7 @@
         <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
         <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
         <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-        -->
+    -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -57,21 +57,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Riser.activity.RiserFormActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
         <activity
             android:name=".Activity.MITDDoneActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden">
-
-        </activity>
+            android:windowSoftInputMode="stateAlwaysHidden"></activity>
         <activity android:name=".Activity.NICustomerActivity">
-            <!--<intent-filter>
-                &lt;!&ndash; <action android:name="android.intent.action.MAIN" />
-
-                    <category android:name="android.intent.category.LAUNCHER" />&ndash;&gt;
-            </intent-filter>-->
         </activity>
         <activity android:name=".Mdpe.Mdpe_List_Activity" />
-        <activity android:name=".Riser.activity.Riser_List_Activity" />
+        <activity android:name=".Riser.activity.RiserListActivity" >
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
         <activity
             android:name=".Activity.KYC_VerificationDetails"
             android:screenOrientation="portrait" />
@@ -82,15 +85,14 @@
         <activity android:name=".Activity.NgSupUserDetailsActivity" />
         <activity android:name=".Activity.NgSupListActivity" />
         <activity
-            android:name="com.fieldmobility.igl.Activity.NICListing"
+            android:name=".Activity.NICListing"
             android:screenOrientation="portrait" />
-
-
         <activity android:name=".Activity.ViewNgDetaillsActivity" />
         <activity android:name=".Activity.PMC_ViewPager_Activity" />
         <activity android:name=".Activity.Splash_Screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -153,11 +155,7 @@
             android:name=".Activity.BP_Creation_Form_step2"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Activity.BP_No_Listing"
@@ -292,7 +290,7 @@
             <activity android:name="com.veer.exvidplayer.VideoPlayer.ExVidPlayerActivity"
                 android:showOnLockScreen="true"
                 android:configChanges="orientation|screenSize"></activity>
-            -->
+        -->
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
@@ -319,11 +317,12 @@
         <service
             android:name=".location.LocationUpdatesIntentService"
             android:exported="false" />
-        <!--<service
+        <!--
+<service
             android:name=".tracker.MyIntentService"
             android:exported="false"
-            android:foregroundServiceType="location" />-->
-
+            android:foregroundServiceType="location" />
+        -->
         <receiver
             android:name=".location.LocationUpdatesBroadcastReceiver"
             android:exported="true">
@@ -334,5 +333,3 @@
     </application>
 
 </manifest>
-
-

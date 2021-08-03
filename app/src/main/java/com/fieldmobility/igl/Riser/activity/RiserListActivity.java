@@ -1,4 +1,4 @@
-package com.fieldmobility.igl.Activity;
+package com.fieldmobility.igl.Riser.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,26 +17,32 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.fieldmobility.igl.Activity.NICListing;
+import com.fieldmobility.igl.Activity.NICustomerActivity;
 import com.fieldmobility.igl.Adapter.NICListAdapter;
+import com.fieldmobility.igl.Adapter.RiserListAdapter;
 import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.Model.NiListingModel;
+import com.fieldmobility.igl.Model.RiserListingModel;
 import com.fieldmobility.igl.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-public class NICListing extends AppCompatActivity implements View.OnClickListener {
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
-    FloatingActionButton nicreg;
+public class RiserListActivity extends AppCompatActivity implements View.OnClickListener {
     RecyclerView recyclerView;
     MaterialDialog materialDialog;
     SharedPrefs sharedPrefs;
-    NiListingModel dataModel;
-    NICListAdapter adapter;
+    ArrayList<RiserListingModel> dataModel;
+    RiserListAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_niclisting);
+        setContentView(R.layout.activity_riser__list);
         sharedPrefs=new SharedPrefs(this);
 
         findViews();
@@ -45,19 +51,20 @@ public class NICListing extends AppCompatActivity implements View.OnClickListene
 
     private void loadListData() {
 
-        materialDialog = new MaterialDialog.Builder(NICListing.this)
+        materialDialog = new MaterialDialog.Builder(RiserListActivity.this)
                 .content("Please wait....")
                 .progress(true, 0)
 
                 .show();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.ni_user_listing + sharedPrefs.getUUID(), new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.RISER_LISTING, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 materialDialog.dismiss();
                 try {
-                     dataModel = new Gson().fromJson(response, NiListingModel.class);
-                    if (dataModel.getStatus().equals("200")){
+                    Type userListType = new TypeToken<ArrayList<RiserListingModel>>(){}.getType();
+                    dataModel = new Gson().fromJson(response,  userListType);
+                    if (dataModel!=null && dataModel.size()>0){
                         initViews(dataModel);
                     }
 
@@ -81,22 +88,17 @@ public class NICListing extends AppCompatActivity implements View.OnClickListene
 
 
     private void findViews() {
-        nicreg = findViewById(R.id.nic_regestration);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        nicreg.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        if (v == nicreg) {
-            Intent intent = new Intent(NICListing.this, NICustomerActivity.class);
-            startActivity(intent);
-        }
+
     }
 
-    private void initViews(NiListingModel dataModel) {
-        adapter= new NICListAdapter(NICListing.this,dataModel.getNICList());
+    private void initViews(ArrayList<RiserListingModel> dataModel) {
+        adapter= new RiserListAdapter(RiserListActivity.this,dataModel);
         recyclerView.setAdapter(adapter);
 
     }
