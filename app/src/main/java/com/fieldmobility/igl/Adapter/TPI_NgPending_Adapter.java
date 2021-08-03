@@ -262,7 +262,7 @@ public class TPI_NgPending_Adapter extends RecyclerView.Adapter<TPI_NgPending_Ad
         requestQueue.add(stringRequest);
     }
 
-    private void BP_N0_DilogBox(String conName,String conMob,String supName,String supMob  ) {
+    private void BP_N0_DilogBox(String conName, final String conMob, String supName, final String supMob  ) {
         final Dialog dialog = new Dialog(mctx);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.rfc_info_dialog);

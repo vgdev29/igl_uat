@@ -2,10 +2,10 @@ package com.fieldmobility.igl.Helper;
 
 public class Constants {
      //LIVE URL
-//       public static String BASE_URL="http://49.50.65.107:8081/";
+     public static String BASE_URL="http://49.50.65.107:8081/";
 
    //  UAT URL
-     public static String BASE_URL = "http://49.50.118.112:8080/";
+ //    public static String BASE_URL = "http://49.50.118.112:8080/";
      static String localhost = "http://192.168.31.29:8081/";
     public static String START_CLICKED = "false";
     //public static final String Logout=BASE_URL+"/logout";
@@ -77,7 +77,7 @@ public class Constants {
     public static final String TPI_RFCHOLD_APPROVAl_Data = BASE_URL + "ekyc/bp_details/Tpi_Listing_Hold?bpno=";
     public static final String TPI_DECLINE = BASE_URL + "ekyc/bp_details/TPI_Decline";
     public static final String CON_SUP_DETAILS = BASE_URL + "ekyc/bp_details/userDetails?";
-    public static final String MITD_UPDATE = BASE_URL + "ekyc/bp_details/mitd_update/";
+
 
 
     public static final String BP_Creation = BASE_URL + "bpcreation/registration/bp_creation";
