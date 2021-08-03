@@ -37,13 +37,14 @@ public class RiserListActivity extends AppCompatActivity implements View.OnClick
     RecyclerView recyclerView;
     MaterialDialog materialDialog;
     SharedPrefs sharedPrefs;
-    ArrayList<RiserListingModel> dataModel;
+    RiserListingModel dataModel;
     RiserListAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_riser__list);
-        sharedPrefs=new SharedPrefs(this);
+        sharedPrefs = new SharedPrefs(this);
 
         findViews();
         loadListData();
@@ -62,9 +63,9 @@ public class RiserListActivity extends AppCompatActivity implements View.OnClick
             public void onResponse(String response) {
                 materialDialog.dismiss();
                 try {
-                    Type userListType = new TypeToken<ArrayList<RiserListingModel>>(){}.getType();
-                    dataModel = new Gson().fromJson(response,  userListType);
-                    if (dataModel!=null && dataModel.size()>0){
+//                    Type userListType = new TypeToken<ArrayList<RiserListingModel>>(){}.getType();
+                    dataModel = new Gson().fromJson(response, RiserListingModel.class);
+                    if (dataModel != null) {
                         initViews(dataModel);
                     }
 
@@ -88,6 +89,12 @@ public class RiserListActivity extends AppCompatActivity implements View.OnClick
 
 
     private void findViews() {
+        findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -97,8 +104,8 @@ public class RiserListActivity extends AppCompatActivity implements View.OnClick
 
     }
 
-    private void initViews(ArrayList<RiserListingModel> dataModel) {
-        adapter= new RiserListAdapter(RiserListActivity.this,dataModel);
+    private void initViews(RiserListingModel dataModel) {
+        adapter= new RiserListAdapter(RiserListActivity.this,dataModel.getBpDetails().getUsers());
         recyclerView.setAdapter(adapter);
 
     }

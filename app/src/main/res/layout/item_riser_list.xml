@@ -50,113 +50,43 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="@dimen/_60sdp"
-                    android:layout_height="0.5dp"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:background="@color/green"
-                    android:orientation="vertical" />
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="top"
                         android:layout_marginTop="@dimen/_3sdp"
-                        android:text="Vendor :"
                         android:layout_weight="1"
+                        android:text="Name :"
                         android:textColor="@color/dark_gray"
                         android:textSize="@dimen/_10sdp" />
 
                     <TextView
-                        android:id="@+id/tv_vendor"
-                        android:layout_weight="1"
+                        android:id="@+id/tv_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="top"
                         android:layout_marginLeft="@dimen/value_10dp"
                         android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_weight="1"
                         android:gravity="right"
-                        android:layout_gravity="top"
                         android:text="BP 1205620"
                         android:textColor="@color/green"
                         android:textIsSelectable="true"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    >
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="top"
-                        android:layout_marginTop="@dimen/_3sdp"
-                        android:text="Allocation No. :"
-                        android:textColor="@color/dark_gray"
-                        android:textSize="@dimen/_10sdp" />
 
-                    <TextView
-                        android:id="@+id/tv_allocation"
-                        android:layout_weight="1"
-                        android:layout_gravity="top"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/value_10dp"
-                        android:layout_marginTop="@dimen/_3sdp"
-                        android:gravity="right"
-                        android:text="BP 1205620"
-                        android:textColor="@color/black_31"
-                        android:textIsSelectable="true"
-                        android:textSize="@dimen/_11sdp"
-                       />
 
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    >
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:layout_gravity="top"
-
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_3sdp"
-                        android:text="Sub Allocation No. :"
-                        android:textColor="@color/dark_gray"
-                        android:textSize="@dimen/_10sdp" />
-
-                    <TextView
-                        android:id="@+id/tv_sub_allocation"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/value_10dp"
-                        android:layout_marginTop="@dimen/_3sdp"
-                        android:gravity="right"
-                        android:layout_weight="1"
-                        android:layout_gravity="top"
-                        android:text="BP 1205620"
-                        android:textColor="@color/black_31"
-                        android:textIsSelectable="true"
-                        android:textSize="@dimen/_11sdp"
-                        />
-
-                </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -169,31 +99,92 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="top"
                         android:layout_marginTop="@dimen/_3sdp"
-                        android:text="Address :"
                         android:layout_weight="1"
+                        android:text="Address :"
                         android:textColor="@color/dark_gray"
                         android:textSize="@dimen/_10sdp" />
 
                     <TextView
                         android:id="@+id/tv_address"
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/value_10dp"
                         android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_weight="1"
                         android:gravity="right"
-                        tools:text="Pooja Apartment, Laxmi Nagar, near this, New Delhi"
+                        android:textColor="@color/_313131"
+                        android:textIsSelectable="true"
+                        android:textSize="@dimen/_10sdp"
+                        tools:text="Pooja Apartment, Laxmi Nagar, near this, New Delhi" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_weight="1"
+                        android:text="Mobile No. :"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_mob"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginLeft="@dimen/value_10dp"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="8457958648"
                         android:textColor="@color/black_31"
                         android:textIsSelectable="true"
-                        android:textSize="@dimen/_11sdp"
-                        />
+                        android:textSize="@dimen/_11sdp" />
 
                 </LinearLayout>
 
 
-            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:text="Assign Date :"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_9sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_assign_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/value_10dp"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:gravity="right"
+                        android:textColor="@color/black_31"
+                        android:textIsSelectable="true"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/_9sdp"
+                        tools:text="14-11-2021" />
+
+                </LinearLayout>
+
 
 
         </LinearLayout>
     </LinearLayout>
+</LinearLayout>
 </LinearLayout>
