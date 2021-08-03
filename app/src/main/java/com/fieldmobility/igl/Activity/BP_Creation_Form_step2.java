@@ -64,6 +64,9 @@ import com.fieldmobility.igl.R;
 import com.fieldmobility.igl.utils.FilePath;
 import com.iceteck.silicompressorr.SiliCompressor;
 import com.kyanogen.signatureview.SignatureView;
+import com.vincent.filepicker.Constant;
+import com.vincent.filepicker.activity.NormalFilePickActivity;
+import com.vincent.filepicker.filter.entity.NormalFile;
 
 
 import net.gotev.uploadservice.ContentType;
@@ -90,6 +93,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+
 
 import static android.os.Environment.getExternalStorageDirectory;
 
@@ -414,10 +418,16 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
     }
 
     private void selectPdf() {
-        Intent intent = new Intent();
-        intent.setType("application/pdf");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select PDF"), REQUEST_CODE_PDF_PICKER);
+//        Intent intent = new Intent();
+//        intent.setType("application/pdf");
+//        intent.setAction(Intent.ACTION_GET_CONTENT);
+//        startActivityForResult(Intent.createChooser(intent, "Select PDF"), REQUEST_CODE_PDF_PICKER);
+        Intent intent4 = new Intent(this, NormalFilePickActivity.class);
+        intent4.putExtra(Constant.MAX_NUMBER, 1);
+        intent4.putExtra(NormalFilePickActivity.SUFFIX, new String[]{"pdf"});
+        startActivityForResult(intent4, Constant.REQUEST_CODE_PICK_FILE);
+
+
     }
 
     private void selectChequeImage() {
@@ -653,11 +663,28 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         switch (requestCode) {
             case REQUEST_CODE_PDF_PICKER:
                 if (requestCode == REQUEST_CODE_PDF_PICKER && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
-                    Uri pdf_uri = data.getData();
-                    pdf_path = FilePath.getPath(this, pdf_uri);
-                    tv_pdf_path.setText(pdf_path);
+//                    Uri pdf_uri = data.getData();
+//                    pdf_path = FilePath.getPath(this, pdf_uri);
+//                    tv_pdf_path.setText(pdf_path);
+
+
+                    Log.d("bpcreation", "imagepath id pick image = " + image_path_id);
+
 
                 }
+                break;
+            case Constant.REQUEST_CODE_PICK_FILE:
+                if (resultCode == RESULT_OK) {
+                    ArrayList<NormalFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_FILE);
+                    Log.d("bpcreation", "imagepath id pick image = " + image_path_id);
+                    if (list != null && list.size() > 0) {
+                        pdf_path = list.get(0).getPath();
+                        tv_pdf_path.setText(list.get(0).getName());
+                    }
+
+
+                }
+                break;
 
             case PICK_IMAGE_REQUEST_ID:
                 if (requestCode == PICK_IMAGE_REQUEST_ID && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
@@ -1245,12 +1272,10 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                                 } else {
                                     uploadMultipart(Bp_Number);
                                 }
-                            }
-                            else {
-                                Toast.makeText(BP_Creation_Form_step2.this, "Bp not created, " +json.getString("Details"), Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(BP_Creation_Form_step2.this, "Bp not created, " + json.getString("Details"), Toast.LENGTH_SHORT).show();
 
                             }
-
 
 
                         } catch (JSONException e) {
@@ -1490,7 +1515,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         outState.putString("cheque", image_path_cheque);
 
         outState.putString("chequeDate", chequedate_edit.getText().toString().trim());
-        Log.d("bpcreation","onSaveInstance"+outState);
+        Log.d("bpcreation", "onSaveInstance" + outState);
         super.onSaveInstanceState(outState);
     }
 
@@ -1522,12 +1547,12 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                 //owner_signature_imageview.setImageBitmap(savedInstanceState.getParcelable("bitmap_own"));
             }
 
-            if (savedInstanceState.getString("cheque")!=null && !savedInstanceState.getString("cheque").isEmpty()) {
+            if (savedInstanceState.getString("cheque") != null && !savedInstanceState.getString("cheque").isEmpty()) {
 
                 image_path_cheque = savedInstanceState.getString("cheque");
                 //owner_signature_imageview.setImageBitmap(savedInstanceState.getParcelable("bitmap_own"));
             }
-            if (savedInstanceState.getString("chequeDate")!=null && !savedInstanceState.getString("chequeDate").isEmpty()) {
+            if (savedInstanceState.getString("chequeDate") != null && !savedInstanceState.getString("chequeDate").isEmpty()) {
 
                 String date = savedInstanceState.getString("chequeDate");
                 chequedate_edit.setText(date);

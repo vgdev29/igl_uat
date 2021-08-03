@@ -10,7 +10,9 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 
 public class FilePath {
-
+//    public static boolean isLocalStorageDocument(Uri uri) {
+//        return LocalStorageProvider.AUTHORITY.equals(uri.getAuthority());
+//    }
     /**
      * Method for return file path of Gallery image
      *
@@ -19,16 +21,30 @@ public class FilePath {
      * @return path of the selected image file from gallery
      */
 
-    public static String getPath(final Context context, final Uri uri)
-    {
-        //check here to KITKAT or new version
+    public static String getPath(final Context context, final Uri uri) {
+
+//        if (DEBUG)
+//            Log.d(TAG + " File -",
+//                    "Authority: " + uri.getAuthority() +
+//                            ", Fragment: " + uri.getFragment() +
+//                            ", Port: " + uri.getPort() +
+//                            ", Query: " + uri.getQuery() +
+//                            ", Scheme: " + uri.getScheme() +
+//                            ", Host: " + uri.getHost() +
+//                            ", Segments: " + uri.getPathSegments().toString()
+//            );
+
         final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
 
         // DocumentProvider
         if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
-
+            // LocalStorageProvider
+//            if (isLocalStorageDocument(uri)) {
+//                // The path is the id
+//                return DocumentsContract.getDocumentId(uri);
+//            }
             // ExternalStorageProvider
-            if (isExternalStorageDocument(uri)) {
+             if (isExternalStorageDocument(uri)) {
                 final String docId = DocumentsContract.getDocumentId(uri);
                 final String[] split = docId.split(":");
                 final String type = split[0];
@@ -36,9 +52,10 @@ public class FilePath {
                 if ("primary".equalsIgnoreCase(type)) {
                     return Environment.getExternalStorageDirectory() + "/" + split[1];
                 }
-            }
 
-            //DownloadsProvider
+                // TODO handle non-primary volumes
+            }
+            // DownloadsProvider
             else if (isDownloadsDocument(uri)) {
 
                 final String id = DocumentsContract.getDocumentId(uri);
@@ -47,7 +64,6 @@ public class FilePath {
 
                 return getDataColumn(context, contentUri, null, null);
             }
-
             // MediaProvider
             else if (isMediaDocument(uri)) {
                 final String docId = DocumentsContract.getDocumentId(uri);
@@ -87,7 +103,6 @@ public class FilePath {
 
         return null;
     }
-
     /**
      * Get the value of the data column for this Uri. This is useful for
      * MediaStore Uris, and other file-based ContentProviders.
