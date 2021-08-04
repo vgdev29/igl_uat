@@ -9,7 +9,7 @@ public class Constants {
      static String localhost = "http://192.168.31.29:8081/";
     public static String START_CLICKED = "false";
     //public static final String Logout=BASE_URL+"/logout";
-    public static final int LOCATION_INTERVAL = 100000000;
+    public static final int LOCATION_IERVNTAL = 100000000;
     public static final int FASTEST_LOCATION_INTERVAL = 5000000;
     public static final String Auth_User = BASE_URL + "loginapi/authenticate";
     public static final String Login_User = BASE_URL + "loginapi/userdetails";
@@ -80,12 +80,12 @@ public class Constants {
     public static final String MITD_UPDATE = BASE_URL + "ekyc/bp_details/mitd_update/";
 
 
-    public static final String BP_Creation = BASE_URL + "bpcreation/registration/bp_creation";
+    /*public static final String BP_Creation = BASE_URL + "bpcreation/registration/bp_creation";
     public static final String BP_Images = BASE_URL + "bpcreation/registration/bp_images";
     public static final String Document_POST = BASE_URL + "bpcreation/registration/documents/";
     public static final String BP_No_Listing = BASE_URL + "bpcreation/registration/new_registration_listing";
     public static final String BP_CITY_LISTING = BASE_URL + "bpcreation/registration/city/";
-    public static final String BP_No_Resubmition_Listing = BASE_URL + "bpcreation/registration/documentResubmissionListing/";
+    public static final String BP_No_Resubmition_Listing = BASE_URL + "bpcreation/registration/documentResubmissionListing/";*/
     //NI User
     public static final String ni_user_submit = BASE_URL + "bpcreation/registration/nic";
     public static final String ni_user_listing = BASE_URL + "bpcreation/registration/nic_list/";
@@ -94,11 +94,14 @@ public class Constants {
     public static final String RISER_LISTING = BASE_URL + "api/risersuballocations";
 
 
-   /* public static final String BP_Creation = localhost + "/registration/bp_creation";
+    public static final String BP_Creation = localhost + "/registration/bp_creation";
     public static final String BP_Images = localhost + "/registration/bp_images";
     public static final String Document_POST = localhost + "/registration/documents/";
     public static final String BP_No_Listing = localhost + "/registration/new_registration_listing";
-    public static final String BP_CITY_LISTING = localhost + "/registration/city"*/;
+    public static final String BP_CITY_LISTING = localhost + "/registration/city";
+    public static final String BP_No_Resubmition_Listing = localhost + "/registration/documentResubmissionListing/";
+
+
 
 
 //chnges in api
