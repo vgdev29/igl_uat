@@ -5,10 +5,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
+import android.os.Environment;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -210,6 +212,22 @@ public class Utils {
             InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(viewKeyboard.getWindowToken(), 0);
         }
+    }
+    public static final String IMAGE_IGL = "/igl_media";
+
+    public  static Bitmap getBitmapFromPAth(String path){
+       Bitmap bitmap = null;
+        try {
+            File sd = Environment.getExternalStorageDirectory();
+            File image = new File(sd+IMAGE_IGL, "temp.jpg");
+            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+            bitmap = BitmapFactory.decodeFile(image.getAbsolutePath(),bmOptions);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return bitmap;
     }
 
 }

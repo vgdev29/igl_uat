@@ -53,6 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
+                android:visibility="gone"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -173,6 +174,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="5dp"
                     android:layout_weight="1"
+                    android:visibility="gone"
 
                     android:orientation="vertical">
 
@@ -430,7 +432,7 @@
                 android:layout_marginHorizontal="5dp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_weight="1"
-
+android:visibility="gone"
                 android:orientation="vertical">
 
                 <TextView

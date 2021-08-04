@@ -1,15 +1,15 @@
 package com.fieldmobility.igl.Helper;
 
 public class Constants {
-     //LIVE URL
-     public static String BASE_URL="http://49.50.65.107:8081/";
-
-   //  UAT URL
- //    public static String BASE_URL = "http://49.50.118.112:8080/";
-     static String localhost = "http://192.168.31.29:8081/";
+    //LIVE URL
+//       public static String BASE_URL="http://49.50.65.107:8081/";
+//    public static  String BASE_URL = "http://49.50.68.239:8080/"; //PYTHON SERVER
+    //  UAT URL
+    public static String BASE_URL = "http://49.50.118.112:8080/";
+    static String localhost = "http://192.168.31.29:8081/";
     public static String START_CLICKED = "false";
     //public static final String Logout=BASE_URL+"/logout";
-    public static final int LOCATION_IERVNTAL = 100000000;
+    public static final int LOCATION_INTERVAL = 100000000;
     public static final int FASTEST_LOCATION_INTERVAL = 5000000;
     public static final String Auth_User = BASE_URL + "loginapi/authenticate";
     public static final String Login_User = BASE_URL + "loginapi/userdetails";
@@ -35,8 +35,8 @@ public class Constants {
     public static final String GET_LEAVE_LIST = BASE_URL + "ekyc/bp_details/getLeave_listing/"; //56
     public static final String GET_ATTENDENCE_LIST = BASE_URL + "ekyc/bp_details/get_attendence_listing/";
     public static final String APPLY_LEAVE = BASE_URL + "ekyc/bp_details/applyLeave/";
-    public static final String  TYPE_MASTER_STATUS = BASE_URL + "ekyc/bp_details/statusDropdown/";
-  //  public static final String  TYPE_MASTER_STATUS = BASE_URL + "ekyc/bp_details/statusDropdown/";
+    public static final String TYPE_MASTER_STATUS = BASE_URL + "ekyc/bp_details/statusDropdown/";
+    //  public static final String  TYPE_MASTER_STATUS = BASE_URL + "ekyc/bp_details/statusDropdown/";
     public static final String FESABILITY_ADD = BASE_URL + "ekyc/bp_details/fesabilityAdd";
     public static final String FESABILITY_ADD_Declined = BASE_URL + "ekyc/bp_details/fesabilityAddDeclined";
     public static final String TYPE_SUBMASTER_STATUS = BASE_URL + "ekyc/bp_details/substatusDropdown/";
@@ -91,7 +91,8 @@ public class Constants {
     public static final String ni_user_listing = BASE_URL + "bpcreation/registration/nic_list/";
 
     // RISER MODULE
-    public static final String RISER_LISTING = BASE_URL + "api/risersuballocations";
+//    public static final String RISER_LISTING = BASE_URL + "api/risersuballocations";
+    public static final String RISER_LISTING = BASE_URL + "ekyc/bp_details/RiserListings/1062";
 
 
     public static final String BP_Creation = localhost + "/registration/bp_creation";

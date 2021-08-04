@@ -5,28 +5,22 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.fieldmobility.igl.Model.NICList;
 import com.fieldmobility.igl.Model.RiserListingModel;
 import com.fieldmobility.igl.R;
 import com.fieldmobility.igl.Riser.activity.RiserFormActivity;
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class RiserListAdapter extends RecyclerView.Adapter<RiserListAdapter.MyHolder> /*implements Filterable*/ {
     Context mContext;
-    ArrayList<RiserListingModel> datalist;
-    public RiserListAdapter(Context context, ArrayList<RiserListingModel> datalist){
+    List<RiserListingModel.BpDetails.User> datalist;
+    public RiserListAdapter(Context context, List<RiserListingModel.BpDetails.User> datalist){
         mContext=context;
         this.datalist=datalist;
     }
@@ -38,11 +32,12 @@ public class RiserListAdapter extends RecyclerView.Adapter<RiserListAdapter.MyHo
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
-        RiserListingModel model=datalist.get(position);
-        holder.tv_vendor.setText(model.getAllocation().getVendorName());
-        holder.tv_allocation.setText(model.getAllocation().getAllocationNumber());
-        holder.tv_sub_allocation.setText(model.getSuballocationNumber());
-        holder.tv_address.setText(model.getAllocation().getSociety()+" "+model.getAllocation().getStreet()+", "+model.getAllocation().getArea()+" "+model.getAllocation().getZone()+" "+model.getAllocation().getCity());
+        RiserListingModel.BpDetails.User model=datalist.get(position);
+        String fullName=model.getFirstName() +" "+model.getLastName();
+        holder.tv_name.setText(fullName);
+        holder.tv_mob.setText(model.getMobileNumber());
+        holder.tv_assign_date.setText(model.getRiserAssign());
+        holder.tv_address.setText(model.getHouseNo()+" "+model.getFloor()+" "+model.getBlockQtrTowerWing()+" "+model.getSociety()+" "+model.getStreetGaliRoad()+", "+model.getArea()+" "+model.getCityRegion()+",\n"+model.getPincode());
 
     }
 
@@ -52,15 +47,15 @@ public class RiserListAdapter extends RecyclerView.Adapter<RiserListAdapter.MyHo
     }
 
     class MyHolder extends RecyclerView.ViewHolder {
-        public TextView tv_vendor, tv_allocation, tv_sub_allocation, tv_address;
+        public TextView tv_name, tv_mob, tv_assign_date, tv_address;
 
 
         public MyHolder(View itemView) {
             super(itemView);
-            tv_allocation =  itemView.findViewById(R.id.tv_allocation);
-            tv_vendor =  itemView.findViewById(R.id.tv_vendor);
-            tv_sub_allocation =  itemView.findViewById(R.id.tv_sub_allocation);
+            tv_mob =  itemView.findViewById(R.id.tv_mob);
+            tv_name =  itemView.findViewById(R.id.tv_name);
             tv_address =  itemView.findViewById(R.id.tv_address);
+            tv_assign_date =  itemView.findViewById(R.id.tv_assign_date);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
