@@ -48,6 +48,7 @@ public class RiserTpiApprovalListAdapter extends RecyclerView.Adapter<RiserTpiAp
 //        holder.tv_address.setText(model.getHouseNo()+" "+model.getFloor()+" "+model.getBlockQtrTowerWing()+" "+model.getSociety()+" "+model.getStreetGaliRoad()+", "+model.getArea()+" "+model.getCityRegion()+",\n"+model.getPincode());
     }
 
+
     @Override
     public int getItemCount() {
         return datalist.size();
