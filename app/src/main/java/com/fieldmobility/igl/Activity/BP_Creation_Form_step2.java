@@ -417,7 +417,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         });
     }
 
-    private void selectPdf() {
+    private void  selectPdf() {
 //        Intent intent = new Intent();
 //        intent.setType("application/pdf");
 //        intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -676,9 +676,10 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
             case Constant.REQUEST_CODE_PICK_FILE:
                 if (resultCode == RESULT_OK) {
                     ArrayList<NormalFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_FILE);
-                    Log.d("bpcreation", "imagepath id pick image = " + image_path_id);
+                    Log.d("bpcreation", "pdf file list = " + list.size());
                     if (list != null && list.size() > 0) {
                         pdf_path = list.get(0).getPath();
+                        Log.d("bpcreation", "pdf path = " + pdf_path);
                         tv_pdf_path.setText(list.get(0).getName());
                     }
 
@@ -1079,7 +1080,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
             }
             multipartUploadRequest.addFileToUpload(image_path_id, "image", "id_proof.jpg");
             if (isSaleDeedSelected) {
-                multipartUploadRequest.addFileToUpload(pdf_path, "file", "sale_deed.pdf", ContentType.APPLICATION_PDF);
+                multipartUploadRequest.addFileToUpload(pdf_path, "image", "sale_deed.pdf", ContentType.APPLICATION_PDF);
 
             } else {
                 multipartUploadRequest.addFileToUpload(image_path_address, "image", "address_proof.jpg");

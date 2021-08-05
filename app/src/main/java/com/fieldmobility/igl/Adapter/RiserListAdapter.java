@@ -34,6 +34,7 @@ public class RiserListAdapter extends RecyclerView.Adapter<RiserListAdapter.MyHo
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
         RiserListingModel.BpDetails.User model=datalist.get(position);
         String fullName=model.getFirstName() +" "+model.getLastName();
+        holder.tv_bp.setText(model.getBpNumber());
         holder.tv_name.setText(fullName);
         holder.tv_mob.setText(model.getMobileNumber());
         holder.tv_assign_date.setText(model.getRiserAssign());
@@ -47,7 +48,7 @@ public class RiserListAdapter extends RecyclerView.Adapter<RiserListAdapter.MyHo
     }
 
     class MyHolder extends RecyclerView.ViewHolder {
-        public TextView tv_name, tv_mob, tv_assign_date, tv_address;
+        public TextView tv_name, tv_mob, tv_assign_date, tv_address,tv_bp;
 
 
         public MyHolder(View itemView) {
@@ -56,6 +57,7 @@ public class RiserListAdapter extends RecyclerView.Adapter<RiserListAdapter.MyHo
             tv_name =  itemView.findViewById(R.id.tv_name);
             tv_address =  itemView.findViewById(R.id.tv_address);
             tv_assign_date =  itemView.findViewById(R.id.tv_assign_date);
+            tv_bp = itemView.findViewById(R.id.tv_bp);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

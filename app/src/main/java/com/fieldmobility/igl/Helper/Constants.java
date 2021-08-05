@@ -2,10 +2,10 @@ package com.fieldmobility.igl.Helper;
 
 public class Constants {
     //LIVE URL
-//       public static String BASE_URL="http://49.50.65.107:8081/";
+    public static String BASE_URL="http://49.50.65.107:8081/";
 //    public static  String BASE_URL = "http://49.50.68.239:8080/"; //PYTHON SERVER
     //  UAT URL
-    public static String BASE_URL = "http://49.50.118.112:8080/";
+   // public static String BASE_URL = "http://49.50.118.112:8080/";
     static String localhost = "http://192.168.31.29:8081/";
     public static String START_CLICKED = "false";
     //public static final String Logout=BASE_URL+"/logout";
@@ -80,12 +80,12 @@ public class Constants {
     public static final String MITD_UPDATE = BASE_URL + "ekyc/bp_details/mitd_update/";
 
 
-    /*public static final String BP_Creation = BASE_URL + "bpcreation/registration/bp_creation";
+    public static final String BP_Creation = BASE_URL + "bpcreation/registration/bp_creation";
     public static final String BP_Images = BASE_URL + "bpcreation/registration/bp_images";
     public static final String Document_POST = BASE_URL + "bpcreation/registration/documents/";
     public static final String BP_No_Listing = BASE_URL + "bpcreation/registration/new_registration_listing";
     public static final String BP_CITY_LISTING = BASE_URL + "bpcreation/registration/city/";
-    public static final String BP_No_Resubmition_Listing = BASE_URL + "bpcreation/registration/documentResubmissionListing/";*/
+    public static final String BP_No_Resubmition_Listing = BASE_URL + "bpcreation/registration/documentResubmissionListing/";
     //NI User
     public static final String ni_user_submit = BASE_URL + "bpcreation/registration/nic";
     public static final String ni_user_listing = BASE_URL + "bpcreation/registration/nic_list/";
@@ -95,12 +95,12 @@ public class Constants {
     public static final String RISER_LISTING = BASE_URL + "ekyc/bp_details/RiserListings/1062";
 
 
-    public static final String BP_Creation = localhost + "/registration/bp_creation";
+   /* public static final String BP_Creation = localhost + "/registration/bp_creation";
     public static final String BP_Images = localhost + "/registration/bp_images";
     public static final String Document_POST = localhost + "/registration/documents/";
     public static final String BP_No_Listing = localhost + "/registration/new_registration_listing";
-    public static final String BP_CITY_LISTING = localhost + "/registration/city";
-    public static final String BP_No_Resubmition_Listing = localhost + "/registration/documentResubmissionListing/";
+    public static final String BP_CITY_LISTING = localhost + "/registration/city/";
+    public static final String BP_No_Resubmition_Listing = localhost + "/registration/documentResubmissionListing/";*/
 
 
 

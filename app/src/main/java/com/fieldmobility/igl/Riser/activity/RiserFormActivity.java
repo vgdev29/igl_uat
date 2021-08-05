@@ -209,9 +209,10 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         tv_agent_name.setText(dataModel.getFirstName()+" "+dataModel.getLastName());
 //        tv_po_num.setText(dataModel.getAllocation().getPoNumber());
         tv_city.setText(dataModel.getCityRegion());
-//        tv_zone.setText(dataModel.getAllocation().getZone());
+        //tv_zone.setText(dataModel.getZone());
         tv_area.setText(dataModel.getArea());
         tv_society.setText(dataModel.getSociety());
+
         et_gali.setText(dataModel.getStreetGaliRoad());
     }
 
