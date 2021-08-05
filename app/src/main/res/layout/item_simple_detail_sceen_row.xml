@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/value_14dp"
+    android:layout_marginTop="@dimen/_6sdp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_weight="1"
+            android:text="BP Number :"
+            android:id="@+id/tv_key"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/_12sdp" />
+
+        <TextView
+            android:id="@+id/tv_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginLeft="@dimen/value_10dp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="BP 1205620"
+            android:textColor="@color/black_31"
+            android:textIsSelectable="true"
+            android:textSize="@dimen/_13sdp"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

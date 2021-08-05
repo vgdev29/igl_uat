@@ -53,8 +53,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:visibility="gone"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -174,9 +174,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="5dp"
                     android:layout_weight="1"
-                    android:visibility="gone"
+                    android:orientation="vertical"
 
-                    android:orientation="vertical">
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -432,8 +432,8 @@
                 android:layout_marginHorizontal="5dp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_weight="1"
-android:visibility="gone"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -779,11 +779,11 @@ android:visibility="gone"
                         android:textColor="@color/black_31"></RadioButton>
 
                     <RadioButton
-                        android:checked="true"
                         android:id="@+id/rb_rlaying_neg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:checked="true"
                         android:text="Not Done"
                         android:textColor="@color/black_31"></RadioButton>
                 </RadioGroup>
@@ -826,12 +826,12 @@ android:visibility="gone"
                         android:textColor="@color/black_31"></RadioButton>
 
                     <RadioButton
-                        android:checked="true"
-
                         android:id="@+id/rb_rtesting_neg"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:checked="true"
                         android:text="Not Done"
                         android:textColor="@color/black_31"></RadioButton>
                 </RadioGroup>
@@ -873,12 +873,12 @@ android:visibility="gone"
                         android:textColor="@color/black_31"></RadioButton>
 
                     <RadioButton
-                        android:checked="true"
-
                         android:id="@+id/rb_rcomm_neg"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:checked="true"
                         android:text="Not Done"
                         android:textColor="@color/black_31"></RadioButton>
                 </RadioGroup>

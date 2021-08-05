@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.fieldmobility.igl.Adapter.RiserListAdapter;
+import com.fieldmobility.igl.Adapter.RiserTpiApprovalListAdapter;
 import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.Model.RiserListingModel;
@@ -33,7 +34,7 @@ public class RiserTpiApprovalActivity extends AppCompatActivity implements View.
     MaterialDialog materialDialog;
     SharedPrefs sharedPrefs;
     RiserTpiListingModel dataModel;
-    RiserListAdapter adapter;
+    RiserTpiApprovalListAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,7 +132,7 @@ public class RiserTpiApprovalActivity extends AppCompatActivity implements View.
     }
 
     private void initViews(RiserTpiListingModel dataModel) {
-        adapter = new RiserListAdapter(RiserTpiApprovalActivity.this, dataModel.getBpDetails(),true);
+        adapter = new RiserTpiApprovalListAdapter(RiserTpiApprovalActivity.this, dataModel.getBpDetails());
         recyclerView.setAdapter(adapter);
 
     }
