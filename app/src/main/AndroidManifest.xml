@@ -57,18 +57,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Riser.activity.RiserFormActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
+        <activity android:name=".Riser.activity.RiserTpiApprovalActivity"></activity>
+        <activity
+            android:name=".Riser.activity.RiserFormActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Activity.MITDDoneActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden"></activity>
-        <activity android:name=".Activity.NICustomerActivity">
-        </activity>
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name=".Activity.NICustomerActivity"></activity>
         <activity android:name=".Mdpe.Mdpe_List_Activity" />
-        <activity android:name=".Riser.activity.RiserListActivity" >
+        <activity android:name=".Riser.activity.RiserListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -90,11 +89,13 @@
         <activity android:name=".Activity.ViewNgDetaillsActivity" />
         <activity android:name=".Activity.PMC_ViewPager_Activity" />
         <activity android:name=".Activity.Splash_Screen">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".Activity.Login_Activity"
@@ -154,9 +155,7 @@
         <activity
             android:name=".Activity.BP_Creation_Form_step2"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Activity.BP_No_Listing"
             android:screenOrientation="portrait" />

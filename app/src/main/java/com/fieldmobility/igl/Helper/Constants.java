@@ -93,6 +93,7 @@ public class Constants {
     // RISER MODULE
 //    public static final String RISER_LISTING = BASE_URL + "api/risersuballocations";
     public static final String RISER_LISTING = BASE_URL + "ekyc/bp_details/RiserListings/1062";
+    public static final String RISER_TPI_APPROVAL_LISTING = BASE_URL + "ekyc/bp_details/RiserApprovalList/1062";
 
 
    /* public static final String BP_Creation = localhost + "/registration/bp_creation";

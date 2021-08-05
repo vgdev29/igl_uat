@@ -3,14 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/peach_light"
     android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/liner_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_10sdp"
+        android:layout_marginVertical="@dimen/_6sdp"
         android:background="@drawable/shape_white"
         android:orientation="vertical">
 
@@ -51,6 +50,38 @@
                 </LinearLayout>
 
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_weight="1"
+                        android:text="BP Number :"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_bp_num"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginLeft="@dimen/value_10dp"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="BP 1205620"
+                        android:textColor="@color/green"
+                        android:textIsSelectable="true"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -78,9 +109,9 @@
                         android:layout_weight="1"
                         android:gravity="right"
                         android:text="BP 1205620"
-                        android:textColor="@color/green"
+                        android:textColor="@color/_313131"
                         android:textIsSelectable="true"
-                        android:textSize="@dimen/_12sdp"
+                        android:textSize="@dimen/_10sdp"
                         android:textStyle="bold" />
 
                 </LinearLayout>

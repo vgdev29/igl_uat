@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -21,48 +20,35 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.fieldmobility.igl.Activity.NICListing;
-import com.fieldmobility.igl.Activity.NICustomerActivity;
-import com.fieldmobility.igl.Adapter.NICListAdapter;
 import com.fieldmobility.igl.Adapter.RiserListAdapter;
 import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.Helper.SharedPrefs;
-import com.fieldmobility.igl.Model.NiListingModel;
 import com.fieldmobility.igl.Model.RiserListingModel;
 import com.fieldmobility.igl.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-
-public class RiserListActivity extends AppCompatActivity implements View.OnClickListener {
+public class RiserTpiApprovalActivity extends AppCompatActivity implements View.OnClickListener {
     RecyclerView recyclerView;
     MaterialDialog materialDialog;
     SharedPrefs sharedPrefs;
     RiserListingModel dataModel;
     RiserListAdapter adapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_riser__list);
-        sharedPrefs = new SharedPrefs(this);
-
+        setContentView(R.layout.activity_riser_tpi_approval);
         findViews();
         loadListData();
     }
-
     private void loadListData() {
 
-        materialDialog = new MaterialDialog.Builder(RiserListActivity.this)
+        materialDialog = new MaterialDialog.Builder(RiserTpiApprovalActivity.this)
                 .content("Please wait....")
                 .progress(true, 0)
 
                 .show();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.RISER_LISTING, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.RISER_TPI_APPROVAL_LISTING, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 materialDialog.dismiss();
@@ -144,7 +130,7 @@ public class RiserListActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void initViews(RiserListingModel dataModel) {
-        adapter = new RiserListAdapter(RiserListActivity.this, dataModel.getBpDetails().getUsers());
+        adapter = new RiserListAdapter(RiserTpiApprovalActivity.this, dataModel.getBpDetails().getUsers());
         recyclerView.setAdapter(adapter);
 
     }
