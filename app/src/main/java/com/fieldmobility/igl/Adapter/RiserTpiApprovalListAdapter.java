@@ -21,11 +21,11 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RiserListAdapter extends RecyclerView.Adapter<RiserListAdapter.MyHolder> implements Filterable {
+public class RiserTpiApprovalListAdapter extends RecyclerView.Adapter<RiserTpiApprovalListAdapter.MyHolder> implements Filterable {
     Context mContext;
-    List<RiserListingModel.BpDetails.User> datalist;
-    List<RiserListingModel.BpDetails.User> tempDatalist;
-    public RiserListAdapter(Context context, List<RiserListingModel.BpDetails.User> datalist){
+    List<RiserTpiListingModel.BpDetail> datalist;
+    List<RiserTpiListingModel.BpDetail> tempDatalist;
+    public RiserTpiApprovalListAdapter(Context context, List<RiserTpiListingModel.BpDetail> datalist){
         mContext=context;
         this.datalist=datalist;
         this.tempDatalist=datalist;
@@ -34,13 +34,13 @@ public class RiserListAdapter extends RecyclerView.Adapter<RiserListAdapter.MyHo
     @NonNull
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new RiserListAdapter.MyHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_riser_list, parent, false));
+        return new RiserTpiApprovalListAdapter.MyHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_riser_list, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
-        RiserListingModel.BpDetails.User model=datalist.get(position);
-        String fullName=model.getFirstName() +" "+model.getLastName();
+        RiserTpiListingModel.BpDetail model=datalist.get(position);
+        String fullName=model.getIglFirstName() +" "+model.getigl();
         holder.tv_name.setText(fullName);
         holder.tv_bp_num.setText(model.getBpNumber());
         holder.tv_mob.setText(model.getMobileNumber());

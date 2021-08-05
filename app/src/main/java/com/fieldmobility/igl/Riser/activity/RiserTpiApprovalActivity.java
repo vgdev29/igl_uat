@@ -24,6 +24,7 @@ import com.fieldmobility.igl.Adapter.RiserListAdapter;
 import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.Model.RiserListingModel;
+import com.fieldmobility.igl.Model.RiserTpiListingModel;
 import com.fieldmobility.igl.R;
 import com.google.gson.Gson;
 
@@ -31,7 +32,7 @@ public class RiserTpiApprovalActivity extends AppCompatActivity implements View.
     RecyclerView recyclerView;
     MaterialDialog materialDialog;
     SharedPrefs sharedPrefs;
-    RiserListingModel dataModel;
+    RiserTpiListingModel dataModel;
     RiserListAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,7 @@ public class RiserTpiApprovalActivity extends AppCompatActivity implements View.
                 materialDialog.dismiss();
                 try {
 //                    Type userListType = new TypeToken<ArrayList<RiserListingModel>>(){}.getType();
-                    dataModel = new Gson().fromJson(response, RiserListingModel.class);
+                    dataModel = new Gson().fromJson(response, RiserTpiListingModel.class);
                     if (dataModel != null) {
                         initViews(dataModel);
                     }
@@ -129,8 +130,8 @@ public class RiserTpiApprovalActivity extends AppCompatActivity implements View.
 
     }
 
-    private void initViews(RiserListingModel dataModel) {
-        adapter = new RiserListAdapter(RiserTpiApprovalActivity.this, dataModel.getBpDetails().getUsers());
+    private void initViews(RiserTpiListingModel dataModel) {
+        adapter = new RiserListAdapter(RiserTpiApprovalActivity.this, dataModel.getBpDetails(),true);
         recyclerView.setAdapter(adapter);
 
     }
