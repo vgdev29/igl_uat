@@ -40,12 +40,12 @@ public class RiserTpiApprovalListAdapter extends RecyclerView.Adapter<RiserTpiAp
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
         RiserTpiListingModel.BpDetail model=datalist.get(position);
-        String fullName=model.getIglFirstName() +" "+model.getigl();
-        holder.tv_name.setText(fullName);
-        holder.tv_bp_num.setText(model.getBpNumber());
-        holder.tv_mob.setText(model.getMobileNumber());
-        holder.tv_assign_date.setText(model.getRiserAssign());
-        holder.tv_address.setText(model.getHouseNo()+" "+model.getFloor()+" "+model.getBlockQtrTowerWing()+" "+model.getSociety()+" "+model.getStreetGaliRoad()+", "+model.getArea()+" "+model.getCityRegion()+",\n"+model.getPincode());
+//        String fullName=model.getIglFirstName() +" "+model.getigl();
+//        holder.tv_name.setText(fullName);
+//        holder.tv_bp_num.setText(model.getBpNumber());
+//        holder.tv_mob.setText(model.getMobileNumber());
+//        holder.tv_assign_date.setText(model.getRiserAssign());
+//        holder.tv_address.setText(model.getHouseNo()+" "+model.getFloor()+" "+model.getBlockQtrTowerWing()+" "+model.getSociety()+" "+model.getStreetGaliRoad()+", "+model.getArea()+" "+model.getCityRegion()+",\n"+model.getPincode());
     }
 
     @Override
@@ -86,9 +86,9 @@ public class RiserTpiApprovalListAdapter extends RecyclerView.Adapter<RiserTpiAp
                 if (charString.isEmpty()) {
                     datalist = tempDatalist;
                 } else {
-                    List<RiserListingModel.BpDetails.User> filteredList = new ArrayList<>();
-                    for (RiserListingModel.BpDetails.User row : tempDatalist) {
-                        String name=row.getFirstName()+" "+row.getLastName();
+                    List<RiserTpiListingModel.BpDetail> filteredList = new ArrayList<>();
+                    for (RiserTpiListingModel.BpDetail row : tempDatalist) {
+                        String name=row.getIglFirstName();
                         if (row.getBpNumber().toLowerCase().contains(charString.toLowerCase()) || name.toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(row);
                         }
@@ -101,7 +101,7 @@ public class RiserTpiApprovalListAdapter extends RecyclerView.Adapter<RiserTpiAp
             }
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                datalist = (ArrayList<RiserListingModel.BpDetails.User>) filterResults.values;
+                datalist = (ArrayList<RiserTpiListingModel.BpDetail>) filterResults.values;
                 notifyDataSetChanged();
             }
         };
