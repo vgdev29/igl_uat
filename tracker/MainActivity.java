@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             Log.i(TAG, "Displaying permission rationale to provide additional context.");
             // Request permission
             ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_BACKGROUND_LOCATION},
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION/*,Manifest.permission.ACCESS_BACKGROUND_LOCATION*/},
                     REQUEST_PERMISSIONS_REQUEST_CODE);
 
         } else {
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             // sets the permission in a given state or the user denied the permission
             // previously and checked "Never ask again".
             ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_BACKGROUND_LOCATION},
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION/*,Manifest.permission.ACCESS_BACKGROUND_LOCATION*/},
                     REQUEST_PERMISSIONS_REQUEST_CODE);
         }
     }
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                 ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED;
 
         if (foreground) {
-            boolean background = ActivityCompat.checkSelfPermission(this,
+            /*boolean background = ActivityCompat.checkSelfPermission(this,
                     Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED;
 
             if (background) {
@@ -139,11 +139,11 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, REQUEST_CODE_PERMISSIONS);
-            }
+            }*/
         } else {
             ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION,
-                            Manifest.permission.ACCESS_BACKGROUND_LOCATION}, REQUEST_CODE_PERMISSIONS);
+                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION/*,
+                            Manifest.permission.ACCESS_BACKGROUND_LOCATION*/}, REQUEST_CODE_PERMISSIONS);
         }
     }
 
@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
-                if (permissions[i].equalsIgnoreCase(Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
+                /*if (permissions[i].equalsIgnoreCase(Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
                     if (grantResults[i] >= 0) {
                         foreground = true;
                         background = true;
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Background location location permission denied", Toast.LENGTH_SHORT).show();
                     }
 
-                }
+                }*/
             }
 
             if (foreground) {

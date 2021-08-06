@@ -2,10 +2,10 @@ package com.fieldmobility.igl.Helper;
 
 public class Constants {
     //LIVE URL
-//       public static String BASE_URL="http://49.50.65.107:8081/";
+    public static String BASE_URL="http://49.50.65.107:8081/";
 //    public static  String BASE_URL = "http://49.50.68.239:8080/"; //PYTHON SERVER
     //  UAT URL
-    public static String BASE_URL = "http://49.50.118.112:8080/";
+   // public static String BASE_URL = "http://49.50.118.112:8080/";
     static String localhost = "http://192.168.31.29:8081/";
     public static String START_CLICKED = "false";
     //public static final String Logout=BASE_URL+"/logout";
@@ -48,7 +48,7 @@ public class Constants {
     public static final String RFC_CONNECTION_POST = BASE_URL + "ekyc/bp_details/RFCMobile/";
     public static final String RFCADD = BASE_URL + "ekyc/bp_details/RFCAdd";
     public static final String RFCApproval = BASE_URL + "ekyc/bp_details/RFCApproval";
-    //public static final String RFCApproval = localhost + "bp_details/RFCApproval";
+ //public static final String RFCApproval = localhost + "bp_details/RFCApproval";
     public static final String RFCDetails = BASE_URL + "ekyc/bp_details/RFCDetails";
     public static final String MITDDetails = BASE_URL + "ekyc/bp_details/mitd_update";
     public static final String MITD_DONE = BASE_URL + "ekyc/bp_details/mitd_done";
@@ -101,7 +101,10 @@ public class Constants {
     public static final String BP_Images = localhost + "/registration/bp_images";
     public static final String Document_POST = localhost + "/registration/documents/";
     public static final String BP_No_Listing = localhost + "/registration/new_registration_listing";
-    public static final String BP_CITY_LISTING = localhost + "/registration/city"*/;
+    public static final String BP_CITY_LISTING = localhost + "/registration/city/";
+    public static final String BP_No_Resubmition_Listing = localhost + "/registration/documentResubmissionListing/";*/
+
+
 
 
 //chnges in api

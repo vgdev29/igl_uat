@@ -49,7 +49,6 @@ public class RiserListActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_riser__list);
         sharedPrefs = new SharedPrefs(this);
-
         findViews();
         loadListData();
     }

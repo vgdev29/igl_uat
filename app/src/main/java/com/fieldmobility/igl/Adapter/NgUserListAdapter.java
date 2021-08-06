@@ -70,7 +70,7 @@ public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.Ng
 
     @Override
     public void onBindViewHolder(@NonNull NguserListViewHolder holder, final int position) {
-          NguserListModel nguserListModel =nguserList.get(position);
+          final NguserListModel nguserListModel =nguserList.get(position);
         if (!TextUtils.isEmpty(nguserListModel.getBp_no())) {
             holder.tv_bpName.setText(nguserListModel.getBp_no());
         }

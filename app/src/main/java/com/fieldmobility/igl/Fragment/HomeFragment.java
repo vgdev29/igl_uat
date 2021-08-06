@@ -160,6 +160,7 @@ public class HomeFragment extends Fragment {
         }
         else if (sharedPrefs.getType_User().equalsIgnoreCase("RFC")){
             new_regestration_layout.setVisibility(View.GONE);
+
             ekyc_layout.setVisibility(View.GONE);
             tpi_layout.setVisibility(View.GONE);
             ng_pending_layout.setVisibility(View.GONE);
@@ -167,7 +168,7 @@ public class HomeFragment extends Fragment {
             ng_conversion_layout.setVisibility(View.VISIBLE);
             pmc_layout.setVisibility(View.GONE);
             mdpe_layout.setVisibility(View.GONE);
-            riser_layout.setVisibility(View.GONE);
+            riser_layout.setVisibility(View.VISIBLE);
             lt_tpi_riser.setVisibility(View.GONE);
             mitd_layout.setVisibility(View.GONE);
 

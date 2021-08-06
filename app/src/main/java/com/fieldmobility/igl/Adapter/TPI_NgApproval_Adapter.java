@@ -78,7 +78,7 @@ public class TPI_NgApproval_Adapter extends RecyclerView.Adapter<TPI_NgApproval_
 
 
     @Override
-    public void onBindViewHolder(@NonNull NgUserDoneDeclineListViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull NgUserDoneDeclineListViewHolder holder, final int position) {
         final NguserListModel ngUserClaimListModel = ngUserClaimList.get(position);
         holder.tv_dateTime.setText("NG Date- "+ngUserClaimListModel.getNg_update_date());
         holder.tv_bpName.setText(ngUserClaimListModel.getBp_no());
@@ -230,7 +230,7 @@ public class TPI_NgApproval_Adapter extends RecyclerView.Adapter<TPI_NgApproval_
         requestQueue.add(stringRequest);
     }
 
-    private void BP_N0_DilogBox(String conName,String conMob,String supName,String supMob  ) {
+    private void BP_N0_DilogBox(String conName, final String conMob, String supName, final String supMob  ) {
         final Dialog dialog = new Dialog(mctx);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.rfc_info_dialog);
@@ -396,16 +396,7 @@ public Filter    getFilter() {
                         for (NguserListModel row : new_ngUserClaimList) {
                             if (row.getBp_no().toLowerCase().contains(charString.toLowerCase())
                                     || row.getJmr_no().toLowerCase().contains(charString.toLowerCase())
-                                    || row.getCustomer_name().toLowerCase().contains(charString.toLowerCase())
-                                    || row.getSociety().toLowerCase().contains(charString.toLowerCase())
-                                    || row.getArea().toLowerCase().contains(charString.toLowerCase())
-                                    || row.getContractor_id().toLowerCase().contains(charString.toLowerCase())
-                                    || row.getHouse_no().toLowerCase().contains(charString.toLowerCase())
-                                    || row.getCity().toLowerCase().contains(charString.toLowerCase())
-                                    || row.getFloor().toLowerCase().contains(charString.toLowerCase())
-                                    || row.getMobile_no().toLowerCase().contains(charString.toLowerCase())
-                                    || row.getControl_room().toLowerCase().contains(charString.toLowerCase())
-                                    || row.getSupervisor_assigned_date().toLowerCase().contains(charString.toLowerCase())
+
 
                             ) {
                                 filteredList.add(row);
