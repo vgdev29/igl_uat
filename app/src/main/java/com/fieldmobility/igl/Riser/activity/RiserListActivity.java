@@ -61,7 +61,7 @@ public class RiserListActivity extends AppCompatActivity implements View.OnClick
 
                 .show();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.RISER_LISTING, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.RISER_LISTING+"/"+sharedPrefs.getUUID(), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 materialDialog.dismiss();

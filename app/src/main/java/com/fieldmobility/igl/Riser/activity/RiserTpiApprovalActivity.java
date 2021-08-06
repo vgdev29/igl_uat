@@ -8,6 +8,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -53,8 +54,10 @@ public class RiserTpiApprovalActivity extends AppCompatActivity implements View.
                 .progress(true, 0)
 
                 .show();
+        String url=Constants.RISER_TPI_APPROVAL_LISTING + "/" + sharedPrefs.getUUID();
+        Log.v("URL_RISER_TPI_APPROVAL_LISTING",url);
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.RISER_TPI_APPROVAL_LISTING + "/" + sharedPrefs.getUUID(), new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 materialDialog.dismiss();
