@@ -61,11 +61,7 @@
             android:name=".Riser.activity.RiserTpiApprovalDetailActivity"
             android:exported="true" />
         <activity android:name=".Riser.activity.RiserTpiApprovalActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Riser.activity.RiserFormActivity"
@@ -93,12 +89,12 @@
         <activity android:name=".Activity.PMC_ViewPager_Activity" />
         <activity android:name=".Activity.Splash_Screen">
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
 
 
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
         </activity>
         <activity
             android:name=".Activity.Login_Activity"

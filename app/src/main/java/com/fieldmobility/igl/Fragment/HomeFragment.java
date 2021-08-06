@@ -43,6 +43,7 @@ import com.fieldmobility.igl.Mdpe.Mdpe_List_Activity;
 import com.fieldmobility.igl.R;
 //import com.fieldmobility.igl.tracker.MyIntentService;
 import com.fieldmobility.igl.Riser.activity.RiserListActivity;
+import com.fieldmobility.igl.Riser.activity.RiserTpiApprovalActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.material.snackbar.Snackbar;
@@ -57,7 +58,7 @@ public class HomeFragment extends Fragment {
     SharedPrefs sharedPrefs;
     VideoListData1[] myListData;
     LinearLayout mitd_layout,attendance_layout,to_do_list,learning_layout,new_regestration_layout,ekyc_layout,tpi_layout,
-            rfc_layout,pmc_layout,ng_pending_layout,ng_conversion_layout,riser_layout, mdpe_layout;
+            rfc_layout,pmc_layout,ng_pending_layout,ng_conversion_layout,riser_layout, lt_tpi_riser,mdpe_layout;
     MaterialDialog materialDialog;
     private static final String TAG = Tracking_Activity.class.getSimpleName();
    // private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
@@ -123,6 +124,7 @@ public class HomeFragment extends Fragment {
         pmc_layout=(LinearLayout)root.findViewById(R.id.pmc_layout);
         ng_conversion_layout=(LinearLayout)root.findViewById(R.id.ng_conversion_layout);
         riser_layout = root.findViewById(R.id.riser_layout);
+        lt_tpi_riser = root.findViewById(R.id.lt_tpi_riser);
         mdpe_layout = root.findViewById(R.id.mdpe_layout);
        /* new_regestration_layout.setVisibility(View.GONE);
         ekyc_layout.setVisibility(View.GONE);
@@ -139,6 +141,7 @@ public class HomeFragment extends Fragment {
             pmc_layout.setVisibility(View.GONE);
             mdpe_layout.setVisibility(View.GONE);
             riser_layout.setVisibility(View.GONE);
+            lt_tpi_riser.setVisibility(View.GONE);
             mitd_layout.setVisibility(View.GONE);
         }
         else if (sharedPrefs.getType_User().equals("TPI") ||sharedPrefs.getType_User().equals("PMCSI")){
@@ -151,6 +154,7 @@ public class HomeFragment extends Fragment {
             pmc_layout.setVisibility(View.GONE);
             mdpe_layout.setVisibility(View.GONE);
             riser_layout.setVisibility(View.GONE);
+            lt_tpi_riser.setVisibility(View.VISIBLE);
             mitd_layout.setVisibility(View.VISIBLE);
 
         }
@@ -164,6 +168,7 @@ public class HomeFragment extends Fragment {
             pmc_layout.setVisibility(View.GONE);
             mdpe_layout.setVisibility(View.GONE);
             riser_layout.setVisibility(View.GONE);
+            lt_tpi_riser.setVisibility(View.GONE);
             mitd_layout.setVisibility(View.GONE);
 
         }
@@ -177,6 +182,7 @@ public class HomeFragment extends Fragment {
             pmc_layout.setVisibility(View.GONE);
             mdpe_layout.setVisibility(View.GONE);
             riser_layout.setVisibility(View.GONE);
+            lt_tpi_riser.setVisibility(View.GONE);
             mitd_layout.setVisibility(View.GONE);
 
         }
@@ -192,6 +198,7 @@ public class HomeFragment extends Fragment {
             mdpe_layout.setVisibility(View.GONE);
             riser_layout.setVisibility(View.GONE);
             mitd_layout.setVisibility(View.GONE);
+            lt_tpi_riser.setVisibility(View.GONE);
 
         }/*else if (sharedPrefs.getType_User().equals("PMCSI")){
             new_regestration_layout.setVisibility(View.GONE);
@@ -215,6 +222,7 @@ public class HomeFragment extends Fragment {
             rfc_layout.setVisibility(View.GONE);
             ng_conversion_layout.setVisibility(View.GONE);
             mitd_layout.setVisibility(View.GONE);
+            lt_tpi_riser.setVisibility(View.GONE);
 
         }
         else if (sharedPrefs.getType_User().equals("MDPE")){
@@ -227,6 +235,7 @@ public class HomeFragment extends Fragment {
             rfc_layout.setVisibility(View.GONE);
             ng_conversion_layout.setVisibility(View.GONE);
             mitd_layout.setVisibility(View.GONE);
+            lt_tpi_riser.setVisibility(View.GONE);
 
         }
 
@@ -324,6 +333,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent riserIntent = new Intent(getActivity(), RiserListActivity.class);
+                startActivity(riserIntent);
+            }
+        });
+        lt_tpi_riser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent riserIntent = new Intent(getActivity(), RiserTpiApprovalActivity.class);
                 startActivity(riserIntent);
             }
         });

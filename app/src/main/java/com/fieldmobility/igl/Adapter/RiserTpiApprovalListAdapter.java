@@ -26,10 +26,11 @@ public class RiserTpiApprovalListAdapter extends RecyclerView.Adapter<RiserTpiAp
     Context mContext;
     List<RiserTpiListingModel.BpDetail> datalist;
     List<RiserTpiListingModel.BpDetail> tempDatalist;
-    public RiserTpiApprovalListAdapter(Context context, List<RiserTpiListingModel.BpDetail> datalist){
-        mContext=context;
-        this.datalist=datalist;
-        this.tempDatalist=datalist;
+
+    public RiserTpiApprovalListAdapter(Context context, List<RiserTpiListingModel.BpDetail> datalist) {
+        mContext = context;
+        this.datalist = datalist;
+        this.tempDatalist = datalist;
     }
 
     @NonNull
@@ -40,13 +41,13 @@ public class RiserTpiApprovalListAdapter extends RecyclerView.Adapter<RiserTpiAp
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
-        RiserTpiListingModel.BpDetail model=datalist.get(position);
-        String fullName=model.getIglFirstName() ;
+        RiserTpiListingModel.BpDetail model = datalist.get(position);
+        String fullName = model.getIglFirstName();
         holder.tv_name.setText(fullName);
         holder.tv_bp_num.setText(model.getBpNumber());
         holder.tv_mob.setText(model.getIglMobileNo());
         holder.tv_assign_date.setText(model.getCompletionDate());
-        holder.tv_address.setText(model.getIglHouseNo()+" "+model.getIglFloor()+" "+model.getIglBlockQtrTowerWing()+" "+model.getIglSociety()+", "+model.getIglArea()+" "+model.getIglCityRegion());
+        holder.tv_address.setText(model.getIglHouseNo() + " " + model.getIglFloor() + " " + model.getIglBlockQtrTowerWing() + " " + model.getIglSociety() + ", " + model.getIglArea() + " " + model.getIglCityRegion());
     }
 
 
@@ -56,24 +57,24 @@ public class RiserTpiApprovalListAdapter extends RecyclerView.Adapter<RiserTpiAp
     }
 
     class MyHolder extends RecyclerView.ViewHolder {
-        public TextView tv_name, tv_mob, tv_assign_date, tv_address,tv_bp_num,tv_date_key;
+        public TextView tv_name, tv_mob, tv_assign_date, tv_address, tv_bp_num, tv_date_key;
 
 
         public MyHolder(View itemView) {
             super(itemView);
-            tv_bp_num =  itemView.findViewById(R.id.tv_bp_num);
-            tv_mob =  itemView.findViewById(R.id.tv_mob);
-            tv_name =  itemView.findViewById(R.id.tv_name);
-            tv_address =  itemView.findViewById(R.id.tv_address);
-            tv_assign_date =  itemView.findViewById(R.id.tv_assign_date);
-            tv_date_key =  itemView.findViewById(R.id.tv_date_key);
+            tv_bp_num = itemView.findViewById(R.id.tv_bp_num);
+            tv_mob = itemView.findViewById(R.id.tv_mob);
+            tv_name = itemView.findViewById(R.id.tv_name);
+            tv_address = itemView.findViewById(R.id.tv_address);
+            tv_assign_date = itemView.findViewById(R.id.tv_assign_date);
+            tv_date_key = itemView.findViewById(R.id.tv_date_key);
             tv_date_key.setText("Completion Date");
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String dataJson=new Gson().toJson(datalist.get(getAdapterPosition()));
-                    Intent intent= new Intent(mContext, RiserTpiApprovalDetailActivity.class);
-                    intent.putExtra("data",dataJson);
+                    String dataJson = new Gson().toJson(datalist.get(getAdapterPosition()));
+                    Intent intent = new Intent(mContext, RiserTpiApprovalDetailActivity.class);
+                    intent.putExtra("data", dataJson);
                     mContext.startActivity(intent);
                 }
             });
@@ -92,7 +93,7 @@ public class RiserTpiApprovalListAdapter extends RecyclerView.Adapter<RiserTpiAp
                 } else {
                     List<RiserTpiListingModel.BpDetail> filteredList = new ArrayList<>();
                     for (RiserTpiListingModel.BpDetail row : tempDatalist) {
-                        String name=row.getIglFirstName();
+                        String name = row.getIglFirstName();
                         if (row.getBpNumber().toLowerCase().contains(charString.toLowerCase()) || name.toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(row);
                         }
@@ -103,6 +104,7 @@ public class RiserTpiApprovalListAdapter extends RecyclerView.Adapter<RiserTpiAp
                 filterResults.values = datalist;
                 return filterResults;
             }
+
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
                 datalist = (ArrayList<RiserTpiListingModel.BpDetail>) filterResults.values;

@@ -35,13 +35,17 @@ public class RiserTpiApprovalActivity extends AppCompatActivity implements View.
     SharedPrefs sharedPrefs;
     RiserTpiListingModel dataModel;
     RiserTpiApprovalListAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_riser_tpi_approval);
+        sharedPrefs = new SharedPrefs(this);
         findViews();
         loadListData();
+
     }
+
     private void loadListData() {
 
         materialDialog = new MaterialDialog.Builder(RiserTpiApprovalActivity.this)
@@ -50,7 +54,7 @@ public class RiserTpiApprovalActivity extends AppCompatActivity implements View.
 
                 .show();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.RISER_TPI_APPROVAL_LISTING, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.RISER_TPI_APPROVAL_LISTING + "/" + sharedPrefs.getUUID(), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 materialDialog.dismiss();

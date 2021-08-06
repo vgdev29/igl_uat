@@ -70,12 +70,13 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:nestedScrollingEnabled="false"
                 android:id="@+id/rv_detail"></androidx.recyclerview.widget.RecyclerView>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_12sdp"
-                android:layout_marginVertical="@dimen/_8sdp"
+                android:layout_marginVertical="@dimen/_12sdp"
                 android:background="@color/igl_green"
                 android:gravity="center"
                 android:padding="@dimen/_4sdp"
@@ -108,7 +109,14 @@
                 android:layout_marginTop="@dimen/_10sdp"
 
                 android:visibility="gone"></ImageView>
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Approve/Decline"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:textColor="@color/rad"></TextView>
             <RadioGroup
                 android:id="@+id/rg_approve"
                 android:layout_width="match_parent"
@@ -124,7 +132,9 @@
                     android:layout_weight="1"
                     android:includeFontPadding="true"
                     android:text="Approve"
+                    android:gravity="center_vertical"
                     android:textColor="@color/black_31"
+                    android:checked="true"
                     android:textSize="@dimen/_12sdp"></RadioButton>
 
                 <RadioButton
@@ -132,12 +142,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="center_vertical"
                     android:includeFontPadding="true"
                     android:text="Decline"
                     android:textColor="@color/black_31"
                     android:textSize="@dimen/_12sdp"></RadioButton>
             </RadioGroup>
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:id="@+id/lt_remark">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Remark"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textColor="@color/rad"></TextView>
             <EditText
                 android:id="@+id/et_remark"
                 android:layout_width="match_parent"
@@ -145,14 +169,14 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginHorizontal="@dimen/_30sdp"
                 android:layout_marginTop="@dimen/margin_8dp"
-                android:background="@drawable/shape_blue_border"
-                android:gravity="center_vertical"
-                android:hint="Remark"
+                android:background="@drawable/background_input_mandatory"
                 android:inputType="textEmailAddress"
                 android:padding="@dimen/_10sdp"
                 android:textSize="@dimen/_10sdp"
-                android:visibility="gone" />
-
+                android:hint="Enter Remrk Here"
+                android:gravity="top"
+             />
+            </LinearLayout>
             <Button
                 android:id="@+id/btn_submit"
                 android:layout_width="wrap_content"
@@ -162,6 +186,7 @@
                 android:layout_marginBottom="@dimen/_14sdp"
                 android:background="@color/rad"
                 android:text="SUBMIT"
+
                 android:textColor="@color/white"></Button>
 
         </LinearLayout>
