@@ -1076,7 +1076,6 @@
                         android:layout_height="@dimen/_60sdp"
                         android:layout_marginHorizontal="@dimen/_6sdp"
                         android:layout_weight="1"
-
                         android:background="@drawable/shape_blue_border">
 
                         <ImageView
@@ -1147,8 +1146,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:padding="@dimen/_10sdp">
-
-
     </RelativeLayout>
 
 </RelativeLayout>

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.fieldmobility.igl.Helper.CommonUtils;
 import com.fieldmobility.igl.Model.RiserListingModel;
 import com.fieldmobility.igl.Model.RiserTpiListingModel;
 import com.fieldmobility.igl.R;
@@ -67,10 +68,16 @@ public class RiserListAdapter extends RecyclerView.Adapter<RiserListAdapter.MyHo
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String dataJson=new Gson().toJson(datalist.get(getAdapterPosition()));
-                    Intent intent= new Intent(mContext, RiserFormActivity.class);
-                    intent.putExtra("data",dataJson);
-                    mContext.startActivity(intent);
+                    if(datalist.get(getAdapterPosition()).getJobFlag()!=null  && datalist.get(getAdapterPosition()).getJobFlag().equals("1") ) {
+                        String dataJson = new Gson().toJson(datalist.get(getAdapterPosition()));
+                        Intent intent = new Intent(mContext, RiserFormActivity.class);
+                        intent.putExtra("data", dataJson);
+                        mContext.startActivity(intent);
+                    }
+                    else
+                    {
+                        CommonUtils.toast_msg(mContext,"TPI not Claimed the Job yet.... ");
+                    }
                 }
             });
 

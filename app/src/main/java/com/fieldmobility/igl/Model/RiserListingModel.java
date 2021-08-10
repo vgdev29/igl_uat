@@ -123,7 +123,7 @@ public class RiserListingModel {
             private Object rfcTpi;
             @SerializedName("jobFlag")
             @Expose
-            private Object jobFlag;
+            private String jobFlag;
             @SerializedName("fesabilityTpimobileNo")
             @Expose
             private Object fesabilityTpimobileNo;
@@ -196,6 +196,19 @@ public class RiserListingModel {
             @SerializedName("rfcmobileNo")
             @Expose
             private Object rfcmobileNo;
+
+            @SerializedName("zone")
+            @Expose
+            private String zone;
+
+
+            public String getZone() {
+                return zone;
+            }
+
+            public void setZone(String zone) {
+                this.zone = zone;
+            }
 
             public String getFirstName() {
                 return firstName;
@@ -493,11 +506,11 @@ public class RiserListingModel {
                 this.rfcTpi = rfcTpi;
             }
 
-            public Object getJobFlag() {
+            public String getJobFlag() {
                 return jobFlag;
             }
 
-            public void setJobFlag(Object jobFlag) {
+            public void setJobFlag(String jobFlag) {
                 this.jobFlag = jobFlag;
             }
 

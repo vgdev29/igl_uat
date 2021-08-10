@@ -348,7 +348,6 @@ public class TPI_Connection_Activity  extends Activity {
         stringRequest.setRetryPolicy(policy);
         requestQueue.add(stringRequest);
 
-
     }
 
     private void Pipe_Line_Catagory() {
