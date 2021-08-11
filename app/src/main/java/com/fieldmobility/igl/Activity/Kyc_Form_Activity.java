@@ -64,8 +64,12 @@ import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.R;
 import com.kyanogen.signatureview.SignatureView;
 import com.squareup.picasso.Picasso;
+import com.vincent.filepicker.Constant;
+import com.vincent.filepicker.activity.NormalFilePickActivity;
+import com.vincent.filepicker.filter.entity.NormalFile;
 
 
+import net.gotev.uploadservice.ContentType;
 import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.ServerResponse;
 import net.gotev.uploadservice.UploadInfo;
@@ -142,7 +146,7 @@ public class Kyc_Form_Activity extends Activity {
     Spinner spinner_area, spinner_society, spinner_house_type, spinner_floor, spinner_block_tower, spinner_street_road, spinner_lpg_company;
     ImageView owner_sigimage, id_image, address_image, customer_sigimage;
     ;
-    TextView bp_no_text;
+    TextView bp_no_text, tv_pdf_path;
     CheckBox checkBox_term_cond;
     TextView checkbox_text;
     String Latitude, Longitude;
@@ -153,10 +157,10 @@ public class Kyc_Form_Activity extends Activity {
     LinearLayout ll_owner_signature, ll_capture_id, ll_capture_address, ll_capture_custmsig, ll_capture_ownersig;
     Bitmap bitmap_id, bitmap_address, bitmap_custmsig, bitmap_ownersig;
     File file_id, file_address, file_cutmsig, file_ownersig;
-    String screenshot_id, screenshot_address, screenshot_custsig, screenshot_ownersig, bp_no;
+    String screenshot_id, screenshot_address, screenshot_custsig, screenshot_ownersig, bp_no, pdf_path;
     EditText owner_name;
-
-    String intent_addressImage ,intent_idImage,intent_cusImage,intent_ownImage;
+    boolean isSaleDeedSelected = false;
+    String intent_addressImage, intent_idImage, intent_cusImage, intent_ownImage;
 
 
     @Override
@@ -166,6 +170,7 @@ public class Kyc_Form_Activity extends Activity {
         sharedPrefs = new SharedPrefs(this);
         getLocationUsingInternet();
         back = (ImageView) findViewById(R.id.back);
+        tv_pdf_path = findViewById(R.id.tv_pdf_path);
         ll_capture_id = findViewById(R.id.ll_capture_id);
         ll_capture_address = findViewById(R.id.ll_capture_address);
         ll_capture_custmsig = findViewById(R.id.ll_capture_customersig);
@@ -238,7 +243,6 @@ public class Kyc_Form_Activity extends Activity {
                 .into(owner_sigimage);
 
 
-
         String Address = getIntent().getStringExtra("House_no") + " " +
                 getIntent().getStringExtra("House_type") + " " +
                 getIntent().getStringExtra("Landmark") + " " +
@@ -279,7 +283,10 @@ public class Kyc_Form_Activity extends Activity {
         address_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectImage_address();
+                if (isSaleDeedSelected)
+                    selectPdf();
+                else
+                    selectImage_address();
             }
         });
 
@@ -308,6 +315,22 @@ public class Kyc_Form_Activity extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 address_proof = address_proof_spinner.getItemAtPosition(address_proof_spinner.getSelectedItemPosition()).toString();
+                if (address_proof.equals("Sale/Conveyance Deed")) {
+                    isSaleDeedSelected = true;
+                    address_button.setText("Browse file");
+                    address_image.setVisibility(View.GONE);
+                    tv_pdf_path.setVisibility(View.VISIBLE);
+                    tv_pdf_path.setText("");
+                    pdf_path = "";
+
+                } else {
+                    isSaleDeedSelected = false;
+                    address_button.setText("Address Proof");
+                    tv_pdf_path.setVisibility(View.GONE);
+                    address_image.setVisibility(View.VISIBLE);
+
+
+                }
             }
 
             @Override
@@ -743,13 +766,12 @@ public class Kyc_Form_Activity extends Activity {
             screenshot_ownersig = file_ownersig.toString();
             Log.d(log, "screenshot_ownersig = " + screenshot_ownersig);
 
-        } catch(
-    NullPointerException e)
-    {
-        e.printStackTrace();
-    }
+        } catch (
+                NullPointerException e) {
+            e.printStackTrace();
+        }
 
-}
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -768,6 +790,19 @@ public class Kyc_Form_Activity extends Activity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                }
+                break;
+            case Constant.REQUEST_CODE_PICK_FILE:
+                if (resultCode == RESULT_OK) {
+                    ArrayList<NormalFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_FILE);
+                    Log.d("bpcreation", "pdf file list = " + list.size());
+                    if (list != null && list.size() > 0) {
+                        pdf_path = list.get(0).getPath();
+                        Log.d("bpcreation", "pdf path = " + pdf_path);
+                        tv_pdf_path.setText(list.get(0).getName());
+                    }
+
+
                 }
                 break;
             case CAMERA_ID_REQUEST:
@@ -1060,8 +1095,7 @@ public class Kyc_Form_Activity extends Activity {
         if (owner_signature_path == null) {
             screenshot_ownersig = screenshot_custsig;
             Log.d("signature_path", screenshot_ownersig);
-        }
-        else {
+        } else {
             takeScreenshot_owner();
         }
         if (Type_Of_Owner.equals("Owner")) {
@@ -1071,10 +1105,15 @@ public class Kyc_Form_Activity extends Activity {
         }
         try {
             String uploadId = UUID.randomUUID().toString();
-            Log.d(log,"uploadId+,,,,,,,,,,"+"testing" + uploadId);
+            Log.d(log, "uploadId+,,,,,,,,,," + "testing" + uploadId);
             MultipartUploadRequest uploadRequest = new MultipartUploadRequest(Kyc_Form_Activity.this, uploadId, Constants.BP_No_Post + "/" + getIntent().getStringExtra("Bp_number"));
             uploadRequest.addFileToUpload(screenshot_id, "doc1");
-            uploadRequest.addFileToUpload(screenshot_address, "doc2");
+            if (isSaleDeedSelected) {
+                uploadRequest.addFileToUpload(pdf_path, "doc2", "sale_deed.pdf", ContentType.APPLICATION_PDF);
+
+            } else {
+                uploadRequest.addFileToUpload(screenshot_address, "doc2");
+            }
             uploadRequest.addFileToUpload(screenshot_custsig, "sign_file");
             uploadRequest.addFileToUpload(screenshot_ownersig, "ownerSign");
             uploadRequest.addParameter("first_name", fullname.getText().toString());
@@ -1470,7 +1509,7 @@ public class Kyc_Form_Activity extends Activity {
             isDataValid = false;
             CommonUtils.toast_msg(this, "Please Select Id proof");
             return isDataValid;
-        } else if (TextUtils.isEmpty(image_path_address)) {
+        } else if ((image_path_address == null || image_path_address.isEmpty()) && pdf_path == null || pdf_path.isEmpty()) {
             isDataValid = false;
             CommonUtils.toast_msg(this, "Please Select Address proof");
             return isDataValid;
@@ -1616,6 +1655,18 @@ public class Kyc_Form_Activity extends Activity {
         });
 
         dialog.show();
+    }
+    private void  selectPdf() {
+//        Intent intent = new Intent();
+//        intent.setType("application/pdf");
+//        intent.setAction(Intent.ACTION_GET_CONTENT);
+//        startActivityForResult(Intent.createChooser(intent, "Select PDF"), REQUEST_CODE_PDF_PICKER);
+        Intent intent4 = new Intent(this, NormalFilePickActivity.class);
+        intent4.putExtra(Constant.MAX_NUMBER, 1);
+        intent4.putExtra(NormalFilePickActivity.SUFFIX, new String[]{"pdf"});
+        startActivityForResult(intent4, Constant.REQUEST_CODE_PICK_FILE);
+
+
     }
 
     private boolean checkPermission() {

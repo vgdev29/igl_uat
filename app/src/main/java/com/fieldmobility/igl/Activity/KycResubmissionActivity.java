@@ -51,13 +51,17 @@ import androidx.core.content.FileProvider;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
+import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.fieldmobility.igl.Helper.AppController;
 import com.fieldmobility.igl.Helper.CommonUtils;
 import com.fieldmobility.igl.Helper.ConnectionDetector;
 import com.fieldmobility.igl.Helper.Constants;
@@ -67,7 +71,11 @@ import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.R;
 import com.kyanogen.signatureview.SignatureView;
 import com.squareup.picasso.Picasso;
+import com.vincent.filepicker.Constant;
+import com.vincent.filepicker.activity.NormalFilePickActivity;
+import com.vincent.filepicker.filter.entity.NormalFile;
 
+import net.gotev.uploadservice.ContentType;
 import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.ServerResponse;
 import net.gotev.uploadservice.UploadInfo;
@@ -83,14 +91,17 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class KycResubmissionActivity extends Activity {
     MaterialDialog materialDialog;
-    Button btn_submit_data,btn_submit_address_proof,btn_submit_id_proof;
+    TextView btn_submit_data, btn_submit_address_proof, btn_submit_id_proof;
     EditText fullname;
     EditText middle_name;
     EditText lastname;
@@ -139,10 +150,10 @@ public class KycResubmissionActivity extends Activity {
     String city_id, city_name, area_name, area_id, soceity_name, house_type_name, floor_name, block_tower_name, street_road_name, lpg_company_name, street_road_type_name, block_tower_type_name;
     Spinner spinner_area, spinner_society, spinner_house_type, spinner_floor, spinner_block_tower, spinner_street_road, spinner_lpg_company;
     ImageView owner_sigimage, id_image, address_image, customer_sigimage;
-    ;
-    TextView bp_no_text;
-    CheckBox checkBox_term_cond;
-    TextView checkbox_text;
+    boolean isSaleDeedSelected = false;
+    TextView bp_no_text,tv_pdf_path;
+    //    CheckBox checkBox_term_cond;
+//    TextView checkbox_text;
     String Latitude, Longitude;
     Spinner spinner_street_road_type, spinner_block_tower_type;
     ArrayList<String> Street_road_type_name;
@@ -151,10 +162,10 @@ public class KycResubmissionActivity extends Activity {
     LinearLayout ll_owner_signature, ll_capture_id, ll_capture_address, ll_capture_custmsig, ll_capture_ownersig;
     Bitmap bitmap_id, bitmap_address, bitmap_custmsig, bitmap_ownersig;
     File file_id, file_address, file_cutmsig, file_ownersig;
-    String screenshot_id, screenshot_address, screenshot_custsig, screenshot_ownersig, bp_no;
+    String screenshot_id, screenshot_address, screenshot_custsig, screenshot_ownersig, bp_no,pdf_path;
     EditText owner_name;
 
-    String intent_addressImage ,intent_idImage,intent_cusImage,intent_ownImage;
+    String intent_addressImage, intent_idImage, intent_cusImage, intent_ownImage;
 
 
     @Override
@@ -164,6 +175,7 @@ public class KycResubmissionActivity extends Activity {
         sharedPrefs = new SharedPrefs(this);
         getLocationUsingInternet();
         back = (ImageView) findViewById(R.id.back);
+        tv_pdf_path = findViewById(R.id.tv_pdf_path);
         ll_capture_id = findViewById(R.id.ll_capture_id);
         ll_capture_address = findViewById(R.id.ll_capture_address);
         ll_capture_custmsig = findViewById(R.id.ll_capture_customersig);
@@ -197,8 +209,8 @@ public class KycResubmissionActivity extends Activity {
         customer_image_button = findViewById(R.id.customer_image_button);
         id_button = findViewById(R.id.id_button);
         address_button = findViewById(R.id.address_button);
-        checkBox_term_cond = findViewById(R.id.checkbox);
-        checkbox_text = findViewById(R.id.checkbox_text);
+//        checkBox_term_cond = findViewById(R.id.checkbox);
+//        checkbox_text = findViewById(R.id.checkbox_text);
         todo_creation = findViewById(R.id.todo_creation);
         bp_no_text = findViewById(R.id.bp_no_text);
         address_proof_spinner = (Spinner) findViewById(R.id.address_proof_spinner);
@@ -236,7 +248,6 @@ public class KycResubmissionActivity extends Activity {
                 .load(intent_ownImage)
 
                 .into(owner_sigimage);
-
 
 
         String Address = getIntent().getStringExtra("House_no") + " " +
@@ -279,7 +290,11 @@ public class KycResubmissionActivity extends Activity {
         address_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectImage_address();
+                if (isSaleDeedSelected)
+                    selectPdf();
+                else
+                    selectImage_address();
+
             }
         });
 
@@ -308,6 +323,23 @@ public class KycResubmissionActivity extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 address_proof = address_proof_spinner.getItemAtPosition(address_proof_spinner.getSelectedItemPosition()).toString();
+
+                if (address_proof.equals("Sale/Conveyance Deed")) {
+                    isSaleDeedSelected = true;
+                    address_button.setText("Browse file");
+                    address_image.setVisibility(View.GONE);
+                    tv_pdf_path.setVisibility(View.VISIBLE);
+                    tv_pdf_path.setText("");
+                    pdf_path = "";
+
+                } else {
+                    isSaleDeedSelected = false;
+                    address_button.setText("Address Proof");
+                    tv_pdf_path.setVisibility(View.GONE);
+                    address_image.setVisibility(View.VISIBLE);
+
+
+                }
             }
 
             @Override
@@ -560,49 +592,69 @@ public class KycResubmissionActivity extends Activity {
         ArrayAdapter<String> street_road_type_Adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Street_road_type_name);
         street_road_type_Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_street_road_type.setAdapter(street_road_type_Adapter);
-        String first = "I agree to the ";
-        String second = "<font color='#EE0000'> Terms and conditions</font>";
-        String third = " of PNG registration.";
-        checkbox_text.setText(Html.fromHtml(first + second + third));
-        checkbox_text.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(KycResubmissionActivity.this, WebView_Activity.class);
-                startActivity(intent);
-
-            }
-        });
-        checkBox_term_cond.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    checkBox_term_cond.setChecked(true);
-                    //  Toast.makeText(Kyc_Form_Activity.this, "You checked the checkbox!", Toast.LENGTH_SHORT).show();
-                } else {
-                    checkBox_term_cond.setChecked(false);
-                    //  Toast.makeText(Kyc_Form_Activity.this, "You unchecked the checkbox!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+//        String first = "I agree to the ";
+//        String second = "<font color='#EE0000'> Terms and conditions</font>";
+//        String third = " of PNG registration.";
+//        checkbox_text.setText(Html.fromHtml(first + second + third));
+//        checkbox_text.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(KycResubmissionActivity.this, WebView_Activity.class);
+//                startActivity(intent);
+//
+//            }
+//        });
+//        checkBox_term_cond.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (isChecked) {
+//                    checkBox_term_cond.setChecked(true);
+//                    //  Toast.makeText(Kyc_Form_Activity.this, "You checked the checkbox!", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    checkBox_term_cond.setChecked(false);
+//                    //  Toast.makeText(Kyc_Form_Activity.this, "You unchecked the checkbox!", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
 
         btn_submit_data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (validateData()) {
-                    takeScreenshot();
-                    uploadMultipart();
+//                    uploadMultipart();
+                    callDataSubmitApi();
+
                 }
             }
         });
         btn_submit_id_proof.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (TextUtils.isEmpty(image_path_id)) {
+                    CommonUtils.toast_msg(KycResubmissionActivity.this, "Please Select ID proof");
+
+                }
+                else {
+                    takeScreenshot(true);
+                    id_proof = id_proof_spinner.getItemAtPosition(id_proof_spinner.getSelectedItemPosition()).toString();
+                    uploadIdProof();
+                }
+
 
             }
         });
         btn_submit_address_proof.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if ((image_path_address==null || image_path_address.isEmpty()) && pdf_path==null || pdf_path.isEmpty()) {
+                    CommonUtils.toast_msg(KycResubmissionActivity.this, "Please Select Address proof");
+
+                }
+                else {
+                    address_proof = address_proof_spinner.getItemAtPosition(address_proof_spinner.getSelectedItemPosition()).toString();
+                    takeScreenshot(false);
+                    uploadAddressProof();
+                }
 
             }
         });
@@ -715,29 +767,28 @@ public class KycResubmissionActivity extends Activity {
     }
 
 
-    private void takeScreenshot() {
+    private void takeScreenshot(boolean isForId) {
 
         try {
-            bitmap_id = ScreenshotUtils.getScreenShot_ekyc_id(ll_capture_id);
-            bitmap_address = ScreenshotUtils.getScreenShot_ekyc_address(ll_capture_address);
-            bitmap_custmsig = ScreenshotUtils.getScreenShot_ekyc_custsig(ll_capture_custmsig);
-            Log.d(log, "bitmap" + "size scresnshot = " + bitmap_custmsig.getByteCount());
-            if (bitmap_id != null) {
+            if (isForId){
+                bitmap_id = ScreenshotUtils.getScreenShot_ekyc_id(ll_capture_id);
+                if (bitmap_id != null) {
 
-                File saveFile = ScreenshotUtils.getMainDirectoryName(this);
-                file_id = ScreenshotUtils.store(bitmap_id, "id_" + bp_no + ".jpg", saveFile);
-                file_address = ScreenshotUtils.store(bitmap_address, "address_" + bp_no + ".jpg", saveFile);
-                file_cutmsig = ScreenshotUtils.store(bitmap_custmsig, "custsig_" + bp_no + ".jpg", saveFile);
+                    File saveFile = ScreenshotUtils.getMainDirectoryName(this);
+                    file_id = ScreenshotUtils.store(bitmap_id, "id_" + bp_no + ".jpg", saveFile);
+                    screenshot_id = file_id.toString();
 
-                screenshot_id = file_id.toString();
-                screenshot_address = file_address.toString();
-                screenshot_custsig = file_cutmsig.toString();
-
-                Log.d(log, "screenshot_id " + screenshot_id);
-                Log.d(log, "screenshot_address = " + screenshot_address);
-                Log.d(log, "screenshot_custsig = " + screenshot_custsig);
-
+                }
             }
+            else {
+                bitmap_address = ScreenshotUtils.getScreenShot_ekyc_address(ll_capture_address);
+                if (bitmap_address != null) {
+                    File saveFile = ScreenshotUtils.getMainDirectoryName(this);
+                    file_address = ScreenshotUtils.store(bitmap_address, "address_" + bp_no + ".jpg", saveFile);
+                    screenshot_address = file_address.toString();
+                }
+            }
+
         } catch (NullPointerException e) {
             e.printStackTrace();
         } finally {
@@ -755,13 +806,12 @@ public class KycResubmissionActivity extends Activity {
             screenshot_ownersig = file_ownersig.toString();
             Log.d(log, "screenshot_ownersig = " + screenshot_ownersig);
 
-        } catch(
-    NullPointerException e)
-    {
-        e.printStackTrace();
-    }
+        } catch (
+                NullPointerException e) {
+            e.printStackTrace();
+        }
 
-}
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -782,6 +832,20 @@ public class KycResubmissionActivity extends Activity {
                     }
                 }
                 break;
+            case Constant.REQUEST_CODE_PICK_FILE:
+                if (resultCode == RESULT_OK) {
+                    ArrayList<NormalFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_FILE);
+                    Log.d("bpcreation", "pdf file list = " + list.size());
+                    if (list != null && list.size() > 0) {
+                        pdf_path = list.get(0).getPath();
+                        Log.d("bpcreation", "pdf path = " + pdf_path);
+                        tv_pdf_path.setText(list.get(0).getName());
+                    }
+
+
+                }
+                break;
+
             case CAMERA_ID_REQUEST:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_ID_REQUEST) {
                     File f = new File(getExternalStorageDirectory().toString());
@@ -1067,62 +1131,30 @@ public class KycResubmissionActivity extends Activity {
 
     }
 
-    public void uploadMultipart() {
-        CommonUtils.startProgressBar(this, "Submitting Data...!!!");
-        if (owner_signature_path == null) {
-            screenshot_ownersig = screenshot_custsig;
-            Log.d("signature_path", screenshot_ownersig);
-        }
-        else {
-            takeScreenshot_owner();
-        }
-        if (Type_Of_Owner.equals("Owner")) {
-            ownar_name = "";
-        } else {
-            ownar_name = owner_name.getText().toString().trim();
-        }
+    public void uploadIdProof() {
+        CommonUtils.startProgressBar(this, "Updating ID Proof...!!!");
+//        if (owner_signature_path == null) {
+//            screenshot_ownersig = screenshot_custsig;
+//            Log.d("signature_path", screenshot_ownersig);
+//        }
+//        else {
+//            takeScreenshot_owner();
+//        }
+//        if (Type_Of_Owner.equals("Owner")) {
+//            ownar_name = "";
+//        } else {
+//            ownar_name = owner_name.getText().toString().trim();
+//        }
         try {
             String uploadId = UUID.randomUUID().toString();
-            Log.d(log,"uploadId+,,,,,,,,,,"+"testing" + uploadId);
-            MultipartUploadRequest uploadRequest = new MultipartUploadRequest(KycResubmissionActivity.this, uploadId, Constants.BP_No_Post + "/" + getIntent().getStringExtra("Bp_number"));
+            Log.d(log, "uploadId+,,,,,,,,,," + "testing" + uploadId);
+            MultipartUploadRequest uploadRequest = new MultipartUploadRequest(KycResubmissionActivity.this, uploadId, Constants.EKYC_ID_IMAGEUPDATE + "/" + getIntent().getStringExtra("Bp_number"));
             uploadRequest.addFileToUpload(screenshot_id, "doc1");
-            uploadRequest.addFileToUpload(screenshot_address, "doc2");
-            uploadRequest.addFileToUpload(screenshot_custsig, "sign_file");
-            uploadRequest.addFileToUpload(screenshot_ownersig, "ownerSign");
-            uploadRequest.addParameter("first_name", fullname.getText().toString());
-            uploadRequest.addParameter("middle_name", middle_name.getText().toString());
-            uploadRequest.addParameter("last_name", lastname.getText().toString());
-            uploadRequest.addParameter("mobile_number", mobile_no.getText().toString());
-            uploadRequest.addParameter("email_id", email_id.getText().toString());
-            uploadRequest.addParameter("aadhaar_number", aadhaar_no.getText().toString());
-            uploadRequest.addParameter("city_region", city_name);
-            uploadRequest.addParameter("area", area_name);
-            uploadRequest.addParameter("society", soceity_name);
-            uploadRequest.addParameter("landmark", landmark.getText().toString());
-            uploadRequest.addParameter("house_type", house_type_name);
-            uploadRequest.addParameter("house_no", house_no.getText().toString());
-            uploadRequest.addParameter("block_qtr_tower_wing", block_tower_name);
-            uploadRequest.addParameter("floor", floor_name);
-            uploadRequest.addParameter("street_gali_road", street_road_name);
-            uploadRequest.addParameter("pincode", pincode.getText().toString());
-            uploadRequest.addParameter("lpg_company", lpg_company_name);
-            uploadRequest.addParameter("customer_type", "");
-            uploadRequest.addParameter("lpg_distributor", "");
-            uploadRequest.addParameter("lpg_consumer_no", "");
-            uploadRequest.addParameter("unique_id", "");
-            uploadRequest.addParameter("meterNo", meater_no.getText().toString());
-            uploadRequest.addParameter("ownerName", ownar_name);
-            uploadRequest.addParameter("chequeNo", "");
-            uploadRequest.addParameter("chequeDate", "");
-            uploadRequest.addParameter("drawnOn", "");
-            uploadRequest.addParameter("amt", "");
             uploadRequest.addParameter("idProof", id_proof);
-            uploadRequest.addParameter("adressProof", address_proof);
-            uploadRequest.addParameter("type_of_owner", Type_Of_Owner);
-            uploadRequest.addParameter("latitude", Latitude);
-            uploadRequest.addParameter("longitude", Longitude);
-            uploadRequest.addParameter("select1", block_tower_type_name);
-            uploadRequest.addParameter("select2", street_road_type_name);
+
+//            uploadRequest.addFileToUpload(screenshot_address, "doc2");
+//            uploadRequest.addFileToUpload(screenshot_custsig, "sign_file");
+//            uploadRequest.addFileToUpload(screenshot_ownersig, "ownerSign");
             uploadRequest.setDelegate(new UploadStatusDelegate() {
                 @Override
                 public void onProgress(Context context, UploadInfo uploadInfo) {
@@ -1146,18 +1178,9 @@ public class KycResubmissionActivity extends Activity {
                     try {
                         jsonObject = new JSONObject(str);
                         Log.d("Response++", jsonObject.toString());
-                        // if (jsonObject.getString("success").equals("true")) {
-                        JSONArray Details = jsonObject.getJSONArray("Details");
-                        for (int i = 0; i < Details.length(); i++) {
-                            JSONObject filepath = Details.getJSONObject(i);
-                            pdf_file_path = filepath.getString("file_path");
-                            //String Message=filepath.getString("Bp_Number");
-                            // Dilogbox_Select_Option();
-                        }
+
                         String Message = jsonObject.getString("Message");
-                        //String Complete_Video_Url = success.getString("url");
                         Toast.makeText(KycResubmissionActivity.this, Message, Toast.LENGTH_SHORT).show();
-                        finish();
                     } catch (JSONException e) {
                         Toast.makeText(KycResubmissionActivity.this, "Catching issues", Toast.LENGTH_SHORT).show();
                         CommonUtils.dismissProgressBar(KycResubmissionActivity.this);
@@ -1172,41 +1195,196 @@ public class KycResubmissionActivity extends Activity {
             });
             uploadRequest.setMaxRetries(5);
             uploadRequest.startUpload(); //Starting the upload
-            Log.d("KEY_IMAGE+,,,,,,,,,,", "" + "");
-            Log.d(log, "aadhaar_file" + screenshot_id);
-            Log.d(log, "pan_file" + screenshot_address);
-            Log.d(log, "sign_file" + screenshot_custsig);
-            Log.d(log, "ownerSign" + screenshot_ownersig);
-            Log.d(log, "first_name" + fullname.getText().toString());
-            Log.d(log, "Middle_Name" + middle_name.getText().toString());
-            Log.d(log, "Last_Name" + lastname.getText().toString());
-            Log.d(log, "Mobile_Number" + mobile_no.getText().toString());
-            Log.d(log, "Email_ID" + email_id.getText().toString());
-            Log.d(log, "Aadhaar_Number" + aadhaar_no.getText().toString());
-            Log.d(log, "City_Region" + city_name);
-            Log.d(log, "Area" + area_name);
-            Log.d(log, "Society" + soceity_name);
-            Log.d(log, "Landmark" + landmark.getText().toString());
-            Log.d(log, "House_Type" + house_type_name);
-            Log.d(log, "HouseNo" + house_no.getText().toString());
-            Log.d(log, "Block_Qtr_Tower_Wing" + block_tower_name);
-            Log.d(log, "Floor" + floor_name);
-            Log.d(log, "Street_Gali_Road" + street_road_name);
-            Log.d(log, "Pin_Code" + pincode.getText().toString());
-            Log.d(log, "LPG_Company" + lpg_company_name);
-            Log.d(log, "Customer_Type" + "");
-            Log.d(log, "LPG_DISTRIBUTOR" + "");
-            Log.d(log, "LPG_CONSUMER_NO" + "");
-            Log.d(log, "UNIQUE_LPG_ID" + "");
-            Log.d(log, "ownerName" + owner_name.getText().toString());
-            Log.d(log, "idProof" + id_proof);
-            Log.d(log, "adressProof" + address_proof);
-            Log.d(log, "type_of_owner" + Type_Of_Owner);
+
         } catch (Exception exc) {
             Toast.makeText(KycResubmissionActivity.this, "Files Error", Toast.LENGTH_SHORT).show();
             Log.d(log, "upload mulitiprt catch = " + exc.getLocalizedMessage() + exc.getMessage());
             CommonUtils.dismissProgressBar(KycResubmissionActivity.this);
         }
+    }
+
+    public void uploadAddressProof() {
+        CommonUtils.startProgressBar(this, "Updating Address Proof...!!!");
+//        if (owner_signature_path == null) {
+//            screenshot_ownersig = screenshot_custsig;
+//            Log.d("signature_path", screenshot_ownersig);
+//        }
+//        else {
+//            takeScreenshot_owner();
+//        }
+//        if (Type_Of_Owner.equals("Owner")) {
+//            ownar_name = "";
+//        } else {
+//            ownar_name = owner_name.getText().toString().trim();
+//        }
+        try {
+            String uploadId = UUID.randomUUID().toString();
+            Log.d(log, "uploadId+,,,,,,,,,," + "testing" + uploadId);
+            MultipartUploadRequest uploadRequest = new MultipartUploadRequest(KycResubmissionActivity.this, uploadId, Constants.EKYC_ADDRESS_IMAGEUPDATE + "/" + getIntent().getStringExtra("Bp_number"));
+
+            uploadRequest.addParameter("adressProof", address_proof);
+            if (isSaleDeedSelected) {
+                uploadRequest.addFileToUpload(pdf_path, "doc2", "sale_deed.pdf", ContentType.APPLICATION_PDF);
+
+            } else {
+                uploadRequest.addFileToUpload(screenshot_address, "doc2");
+            }
+            uploadRequest.setDelegate(new UploadStatusDelegate() {
+                @Override
+                public void onProgress(Context context, UploadInfo uploadInfo) {
+
+                }
+
+                @Override
+                public void onError(Context context, UploadInfo uploadInfo, Exception exception) {
+                    CommonUtils.dismissProgressBar(KycResubmissionActivity.this);
+                    Toast.makeText(KycResubmissionActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onCompleted(Context context, UploadInfo uploadInfo, ServerResponse serverResponse) {
+                    CommonUtils.dismissProgressBar(KycResubmissionActivity.this);
+                    //hideProgressDialog();
+                    String Uplode = uploadInfo.getSuccessfullyUploadedFiles().toString();
+                    String serverResponse1 = serverResponse.getHeaders().toString();
+                    String str = serverResponse.getBodyAsString();
+                    final JSONObject jsonObject;
+                    try {
+                        jsonObject = new JSONObject(str);
+                        String Message = jsonObject.getString("Message");
+                        Toast.makeText(KycResubmissionActivity.this, Message, Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        Toast.makeText(KycResubmissionActivity.this, "Catching issues", Toast.LENGTH_SHORT).show();
+                        CommonUtils.dismissProgressBar(KycResubmissionActivity.this);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onCancelled(Context context, UploadInfo uploadInfo) {
+                    CommonUtils.dismissProgressBar(KycResubmissionActivity.this);
+                }
+            });
+            uploadRequest.setMaxRetries(5);
+            uploadRequest.startUpload(); //Starting the upload
+
+        } catch (Exception exc) {
+            Toast.makeText(KycResubmissionActivity.this, "Files Error", Toast.LENGTH_SHORT).show();
+            Log.d(log, "upload mulitiprt catch = " + exc.getLocalizedMessage() + exc.getMessage());
+            CommonUtils.dismissProgressBar(KycResubmissionActivity.this);
+        }
+    }
+
+    public void callDataSubmitApi() {
+        materialDialog = new MaterialDialog.Builder(this)
+                .content("Please wait....")
+                .progress(true, 0)
+                .cancelable(false)
+                .show();
+        String login_request = "login_request";
+        Log.e("kycccc",Constants.EKYC_DATA_UPDATE+getIntent().getStringExtra("Bp_number") );
+        StringRequest jr = new StringRequest(Request.Method.POST, Constants.EKYC_DATA_UPDATE+getIntent().getStringExtra("Bp_number"),
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        materialDialog.dismiss();
+                        try {
+                            JSONObject json = new JSONObject(response);
+                            //jsonObject = new JSONObject(str);
+                            if (json.getString("status").equals("200")) {
+                                String Msg = json.getString("Message");
+                                Toast.makeText(KycResubmissionActivity.this, Msg, Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(KycResubmissionActivity.this, "FAILED: " + json.getString("Details"), Toast.LENGTH_SHORT).show();
+
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(KycResubmissionActivity.this, "Error: Data Not Submitted", Toast.LENGTH_SHORT).show();
+
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                materialDialog.dismiss();
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+                        String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        JSONObject obj = new JSONObject(res);
+                        Log.e("object", obj.toString());
+                        JSONObject error1 = obj.getJSONObject("error");
+                        String error_msg = error1.getString("message");
+                        //  Toast.makeText(Forgot_Password_Activity.this, "" + error_msg, Toast.LENGTH_SHORT).show();
+                    } catch (UnsupportedEncodingException e1) {
+                        e1.printStackTrace();
+                    } catch (JSONException e2) {
+                        e2.printStackTrace();
+                    }
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                try {
+                    params.put("first_name", fullname.getText().toString());
+                    params.put("middle_name", middle_name.getText().toString());
+                    params.put("last_name", lastname.getText().toString());
+                    params.put("mobile_number", mobile_no.getText().toString());
+                    params.put("email_id", email_id.getText().toString());
+                    params.put("aadhaar_number", aadhaar_no.getText().toString());
+                    params.put("city_region", city_name);
+                    params.put("area", area_name);
+                    params.put("society", soceity_name);
+                    params.put("landmark", landmark.getText().toString());
+                    params.put("house_type", house_type_name);
+                    params.put("house_no", house_no.getText().toString());
+                    params.put("block_qtr_tower_wing", block_tower_name);
+                    params.put("floor", floor_name);
+                    params.put("street_gali_road", street_road_name);
+                    params.put("pincode", pincode.getText().toString());
+                    params.put("lpg_company", lpg_company_name);
+                    params.put("customer_type", "");
+                    params.put("lpg_distributor", "");
+                    params.put("lpg_consumer_no", "");
+                    params.put("unique_id", "");
+                    params.put("meterNo", meater_no.getText().toString());
+                    params.put("ownerName", " ");
+                    params.put("chequeNo", "");
+                    params.put("chequeDate", "");
+                    params.put("drawnOn", "");
+                    params.put("amt", "");
+                    params.put("idProof", "id_proof");
+                   params.put("adressProof", "address_proof");
+                    params.put("type_of_owner", Type_Of_Owner);
+                    params.put("latitude", Latitude);
+                    params.put("longitude", Longitude);
+                    params.put("select1", block_tower_type_name);
+                    params.put("select2", street_road_type_name);
+
+                } catch (Exception e) {
+                    Log.d(log,"log = "+e.getLocalizedMessage());
+                }
+                return params;
+            }
+          /*  @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+               // headers.put("X-Requested-With", "XMLHttpRequest");
+                  headers.put(" Content-Type", "multipart/form-data");
+                //headers.put("Accept", "application/json");
+               /// headers.put("Authorization", "Bearer " +sharedPrefs.getToken());
+                return headers;
+            }*/
+        };
+        jr.setRetryPolicy(new DefaultRetryPolicy(25 * 10000, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        jr.setTag(login_request);
+        AppController.getInstance().addToRequestQueue(jr, login_request);
     }
 
     private void loadSpinnerData() {
@@ -1324,7 +1502,6 @@ public class KycResubmissionActivity extends Activity {
                         JSONObject jsonObject1 = jsonArray_floor.getJSONObject(i);
                         String society_name_select = jsonObject1.getString("floor_name");
                         Floor_name.add(society_name_select);
-
                     }
                     ArrayAdapter<String> area_adapter = new ArrayAdapter<String>(KycResubmissionActivity.this, android.R.layout.simple_spinner_dropdown_item, Area);
                     ArrayAdapter<String> block_tower_adapter = new ArrayAdapter<String>(KycResubmissionActivity.this, android.R.layout.simple_spinner_dropdown_item, Block_tower_name);
@@ -1478,7 +1655,7 @@ public class KycResubmissionActivity extends Activity {
             pincode.setError("Enter Pincode");
             CommonUtils.toast_msg(this, "Enter pin code");
             return isDataValid;
-        } else if (TextUtils.isEmpty(image_path_id)) {
+        } /*else if (TextUtils.isEmpty(image_path_id)) {
             isDataValid = false;
             CommonUtils.toast_msg(this, "Please Select Id proof");
             return isDataValid;
@@ -1490,7 +1667,7 @@ public class KycResubmissionActivity extends Activity {
             isDataValid = false;
             CommonUtils.toast_msg(this, "Please Select Customer signature");
             return isDataValid;
-        } else if (Type_Of_Owner.equalsIgnoreCase("Rented") && TextUtils.isEmpty(owner_signature_path)) {
+        }*//* else if (Type_Of_Owner.equalsIgnoreCase("Rented") && TextUtils.isEmpty(owner_signature_path)) {
             isDataValid = false;
             CommonUtils.toast_msg(this, "Please Select Owner signature");
             return isDataValid;
@@ -1499,11 +1676,11 @@ public class KycResubmissionActivity extends Activity {
             CommonUtils.toast_msg(this, "Please Enter Owner Name");
             owner_name.setError("Owner name mandatory");
             return isDataValid;
-        } else if (!checkBox_term_cond.isChecked()) {
+        }*/ /*else if (!checkBox_term_cond.isChecked()) {
             isDataValid = false;
             CommonUtils.toast_msg(this, "Please tick to accept Term & Condition");
             return isDataValid;
-        } else {
+        } */ else {
             return isDataValid;
         }
     }
@@ -1580,6 +1757,18 @@ public class KycResubmissionActivity extends Activity {
                 }
                 break;
         }
+    }
+    private void  selectPdf() {
+//        Intent intent = new Intent();
+//        intent.setType("application/pdf");
+//        intent.setAction(Intent.ACTION_GET_CONTENT);
+//        startActivityForResult(Intent.createChooser(intent, "Select PDF"), REQUEST_CODE_PDF_PICKER);
+        Intent intent4 = new Intent(this, NormalFilePickActivity.class);
+        intent4.putExtra(Constant.MAX_NUMBER, 1);
+        intent4.putExtra(NormalFilePickActivity.SUFFIX, new String[]{"pdf"});
+        startActivityForResult(intent4, Constant.REQUEST_CODE_PICK_FILE);
+
+
     }
 
     private void openPdf() {

@@ -144,6 +144,9 @@
             android:name=".Activity.Kyc_Form_Activity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".Activity.KycResubmissionActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".Activity.KYC_Pending_Activity"
             android:screenOrientation="portrait" />
         <activity

@@ -1232,6 +1232,20 @@
                     android:scaleType="fitXY"
                     android:background="@drawable/shape_blue_border"
                      />
+                <TextView
+                    android:id="@+id/tv_pdf_path"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:paddingHorizontal="@dimen/_6sdp"
+                    android:gravity="center"
+                    android:hint="Select file to upload"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:layout_gravity="bottom"
+                    android:visibility="gone"
+                    android:background="@drawable/shape_blue_border" />
             </LinearLayout>
 
 
