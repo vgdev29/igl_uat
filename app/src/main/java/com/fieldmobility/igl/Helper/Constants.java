@@ -5,7 +5,8 @@ public class Constants {
 //    public static String BASE_URL="http://49.50.65.107:8081/";
 //    public static  String BASE_URL = "http://49.50.68.239:8080/"; //PYTHON SERVER
     //  UAT URL
-     public static String BASE_URL = "http://49.50.118.112:8080/";
+    public static String BASE_URL = "http://49.50.118.112:8080/";
+    public  static String BASE_URL_PYTHON = "http://49.50.68.239:8080/";
     static String localhost = "http://192.168.31.29:8081/";
     public static String START_CLICKED = "false";
     //public static final String Logout=BASE_URL+"/logout";
@@ -95,7 +96,15 @@ public class Constants {
     public static final String RISER_LISTING = BASE_URL + "ekyc/bp_details/RiserListings";
     public static final String RISER_TPI_APPROVAL_LISTING = BASE_URL + "ekyc/bp_details/RiserApprovalList";
     public static final String RISER__APPROVAL_DECLINE = BASE_URL + "ekyc/bp_details/RiserApproveDecline";
-    public static final String RISER__PROJECT_REPORT = BASE_URL + "api/riserprojectreport";
+    public static final String RISER__PROJECT_REPORT = BASE_URL_PYTHON + "api/riserprojectreport";
+
+    //Ekyc new Api
+    public static final String EKYC_DATA_UPDATE = BASE_URL + "ekyc/bp_details/updatekycData/";
+    public static final String EKYC_ID_IMAGEUPDATE = BASE_URL + "ekyc/bp_details/updateIdProof/";
+    public static final String EKYC_ADDRESS_IMAGEUPDATE = BASE_URL + "ekyc/bp_details/updateAddressProof/";
+   /* public static final String EKYC_DATA_UPDATE = localhost + "/bp_details/updatekycData/";
+    public static final String EKYC_ID_IMAGEUPDATE = localhost + "/bp_details/updateIdProof/";
+    public static final String EKYC_ADDRESS_IMAGEUPDATE = localhost + "/bp_details/updateAddressProof/";*/
 
 
    /* public static final String BP_Creation = localhost + "/registration/bp_creation";

@@ -85,7 +85,7 @@ public class RFC_Adapter extends RecyclerView.Adapter<RFC_Adapter.ViewHolder> im
                 }
             }
         });
-        holder.address_text.setText(Bp_No_array.getHouse_no()+" "+Bp_No_array.getFloor()+" "+Bp_No_array.getHouse_type()+" "+Bp_No_array.getSociety()+" \n"
+        holder.address_text.setText(Bp_No_array.getHouse_no()+" "+Bp_No_array.getFloor()+" "+Bp_No_array.getHouse_type()+" "+Bp_No_array.getArea()+" "+Bp_No_array.getSociety()+" \n"
                 +Bp_No_array.getBlock_qtr_tower_wing()+" "+Bp_No_array.getStreet_gali_road()+" "+Bp_No_array.getLandmark()+" "+Bp_No_array.getCity_region()
         +"\nControl Room- "+Bp_No_array.getControlRoom());
 

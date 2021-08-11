@@ -36,6 +36,7 @@ public class Tab_Host_EKYC extends TabActivity {
         TabHost.TabSpec TabMenu2 = TabHostWindow.newTabSpec("KYCVerification");
 
 
+
         //Setting up tab 1 name.
         TabMenu1.setIndicator("KYC Pending");
         //Set tab 1 activity to tab 1 menu.

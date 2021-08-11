@@ -89,7 +89,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
             initViews();
         }
 
-    }K
+    }
 
     public void callSubmitApi() {
         materialDialog = new MaterialDialog.Builder(this)

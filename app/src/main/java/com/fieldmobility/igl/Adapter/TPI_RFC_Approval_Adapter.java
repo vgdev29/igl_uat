@@ -69,7 +69,7 @@ public class TPI_RFC_Approval_Adapter extends RecyclerView.Adapter<TPI_RFC_Appro
         }
         holder.bp_no_text.setText(Bp_No_array.getBpNumber());
         holder.user_name_text.setText(Bp_No_array.getFirstName());
-        holder.address_text.setText(Bp_No_array.getHouseNo()+" "+Bp_No_array.getFloor()+" "+Bp_No_array.getHouseType()+" "+Bp_No_array.getSociety()+" \n"
+        holder.address_text.setText(Bp_No_array.getHouseNo()+" "+Bp_No_array.getFloor()+" "+Bp_No_array.getHouseType()+" "+Bp_No_array.getArea()+" "+Bp_No_array.getSociety()+" \n"
                 +Bp_No_array.getBlockQtrTowerWing()+" "+Bp_No_array.getStreetGaliRoad()+" "+Bp_No_array.getLandmark()+" "+Bp_No_array.getCityRegion()
                 +"\nControl room - "+Bp_No_array.getControlRoom());
         holder.zone_text.setText(Bp_No_array.getZoneCode());
