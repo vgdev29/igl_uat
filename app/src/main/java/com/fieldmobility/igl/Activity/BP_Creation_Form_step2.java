@@ -56,7 +56,9 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.fieldmobility.igl.Helper.AppController;
+import com.fieldmobility.igl.Helper.ConnectionDetector;
 import com.fieldmobility.igl.Helper.Constants;
+import com.fieldmobility.igl.Helper.GPSLocation;
 import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.MainActivity;
 import com.fieldmobility.igl.Model.User_bpData;
@@ -150,11 +152,13 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
     LinearLayout ll_ownersig;
     Button owner_sign_button, btn_upload_cheque;
     User_bpData user_bpData;
+    String Latitude, Longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bp_creation_form_2);
+        getLocationUsingInternet();
         sharedPrefs = new SharedPrefs(this);
         user_bpData = (User_bpData) getIntent().getSerializableExtra("data");
         Log.d("bpcreation", "oncreate");
@@ -1351,6 +1355,8 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     params.put("annexure_owner", annexure_owner);
                     params.put("block_type", user_bpData.getBlock_tower_type());
                     params.put("street_type", user_bpData.getStreet_road_type());
+                    params.put("latitude", Latitude);
+                    params.put("longitude", Longitude);
                     // params.put("dma_agency",  sharedPrefs.getUUID());
 
                     Log.d("First_Name", user_bpData.getIgl_first_name());
@@ -1583,6 +1589,22 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
             width = (int) (height * bitmapRatio);
         }
         return Bitmap.createScaledBitmap(image, width, height, true);
+    }
+
+    private void getLocationUsingInternet() {
+        boolean isInternetConnected = new ConnectionDetector(BP_Creation_Form_step2.this).isConnectingToInternet();
+        if (isInternetConnected) {
+            // getLocation_usingInternet.setEnabled(false);
+            new GPSLocation(BP_Creation_Form_step2.this).turnGPSOn();// First turn on GPS
+            String getLocation = new GPSLocation(BP_Creation_Form_step2.this).getMyCurrentLocation();// Get current location from
+            Log.d("getLocation++", getLocation.toString());
+            Latitude = GPSLocation.Latitude;
+            Longitude = GPSLocation.Longitude;
+            Log.d("Latitude++", Latitude);
+            Log.d("Longitude++", Longitude);
+        } else {
+            Toast.makeText(BP_Creation_Form_step2.this, "There is no internet connection.", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

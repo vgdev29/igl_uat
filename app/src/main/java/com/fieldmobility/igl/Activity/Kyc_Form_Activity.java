@@ -1509,7 +1509,7 @@ public class Kyc_Form_Activity extends Activity {
             isDataValid = false;
             CommonUtils.toast_msg(this, "Please Select Id proof");
             return isDataValid;
-        } else if ((image_path_address == null || image_path_address.isEmpty()) && pdf_path == null || pdf_path.isEmpty()) {
+        } else if (TextUtils.isEmpty(image_path_address) && TextUtils.isEmpty(pdf_path)) {
             isDataValid = false;
             CommonUtils.toast_msg(this, "Please Select Address proof");
             return isDataValid;

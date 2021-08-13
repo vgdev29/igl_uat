@@ -1008,57 +1008,7 @@
             </LinearLayout>
 
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/peach_light"
-                android:gravity="center"
-                android:padding="@dimen/_5sdp"
-                android:text="Type of Ownership"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14sdp"
-                android:textStyle="bold" />
 
-            <RadioGroup
-                android:id="@+id/radioGroup"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_25sdp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/owner"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:checked="true"
-                    android:text="Owner"
-                    android:textSize="@dimen/_10sdp" />
-
-                <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/rents"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:text="Rented"
-                    android:textSize="@dimen/_10sdp" />
-
-            </RadioGroup>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_20sdp"
-                android:padding="@dimen/_5sdp"
-                android:text="If rented or otherwise, please submit NOC*(to be issues by the lawful owner of the proprty) OR the valid rent agreement with the lawful owner of the premise."
-                android:textColor="@color/black"
-                android:textSize="@dimen/_7sdp"
-                android:textStyle="italic" />
             <TextView
                 android:id="@+id/btn_submit_data"
                 android:layout_width="match_parent"
@@ -1282,7 +1232,7 @@
             </LinearLayout>
             <TextView
                 android:id="@+id/btn_submit_address_proof"
-  android:layout_width="match_parent"
+                android:layout_width="match_parent"
                 android:gravity="center"
                 android:paddingVertical="@dimen/_6sdp"
                 android:layout_marginHorizontal="@dimen/_30sdp"                android:layout_height="wrap_content"
@@ -1294,7 +1244,58 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/_10sdp" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/peach_light"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:layout_marginTop="10dp"
+                android:text="Type of Ownership"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
 
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_25sdp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/owner"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="Owner"
+                    android:textSize="@dimen/_10sdp" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rents"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="Rented"
+                    android:textSize="@dimen/_10sdp" />
+
+            </RadioGroup>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:padding="@dimen/_5sdp"
+                android:text="If rented or otherwise, please submit NOC*(to be issues by the lawful owner of the proprty) OR the valid rent agreement with the lawful owner of the premise."
+                android:textColor="@color/black"
+                android:textSize="@dimen/_7sdp"
+                android:textStyle="italic" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -1389,6 +1390,19 @@
                     android:textSize="@dimen/_8sdp" />
 
             </LinearLayout>
+            <TextView
+                android:id="@+id/btn_submit_signature"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:paddingVertical="@dimen/_6sdp"
+                android:layout_marginHorizontal="@dimen/_30sdp"                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/colorPrimary"
+                android:paddingHorizontal="@dimen/value_14dp"
+                android:text="SUBMIT SIGNATURE"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp" />
 
             <LinearLayout
                 android:layout_width="match_parent"

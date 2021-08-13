@@ -24,7 +24,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -33,8 +32,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
+
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -101,7 +99,7 @@ import java.util.UUID;
 
 public class KycResubmissionActivity extends Activity {
     MaterialDialog materialDialog;
-    TextView btn_submit_data, btn_submit_address_proof, btn_submit_id_proof;
+    TextView btn_submit_data, btn_submit_address_proof, btn_submit_id_proof,btn_submit_signature;
     EditText fullname;
     EditText middle_name;
     EditText lastname;
@@ -203,6 +201,7 @@ public class KycResubmissionActivity extends Activity {
         btn_submit_data = findViewById(R.id.btn_submit_data);
         btn_submit_id_proof = findViewById(R.id.btn_submit_id_proof);
         btn_submit_address_proof = findViewById(R.id.btn_submit_address_proof);
+        btn_submit_signature = findViewById(R.id.btn_submit_signature);
         id_image = findViewById(R.id.adhar_image);
         address_image = findViewById(R.id.address_image);
         customer_sigimage = findViewById(R.id.signature_image);
@@ -646,7 +645,7 @@ public class KycResubmissionActivity extends Activity {
         btn_submit_address_proof.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if ((image_path_address==null || image_path_address.isEmpty()) && pdf_path==null || pdf_path.isEmpty()) {
+                if (TextUtils.isEmpty(image_path_address) && TextUtils.isEmpty(pdf_path)) {
                     CommonUtils.toast_msg(KycResubmissionActivity.this, "Please Select Address proof");
 
                 }
@@ -656,6 +655,24 @@ public class KycResubmissionActivity extends Activity {
                     uploadAddressProof();
                 }
 
+            }
+        });
+        btn_submit_signature.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (TextUtils.isEmpty(customer_signature_path)) {
+                     CommonUtils.toast_msg(KycResubmissionActivity.this, "Please Select Customer signature");
+                } else if (Type_Of_Owner.equalsIgnoreCase("Rented") && TextUtils.isEmpty(owner_signature_path)) {
+                    CommonUtils.toast_msg(KycResubmissionActivity.this, "Please Select Owner signature");
+                } else if (Type_Of_Owner.equalsIgnoreCase("Rented") && TextUtils.isEmpty(owner_name.getText().toString().trim())) {
+                    CommonUtils.toast_msg(KycResubmissionActivity.this, "Please Enter Owner Name");
+                    owner_name.setError("Owner name mandatory");
+
+                }
+                else
+                {
+                    uploadsignature();
+                }
             }
         });
 
@@ -805,6 +822,22 @@ public class KycResubmissionActivity extends Activity {
             file_ownersig = ScreenshotUtils.store(bitmap_ownersig, "ownersig_" + bp_no + ".jpg", saveFile);
             screenshot_ownersig = file_ownersig.toString();
             Log.d(log, "screenshot_ownersig = " + screenshot_ownersig);
+
+        } catch (
+                NullPointerException e) {
+            e.printStackTrace();
+        }
+
+    }
+    private void takeScreenshot_Customer() {
+
+        try {
+            bitmap_custmsig = ScreenshotUtils.getScreenShot_ekyc_custsig(ll_capture_custmsig);
+            File saveFile = ScreenshotUtils.getMainDirectoryName(this);
+            file_cutmsig = ScreenshotUtils.store(bitmap_custmsig, "custsig_" + bp_no + ".jpg", saveFile);
+
+            screenshot_custsig = file_cutmsig.toString();
+            Log.d(log, "screenshot_custsig = " + screenshot_custsig);
 
         } catch (
                 NullPointerException e) {
@@ -1205,18 +1238,7 @@ public class KycResubmissionActivity extends Activity {
 
     public void uploadAddressProof() {
         CommonUtils.startProgressBar(this, "Updating Address Proof...!!!");
-//        if (owner_signature_path == null) {
-//            screenshot_ownersig = screenshot_custsig;
-//            Log.d("signature_path", screenshot_ownersig);
-//        }
-//        else {
-//            takeScreenshot_owner();
-//        }
-//        if (Type_Of_Owner.equals("Owner")) {
-//            ownar_name = "";
-//        } else {
-//            ownar_name = owner_name.getText().toString().trim();
-//        }
+
         try {
             String uploadId = UUID.randomUUID().toString();
             Log.d(log, "uploadId+,,,,,,,,,," + "testing" + uploadId);
@@ -1229,6 +1251,76 @@ public class KycResubmissionActivity extends Activity {
             } else {
                 uploadRequest.addFileToUpload(screenshot_address, "doc2");
             }
+
+            uploadRequest.setDelegate(new UploadStatusDelegate() {
+                @Override
+                public void onProgress(Context context, UploadInfo uploadInfo) {
+
+                }
+
+                @Override
+                public void onError(Context context, UploadInfo uploadInfo, Exception exception) {
+                    CommonUtils.dismissProgressBar(KycResubmissionActivity.this);
+                    Toast.makeText(KycResubmissionActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onCompleted(Context context, UploadInfo uploadInfo, ServerResponse serverResponse) {
+                    CommonUtils.dismissProgressBar(KycResubmissionActivity.this);
+                    //hideProgressDialog();
+                    String Uplode = uploadInfo.getSuccessfullyUploadedFiles().toString();
+                    String serverResponse1 = serverResponse.getHeaders().toString();
+                    String str = serverResponse.getBodyAsString();
+                    final JSONObject jsonObject;
+                    try {
+                        jsonObject = new JSONObject(str);
+                        String Message = jsonObject.getString("Message");
+                        Toast.makeText(KycResubmissionActivity.this, Message, Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        Toast.makeText(KycResubmissionActivity.this, "Catching issues", Toast.LENGTH_SHORT).show();
+                        CommonUtils.dismissProgressBar(KycResubmissionActivity.this);
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onCancelled(Context context, UploadInfo uploadInfo) {
+                    CommonUtils.dismissProgressBar(KycResubmissionActivity.this);
+                }
+            });
+            uploadRequest.setMaxRetries(5);
+            uploadRequest.startUpload(); //Starting the upload
+
+        } catch (Exception exc) {
+            Toast.makeText(KycResubmissionActivity.this, "Files Error", Toast.LENGTH_SHORT).show();
+            Log.d(log, "upload mulitiprt catch = " + exc.getLocalizedMessage() + exc.getMessage());
+            CommonUtils.dismissProgressBar(KycResubmissionActivity.this);
+        }
+    }
+
+    public void uploadsignature() {
+        CommonUtils.startProgressBar(this, "Updating Signature ...!!!");
+       takeScreenshot_Customer();
+        if (owner_signature_path == null) {
+            screenshot_ownersig = screenshot_custsig;
+            Log.d("signature_path", screenshot_ownersig);
+        }
+        else {
+            takeScreenshot_owner();
+        }
+        if (Type_Of_Owner.equals("Owner")) {
+            ownar_name = getIntent().getStringExtra("First_name");
+        } else {
+            ownar_name = owner_name.getText().toString().trim();
+        }
+        try {
+            String uploadId = UUID.randomUUID().toString();
+            Log.d(log, "uploadId+,,,,,,,,,," + "testing" + uploadId);
+            MultipartUploadRequest uploadRequest = new MultipartUploadRequest(KycResubmissionActivity.this, uploadId, Constants.EKYC_SIGNATURE_IMAGEUPDATE + "/" + getIntent().getStringExtra("Bp_number"));
+            uploadRequest.addFileToUpload(screenshot_custsig, "sign_file");
+            uploadRequest.addFileToUpload(screenshot_ownersig, "ownerSign");
+            uploadRequest.addParameter("ownerName", ownar_name);
+            uploadRequest.addParameter("type_of_owner", Type_Of_Owner);
             uploadRequest.setDelegate(new UploadStatusDelegate() {
                 @Override
                 public void onProgress(Context context, UploadInfo uploadInfo) {
@@ -1295,7 +1387,7 @@ public class KycResubmissionActivity extends Activity {
                                 String Msg = json.getString("Message");
                                 Toast.makeText(KycResubmissionActivity.this, Msg, Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(KycResubmissionActivity.this, "FAILED: " + json.getString("Details"), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(KycResubmissionActivity.this, "FAILED: " + json.getString("Message"), Toast.LENGTH_SHORT).show();
 
                             }
 
@@ -1317,8 +1409,6 @@ public class KycResubmissionActivity extends Activity {
                         String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
                         JSONObject obj = new JSONObject(res);
                         Log.e("object", obj.toString());
-                        JSONObject error1 = obj.getJSONObject("error");
-                        String error_msg = error1.getString("message");
                         //  Toast.makeText(Forgot_Password_Activity.this, "" + error_msg, Toast.LENGTH_SHORT).show();
                     } catch (UnsupportedEncodingException e1) {
                         e1.printStackTrace();
@@ -1349,38 +1439,24 @@ public class KycResubmissionActivity extends Activity {
                     params.put("street_gali_road", street_road_name);
                     params.put("pincode", pincode.getText().toString());
                     params.put("lpg_company", lpg_company_name);
-                    params.put("customer_type", "");
-                    params.put("lpg_distributor", "");
-                    params.put("lpg_consumer_no", "");
-                    params.put("unique_id", "");
                     params.put("meterNo", meater_no.getText().toString());
-                    params.put("ownerName", " ");
-                    params.put("chequeNo", "");
-                    params.put("chequeDate", "");
-                    params.put("drawnOn", "");
-                    params.put("amt", "");
-                    params.put("idProof", "id_proof");
-                   params.put("adressProof", "address_proof");
-                    params.put("type_of_owner", Type_Of_Owner);
                     params.put("latitude", Latitude);
                     params.put("longitude", Longitude);
                     params.put("select1", block_tower_type_name);
                     params.put("select2", street_road_type_name);
+
+//                    params.put("ownerName", " ");
+//
+//
+//                    params.put("type_of_owner", Type_Of_Owner);
+
 
                 } catch (Exception e) {
                     Log.d(log,"log = "+e.getLocalizedMessage());
                 }
                 return params;
             }
-          /*  @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-               // headers.put("X-Requested-With", "XMLHttpRequest");
-                  headers.put(" Content-Type", "multipart/form-data");
-                //headers.put("Accept", "application/json");
-               /// headers.put("Authorization", "Bearer " +sharedPrefs.getToken());
-                return headers;
-            }*/
+
         };
         jr.setRetryPolicy(new DefaultRetryPolicy(25 * 10000, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         jr.setTag(login_request);
