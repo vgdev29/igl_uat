@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -26,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.DefaultRetryPolicy;
@@ -37,6 +39,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.fieldmobility.igl.Activity.NICustomerActivity;
+import com.fieldmobility.igl.Activity.RFC_Connection_Activity;
 import com.fieldmobility.igl.Helper.AppController;
 import com.fieldmobility.igl.Helper.CommonUtils;
 import com.fieldmobility.igl.Helper.Constants;
@@ -59,8 +62,14 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import static android.os.Environment.getExternalStorageDirectory;
+
+import net.gotev.uploadservice.MultipartUploadRequest;
+import net.gotev.uploadservice.ServerResponse;
+import net.gotev.uploadservice.UploadInfo;
+import net.gotev.uploadservice.UploadStatusDelegate;
 
 public class RiserFormActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener, RadioGroup.OnCheckedChangeListener {
     private ArrayList<String> propertyTypeList = new ArrayList<>();
@@ -92,101 +101,101 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
     }
 
     public void callSubmitApi() {
-        materialDialog = new MaterialDialog.Builder(this)
-                .content("Please wait....")
-                .progress(true, 0)
-                .cancelable(false)
-                .show();
+        try {
+            String laying=isRiserLayingDone?"1":"0";
+            String testing=isRiserTestingDone?"1":"0";
+            String commi=isRiserCommissioningDone?"1":"0";
+            materialDialog = new MaterialDialog.Builder(this)
+                    .content("Please wait....")
+                    .progress(true, 0)
+                    .cancelable(false)
+                    .show();
+            Log.d("riser",Constants.RISER__PROJECT_REPORT);
+            String login_request = "Riser form Submission";
+            String uploadId = UUID.randomUUID().toString();
 
-        String login_request = "Riser form Submission";
-        StringRequest jr = new StringRequest(Request.Method.POST, Constants.RISER__PROJECT_REPORT,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        materialDialog.dismiss();
-                        try {
-                            JSONObject json = new JSONObject(response);
-                            if (json.getString("Code").equals("200")) {
-                                String Msg = json.getString("Message");
-                                CommonUtils.toast_msg(RiserFormActivity.this,Msg);
-                                finish();
+            new MultipartUploadRequest(RiserFormActivity.this, uploadId, Constants.RISER__PROJECT_REPORT )
+                    .addFileToUpload(imagePathOne, "site_photo")
+                    .addFileToUpload(imagePathTwo, "site_photo")
+                    .addFileToUpload(imagePathOptional, "site_photo")
+                   .addParameter("riser_no", "2")
+                    .addParameter("city", tv_city.getText().toString().trim())
+                    .addParameter("zone", tv_zone.getText().toString().trim())
+                    .addParameter("area", tv_area.getText().toString().trim())
+                    .addParameter("society",tv_society.getText().toString().trim())
+                    .addParameter("street", dataModel.getStreetGaliRoad())
+                    .addParameter("bp_number", dataModel.getBpNumber())
+                    .addParameter("property_type", selectedPropertyType)
+                    .addParameter("gas_type", selectedGasType)
+                    .addParameter("hse_floor",selectedHSE)
+                    .addParameter("riser_length", selectedRiserLength)
+                    .addParameter("isolation_valve", selectedIsolationValue)
+                    .addParameter("laying", laying)
+                    .addParameter("testing", testing)
+                    .addParameter("commissioning", commi)
+                    .addParameter("lateral_tapping", selectedLateralTapping)
+                    .addParameter("area_type", selectedAreaType)
+                    .addParameter("connected_bp", selectedLateralTapping)
+                    .addParameter("connected_house", selectedLateralTapping)
+                    .addParameter("hse_gi", selectedLateralTapping)
+                    .addParameter("total_ib", selectedLateralTapping)
+                    .addParameter("contractor_id", selectedLateralTapping)
+                    .addParameter("tpi_id", selectedLateralTapping)
+                    .addParameter("supervisor_id", selectedLateralTapping)
+                    .addParameter("latitude", selectedLateralTapping)
+                    .addParameter("longitude", selectedLateralTapping)
 
-                            } else {
 
-                            }
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-
+                    .setDelegate(new UploadStatusDelegate() {
+                        @Override
+                        public void onProgress(Context context, UploadInfo uploadInfo) {
+                            materialDialog.show();
                         }
 
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                materialDialog.dismiss();
-                NetworkResponse response = error.networkResponse;
-                if (error instanceof ServerError && response != null) {
-                    try {
-                        String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        JSONObject obj = new JSONObject(res);
-                        Log.e("object", obj.toString());
-                        JSONObject error1 = obj.getJSONObject("error");
-                        String error_msg = error1.getString("message");
-                        //  Toast.makeText(Forgot_Password_Activity.this, "" + error_msg, Toast.LENGTH_SHORT).show();
-                    } catch (UnsupportedEncodingException e1) {
-                        e1.printStackTrace();
-                    } catch (JSONException e2) {
-                        e2.printStackTrace();
-                    }
-                }
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                try {
+                        @Override
+                        public void onError(Context context, UploadInfo uploadInfo, Exception exception) {
+                            exception.printStackTrace();
+                            materialDialog.dismiss();
+                            //Dilogbox_Error();
+                            Log.e("Uplodeerror++", uploadInfo.getSuccessfullyUploadedFiles().toString());
+                        }
 
+                        @Override
+                        public void onCompleted(Context context, UploadInfo uploadInfo, ServerResponse serverResponse) {
+                            materialDialog.dismiss();
+                            String Uplode = uploadInfo.getSuccessfullyUploadedFiles().toString();
+                            String serverResponse1 = serverResponse.getHeaders().toString();
+                            String str = serverResponse.getBodyAsString();
+                            Log.e("UPLOADEsinin++", str);
+                            final JSONObject jsonObject;
+                            try {
+                                jsonObject = new JSONObject(str);
 
-//                    params.put("allocation", tv_allocation_num.getText().toString().trim());
-                    params.put("agent_name", tv_agent_name.getText().toString().trim());
-                    params.put("riser_no", "2");
-                    params.put("city", tv_city.getText().toString().trim());
-                    params.put("zone", tv_zone.getText().toString().trim());
-                    params.put("area", tv_area.getText().toString().trim());
-                    params.put("society", tv_society.getText().toString().trim());
-                    params.put("street", dataModel.getStreetGaliRoad());
-                    params.put("bp_number", dataModel.getBpNumber());
+                                if (jsonObject.getString("Code").equals("200")) {
+                                    String Msg = jsonObject.getString("Message");
+                                    CommonUtils.toast_msg(RiserFormActivity.this,Msg);
+                                    finish();
 
-//                    params.put("user_id", et_connected_house.getText().toString().trim());
-                    params.put("property_type", selectedPropertyType);
-                    params.put("gas_type", selectedGasType);
-                    params.put("hse_floor", selectedHSE);
-                    params.put("length", selectedRiserLength);
-                    params.put("isolation_valve", selectedIsolationValue);
-                    String laying=isRiserLayingDone?"1":"0";
-                    params.put("laying",laying );
-                    String testing=isRiserTestingDone?"1":"0";
-                    params.put("testing",testing );
-                    String commi=isRiserCommissioningDone?"1":"0";
-                    params.put("commissioning",commi );
-                    params.put("lateral_tapping", selectedLateralTapping);
-                    params.put("area_type", selectedAreaType);
-                    params.put("site_photo1", imagePathOne);
-                    params.put("site_photo2", imagePathTwo);
-                    params.put("site_photo3", imagePathOptional);
+                                } else {
 
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
 
-                } catch (Exception e) {
-                }
-                return params;
-            }
+                        @Override
+                        public void onCancelled(Context context, UploadInfo uploadInfo) {
+                            materialDialog.dismiss();
+                        }
+                    })
+                    .setMaxRetries(2)
+                    .startUpload(); //Starting the upload
 
-        };
-        jr.setRetryPolicy(new DefaultRetryPolicy(25 * 10000, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        jr.setTag(login_request);
-        AppController.getInstance().addToRequestQueue(jr, login_request);
+        } catch (Exception exc) {
+            //Toast.makeText(RFC_Connection_Activity.this, "Please select Image", Toast.LENGTH_SHORT).show();
+            materialDialog.dismiss();
+        }
     }
 
     private void initViews() {
