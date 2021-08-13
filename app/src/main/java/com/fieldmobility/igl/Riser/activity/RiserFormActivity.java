@@ -3,6 +3,8 @@ package com.fieldmobility.igl.Riser.activity;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -40,6 +42,7 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.fieldmobility.igl.Activity.NICustomerActivity;
 import com.fieldmobility.igl.Activity.RFC_Connection_Activity;
+import com.fieldmobility.igl.Adapter.ConnectedHouseAdapter;
 import com.fieldmobility.igl.Helper.AppController;
 import com.fieldmobility.igl.Helper.CommonUtils;
 import com.fieldmobility.igl.Helper.Constants;
@@ -47,6 +50,7 @@ import com.fieldmobility.igl.Model.RiserListingModel;
 import com.fieldmobility.igl.R;
 import com.fieldmobility.igl.utils.Utils;
 import com.google.gson.Gson;
+import com.itextpdf.text.pdf.parser.Line;
 import com.opensooq.supernova.gligar.GligarPicker;
 
 import org.json.JSONException;
@@ -77,7 +81,9 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
     private ArrayList<String> hseList = new ArrayList<>();
     private ArrayList<String> giList = new ArrayList<>();
     private ArrayList<String> areaTypeList = new ArrayList<>();
-
+    int ConnectedHouse = 0;
+    int connectedHseMaxLimit = 5;
+    ConnectedHouseAdapter connectedHouseAdapter;
     String selectedPropertyType = "low-rise", selectedGasType = "Non Gasified", selectedHSE = "", selectedRiserLength = "Select Diameter", selectedIsolationValue = "Select Diameter", selectedLateralTapping = "", selectedAreaType = "Off Line/Project";
     boolean isRiserTestingDone, isRiserLayingDone, isRiserCommissioningDone;
     String imagePathOne = "", imagePathTwo = "", imagePathOptional = "";
@@ -102,32 +108,38 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
 
     public void callSubmitApi() {
         try {
-            String laying=isRiserLayingDone?"1":"0";
-            String testing=isRiserTestingDone?"1":"0";
-            String commi=isRiserCommissioningDone?"1":"0";
+            String lat = "", log = "";
+            if (!Utils.getLocationUsingInternet(RiserFormActivity.this).isEmpty()) {
+                String latLong[] = Utils.getLocationUsingInternet(RiserFormActivity.this).split("/");
+                lat = latLong[0];
+                log = latLong[1];
+            }
+            String riserNum = "R" + dataModel.getZone() + Utils.getRandomNumWithChar(5);
+            String laying = isRiserLayingDone ? "1" : "0";
+            String testing = isRiserTestingDone ? "1" : "0";
+            String commi = isRiserCommissioningDone ? "1" : "0";
             materialDialog = new MaterialDialog.Builder(this)
                     .content("Please wait....")
                     .progress(true, 0)
                     .cancelable(false)
                     .show();
-            Log.d("riser",Constants.RISER__PROJECT_REPORT);
+            Log.d("riser", Constants.RISER__PROJECT_REPORT);
             String login_request = "Riser form Submission";
             String uploadId = UUID.randomUUID().toString();
 
-            new MultipartUploadRequest(RiserFormActivity.this, uploadId, Constants.RISER__PROJECT_REPORT )
-                    .addFileToUpload(imagePathOne, "site_photo")
+            MultipartUploadRequest req = new MultipartUploadRequest(RiserFormActivity.this, uploadId, Constants.RISER__PROJECT_REPORT);
+            req.addFileToUpload(imagePathOne, "site_photo")
                     .addFileToUpload(imagePathTwo, "site_photo")
-                    .addFileToUpload(imagePathOptional, "site_photo")
-                   .addParameter("riser_no", "2")
+                    .addParameter("riser_no", riserNum)
                     .addParameter("city", tv_city.getText().toString().trim())
                     .addParameter("zone", tv_zone.getText().toString().trim())
                     .addParameter("area", tv_area.getText().toString().trim())
-                    .addParameter("society",tv_society.getText().toString().trim())
+                    .addParameter("society", tv_society.getText().toString().trim())
                     .addParameter("street", dataModel.getStreetGaliRoad())
                     .addParameter("bp_number", dataModel.getBpNumber())
                     .addParameter("property_type", selectedPropertyType)
                     .addParameter("gas_type", selectedGasType)
-                    .addParameter("hse_floor",selectedHSE)
+                    .addParameter("hse_floor", selectedHSE)
                     .addParameter("riser_length", selectedRiserLength)
                     .addParameter("isolation_valve", selectedIsolationValue)
                     .addParameter("laying", laying)
@@ -135,60 +147,62 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
                     .addParameter("commissioning", commi)
                     .addParameter("lateral_tapping", selectedLateralTapping)
                     .addParameter("area_type", selectedAreaType)
-                    .addParameter("connected_bp", selectedLateralTapping)
-                    .addParameter("connected_house", selectedLateralTapping)
-                    .addParameter("hse_gi", selectedLateralTapping)
-                    .addParameter("total_ib", selectedLateralTapping)
-                    .addParameter("contractor_id", selectedLateralTapping)
-                    .addParameter("tpi_id", selectedLateralTapping)
-                    .addParameter("supervisor_id", selectedLateralTapping)
-                    .addParameter("latitude", selectedLateralTapping)
-                    .addParameter("longitude", selectedLateralTapping)
+                    .addParameter("connected_bp", "" + ConnectedHouse)
+                    .addParameter("connected_house", "" + ConnectedHouse)
+//                    .addParameter("hse_gi", selectedLateralTapping)
+                    .addParameter("total_ib", et_ib.getText().toString().trim()) // Edittext
+                    .addParameter("contractor_id", dataModel.getRfcadmin()) //admin
+                    .addParameter("tpi_id", dataModel.getRfcTpi()) //tpi
+                    .addParameter("supervisor_id", dataModel.getRiserSup()) //riserSup
+                    .addParameter("latitude", lat) //KycResubmission method
+                    .addParameter("longitude", log);
+            if (imagePathOptional != null && !imagePathOptional.isEmpty()) {
+                req.addFileToUpload(imagePathOptional, "site_photo");
+            }
 
+            req.setDelegate(new UploadStatusDelegate() {
+                @Override
+                public void onProgress(Context context, UploadInfo uploadInfo) {
+                    materialDialog.show();
+                }
 
-                    .setDelegate(new UploadStatusDelegate() {
-                        @Override
-                        public void onProgress(Context context, UploadInfo uploadInfo) {
-                            materialDialog.show();
+                @Override
+                public void onError(Context context, UploadInfo uploadInfo, Exception exception) {
+                    exception.printStackTrace();
+                    materialDialog.dismiss();
+                    //Dilogbox_Error();
+                    Log.e("Uplodeerror++", uploadInfo.getSuccessfullyUploadedFiles().toString());
+                }
+
+                @Override
+                public void onCompleted(Context context, UploadInfo uploadInfo, ServerResponse serverResponse) {
+                    materialDialog.dismiss();
+                    String Uplode = uploadInfo.getSuccessfullyUploadedFiles().toString();
+                    String serverResponse1 = serverResponse.getHeaders().toString();
+                    String str = serverResponse.getBodyAsString();
+                    Log.e("UPLOADEsinin++", str);
+                    final JSONObject jsonObject;
+                    try {
+                        jsonObject = new JSONObject(str);
+
+                        if (jsonObject.getString("status").equals("200")) {
+                            String Msg = jsonObject.getString("Message");
+                            CommonUtils.toast_msg(RiserFormActivity.this, Msg);
+                            finish();
+
+                        } else {
+
                         }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
 
-                        @Override
-                        public void onError(Context context, UploadInfo uploadInfo, Exception exception) {
-                            exception.printStackTrace();
-                            materialDialog.dismiss();
-                            //Dilogbox_Error();
-                            Log.e("Uplodeerror++", uploadInfo.getSuccessfullyUploadedFiles().toString());
-                        }
-
-                        @Override
-                        public void onCompleted(Context context, UploadInfo uploadInfo, ServerResponse serverResponse) {
-                            materialDialog.dismiss();
-                            String Uplode = uploadInfo.getSuccessfullyUploadedFiles().toString();
-                            String serverResponse1 = serverResponse.getHeaders().toString();
-                            String str = serverResponse.getBodyAsString();
-                            Log.e("UPLOADEsinin++", str);
-                            final JSONObject jsonObject;
-                            try {
-                                jsonObject = new JSONObject(str);
-
-                                if (jsonObject.getString("Code").equals("200")) {
-                                    String Msg = jsonObject.getString("Message");
-                                    CommonUtils.toast_msg(RiserFormActivity.this,Msg);
-                                    finish();
-
-                                } else {
-
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(Context context, UploadInfo uploadInfo) {
-                            materialDialog.dismiss();
-                        }
-                    })
+                @Override
+                public void onCancelled(Context context, UploadInfo uploadInfo) {
+                    materialDialog.dismiss();
+                }
+            })
                     .setMaxRetries(2)
                     .startUpload(); //Starting the upload
 
@@ -207,9 +221,12 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         gasType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_gas_type.setAdapter(gasType);
 
+        hseList.add("HSE (g+4)");
+        selectedHSE = "HSE (g+4)";
         ArrayAdapter<String> hseType = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, hseList);
         hseType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_hse.setAdapter(hseType);
+
 
         ArrayAdapter<String> GITyppe = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, giList);
         GITyppe.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -223,7 +240,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
 
 //        tv_allocation_num.setText(dataModel.getAllocation().getAllocationNumber());
 //        tv_sub_allocatio.setText(dataModel.getSuballocationNumber());
-        tv_agent_name.setText(dataModel.getFirstName()+" "+dataModel.getLastName());
+        tv_agent_name.setText(dataModel.getFirstName() + " " + dataModel.getLastName());
 //        tv_po_num.setText(dataModel.getAllocation().getPoNumber());
         tv_city.setText(dataModel.getCityRegion());
         tv_zone.setText(dataModel.getZone());
@@ -232,15 +249,19 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
 
         et_gali.setText(dataModel.getStreetGaliRoad());
         tv_bp_num.setText(dataModel.getBpNumber());
+        connectedHouseAdapter = new ConnectedHouseAdapter(this);
+        rv_connected_house.setAdapter(connectedHouseAdapter);
     }
 
-    TextView /*tv_allocation_num, tv_sub_allocatio,*/ tv_bp_num,tv_agent_name, /*tv_po_num,*/ tv_city, tv_zone, tv_area, tv_society;
-    EditText et_gali/*, et_connected_house*/;
+    TextView /*tv_allocation_num, tv_sub_allocatio,*/ tv_bp_num, tv_agent_name, /*tv_po_num,*/
+            tv_city, tv_zone, tv_area, tv_society, tv_add_more_hse;
+    EditText et_gali, et_ib/*, et_connected_house*/;
     RadioGroup rg_riser_laying, rg_riser_testing, rg_riser_commissioning;
     ImageView iv_one, iv_two, iv_three;
     FrameLayout fl_image1, fl_image2, fl_image3;
     Spinner sp_property_type, sp_gas_type, sp_hse, sp_riser_length, sp_isolation_value, sp_lateral_tapping, sp_area_type;
     Button approve_button;
+    RecyclerView rv_connected_house;
 
     private void findViews() {
         findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
@@ -251,8 +272,13 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         });
 //        tv_allocation_num = findViewById(R.id.tv_allocation_num);
 //        tv_sub_allocatio = findViewById(R.id.tv_sub_allocatio);
+        rv_connected_house = findViewById(R.id.rv_connected_house);
+        rv_connected_house.setLayoutManager(new LinearLayoutManager(this));
+        tv_add_more_hse = findViewById(R.id.tv_add_more_hse);
+        tv_add_more_hse.setOnClickListener(this);
         tv_agent_name = findViewById(R.id.tv_agent_name);
 //        tv_po_num = findViewById(R.id.tv_po_num);
+        et_ib = findViewById(R.id.et_ib);
         tv_city = findViewById(R.id.tv_city);
         tv_zone = findViewById(R.id.tv_zone);
         tv_area = findViewById(R.id.tv_area);
@@ -305,10 +331,6 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         gasTypeList.add("Non Gasified");
         gasTypeList.add("Gasified");
 
-        //HSE data
-        hseList.add("Select HSE");
-        hseList.add("HSE (g+4)");
-        hseList.add("HSE(g+14 & above)");
 
         //RISER LENGTH, ISOLATION VALUE, LATERAL TAPPING
         giList.add("Select Diameter");
@@ -331,6 +353,25 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
 
         } else if (parent == sp_property_type) {
             selectedPropertyType = propertyTypeList.get(position);
+            hseList.clear();
+            if (selectedPropertyType.equals("low-rise")) {
+                if (connectedHseMaxLimit == 15) {
+                    connectedHouseAdapter.itemCount = 5;
+                    connectedHouseAdapter.notifyDataSetChanged();
+                }
+                connectedHseMaxLimit = 5;
+                hseList.add("HSE (g+4)");
+                selectedHSE = "HSE (g+4)";
+            } else {
+                connectedHseMaxLimit = 15;
+                hseList.add("HSE(g+14 & above)");
+                selectedHSE = "HSE(g+14 & above)";
+
+            }
+            ArrayAdapter<String> hseType = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, hseList);
+            hseType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            sp_hse.setAdapter(hseType);
+
 
         } else if (parent == sp_lateral_tapping) {
             selectedLateralTapping = giList.get(position);
@@ -360,6 +401,14 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
     public void onClick(View v) {
         if (v == fl_image1) {
             openImagePickerOption(isForImage1);
+
+        } else if (v == tv_add_more_hse) {
+            if (connectedHouseAdapter.itemCount < connectedHseMaxLimit) {
+                connectedHouseAdapter.addMoreHouse();
+            } else {
+                Toast.makeText(RiserFormActivity.this, "Maximum " + connectedHseMaxLimit + " houses can be added", Toast.LENGTH_SHORT).show();
+            }
+
 
         } else if (v == fl_image2) {
             openImagePickerOption(isForImage2);
@@ -399,14 +448,14 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
             isValid = true;
         } else {
             isValid = false;
-            CommonUtils.toast_msg(RiserFormActivity.this,"Please Select Mandatory Fields");
+            CommonUtils.toast_msg(RiserFormActivity.this, "Please Select Mandatory Fields");
             return isValid;
         }
         if (!imagePathOne.isEmpty() && !imagePathTwo.isEmpty())
             isValid = true;
         else {
             isValid = false;
-            CommonUtils.toast_msg(RiserFormActivity.this,"Please Upload Mandatory Photos");
+            CommonUtils.toast_msg(RiserFormActivity.this, "Please Upload Mandatory Photos");
             return isValid;
         }
 
@@ -441,26 +490,26 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
 //                    String pathsList[] = data.getExtras().getStringArray(GligarPicker.IMAGES_RESULT); // return list of selected images paths.
                     Uri filePathHomeAddress = data.getData();
                     Bitmap resultBitmap = null;
-                    String selectedImagePath=null;
+                    String selectedImagePath = null;
                     try {
                         resultBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathHomeAddress);
-                         selectedImagePath = getPath(filePathHomeAddress);
+                        selectedImagePath = getPath(filePathHomeAddress);
                         Log.e("image_path_aadhar+,", "" + selectedImagePath);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    if (resultBitmap != null){
-                        if (requestCode==REQUEST_CODE_PICK_IMAGE_1_GALLERY){
+                    if (resultBitmap != null) {
+                        if (requestCode == REQUEST_CODE_PICK_IMAGE_1_GALLERY) {
 //                            imagePathOne=change_to_binary(resultBitmap);
-                            imagePathOne=selectedImagePath;
+                            imagePathOne = selectedImagePath;
                             iv_one.setImageBitmap(resultBitmap);
                         }
-                        if (requestCode==REQUEST_CODE_PICK_IMAGE_2_GALLERY){
-                            imagePathTwo=selectedImagePath;
+                        if (requestCode == REQUEST_CODE_PICK_IMAGE_2_GALLERY) {
+                            imagePathTwo = selectedImagePath;
                             iv_two.setImageBitmap(resultBitmap);
                         }
-                        if (requestCode==REQUEST_CODE_PICK_IMAGE_3_GALLERY){
-                            imagePathOptional=selectedImagePath;
+                        if (requestCode == REQUEST_CODE_PICK_IMAGE_3_GALLERY) {
+                            imagePathOptional = selectedImagePath;
                             iv_three.setImageBitmap(resultBitmap);
 
                         }
@@ -470,13 +519,15 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
 
         }
     }
-    private String  change_to_binary(Bitmap bitmapOrg) {
+
+    private String change_to_binary(Bitmap bitmapOrg) {
         ByteArrayOutputStream bao = new ByteArrayOutputStream();
         bitmapOrg.compress(Bitmap.CompressFormat.JPEG, 50, bao);
         byte[] ba = bao.toByteArray();
         String ba1 = Base64.encodeToString(ba, Base64.DEFAULT);
         return ba1;
     }
+
     final private static int REQUEST_CODE_PICK_IMAGE_1_GALLERY = 1, REQUEST_CODE_PICK_IMAGE_1_CAMERA = 11, REQUEST_CODE_PICK_IMAGE_2_GALLERY = 2, REQUEST_CODE_PICK_IMAGE_2_CAMERA = 22, REQUEST_CODE_PICK_IMAGE_3_GALLERY = 3, REQUEST_CODE_PICK_IMAGE_3_CAMERA = 33;
     final private static int isForImage1 = 10, isForImage2 = 20, isForImage3 = 30;
 
@@ -568,8 +619,6 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         }
         return Bitmap.createScaledBitmap(image, width, height, true);
     }
-
-
 
 
 }

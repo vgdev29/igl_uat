@@ -20,8 +20,13 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.fieldmobility.igl.Activity.KycResubmissionActivity;
 import com.fieldmobility.igl.AppConstant;
+import com.fieldmobility.igl.Helper.ConnectionDetector;
+import com.fieldmobility.igl.Helper.GPSLocation;
 import com.fieldmobility.igl.R;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -30,12 +35,13 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
+
 import static android.os.Environment.getExternalStorageDirectory;
 
 public class Utils {
     public static final String IMAGE_DIRECTORY = "/signdemo";
     static ProgressDialog dialog;
-
 
 
     public static String getIntentType(String fileExtensionType) {
@@ -70,6 +76,7 @@ public class Utils {
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.show();
     }
+
     public static String change_to_binary(Bitmap bitmapOrg) {
         ByteArrayOutputStream bao = new ByteArrayOutputStream();
         bitmapOrg.compress(Bitmap.CompressFormat.JPEG, 50, bao);
@@ -77,6 +84,7 @@ public class Utils {
         String ba1 = Base64.encodeToString(ba, Base64.DEFAULT);
         return ba1;
     }
+
     public static String saveImage(Context context, Bitmap myBitmap) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
@@ -110,6 +118,7 @@ public class Utils {
         // don't print it, but save it!
         return dateFormat.format(date);
     }
+
     public static boolean isNetworkConnected(Context a) {
         if (a != null) {
             try {
@@ -125,8 +134,7 @@ public class Utils {
     }
 
 
-
-    public ProgressDialog showProgressDialogWithText(Context context,String msg) {
+    public ProgressDialog showProgressDialogWithText(Context context, String msg) {
         try {
             if (dialog != null && dialog.isShowing()) {
             } else {
@@ -157,6 +165,7 @@ public class Utils {
         }
         return dialog;
     }
+
     public static void showProgressDialog(Context context) {
         try {
             if (Looper.myLooper() == null)
@@ -173,6 +182,7 @@ public class Utils {
             e.printStackTrace();
         }
     }
+
     public static void hideProgressDialog() {
         Log.i("TAG" + "Dialog", Thread.currentThread().getName());
         try {
@@ -213,21 +223,44 @@ public class Utils {
             imm.hideSoftInputFromWindow(viewKeyboard.getWindowToken(), 0);
         }
     }
+
     public static final String IMAGE_IGL = "/igl_media";
 
-    public  static Bitmap getBitmapFromPAth(String path){
-       Bitmap bitmap = null;
+    public static Bitmap getBitmapFromPAth(String path) {
+        Bitmap bitmap = null;
         try {
             File sd = Environment.getExternalStorageDirectory();
-            File image = new File(sd+IMAGE_IGL, "temp.jpg");
+            File image = new File(sd + IMAGE_IGL, "temp.jpg");
             BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-            bitmap = BitmapFactory.decodeFile(image.getAbsolutePath(),bmOptions);
-        }
-        catch (Exception e){
+            bitmap = BitmapFactory.decodeFile(image.getAbsolutePath(), bmOptions);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return bitmap;
+    }
+
+    public static String getLocationUsingInternet(Context context) {
+        boolean isInternetConnected = new ConnectionDetector(context).isConnectingToInternet();
+        String latLong = "";
+        if (isInternetConnected) {
+            // getLocation_usingInternet.setEnabled(false);
+            new GPSLocation(context).turnGPSOn();// First turn on GPS
+            String getLocation = new GPSLocation(context).getMyCurrentLocation();// Get current location from
+            Log.d("getLocation++", getLocation.toString());
+            String Latitude = GPSLocation.Latitude;
+            String Longitude = GPSLocation.Longitude;
+            latLong = latLong + "/" + Longitude;
+        } else {
+            Toast.makeText(context, "There is no internet connection.", Toast.LENGTH_SHORT).show();
+        }
+        return latLong;
+    }
+
+    public static String getRandomNumWithChar(int requiredDigit) {
+        String uploadId = UUID.randomUUID().toString();
+        final String randomCode2 = UUID.randomUUID().toString().substring(0, requiredDigit);
+        return randomCode2;
     }
 
 }
