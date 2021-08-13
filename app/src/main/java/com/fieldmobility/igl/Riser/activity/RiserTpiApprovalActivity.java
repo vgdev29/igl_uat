@@ -1,10 +1,13 @@
 package com.fieldmobility.igl.Riser.activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -30,7 +33,7 @@ import com.fieldmobility.igl.Model.RiserTpiListingModel;
 import com.fieldmobility.igl.R;
 import com.google.gson.Gson;
 
-public class RiserTpiApprovalActivity extends AppCompatActivity implements View.OnClickListener {
+public class RiserTpiApprovalActivity extends AppCompatActivity implements View.OnClickListener, RiserTpiApprovalListAdapter.OnAdapterItemClickListener {
     RecyclerView recyclerView;
     MaterialDialog materialDialog;
     SharedPrefs sharedPrefs;
@@ -54,8 +57,8 @@ public class RiserTpiApprovalActivity extends AppCompatActivity implements View.
                 .progress(true, 0)
 
                 .show();
-        String url=Constants.RISER_TPI_APPROVAL_LISTING + "/" + sharedPrefs.getUUID();
-        Log.v("URL_RISER_TPI_APPROVAL_LISTING",url);
+        String url = Constants.RISER_TPI_APPROVAL_LISTING + "/" + sharedPrefs.getUUID();
+        Log.v("URL_RISER_TPI_APPROVAL_LISTING", url);
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -140,7 +143,26 @@ public class RiserTpiApprovalActivity extends AppCompatActivity implements View.
 
     private void initViews(RiserTpiListingModel dataModel) {
         adapter = new RiserTpiApprovalListAdapter(RiserTpiApprovalActivity.this, dataModel.getBpDetails());
+        adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 
+    }
+
+    public static final int REQUEST_CODE_START_APPROVAL_ACTIVITY = 999;
+
+    @Override
+    public void startActivityForResult(String data) {
+        Intent intent = new Intent(RiserTpiApprovalActivity.this, RiserTpiApprovalDetailActivity.class);
+        intent.putExtra("data", data);
+        startActivityForResult(intent, REQUEST_CODE_START_APPROVAL_ACTIVITY);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==REQUEST_CODE_START_APPROVAL_ACTIVITY && resultCode== Activity.RESULT_OK){
+            loadListData();
+        }
     }
 }

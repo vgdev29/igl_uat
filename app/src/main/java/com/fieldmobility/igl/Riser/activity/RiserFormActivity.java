@@ -222,11 +222,11 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         tv_society.setText(dataModel.getSociety());
 
         et_gali.setText(dataModel.getStreetGaliRoad());
-        et_bp_num.setText(dataModel.getBpNumber());
+        tv_bp_num.setText(dataModel.getBpNumber());
     }
 
-    TextView /*tv_allocation_num, tv_sub_allocatio,*/ tv_agent_name, /*tv_po_num,*/ tv_city, tv_zone, tv_area, tv_society;
-    EditText et_gali, et_bp_num/*, et_connected_house*/;
+    TextView /*tv_allocation_num, tv_sub_allocatio,*/ tv_bp_num,tv_agent_name, /*tv_po_num,*/ tv_city, tv_zone, tv_area, tv_society;
+    EditText et_gali/*, et_connected_house*/;
     RadioGroup rg_riser_laying, rg_riser_testing, rg_riser_commissioning;
     ImageView iv_one, iv_two, iv_three;
     FrameLayout fl_image1, fl_image2, fl_image3;
@@ -249,7 +249,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         tv_area = findViewById(R.id.tv_area);
         tv_society = findViewById(R.id.tv_society);
         et_gali = findViewById(R.id.et_gali);
-        et_bp_num = findViewById(R.id.et_bp_num);
+        tv_bp_num = findViewById(R.id.tv_bp_num);
 //        et_connected_house = findViewById(R.id.et_connected_house);
         rg_riser_laying = findViewById(R.id.rg_riser_laying);
         rg_riser_laying.setOnCheckedChangeListener(this);
@@ -432,24 +432,26 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
 //                    String pathsList[] = data.getExtras().getStringArray(GligarPicker.IMAGES_RESULT); // return list of selected images paths.
                     Uri filePathHomeAddress = data.getData();
                     Bitmap resultBitmap = null;
+                    String selectedImagePath=null;
                     try {
                         resultBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathHomeAddress);
-                        String selectedImagePath = getPath(filePathHomeAddress);
+                         selectedImagePath = getPath(filePathHomeAddress);
                         Log.e("image_path_aadhar+,", "" + selectedImagePath);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     if (resultBitmap != null){
                         if (requestCode==REQUEST_CODE_PICK_IMAGE_1_GALLERY){
-                            imagePathOne=change_to_binary(resultBitmap);
+//                            imagePathOne=change_to_binary(resultBitmap);
+                            imagePathOne=selectedImagePath;
                             iv_one.setImageBitmap(resultBitmap);
                         }
                         if (requestCode==REQUEST_CODE_PICK_IMAGE_2_GALLERY){
-                            imagePathTwo=change_to_binary(resultBitmap);
+                            imagePathTwo=selectedImagePath;
                             iv_two.setImageBitmap(resultBitmap);
                         }
                         if (requestCode==REQUEST_CODE_PICK_IMAGE_3_GALLERY){
-                            imagePathOptional=change_to_binary(resultBitmap);
+                            imagePathOptional=selectedImagePath;
                             iv_three.setImageBitmap(resultBitmap);
 
                         }

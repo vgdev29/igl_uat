@@ -73,9 +73,7 @@ public class RiserTpiApprovalListAdapter extends RecyclerView.Adapter<RiserTpiAp
                 @Override
                 public void onClick(View v) {
                     String dataJson = new Gson().toJson(datalist.get(getAdapterPosition()));
-                    Intent intent = new Intent(mContext, RiserTpiApprovalDetailActivity.class);
-                    intent.putExtra("data", dataJson);
-                    mContext.startActivity(intent);
+                    listener.startActivityForResult(dataJson);
                 }
             });
 
@@ -111,6 +109,16 @@ public class RiserTpiApprovalListAdapter extends RecyclerView.Adapter<RiserTpiAp
                 notifyDataSetChanged();
             }
         };
+    }
+
+    OnAdapterItemClickListener listener;
+
+    public void setClickListener(OnAdapterItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnAdapterItemClickListener {
+        void startActivityForResult(String data);
     }
 
 }

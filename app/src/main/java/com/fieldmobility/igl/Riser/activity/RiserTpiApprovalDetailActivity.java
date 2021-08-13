@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -141,6 +143,9 @@ public class RiserTpiApprovalDetailActivity extends AppCompatActivity {
                     JSONObject jsonObject=new JSONObject(response);
                     if (jsonObject.getString("status").equals("200")){
                         Toast.makeText(RiserTpiApprovalDetailActivity.this,"Succesfully Updated",Toast.LENGTH_SHORT).show();
+                        Intent resultIntent = new Intent();
+                        setResult(Activity.RESULT_OK, resultIntent);
+                        finish();
                     }
                     else {
                         Toast.makeText(RiserTpiApprovalDetailActivity.this,jsonObject.getString("Message"),Toast.LENGTH_SHORT).show();
