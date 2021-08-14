@@ -813,6 +813,8 @@ public class BP_Creation_Form extends Activity implements AdapterView.OnItemSele
                 loadSpinnerSocity(area_Id);
                 dialog.dismiss();
             }
+
+
         });
         recyclerView.setAdapter(dropDown_adapter);
         dropDown_adapter.setData(Area1);

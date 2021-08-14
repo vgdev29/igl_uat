@@ -1156,28 +1156,37 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:padding="@dimen/_1sdp"
-                    android:text="More Connection Option"
+                    android:text="Probable Connected House/BP (Optional)"
                     android:textColor="@color/dark_gray"
                     android:textSize="@dimen/_10sdp" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_connected_house"
+                <include
+                    layout="@layout/view_connected_house_form"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:itemCount="5"
-                    android:nestedScrollingEnabled="false"
-                    tools:listitem="@layout/item_connected_house"></androidx.recyclerview.widget.RecyclerView>
+                    android:layout_height="wrap_content"></include>
 
                 <TextView
-                    android:id="@+id/tv_add_more_hse"
+                    android:id="@+id/tv_add_connectedHouse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:padding="@dimen/_8sdp"
-                    android:text="Add More Connected House"
-                    android:textColor="#4867C6"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:background="@drawable/shape_round_button"
+                    android:backgroundTint="@color/igl_green"
+                    android:paddingHorizontal="@dimen/_28sdp"
+                    android:paddingVertical="@dimen/_8sdp"
+                    android:text="ADD"
+                    android:textColor="#FFF"
                     android:textSize="@dimen/_10sdp"
                     android:textStyle="bold" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:orientation="horizontal"
+                    android:clipToPadding="false"
+                    android:paddingHorizontal="@dimen/_7sdp"
+                    tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_connected_hse"
+                    android:id="@+id/rv_connected_house"></androidx.recyclerview.widget.RecyclerView>
 
             </LinearLayout>
 
@@ -1197,7 +1206,7 @@
                     android:layout_marginRight="@dimen/_5sdp"
                     android:layout_marginBottom="@dimen/_20sdp"
                     android:layout_weight="1"
-                    android:background="@drawable/shape_cornor_radious"
+                    android:background="@drawable/shape_round_button"
                     android:text="Submit"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_10sdp" />

@@ -2,30 +2,34 @@ package com.fieldmobility.igl.Riser.activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -33,42 +37,36 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.ServerError;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.fieldmobility.igl.Activity.BP_Creation_Form;
 import com.fieldmobility.igl.Activity.NICustomerActivity;
 import com.fieldmobility.igl.Activity.RFC_Connection_Activity;
 import com.fieldmobility.igl.Adapter.ConnectedHouseAdapter;
+import com.fieldmobility.igl.Adapter.PlainTextListAdapter;
 import com.fieldmobility.igl.Helper.AppController;
 import com.fieldmobility.igl.Helper.CommonUtils;
 import com.fieldmobility.igl.Helper.Constants;
+import com.fieldmobility.igl.Listeners.PlainTextListItemSelectListener;
+import com.fieldmobility.igl.Model.ConnectedHouseModel;
 import com.fieldmobility.igl.Model.RiserListingModel;
 import com.fieldmobility.igl.R;
 import com.fieldmobility.igl.utils.Utils;
 import com.google.gson.Gson;
-import com.itextpdf.text.pdf.parser.Line;
-import com.opensooq.supernova.gligar.GligarPicker;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
-
-import static android.os.Environment.getExternalStorageDirectory;
 
 import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.ServerResponse;
@@ -254,8 +252,8 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
     }
 
     TextView /*tv_allocation_num, tv_sub_allocatio,*/ tv_bp_num, tv_agent_name, /*tv_po_num,*/
-            tv_city, tv_zone, tv_area, tv_society, tv_add_more_hse;
-    EditText et_gali, et_ib/*, et_connected_house*/;
+            tv_city, tv_zone, tv_area, tv_society, tv_add_more_hse, hse_tv_bp_num;
+    EditText et_gali, et_ib/*, et_connected_house*/, hse_et_house, hse_et_floor;
     RadioGroup rg_riser_laying, rg_riser_testing, rg_riser_commissioning;
     ImageView iv_one, iv_two, iv_three;
     FrameLayout fl_image1, fl_image2, fl_image3;
@@ -272,9 +270,13 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         });
 //        tv_allocation_num = findViewById(R.id.tv_allocation_num);
 //        tv_sub_allocatio = findViewById(R.id.tv_sub_allocatio);
+        hse_et_floor = findViewById(R.id.et_floor);
+        hse_et_house = findViewById(R.id.et_house);
+        hse_tv_bp_num = findViewById(R.id.hse_tv_bp_num);
+        hse_tv_bp_num.setOnClickListener(this);
         rv_connected_house = findViewById(R.id.rv_connected_house);
-        rv_connected_house.setLayoutManager(new LinearLayoutManager(this));
-        tv_add_more_hse = findViewById(R.id.tv_add_more_hse);
+        rv_connected_house.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        tv_add_more_hse = findViewById(R.id.tv_add_connectedHouse);
         tv_add_more_hse.setOnClickListener(this);
         tv_agent_name = findViewById(R.id.tv_agent_name);
 //        tv_po_num = findViewById(R.id.tv_po_num);
@@ -355,10 +357,10 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
             selectedPropertyType = propertyTypeList.get(position);
             hseList.clear();
             if (selectedPropertyType.equals("low-rise")) {
-                if (connectedHseMaxLimit == 15) {
-                    connectedHouseAdapter.itemCount = 5;
-                    connectedHouseAdapter.notifyDataSetChanged();
-                }
+//                if (connectedHseMaxLimit == 15) {
+//                    connectedHouseAdapter.itemCount = 5;
+//                    connectedHouseAdapter.notifyDataSetChanged();
+//                }
                 connectedHseMaxLimit = 5;
                 hseList.add("HSE (g+4)");
                 selectedHSE = "HSE (g+4)";
@@ -403,12 +405,22 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
             openImagePickerOption(isForImage1);
 
         } else if (v == tv_add_more_hse) {
-            if (connectedHouseAdapter.itemCount < connectedHseMaxLimit) {
-                connectedHouseAdapter.addMoreHouse();
+            if (connectedHouseAdapter.getFilledData().size() < connectedHseMaxLimit) {
+                if (isValidConnectedHseData()) {
+                    ConnectedHouseModel model = new ConnectedHouseModel();
+                    model.setBp_number(hse_tv_bp_num.getText().toString().trim());
+                    model.setHouse_num(hse_et_house.getText().toString().trim());
+                    model.setFloor_num(hse_et_floor.getText().toString().trim());
+                    connectedHouseAdapter.addMoreHouse(model);
+                    resetConnectedHouseInputs();
+                }
             } else {
                 Toast.makeText(RiserFormActivity.this, "Maximum " + connectedHseMaxLimit + " houses can be added", Toast.LENGTH_SHORT).show();
             }
 
+
+        } else if (v == hse_tv_bp_num) {
+            openAreaDialogBox();
 
         } else if (v == fl_image2) {
             openImagePickerOption(isForImage2);
@@ -426,6 +438,12 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
 
         }
 
+    }
+
+    private void resetConnectedHouseInputs() {
+        hse_tv_bp_num.setText("");
+        hse_et_house.setText("");
+        hse_et_floor.setText("");
     }
 
     private boolean isValidData() {
@@ -620,5 +638,121 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         return Bitmap.createScaledBitmap(image, width, height, true);
     }
 
+    private boolean isValidConnectedHseData() {
+        boolean isValid = true;
+        if (hse_tv_bp_num.getText().toString().isEmpty()) {
+            isValid = false;
+            CommonUtils.toast_msg(RiserFormActivity.this, "BP No. is required.");
+        } else if (hse_et_floor.getText().toString().isEmpty()) {
+            isValid = false;
+            CommonUtils.toast_msg(RiserFormActivity.this, "Floor info is required.");
+        } else if (hse_et_house.getText().toString().isEmpty()) {
+            isValid = false;
+            CommonUtils.toast_msg(RiserFormActivity.this, "House No. is required.");
+        } else {
+            isValid = true;
+        }
+
+        return isValid;
+    }
+
+    private PlainTextListAdapter dropDown_adapter;
+
+    private void openAreaDialogBox() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setContentView(R.layout.popup_text_search);
+        dialog.setCancelable(true);
+        ImageView crose_img = dialog.findViewById(R.id.crose_img);
+        RecyclerView recyclerView = (RecyclerView) dialog.findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        crose_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dropDown_adapter = new PlainTextListAdapter(RiserFormActivity.this, new PlainTextListItemSelectListener() {
+            @Override
+            public void onPlainTextItemSelect(String item, int itemPosition) {
+                hse_tv_bp_num.setText(item);
+                try {
+                    hse_et_floor.setText(bpDetailsArray.getJSONObject(itemPosition).getString("floor"));
+                    hse_et_house.setText(bpDetailsArray.getJSONObject(itemPosition).getString("house"));
+                } catch (Exception e) {
+
+                }
+                dialog.dismiss();
+            }
+
+
+        });
+        recyclerView.setAdapter(dropDown_adapter);
+
+        EditText editTextSearch = (EditText) dialog.findViewById(R.id.editTextSearch);
+        editTextSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                //  bookadapter.getFilter().filter(s.toString());
+//                dropDown_adapter.getFilter().filter(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.toString().length() >= 8) {
+                    searchBP(s.toString());
+                }
+            }
+        });
+
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.copyFrom(dialog.getWindow().getAttributes());
+        layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+        layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT;
+        dialog.getWindow().setAttributes(layoutParams);
+        dialog.show();
+        dialog.show();
+    }
+
+    JSONArray bpDetailsArray;
+
+    private void searchBP(String bp) {
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.RISER__SEARCH_BP + bp + "/" + dataModel.getArea() + "/" + dataModel.getSociety(), new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    if (jsonObject.getString("status").equals("200")) {
+                        ArrayList<String> bpList = new ArrayList<>();
+                        bpDetailsArray = jsonObject.getJSONArray("Bp_Details");
+                        for (int i = 0; i < bpDetailsArray.length(); i++) {
+                            bpList.add(bpDetailsArray.getJSONObject(i).getString("bp"));
+
+                        }
+                        dropDown_adapter.setData(bpList);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        int socketTimeout = 30000;
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        stringRequest.setRetryPolicy(policy);
+        requestQueue.add(stringRequest);
+    }
 
 }

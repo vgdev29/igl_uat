@@ -98,6 +98,7 @@ public class Constants {
     public static final String RISER__APPROVAL_DECLINE = BASE_URL + "ekyc/bp_details/RiserApproveDecline";
     //public static final String RISER__PROJECT_REPORT = BASE_URL + "ekyc/bp_details/createriser";
     public static final String RISER__PROJECT_REPORT = localhost + "/bp_details/createriser";
+    public static final String RISER__SEARCH_BP = BASE_URL + "ekyc/bp_details/searchbp/";
 
     //Ekyc new Api
     public static final String EKYC_DATA_UPDATE = BASE_URL + "ekyc/bp_details/updatekycData/";

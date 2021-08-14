@@ -15,6 +15,8 @@ import com.fieldmobility.igl.Listeners.PlainTextListItemSelectListener;
 import com.fieldmobility.igl.MataData.Bp_No_Item;
 import com.fieldmobility.igl.R;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,7 +95,11 @@ public class PlainTextListAdapter extends RecyclerView.Adapter<PlainTextListAdap
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    selectListener.onPlainTextItemSelect(datalist.get(getAdapterPosition()),getAdapterPosition());
+                    try {
+                        selectListener.onPlainTextItemSelect(datalist.get(getAdapterPosition()),getAdapterPosition());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
         }
