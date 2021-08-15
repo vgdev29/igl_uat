@@ -662,9 +662,37 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.setContentView(R.layout.popup_text_search);
+        dialog.setContentView(R.layout.popup_bp_search);
         dialog.setCancelable(true);
         ImageView crose_img = dialog.findViewById(R.id.crose_img);
+        RadioGroup radiogrp = dialog.findViewById(R.id.radiogrp);
+
+        LinearLayout lt_search = dialog.findViewById(R.id.lt_search);
+        LinearLayout lt_manual = dialog.findViewById(R.id.lt_manual);
+        EditText et_bp = dialog.findViewById(R.id.et_bp);
+        TextView tv_done = dialog.findViewById(R.id.tv_done);
+        radiogrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId==R.id.rb_search){
+                    lt_search.setVisibility(View.VISIBLE);
+                    lt_manual.setVisibility(View.GONE);
+                }
+                if (checkedId==R.id.rb_Enter){
+                    lt_search.setVisibility(View.GONE);
+                    lt_manual.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+        tv_done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String bp_num=et_bp.getText().toString();
+                hse_tv_bp_num.setText(bp_num);
+                dialog.dismiss();
+
+            }
+        });
         RecyclerView recyclerView = (RecyclerView) dialog.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
