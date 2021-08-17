@@ -1399,6 +1399,8 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     Log.d("block_type", user_bpData.getBlock_tower_type());
                     Log.d("street_type", user_bpData.getStreet_road_type());
                     Log.d("dma_agency", sharedPrefs.getUUID());
+                    Log.d("lattitude", Latitude);
+                    Log.d("longitude", Longitude);
 
                 } catch (Exception e) {
                 }

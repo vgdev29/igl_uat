@@ -184,7 +184,6 @@ public class TPI_Feasibility_pending_Fragment extends Fragment {
                                 bp_no_item.setBp_number(data_object.getString("bp_number"));
                                 bp_no_item.setBp_date(data_object.getString("bp_date"));
                                 bp_no_item.setIgl_status(data_object.getString("igl_status"));
-
                                 bp_no_item.setLpg_distributor(data_object.getString("lpg_distributor"));
                                 bp_no_item.setLpg_conNo(data_object.getString("lpg_conNo"));
                                 bp_no_item.setUnique_lpg_Id(data_object.getString("unique_lpg_Id"));
@@ -197,8 +196,8 @@ public class TPI_Feasibility_pending_Fragment extends Fragment {
                                 bp_no_item.setAddressProof(data_object.getString("addressProof"));
                                 bp_no_item.setIdproof(data_object.getString("idproof"));
                                 bp_no_item.setIgl_code_group(data_object.getString("igl_code_group"));
-                                bp_no_item.setFesabilityDate(data_object.getString("fesabilityDate"));
-                                bp_no_item.setHoldStatus(data_object.getString("holdStatus"));
+                                bp_no_item.setFesabilityDate(data_object.getString("assigndate"));
+                                bp_no_item.setControlRoom(data_object.getString("controlRoom"));
                                 bpDetails.add(bp_no_item);
                             }
 
