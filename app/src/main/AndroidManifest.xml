@@ -87,7 +87,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".Activity.ViewNgDetaillsActivity" />
         <activity android:name=".Activity.PMC_ViewPager_Activity" />
-        <activity android:name=".Activity.Splash_Screen">
+        <activity android:name=".Activity.Splash_Screen"
+            android:screenOrientation="portrait">
 
              <intent-filter>
              <action android:name="android.intent.action.MAIN" />

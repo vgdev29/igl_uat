@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.fieldmobility.igl.Helper.CommonUtils;
 import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.MataData.Bp_No_Item;
 import com.fieldmobility.igl.R;
@@ -69,6 +70,7 @@ public class Bp_Created_Detail extends Activity {
 //        Layout_Id();
 //        Implementation_Mentod();
     }
+    String img_id_proof_url = "",img_address_proof_url="",img_customer_signature_url="",img_owner_signature_url="",img_cheque="";
 
     private void initViews() {
         ((TextView)findViewById(R.id.tv_fname)).setText(bp_No_Item.getFirst_name());
@@ -96,15 +98,44 @@ public class Bp_Created_Detail extends Activity {
         ((TextView)findViewById(R.id.tv_id_type)).setText(bp_No_Item.getIdproof());
         ((TextView)findViewById(R.id.tv_address_proof_type)).setText(bp_No_Item.getAddressProof());
         ImageView iv_id_proof=findViewById(R.id.iv_id_proof);
+        iv_id_proof.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommonUtils.showZoomImageView(Bp_Created_Detail.this,img_id_proof_url);
+            }
+        });
         ImageView iv_address_proof=findViewById(R.id.iv_address_proof);
+        iv_address_proof.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommonUtils.showZoomImageView(Bp_Created_Detail.this,img_address_proof_url);
+            }
+        });
         ImageView iv_customerSignature=findViewById(R.id.iv_signature);
+        iv_customerSignature.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommonUtils.showZoomImageView(Bp_Created_Detail.this,img_customer_signature_url);
+            }
+        });
         ImageView iv_owner_signature=findViewById(R.id.iv_owner_signature);
+        iv_owner_signature.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommonUtils.showZoomImageView(Bp_Created_Detail.this,img_owner_signature_url);
+            }
+        });
         ImageView iv_cheque=findViewById(R.id.iv_cheque);
+        iv_cheque.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommonUtils.showZoomImageView(Bp_Created_Detail.this,img_cheque);
+            }
+        });
 
 
         try{
             if (bp_No_Item.getImageList()!=null && bp_No_Item.getImageList().size()>0){
-                String img_id_proof_url = "",img_address_proof_url="",img_customer_signature_url="",img_owner_signature_url="",img_cheque="";
                 for (int i =0;i<bp_No_Item.getImageList().size();i++){
                     if (bp_No_Item.getImageList().get(i).contains("address_proof")){
                         img_address_proof_url=bp_No_Item.getImageList().get(i);

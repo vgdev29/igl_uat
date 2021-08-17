@@ -342,6 +342,30 @@ public class TPI_RfcDone_Approval_Activity extends Activity {
                     .load("http://" + imagelist.get(imagelist.size()-1))
                     .placeholder(R.color.red_light)
                     .into(image3_path);
+            image_path.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CommonUtils.showZoomImageView(TPI_RfcDone_Approval_Activity.this,"http://" +imagelist.get(imagelist.size()-4));
+                }
+            });
+            image1_path.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CommonUtils.showZoomImageView(TPI_RfcDone_Approval_Activity.this,"http://" +imagelist.get(imagelist.size()-3));
+                }
+            });
+            image2_path.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CommonUtils.showZoomImageView(TPI_RfcDone_Approval_Activity.this,"http://" +imagelist.get(imagelist.size()-2));
+                }
+            });
+            image3_path.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CommonUtils.showZoomImageView(TPI_RfcDone_Approval_Activity.this,"http://" +imagelist.get(imagelist.size()-1));
+                }
+            });
         }
     }
     @Override

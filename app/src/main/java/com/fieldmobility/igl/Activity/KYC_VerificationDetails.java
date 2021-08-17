@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.fieldmobility.igl.Helper.CommonUtils;
 import com.fieldmobility.igl.MataData.Bp_No_Item;
 import com.fieldmobility.igl.R;
 import com.squareup.picasso.Picasso;
@@ -86,5 +87,30 @@ public class KYC_VerificationDetails extends AppCompatActivity {
                 .load(bp_no_item.getOwner_image())
                 .placeholder(R.color.red_light)
                 .into(owner_image);
+        id_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommonUtils.showZoomImageView(KYC_VerificationDetails.this,bp_no_item.getId_image());
+            }
+        });
+        address_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommonUtils.showZoomImageView(KYC_VerificationDetails.this,bp_no_item.getAddress_image());
+            }
+        });
+        customer_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommonUtils.showZoomImageView(KYC_VerificationDetails.this,bp_no_item.getCustomer_image());
+            }
+        });
+        owner_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommonUtils.showZoomImageView(KYC_VerificationDetails.this,bp_no_item.getOwner_image());
+            }
+        });
+
     }
 }
