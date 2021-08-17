@@ -43,7 +43,9 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.fieldmobility.igl.Helper.AppController;
+import com.fieldmobility.igl.Helper.ConnectionDetector;
 import com.fieldmobility.igl.Helper.Constants;
+import com.fieldmobility.igl.Helper.GPSLocation;
 import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.R;
 
@@ -107,6 +109,9 @@ public class TPI_Connection_Activity  extends Activity {
     String TPI_Status_Code,Address,Feasibility_Type;
     TextView bp_no_text,address_text,header_text;
     String complete_igl_code,complete_igl_code_group,complete_igl_catagory,complete_catid,pipeline_catagory,bpno;
+    private String Latitude;
+    private String Longitude;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -153,6 +158,7 @@ public class TPI_Connection_Activity  extends Activity {
         Feasibility_Type=getIntent().getStringExtra("Feasibility_Type");
         OnClick_Event();
         sharedPrefs = new SharedPrefs(this);
+        getLocationUsingInternet();
     }
 
     private void OnClick_Event() {
@@ -171,19 +177,10 @@ public class TPI_Connection_Activity  extends Activity {
                     header_text.setText("Feasibility");
                     TPI_Approve();
                 }
-                if(Feasibility_Type.equals("1")){
-                    TPI_Approve1();
-                    header_text.setText("RFC Approval");
-                }
 
             }
         });
-        decline_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Dilogbox_Image_Uplode();
-            }
-        });
+
         spinner_master.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
@@ -250,9 +247,8 @@ public class TPI_Connection_Activity  extends Activity {
                 .progress(true, 0)
                 .show();
         RequestQueue requestQueue= Volley.newRequestQueue(getApplicationContext());
-
-        Log.d("feas","url status = "+Constants.TYPE_MASTER_STATUS+Status_Master+"?status="+TPI_Status_Code+"&bpno="+bpno);
-        StringRequest stringRequest=new StringRequest(Request.Method.GET, Constants.TYPE_MASTER_STATUS+Status_Master+"?status="+TPI_Status_Code+"&bpno="+bpno, new Response.Listener<String>() {
+        Log.d("feas","url status = "+Constants.FEAS_STATUS_DROPDOWN+Status_Master+"?status="+TPI_Status_Code+"&bpno="+bpno);
+        StringRequest stringRequest=new StringRequest(Request.Method.GET, Constants.FEAS_STATUS_DROPDOWN+Status_Master+"?status="+TPI_Status_Code+"&bpno="+bpno, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 materialDialog.dismiss();
@@ -376,8 +372,6 @@ public class TPI_Connection_Activity  extends Activity {
 
                         PipeLine_Catagory.add(pileline);
                         PipeLine_ID.add(pipelineId);
-
-
                     }
 
                     spinner_pipe_line.setAdapter(new ArrayAdapter<String>(TPI_Connection_Activity.this, android.R.layout.simple_spinner_dropdown_item, PipeLine_Catagory));
@@ -407,6 +401,11 @@ public class TPI_Connection_Activity  extends Activity {
             complete_igl_code_group=igl_code_group_Maaster;
             complete_igl_catagory=igl_catagory_Master;
             complete_catid=catid_Master;
+        }
+        if ((Latitude==null || Longitude==null))
+        {
+            Latitude = "NA";
+            Longitude = "NA";
         }
         materialDialog = new MaterialDialog.Builder(this)
                 .content("Please wait....")
@@ -460,7 +459,9 @@ public class TPI_Connection_Activity  extends Activity {
                     Log.e("igl_catalog", complete_igl_catagory);
                     Log.e("mobile_no", getIntent().getStringExtra("Mobile_number"));
                     Log.e("email_id", getIntent().getStringExtra("Email_id"));
-
+                    Log.e("latitude", Latitude);
+                    Log.e("longitude", Longitude);
+                    Log.e("remarks", descreption_edit.getText().toString().trim());
                     // params.put("id", sharedPrefs.getUUID());
                     params.put("lead_no",getIntent().getStringExtra("lead_no"));
                     params.put("bp_no", getIntent().getStringExtra("Bp_number"));
@@ -471,6 +472,9 @@ public class TPI_Connection_Activity  extends Activity {
                     params.put("mobile_no", getIntent().getStringExtra("Mobile_number"));
                     params.put("email_id", getIntent().getStringExtra("Email_id"));
                     params.put("pipeline_id", pipeline_catagory);
+                    params.put("latitude", Latitude);
+                    params.put("longitude", Longitude);
+                    params.put("remarks", descreption_edit.getText().toString().trim());
 
 
                 } catch (Exception e) {
@@ -481,6 +485,22 @@ public class TPI_Connection_Activity  extends Activity {
         jr.setRetryPolicy(new DefaultRetryPolicy(20 * 10000, 20, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         jr.setTag(login_request);
         AppController.getInstance().addToRequestQueue(jr, login_request);
+    }
+
+    private void getLocationUsingInternet() {
+        boolean isInternetConnected = new ConnectionDetector(TPI_Connection_Activity.this).isConnectingToInternet();
+        if (isInternetConnected) {
+            // getLocation_usingInternet.setEnabled(false);
+            new GPSLocation(TPI_Connection_Activity.this).turnGPSOn();// First turn on GPS
+            String getLocation = new GPSLocation(TPI_Connection_Activity.this).getMyCurrentLocation();// Get current location from
+            Log.d("getLocation++", getLocation.toString());
+            Latitude = GPSLocation.Latitude;
+            Longitude = GPSLocation.Longitude;
+            Log.d("Latitude++", Latitude);
+            Log.d("Longitude++", Longitude);
+        } else {
+            Toast.makeText(TPI_Connection_Activity.this, "There is no internet connection.", Toast.LENGTH_SHORT).show();
+        }
     }
     public void TPI_Multipart(String filePath_img_string) {
         /*if(filePath_img_string==null){
@@ -562,211 +582,6 @@ public class TPI_Connection_Activity  extends Activity {
 
     }
 
-
-    public void TPI_Approve1() {
-        if(jsonArray_SubMaster!=null&& jsonArray_SubMaster.length()>0){
-            complete_igl_code=igl_code;
-            complete_igl_code_group=igl_code_group;
-            complete_igl_catagory=igl_catagory;
-            complete_catid=catid_Sub_Master;
-        }else{
-            complete_igl_code=igl_code_Master;
-            complete_igl_code_group=igl_code_group_Maaster;
-            complete_igl_catagory=igl_catagory_Master;
-            complete_catid=catid_Master;
-        }
-        materialDialog = new MaterialDialog.Builder(this)
-                .content("Please wait....")
-                .progress(true, 0)
-                .show();
-        String login_request = "login_request";
-        StringRequest jr = new StringRequest(Request.Method.POST, Constants.RFCADD,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        materialDialog.dismiss();
-
-                        try {
-                            JSONObject json = new JSONObject(response);
-                            Log.e("Response", json.toString());
-
-
-                            Toast.makeText(TPI_Connection_Activity.this, "" + "Successfully", Toast.LENGTH_SHORT).show();
-
-                            finish();
-                            //Toast.makeText(TPI_Connection_Activity.this, "" + "Error", Toast.LENGTH_SHORT).show();
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                materialDialog.dismiss();
-                NetworkResponse response = error.networkResponse;
-                if (error instanceof ServerError && response != null) {
-                    try {
-                        String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        JSONObject obj = new JSONObject(res);
-                        Log.e("object",obj.toString());
-                        JSONObject error1=obj.getJSONObject("error");
-                        String error_msg=error1.getString("message");
-                        //  Toast.makeText(Forgot_Password_Activity.this, "" + error_msg, Toast.LENGTH_SHORT).show();
-                    } catch (UnsupportedEncodingException e1) {
-                        e1.printStackTrace();
-                    } catch (JSONException e2) {
-                        e2.printStackTrace();
-                    }
-                }            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                try {
-                    Log.e("lead_no",getIntent().getStringExtra("lead_no"));
-                    Log.e("bp_no", getIntent().getStringExtra("Bp_number"));
-                    Log.e("cat_id", complete_catid);
-                    Log.e("igl_code", complete_igl_code);
-                    Log.e("igl_code_group", complete_igl_code_group);
-                    Log.e("igl_catalog", complete_igl_catagory);
-                    Log.e("mobile_no", getIntent().getStringExtra("Mobile_number"));
-                    Log.e("email_id", getIntent().getStringExtra("Email_id"));
-
-                    // params.put("id", sharedPrefs.getUUID());
-                    params.put("lead_no",getIntent().getStringExtra("lead_no"));
-                    params.put("bp_no", getIntent().getStringExtra("Bp_number"));
-                    params.put("cat_id", complete_catid);
-                    params.put("igl_code", complete_igl_code);
-                    params.put("igl_code_group", complete_igl_code_group);
-                    params.put("igl_catalog", complete_igl_catagory);
-                    params.put("mobile_no", getIntent().getStringExtra("Mobile_number"));
-                    params.put("email_id", getIntent().getStringExtra("Email_id"));
-                    params.put("pipeline_id", pipeline_catagory);
-
-
-                } catch (Exception e) {
-                }
-                return params;
-            }
-           /* @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("X-Requested-With", "XMLHttpRequest");
-                //headers.put(" Content-Type", "text/html");
-                headers.put("Accept", "application/json");
-                headers.put("Authorization", "Bearer " +sharedPrefs.getToken());
-                return headers;
-            }*/
-        };
-        jr.setRetryPolicy(new DefaultRetryPolicy(20 * 10000, 20, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        jr.setTag(login_request);
-        AppController.getInstance().addToRequestQueue(jr, login_request);
-    }
-    public void TPI_Multipart1(String filePath_img_string) {
-        /*if(filePath_img_string==null){
-            filePath_img_string="\\/ekyc\\/bp_details\\/fesabilityAdd";
-            Log.e("filePath_img_string", "" + filePath_img_string);
-        }*/
-        if(jsonArray_SubMaster!=null&& jsonArray_SubMaster.length()>0){
-            complete_igl_code=igl_code;
-            complete_igl_code_group=igl_code_group;
-            complete_igl_catagory=igl_catagory;
-            complete_catid=catid_Sub_Master;
-        }else{
-            complete_igl_code=igl_code_Master;
-            complete_igl_code_group=igl_code_group_Maaster;
-            complete_igl_catagory=igl_catagory_Master;
-            complete_catid=catid_Master;
-        }
-        try {
-            materialDialog = new MaterialDialog.Builder(TPI_Connection_Activity.this)
-                    .content("Please wait....")
-                    .progress(true, 0)
-                    .show();
-            String uploadId = UUID.randomUUID().toString();
-            /*uploadReceiver.setDelegate((SingleUploadBroadcastReceiver.Delegate) this);
-            uploadReceiver.setUploadID(uploadId);*/
-            MultipartUploadRequest request= new MultipartUploadRequest(TPI_Connection_Activity.this, uploadId, Constants.RFCADD);
-            request.addFileToUpload(filePath_img_string, "declinedImage");
-            request.addParameter("lead_no", getIntent().getStringExtra("lead_no"));
-            request.addParameter("bp_no", getIntent().getStringExtra("Bp_number"));
-            request .addParameter("cat_id", complete_catid);
-            request .addParameter("igl_code", complete_igl_code);
-            request .addParameter("igl_code_group", complete_igl_code_group);
-            request.addParameter("igl_catalog", complete_igl_catagory);
-            request .addParameter("mobile_no", getIntent().getStringExtra("Mobile_number"));
-            request .addParameter("email_id", getIntent().getStringExtra("Email_id"));
-            request .addParameter("pipeline_id", pipeline_catagory);
-            request.setDelegate(new UploadStatusDelegate() {
-                @Override
-                public void onProgress(Context context,UploadInfo uploadInfo) {
-
-                }
-                @Override
-                public void onError( Context context,UploadInfo uploadInfo,  Exception exception) {
-                    exception.printStackTrace();
-                    materialDialog.dismiss();
-                    //Dilogbox_Error();
-                    Log.e("Uplodeerror++", uploadInfo.getSuccessfullyUploadedFiles().toString());
-                }
-                @Override
-                public void onCompleted(Context context,UploadInfo uploadInfo, ServerResponse serverResponse) {
-                    materialDialog.dismiss();
-                    String Uplode = uploadInfo.getSuccessfullyUploadedFiles().toString();
-                    String serverResponse1 = serverResponse.getHeaders().toString();
-                    String str = serverResponse.getBodyAsString();
-                    final JSONObject jsonObject;
-                    Log.e("UPLOADEsinin++", str);
-                    setResult(Activity.RESULT_OK);
-                    finish();
-                    Toast.makeText(TPI_Connection_Activity.this, "" + "Succesfully Feasibility Approve", Toast.LENGTH_SHORT).show();
-
-                }
-                @Override
-                public void onCancelled(Context context,UploadInfo uploadInfo) {
-                    materialDialog.dismiss();
-                }
-            });
-            request.setUtf8Charset();
-            request.setUsesFixedLengthStreamingMode(true);
-            request.setMaxRetries(2);
-
-            request.setAutoDeleteFilesAfterSuccessfulUpload(true);
-            request.startUpload(); //Starting the upload
-
-            //request.setCustomUserAgent(getUserAgent());
-        } catch (Exception exc) {
-            Toast.makeText(TPI_Connection_Activity.this, "Please select Image", Toast.LENGTH_SHORT).show();
-            materialDialog.dismiss();
-        }
-
-    }
-
-    private void Dilogbox_Image_Uplode() {
-        final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.setContentView(R.layout.image_upload_dilogbox);
-        //dialog.setCancelable(false);
-        // image_upload=dialog.findViewById(R.id.image_upload);
-
-
-        Button save_button = (Button) dialog.findViewById(R.id.save_button);
-        save_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                dialog.dismiss();
-                selectImage_address();
-            }
-        });
-
-        dialog.show();
-    }
-
-
     private void selectImage_address() {
         AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
         myAlertDialog.setTitle("Upload Pictures Option");
@@ -794,8 +609,6 @@ public class TPI_Connection_Activity  extends Activity {
                 });
         myAlertDialog.show();
     }
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -812,9 +625,6 @@ public class TPI_Connection_Activity  extends Activity {
                         Log.e("image_path_aadhar+,", "" + filePath_Image);
                         if(Feasibility_Type.equals("0")){
                             TPI_Multipart(filePath_img_string);
-                        }
-                        if(Feasibility_Type.equals("1")){
-                            TPI_Multipart1(filePath_img_string);
                         }
 
                     } catch (IOException e) {
@@ -846,9 +656,7 @@ public class TPI_Connection_Activity  extends Activity {
                         if(Feasibility_Type.equals("0")){
                             TPI_Multipart(filePath_img_string);
                         }
-                        if(Feasibility_Type.equals("1")){
-                            TPI_Multipart1(filePath_img_string);
-                        }
+
                         try {
                             outFile = new FileOutputStream(file);
                             bitmap.compress(Bitmap.CompressFormat.JPEG, 85, outFile);

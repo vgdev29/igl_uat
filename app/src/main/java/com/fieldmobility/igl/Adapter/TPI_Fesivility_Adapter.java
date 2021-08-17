@@ -51,14 +51,14 @@ public class TPI_Fesivility_Adapter extends RecyclerView.Adapter<TPI_Fesivility_
     }
 
     @Override
-    public void onBindViewHolder(TPI_Fesivility_Adapter.ViewHolder holder, final int i) {
+    public void onBindViewHolder(TPI_Fesivility_Adapter.ViewHolder holder,  int i) {
         final Bp_No_Item bp_No_Item = this.bp_no_list_array.get(i);
         holder.fesibility_date_text.setVisibility(View.VISIBLE);
-        holder.fesibility_date_text.setText("Fesibility Date: "+bp_No_Item.getFesabilityDate());
+        holder.fesibility_date_text.setText("Assign Date: "+bp_No_Item.getFesabilityDate());
         holder.date_text.setVisibility(View.GONE);
         holder.bp_no_text.setText(bp_No_Item.getBp_number());
         holder.user_name_text.setText(bp_No_Item.getFirst_name());
-        holder.address_text.setText(bp_No_Item.getHouse_no()+" "+bp_No_Item.getFloor()+" "+bp_No_Item.getHouse_type()+" "+bp_No_Item.getSociety()+" \n"
+        holder.address_text.setText(bp_No_Item.getHouse_no()+" "+bp_No_Item.getFloor()+" "+bp_No_Item.getHouse_type()+" "+bp_No_Item.getArea()+" "+bp_No_Item.getSociety()+" \n"
                 +bp_No_Item.getBlock_qtr_tower_wing()+" "+bp_No_Item.getStreet_gali_road()+" "+bp_No_Item.getLandmark()+" "+bp_No_Item.getCity_region()
                 +"\nControl room - "+bp_No_Item.getControlRoom());
         holder.mobile_text.setText(bp_No_Item.getMobile_number());
@@ -79,13 +79,10 @@ public class TPI_Fesivility_Adapter extends RecyclerView.Adapter<TPI_Fesivility_
             holder.status_text.setVisibility(View.GONE);
         }else {
             if(bp_No_Item.getIgl_status().equals("0")){
-                if(bp_No_Item.getHoldStatus()!=null && bp_No_Item.getHoldStatus().equals("5")){
-                    holder.status_text.setVisibility(View.VISIBLE);
-                    holder.status_text.setText("Feasibility Check On Hold");
-                }else {
+
                     holder.status_text.setVisibility(View.VISIBLE);
                     holder.status_text.setText("Feasibility Pending");
-                }
+
 
             }else {
                 //holder.status_text.setVisibility(View.GONE);
