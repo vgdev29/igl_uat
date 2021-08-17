@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.fieldmobility.igl.Helper.CommonUtils;
 import com.fieldmobility.igl.Model.NguserListModel;
 import com.fieldmobility.igl.R;
 import com.fieldmobility.igl.utils.Utils;
@@ -257,7 +258,6 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
         tv_jmr_no = findViewById(R.id.tv_jmr_no);
         tv_bp_no = findViewById(R.id.tv_bp_no);
         et_delayDateValue = findViewById(R.id.et_delayDateValue);
-        hold_image = findViewById(R.id.hold_image);
         iv_homeAddress = findViewById(R.id.iv_homeAddress);
         iv_meterPhoto = findViewById(R.id.iv_meterPhoto);
         iv_installation = findViewById(R.id.iv_installation);
@@ -334,6 +334,12 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
                     .error(R.mipmap.ic_launcher_round);
 
             Glide.with(this).load(nguserListModel.getHold_images()).apply(options).into(hold_image);
+            hold_image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CommonUtils.showZoomImageView(ViewNgDetaillsActivity.this,nguserListModel.getHold_images());
+                }
+            });
         }
         if (!TextUtils.isEmpty(nguserListModel.getHome_address())){
             RequestOptions options = new RequestOptions()
@@ -342,6 +348,12 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
                     .error(R.mipmap.ic_launcher_round);
 
             Glide.with(this).load(nguserListModel.getHome_address()).apply(options).into(iv_homeAddress);
+            iv_homeAddress.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CommonUtils.showZoomImageView(ViewNgDetaillsActivity.this,nguserListModel.getHome_address());
+                }
+            });
         }
         if (!TextUtils.isEmpty(nguserListModel.getMeter_photo())){
             RequestOptions options = new RequestOptions()
@@ -350,6 +362,12 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
                     .error(R.mipmap.ic_launcher_round);
 
             Glide.with(this).load(nguserListModel.getMeter_photo()).apply(options).into(iv_meterPhoto);
+            iv_meterPhoto.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CommonUtils.showZoomImageView(ViewNgDetaillsActivity.this,nguserListModel.getMeter_photo());
+                }
+            });
         }
         if (!TextUtils.isEmpty(nguserListModel.getInstallation_photo())){
             RequestOptions options = new RequestOptions()
@@ -358,6 +376,12 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
                     .error(R.mipmap.ic_launcher_round);
 
             Glide.with(this).load(nguserListModel.getInstallation_photo()).apply(options).into(iv_installation);
+            iv_installation.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CommonUtils.showZoomImageView(ViewNgDetaillsActivity.this,nguserListModel.getInstallation_photo());
+                }
+            });
         }
         if (!TextUtils.isEmpty(nguserListModel.getService_photo())){
             RequestOptions options = new RequestOptions()
@@ -366,6 +390,12 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
                     .error(R.mipmap.ic_launcher_round);
 
             Glide.with(this).load(nguserListModel.getService_photo()).apply(options).into(iv_serviceCard);
+            iv_serviceCard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CommonUtils.showZoomImageView(ViewNgDetaillsActivity.this,nguserListModel.getService_photo());
+                }
+            });
         }
 
 
