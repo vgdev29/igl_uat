@@ -120,7 +120,7 @@ public class RiserListingModel {
             private String rfcVendor;
             @SerializedName("rfcTpi")
             @Expose
-            private Object rfcTpi;
+            private String rfcTpi;
             @SerializedName("jobFlag")
             @Expose
             private String jobFlag;
@@ -498,11 +498,11 @@ public class RiserListingModel {
                 this.rfcVendor = rfcVendor;
             }
 
-            public Object getRfcTpi() {
+            public String getRfcTpi() {
                 return rfcTpi;
             }
 
-            public void setRfcTpi(Object rfcTpi) {
+            public void setRfcTpi(String rfcTpi) {
                 this.rfcTpi = rfcTpi;
             }
 
