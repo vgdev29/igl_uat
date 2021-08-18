@@ -64,7 +64,7 @@ public class DocumentResumissionDetail extends Activity {
     private Uri filePath_aadhaar, filePath_address, filePath_customer;
     Bitmap bitmap;
     CheckBox checkBox_term_cond;
-    TextView checkbox_text;
+    TextView checkbox_text, btn_submit_signature, btn_submit_data, btn_submit_id_proof, btn_submit_address_proof;
     LinearLayout todo_creation;
     String id_proof;
     EditText descreption_edit;
@@ -72,9 +72,9 @@ public class DocumentResumissionDetail extends Activity {
     Bp_No_Item bp_No_Item;
     TextView name_txt, date_txt, bp_no_text, email_id_txt, mobile_no_txt, created_by_person_txt, lead_no_txt, ca_no_txt, tpi_status_txt, tpi_date_txt, resedential_type_txt, address_text;
     SignatureView signatureView;
-    String customer_signature_path,image_path_id, image_path_address,address_proof;
-    Button signature_button, adhar_button, address_button, approve_button;
-    ImageView adhar_image, address_image, signature_image,adhar_owner_image;
+    String customer_signature_path, image_path_id, image_path_address, address_proof;
+    Button signature_button, adhar_button, address_button/*, approve_button*/;
+    ImageView adhar_image, address_image, signature_image, adhar_owner_image;
 
     private final int REQUEST_CODE_GALLERY_SIGN_PICK_CUSTOMER = 1002;
     private final int PICK_IMAGE_REQUEST = 1;
@@ -92,8 +92,8 @@ public class DocumentResumissionDetail extends Activity {
         setContentView(R.layout.activity_document_resubmission_detail);
         String dataJson = getIntent().getStringExtra("data");
 
-findViews();
-        if (dataJson!=null && !dataJson.isEmpty()){
+        findViews();
+        if (dataJson != null && !dataJson.isEmpty()) {
             bp_No_Item = new Gson().fromJson(dataJson, Bp_No_Item.class);
             initViews();
 
@@ -109,35 +109,41 @@ findViews();
 //        Layout_Id();
 //        Implementation_Mentod();
     }
-    EditText tv_father_name,tv_fname,tv_mname,tv_lname,tv_mobile,tv_email,tv_aadhaar,tv_landmark,tv_house_no,tv_hfloor,tv_pin,tv_lpg_dist,tv_lpg_cnum,tv_uid;
-  private void  findViews(){
-      checkBox_term_cond=findViewById(R.id.checkbox);
-      checkbox_text=findViewById(R.id.checkbox_text);
-      tv_fname=findViewById(R.id.tv_fname);
-      tv_mname=findViewById(R.id.tv_mname);
-      tv_lname=findViewById(R.id.tv_lname);
-      tv_mobile=findViewById(R.id.tv_mobile);
-      tv_email=findViewById(R.id.tv_email);
-      tv_father_name=findViewById(R.id.tv_father_name);
-      tv_aadhaar=findViewById(R.id.tv_aadhaar);
-      tv_landmark=findViewById(R.id.tv_landmark);
-      tv_house_no=findViewById(R.id.tv_house_no);
-      tv_hfloor=findViewById(R.id.tv_hfloor);
-      tv_pin=findViewById(R.id.tv_pin);
-      tv_lpg_dist=findViewById(R.id.tv_lpg_dist);
-      tv_lpg_cnum=findViewById(R.id.tv_lpg_cnum);
-      tv_uid=findViewById(R.id.tv_uid);
 
-      adhar_image = findViewById(R.id.adhar_image);
-      address_image = findViewById(R.id.address_image);
-      signature_image = findViewById(R.id.signature_image);
-      signature_button = findViewById(R.id.signature_button);
-      adhar_button = findViewById(R.id.adhar_button);
-      address_button = findViewById(R.id.address_button);
-      approve_button = findViewById(R.id.approve_button);
-      spinner1 = (Spinner) findViewById(R.id.spinner1);
-      spinner2 = (Spinner) findViewById(R.id.spinner2);
-  }
+    EditText tv_father_name, tv_fname, tv_mname, tv_lname, tv_mobile, tv_email, tv_aadhaar, tv_landmark, tv_house_no, tv_hfloor, tv_pin, tv_lpg_dist, tv_lpg_cnum, tv_uid;
+
+    private void findViews() {
+        checkBox_term_cond = findViewById(R.id.checkbox);
+        checkbox_text = findViewById(R.id.checkbox_text);
+        btn_submit_signature = findViewById(R.id.btn_submit_signature);
+        btn_submit_data = findViewById(R.id.btn_submit_data);
+        btn_submit_id_proof = findViewById(R.id.btn_submit_id_proof);
+        btn_submit_address_proof = findViewById(R.id.btn_submit_address_proof);
+        tv_fname = findViewById(R.id.tv_fname);
+        tv_mname = findViewById(R.id.tv_mname);
+        tv_lname = findViewById(R.id.tv_lname);
+        tv_mobile = findViewById(R.id.tv_mobile);
+        tv_email = findViewById(R.id.tv_email);
+        tv_father_name = findViewById(R.id.tv_father_name);
+        tv_aadhaar = findViewById(R.id.tv_aadhaar);
+        tv_landmark = findViewById(R.id.tv_landmark);
+        tv_house_no = findViewById(R.id.tv_house_no);
+        tv_hfloor = findViewById(R.id.tv_hfloor);
+        tv_pin = findViewById(R.id.tv_pin);
+        tv_lpg_dist = findViewById(R.id.tv_lpg_dist);
+        tv_lpg_cnum = findViewById(R.id.tv_lpg_cnum);
+        tv_uid = findViewById(R.id.tv_uid);
+
+        adhar_image = findViewById(R.id.adhar_image);
+        address_image = findViewById(R.id.address_image);
+        signature_image = findViewById(R.id.signature_image);
+        signature_button = findViewById(R.id.signature_button);
+        adhar_button = findViewById(R.id.adhar_button);
+        address_button = findViewById(R.id.address_button);
+//        approve_button = findViewById(R.id.approve_button);
+        spinner1 = (Spinner) findViewById(R.id.spinner1);
+        spinner2 = (Spinner) findViewById(R.id.spinner2);
+    }
 
     private void initViews() {
 
@@ -149,21 +155,21 @@ findViews();
         tv_email.setText(bp_No_Item.getEmail_id());
         tv_aadhaar.setText(bp_No_Item.getAadhaar_number());
         tv_father_name.setText(bp_No_Item.getFather_name());
-        ((TextView)findViewById(R.id.tv_city)).setText(bp_No_Item.getCity_region());
-        ((TextView)findViewById(R.id.tv_area)).setText(bp_No_Item.getArea());
-        ((TextView)findViewById(R.id.tv_society)).setText(bp_No_Item.getSociety());
+        ((TextView) findViewById(R.id.tv_city)).setText(bp_No_Item.getCity_region());
+        ((TextView) findViewById(R.id.tv_area)).setText(bp_No_Item.getArea());
+        ((TextView) findViewById(R.id.tv_society)).setText(bp_No_Item.getSociety());
         tv_landmark.setText(bp_No_Item.getLandmark());
-        ((TextView)findViewById(R.id.tv_house_type)).setText(bp_No_Item.getHouse_type());
+        ((TextView) findViewById(R.id.tv_house_type)).setText(bp_No_Item.getHouse_type());
         tv_house_no.setText(bp_No_Item.getHouse_no());
-        ((TextView)findViewById(R.id.tv_hblock)).setText(bp_No_Item.getBlock_qtr_tower_wing());
+        ((TextView) findViewById(R.id.tv_hblock)).setText(bp_No_Item.getBlock_qtr_tower_wing());
         tv_hfloor.setText(bp_No_Item.getFloor());
-        ((TextView)findViewById(R.id.tv_street)).setText(bp_No_Item.getStreet_gali_road());
+        ((TextView) findViewById(R.id.tv_street)).setText(bp_No_Item.getStreet_gali_road());
         tv_pin.setText(bp_No_Item.getPincode());
-        ((TextView)findViewById(R.id.tv_lpg_company)).setText(bp_No_Item.getLpg_company());
+        ((TextView) findViewById(R.id.tv_lpg_company)).setText(bp_No_Item.getLpg_company());
         tv_lpg_dist.setText(bp_No_Item.getLpg_distributor());
         tv_lpg_cnum.setText(bp_No_Item.getLpg_conNo());
         tv_uid.setText(bp_No_Item.getUnique_lpg_Id());
-        ((TextView)findViewById(R.id.tv_customer_type)).setText(bp_No_Item.getCustomer_type());
+        ((TextView) findViewById(R.id.tv_customer_type)).setText(bp_No_Item.getCustomer_type());
 
         List<String> IdProofOptionList = new ArrayList<String>();
         IdProofOptionList.add("AADHAAR CARD");
@@ -252,11 +258,11 @@ findViews();
         String second = "<font color='#EE0000'> Terms and conditions</font>";
         String third = " of PNG registration.";
 
-        checkbox_text.setText(Html.fromHtml(first + second+third));
+        checkbox_text.setText(Html.fromHtml(first + second + third));
         checkbox_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(DocumentResumissionDetail.this,WebView_Activity.class);
+                Intent intent = new Intent(DocumentResumissionDetail.this, WebView_Activity.class);
                 startActivity(intent);
 
             }
@@ -264,17 +270,16 @@ findViews();
         checkBox_term_cond.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {
+                if (isChecked) {
                     checkBox_term_cond.setChecked(true);
                     Toast.makeText(DocumentResumissionDetail.this, "You checked the checkbox!", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     checkBox_term_cond.setChecked(false);
                     Toast.makeText(DocumentResumissionDetail.this, "You unchecked the checkbox!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        approve_button.setOnClickListener(new View.OnClickListener() {
+        btn_submit_data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (checkBox_term_cond.isChecked()) {
@@ -282,14 +287,45 @@ findViews();
                     if (validateData()) {
                         uploadMultipart();
                     }
+                } else {
+                    Toast.makeText(DocumentResumissionDetail.this, "Please tick to accept Tearm & Condition", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        btn_submit_signature.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (customer_signature_path == null) {
+                    Toast.makeText(DocumentResumissionDetail.this, "Please Select Customer Signature", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Toast.makeText(DocumentResumissionDetail.this, "Please tick to accept Tearm & Condition", Toast.LENGTH_SHORT).show();
+                    //TODO API CALL
+                }
+            }
+        });
+        btn_submit_id_proof.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (image_path_id == null) {
+                    Toast.makeText(DocumentResumissionDetail.this, "Please Select Image ID Proof", Toast.LENGTH_SHORT).show();
+                } else {
+                    //TODO API CALL
+                }
+            }
+        });
+        btn_submit_address_proof.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (image_path_address == null) {
+                    Toast.makeText(DocumentResumissionDetail.this, "Please Select Image Address Proof", Toast.LENGTH_SHORT).show();
+                } else{
+                    //TODO API CALL
                 }
             }
         });
 
     }
+
     private void selectImage_aadhaar() {
         AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
         myAlertDialog.setTitle("Upload Pictures Option");
@@ -353,7 +389,7 @@ findViews();
         dialog.setTitle("Signature");
         dialog.setCancelable(true);
         EditText any_other_edit = (EditText) dialog.findViewById(R.id.any_other_edit);
-      Button  save = (Button) dialog.findViewById(R.id.save_button);
+        Button save = (Button) dialog.findViewById(R.id.save_button);
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -433,6 +469,7 @@ findViews();
         }
         return path;
     }
+
     private boolean validateData() {
         boolean isDataValid = true;
         if (tv_fname.getText().length() == 0) {
@@ -447,8 +484,7 @@ findViews();
             isDataValid = false;
             tv_mobile.setError("Enter Mobile No");
             Toast.makeText(DocumentResumissionDetail.this, "Enter Valid Mobile no.", Toast.LENGTH_SHORT).show();
-        }
-        else if (tv_house_no.getText().length() == 0) {
+        } else if (tv_house_no.getText().length() == 0) {
             isDataValid = false;
             tv_house_no.setError("Enter House No");
             Toast.makeText(DocumentResumissionDetail.this, "Enter House no", Toast.LENGTH_SHORT).show();
@@ -461,21 +497,11 @@ findViews();
             tv_pin.setError("Enter PinCode");
             Toast.makeText(DocumentResumissionDetail.this, "Enter Pincode", Toast.LENGTH_SHORT).show();
         }
-        if (image_path_id == null) {
-            isDataValid = false;
-            Toast.makeText(DocumentResumissionDetail.this,"Please Select Image ID Proof",Toast.LENGTH_SHORT).show();
-        }
-        else if (image_path_address== null) {
-            isDataValid = false;
-            Toast.makeText(DocumentResumissionDetail.this,"Please Select Image Address Proof",Toast.LENGTH_SHORT).show();
-        }
-        else if (customer_signature_path== null) {
-            isDataValid = false;
-            Toast.makeText(DocumentResumissionDetail.this,"Please Select Customer Signature",Toast.LENGTH_SHORT).show();
-        }
+
 
         return isDataValid;
     }
+
     private void select_CustomerSignature_Method() {
         AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
         myAlertDialog.setTitle("Upload Pictures Option");
@@ -525,8 +551,8 @@ findViews();
         EditText ownar_name_no = dialog.findViewById(R.id.ownar_name_no);
         ownar_name_no.setVisibility(View.GONE);
         signatureView = (SignatureView) dialog.findViewById(R.id.ownar_signature_view);
-        Button    clear =  dialog.findViewById(R.id.clear);
-        Button   save =  dialog.findViewById(R.id.save);
+        Button clear = dialog.findViewById(R.id.clear);
+        Button save = dialog.findViewById(R.id.save);
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -616,11 +642,12 @@ findViews();
                 break;
         }
     }
+
     public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
         int width = image.getWidth();
         int height = image.getHeight();
 
-        float bitmapRatio = (float)width / (float) height;
+        float bitmapRatio = (float) width / (float) height;
         if (bitmapRatio > 1) {
             width = maxSize;
             height = (int) (width / bitmapRatio);
@@ -640,7 +667,7 @@ findViews();
                     filePath_aadhaar = data.getData();
                     try {
                         bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePath_aadhaar);
-                        bitmap=getResizedBitmap(bitmap,500);
+                        bitmap = getResizedBitmap(bitmap, 500);
 
                         // imageView.setImageBitmap(bitmap);
                         adhar_image.setImageBitmap(bitmap);
@@ -667,7 +694,7 @@ findViews();
                         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
                         bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
                                 bitmapOptions);
-                        bitmap=getResizedBitmap(bitmap,500);
+                        bitmap = getResizedBitmap(bitmap, 500);
 
                         adhar_image.setImageBitmap(bitmap);
                         String path = getExternalStorageDirectory().getAbsolutePath();
@@ -724,7 +751,7 @@ findViews();
                         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
                         bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
                                 bitmapOptions);
-                        bitmap=getResizedBitmap(bitmap,500);
+                        bitmap = getResizedBitmap(bitmap, 500);
 
                         address_image.setImageBitmap(bitmap);
                         //BitMapToString(bitmap);
@@ -761,7 +788,7 @@ findViews();
                     Log.e("filePath_customer", filePath_customer.toString());
                     try {
                         bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePath_customer);
-                        bitmap=getResizedBitmap(bitmap,500);
+                        bitmap = getResizedBitmap(bitmap, 500);
 
                         // imageView.setImageBitmap(bitmap);
                         signature_image.setImageBitmap(bitmap);
@@ -787,6 +814,7 @@ findViews();
                 }
         }
     }
+
     public void uploadMultipart() {
 
 //        try {

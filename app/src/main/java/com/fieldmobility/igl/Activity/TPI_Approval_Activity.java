@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,11 +25,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.fieldmobility.igl.Adapter.SimpleTextSelectorAdapter;
 import com.fieldmobility.igl.Adapter.TPI_Approval_Adapter;
 import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.MataData.Bp_No_Item;
 import com.fieldmobility.igl.R;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,11 +45,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-public class TPI_Approval_Activity extends Activity implements TPI_Approval_Adapter.ContactsAdapterListener{
+public class TPI_Approval_Activity extends Activity implements TPI_Approval_Adapter.ContactsAdapterListener {
 
     ProgressDialog progressDialog;
     SharedPrefs sharedPrefs;
-    ImageView back,new_regestration;
+    ImageView back, new_regestration;
     MaterialDialog materialDialog;
     private List<Bp_No_Item> bp_no_array;
     RecyclerView recyclerView;
@@ -57,6 +60,7 @@ public class TPI_Approval_Activity extends Activity implements TPI_Approval_Adap
     View root;
     LinearLayout top_layout;
     TextView list_count;
+
     public TPI_Approval_Activity() {
         // Required empty public constructor
     }
@@ -74,12 +78,13 @@ public class TPI_Approval_Activity extends Activity implements TPI_Approval_Adap
         sharedPrefs = new SharedPrefs(this);
         Layout_ID();
     }
+
     private void Layout_ID() {
-        top_layout=findViewById(R.id.top_layout);
+        top_layout = findViewById(R.id.top_layout);
         top_layout.setVisibility(View.GONE);
-        list_count=findViewById(R.id.list_count);
-        bp_no_array=new ArrayList<>();
-        header_title=findViewById(R.id.header_title);
+        list_count = findViewById(R.id.list_count);
+        bp_no_array = new ArrayList<>();
+        header_title = findViewById(R.id.header_title);
         header_title.setText("RFC Approval");
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
@@ -95,16 +100,17 @@ public class TPI_Approval_Activity extends Activity implements TPI_Approval_Adap
                 }
             }
         });
-        recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
-        editTextSearch=findViewById(R.id.editTextSearch);
+        editTextSearch = findViewById(R.id.editTextSearch);
         editTextSearch.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,int after) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 //  bookadapter.getFilter().filter(s.toString());
@@ -127,20 +133,20 @@ public class TPI_Approval_Activity extends Activity implements TPI_Approval_Adap
                 .content("Please wait....")
                 .progress(true, 0)
                 .show();
-        Log.d("Response++",Constants.RFC_LISTING_TPI_GET+sharedPrefs.getZone_Code()+"?id="+sharedPrefs.getUUID());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.RFC_LISTING_TPI_GET+sharedPrefs.getZone_Code()+"?id="+sharedPrefs.getUUID(),
+        Log.d("Response++", Constants.RFC_LISTING_TPI_GET + sharedPrefs.getZone_Code() + "?id=" + sharedPrefs.getUUID());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.RFC_LISTING_TPI_GET + sharedPrefs.getZone_Code() + "?id=" + sharedPrefs.getUUID(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         materialDialog.dismiss();
                         try {
                             final JSONObject jsonObject = new JSONObject(response);
-                            Log.e("Response++",jsonObject.toString());
+                            Log.e("Response++", jsonObject.toString());
                             final JSONObject Bp_Details = jsonObject.getJSONObject("Bp_Details");
-                            JSONArray payload=Bp_Details.getJSONArray("users1");
-                            list_count.setText("Count= "+String.valueOf(payload.length()));
-                            for(int i=0; i<=payload.length();i++) {
-                                JSONObject data_object=payload.getJSONObject(i);
+                            JSONArray payload = Bp_Details.getJSONArray("users1");
+                            list_count.setText("Count= " + String.valueOf(payload.length()));
+                            for (int i = 0; i <= payload.length(); i++) {
+                                JSONObject data_object = payload.getJSONObject(i);
                                 Bp_No_Item bp_no_item = new Bp_No_Item();
                                 bp_no_item.setFirst_name(data_object.getString("first_name"));
                                 bp_no_item.setMiddle_name(data_object.getString("middle_name"));
@@ -185,12 +191,12 @@ public class TPI_Approval_Activity extends Activity implements TPI_Approval_Adap
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                        }catch (NullPointerException e) {
+                        } catch (NullPointerException e) {
                             e.printStackTrace();
                         }
                         //  DesignerToast.Custom(New_BP_No_Listing.this,"Successfully",Gravity.BOTTOM,Toast.LENGTH_SHORT, R.drawable.shape_cornor_radious,15,"#FFFFFF",R.drawable.ic_success, 60, 200);
                         //DesignerToast.Success(New_BP_No_Listing.this, "Successfully", Gravity.BOTTOM, Toast.LENGTH_SHORT);
-                        adapter = new TPI_Approval_Adapter(TPI_Approval_Activity.this,bp_no_array,TPI_Approval_Activity.this);
+                        adapter = new TPI_Approval_Adapter(TPI_Approval_Activity.this, bp_no_array, TPI_Approval_Activity.this);
                         recyclerView.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
                     }
@@ -262,21 +268,47 @@ public class TPI_Approval_Activity extends Activity implements TPI_Approval_Adap
 
     }
 
-   /* @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        super.onActivityResult(requestCode, resultCode, data);
-        if ((requestCode == 10001) && (resultCode == this.RESULT_OK)){
-            try {
-                bp_no_array.clear();
-                adapter.notifyDataSetChanged();
-                Bp_No_List();
-            } catch (NullPointerException e) {
-                e.printStackTrace();
+    /* @Override
+     public void onActivityResult(int requestCode, int resultCode, Intent data)
+     {
+         super.onActivityResult(requestCode, resultCode, data);
+         if ((requestCode == 10001) && (resultCode == this.RESULT_OK)){
+             try {
+                 bp_no_array.clear();
+                 adapter.notifyDataSetChanged();
+                 Bp_No_List();
+             } catch (NullPointerException e) {
+                 e.printStackTrace();
+             }
+
+         }
+             // recreate your fragment here
+
+     }*/
+    BottomSheetDialog dialog;
+    private void bottomSheetInit() {
+        View modalbottomsheet = getLayoutInflater().inflate(R.layout.simple_text_picker_bottomsheet, null);
+        RadioGroup radio_group = modalbottomsheet.findViewById(R.id.radio_group);
+        radio_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.rb_ng_done) {
+                    dialog.dismiss();
+                } else {
+                    dialog.dismiss();
+                }
             }
+        });
 
-        }
-            // recreate your fragment here
-
-    }*/
+        modalbottomsheet.findViewById(R.id.iv_close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog = new BottomSheetDialog(this, R.style.BottomSheetDialog);
+        dialog.setContentView(modalbottomsheet);
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+    }
 }

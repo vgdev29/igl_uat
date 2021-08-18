@@ -49,7 +49,7 @@ public class BP_No_Resubmition_Listing extends Activity implements New_BP_NO_Ada
     ProgressDialog progressDialog;
     SharedPrefs sharedPrefs;
     ImageView rfc_filter;
-    FloatingActionButton new_regestration;
+//    FloatingActionButton new_regestration;
     MaterialDialog materialDialog;
     private List<Bp_No_Item> bp_no_array;
     RecyclerView recyclerView;
@@ -80,14 +80,14 @@ public class BP_No_Resubmition_Listing extends Activity implements New_BP_NO_Ada
         top_layout.setVisibility(View.GONE);
         bp_no_array=new ArrayList<>();
 
-        new_regestration=findViewById(R.id.new_regestration);
-        new_regestration.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent =new Intent(BP_No_Resubmition_Listing.this, BP_Creation_Form.class);
-                startActivity(intent);
-            }
-        });
+//        new_regestration=findViewById(R.id.new_regestration);
+//        new_regestration.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent =new Intent(BP_No_Resubmition_Listing.this, BP_Creation_Form.class);
+//                startActivity(intent);
+//            }
+//        });
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
