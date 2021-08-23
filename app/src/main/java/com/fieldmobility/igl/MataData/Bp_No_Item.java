@@ -16,6 +16,15 @@ public class Bp_No_Item implements Serializable {
     String mobile_number;
     String email_id;
     String aadhaar_number;
+boolean images;
+
+    public boolean isImages() {
+        return images;
+    }
+
+    public void setImages(boolean images) {
+        this.images = images;
+    }
 
     public String getFather_name() {
         return father_name;

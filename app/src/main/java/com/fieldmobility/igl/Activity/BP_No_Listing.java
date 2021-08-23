@@ -227,6 +227,7 @@ public class BP_No_Listing extends Activity implements New_BP_NO_Adapter.Contact
                             for(int i=0; i<payload.length();i++) {
                                 JSONObject data_object=payload.getJSONObject(i);
                                 Bp_No_Item bp_no_item = new Bp_No_Item();
+                                bp_no_item.setImages(data_object.getBoolean("image"));
                                 bp_no_item.setFirst_name(data_object.getString("igl_first_name"));
                                 bp_no_item.setMiddle_name(data_object.getString("igl_middle_name"));
                                 bp_no_item.setLast_name(data_object.getString("igl_last_name"));

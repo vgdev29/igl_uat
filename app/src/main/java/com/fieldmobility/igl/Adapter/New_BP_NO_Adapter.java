@@ -26,19 +26,19 @@ import java.util.List;
 
 public class New_BP_NO_Adapter extends RecyclerView.Adapter<New_BP_NO_Adapter.ViewHolder> implements Filterable {
     Context context;
-    boolean isForResubmition=false;
+    boolean isForResubmition = false;
     // RecyclerView recyclerView;
     private List<Bp_No_Item> bp_no_list_array;
     private List<Bp_No_Item> New_bp_no_list_array;
     private New_BP_NO_Adapter.ContactsAdapterListener listener;
-    public New_BP_NO_Adapter(Context context, List<Bp_No_Item> New_bp_no_list_array, New_BP_NO_Adapter.ContactsAdapterListener listener,boolean isForResubmition) {
+
+    public New_BP_NO_Adapter(Context context, List<Bp_No_Item> New_bp_no_list_array, New_BP_NO_Adapter.ContactsAdapterListener listener, boolean isForResubmition) {
         this.bp_no_list_array = New_bp_no_list_array;
         this.New_bp_no_list_array = New_bp_no_list_array;
         this.listener = listener;
         this.context = context;
-        this.isForResubmition=isForResubmition;
+        this.isForResubmition = isForResubmition;
     }
-
 
 
     @Override
@@ -58,27 +58,32 @@ public class New_BP_NO_Adapter extends RecyclerView.Adapter<New_BP_NO_Adapter.Vi
     public void onBindViewHolder(New_BP_NO_Adapter.ViewHolder holder, final int position) {
         final Bp_No_Item Bp_No_array = bp_no_list_array.get(position);
         holder.status_text.setVisibility(View.GONE);
-        holder.date_text.setText("Registration Date - "+Bp_No_array.getBp_date());
+        holder.date_text.setText("Registration Date - " + Bp_No_array.getBp_date());
         holder.bp_no_text.setText(Bp_No_array.getBp_number());
         holder.user_name_text.setText(Bp_No_array.getFirst_name());
-    //    holder.address_text.setText(Bp_No_array.getHouse_no()+" "+Bp_No_array.getSociety()+" "+Bp_No_array.getArea()+" "+Bp_No_array.getCity_region());
-        holder.address_text.setText(Bp_No_array.getHouse_no()+" "+Bp_No_array.getFloor()+" "+Bp_No_array.getHouse_type()+" "+Bp_No_array.getSociety()+" \n"
-                +Bp_No_array.getBlock_qtr_tower_wing()+" "+Bp_No_array.getStreet_gali_road()+" "+Bp_No_array.getLandmark()+" "+Bp_No_array.getCity_region());
-       holder.mob_text.setText(Bp_No_array.getMobile_number());
+        //    holder.address_text.setText(Bp_No_array.getHouse_no()+" "+Bp_No_array.getSociety()+" "+Bp_No_array.getArea()+" "+Bp_No_array.getCity_region());
+        holder.address_text.setText(Bp_No_array.getHouse_no() + " " + Bp_No_array.getFloor() + " " + Bp_No_array.getHouse_type() + " " + Bp_No_array.getSociety() + " \n"
+                + Bp_No_array.getBlock_qtr_tower_wing() + " " + Bp_No_array.getStreet_gali_road() + " " + Bp_No_array.getLandmark() + " " + Bp_No_array.getCity_region());
+        holder.mob_text.setText(Bp_No_array.getMobile_number());
+        if (Bp_No_array.isImages()) {
 
+        }
+        String text = Bp_No_array.isImages() ? "Available" : "Not Available";
+        holder.tv_has_image.setText("Documents " + text);
 
         holder.liner_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String dataJson=new Gson().toJson(bp_no_list_array.get(position));
+                String dataJson = new Gson().toJson(bp_no_list_array.get(position));
                 Intent intent;
 
-                intent=new Intent(context, isForResubmition? DocumentResumissionDetail.class : Bp_Created_Detail.class);
-                intent.putExtra("data",dataJson);
+                intent = new Intent(context, isForResubmition ? DocumentResumissionDetail.class : Bp_Created_Detail.class);
+                intent.putExtra("data", dataJson);
                 context.startActivity(intent);
             }
         });
     }
+
     @Override
     public int getItemCount() {
         return bp_no_list_array.size();
@@ -86,20 +91,23 @@ public class New_BP_NO_Adapter extends RecyclerView.Adapter<New_BP_NO_Adapter.Vi
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;
-        public TextView bp_no_text,user_name_text,address_text,date_text,status_text,mob_text;
+        public TextView bp_no_text, user_name_text, address_text, date_text, status_text, mob_text, tv_has_image;
         public LinearLayout liner_layout;
         public CardView linearLayout;
+
         public ViewHolder(View itemView) {
             super(itemView);
+            tv_has_image = (TextView) itemView.findViewById(R.id.tv_has_image);
             date_text = (TextView) itemView.findViewById(R.id.date_text);
             bp_no_text = (TextView) itemView.findViewById(R.id.bp_no_text);
             user_name_text = (TextView) itemView.findViewById(R.id.user_name_text);
             address_text = (TextView) itemView.findViewById(R.id.address_text);
-            status_text= (TextView) itemView.findViewById(R.id.status_text);
-            mob_text =itemView.findViewById(R.id.mobile_text);
+            status_text = (TextView) itemView.findViewById(R.id.status_text);
+            mob_text = itemView.findViewById(R.id.mobile_text);
             liner_layout = (LinearLayout) itemView.findViewById(R.id.liner_layout);
         }
     }
+
     @Override
     public Filter getFilter() {
         return new Filter() {
@@ -121,6 +129,7 @@ public class New_BP_NO_Adapter extends RecyclerView.Adapter<New_BP_NO_Adapter.Vi
                 filterResults.values = bp_no_list_array;
                 return filterResults;
             }
+
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
                 bp_no_list_array = (ArrayList<Bp_No_Item>) filterResults.values;
