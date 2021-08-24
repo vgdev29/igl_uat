@@ -227,7 +227,6 @@ public class BP_No_Listing extends Activity implements New_BP_NO_Adapter.Contact
                             for(int i=0; i<payload.length();i++) {
                                 JSONObject data_object=payload.getJSONObject(i);
                                 Bp_No_Item bp_no_item = new Bp_No_Item();
-                                bp_no_item.setImages(data_object.getBoolean("image"));
                                 bp_no_item.setFirst_name(data_object.getString("igl_first_name"));
                                 bp_no_item.setMiddle_name(data_object.getString("igl_middle_name"));
                                 bp_no_item.setLast_name(data_object.getString("igl_last_name"));
@@ -265,13 +264,19 @@ public class BP_No_Listing extends Activity implements New_BP_NO_Adapter.Contact
                                 bp_no_item.setAddressProof(data_object.getString("igl_address_type"));
                                 bp_no_item.setIdproof(data_object.getString("id_proof_type"));
                                 bp_no_item.setIgl_code_group(data_object.getString("igl_code_group"));
-                                ArrayList<String> imageList= new ArrayList<>();
-                                JSONArray imgArray=data_object.getJSONArray("imageList");
-                                for (int k =0;k<imgArray.length();k++){
-                                    imageList.add(imgArray.getString(k));
+                                boolean hasImages=data_object.getBoolean("image");
+                                bp_no_item.setImages(hasImages);
+
+                                if (hasImages){
+                                    ArrayList<String> imageList= new ArrayList<>();
+                                    JSONArray imgArray=data_object.getJSONArray("imageList");
+                                    for (int k =0;k<imgArray.length();k++){
+                                        imageList.add(imgArray.getString(k));
+                                    }
+
+                                    bp_no_item.setImageList(imageList);
                                 }
 
-                                bp_no_item.setImageList(imageList);
                                 bp_no_array.add(bp_no_item);
 
                             }

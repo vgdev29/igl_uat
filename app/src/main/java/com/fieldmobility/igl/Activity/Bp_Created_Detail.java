@@ -51,6 +51,7 @@ import com.google.gson.Gson;
 import com.kyanogen.signatureview.SignatureView;
 import com.squareup.picasso.Picasso;
 import com.vincent.filepicker.Constant;
+import com.vincent.filepicker.activity.NormalFilePickActivity;
 import com.vincent.filepicker.filter.entity.NormalFile;
 
 import net.gotev.uploadservice.ContentType;
@@ -127,6 +128,9 @@ public class Bp_Created_Detail extends Activity {
     String img_id_proof_url = "", img_address_proof_url = "", img_customer_signature_url = "", img_owner_signature_url = "", img_cheque = "";
 
     private void initViews() {
+        lt_resubmit.setVisibility(View.VISIBLE);
+        lt_proof_detail.setVisibility(View.GONE);
+        initUploadViews();
         ((TextView) findViewById(R.id.tv_fname)).setText(bp_No_Item.getFirst_name());
         ((TextView) findViewById(R.id.tv_mname)).setText(bp_No_Item.getMiddle_name());
         ((TextView) findViewById(R.id.tv_lname)).setText(bp_No_Item.getLast_name());
@@ -152,35 +156,35 @@ public class Bp_Created_Detail extends Activity {
         ((TextView) findViewById(R.id.tv_id_type)).setText(bp_No_Item.getIdproof());
         ((TextView) findViewById(R.id.tv_address_proof_type)).setText(bp_No_Item.getAddressProof());
         ImageView iv_id_proof = findViewById(R.id.iv_id_proof);
-        iv_id_proof.setOnClickListener(new View.OnClickListener() {
+        id_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CommonUtils.showZoomImageView(Bp_Created_Detail.this, img_id_proof_url);
             }
         });
         ImageView iv_address_proof = findViewById(R.id.iv_address_proof);
-        iv_address_proof.setOnClickListener(new View.OnClickListener() {
+        address_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CommonUtils.showZoomImageView(Bp_Created_Detail.this, img_address_proof_url);
             }
         });
         ImageView iv_customerSignature = findViewById(R.id.iv_signature);
-        iv_customerSignature.setOnClickListener(new View.OnClickListener() {
+        customer_sigimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CommonUtils.showZoomImageView(Bp_Created_Detail.this, img_customer_signature_url);
             }
         });
         ImageView iv_owner_signature = findViewById(R.id.iv_owner_signature);
-        iv_owner_signature.setOnClickListener(new View.OnClickListener() {
+        owner_sigimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CommonUtils.showZoomImageView(Bp_Created_Detail.this, img_owner_signature_url);
             }
         });
         ImageView iv_cheque = findViewById(R.id.iv_cheque);
-        iv_cheque.setOnClickListener(new View.OnClickListener() {
+        cheque_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CommonUtils.showZoomImageView(Bp_Created_Detail.this, img_cheque);
@@ -188,9 +192,11 @@ public class Bp_Created_Detail extends Activity {
         });
 
 
-        if (hasImageData) {
-            lt_resubmit.setVisibility(View.GONE);
-            lt_proof_detail.setVisibility(View.VISIBLE);
+//        if (hasImageData) {
+//            lt_resubmit.setVisibility(View.GONE);
+//            lt_proof_detail.setVisibility(View.VISIBLE);
+
+        if (hasImageData){
             try {
                 if (bp_No_Item.getImageList() != null && bp_No_Item.getImageList().size() > 0) {
                     for (int i = 0; i < bp_No_Item.getImageList().size(); i++) {
@@ -213,23 +219,33 @@ public class Bp_Created_Detail extends Activity {
                     }
 
                     if (!img_id_proof_url.isEmpty())
-                        Picasso.with(Bp_Created_Detail.this).load(img_id_proof_url).into(iv_id_proof);
+//                        Picasso.with(Bp_Created_Detail.this).load(img_id_proof_url).into(id_image);
+                    CommonUtils.setImageUsingGLide(Bp_Created_Detail.this,img_id_proof_url,id_image);
                     if (!img_address_proof_url.isEmpty())
-                        Picasso.with(Bp_Created_Detail.this).load(img_address_proof_url).into(iv_address_proof);
+//                        Picasso.with(Bp_Created_Detail.this).load(img_address_proof_url).into(address_image);
+                    CommonUtils.setImageUsingGLide(Bp_Created_Detail.this,img_address_proof_url,address_image);
+
                     if (!img_customer_signature_url.isEmpty())
-                        Picasso.with(Bp_Created_Detail.this).load(img_customer_signature_url).into(iv_customerSignature);
+//                        Picasso.with(Bp_Created_Detail.this).load(img_customer_signature_url).into(customer_sigimage);
+                    CommonUtils.setImageUsingGLide(Bp_Created_Detail.this,img_customer_signature_url,customer_sigimage);
+
                     if (!img_owner_signature_url.isEmpty()) {
                         findViewById(R.id.lt_owner_signature).setVisibility(View.VISIBLE);
-                        Picasso.with(Bp_Created_Detail.this).load(img_owner_signature_url).into(iv_owner_signature);
+                        owner_name.setText(bp_No_Item.getOwnerName());
+//                        Picasso.with(Bp_Created_Detail.this).load(img_owner_signature_url).into(owner_sigimage);
+                        CommonUtils.setImageUsingGLide(Bp_Created_Detail.this,img_owner_signature_url,owner_sigimage);
+
                     } else {
                         findViewById(R.id.lt_owner_signature).setVisibility(View.GONE);
 
                     }
                     if (!img_cheque.isEmpty()) {
-                        findViewById(R.id.lt_cheque_image).setVisibility(View.VISIBLE);
-                        Picasso.with(Bp_Created_Detail.this).load(img_cheque).into(iv_cheque);
+//                        findViewById(R.id.lt_cheque_image).setVisibility(View.VISIBLE);
+//                        Picasso.with(Bp_Created_Detail.this).load(img_cheque).into(cheque_image);
+                        CommonUtils.setImageUsingGLide(Bp_Created_Detail.this,img_cheque,cheque_image);
+
                     } else {
-                        findViewById(R.id.lt_cheque_image).setVisibility(View.GONE);
+//                        findViewById(R.id.lt_cheque_image).setVisibility(View.GONE);
 
                     }
 
@@ -237,11 +253,13 @@ public class Bp_Created_Detail extends Activity {
             } catch (Exception e) {
 
             }
-        } else {
-            lt_resubmit.setVisibility(View.VISIBLE);
-            lt_proof_detail.setVisibility(View.GONE);
-            initUploadViews();
         }
+
+//        } else {
+//            lt_resubmit.setVisibility(View.VISIBLE);
+//            lt_proof_detail.setVisibility(View.GONE);
+//            initUploadViews();
+//        }
 
 
     }
@@ -250,24 +268,24 @@ public class Bp_Created_Detail extends Activity {
     String address_proof, pdf_path, id_proof;
     boolean isSaleDeedSelected = false;
     Button address_button, id_button;
-    ImageView address_image, iv_cheque;
     TextView tv_pdf_path;
     Bitmap bitmap_id, bitmap_address, bitmap_custmsig, bitmap_ownersig;
     File file_id, file_address, file_cutmsig, file_ownersig;
     String screenshot_id, screenshot_address, screenshot_custsig, screenshot_ownersig, bp_no;
     LinearLayout ll_owner_signature, ll_capture_id, ll_capture_address, ll_capture_custmsig, ll_capture_ownersig;
-    ImageView owner_sigimage, id_image, customer_sigimage;
+    ImageView owner_sigimage, id_image, customer_sigimage,address_image, cheque_image;
     String image_path_id, image_path_address, customer_signature_path, owner_signature_path, Type_Of_Owner, image_path_cheque, ownar_name;
     RadioGroup radioGroup;
     EditText owner_name;
     Button btn_upload_cheque;
 
     private void initUploadViews() {
-        iv_cheque = findViewById(R.id.iv_cheque_);
+        cheque_image = findViewById(R.id.iv_cheque_);
         owner_name = findViewById(R.id.owner_name);
         owner_sigimage = findViewById(R.id.owner_signature_image);
         id_image = findViewById(R.id.adhar_image);
         btn_upload_cheque = findViewById(R.id.btn_upload_cheque);
+        TextView btn_submit_cheque = findViewById(R.id.btn_submit_cheque);
         btn_upload_cheque.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -277,6 +295,31 @@ public class Bp_Created_Detail extends Activity {
         customer_sigimage = findViewById(R.id.signature_image);
         id_proof_spinner = findViewById(R.id.id_proof_spinner);
         address_button = findViewById(R.id.address_button);
+        address_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isSaleDeedSelected)
+                    selectPdf();
+                else
+                    selectImage_address();
+
+            }
+        });
+
+        Button customer_image_button = findViewById(R.id.customer_image_button);
+        customer_image_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectCustomerSignature();
+            }
+        });
+        Button owner_image_button = findViewById(R.id.owner_image_button);
+        owner_image_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectOnwerSignature();
+            }
+        });
         address_image = findViewById(R.id.address_image);
         tv_pdf_path = findViewById(R.id.tv_pdf_path);
         id_button = findViewById(R.id.id_button);
@@ -329,14 +372,13 @@ public class Bp_Created_Detail extends Activity {
 
             }
         });
-        btn_submit_address_proof.setOnClickListener(new View.OnClickListener() {
+        btn_submit_cheque.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(image_path_cheque)){
+                if (TextUtils.isEmpty(image_path_cheque)) {
                     CommonUtils.toast_msg(Bp_Created_Detail.this, "Please select an image");
 
-                }
-                else {
+                } else {
                     uploadMultipart(FOR_CHEQUE);
 
                 }
@@ -350,7 +392,9 @@ public class Bp_Created_Detail extends Activity {
 
                 } else {
                     address_proof = address_proof_spinner.getItemAtPosition(address_proof_spinner.getSelectedItemPosition()).toString();
-                    takeScreenshot(false);
+                    if (!isSaleDeedSelected) {
+                        takeScreenshot(false);
+                    }
                     uploadMultipart(FOR_ADDRESS);
                 }
 
@@ -630,6 +674,7 @@ public class Bp_Created_Detail extends Activity {
                     }
                 }
                 break;
+
             case Constant.REQUEST_CODE_PICK_FILE:
                 if (resultCode == RESULT_OK) {
                     ArrayList<NormalFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_FILE);
@@ -648,7 +693,7 @@ public class Bp_Created_Detail extends Activity {
                     filePathUri_cheque = data.getData();
                     try {
                         Bitmap bitmap_cheque = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathUri_cheque);
-                        iv_cheque.setImageBitmap(bitmap_cheque);
+                        cheque_image.setImageBitmap(bitmap_cheque);
                         image_path_cheque = getPath(filePathUri_cheque);
                         Log.d("bpcreation", "imagepath cheque pick image = " + image_path_cheque);
                     } catch (IOException e) {
@@ -680,7 +725,7 @@ public class Bp_Created_Detail extends Activity {
                         try {
                             outFile = new FileOutputStream(file);
                             bitmap_cheque.compress(Bitmap.CompressFormat.JPEG, 95, outFile);
-                            iv_cheque.setImageBitmap(bitmap_cheque);
+                            cheque_image.setImageBitmap(bitmap_cheque);
                             outFile.flush();
                             outFile.close();
                         } catch (FileNotFoundException e) {
@@ -821,27 +866,26 @@ public class Bp_Created_Detail extends Activity {
     }
 
 
-    public String getPath(Uri contentUri) {
+    public String getPath(Uri uri) {
+        String path = null;
         try {
-            String res = null;
-            String[] proj = {MediaStore.Images.Media.DATA};
-            Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
-            if (cursor.moveToFirst()) {
-                int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-                res = cursor.getString(column_index);
-            }
-            cursor.close();
-            return res;
-        } catch (Exception e) {
-            String path = null;
-            Cursor cursor = this.getContentResolver().query(contentUri, null, null, null, null);
-            Log.d(log, "catch = ");
+            Cursor cursor = this.getContentResolver().query(uri, null, null, null, null);
             cursor.moveToFirst();
             String document_id = cursor.getString(0);
-            path = document_id.substring(document_id.lastIndexOf(":") + 1);
+            document_id = document_id.substring(document_id.lastIndexOf(":") + 1);
             cursor.close();
-            return path;
+            cursor = this.getContentResolver().query(
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                    null, MediaStore.Images.Media._ID + " = ? ", new String[]{document_id}, null);
+            cursor.moveToFirst();
+            path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+            cursor.close();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        } catch (CursorIndexOutOfBoundsException e) {
+            e.printStackTrace();
         }
+        return path;
     }
 
     public String getPath1(Uri uri) {
@@ -981,6 +1025,14 @@ public class Bp_Created_Detail extends Activity {
 
     }
 
+    private void selectPdf() {
+        Intent intent4 = new Intent(this, NormalFilePickActivity.class);
+        intent4.putExtra(Constant.MAX_NUMBER, 1);
+        intent4.putExtra(NormalFilePickActivity.SUFFIX, new String[]{"pdf"});
+        startActivityForResult(intent4, Constant.REQUEST_CODE_PICK_FILE);
+
+
+    }
 
     private static final String FOR_ID = "for_id", FOR_ADDRESS = "for_address", FOR_SIGNATURE = "for_signature", FOR_CHEQUE = "for_cheque";
     MaterialDialog materialDialog;
@@ -1004,14 +1056,14 @@ public class Bp_Created_Detail extends Activity {
                 }
             }
             if (isFor.equals(FOR_ID)) {
-                multipartUploadRequest.addFileToUpload(image_path_id, "image", "id_proof.jpg");
+                multipartUploadRequest.addFileToUpload(screenshot_id, "image", "id_proof.jpg");
             }
             if (isFor.equals(FOR_ADDRESS)) {
                 if (isSaleDeedSelected) {
                     multipartUploadRequest.addFileToUpload(pdf_path, "image", "sale_deed.pdf", ContentType.APPLICATION_PDF);
 
                 } else {
-                    multipartUploadRequest.addFileToUpload(image_path_address, "image", "address_proof.jpg");
+                    multipartUploadRequest.addFileToUpload(screenshot_address, "image", "address_proof.jpg");
                 }
             }
             if (isFor.equals(FOR_SIGNATURE)) {
@@ -1080,10 +1132,7 @@ public class Bp_Created_Detail extends Activity {
             multipartUploadRequest.setUsesFixedLengthStreamingMode(true);
             multipartUploadRequest.startUpload(); //Starting the upload
 
-            Log.e("id_proof", image_path_id);
-            Log.e("address_proof", isSaleDeedSelected ? pdf_path : image_path_address);
-            Log.e("sign_file", customer_signature_path);
-            Log.e("ownerSign", owner_signature_path);
+
         } catch (Exception exc) {
 //            imgUploadError = true;
             Toast.makeText(Bp_Created_Detail.this, "Please Select ID & Address Proof and Proper Signature", Toast.LENGTH_SHORT).show();

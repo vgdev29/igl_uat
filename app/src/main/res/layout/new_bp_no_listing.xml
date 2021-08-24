@@ -141,15 +141,15 @@
                 android:layout_height="match_parent" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--            android:id="@+id/new_regestration"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="bottom|end"-->
-<!--            android:layout_margin="@dimen/fab_margin"-->
-<!--            -->
-<!--            android:src="@drawable/ic_baseline_person_add_alt_1_24"-->
-<!--            />-->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/new_regestration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+
+            android:src="@drawable/ic_baseline_person_add_alt_1_24"
+            />
 
 
     </FrameLayout>

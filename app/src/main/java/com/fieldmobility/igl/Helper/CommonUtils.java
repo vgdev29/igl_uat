@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.fieldmobility.igl.R;
 
 public class CommonUtils {
@@ -40,7 +41,11 @@ public class CommonUtils {
         dialog.setContentView(R.layout.view_zoomimageview);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         ImageView iv = dialog.findViewById(R.id.image);
-        Glide.with(context).load(url).into(iv);
+        Glide.with(context)
+                .load(url)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(iv);
         dialog.findViewById(R.id.iv_close).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,5 +54,13 @@ public class CommonUtils {
         });
 
         dialog.show();
+    }
+
+    public static void setImageUsingGLide(Context context,String url,ImageView view){
+        Glide.with(context)
+                .load(url)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(view);
     }
 }

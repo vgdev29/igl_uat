@@ -44,12 +44,12 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BP_No_Resubmition_Listing extends Activity implements New_BP_NO_Adapter.ContactsAdapterListener{
+public class BP_No_Resubmition_Listing extends Activity implements New_BP_NO_Adapter.ContactsAdapterListener {
 
     ProgressDialog progressDialog;
     SharedPrefs sharedPrefs;
     ImageView rfc_filter;
-//    FloatingActionButton new_regestration;
+    //    FloatingActionButton new_regestration;
     MaterialDialog materialDialog;
     private List<Bp_No_Item> bp_no_array;
     RecyclerView recyclerView;
@@ -59,6 +59,7 @@ public class BP_No_Resubmition_Listing extends Activity implements New_BP_NO_Ada
     TextView list_count;
 
     LinearLayout top_layout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,14 +74,14 @@ public class BP_No_Resubmition_Listing extends Activity implements New_BP_NO_Ada
 
     private void Layout_ID() {
 
-        list_count=findViewById(R.id.list_count);
+        list_count = findViewById(R.id.list_count);
         rfc_filter = findViewById(R.id.rfc_filter);
         rfc_filter.setVisibility(View.GONE);
         top_layout = findViewById(R.id.top_layout);
         top_layout.setVisibility(View.GONE);
-        bp_no_array=new ArrayList<>();
+        bp_no_array = new ArrayList<>();
 
-//        new_regestration=findViewById(R.id.new_regestration);
+        findViewById(R.id.new_regestration).setVisibility(View.GONE);
 //        new_regestration.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -102,7 +103,7 @@ public class BP_No_Resubmition_Listing extends Activity implements New_BP_NO_Ada
                 }
             }
         });
-        recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
        /* recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
@@ -175,10 +176,10 @@ public class BP_No_Resubmition_Listing extends Activity implements New_BP_NO_Ada
             }
         }));*/
 
-        editTextSearch=findViewById(R.id.editTextSearch);
+        editTextSearch = findViewById(R.id.editTextSearch);
         editTextSearch.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,int after) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
 
@@ -211,22 +212,22 @@ public class BP_No_Resubmition_Listing extends Activity implements New_BP_NO_Ada
                 .content("Please wait....")
                 .progress(true, 0)
                 .show();
-        Log.d("Bpcreation","url = "+Constants.BP_No_Listing+"/"+sharedPrefs.getUUID());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.BP_No_Resubmition_Listing+sharedPrefs.getUUID(),
+        Log.d("Bpcreation", "url = " + Constants.BP_No_Listing + "/" + sharedPrefs.getUUID());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.BP_No_Resubmition_Listing + sharedPrefs.getUUID(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         materialDialog.dismiss();
-                        Log.d("Bpcreation","response = "+response.toString());
+                        Log.d("Bpcreation", "response = " + response.toString());
                         try {
                             final JSONObject jsonObject = new JSONObject(response);
-                            Log.e("Response++",jsonObject.toString());
-                         //   final JSONObject Bp_Details = jsonObject.getJSONObject("Bp_Details");
-                         //   Log.e("Response++",Bp_Details.toString());
-                            JSONArray payload=jsonObject.getJSONArray("Bp_Details");
-                            list_count.setText("Count= "+String.valueOf(payload.length()));
-                            for(int i=0; i<payload.length();i++) {
-                                JSONObject data_object=payload.getJSONObject(i);
+                            Log.e("Response++", jsonObject.toString());
+                            //   final JSONObject Bp_Details = jsonObject.getJSONObject("Bp_Details");
+                            //   Log.e("Response++",Bp_Details.toString());
+                            JSONArray payload = jsonObject.getJSONArray("Bp_Details");
+                            list_count.setText("Count= " + String.valueOf(payload.length()));
+                            for (int i = 0; i < payload.length(); i++) {
+                                JSONObject data_object = payload.getJSONObject(i);
                                 Bp_No_Item bp_no_item = new Bp_No_Item();
                                 bp_no_item.setFirst_name(data_object.getString("igl_first_name"));
                                 bp_no_item.setMiddle_name(data_object.getString("igl_middle_name"));
@@ -268,12 +269,12 @@ public class BP_No_Resubmition_Listing extends Activity implements New_BP_NO_Ada
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                        }catch (NullPointerException e) {
+                        } catch (NullPointerException e) {
                             e.printStackTrace();
                         }
-                      //  DesignerToast.Custom(New_BP_No_Listing.this,"Successfully",Gravity.BOTTOM,Toast.LENGTH_SHORT, R.drawable.shape_cornor_radious,15,"#FFFFFF",R.drawable.ic_success, 60, 200);
+                        //  DesignerToast.Custom(New_BP_No_Listing.this,"Successfully",Gravity.BOTTOM,Toast.LENGTH_SHORT, R.drawable.shape_cornor_radious,15,"#FFFFFF",R.drawable.ic_success, 60, 200);
                         //DesignerToast.Success(New_BP_No_Listing.this, "Successfully", Gravity.BOTTOM, Toast.LENGTH_SHORT);
-                         adapter = new New_BP_NO_Adapter(BP_No_Resubmition_Listing.this,bp_no_array, BP_No_Resubmition_Listing.this,true);
+                        adapter = new New_BP_NO_Adapter(BP_No_Resubmition_Listing.this, bp_no_array, BP_No_Resubmition_Listing.this, true);
                         recyclerView.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
                     }
@@ -282,7 +283,7 @@ public class BP_No_Resubmition_Listing extends Activity implements New_BP_NO_Ada
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         materialDialog.dismiss();
-                        Log.d("Bpcreation","on error = "+error.getMessage());
+                        Log.d("Bpcreation", "on error = " + error.getMessage());
                         NetworkResponse response = error.networkResponse;
                         if (error instanceof ServerError && response != null) {
                             try {

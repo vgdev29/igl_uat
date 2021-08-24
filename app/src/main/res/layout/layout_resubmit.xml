@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent">
@@ -80,7 +86,7 @@
         <ImageView
             android:id="@+id/adhar_image"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_300sdp"
+            android:layout_height="@dimen/_250sdp"
             android:layout_weight="1"
             android:background="@drawable/shape_blue_border"
             android:scaleType="fitXY"
@@ -177,7 +183,7 @@
         <ImageView
             android:id="@+id/address_image"
             android:layout_width="match_parent"
-            android:layout_height="700dp"
+            android:layout_height="250dp"
             android:layout_weight="1"
             android:background="@drawable/shape_blue_border"
             android:scaleType="fitXY" />
@@ -357,4 +363,20 @@
             android:textSize="@dimen/_8sdp" />
 
     </LinearLayout>
+    <TextView
+        android:id="@+id/btn_submit_signature"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="@dimen/_30sdp"
+        android:layout_marginVertical="@dimen/_15sdp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/value_14dp"
+        android:paddingVertical="@dimen/_6sdp"
+        android:text="UPDATE SIGNATURE"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10sdp" />
 </LinearLayout>
+</ScrollView>

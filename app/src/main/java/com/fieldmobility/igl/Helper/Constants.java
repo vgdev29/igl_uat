@@ -81,8 +81,8 @@ public class Constants {
     public static final String MITD_UPDATE = BASE_URL + "ekyc/bp_details/mitd_update/";
 
 
-//    public static final String BP_Creation = BASE_URL + "bpcreation/registration/bp_creation";
-//    public static final String BP_Images = BASE_URL + "bpcreation/registration/bp_images";
+    public static final String BP_Creation = BASE_URL + "bpcreation/registration/bp_creation";
+    public static final String BP_Images = BASE_URL + "bpcreation/registration/bp_images";
     public static final String Document_POST = BASE_URL + "bpcreation/registration/documents/";
     public static final String BP_No_Listing = BASE_URL + "bpcreation/registration/new_registration_listing";
     public static final String BP_CITY_LISTING = BASE_URL + "bpcreation/registration/city/";
@@ -113,8 +113,8 @@ public class Constants {
     public static final String EKYC_SIGNATURE_IMAGEUPDATE = localhost + "/bp_details/updateSignature/"; */
 
 
-    public static final String BP_Creation = localhost + "/registration/bp_creation";
-    public static final String BP_Images = localhost + "/registration/bp_images";
+//    public static final String BP_Creation = localhost + "/registration/bp_creation";
+//    public static final String BP_Images = localhost + "/registration/bp_images";
    // public static final String Document_POST = localhost + "/registration/documents/";
 //    public static final String BP_No_Listing = localhost + "/registration/new_registration_listing";
 //    public static final String BP_CITY_LISTING = localhost + "/registration/city/";
