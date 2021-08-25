@@ -18,6 +18,7 @@ public class CommonUtils {
 
     static ProgressDialog progressDialog;
 
+
     public static void startProgressBar(Context context, String msg) {
         progressDialog = ProgressDialog.show(context, "", msg, true);
         progressDialog.setCancelable(false);
