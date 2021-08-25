@@ -3,6 +3,7 @@ package com.fieldmobility.igl.rest;
 import android.content.Context;
 import android.util.Log;
 
+import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.Model.NguserListModel;
 import com.fieldmobility.igl.interfaces.ListDataPasser;
 
@@ -14,10 +15,9 @@ import retrofit2.Response;
 
 public class DBManager {
     public static final String UPLOAD_WORKER_TAG = "CheckUploads";
-    //uat
-    //  public static String API_BASE_URL = "http://49.50.68.239:8080/";
-    //live
-    public static String API_BASE_URL = "http://49.50.65.107:8000/";
+
+      public static String API_BASE_URL = Constants.BASE_URL_PYTHON;
+
 
 
     public static String getApiBaseUrl() {

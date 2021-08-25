@@ -14,6 +14,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,12 +27,17 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.fieldmobility.igl.Activity.NgSupUserDetailsActivity;
 import com.fieldmobility.igl.Helper.AppController;
+import com.fieldmobility.igl.Helper.CommonUtils;
 import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.MataData.Bp_No_Item;
@@ -197,6 +203,13 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
             }
         });
 
+        holder.refresh_data.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updatefc( Bp_No_array,position);
+            }
+        });
+
 
 
     }
@@ -217,6 +230,7 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
         public TextView bp_no_text, user_name_text, address_text, date_text, status_text, zone_text,mobile_text;
 
         Button claimed_button, unclaimed_button, job_start_button, rfc_info;
+        ImageButton refresh_data;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -231,6 +245,7 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
             zone_text = itemView.findViewById(R.id.zone_text);
             rfc_info = itemView.findViewById(R.id.rfcinfo_text);
             mobile_text = itemView.findViewById(R.id.mobile_text);
+            refresh_data = itemView.findViewById(R.id.refresh_data);
         }
     }
 
@@ -269,6 +284,65 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
 
     public interface ContactsAdapterListener {
         void onContactSelected(Bp_No_Item contact);
+    }
+
+    private void updatefc(BpDetail Bp_No_array, int position)
+    {
+        CommonUtils.startProgressBar(context,"Loading...");
+        Log.d(log, "updateNg = " +Constants.REFRESH_RFC +Bp_No_array.getBpNumber());
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.REFRESH_RFC +Bp_No_array.getBpNumber(), new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                CommonUtils.dismissProgressBar(context);
+                try {
+                    JSONObject jsonObject1 = new JSONObject(response);
+                    Log.d(log,"response"+ response);
+                    String status = jsonObject1.getString("status");
+                    if (status.equals("200")) {
+                        CommonUtils.toast_msg(context,jsonObject1.getString("message"));
+                        JSONObject jsonObject= jsonObject1.getJSONObject("details");
+                        Log.d(log,"details"+ jsonObject.toString());
+                        String name = jsonObject.getString("name");
+                        String mob = jsonObject.getString("mob");
+
+                        String society = jsonObject.getString("society");
+                        String hno = jsonObject.getString("hno");
+                        String block = jsonObject.getString("block");
+                        String floor = jsonObject.getString("floor");
+                        Bp_No_array.setFirstName(name);
+                        Bp_No_array.setMobileNumber(mob);
+                        Bp_No_array.setSociety(society);
+                        Bp_No_array.setHouseNo(hno);
+                        Bp_No_array.setBlockQtrTowerWing(block);
+                        Bp_No_array.setFloor(floor);
+                        bp_no_list_array.set(position,Bp_No_array);
+                        notifyDataSetChanged();
+
+
+                    }
+                    else
+                    {
+                        CommonUtils.toast_msg( context,jsonObject1.getString("message"));
+                    }
+                } catch (JSONException e) {
+                    CommonUtils.dismissProgressBar(context);
+                    CommonUtils.toast_msg(context,"Oops..Error loading status!!");
+                    e.printStackTrace();
+                }
+            }
+        }, new com.android.volley.Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                CommonUtils.dismissProgressBar(context);
+                CommonUtils.toast_msg(context,"Oops..TimeOut!!");
+                error.printStackTrace();
+            }
+        });
+        int socketTimeout = 30000;
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        stringRequest.setRetryPolicy(policy);
+        requestQueue.add(stringRequest);
     }
 
     public void Claimed_API_POST() {

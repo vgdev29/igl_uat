@@ -20,18 +20,9 @@ import retrofit2.http.Query;
 
 public interface Api {
 
-    //Production
-     String BASE_URL = "http://49.50.65.107:8000/";
-     String BASE_URL_TPI_DETAILS = "http://49.50.65.107:8081/";
+    String BASE_URL = Constants.BASE_URL_PYTHON;
+    String BASE_URL_TPI_DETAILS = Constants.BASE_URL;
 
-    //UAT
-    //String BASE_URL = "http://49.50.68.239:8080/";
-    //String BASE_URL_TPI_DETAILS = "http://49.50.118.112:8080/";
-
-
-    // tpi list for claim and unclaim
-   /* @GET("api/jmr")
-    Call<ArrayList<NguserListModel>> getUnclaimedAssignList(@Query("status") String status);*/
 
     @GET("api/jmr")
     Call<ArrayList<NguserListModel>> getUnclaimedAssignList(@Query("status") String status,@Query("zoneId") String zoneId);

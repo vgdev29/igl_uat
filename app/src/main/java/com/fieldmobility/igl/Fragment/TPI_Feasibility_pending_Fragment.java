@@ -14,10 +14,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.DefaultRetryPolicy;
@@ -63,6 +65,8 @@ public class TPI_Feasibility_pending_Fragment extends Fragment {
     ImageView rfc_filter;
     private Dialog mFilterDialog;
     private RadioGroup radioGroup;
+    RelativeLayout rel_nodata;
+    Button refresh ;
 
 
     public TPI_Feasibility_pending_Fragment(Activity activity) {
@@ -83,6 +87,14 @@ public class TPI_Feasibility_pending_Fragment extends Fragment {
         root =  inflater.inflate(R.layout.fragment_feasibility_pending_, container, false);
         sharedPrefs = new SharedPrefs(getActivity());
         Layout_ID();
+        rel_nodata = root.findViewById(R.id.rel_nodata);
+        refresh = root.findViewById(R.id.btnTryAgain);
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Feasivility_List();
+            }
+        });
         return root;
     }
 
@@ -95,6 +107,7 @@ public class TPI_Feasibility_pending_Fragment extends Fragment {
         rfc_filter.setVisibility(View.GONE);
         header_title=root.findViewById(R.id.header_title);
         header_title.setText("TPI");
+
         mSwipeRefreshLayout = (SwipeRefreshLayout) root.findViewById(R.id.swipeToRefresh);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -121,7 +134,9 @@ public class TPI_Feasibility_pending_Fragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                tpi_inspection_adapter.getFilter().filter(s.toString());
+                if (tpi_inspection_adapter!=null) {
+                    tpi_inspection_adapter.getFilter().filter(s.toString());
+                }
             }
 
             @Override
@@ -157,48 +172,56 @@ public class TPI_Feasibility_pending_Fragment extends Fragment {
                             list_count.setText("Count= "+String.valueOf(bpDetails.size()));*/
                             final JSONObject jsonObject = new JSONObject(response);
                             Log.e("Response++",jsonObject.toString());
-                            final JSONObject Bp_Details = jsonObject.getJSONObject("Bp_Details");
-                            JSONArray payload=Bp_Details.getJSONArray("users");
-                            list_count.setText("Count= "+String.valueOf(payload.length()));
-                            for(int i=0; i<payload.length();i++) {
-                                JSONObject data_object=payload.getJSONObject(i);
-                                Bp_No_Item bp_no_item = new Bp_No_Item();
-                                bp_no_item.setFirst_name(data_object.getString("first_name"));
-                                bp_no_item.setMiddle_name(data_object.getString("middle_name"));
-                                bp_no_item.setLast_name(data_object.getString("last_name"));
-                                bp_no_item.setMobile_number(data_object.getString("mobile_number"));
-                                bp_no_item.setEmail_id(data_object.getString("email_id"));
-                                bp_no_item.setAadhaar_number(data_object.getString("aadhaar_number"));
-                                bp_no_item.setCity_region(data_object.getString("city_region"));
-                                bp_no_item.setArea(data_object.getString("area"));
-                                bp_no_item.setSociety(data_object.getString("society"));
-                                bp_no_item.setLandmark(data_object.getString("landmark"));
-                                bp_no_item.setHouse_type(data_object.getString("house_type"));
-                                bp_no_item.setHouse_no(data_object.getString("house_no"));
-                                bp_no_item.setBlock_qtr_tower_wing(data_object.getString("block_qtr_tower_wing"));
-                                bp_no_item.setFloor(data_object.getString("floor"));
-                                bp_no_item.setStreet_gali_road(data_object.getString("street_gali_road"));
-                                bp_no_item.setPincode(data_object.getString("pincode"));
-                                bp_no_item.setCustomer_type(data_object.getString("customer_type"));
-                                bp_no_item.setLpg_company(data_object.getString("lpg_company"));
-                                bp_no_item.setBp_number(data_object.getString("bp_number"));
-                                bp_no_item.setBp_date(data_object.getString("bp_date"));
-                                bp_no_item.setIgl_status(data_object.getString("igl_status"));
-                                bp_no_item.setLpg_distributor(data_object.getString("lpg_distributor"));
-                                bp_no_item.setLpg_conNo(data_object.getString("lpg_conNo"));
-                                bp_no_item.setUnique_lpg_Id(data_object.getString("unique_lpg_Id"));
-                                bp_no_item.setOwnerName(data_object.getString("ownerName"));
-                                bp_no_item.setChequeNo(data_object.getString("chequeNo"));
-                                bp_no_item.setChequeDate(data_object.getString("chequeDate"));
-                                bp_no_item.setLead_no(data_object.getString("lead_no"));
-                                bp_no_item.setDrawnOn(data_object.getString("drawnOn"));
-                                bp_no_item.setAmount(data_object.getString("amount"));
-                                bp_no_item.setAddressProof(data_object.getString("addressProof"));
-                                bp_no_item.setIdproof(data_object.getString("idproof"));
-                                bp_no_item.setIgl_code_group(data_object.getString("igl_code_group"));
-                                bp_no_item.setFesabilityDate(data_object.getString("assigndate"));
-                                bp_no_item.setControlRoom(data_object.getString("controlRoom"));
-                                bpDetails.add(bp_no_item);
+                            final String status = jsonObject.getString("status");
+                            if (status.equals("200")) {
+                                rel_nodata.setVisibility(View.GONE);
+                                final JSONObject Bp_Details = jsonObject.getJSONObject("Bp_Details");
+                                JSONArray payload = Bp_Details.getJSONArray("users");
+                                list_count.setText("Count= " + String.valueOf(payload.length()));
+                                for (int i = 0; i < payload.length(); i++) {
+                                    JSONObject data_object = payload.getJSONObject(i);
+                                    Bp_No_Item bp_no_item = new Bp_No_Item();
+                                    bp_no_item.setFirst_name(data_object.getString("first_name"));
+                                    bp_no_item.setMiddle_name(data_object.getString("middle_name"));
+                                    bp_no_item.setLast_name(data_object.getString("last_name"));
+                                    bp_no_item.setMobile_number(data_object.getString("mobile_number"));
+                                    bp_no_item.setEmail_id(data_object.getString("email_id"));
+                                    bp_no_item.setAadhaar_number(data_object.getString("aadhaar_number"));
+                                    bp_no_item.setCity_region(data_object.getString("city_region"));
+                                    bp_no_item.setArea(data_object.getString("area"));
+                                    bp_no_item.setSociety(data_object.getString("society"));
+                                    bp_no_item.setLandmark(data_object.getString("landmark"));
+                                    bp_no_item.setHouse_type(data_object.getString("house_type"));
+                                    bp_no_item.setHouse_no(data_object.getString("house_no"));
+                                    bp_no_item.setBlock_qtr_tower_wing(data_object.getString("block_qtr_tower_wing"));
+                                    bp_no_item.setFloor(data_object.getString("floor"));
+                                    bp_no_item.setStreet_gali_road(data_object.getString("street_gali_road"));
+                                    bp_no_item.setPincode(data_object.getString("pincode"));
+                                    bp_no_item.setCustomer_type(data_object.getString("customer_type"));
+                                    bp_no_item.setLpg_company(data_object.getString("lpg_company"));
+                                    bp_no_item.setBp_number(data_object.getString("bp_number"));
+                                    bp_no_item.setBp_date(data_object.getString("bp_date"));
+                                    bp_no_item.setIgl_status(data_object.getString("igl_status"));
+                                    bp_no_item.setLpg_distributor(data_object.getString("lpg_distributor"));
+                                    bp_no_item.setLpg_conNo(data_object.getString("lpg_conNo"));
+                                    bp_no_item.setUnique_lpg_Id(data_object.getString("unique_lpg_Id"));
+                                    bp_no_item.setOwnerName(data_object.getString("ownerName"));
+                                    bp_no_item.setChequeNo(data_object.getString("chequeNo"));
+                                    bp_no_item.setChequeDate(data_object.getString("chequeDate"));
+                                    bp_no_item.setLead_no(data_object.getString("lead_no"));
+                                    bp_no_item.setDrawnOn(data_object.getString("drawnOn"));
+                                    bp_no_item.setAmount(data_object.getString("amount"));
+                                    bp_no_item.setAddressProof(data_object.getString("addressProof"));
+                                    bp_no_item.setIdproof(data_object.getString("idproof"));
+                                    bp_no_item.setIgl_code_group(data_object.getString("igl_code_group"));
+                                    bp_no_item.setFesabilityDate(data_object.getString("assigndate"));
+                                    bp_no_item.setControlRoom(data_object.getString("controlRoom"));
+                                    bpDetails.add(bp_no_item);
+                                }
+                            }
+                            else
+                            {
+                                rel_nodata.setVisibility(View.VISIBLE);
                             }
 
                         } catch (JSONException e) {

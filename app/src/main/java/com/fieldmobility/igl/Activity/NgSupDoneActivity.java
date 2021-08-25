@@ -29,6 +29,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.fieldmobility.igl.Helper.ConnectionDetector;
+import com.fieldmobility.igl.Helper.GPSLocation;
 import com.fieldmobility.igl.Model.NguserListModel;
 import com.fieldmobility.igl.R;
 import com.fieldmobility.igl.utils.Utils;
@@ -90,6 +92,8 @@ public class NgSupDoneActivity extends AppCompatActivity {
     private int responseCode;
     private MaterialDialog materialDialog;
     String log = "nguser";
+    private String Latitude;
+    private String Longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +107,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
                 finish();
             }
         });
+        getLocationUsingInternet();
         if (getIntent() != null) {
             bpno = getIntent().getStringExtra("bpno");
             jmrNo = getIntent().getStringExtra("jmrNo");
@@ -412,6 +417,8 @@ public class NgSupDoneActivity extends AppCompatActivity {
         nguserListModel.setService_photo(serviceCard_pic_binary);
         nguserListModel.setCustomer_sign(signatureBinary);
         nguserListModel.setStatus("DP");
+        nguserListModel.setLattitude(Latitude);
+        nguserListModel.setLongitude(Longitude);
 
         materialDialog = new MaterialDialog.Builder(this)
                 .content("Please wait....")
@@ -941,33 +948,27 @@ public class NgSupDoneActivity extends AppCompatActivity {
         return path;
     }
 
-    /*public String getPath(Uri contentUri) {
+    private void getLocationUsingInternet() {
+        boolean isInternetConnected = new ConnectionDetector(NgSupDoneActivity.this).isConnectingToInternet();
         try {
-            String res = null;
-            String[] proj = {MediaStore.Images.Media.DATA};
-            Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
-            if (cursor.moveToFirst()) {
-                int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-                res = cursor.getString(column_index);
+            if (isInternetConnected) {
+                // getLocation_usingInternet.setEnabled(false);
+                new GPSLocation(NgSupDoneActivity.this).turnGPSOn();// First turn on GPS
+                String getLocation = new GPSLocation(NgSupDoneActivity.this).getMyCurrentLocation();// Get current location from
+                Log.d("getLocation++", getLocation.toString());
+                Latitude = GPSLocation.Latitude;
+                Longitude = GPSLocation.Longitude;
+                Log.d("Latitude++", Latitude);
+                Log.d("Longitude++", Longitude);
+            } else {
+                Toast.makeText(NgSupDoneActivity.this, "There is no internet connection.", Toast.LENGTH_SHORT).show();
             }
-            cursor.close();
-            return res;
-        } catch (Exception e) {
-            String path = null;
-            Cursor cursor = this.getContentResolver().query(contentUri, null, null, null, null);
-            Log.d(log, "catch = ");
-            cursor.moveToFirst();
-            String document_id = cursor.getString(0);
-            path = document_id.substring(document_id.lastIndexOf(":") + 1);
-            cursor.close();
-            *//*cursor = this.getContentResolver().query(
-                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                    null, MediaStore.Images.Media._ID + " = ? ", new String[]{document_id}, null);
-            cursor.moveToFirst();
-            path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-            cursor.close();*//*
-            return path;
         }
-    }*/
+        catch (Exception e)
+        {
+            Latitude = "NA";
+            Longitude = "NA";
+        }
+    }
 }
 

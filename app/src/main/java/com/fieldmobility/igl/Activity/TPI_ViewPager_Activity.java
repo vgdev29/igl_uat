@@ -47,7 +47,7 @@ public class TPI_ViewPager_Activity extends AppCompatActivity {
         mViewPager = findViewById(R.id.viewPager);
 
         setupViewPager(mViewPager);
-        //mViewPager.setOffscreenPageLimit(0);
+        mViewPager.setOffscreenPageLimit(1);
         mTablayout.setupWithViewPager(mViewPager);
 
 

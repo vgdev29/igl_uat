@@ -19,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -73,6 +74,8 @@ public class TPI_RFC_pending_Fragment extends Fragment {
     ImageView rfc_filter;
     private Dialog mFilterDialog;
     private RadioGroup radioGroup;
+    RelativeLayout rel_nodata;
+    Button refresh ;
 
 
     public TPI_RFC_pending_Fragment(Activity activity) {
@@ -93,6 +96,14 @@ public class TPI_RFC_pending_Fragment extends Fragment {
         root =  inflater.inflate(R.layout.fragment_feasibility_pending_, container, false);
         sharedPrefs = new SharedPrefs(getActivity());
         Layout_ID();
+        rel_nodata = root.findViewById(R.id.rel_nodata);
+        refresh = root.findViewById(R.id.btnTryAgain);
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Feasivility_List();
+            }
+        });
         return root;
     }
 
@@ -322,6 +333,9 @@ public class TPI_RFC_pending_Fragment extends Fragment {
                             list_count.setText("Count= "+String.valueOf(bpDetails.size()));*/
                             final JSONObject jsonObject = new JSONObject(response);
                             Log.d("Response++",jsonObject.toString());
+                            final String status = jsonObject.getString("status");
+                            if (status.equals("200")) {
+                                rel_nodata.setVisibility(View.GONE);
                             final JSONArray Bp_Details = jsonObject.getJSONArray("Bp_Details");
                             list_count.setText("Count\n"+String.valueOf(Bp_Details.length()));
                             for(int i=0; i<Bp_Details.length();i++) {
@@ -374,6 +388,11 @@ public class TPI_RFC_pending_Fragment extends Fragment {
 
                                 bpDetails.add(bp_no_item);
                             }
+                        }
+                            else
+                        {
+                            rel_nodata.setVisibility(View.VISIBLE);
+                        }
 
                             } catch (JSONException e) {
                             e.printStackTrace();

@@ -80,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:textSize="@dimen/_10sdp"
-                    android:text="Rented" />
+                    android:text="Rented/Family Member" />
 
             </RadioGroup>
             <TextView

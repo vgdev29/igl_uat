@@ -74,6 +74,8 @@ public class RFC_Connection_Listing extends Activity implements RFC_Adapter.Cont
     private int filtersDialogOpenCount = 0;
 
     private int mSelectedId;
+    RelativeLayout rel_nodata;
+    Button refresh ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,6 +96,14 @@ public class RFC_Connection_Listing extends Activity implements RFC_Adapter.Cont
             public void onClick(View v) {
                 Log.d(log,"back button");
                 finish();
+            }
+        });
+         rel_nodata =  findViewById(R.id.rel_nodata);
+        refresh =  findViewById(R.id.btnTryAgain);
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bp_No_List();
             }
         });
         bp_no_array=new ArrayList<>();
@@ -299,6 +309,9 @@ public class RFC_Connection_Listing extends Activity implements RFC_Adapter.Cont
                         try {
                             final JSONObject jsonObject = new JSONObject(response);
                             Log.d(log,"Response++"+jsonObject.toString());
+                            final String status = jsonObject.getString("status");
+                            if (status.equals("200")) {
+                                rel_nodata.setVisibility(View.GONE);
                             final JSONObject Bp_Details = jsonObject.getJSONObject("Bp_Details");
                             JSONArray payload=Bp_Details.getJSONArray("users");
                             list_count.setText("Count\n"+String.valueOf(payload.length()));
@@ -357,6 +370,12 @@ public class RFC_Connection_Listing extends Activity implements RFC_Adapter.Cont
                                 Log.d(log,"bp item = " + bp_no_item.toString());
                                 bp_no_array.add(bp_no_item);
                             }
+                            }
+                            else
+                            {
+                                rel_nodata.setVisibility(View.VISIBLE);
+                            }
+
                         }catch (JSONException e) {
                             Log.d(log,"catch1");
                             e.printStackTrace();

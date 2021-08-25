@@ -3,21 +3,22 @@ package com.fieldmobility.igl.Helper;
 public class Constants {
     //LIVE URL
  // public static String BASE_URL="http://49.50.65.107:8081/";
- //  public static  String BASE_URL = "http://49.50.68.239:8080/"; //PYTHON SERVER
+ //  public static  String BASE_URL_PYTHON = "http://49.50.65.107:8000/"; //PYTHON SERVER
+
+
     //  UAT URL
-  public static String BASE_URL = "http://49.50.118.112:8080/";
+    public static String BASE_URL = "http://49.50.118.112:8080/";
     public  static String BASE_URL_PYTHON = "http://49.50.68.239:8080/";
-    static String localhost = "http://192.168.31.29:8081/";
-    public static String START_CLICKED = "false";
-    //public static final String Logout=BASE_URL+"/logout";
+
+    //local
+   // static String localhost = "http://192.168.31.29:8081/";
+
+
     public static final int LOCATION_INTERVAL = 100000000;
     public static final int FASTEST_LOCATION_INTERVAL = 5000000;
     public static final String Auth_User = BASE_URL + "loginapi/authenticate";
     public static final String Login_User = BASE_URL + "loginapi/userdetails";
     public static final String SignUp_User = BASE_URL + "register";
-
-    public static final String NG_UPDATE = BASE_URL + "api/jmr/";
-
     public static final String UPLOAD_IMAGE = BASE_URL + "api/jmr/update?jmr=36655";
     public static final String BP_No_Get_Listing = BASE_URL + "ekyc/bp_details/listing";
     public static final String NEW_BP_No_Get_Listing = BASE_URL + "ekyc/bp_details/new_registration_listing";
@@ -37,12 +38,13 @@ public class Constants {
     public static final String GET_ATTENDENCE_LIST = BASE_URL + "ekyc/bp_details/get_attendence_listing/";
     public static final String APPLY_LEAVE = BASE_URL + "ekyc/bp_details/applyLeave/";
     public static final String TYPE_MASTER_STATUS = BASE_URL + "ekyc/bp_details/statusDropdown/";
-    //  public static final String  TYPE_MASTER_STATUS = BASE_URL + "ekyc/bp_details/statusDropdown/";
-  //  public static final String FESABILITY_ADD = BASE_URL + "ekyc/bp_details/fesabilityAdd";
+    public static final String  FEAS_STATUS_DROPDOWN = BASE_URL + "ekyc/bp_details/feas_statusDropdown/";
+
+    public static final String FESABILITY_ADD = BASE_URL + "ekyc/bp_details/fesabilityAdd";
     public static final String FESABILITY_ADD_Declined = BASE_URL + "ekyc/bp_details/fesabilityAddDeclined";
     public static final String TYPE_SUBMASTER_STATUS = BASE_URL + "ekyc/bp_details/substatusDropdown/";
     public static final String PIPELINE = BASE_URL + "ekyc/bp_details/pipeline";
-  //  public static final String TPI_LISTING_GET = BASE_URL + "ekyc/bp_details/new_registration_listing_TPI/";
+    public static final String TPI_LISTING_GET = BASE_URL + "ekyc/bp_details/new_registration_listing_TPI/";
     //Api chang by adding s in end point
     public static final String RFC_LISTING_GET = BASE_URL + "ekyc/bp_details/RFCListings/";
     public static final String RFC_LISTING_TPI_GET = BASE_URL + "ekyc/bp_details/RFCListingTPI/";
@@ -79,8 +81,6 @@ public class Constants {
     public static final String TPI_DECLINE = BASE_URL + "ekyc/bp_details/TPI_Decline";
     public static final String CON_SUP_DETAILS = BASE_URL + "ekyc/bp_details/userDetails?";
     public static final String MITD_UPDATE = BASE_URL + "ekyc/bp_details/mitd_update/";
-
-
     public static final String BP_Creation = BASE_URL + "bpcreation/registration/bp_creation";
     public static final String BP_Images = BASE_URL + "bpcreation/registration/bp_images";
     public static final String Document_POST = BASE_URL + "bpcreation/registration/documents/";
@@ -92,12 +92,12 @@ public class Constants {
     public static final String ni_user_listing = BASE_URL + "bpcreation/registration/nic_list/";
 
     // RISER MODULE
-//    public static final String RISER_LISTING = BASE_URL + "api/risersuballocations";
+//   public static final String RISER_LISTING = BASE_URL + "api/risersuballocations";
     public static final String RISER_LISTING = BASE_URL + "ekyc/bp_details/RiserListings";
     public static final String RISER_TPI_APPROVAL_LISTING = BASE_URL + "ekyc/bp_details/RiserApprovalList";
     public static final String RISER__APPROVAL_DECLINE = BASE_URL + "ekyc/bp_details/RiserApproveDecline";
-    //public static final String RISER__PROJECT_REPORT = BASE_URL + "ekyc/bp_details/createriser";
-    public static final String RISER__PROJECT_REPORT = localhost + "/bp_details/createriser";
+    public static final String RISER__PROJECT_REPORT = BASE_URL + "ekyc/bp_details/createriser";
+ //   public static final String RISER__PROJECT_REPORT = localhost + "/bp_details/createriser";
     public static final String RISER__SEARCH_BP = BASE_URL + "ekyc/bp_details/searchbp/";
 
     //Ekyc new Api
@@ -107,21 +107,29 @@ public class Constants {
     public static final String EKYC_SIGNATURE_IMAGEUPDATE = BASE_URL + "ekyc/bp_details/updateSignature/";
 
 
+    //NG API
+    public static final String REFRESH_NG = BASE_URL + "ekyc/bp_details/Refreshng/";
+   // public static final String REFRESH_NG = localhost + "/bp_details/Refreshng/";
+  public static final String REFRESH_RFC = BASE_URL + "ekyc/bp_details/Refreshrfc/";
+   // public static final String REFRESH_RFC = localhost + "/bp_details/Refreshrfc/";
+   public static final String REFRESH_FEAS = BASE_URL + "ekyc/bp_details/Refreshrfc/";
+    //public static final String REFRESH_FEAS = localhost + "/bp_details/Refreshfeas/";
+
    /* public static final String EKYC_DATA_UPDATE = localhost + "/bp_details/updatekycData/";
     public static final String EKYC_ID_IMAGEUPDATE = localhost + "/bp_details/updateIdProof/";
     public static final String EKYC_ADDRESS_IMAGEUPDATE = localhost + "/bp_details/updateAddressProof/";
     public static final String EKYC_SIGNATURE_IMAGEUPDATE = localhost + "/bp_details/updateSignature/"; */
 
 
-//    public static final String BP_Creation = localhost + "/registration/bp_creation";
-//    public static final String BP_Images = localhost + "/registration/bp_images";
+    //public static final String BP_Creation = localhost + "/registration/bp_creation";
+    //public static final String BP_Images = localhost + "/registration/bp_images";
    // public static final String Document_POST = localhost + "/registration/documents/";
 //    public static final String BP_No_Listing = localhost + "/registration/new_registration_listing";
 //    public static final String BP_CITY_LISTING = localhost + "/registration/city/";
 //    public static final String BP_No_Resubmition_Listing = localhost + "/registration/documentResubmissionListing/";
-   public static final String FESABILITY_ADD = localhost + "/bp_details/fesabilityAdd";
-    public static final String TPI_LISTING_GET = localhost + "/bp_details/new_registration_listing_TPI/";
-    public static final String  FEAS_STATUS_DROPDOWN = localhost + "/bp_details/feas_statusDropdown/";
+   //public static final String FESABILITY_ADD = localhost + "/bp_details/fesabilityAdd";
+   // public static final String TPI_LISTING_GET = localhost + "/bp_details/new_registration_listing_TPI/";
+   // public static final String  FEAS_STATUS_DROPDOWN = localhost + "/bp_details/feas_statusDropdown/";
 
 
 

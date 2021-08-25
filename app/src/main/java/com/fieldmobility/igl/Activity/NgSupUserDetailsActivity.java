@@ -37,6 +37,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.fieldmobility.igl.Helper.CommonUtils;
+import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.utils.Utils;
 import com.fieldmobility.igl.rest.Api;
 import com.fieldmobility.igl.Model.NguserListModel;
@@ -146,10 +147,14 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
             }
         });
 
-        findViews();
-        loadNgStatusSpinners();
+           findViews();
+         loadNgStatusSpinners();
 
         setText(intentngUserListModel);
+        if(intentngUserListModel.getCustomer_name().toUpperCase().contains("CHILD"))
+        {
+            updateNgDialog();
+        }
 
         if (Utils.isNetworkConnected(this)) {
             //  loadUser();
@@ -157,6 +162,12 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
         } else {
             Utils.showToast(this, "No internet connection!!");
         }
+        tv_ngUserName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateNg();
+            }
+        });
 
         spinner_ngStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -516,9 +527,33 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                     }
                 });
         myAlertDialog.show();
+
     }
 
+    private void updateNgDialog() {
+        AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
+        AlertDialog OptionDialog = myAlertDialog.create();
+        myAlertDialog.setCancelable(false);
+        myAlertDialog.setTitle("Please Update Customer KYC");
+        myAlertDialog.setMessage(" Click Ok to Update...");
+        myAlertDialog.setPositiveButton("Ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                       updateNg();
+                    }
+                });
+        myAlertDialog.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        OptionDialog.dismiss();
+                    }
+                });
+        myAlertDialog.show();
+
+   }
+
     private void findViews() {
+
         tv_houseNoValue = findViewById(R.id.tv_houseNoValue);
         tv_societyValue = findViewById(R.id.tv_societyValue);
         tv_blockValue = findViewById(R.id.tv_blockValue);
@@ -667,6 +702,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
 
 
     private void setText(NguserListModel nguserListModel) {
+
         tv_ngUserName.setText(nguserListModel.getCustomer_name().toUpperCase());
         tv_bp_no.setText("BP - " + nguserListModel.getBp_no());
         tv_jmr_no.setText("JMR - " + nguserListModel.getJmr_no());
@@ -925,6 +961,58 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
             Utils.showToast(getApplicationContext(), "server error");
         }
     }
+
+    private void updateNg()
+    {
+        CommonUtils.startProgressBar(NgSupUserDetailsActivity.this,"Loading...");
+        Log.d(log, "updateNg = " +Constants.REFRESH_NG +intentngUserListModel.getBp_no());
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.REFRESH_NG +intentngUserListModel.getBp_no(), new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                CommonUtils.dismissProgressBar(NgSupUserDetailsActivity.this);
+                try {
+                    JSONObject jsonObject1 = new JSONObject(response);
+                    Log.d(log,"response"+ response);
+                    String status = jsonObject1.getString("status");
+                    if (status.equals("200")) {
+                        CommonUtils.toast_msg(NgSupUserDetailsActivity.this,jsonObject1.getString("message"));
+                        JSONObject jsonObject= jsonObject1.getJSONObject("details");
+                        Log.d(log,"details"+ jsonObject.toString());
+                        intentngUserListModel.setCustomer_name(jsonObject.getString("name"));
+                        intentngUserListModel.setMobile_no(jsonObject.getString("mob"));
+                        intentngUserListModel.setAlt_number(jsonObject.getString("mob"));
+                        intentngUserListModel.setSociety(jsonObject.getString("society"));
+                        intentngUserListModel.setHouse_no(jsonObject.getString("hno"));
+                        intentngUserListModel.setBlock_qtr(jsonObject.getString("block"));
+                        intentngUserListModel.setFloor(jsonObject.getString("floor"));
+                        setText(intentngUserListModel);
+
+                    }
+                    else
+                    {
+                        CommonUtils.toast_msg(NgSupUserDetailsActivity.this,jsonObject1.getString("message"));
+                    }
+                    } catch (JSONException e) {
+                    CommonUtils.dismissProgressBar(NgSupUserDetailsActivity.this);
+                    CommonUtils.toast_msg(NgSupUserDetailsActivity.this,"Oops..Error loading status!!");
+                    e.printStackTrace();
+                }
+            }
+        }, new com.android.volley.Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                CommonUtils.dismissProgressBar(NgSupUserDetailsActivity.this);
+                CommonUtils.toast_msg(NgSupUserDetailsActivity.this,"Oops..TimeOut!!");
+                error.printStackTrace();
+            }
+        });
+        int socketTimeout = 30000;
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        stringRequest.setRetryPolicy(policy);
+        requestQueue.add(stringRequest);
+    }
+
 
 
 }

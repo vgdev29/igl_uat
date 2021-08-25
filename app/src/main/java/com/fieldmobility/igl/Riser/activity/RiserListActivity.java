@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -61,6 +62,7 @@ public class RiserListActivity extends AppCompatActivity implements View.OnClick
 
                 .show();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        Log.d("riser",Constants.RISER_LISTING+"/"+sharedPrefs.getUUID());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.RISER_LISTING+"/"+sharedPrefs.getUUID(), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

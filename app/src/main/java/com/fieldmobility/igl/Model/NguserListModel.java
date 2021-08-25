@@ -189,6 +189,31 @@ public class NguserListModel implements Serializable {
     @Expose
     private String supervisor_assigned_date;
 
+    @SerializedName("lattitude")
+    @Expose
+    private String lattitude;
+
+    @SerializedName("longitude")
+    @Expose
+    private String longitude;
+
+
+    public String getLattitude() {
+        return lattitude;
+    }
+
+    public void setLattitude(String lattitude) {
+        this.lattitude = lattitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
     public String getSupervisor_assigned_date() {
         return supervisor_assigned_date;
     }

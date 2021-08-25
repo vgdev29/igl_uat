@@ -73,7 +73,7 @@ public class RiserTpiApprovalDetailAdapter extends RecyclerView.Adapter<RiserTpi
                 break;
             case 8:
                 holder.tv_key.setText("Riser No. :");
-                holder.tv_value.setText(data.getIglCityRegion());
+                holder.tv_value.setText(data.getRiserNo());
                 break;
             case 9:
                 holder.tv_key.setText("Connected House :");
@@ -96,8 +96,8 @@ public class RiserTpiApprovalDetailAdapter extends RecyclerView.Adapter<RiserTpi
                 holder.tv_value.setText(data.getHseGi());
                 break;
             case 14:
-                holder.tv_key.setText("Property Type :");
-                holder.tv_value.setText(data.getPropertyType());
+                holder.tv_key.setText("Total IB :");
+                holder.tv_value.setText(data.getTotalIb());
                 break;
             case 15:
                 holder.tv_key.setText("Riser Length :");
@@ -140,21 +140,18 @@ public class RiserTpiApprovalDetailAdapter extends RecyclerView.Adapter<RiserTpi
                 holder.tv_value.setText(data.getLateralTapping());
                 break;
             case 22:
-                holder.tv_key.setText("TF Regulator :");
-                holder.tv_value.setText(data.getTfRegulator());
+                holder.tv_key.setText("Contractor :");
+                holder.tv_value.setText(data.getContractorId());
                 break;
             case 23:
-                holder.tv_key.setText("Regular Lateral Quantity :");
-                holder.tv_value.setText(data.getRegularLateralQuantity());
+                holder.tv_key.setText("Supervisor :");
+                holder.tv_value.setText(data.getSupervisorId());
                 break;
             case 24:
-                holder.tv_key.setText("Test installed :");
-                holder.tv_value.setText(data.getTestInstalled());
+                holder.tv_key.setText("Completion Date :");
+                holder.tv_value.setText(data.getCompletionDate());
                 break;
-            case 25:
-                holder.tv_key.setText("MDPE Pipe Laying :");
-                holder.tv_value.setText(data.getMdpePipeLaying());
-                break;
+
         }
     }
 

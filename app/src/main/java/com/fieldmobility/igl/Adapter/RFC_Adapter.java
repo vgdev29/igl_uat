@@ -14,18 +14,31 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.fieldmobility.igl.Activity.RFC_StatusMastar_Page;
 //import com.example.igl.Activity.TPI_Inspection_RFC_Activity;
 import com.fieldmobility.igl.Helper.CommonUtils;
+import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.MataData.Bp_No_Item;
+import com.fieldmobility.igl.Model.BpDetail;
 import com.fieldmobility.igl.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -219,12 +232,79 @@ public class RFC_Adapter extends RecyclerView.Adapter<RFC_Adapter.ViewHolder> im
             }
 
         });
+        holder.refresh_data.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updatedetails( bp_no_list_array.get(position),position);
+            }
+        });
+
+
 
 
     }
     @Override
     public int getItemCount() {
         return bp_no_list_array.size();
+    }
+
+    private void updatedetails(Bp_No_Item bp_No_Item, int position)
+    {
+        CommonUtils.startProgressBar(context,"Loading...");
+        Log.d(log, "updateNg = " + Constants.REFRESH_RFC +bp_No_Item.getBp_number());
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.REFRESH_RFC +bp_No_Item.getBp_number(), new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                CommonUtils.dismissProgressBar(context);
+                try {
+                    JSONObject jsonObject1 = new JSONObject(response);
+                    Log.d(log,"response"+ response);
+                    String status = jsonObject1.getString("status");
+                    if (status.equals("200")) {
+                        CommonUtils.toast_msg(context,jsonObject1.getString("message"));
+                        JSONObject jsonObject= jsonObject1.getJSONObject("details");
+                        Log.d(log,"details"+ jsonObject.toString());
+                        String name = jsonObject.getString("name");
+                        String mob = jsonObject.getString("mob");
+
+                        String society = jsonObject.getString("society");
+                        String hno = jsonObject.getString("hno");
+                        String block = jsonObject.getString("block");
+                        String floor = jsonObject.getString("floor");
+                        bp_No_Item.setFirst_name(name);
+                        bp_No_Item.setMobile_number(mob);
+                        bp_No_Item.setSociety(society);
+                        bp_No_Item.setHouse_no(hno);
+                        bp_No_Item.setBlock_qtr_tower_wing(block);
+                        bp_No_Item.setFloor(floor);
+                        bp_no_list_array.set(position,bp_No_Item);
+                        notifyDataSetChanged();
+
+
+                    }
+                    else
+                    {
+                        CommonUtils.toast_msg( context,jsonObject1.getString("message"));
+                    }
+                } catch (JSONException e) {
+                    CommonUtils.dismissProgressBar(context);
+                    CommonUtils.toast_msg(context,"Oops..Error loading status!!");
+                    e.printStackTrace();
+                }
+            }
+        }, new com.android.volley.Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                CommonUtils.dismissProgressBar(context);
+                CommonUtils.toast_msg(context,"Oops..TimeOut!!");
+                error.printStackTrace();
+            }
+        });
+        int socketTimeout = 30000;
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        stringRequest.setRetryPolicy(policy);
+        requestQueue.add(stringRequest);
     }
 
     public void setData(List<Bp_No_Item> filterList)
@@ -240,6 +320,7 @@ public class RFC_Adapter extends RecyclerView.Adapter<RFC_Adapter.ViewHolder> im
         public TextView bp_no_text,user_name_text,address_text,date_text,status_text,mobile_text,descreption_text,cont_id;
         public CardView linearLayout;
         public Button info_button,jobstart_button;
+        ImageButton refresh_data;
         public ViewHolder(View itemView) {
             super(itemView);
             mobile_text=(TextView)itemView.findViewById(R.id.mobile_text);
@@ -252,6 +333,8 @@ public class RFC_Adapter extends RecyclerView.Adapter<RFC_Adapter.ViewHolder> im
             info_button= (Button) itemView.findViewById(R.id.info_button);
             jobstart_button = itemView.findViewById(R.id.job_start_button);
             cont_id = itemView.findViewById(R.id.contid_text);
+            refresh_data = itemView.findViewById(R.id.refresh_data);
+            refresh_data.setVisibility(View.VISIBLE);
         }
     }
     @Override

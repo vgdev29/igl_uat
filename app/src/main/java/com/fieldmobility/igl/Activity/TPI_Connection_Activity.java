@@ -24,6 +24,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -111,6 +112,8 @@ public class TPI_Connection_Activity  extends Activity {
     String complete_igl_code,complete_igl_code_group,complete_igl_catagory,complete_catid,pipeline_catagory,bpno;
     private String Latitude;
     private String Longitude;
+    private RadioGroup radioGroup;
+    String riserStatus = "No";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,6 +134,7 @@ public class TPI_Connection_Activity  extends Activity {
         bp_no_text=findViewById(R.id.bp_no_text);
         address_text=findViewById(R.id.address_text);
         header_text=findViewById(R.id.header_text);
+        radioGroup = findViewById(R.id.radioGroup);
         Type_Of_Master=new ArrayList<>();
         Type_Of_Master_ID=new ArrayList<>();
         Type_Of_Sub_Master=new ArrayList<>();
@@ -174,7 +178,16 @@ public class TPI_Connection_Activity  extends Activity {
             @Override
             public void onClick(View v) {
                 if(Feasibility_Type.equals("0")){
-                    header_text.setText("Feasibility");
+                    header_text.setText("Feasibility Pending");
+                    switch (radioGroup.getCheckedRadioButtonId())
+                    {
+                        case R.id.radioButton_riseryes:
+                            riserStatus = "Yes";
+                            break;
+                        default:
+                            riserStatus = "No";
+                            break;
+                    }
                     TPI_Approve();
                 }
 
@@ -402,11 +415,7 @@ public class TPI_Connection_Activity  extends Activity {
             complete_igl_catagory=igl_catagory_Master;
             complete_catid=catid_Master;
         }
-        if ((Latitude==null || Longitude==null))
-        {
-            Latitude = "NA";
-            Longitude = "NA";
-        }
+
         materialDialog = new MaterialDialog.Builder(this)
                 .content("Please wait....")
                 .progress(true, 0)
@@ -462,6 +471,7 @@ public class TPI_Connection_Activity  extends Activity {
                     Log.e("latitude", Latitude);
                     Log.e("longitude", Longitude);
                     Log.e("remarks", descreption_edit.getText().toString().trim());
+                    Log.e("riserStatus", riserStatus);
                     // params.put("id", sharedPrefs.getUUID());
                     params.put("lead_no",getIntent().getStringExtra("lead_no"));
                     params.put("bp_no", getIntent().getStringExtra("Bp_number"));
@@ -475,6 +485,7 @@ public class TPI_Connection_Activity  extends Activity {
                     params.put("latitude", Latitude);
                     params.put("longitude", Longitude);
                     params.put("remarks", descreption_edit.getText().toString().trim());
+                    params.put("riserStatus", riserStatus);
 
 
                 } catch (Exception e) {
@@ -489,17 +500,22 @@ public class TPI_Connection_Activity  extends Activity {
 
     private void getLocationUsingInternet() {
         boolean isInternetConnected = new ConnectionDetector(TPI_Connection_Activity.this).isConnectingToInternet();
-        if (isInternetConnected) {
-            // getLocation_usingInternet.setEnabled(false);
-            new GPSLocation(TPI_Connection_Activity.this).turnGPSOn();// First turn on GPS
-            String getLocation = new GPSLocation(TPI_Connection_Activity.this).getMyCurrentLocation();// Get current location from
-            Log.d("getLocation++", getLocation.toString());
-            Latitude = GPSLocation.Latitude;
-            Longitude = GPSLocation.Longitude;
-            Log.d("Latitude++", Latitude);
-            Log.d("Longitude++", Longitude);
-        } else {
-            Toast.makeText(TPI_Connection_Activity.this, "There is no internet connection.", Toast.LENGTH_SHORT).show();
+        try {
+            if (isInternetConnected) {
+                // getLocation_usingInternet.setEnabled(false);
+                new GPSLocation(TPI_Connection_Activity.this).turnGPSOn();// First turn on GPS
+                String getLocation = new GPSLocation(TPI_Connection_Activity.this).getMyCurrentLocation();// Get current location from
+                Log.d("getLocation++", getLocation.toString());
+                Latitude = GPSLocation.Latitude;
+                Longitude = GPSLocation.Longitude;
+                Log.d("Latitude++", Latitude);
+                Log.d("Longitude++", Longitude);
+            } else {
+                Toast.makeText(TPI_Connection_Activity.this, "There is no internet connection.", Toast.LENGTH_SHORT).show();
+            }
+        }catch (Exception e){
+            Latitude = "NA";
+            Longitude = "NA";
         }
     }
     public void TPI_Multipart(String filePath_img_string) {

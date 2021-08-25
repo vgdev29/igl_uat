@@ -243,16 +243,22 @@ public class Utils {
     public static String getLocationUsingInternet(Context context) {
         boolean isInternetConnected = new ConnectionDetector(context).isConnectingToInternet();
         String latLong = "";
-        if (isInternetConnected) {
-            // getLocation_usingInternet.setEnabled(false);
-            new GPSLocation(context).turnGPSOn();// First turn on GPS
-            String getLocation = new GPSLocation(context).getMyCurrentLocation();// Get current location from
-            Log.d("getLocation++", getLocation.toString());
-            String Latitude = GPSLocation.Latitude;
-            String Longitude = GPSLocation.Longitude;
-            latLong = latLong + "/" + Longitude;
-        } else {
-            Toast.makeText(context, "There is no internet connection.", Toast.LENGTH_SHORT).show();
+        try {
+            if (isInternetConnected) {
+                // getLocation_usingInternet.setEnabled(false);
+                new GPSLocation(context).turnGPSOn();// First turn on GPS
+                String getLocation = new GPSLocation(context).getMyCurrentLocation();// Get current location from
+                Log.d("getLocation++", getLocation.toString());
+                String Latitude = GPSLocation.Latitude;
+                String Longitude = GPSLocation.Longitude;
+                latLong = Latitude + "/" + Longitude;
+            } else {
+                Toast.makeText(context, "There is no internet connection.", Toast.LENGTH_SHORT).show();
+            }
+        }
+        catch (Exception e)
+        {
+            latLong = "NA" + "/" + "NA";
         }
         return latLong;
     }

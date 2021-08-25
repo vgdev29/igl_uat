@@ -22,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.fieldmobility.igl.Activity.NgSupUserDetailsActivity;
 import com.fieldmobility.igl.Helper.CommonUtils;
+import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.Model.NguserListModel;
 import com.fieldmobility.igl.Model.TpiDetailResponse;
 import com.fieldmobility.igl.Model.TpiDetails;
@@ -180,7 +181,7 @@ public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.Ng
     private void loadTpiDetails(String email){
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Api.BASE_URL_TPI_DETAILS)
+                .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,8 +33,11 @@ import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.Model.RiserTpiListingModel;
 import com.fieldmobility.igl.R;
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class RiserTpiApprovalDetailActivity extends AppCompatActivity {
     RecyclerView rv_detail;
@@ -112,11 +116,18 @@ public class RiserTpiApprovalDetailActivity extends AppCompatActivity {
         adapter = new RiserTpiApprovalDetailAdapter(this, data);
         rv_detail.setAdapter(adapter);
         ((TextView) findViewById(R.id.tv_bp_num)).setText("BP " + data.getBpNumber());
-        data.getSitePhoto1();
-        if (data.getSitePhoto3()!=null && !data.getSitePhoto3().isEmpty()){
+
+        if (data.getImageList()!=null && !data.getImageList().isEmpty()){
+            ArrayList<String> imagelist = data.getImageList();
             iv_three.setVisibility(View.VISIBLE);
+            iv_two.setVisibility(View.VISIBLE);
+            iv_one.setVisibility(View.VISIBLE);
+
+            Picasso.with(RiserTpiApprovalDetailActivity.this).load(imagelist.get(0)).into(iv_one);
+            Picasso.with(RiserTpiApprovalDetailActivity.this).load(imagelist.get(1)).into(iv_two);
+            Picasso.with(RiserTpiApprovalDetailActivity.this).load(imagelist.get(2)).into(iv_three);
+
         }
-//        Picasso.with(RiserTpiApprovalDetailActivity.this).load(Constants.BASE_URL+data.getSitePhoto1()).into(iv_id_proof);
 
 
     }
@@ -135,6 +146,7 @@ public class RiserTpiApprovalDetailActivity extends AppCompatActivity {
 
                 .show();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        Log.d("riser",Constants.RISER__APPROVAL_DECLINE + "/" + data.getBpNumber() + "?remarks=" + remarks + "&status=" + status);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.RISER__APPROVAL_DECLINE + "/" + data.getBpNumber() + "?remarks=" + remarks + "&status=" + status, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

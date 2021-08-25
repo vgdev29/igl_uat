@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -112,7 +113,9 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
                 lat = latLong[0];
                 log = latLong[1];
             }
-            String riserNum = "R" + dataModel.getZone() + Utils.getRandomNumWithChar(5);
+            JSONObject jsonArray = ConnectedHouseAdapter.getJsonData();
+            Log.d("search" , "jsonarray = "+ jsonArray.toString());
+            String riserNum = "R" + dataModel.getZone() + Utils.getRandomNumWithChar(5).toUpperCase();
             String laying = isRiserLayingDone ? "1" : "0";
             String testing = isRiserTestingDone ? "1" : "0";
             String commi = isRiserCommissioningDone ? "1" : "0";
@@ -147,7 +150,8 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
                     .addParameter("area_type", selectedAreaType)
                     .addParameter("connected_bp", "" + ConnectedHouse)
                     .addParameter("connected_house", "" + ConnectedHouse)
-//                    .addParameter("hse_gi", selectedLateralTapping)
+//                   .addParameter("hse_gi", selectedLateralTapping)
+                    .addParameter("bplist", String.valueOf(jsonArray))
                     .addParameter("total_ib", et_ib.getText().toString().trim()) // Edittext
                     .addParameter("contractor_id", dataModel.getRfcadmin()) //admin
                     .addParameter("tpi_id", dataModel.getRfcTpi()) //tpi
@@ -363,6 +367,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
 //                }
                 connectedHseMaxLimit = 5;
                 hseList.add("HSE (g+4)");
+                hseList.add("HSE (g+5)");
                 selectedHSE = "HSE (g+4)";
             } else {
                 connectedHseMaxLimit = 15;
@@ -751,12 +756,17 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
     JSONArray bpDetailsArray;
 
     private void searchBP(String bp) {
+        ProgressDialog progressDialog = ProgressDialog.show(this, "", "Searching BP number", true);
+        progressDialog.setCancelable(false);
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        Log.d("searchbp",Constants.RISER__SEARCH_BP + bp + "/" + dataModel.getArea() + "/" + dataModel.getSociety());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.RISER__SEARCH_BP + bp + "/" + dataModel.getArea() + "/" + dataModel.getSociety(), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
+                   progressDialog.dismiss();
                     JSONObject jsonObject = new JSONObject(response);
+                    Log.d("searchbp",response.toString());
                     if (jsonObject.getString("status").equals("200")) {
                         ArrayList<String> bpList = new ArrayList<>();
                         bpDetailsArray = jsonObject.getJSONArray("Bp_Details");
@@ -768,6 +778,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
                     }
 
                 } catch (JSONException e) {
+                    progressDialog.dismiss();
                     e.printStackTrace();
                 }
             }
@@ -775,6 +786,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
+                progressDialog.dismiss();
             }
         });
         int socketTimeout = 30000;

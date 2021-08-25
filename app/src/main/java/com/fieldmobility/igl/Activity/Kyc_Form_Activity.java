@@ -145,7 +145,6 @@ public class Kyc_Form_Activity extends Activity {
     String city_id, city_name, area_name, area_id, soceity_name, house_type_name, floor_name, block_tower_name, street_road_name, lpg_company_name, street_road_type_name, block_tower_type_name;
     Spinner spinner_area, spinner_society, spinner_house_type, spinner_floor, spinner_block_tower, spinner_street_road, spinner_lpg_company;
     ImageView owner_sigimage, id_image, address_image, customer_sigimage;
-    ;
     TextView bp_no_text, tv_pdf_path;
     CheckBox checkBox_term_cond;
     TextView checkbox_text;

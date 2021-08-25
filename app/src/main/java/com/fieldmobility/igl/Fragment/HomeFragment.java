@@ -44,6 +44,7 @@ import com.fieldmobility.igl.R;
 //import com.fieldmobility.igl.tracker.MyIntentService;
 import com.fieldmobility.igl.Riser.activity.RiserListActivity;
 import com.fieldmobility.igl.Riser.activity.RiserTpiApprovalActivity;
+import com.fieldmobility.igl.Riser.activity.Tab_Host_Riser;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.material.snackbar.Snackbar;
@@ -340,7 +341,7 @@ public class HomeFragment extends Fragment {
         lt_tpi_riser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent riserIntent = new Intent(getActivity(), RiserTpiApprovalActivity.class);
+                Intent riserIntent = new Intent(getActivity(), Tab_Host_Riser.class);
                 startActivity(riserIntent);
             }
         });

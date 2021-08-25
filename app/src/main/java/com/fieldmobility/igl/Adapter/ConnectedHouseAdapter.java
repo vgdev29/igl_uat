@@ -17,11 +17,15 @@ import com.fieldmobility.igl.Model.ConnectedHouseModel;
 import com.fieldmobility.igl.Model.NICList;
 import com.fieldmobility.igl.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class ConnectedHouseAdapter extends RecyclerView.Adapter<ConnectedHouseAdapter.MyHolder> {
     Context mContext;
-    private ArrayList<ConnectedHouseModel> dataList = new ArrayList<>();
+    private static ArrayList<ConnectedHouseModel> dataList = new ArrayList<>();
 
     public ConnectedHouseAdapter(Context mContext) {
         this.mContext = mContext;
@@ -76,8 +80,30 @@ public class ConnectedHouseAdapter extends RecyclerView.Adapter<ConnectedHouseAd
         notifyDataSetChanged();
     }
 
-    public ArrayList<ConnectedHouseModel> getFilledData() {
+    public static ArrayList<ConnectedHouseModel> getFilledData() {
         return dataList;
+    }
+    public static JSONObject getJsonData() {
+        JSONObject objects = new JSONObject();
+        JSONArray array = new JSONArray();
+        try {
+
+        for (ConnectedHouseModel model : dataList)
+        {
+            JSONObject object = new JSONObject();
+
+                object.put("bp",model.getBp_number());
+                object.put("hno",model.getHouse_num());
+                object.put("floor",model.getFloor_num());
+
+            array.put(object);
+        }
+
+        objects.put("list",array);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return objects;
     }
 
 

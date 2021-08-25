@@ -147,7 +147,10 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
     private final int PICK_CUSTOMER_IMAGE_SIGNATURE = 5;
     protected static final int PICK_CUSTOMER_IMAGE_SIGNATURE_CAMERA = 7;
     protected static final int BARCODE_SCANNER_REQUEST = 6;
-    private final int PICK_IMAGE_REQUEST = 8;
+    private final int PICK_IMAGE_ISOMETRIC = 8;
+    private final int PICK_IMAGE_INSTALLATION = 9;
+    private final int PICK_IMAGE_DRAWING = 10;
+    private final int PICK_IMAGE_SELFIE = 11;
     private Uri filePath_Image, Multiple_file_IMG;
     String image_path_string, image_path_string1, image_path_string2, image_path_string3,image_path_signature;
     Bitmap bitmap, bitmap_screenshot, bitmap_screenshot1, bitmap_screenshot2, bitmap_screenshot3,bitmap_screenshot_signature;
@@ -668,6 +671,15 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
         AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
         myAlertDialog.setTitle("Upload Pictures Option");
         myAlertDialog.setMessage("How do you want to set your picture?");
+        myAlertDialog.setPositiveButton("Gallery",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_ISOMETRIC);
+                    }
+                });
         myAlertDialog.setNegativeButton("Camera",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
@@ -686,6 +698,15 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
         AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
         myAlertDialog.setTitle("Upload Pictures Option");
         myAlertDialog.setMessage("How do you want to set your picture?");
+        myAlertDialog.setPositiveButton("Gallery",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_INSTALLATION);
+                    }
+                });
         myAlertDialog.setNegativeButton("Camera",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
@@ -704,6 +725,15 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
         AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
         myAlertDialog.setTitle("Upload Pictures Option");
         myAlertDialog.setMessage("How do you want to set your picture?");
+        myAlertDialog.setPositiveButton("Gallery",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_DRAWING);
+                    }
+                });
         myAlertDialog.setNegativeButton("Camera",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
@@ -722,7 +752,15 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
         AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
         myAlertDialog.setTitle("Upload Pictures Option");
         myAlertDialog.setMessage("How do you want to set your picture?");
-
+        myAlertDialog.setPositiveButton("Gallery",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_SELFIE);
+                    }
+                });
         myAlertDialog.setNegativeButton("Camera",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
@@ -810,6 +848,21 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                     }
                 }
                 break;
+            case PICK_IMAGE_ISOMETRIC:
+                if (requestCode == PICK_IMAGE_ISOMETRIC && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
+                   Uri filePathUri_id = data.getData();
+                    try {
+                       Bitmap bitmap_id = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathUri_id);
+                        select_image.setImageBitmap(bitmap_id);
+                        image_path_string = getPath1(RFC_Connection_Activity.this,filePathUri_id);
+                        Log.d("bpcreation", "imagepath id pick image = " + image_path_string);
+                        time_stemp_text.setText(getIntent().getStringExtra("First_name") + " " + getIntent().getStringExtra("Last_name") + "|" + Latitude + "|" + Longitude + "|" + Current_Time + "|" + Current_Date + "|" + getIntent().getStringExtra("Bp_number")+" | GALLERY");
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
             case CAMERA_REQUEST2:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST2) {
                     File f = new File(getExternalStorageDirectory().toString());
@@ -847,6 +900,21 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                             e.printStackTrace();
                         }
                     } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
+            case PICK_IMAGE_INSTALLATION:
+                if (requestCode == PICK_IMAGE_INSTALLATION && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
+                    Uri filePathUri_id = data.getData();
+                    try {
+                        Bitmap bitmap_id = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathUri_id);
+                        select_image1.setImageBitmap(bitmap_id);
+                        image_path_string1 = getPath1(RFC_Connection_Activity.this,filePathUri_id);
+                        Log.d("bpcreation", "imagepath id pick image = " + image_path_string1);
+                        time_stemp_text1.setText(getIntent().getStringExtra("First_name") + " " + getIntent().getStringExtra("Last_name") + "|" + Latitude + "|" + Longitude + "|" + Current_Time + "|" + Current_Date + "|" + getIntent().getStringExtra("Bp_number")+" | GALLERY");
+
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
@@ -892,6 +960,21 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                     }
                 }
                 break;
+            case PICK_IMAGE_DRAWING:
+                if (requestCode == PICK_IMAGE_DRAWING && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
+                    Uri filePathUri_id = data.getData();
+                    try {
+                        Bitmap bitmap_id = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathUri_id);
+                        select_image2.setImageBitmap(bitmap_id);
+                        image_path_string2 = getPath1(RFC_Connection_Activity.this,filePathUri_id);
+                        Log.d("bpcreation", "imagepath id pick image = " + image_path_string2);
+                        time_stemp_text2.setText(getIntent().getStringExtra("First_name") + " " + getIntent().getStringExtra("Last_name") + "|" + Latitude + "|" + Longitude + "|" + Current_Time + "|" + Current_Date + "|" + getIntent().getStringExtra("Bp_number")+" | GALLERY");
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
             case CAMERA_REQUEST4:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST4) {
                     File f = new File(getExternalStorageDirectory().toString());
@@ -929,6 +1012,21 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                             e.printStackTrace();
                         }
                     } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
+            case PICK_IMAGE_SELFIE:
+                if (requestCode == PICK_IMAGE_SELFIE && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
+                    Uri filePathUri_id = data.getData();
+                    try {
+                        Bitmap bitmap_id = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathUri_id);
+                        select_image3.setImageBitmap(bitmap_id);
+                        image_path_string3 = getPath1(RFC_Connection_Activity.this,filePathUri_id);
+                        Log.d("bpcreation", "imagepath id pick image = " + image_path_string3);
+                        time_stemp_text3.setText(getIntent().getStringExtra("First_name") + " " + getIntent().getStringExtra("Last_name") + "|" + Latitude + "|" + Longitude + "|" + Current_Time + "|" + Current_Date + "|" + getIntent().getStringExtra("Bp_number")+" | GALLERY");
+
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
@@ -1018,7 +1116,9 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                        // barCodeMeterNo();
                         Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
                     }
-                //}
+
+
+
         }
 
     }
@@ -1128,66 +1228,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
 
 
 
-    private void Customer_Signature1() {
-        final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        dialog.setContentView(R.layout.customer_signature);
-        dialog.setTitle("Signature");
-        dialog.setCancelable(true);
-        TextView owner_name = dialog.findViewById(R.id.owner_name);
-        owner_name.setVisibility(View.GONE);
-        adhar_owner_image = dialog.findViewById(R.id.adhar_owner_image);
-        Button adhar_button = dialog.findViewById(R.id.adhar_button);
-        TextView signature_select = dialog.findViewById(R.id.signature_select);
-        TextView image_select = dialog.findViewById(R.id.image_select);
-        TextView save_select = dialog.findViewById(R.id.save_select);
-        final LinearLayout signature_layout = dialog.findViewById(R.id.signature_layout);
-        final LinearLayout image_capture_layout = dialog.findViewById(R.id.image_capture_layout);
-        ImageView crose_img = dialog.findViewById(R.id.crose_img);
-        ownar_name_no = dialog.findViewById(R.id.ownar_name_no);
-        ownar_name_no.setVisibility(View.GONE);
-        signatureView = (SignatureView) dialog.findViewById(R.id.ownar_signature_view);
-        clear = (Button) dialog.findViewById(R.id.clear);
-        save = (Button) dialog.findViewById(R.id.save);
-        clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signatureView.clearCanvas();
-            }
-        });
-        crose_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bitmap = signatureView.getSignatureBitmap();
-                customer_image_file = saveImage(bitmap);
-                signature_image.setImageBitmap(bitmap);
-                dialog.dismiss();
-            }
-        });
-        signature_select.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signature_layout.setVisibility(View.VISIBLE);
-                image_capture_layout.setVisibility(View.GONE);
-            }
-        });
 
-
-        save_select.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        dialog.show();
-    }
 
     private void Signature_Method() {
         final Dialog dialog = new Dialog(this);
@@ -1251,54 +1292,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
 
     }
 
-    @SuppressLint("NewApi")
-    public static String getFilePath(Context context, Uri uri) throws URISyntaxException {
-        String selection = null;
-        String[] selectionArgs = null;
-        if (Build.VERSION.SDK_INT >= 19 && DocumentsContract.isDocumentUri(context.getApplicationContext(), uri)) {
-            if (isExternalStorageDocument(uri)) {
-                final String docId = DocumentsContract.getDocumentId(uri);
-                final String[] split = docId.split(":");
-                return Environment.getExternalStorageDirectory() + "/" + split[1];
-            } else if (isDownloadsDocument(uri)) {
-                final String id = DocumentsContract.getDocumentId(uri);
-                uri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), Long.valueOf(id));
-            } else if (isMediaDocument(uri)) {
-                final String docId = DocumentsContract.getDocumentId(uri);
-                final String[] split = docId.split(":");
-                final String type = split[0];
-                if ("image".equals(type)) {
-                    uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-                } else if ("video".equals(type)) {
-                    uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                } else if ("audio".equals(type)) {
-                    uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-                }
-                selection = "_id=?";
-                selectionArgs = new String[]{
-                        split[1]
-                };
-            }
-        }
-        if ("content".equalsIgnoreCase(uri.getScheme())) {
-            String[] projection = {
-                    MediaStore.Images.Media.DATA
-            };
-            Cursor cursor = null;
-            try {
-                cursor = context.getContentResolver()
-                        .query(uri, projection, selection, selectionArgs, null);
-                int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-                if (cursor.moveToFirst()) {
-                    return cursor.getString(column_index);
-                }
-            } catch (Exception e) {
-            }
-        } else if ("file".equalsIgnoreCase(uri.getScheme())) {
-            return uri.getPath();
-        }
-        return null;
-    }
+
 
     @SuppressLint("NewApi")
     public static String getPath1(final Context context, final Uri uri) {

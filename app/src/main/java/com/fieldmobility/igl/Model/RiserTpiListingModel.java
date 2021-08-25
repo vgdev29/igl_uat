@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 
 public class RiserTpiListingModel {
-    public static class BpDetail {
+    public class BpDetail {
 
         @SerializedName("iglFirstName")
         @Expose
@@ -77,48 +77,9 @@ public class RiserTpiListingModel {
         @SerializedName("areaType")
         @Expose
         private String areaType;
-        @SerializedName("sitePhoto1")
+        @SerializedName("site_photo")
         @Expose
-        private String sitePhoto1;
-        @SerializedName("sitePhoto2")
-        @Expose
-        private String sitePhoto2;
-        @SerializedName("sitePhoto3")
-        @Expose
-        private String sitePhoto3;
-        @SerializedName("tfRegulator")
-        @Expose
-        private String tfRegulator;
-        @SerializedName("regularLateralQuantity")
-        @Expose
-        private String regularLateralQuantity;
-        @SerializedName("regularLateralFloor")
-        @Expose
-        private String regularLateralFloor;
-        @SerializedName("testInstalled")
-        @Expose
-        private String testInstalled;
-        @SerializedName("png")
-        @Expose
-        private String png;
-        @SerializedName("gi")
-        @Expose
-        private String gi;
-        @SerializedName("cu")
-        @Expose
-        private String cu;
-        @SerializedName("registration")
-        @Expose
-        private String registration;
-        @SerializedName("mdpePipeLaying")
-        @Expose
-        private String mdpePipeLaying;
-        @SerializedName("lateralTappingQuantity")
-        @Expose
-        private String lateralTappingQuantity;
-        @SerializedName("suballocationId")
-        @Expose
-        private String suballocationId;
+        private Object sitePhoto;
         @SerializedName("contractorId")
         @Expose
         private String contractorId;
@@ -143,6 +104,12 @@ public class RiserTpiListingModel {
         @SerializedName("riserStatus")
         @Expose
         private String riserStatus;
+        @SerializedName("total_ib")
+        @Expose
+        private String totalIb;
+        @SerializedName("imageList")
+        @Expose
+        private ArrayList<String> imageList = null;
 
         public String getIglFirstName() {
             return iglFirstName;
@@ -328,116 +295,12 @@ public class RiserTpiListingModel {
             this.areaType = areaType;
         }
 
-        public String getSitePhoto1() {
-            return sitePhoto1;
+        public Object getSitePhoto() {
+            return sitePhoto;
         }
 
-        public void setSitePhoto1(String sitePhoto1) {
-            this.sitePhoto1 = sitePhoto1;
-        }
-
-        public String getSitePhoto2() {
-            return sitePhoto2;
-        }
-
-        public void setSitePhoto2(String sitePhoto2) {
-            this.sitePhoto2 = sitePhoto2;
-        }
-
-        public String getSitePhoto3() {
-            return sitePhoto3;
-        }
-
-        public void setSitePhoto3(String sitePhoto3) {
-            this.sitePhoto3 = sitePhoto3;
-        }
-
-        public String getTfRegulator() {
-            return tfRegulator;
-        }
-
-        public void setTfRegulator(String tfRegulator) {
-            this.tfRegulator = tfRegulator;
-        }
-
-        public String getRegularLateralQuantity() {
-            return regularLateralQuantity;
-        }
-
-        public void setRegularLateralQuantity(String regularLateralQuantity) {
-            this.regularLateralQuantity = regularLateralQuantity;
-        }
-
-        public String getRegularLateralFloor() {
-            return regularLateralFloor;
-        }
-
-        public void setRegularLateralFloor(String regularLateralFloor) {
-            this.regularLateralFloor = regularLateralFloor;
-        }
-
-        public String getTestInstalled() {
-            return testInstalled;
-        }
-
-        public void setTestInstalled(String testInstalled) {
-            this.testInstalled = testInstalled;
-        }
-
-        public String getPng() {
-            return png;
-        }
-
-        public void setPng(String png) {
-            this.png = png;
-        }
-
-        public String getGi() {
-            return gi;
-        }
-
-        public void setGi(String gi) {
-            this.gi = gi;
-        }
-
-        public String getCu() {
-            return cu;
-        }
-
-        public void setCu(String cu) {
-            this.cu = cu;
-        }
-
-        public String getRegistration() {
-            return registration;
-        }
-
-        public void setRegistration(String registration) {
-            this.registration = registration;
-        }
-
-        public String getMdpePipeLaying() {
-            return mdpePipeLaying;
-        }
-
-        public void setMdpePipeLaying(String mdpePipeLaying) {
-            this.mdpePipeLaying = mdpePipeLaying;
-        }
-
-        public String getLateralTappingQuantity() {
-            return lateralTappingQuantity;
-        }
-
-        public void setLateralTappingQuantity(String lateralTappingQuantity) {
-            this.lateralTappingQuantity = lateralTappingQuantity;
-        }
-
-        public String getSuballocationId() {
-            return suballocationId;
-        }
-
-        public void setSuballocationId(String suballocationId) {
-            this.suballocationId = suballocationId;
+        public void setSitePhoto(Object sitePhoto) {
+            this.sitePhoto = sitePhoto;
         }
 
         public String getContractorId() {
@@ -504,7 +367,24 @@ public class RiserTpiListingModel {
             this.riserStatus = riserStatus;
         }
 
+        public String getTotalIb() {
+            return totalIb;
+        }
+
+        public void setTotalIb(String totalIb) {
+            this.totalIb = totalIb;
+        }
+
+        public ArrayList<String> getImageList() {
+            return imageList;
+        }
+
+        public void setImageList(ArrayList<String> imageList) {
+            this.imageList = imageList;
+        }
+
     }
+
     @SerializedName("Bp_Details")
     @Expose
     private ArrayList<BpDetail> bpDetails = null;

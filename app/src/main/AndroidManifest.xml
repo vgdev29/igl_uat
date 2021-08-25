@@ -63,6 +63,9 @@
         <activity android:name=".Riser.activity.RiserTpiApprovalActivity">
 
         </activity>
+        <activity android:name=".Riser.activity.RiserTpiPendingActivity">
+
+        </activity>
         <activity
             android:name=".Riser.activity.RiserFormActivity"
             android:screenOrientation="portrait" />
@@ -258,6 +261,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.Tab_Host_DMA"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Riser.activity.Tab_Host_Riser"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.BP_Document_Verification"

@@ -161,7 +161,7 @@
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_3sdp"
                     android:background="@drawable/shape_blue_border"
-                    android:hint="Father's Name"
+                    android:hint="Father's/Husband Name"
                     android:inputType="textCapWords"
                     android:maxLength="12"
                     android:paddingLeft="@dimen/_5sdp"
