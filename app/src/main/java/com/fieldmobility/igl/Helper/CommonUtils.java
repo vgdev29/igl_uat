@@ -52,7 +52,6 @@ public class CommonUtils {
                 dialog.dismiss();
             }
         });
-
         dialog.show();
     }
 
