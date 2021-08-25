@@ -113,7 +113,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
                 lat = latLong[0];
                 log = latLong[1];
             }
-            JSONObject jsonArray = ConnectedHouseAdapter.getJsonData();
+            JSONObject jsonArray = connectedHouseAdapter.getJsonData();
             Log.d("search" , "jsonarray = "+ jsonArray.toString());
             String riserNum = "R" + dataModel.getZone() + Utils.getRandomNumWithChar(5).toUpperCase();
             String laying = isRiserLayingDone ? "1" : "0";

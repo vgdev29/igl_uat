@@ -25,12 +25,11 @@ import java.util.ArrayList;
 
 public class ConnectedHouseAdapter extends RecyclerView.Adapter<ConnectedHouseAdapter.MyHolder> {
     Context mContext;
-    private static ArrayList<ConnectedHouseModel> dataList = new ArrayList<>();
+    private  ArrayList<ConnectedHouseModel> dataList = new ArrayList<>();
 
     public ConnectedHouseAdapter(Context mContext) {
         this.mContext = mContext;
     }
-
 
     @NonNull
     @Override
@@ -80,10 +79,11 @@ public class ConnectedHouseAdapter extends RecyclerView.Adapter<ConnectedHouseAd
         notifyDataSetChanged();
     }
 
-    public static ArrayList<ConnectedHouseModel> getFilledData() {
+    public  ArrayList<ConnectedHouseModel> getFilledData() {
         return dataList;
     }
-    public static JSONObject getJsonData() {
+
+    public  JSONObject getJsonData() {
         JSONObject objects = new JSONObject();
         JSONArray array = new JSONArray();
         try {
