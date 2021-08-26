@@ -32,6 +32,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -114,7 +115,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
                 log = latLong[1];
             }
             JSONObject jsonArray = connectedHouseAdapter.getJsonData();
-            Log.d("search" , "jsonarray = "+ jsonArray.toString());
+            Log.d("search", "jsonarray = " + jsonArray.toString());
             String riserNum = "R" + dataModel.getZone() + Utils.getRandomNumWithChar(5).toUpperCase();
             String laying = isRiserLayingDone ? "1" : "0";
             String testing = isRiserTestingDone ? "1" : "0";
@@ -141,8 +142,16 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
                     .addParameter("property_type", selectedPropertyType)
                     .addParameter("gas_type", selectedGasType)
                     .addParameter("hse_floor", selectedHSE)
-                    .addParameter("riser_length", selectedRiserLength)
-                    .addParameter("isolation_valve", selectedIsolationValue)
+//                    .addParameter("riser_length", selectedRiserLength)
+//                    .addParameter("isolation_valve", selectedIsolationValue)
+                    .addParameter("rl12",et_rl12.getText().toString())
+                    .addParameter("rl34",et_rl34.getText().toString())
+                    .addParameter("rl1",et_rl1.getText().toString())
+                    .addParameter("rl2",et_rl2.getText().toString())
+                    .addParameter("iv12",et_iv12.getText().toString())
+                    .addParameter("iv34",et_iv34.getText().toString())
+                    .addParameter("iv1",et_iv1.getText().toString())
+                    .addParameter("iv2",et_iv2.getText().toString())
                     .addParameter("laying", laying)
                     .addParameter("testing", testing)
                     .addParameter("commissioning", commi)
@@ -186,7 +195,6 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
                     final JSONObject jsonObject;
                     try {
                         jsonObject = new JSONObject(str);
-
                         if (jsonObject.getString("status").equals("200")) {
                             String Msg = jsonObject.getString("Message");
                             CommonUtils.toast_msg(RiserFormActivity.this, Msg);
@@ -257,7 +265,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
 
     TextView /*tv_allocation_num, tv_sub_allocatio,*/ tv_bp_num, tv_agent_name, /*tv_po_num,*/
             tv_city, tv_zone, tv_area, tv_society, tv_add_more_hse, hse_tv_bp_num;
-    EditText et_gali, et_ib/*, et_connected_house*/, hse_et_house, hse_et_floor;
+    EditText et_gali, et_ib/*, et_connected_house*/, hse_et_house, hse_et_floor, et_rl12, et_iv12, et_rl34, et_iv34, et_rl1, et_iv1, et_rl2, et_iv2;
     RadioGroup rg_riser_laying, rg_riser_testing, rg_riser_commissioning;
     ImageView iv_one, iv_two, iv_three;
     FrameLayout fl_image1, fl_image2, fl_image3;
@@ -274,6 +282,16 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         });
 //        tv_allocation_num = findViewById(R.id.tv_allocation_num);
 //        tv_sub_allocatio = findViewById(R.id.tv_sub_allocatio);
+        et_rl12 = findViewById(R.id.et_rl12);
+        et_iv12 = findViewById(R.id.et_iv12);
+        et_rl34 = findViewById(R.id.et_rl34);
+        et_iv34 = findViewById(R.id.et_iv34);
+        et_rl1 = findViewById(R.id.et_rl1);
+        et_iv1 = findViewById(R.id.et_iv1);
+        et_rl2 = findViewById(R.id.et_rl2);
+        et_iv2 = findViewById(R.id.et_iv2);
+        addTextWatchers();
+
         hse_et_floor = findViewById(R.id.et_floor);
         hse_et_house = findViewById(R.id.et_house);
         hse_tv_bp_num = findViewById(R.id.hse_tv_bp_num);
@@ -326,6 +344,167 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         sp_lateral_tapping.setOnItemSelectedListener(this);
         sp_area_type = findViewById(R.id.sp_area_type);
         sp_area_type.setOnItemSelectedListener(this);
+    }
+
+    private void addTextWatchers() {
+        et_rl12.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.toString().isEmpty() || s.toString().equals("0")) {
+                    if (!et_iv34.isEnabled()) {
+                        et_iv12.setEnabled(false);
+                        et_iv12.setText("0");
+                        et_iv12.setBackgroundResource(R.drawable.filled_form_data_bg);
+                    }
+                } else {
+                    et_iv12.setEnabled(true);
+                    et_iv12.setBackgroundResource(R.drawable.shape_blue_border);
+
+                }
+
+            }
+        });
+        et_rl34.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.toString().isEmpty() || s.toString().equals("0")) {
+                    if (!et_iv1.isEnabled()) {
+                        if (!hasValidValue(et_rl12.getText().toString())) {
+                            et_iv12.setEnabled(false);
+                            et_iv12.setText("0");
+                            et_iv12.setBackgroundResource(R.drawable.filled_form_data_bg);
+
+                        }
+                        et_iv34.setEnabled(false);
+                        et_iv34.setText("0");
+                        et_iv34.setBackgroundResource(R.drawable.filled_form_data_bg);
+                    }
+                } else {
+                    et_iv12.setEnabled(true);
+                    et_iv12.setBackgroundResource(R.drawable.shape_blue_border);
+                    et_iv34.setEnabled(true);
+                    et_iv34.setBackgroundResource(R.drawable.shape_blue_border);
+
+                }
+
+            }
+        });
+        et_rl1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!hasValidValue(s.toString())) {
+                    if (!et_iv2.isEnabled()) {
+                        et_iv1.setEnabled(false);
+                        et_iv1.setText("0");
+                        et_iv1.setBackgroundResource(R.drawable.filled_form_data_bg);
+                        if (!hasValidValue(et_rl34.getText().toString())){
+                            et_iv34.setEnabled(false);
+                            et_iv34.setText("0");
+                            et_iv34.setBackgroundResource(R.drawable.filled_form_data_bg);
+                            if (!hasValidValue(et_rl12.getText().toString())) {
+                                et_iv12.setEnabled(false);
+                                et_iv12.setText("0");
+                                et_iv12.setBackgroundResource(R.drawable.filled_form_data_bg);
+
+                            }
+                        }
+
+
+                    }
+                } else {
+                    et_iv12.setEnabled(true);
+                    et_iv12.setBackgroundResource(R.drawable.shape_blue_border);
+                    et_iv34.setEnabled(true);
+                    et_iv34.setBackgroundResource(R.drawable.shape_blue_border);
+                    et_iv1.setEnabled(true);
+                    et_iv1.setBackgroundResource(R.drawable.shape_blue_border);
+
+                }
+
+            }
+        });
+        et_rl2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!hasValidValue(s.toString())) {
+                        et_iv2.setEnabled(false);
+                        et_iv2.setText("0");
+                        et_iv2.setBackgroundResource(R.drawable.filled_form_data_bg);
+                        if (!hasValidValue(et_rl1.getText().toString())) {
+                            et_iv1.setEnabled(false);
+                            et_iv1.setText("0");
+                            et_iv1.setBackgroundResource(R.drawable.filled_form_data_bg);
+                            if (!hasValidValue(et_rl34.getText().toString())) {
+                                et_iv34.setEnabled(false);
+                                et_iv34.setText("0");
+                                et_iv34.setBackgroundResource(R.drawable.filled_form_data_bg);
+                                if (!hasValidValue(et_rl12.getText().toString())) {
+                                    et_iv12.setEnabled(false);
+                                    et_iv12.setText("0");
+                                    et_iv12.setBackgroundResource(R.drawable.filled_form_data_bg);
+
+                                }
+                            }
+                        }
+
+
+
+                } else {
+                    et_iv12.setEnabled(true);
+                    et_iv12.setBackgroundResource(R.drawable.shape_blue_border);
+                    et_iv34.setEnabled(true);
+                    et_iv34.setBackgroundResource(R.drawable.shape_blue_border);
+                    et_iv1.setEnabled(true);
+                    et_iv1.setBackgroundResource(R.drawable.shape_blue_border);
+                    et_iv2.setEnabled(true);
+                    et_iv2.setBackgroundResource(R.drawable.shape_blue_border);
+
+                }
+
+            }
+        });
+
+
     }
 
     private void feedListData() {
@@ -467,12 +646,23 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
 //            isValid = false;
 //            return isValid;
 //        }
-        if (!selectedRiserLength.equals("Select Diameter") && !selectedIsolationValue.equals("Select Diameter")) {
+        if ((hasValidValue(et_rl12.getText().toString()) || hasValidValue(et_rl34.getText().toString()) || hasValidValue(et_rl1.getText().toString()) || hasValidValue(et_rl2.getText().toString()))) {
             isValid = true;
+
         } else {
             isValid = false;
-            CommonUtils.toast_msg(RiserFormActivity.this, "Please Select Mandatory Fields");
+            CommonUtils.toast_msg(RiserFormActivity.this, "Please Fill Riser Length Details");
             return isValid;
+
+        }
+        if ((hasValidValue(et_iv12.getText().toString()) || hasValidValue(et_iv34.getText().toString()) || hasValidValue(et_iv1.getText().toString()) || hasValidValue(et_iv2.getText().toString()))) {
+            isValid = true;
+
+        } else {
+            isValid = false;
+            CommonUtils.toast_msg(RiserFormActivity.this, "Please Fill Isolation Value Details");
+            return isValid;
+
         }
         if (!imagePathOne.isEmpty() && !imagePathTwo.isEmpty())
             isValid = true;
@@ -679,11 +869,11 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         radiogrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId==R.id.rb_search){
+                if (checkedId == R.id.rb_search) {
                     lt_search.setVisibility(View.VISIBLE);
                     lt_manual.setVisibility(View.GONE);
                 }
-                if (checkedId==R.id.rb_Enter){
+                if (checkedId == R.id.rb_Enter) {
                     lt_search.setVisibility(View.GONE);
                     lt_manual.setVisibility(View.VISIBLE);
                 }
@@ -692,7 +882,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         tv_done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String bp_num=et_bp.getText().toString();
+                String bp_num = et_bp.getText().toString();
                 hse_tv_bp_num.setText(bp_num);
                 dialog.dismiss();
 
@@ -759,14 +949,14 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         ProgressDialog progressDialog = ProgressDialog.show(this, "", "Searching BP number", true);
         progressDialog.setCancelable(false);
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        Log.d("searchbp",Constants.RISER__SEARCH_BP + bp + "/" + dataModel.getArea() + "/" + dataModel.getSociety());
+        Log.d("searchbp", Constants.RISER__SEARCH_BP + bp + "/" + dataModel.getArea() + "/" + dataModel.getSociety());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.RISER__SEARCH_BP + bp + "/" + dataModel.getArea() + "/" + dataModel.getSociety(), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
-                   progressDialog.dismiss();
+                    progressDialog.dismiss();
                     JSONObject jsonObject = new JSONObject(response);
-                    Log.d("searchbp",response.toString());
+                    Log.d("searchbp", response.toString());
                     if (jsonObject.getString("status").equals("200")) {
                         ArrayList<String> bpList = new ArrayList<>();
                         bpDetailsArray = jsonObject.getJSONArray("Bp_Details");
@@ -793,6 +983,12 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         stringRequest.setRetryPolicy(policy);
         requestQueue.add(stringRequest);
+    }
+    private boolean hasValidValue(String s){
+        if (s.isEmpty()|| s.equals("0"))
+            return false;
+        else
+            return true;
     }
 
 }

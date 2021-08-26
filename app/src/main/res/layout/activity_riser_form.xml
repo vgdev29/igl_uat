@@ -145,6 +145,7 @@
 
                     android:orientation="vertical">
 
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -603,14 +604,15 @@
                     </LinearLayout>
                 </LinearLayout>
 
+
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="5dp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_weight="1"
-
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -664,8 +666,8 @@
                 android:layout_marginHorizontal="5dp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_weight="1"
-
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -710,6 +712,256 @@
                         android:layout_marginRight="@dimen/_5sdp"
                         android:background="@drawable/dropdown" />
                 </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:padding="@dimen/_1sdp"
+                        android:text="Fill Riser Details"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_11sdp"
+                        android:layout_height="@dimen/_11sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:background="@drawable/icon_star" />
+
+                </LinearLayout>
+
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/corner_curved_edittext_bg"
+                    android:divider="@color/black"
+                    android:paddingVertical="@dimen/_10sdp">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:divider="@color/black"
+                        android:showDividers="middle">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingHorizontal="@dimen/_8sdp"
+                            android:text="Value"
+                            android:textColor="@color/black"></TextView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingHorizontal="@dimen/_8sdp"
+                            android:text="Riser Length"
+                            android:textColor="@color/black"></TextView>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingHorizontal="@dimen/_8sdp"
+                            android:text="Isolation Value"
+                            android:textColor="@color/black"></TextView>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:divider="@color/black"
+                        android:gravity="center_vertical"
+                        android:showDividers="middle">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingHorizontal="@dimen/_8sdp"
+                            android:paddingVertical="@dimen/_3sdp"
+                            android:text="GI ½"
+                            android:textColor="@color/_313131" />
+
+                        <EditText
+                            android:id="@+id/et_rl12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/shape_blue_border"
+                            android:paddingHorizontal="@dimen/_8sdp"
+                            android:paddingVertical="@dimen/_3sdp"
+                            android:text="0"
+                            android:textColor="@color/_313131" />
+
+                        <EditText
+                            android:id="@+id/et_iv12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/filled_form_data_bg"
+                            android:enabled="false"
+                            android:paddingHorizontal="@dimen/_8sdp"
+                            android:paddingVertical="@dimen/_3sdp"
+                            android:text="0"
+                            android:textColor="@color/_313131" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:divider="@color/black"
+                        android:gravity="center_vertical"
+                        android:showDividers="middle">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingHorizontal="@dimen/_8sdp"
+                            android:paddingVertical="@dimen/_3sdp"
+                            android:text="GI 3/4"
+                            android:textColor="@color/_313131" />
+
+                        <EditText
+                            android:id="@+id/et_rl34"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/shape_blue_border"
+                            android:paddingHorizontal="@dimen/_8sdp"
+                            android:paddingVertical="@dimen/_3sdp"
+                            android:text="0"
+                            android:textColor="@color/_313131" />
+
+                        <EditText
+                            android:id="@+id/et_iv34"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/filled_form_data_bg"
+                            android:enabled="false"
+                            android:paddingHorizontal="@dimen/_8sdp"
+                            android:paddingVertical="@dimen/_3sdp"
+                            android:text="0"
+                            android:textColor="@color/_313131" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:divider="@color/black"
+                        android:gravity="center_vertical"
+                        android:showDividers="middle">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingHorizontal="@dimen/_8sdp"
+                            android:paddingVertical="@dimen/_3sdp"
+                            android:text="GI 1"
+                            android:textColor="@color/_313131" />
+
+                        <EditText
+                            android:id="@+id/et_rl1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/shape_blue_border"
+                            android:paddingHorizontal="@dimen/_8sdp"
+                            android:paddingVertical="@dimen/_3sdp"
+                            android:text="0"
+                            android:textColor="@color/_313131" />
+
+                        <EditText
+                            android:id="@+id/et_iv1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/filled_form_data_bg"
+                            android:enabled="false"
+                            android:paddingHorizontal="@dimen/_8sdp"
+                            android:paddingVertical="@dimen/_3sdp"
+                            android:text="0"
+                            android:textColor="@color/_313131" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:divider="@color/black"
+                        android:gravity="center_vertical"
+                        android:showDividers="middle">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingHorizontal="@dimen/_8sdp"
+                            android:paddingVertical="@dimen/_3sdp"
+                            android:text="GI 2"
+                            android:textColor="@color/_313131" />
+
+                        <EditText
+                            android:id="@+id/et_rl2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/shape_blue_border"
+                            android:paddingHorizontal="@dimen/_8sdp"
+                            android:paddingVertical="@dimen/_3sdp"
+                            android:text="0"
+                            android:textColor="@color/_313131" />
+
+                        <EditText
+                            android:id="@+id/et_iv2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/filled_form_data_bg"
+                            android:enabled="false"
+                            android:paddingHorizontal="@dimen/_8sdp"
+                            android:paddingVertical="@dimen/_3sdp"
+                            android:text="0"
+                            android:textColor="@color/_313131" />
+                    </TableRow>
+
+
+                </TableLayout>
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -1178,15 +1430,16 @@
                     android:textColor="#FFF"
                     android:textSize="@dimen/_10sdp"
                     android:textStyle="bold" />
+
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_connected_house"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:orientation="horizontal"
                     android:clipToPadding="false"
                     android:paddingHorizontal="@dimen/_7sdp"
                     tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_connected_hse"
-                    android:id="@+id/rv_connected_house"></androidx.recyclerview.widget.RecyclerView>
+                    tools:orientation="horizontal"></androidx.recyclerview.widget.RecyclerView>
 
             </LinearLayout>
 
