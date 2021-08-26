@@ -201,6 +201,40 @@ public class RiserListingModel {
             @Expose
             private String zone;
 
+            @SerializedName("riserClaim")
+            @Expose
+            private String riserClaim;
+
+            @SerializedName("riserTpi")
+            @Expose
+            private String riserTpi;
+            @SerializedName("riserClaimdate")
+            @Expose
+            private String riserClaimDate;
+
+            public String getRiserClaim() {
+                return riserClaim;
+            }
+
+            public void setRiserClaim(String riserClaim) {
+                this.riserClaim = riserClaim;
+            }
+
+            public String getRiserTpi() {
+                return riserTpi;
+            }
+
+            public void setRiserTpi(String riserTpi) {
+                this.riserTpi = riserTpi;
+            }
+
+            public String getRiserClaimDate() {
+                return riserClaimDate;
+            }
+
+            public void setRiserClaimDate(String riserClaimDate) {
+                this.riserClaimDate = riserClaimDate;
+            }
 
             public String getZone() {
                 return zone;

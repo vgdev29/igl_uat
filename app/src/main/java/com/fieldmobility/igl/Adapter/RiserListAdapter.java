@@ -68,7 +68,7 @@ public class RiserListAdapter extends RecyclerView.Adapter<RiserListAdapter.MyHo
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(datalist.get(getAdapterPosition()).getJobFlag()!=null  && datalist.get(getAdapterPosition()).getJobFlag().equals("1") ) {
+                    if(datalist.get(getAdapterPosition()).getRiserClaim().equals("1") ) {
                         String dataJson = new Gson().toJson(datalist.get(getAdapterPosition()));
                         Intent intent = new Intent(mContext, RiserFormActivity.class);
                         intent.putExtra("data", dataJson);

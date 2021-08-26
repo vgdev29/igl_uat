@@ -3,15 +3,15 @@ package com.fieldmobility.igl.Helper;
 public class Constants {
     //LIVE URL
  // public static String BASE_URL="http://49.50.65.107:8081/";
- //  public static  String BASE_URL_PYTHON = "http://49.50.65.107:8000/"; //PYTHON SERVER
+  // public static  String BASE_URL_PYTHON = "http://49.50.65.107:8000/"; //PYTHON SERVER
 
 
     //  UAT URL
-    public static String BASE_URL = "http://49.50.118.112:8080/";
-    public  static String BASE_URL_PYTHON = "http://49.50.68.239:8080/";
+   public static String BASE_URL = "http://49.50.118.112:8080/";
+  public  static String BASE_URL_PYTHON = "http://49.50.68.239:8080/";
 
     //local
-   // static String localhost = "http://192.168.31.29:8081/";
+    static String localhost = "http://192.168.1.100:8081/";
 
 
     public static final int LOCATION_INTERVAL = 100000000;
@@ -94,6 +94,10 @@ public class Constants {
     // RISER MODULE
 //   public static final String RISER_LISTING = BASE_URL + "api/risersuballocations";
     public static final String RISER_LISTING = BASE_URL + "ekyc/bp_details/RiserListings";
+    public static final String RISER_TPIPendingLISTING = BASE_URL + "ekyc/bp_details/RiserTpiPendingListings/";
+  //  public static final String RISER_TPIPendingLISTING = localhost + "/bp_details/RiserTpiPendingListings/";
+    public static final String RISER_TPIPendingClaim = BASE_URL + "ekyc/bp_details/RiserClaim/";
+   // public static final String RISER_TPIPendingClaim = localhost + "/bp_details/RiserClaim/";
     public static final String RISER_TPI_APPROVAL_LISTING = BASE_URL + "ekyc/bp_details/RiserApprovalList";
     public static final String RISER__APPROVAL_DECLINE = BASE_URL + "ekyc/bp_details/RiserApproveDecline";
     public static final String RISER__PROJECT_REPORT = BASE_URL + "ekyc/bp_details/createriser";

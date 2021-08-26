@@ -102,7 +102,7 @@ public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.Ng
         if (!TextUtils.isEmpty(nguserListModel.getConversion_date())){
             holder.tv_perferedTime.setText("Assign - "+nguserListModel.getConversion_date());
         }else {
-            holder.tv_perferedTime.setText("- - -");
+            holder.tv_perferedTime.setText("");
         }
         if ((nguserListModel.getClaim())){
             holder.btn_tpiDetails.setVisibility(View.VISIBLE);

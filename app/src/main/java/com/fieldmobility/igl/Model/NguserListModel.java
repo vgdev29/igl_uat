@@ -197,6 +197,30 @@ public class NguserListModel implements Serializable {
     @Expose
     private String longitude;
 
+    @SerializedName("corrected_meter_no")
+    @Expose
+    private String corrected_meter_no;
+
+    @SerializedName("meter_status")
+    @Expose
+    private boolean meter_status;
+
+
+    public String getCorrected_meter_no() {
+        return corrected_meter_no;
+    }
+
+    public void setCorrected_meter_no(String corrected_meter_no) {
+        this.corrected_meter_no = corrected_meter_no;
+    }
+
+    public boolean isMeter_status() {
+        return meter_status;
+    }
+
+    public void setMeter_status(boolean meter_status) {
+        this.meter_status = meter_status;
+    }
 
     public String getLattitude() {
         return lattitude;

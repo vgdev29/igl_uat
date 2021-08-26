@@ -166,7 +166,7 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
                /* holder.unclaimed_button.setVisibility(View.VISIBLE);
                 holder.job_start_button.setVisibility(View.VISIBLE);
                 holder.claimed_button.setVisibility(View.GONE);*/
-                Claimed_API_POST();
+                Claimed_API_POST(Bp_No_array,position);
             }
         });
         holder.unclaimed_button.setOnClickListener(new View.OnClickListener() {
@@ -177,7 +177,7 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
                /* holder.unclaimed_button.setVisibility(View.GONE);
                 holder.job_start_button.setVisibility(View.GONE);
                 holder.claimed_button.setVisibility(View.VISIBLE);*/
-                Unclaimed_API_POST();
+                Unclaimed_API_POST(Bp_No_array,position);
             }
         });
 
@@ -186,7 +186,7 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
             public void onClick(View v) {
                 BP_N0 = bp_no_list_array.get(position).getBpNumber();
                // holder.job_start_button.setVisibility(View.GONE);
-                Job_Start_API_POST();
+                Job_Start_API_POST(Bp_No_array, position);
 
             }
         });
@@ -345,7 +345,7 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
         requestQueue.add(stringRequest);
     }
 
-    public void Claimed_API_POST() {
+    public void Claimed_API_POST(BpDetail Bp_No_array , int position) {
         materialDialog = new MaterialDialog.Builder(context)
                 .content("Please wait....")
                 .progress(true, 0)
@@ -364,8 +364,19 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
                             if (json.getString("Sucess").equals("true")) {
 
                                 Toast.makeText(context, "" + "Successfully Updated", Toast.LENGTH_SHORT).show();
-                                fragmentReload();
-                                // ((Ready_Inspection_Tpi_Fragment) context).Bp_No_List();
+                                Bp_No_array.setClaimFlag(Claim_Flage);
+                                if (Claim_Flage.equals("1")) {
+                                    Bp_No_array.setRfcTpi(null);
+                                    Bp_No_array.setJobFlag(null);
+                                }
+                                else
+                                {
+                                    Bp_No_array.setRfcTpi(sharedPrefs.getUUID());
+                                    Bp_No_array.setJobFlag("0");
+                                }
+                                bp_no_list_array.set(position,Bp_No_array);
+                                notifyDataSetChanged();
+                                // fragmentReload();
 
                             }
 
@@ -412,7 +423,7 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
         AppController.getInstance().addToRequestQueue(jr, login_request);
     }
 
-    public void Unclaimed_API_POST() {
+    public void Unclaimed_API_POST(BpDetail Bp_No_array , int position) {
 
         materialDialog = new MaterialDialog.Builder(context)
                 .content("Please wait....")
@@ -429,7 +440,19 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
                             Log.e("Response", json.toString());
                             if (json.getString("Sucess").equals("true")) {
                                 Toast.makeText(context, "" + "Successfully Updated", Toast.LENGTH_SHORT).show();
-                                 fragmentReload();
+                                Bp_No_array.setClaimFlag(Claim_Flage);
+                                if (Claim_Flage.equals("1")) {
+                                    Bp_No_array.setRfcTpi(null);
+                                    Bp_No_array.setJobFlag(null);
+                                }
+                                else
+                                {
+                                    Bp_No_array.setRfcTpi(sharedPrefs.getUUID());
+                                    Bp_No_array.setJobFlag("0");
+                                }
+                                bp_no_list_array.set(position,Bp_No_array);
+                                notifyDataSetChanged();
+                                // fragmentReload();
                                 // ((Ready_Inspection_Tpi_Fragment) context).Bp_No_List();
 
                             }
@@ -478,7 +501,7 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
     }
 
 
-    public void Job_Start_API_POST() {
+    public void Job_Start_API_POST(BpDetail Bp_No_array , int position) {
         materialDialog = new MaterialDialog.Builder(context)
                 .content("Please wait....")
                 .progress(true, 0)
@@ -497,8 +520,11 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
                             Log.e("Response", json.toString());
                             if (json.getString("Sucess").equals("true")) {
                                 Toast.makeText(context, "" + "Successfully Updated", Toast.LENGTH_SHORT).show();
-                                 fragmentReload();
-                                //  ((Ready_Inspection_Tpi_Fragment) context).Bp_No_List();
+                                Bp_No_array.setJobFlag("1");
+
+                                bp_no_list_array.set(position,Bp_No_array);
+                                notifyDataSetChanged();
+
 
                             }
 

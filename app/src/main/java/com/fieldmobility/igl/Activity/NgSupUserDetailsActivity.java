@@ -83,6 +83,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
     protected static final int CAMERA_REQUEST_ON_HOLD = 201;
     private Spinner spinner_ngStatus, spinner_ngStatusReason;
     private ArrayList<String> code_status = new ArrayList<>();
+    private ArrayList<String> status_id = new ArrayList<>();
     private ArrayList<String> group_status = new ArrayList<>();
     private ArrayList<String> cat_status = new ArrayList<>();
     private ArrayList<String> description_status = new ArrayList<>();
@@ -92,7 +93,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
     private ArrayList<String> cat_substatus = new ArrayList<>();
     private ArrayList<String> description_substatus = new ArrayList<>();
     private ArrayList<String> catalog_substatus = new ArrayList<>();
-    private  String selected_code_status="",selected_description_status="",selected_description_substatus="",selected_group_status="",selected_cat_status="",selected_catalog_status="" ;
+    private  String selected_status_id = "", selected_code_status="",selected_description_status="",selected_description_substatus="",selected_group_status="",selected_cat_status="",selected_catalog_status="" ;
     private String jmrNo, mAssignDate;
     private boolean startJob;
     private List<NguserListModel> nguserdetails;
@@ -104,7 +105,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
     private TextView et_delayDateValue;
     private RadioGroup radioGroup;
 
-    private EditText et_initialReading, et_burnerDetails,tv_mobileNoValue , et_nghold_remarks;
+    private EditText et_initialReading, et_burnerDetails,tv_mobileNoValue , et_nghold_remarks, meternoValue;
     private DatePickerDialog pickerDialog_Date;
     private String initialReading, burnerDetails, conversationDate;
     private ImageView hold_image;
@@ -120,7 +121,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
 
     private NguserListModel ngUserListModel;
     private NguserListModel intentngUserListModel;
-    TextView metermakeValue , meternoValue, metertypeValue, rfcreadingValue , rfcdate_value;
+    TextView metermakeValue , metertypeValue, rfcreadingValue , rfcdate_value;
 
 
     String log = "nguserdetails";
@@ -178,11 +179,13 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                 selected_catalog_status = catalog_status.get(position);
                 selected_code_status = code_status.get(position);
                 selected_group_status = group_status.get(position);
+                selected_status_id = status_id.get(position);
                 Log.d(log,"description selected ="+selected_description_status);
                 Log.d(log,"cat selected ="+selected_cat_status);
                 Log.d(log,"catalog selected ="+selected_catalog_status);
                 Log.d(log,"code selected ="+selected_code_status);
                 Log.d(log,"group selected ="+selected_group_status);
+                Log.d(log,"status_id ="+selected_status_id);
 
 
                 if (selected_description_status.contains("Hold")) {
@@ -549,11 +552,9 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                     }
                 });
         myAlertDialog.show();
-
    }
 
     private void findViews() {
-
         tv_houseNoValue = findViewById(R.id.tv_houseNoValue);
         tv_societyValue = findViewById(R.id.tv_societyValue);
         tv_blockValue = findViewById(R.id.tv_blockValue);
@@ -620,11 +621,13 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                         String cat_id = jsonObject1.getString("cat_id");
                         String code = jsonObject1.getString("code");
                         String catalog = jsonObject1.getString("catalog");
+                        String id = jsonObject1.getString("id");
                         cat_status.add(cat_id);
                         description_status.add(description);
                         group_status.add(group);
                         code_status.add(code);
                         catalog_status.add(catalog);
+                        status_id.add(id);
                     }
 
                     spinner_ngStatus.setAdapter(new ArrayAdapter<String>(NgSupUserDetailsActivity.this, android.R.layout.simple_spinner_dropdown_item, description_status));
@@ -655,9 +658,9 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
         cat_substatus.clear();
         catalog_substatus.clear();
         CommonUtils.startProgressBar(NgSupUserDetailsActivity.this,"Loading...");
-        Log.d(log, "spinner master url = " + Api.BASE_URL + "api/substatusjmr?group="+intentngUserListModel.getCode_group());
+        Log.d(log, "spinner master url = " + Api.BASE_URL + "api/substatusjmr?group="+intentngUserListModel.getCode_group()+"&status_id="+selected_status_id);
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Api.BASE_URL + "api/substatusjmr?group="+intentngUserListModel.getCode_group(), new com.android.volley.Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Api.BASE_URL + "api/substatusjmr?group="+intentngUserListModel.getCode_group()+"&status_id="+selected_status_id, new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 CommonUtils.dismissProgressBar(NgSupUserDetailsActivity.this );
@@ -866,7 +869,6 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
         Api api = retrofit.create(Api.class);
         Call<List<NguserListModel>> call = api.getUpdateNgUserField1(jmrNo, nguserListModel);
 
@@ -902,65 +904,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
         });
     }
 
-    private void uploadFile() {
-        try {
 
-
-            NguserListModel nguserListModel = new NguserListModel();
-            nguserListModel.setRecording(mediaPath1);
-            // Map is used to multipart the file using okhttp3.RequestBody
-            File file = new File(mediaPath1);
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(Api.BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-
-            // Parsing any Media type file
-            RequestBody description =
-                    RequestBody.create(
-                            okhttp3.MultipartBody.FORM, jmrNo);
-            RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
-            MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("recording", file.getName(), requestBody);
-            MultipartBody.Part jmr_no = MultipartBody.Part.createFormData("jmr_no", jmrNo, requestBody);
-            RequestBody filename = RequestBody.create(MediaType.parse("text/plain"), file.getName());
-
-
-            Api api = retrofit.create(Api.class);
-            Call<List<NguserListModel>> call = api.uploadFile(jmrNo, fileToUpload, description);
-            //Call<ServerResponse> call = getResponse.uploadFile(fileToUpload, filename);
-            call.enqueue(new Callback<List<NguserListModel>>() {
-                @Override
-                public void onResponse(Call<List<NguserListModel>> call, Response<List<NguserListModel>> response) {
-                    Log.v("Response", response.toString());
-                    CommonUtils.dismissProgressBar(NgSupUserDetailsActivity.this );
-
-                    if (response.code() == 200) {
-                        Toast.makeText(getApplicationContext(), "Audio file submitted successfully", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(NgSupUserDetailsActivity.this, NgSupListActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Audio file not submitted please try again!!", Toast.LENGTH_SHORT).show();
-                    }
-
-
-                }
-
-                @Override
-                public void onFailure(Call<List<NguserListModel>> call, Throwable t) {
-                    Log.v("Response", t.toString());
-                    CommonUtils.dismissProgressBar(NgSupUserDetailsActivity.this );
-                    Utils.showToast(getApplicationContext(), "Error for uploading data");
-
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-            CommonUtils.dismissProgressBar(NgSupUserDetailsActivity.this );
-            Utils.showToast(getApplicationContext(), "server error");
-        }
-    }
 
     private void updateNg()
     {

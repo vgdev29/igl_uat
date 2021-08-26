@@ -236,7 +236,6 @@ public class TPI_NgPending_Adapter extends RecyclerView.Adapter<TPI_NgPending_Ad
                     JSONObject supObject = jsonObject.getJSONObject("SupervisorDetails");
                     JSONObject conObject = jsonObject.getJSONObject("ContractorDetails");
 
-
                     String conName = conObject.getString("firstName");
                     String conMob = conObject.getString("mobileNo");
                     String supName = supObject.getString("firstName");

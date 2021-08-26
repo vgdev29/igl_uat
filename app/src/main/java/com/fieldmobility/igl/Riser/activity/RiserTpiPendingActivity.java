@@ -42,7 +42,7 @@ public class RiserTpiPendingActivity extends AppCompatActivity implements View.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_riser__list);
+        setContentView(R.layout.activity_riser_tpi_approval);
         sharedPrefs = new SharedPrefs(this);
         findViews();
         loadListData();
@@ -57,8 +57,8 @@ public class RiserTpiPendingActivity extends AppCompatActivity implements View.O
 
                 .show();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        Log.d("riser",Constants.RISER_LISTING+"/"+sharedPrefs.getUUID());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.RISER_LISTING+"/"+sharedPrefs.getUUID(), new Response.Listener<String>() {
+        Log.d("riser",Constants.RISER_TPIPendingLISTING+"/"+sharedPrefs.getZone_Code());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.RISER_TPIPendingLISTING+sharedPrefs.getZone_Code(), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 materialDialog.dismiss();
@@ -91,12 +91,7 @@ public class RiserTpiPendingActivity extends AppCompatActivity implements View.O
     EditText editTextSearch;
 
     private void findViews() {
-        findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+
         editTextSearch = findViewById(R.id.editTextSearch);
         recyclerView = findViewById(R.id.recyclerView);
         mSwipeRefreshLayout = findViewById(R.id.swipeToRefresh);

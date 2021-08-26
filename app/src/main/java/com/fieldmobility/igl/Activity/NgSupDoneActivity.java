@@ -22,6 +22,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -29,6 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.fieldmobility.igl.Helper.CommonUtils;
 import com.fieldmobility.igl.Helper.ConnectionDetector;
 import com.fieldmobility.igl.Helper.GPSLocation;
 import com.fieldmobility.igl.Model.NguserListModel;
@@ -94,6 +97,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
     String log = "nguser";
     private String Latitude;
     private String Longitude;
+    CheckBox cb_supConsent ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +105,19 @@ public class NgSupDoneActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ng_assignment_details);
         back_button = findViewById(R.id.back);
         tv_bpValue = findViewById(R.id.tv_bpValues);
+        cb_supConsent = findViewById(R.id.checkbox);
+        cb_supConsent.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    cb_supConsent.setChecked(true);
+                    //  Toast.makeText(Kyc_Form_Activity.this, "You checked the checkbox!", Toast.LENGTH_SHORT).show();
+                } else {
+                    cb_supConsent.setChecked(false);
+                    //  Toast.makeText(Kyc_Form_Activity.this, "You unchecked the checkbox!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -274,7 +291,12 @@ public class NgSupDoneActivity extends AppCompatActivity {
             allOk = false;
             Utils.showToast(this, "Signature is Missing");
             return allOk;
-        } else {
+        }else if (!cb_supConsent.isChecked()) {
+            allOk = false;
+            CommonUtils.toast_msg(this, "Please tick to accept Term & Condition");
+            return allOk;
+        }
+        else {
             return allOk;
         }
 
