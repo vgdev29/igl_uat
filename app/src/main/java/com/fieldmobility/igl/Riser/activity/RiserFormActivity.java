@@ -51,6 +51,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.fieldmobility.igl.Activity.BP_Creation_Form;
+import com.fieldmobility.igl.Activity.MITDDoneActivity;
 import com.fieldmobility.igl.Activity.NICustomerActivity;
 import com.fieldmobility.igl.Activity.RFC_Connection_Activity;
 import com.fieldmobility.igl.Adapter.AutoSuggestAdapter;
@@ -94,6 +95,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
     String imagePathOne = "", imagePathTwo = "", imagePathOptional = "";
     MaterialDialog materialDialog;
     RiserListingModel.BpDetails.User dataModel;
+    ArrayList<String> Floor_name1 = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,8 +121,12 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
                 lat = latLong[0];
                 log = latLong[1];
             }
-            JSONObject jsonArray = connectedHouseAdapter.getJsonData();
-            Log.d("search", "jsonarray = " + jsonArray.toString());
+            String bplistData="";
+            if (rg_pbc_houses.getCheckedRadioButtonId()==R.id.rb_yes){
+                JSONObject jsonArray = connectedHouseAdapter.getJsonData();
+                bplistData=String.valueOf(jsonArray);
+                Log.d("search", "jsonarray = " + jsonArray.toString());
+            }
             String riserNum = "R" + dataModel.getZone() + Utils.getRandomNumWithChar(5).toUpperCase();
             String laying = isRiserLayingDone ? "1" : "0";
             String testing = isRiserTestingDone ? "1" : "0";
@@ -165,7 +171,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
                     .addParameter("connected_bp", "" + ConnectedHouse)
                     .addParameter("connected_house", "" + ConnectedHouse)
 //                   .addParameter("hse_gi", selectedLateralTapping)
-                    .addParameter("bplist", String.valueOf(jsonArray))
+                    .addParameter("bplist", bplistData)
                     .addParameter("total_ib", et_ib.getText().toString().trim()) // Edittext
                     .addParameter("contractor_id", dataModel.getRfcadmin()) //admin
                     .addParameter("tpi_id", dataModel.getRfcTpi()) //tpi
@@ -306,12 +312,13 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         et_iv2 = findViewById(R.id.et_iv2);
         addTextWatchers();
 
-        sp_floor = findViewById(R.id.sp_floor);
+//        sp_floor = findViewById(R.id.sp_floor);
         hse_et_house = findViewById(R.id.et_house);
+        hse_et_floor = findViewById(R.id.et_floor);
         hse_tv_bp_num = findViewById(R.id.hse_tv_bp_num);
+        hse_tv_bp_num.setThreshold(8);
         autoSuggestAdapter = new AutoSuggestAdapter(this,
                 android.R.layout.simple_dropdown_item_1line);
-        hse_tv_bp_num.setThreshold(2);
         hse_tv_bp_num.setAdapter(autoSuggestAdapter);
         hse_tv_bp_num.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
@@ -325,6 +332,8 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
                             model.setHouse_num(bpDetailsArray.getJSONObject(position).getString("house"));
                             model.setFloor_num(bpDetailsArray.getJSONObject(position).getString("floor"));
                             connectedHouseAdapter.addMoreHouse(model);
+                            Utils.hideKeyboard(RiserFormActivity.this);
+
                             resetConnectedHouseInputs();
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -906,10 +915,11 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
 
     private boolean isValidConnectedHseData() {
         boolean isValid = true;
-        if (hse_tv_bp_num.getText().toString().isEmpty()) {
+      /*  if (hse_tv_bp_num.getText().toString().isEmpty()) {
             isValid = false;
             CommonUtils.toast_msg(RiserFormActivity.this, "BP No. is required.");
-        } else if (hse_et_floor.getText().toString().isEmpty()) {
+        } else*/
+        if (hse_et_floor.getText().toString().isEmpty()) {
             isValid = false;
             CommonUtils.toast_msg(RiserFormActivity.this, "Floor info is required.");
         } else if (hse_et_house.getText().toString().isEmpty()) {

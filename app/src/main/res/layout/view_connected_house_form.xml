@@ -102,21 +102,23 @@
                 android:textColor="@color/dark_gray"
                 android:textSize="@dimen/_10sdp" />
 
-<!--            <EditText-->
-<!--                android:id="@+id/et_floor"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="@dimen/_25sdp"-->
-<!--                android:layout_marginLeft="@dimen/_5sdp"-->
-<!--                android:layout_marginTop="4dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:background="@drawable/background_input_mandatory"-->
-<!--                android:maxLines="1"-->
-<!--                android:padding="@dimen/_5sdp"-->
-<!--                android:singleLine="true"-->
-<!--                android:textColor="@color/black_31"-->
-<!--                android:textSize="@dimen/_10sdp"-->
-<!--                tools:text="14" />-->
+            <EditText
+                android:id="@+id/et_floor"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_input_mandatory"
+                android:maxLines="1"
+                android:padding="@dimen/_5sdp"
+                android:singleLine="true"
+                android:textColor="@color/black_31"
+                android:textSize="@dimen/_10sdp"
+                tools:text="14" />
             <LinearLayout
+                android:id="@+id/lt_floor_sp"
+                android:visibility="gone"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/_25sdp"
                 android:layout_gravity="center_vertical"
