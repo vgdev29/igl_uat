@@ -16,8 +16,11 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
@@ -26,6 +29,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -49,6 +53,7 @@ import com.android.volley.toolbox.Volley;
 import com.fieldmobility.igl.Activity.BP_Creation_Form;
 import com.fieldmobility.igl.Activity.NICustomerActivity;
 import com.fieldmobility.igl.Activity.RFC_Connection_Activity;
+import com.fieldmobility.igl.Adapter.AutoSuggestAdapter;
 import com.fieldmobility.igl.Adapter.ConnectedHouseAdapter;
 import com.fieldmobility.igl.Adapter.PlainTextListAdapter;
 import com.fieldmobility.igl.Helper.AppController;
@@ -144,14 +149,14 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
                     .addParameter("hse_floor", selectedHSE)
 //                    .addParameter("riser_length", selectedRiserLength)
 //                    .addParameter("isolation_valve", selectedIsolationValue)
-                    .addParameter("rl12",et_rl12.getText().toString())
-                    .addParameter("rl34",et_rl34.getText().toString())
-                    .addParameter("rl1",et_rl1.getText().toString())
-                    .addParameter("rl2",et_rl2.getText().toString())
-                    .addParameter("iv12",et_iv12.getText().toString())
-                    .addParameter("iv34",et_iv34.getText().toString())
-                    .addParameter("iv1",et_iv1.getText().toString())
-                    .addParameter("iv2",et_iv2.getText().toString())
+                    .addParameter("rl12", et_rl12.getText().toString())
+                    .addParameter("rl34", et_rl34.getText().toString())
+                    .addParameter("rl1", et_rl1.getText().toString())
+                    .addParameter("rl2", et_rl2.getText().toString())
+                    .addParameter("iv12", et_iv12.getText().toString())
+                    .addParameter("iv34", et_iv34.getText().toString())
+                    .addParameter("iv1", et_iv1.getText().toString())
+                    .addParameter("iv2", et_iv2.getText().toString())
                     .addParameter("laying", laying)
                     .addParameter("testing", testing)
                     .addParameter("commissioning", commi)
@@ -264,14 +269,21 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
     }
 
     TextView /*tv_allocation_num, tv_sub_allocatio,*/ tv_bp_num, tv_agent_name, /*tv_po_num,*/
-            tv_city, tv_zone, tv_area, tv_society, tv_add_more_hse, hse_tv_bp_num;
+            tv_city, tv_zone, tv_area, tv_society, tv_add_more_hse;
+    AutoCompleteTextView hse_tv_bp_num;
     EditText et_gali, et_ib/*, et_connected_house*/, hse_et_house, hse_et_floor, et_rl12, et_iv12, et_rl34, et_iv34, et_rl1, et_iv1, et_rl2, et_iv2;
-    RadioGroup rg_riser_laying, rg_riser_testing, rg_riser_commissioning;
+    RadioGroup rg_riser_laying, rg_riser_testing, rg_riser_commissioning, rg_pbc_houses;
     ImageView iv_one, iv_two, iv_three;
     FrameLayout fl_image1, fl_image2, fl_image3;
     Spinner sp_property_type, sp_gas_type, sp_hse, sp_riser_length, sp_isolation_value, sp_lateral_tapping, sp_area_type;
     Button approve_button;
     RecyclerView rv_connected_house;
+    LinearLayout lt_pbc_houses;
+    private static final int TRIGGER_AUTO_COMPLETE = 100;
+    private static final long AUTO_COMPLETE_DELAY = 300;
+    private Handler handler;
+    private AutoSuggestAdapter autoSuggestAdapter;
+    Spinner sp_floor;
 
     private void findViews() {
         findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
@@ -282,6 +294,8 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         });
 //        tv_allocation_num = findViewById(R.id.tv_allocation_num);
 //        tv_sub_allocatio = findViewById(R.id.tv_sub_allocatio);
+        rg_pbc_houses = findViewById(R.id.rg_pbc_houses);
+        lt_pbc_houses = findViewById(R.id.lt_pbc_houses);
         et_rl12 = findViewById(R.id.et_rl12);
         et_iv12 = findViewById(R.id.et_iv12);
         et_rl34 = findViewById(R.id.et_rl34);
@@ -292,10 +306,62 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         et_iv2 = findViewById(R.id.et_iv2);
         addTextWatchers();
 
-        hse_et_floor = findViewById(R.id.et_floor);
+        sp_floor = findViewById(R.id.sp_floor);
         hse_et_house = findViewById(R.id.et_house);
         hse_tv_bp_num = findViewById(R.id.hse_tv_bp_num);
-        hse_tv_bp_num.setOnClickListener(this);
+        autoSuggestAdapter = new AutoSuggestAdapter(this,
+                android.R.layout.simple_dropdown_item_1line);
+        hse_tv_bp_num.setThreshold(2);
+        hse_tv_bp_num.setAdapter(autoSuggestAdapter);
+        hse_tv_bp_num.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view,
+                                            int position, long id) {
+
+                        try {
+                            ConnectedHouseModel model = new ConnectedHouseModel();
+                            model.setBp_number(autoSuggestAdapter.getObject(position));
+                            model.setHouse_num(bpDetailsArray.getJSONObject(position).getString("house"));
+                            model.setFloor_num(bpDetailsArray.getJSONObject(position).getString("floor"));
+                            connectedHouseAdapter.addMoreHouse(model);
+                            resetConnectedHouseInputs();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                });
+        hse_tv_bp_num.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int
+                    count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before,
+                                      int count) {
+                handler.removeMessages(TRIGGER_AUTO_COMPLETE);
+                handler.sendEmptyMessageDelayed(TRIGGER_AUTO_COMPLETE,
+                        AUTO_COMPLETE_DELAY);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        handler = new Handler(new Handler.Callback() {
+            @Override
+            public boolean handleMessage(Message msg) {
+                if (msg.what == TRIGGER_AUTO_COMPLETE) {
+                    if (!TextUtils.isEmpty(hse_tv_bp_num.getText())) {
+                        searchBP(hse_tv_bp_num.getText().toString());
+                    }
+                }
+                return false;
+            }
+        });
+//        hse_tv_bp_num.setOnClickListener(this);
         rv_connected_house = findViewById(R.id.rv_connected_house);
         rv_connected_house.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         tv_add_more_hse = findViewById(R.id.tv_add_connectedHouse);
@@ -314,6 +380,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         rg_riser_laying.setOnCheckedChangeListener(this);
         rg_riser_testing = findViewById(R.id.rg_riser_testing);
         rg_riser_testing.setOnCheckedChangeListener(this);
+        rg_pbc_houses.setOnCheckedChangeListener(this);
         rg_riser_commissioning = findViewById(R.id.rg_riser_commissioning);
         rg_riser_commissioning.setOnCheckedChangeListener(this);
         approve_button = findViewById(R.id.approve_button);
@@ -427,7 +494,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
                         et_iv1.setEnabled(false);
                         et_iv1.setText("0");
                         et_iv1.setBackgroundResource(R.drawable.filled_form_data_bg);
-                        if (!hasValidValue(et_rl34.getText().toString())){
+                        if (!hasValidValue(et_rl34.getText().toString())) {
                             et_iv34.setEnabled(false);
                             et_iv34.setText("0");
                             et_iv34.setBackgroundResource(R.drawable.filled_form_data_bg);
@@ -467,26 +534,25 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
             @Override
             public void afterTextChanged(Editable s) {
                 if (!hasValidValue(s.toString())) {
-                        et_iv2.setEnabled(false);
-                        et_iv2.setText("0");
-                        et_iv2.setBackgroundResource(R.drawable.filled_form_data_bg);
-                        if (!hasValidValue(et_rl1.getText().toString())) {
-                            et_iv1.setEnabled(false);
-                            et_iv1.setText("0");
-                            et_iv1.setBackgroundResource(R.drawable.filled_form_data_bg);
-                            if (!hasValidValue(et_rl34.getText().toString())) {
-                                et_iv34.setEnabled(false);
-                                et_iv34.setText("0");
-                                et_iv34.setBackgroundResource(R.drawable.filled_form_data_bg);
-                                if (!hasValidValue(et_rl12.getText().toString())) {
-                                    et_iv12.setEnabled(false);
-                                    et_iv12.setText("0");
-                                    et_iv12.setBackgroundResource(R.drawable.filled_form_data_bg);
+                    et_iv2.setEnabled(false);
+                    et_iv2.setText("0");
+                    et_iv2.setBackgroundResource(R.drawable.filled_form_data_bg);
+                    if (!hasValidValue(et_rl1.getText().toString())) {
+                        et_iv1.setEnabled(false);
+                        et_iv1.setText("0");
+                        et_iv1.setBackgroundResource(R.drawable.filled_form_data_bg);
+                        if (!hasValidValue(et_rl34.getText().toString())) {
+                            et_iv34.setEnabled(false);
+                            et_iv34.setText("0");
+                            et_iv34.setBackgroundResource(R.drawable.filled_form_data_bg);
+                            if (!hasValidValue(et_rl12.getText().toString())) {
+                                et_iv12.setEnabled(false);
+                                et_iv12.setText("0");
+                                et_iv12.setBackgroundResource(R.drawable.filled_form_data_bg);
 
-                                }
                             }
                         }
-
+                    }
 
 
                 } else {
@@ -687,6 +753,11 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         } else if (group == rg_riser_testing) {
             isRiserTestingDone = checkedId == R.id.rb_rtesting_pos;
 
+        } else if (group == rg_pbc_houses) {
+            if (checkedId == R.id.rb_yes)
+                lt_pbc_houses.setVisibility(View.VISIBLE);
+            else
+                lt_pbc_houses.setVisibility(View.GONE);
         }
 
     }
@@ -946,15 +1017,15 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
     JSONArray bpDetailsArray;
 
     private void searchBP(String bp) {
-        ProgressDialog progressDialog = ProgressDialog.show(this, "", "Searching BP number", true);
-        progressDialog.setCancelable(false);
+//        ProgressDialog progressDialog = ProgressDialog.show(this, "", "Searching BP number", true);
+//        progressDialog.setCancelable(false);
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         Log.d("searchbp", Constants.RISER__SEARCH_BP + bp + "/" + dataModel.getArea() + "/" + dataModel.getSociety());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.RISER__SEARCH_BP + bp + "/" + dataModel.getArea() + "/" + dataModel.getSociety(), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
-                    progressDialog.dismiss();
+//                    progressDialog.dismiss();
                     JSONObject jsonObject = new JSONObject(response);
                     Log.d("searchbp", response.toString());
                     if (jsonObject.getString("status").equals("200")) {
@@ -964,11 +1035,13 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
                             bpList.add(bpDetailsArray.getJSONObject(i).getString("bp"));
 
                         }
-                        dropDown_adapter.setData(bpList);
+//                        dropDown_adapter.setData(bpList);
+                        autoSuggestAdapter.setData(bpList);
+                        autoSuggestAdapter.notifyDataSetChanged();
                     }
 
                 } catch (JSONException e) {
-                    progressDialog.dismiss();
+//                    progressDialog.dismiss();
                     e.printStackTrace();
                 }
             }
@@ -976,7 +1049,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
             }
         });
         int socketTimeout = 30000;
@@ -984,8 +1057,9 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         stringRequest.setRetryPolicy(policy);
         requestQueue.add(stringRequest);
     }
-    private boolean hasValidValue(String s){
-        if (s.isEmpty()|| s.equals("0"))
+
+    private boolean hasValidValue(String s) {
+        if (s.isEmpty() || s.equals("0"))
             return false;
         else
             return true;

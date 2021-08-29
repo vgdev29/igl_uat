@@ -782,7 +782,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:paddingHorizontal="@dimen/_8sdp"
-                            android:text="Isolation Value"
+                            android:text="Isolation Valve"
                             android:textColor="@color/black"></TextView>
                     </TableRow>
 
@@ -1412,35 +1412,65 @@
                     android:textColor="@color/dark_gray"
                     android:textSize="@dimen/_10sdp" />
 
-                <include
-                    layout="@layout/view_connected_house_form"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></include>
-
-                <TextView
-                    android:id="@+id/tv_add_connectedHouse"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_12sdp"
-                    android:background="@drawable/shape_round_button"
-                    android:backgroundTint="@color/igl_green"
-                    android:paddingHorizontal="@dimen/_28sdp"
-                    android:paddingVertical="@dimen/_8sdp"
-                    android:text="ADD"
-                    android:textColor="#FFF"
-                    android:textSize="@dimen/_10sdp"
-                    android:textStyle="bold" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_connected_house"
+                <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:clipToPadding="false"
-                    android:paddingHorizontal="@dimen/_7sdp"
-                    tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_connected_hse"
-                    tools:orientation="horizontal"></androidx.recyclerview.widget.RecyclerView>
+                    android:id="@+id/rg_pbc_houses"
+                    android:orientation="horizontal">
 
+                    <RadioButton
+                        android:id="@+id/rb_yes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Yes" />
+
+                    <RadioButton
+                        android:id="@+id/rb_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="No" />
+                </RadioGroup>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/lt_pbc_houses"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <include
+                        layout="@layout/view_connected_house_form"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tv_add_connectedHouse"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_12sdp"
+                        android:background="@drawable/shape_round_button"
+                        android:backgroundTint="@color/igl_green"
+                        android:paddingHorizontal="@dimen/_28sdp"
+                        android:paddingVertical="@dimen/_8sdp"
+                        android:text="ADD"
+                        android:textColor="#FFF"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_connected_house"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clipToPadding="false"
+                        android:paddingHorizontal="@dimen/_7sdp"
+                        tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/item_connected_hse"
+                        tools:orientation="horizontal"></androidx.recyclerview.widget.RecyclerView>
+
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
