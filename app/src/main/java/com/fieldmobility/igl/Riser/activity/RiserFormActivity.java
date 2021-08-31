@@ -202,8 +202,6 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
                 @Override
                 public void onCompleted(Context context, UploadInfo uploadInfo, ServerResponse serverResponse) {
                     materialDialog.dismiss();
-                    String Uplode = uploadInfo.getSuccessfullyUploadedFiles().toString();
-                    String serverResponse1 = serverResponse.getHeaders().toString();
                     String str = serverResponse.getBodyAsString();
                     Log.e("UPLOADEsinin++", str);
                     final JSONObject jsonObject;

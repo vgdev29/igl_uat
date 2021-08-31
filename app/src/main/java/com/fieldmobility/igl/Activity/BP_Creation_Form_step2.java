@@ -59,6 +59,7 @@ import com.fieldmobility.igl.Helper.AppController;
 import com.fieldmobility.igl.Helper.ConnectionDetector;
 import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.Helper.GPSLocation;
+import com.fieldmobility.igl.Helper.ScreenshotUtils;
 import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.MainActivity;
 import com.fieldmobility.igl.Model.User_bpData;
@@ -696,8 +697,12 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     filePathUri_id = data.getData();
                     try {
                         bitmap_id = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathUri_id);
+                        bitmap_id = getResizedBitmap(bitmap_id, 1600);
                         id_imageView.setImageBitmap(bitmap_id);
-                        image_path_id = getPath(filePathUri_id);
+                        File saveFile = ScreenshotUtils.getMainDirectoryName(this);
+                        image_path_id = ScreenshotUtils.store(bitmap_id, "id_proof" + ".jpg", saveFile).toString();
+
+                       // image_path_id = getPath(filePathUri_id);
                         Log.d("bpcreation", "imagepath id pick image = " + image_path_id);
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -718,7 +723,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
                         bitmap_id = BitmapFactory.decodeFile(f.getAbsolutePath(),
                                 bitmapOptions);
-                        bitmap_id = getResizedBitmap(bitmap_id, 500);
+                        bitmap_id = getResizedBitmap(bitmap_id, 1600);
 
                         id_imageView.setImageBitmap(bitmap_id);
                         String path = getExternalStorageDirectory().getAbsolutePath();
@@ -726,7 +731,9 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                         OutputStream outFile = null;
                         File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
                         Log.e("Camera_Path++", file.toString());
-                        image_path_id = file.toString();
+                       // image_path_id = file.toString();
+                        File saveFile = ScreenshotUtils.getMainDirectoryName(this);
+                        image_path_id = ScreenshotUtils.store(bitmap_id, "id_proof" + ".jpg", saveFile).toString();
                         Log.d("bpcreation", "imagepath id camera image = " + image_path_id);
                         try {
                             outFile = new FileOutputStream(file);
@@ -751,7 +758,10 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     try {
                         bitmap_cheque = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathUri_cheque);
                         iv_cheque.setImageBitmap(bitmap_cheque);
-                        image_path_cheque = getPath(filePathUri_cheque);
+                       // image_path_cheque = getPath(filePathUri_cheque);
+                        bitmap_cheque = getResizedBitmap(bitmap_cheque, 1600);
+                        File saveFile = ScreenshotUtils.getMainDirectoryName(this);
+                        image_path_cheque = ScreenshotUtils.store(bitmap_cheque, "cheque" + ".jpg", saveFile).toString();
                         Log.d("bpcreation", "imagepath cheque pick image = " + image_path_cheque);
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -771,27 +781,12 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
                         bitmap_cheque = BitmapFactory.decodeFile(f.getAbsolutePath(),
                                 bitmapOptions);
-                        bitmap_cheque = getResizedBitmap(bitmap_cheque, 500);
-                        String path = getExternalStorageDirectory().getAbsolutePath();
+                        bitmap_cheque = getResizedBitmap(bitmap_cheque, 1600);
+                        File saveFile = ScreenshotUtils.getMainDirectoryName(this);
+                        image_path_cheque = ScreenshotUtils.store(bitmap_cheque, "cheque" + ".jpg", saveFile).toString();
                         f.delete();
-                        OutputStream outFile = null;
-                        File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
-                        Log.e("Camera_Path++", file.toString());
-                        image_path_cheque = file.toString();
                         Log.d("bpcreation", "imagepath id camera image = " + image_path_cheque);
-                        try {
-                            outFile = new FileOutputStream(file);
-                            bitmap_cheque.compress(Bitmap.CompressFormat.JPEG, 95, outFile);
-                            iv_cheque.setImageBitmap(bitmap_cheque);
-                            outFile.flush();
-                            outFile.close();
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -805,7 +800,11 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                         bitmap_address = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathUri_address);
                         // imageView.setImageBitmap(bitmap);
                         address_imageView.setImageBitmap(bitmap_address);
-                        image_path_address = getPath1(filePathUri_address);
+                        bitmap_address = getResizedBitmap(bitmap_address, 1600);
+                        File saveFile = ScreenshotUtils.getMainDirectoryName(this);
+                        image_path_address = ScreenshotUtils.store(bitmap_address, "address_proof" + ".jpg", saveFile).toString();
+
+                       // image_path_address = getPath1(filePathUri_address);
                         Log.d("bpcreation", "imagepath address pick image = " + image_path_address);
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -823,30 +822,13 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     }
                     try {
                         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
-                        bitmap_address = BitmapFactory.decodeFile(f.getAbsolutePath(),
-                                bitmapOptions);
-                        bitmap_address = getResizedBitmap(bitmap_address, 500);
+                        bitmap_address = BitmapFactory.decodeFile(f.getAbsolutePath(), bitmapOptions);
                         address_imageView.setImageBitmap(bitmap_address);
-                        //BitMapToString(bitmap);
-                        String path = getExternalStorageDirectory().getAbsolutePath();
+                        bitmap_address = getResizedBitmap(bitmap_address, 1600);
+                        File saveFile = ScreenshotUtils.getMainDirectoryName(this);
+                        image_path_address = ScreenshotUtils.store(bitmap_address, "address_proof" + ".jpg", saveFile).toString();
                         f.delete();
-                        OutputStream outFile = null;
-                        File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
-                        Log.e("Camera_Path++", file.toString());
-                        image_path_address = file.toString();
-                        Log.d("bpcreation", "imagepath id camera image = " + image_path_address);
-                        try {
-                            outFile = new FileOutputStream(file);
-                            bitmap_address.compress(Bitmap.CompressFormat.JPEG, 85, outFile);
-                            outFile.flush();
-                            outFile.close();
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -864,31 +846,13 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     }
                     try {
                         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
-                        bitmap_cus = BitmapFactory.decodeFile(f.getAbsolutePath(),
-                                bitmapOptions);
-                        bitmap_cus = getResizedBitmap(bitmap_cus, 500);
-
+                        bitmap_cus = BitmapFactory.decodeFile(f.getAbsolutePath(), bitmapOptions);
                         customer_signature_imageview.setImageBitmap(bitmap_cus);
-                        //BitMapToString(bitmap);
-                        String path = getExternalStorageDirectory().getAbsolutePath();
+                        bitmap_cus = getResizedBitmap(bitmap_cus, 1600);
+                        File saveFile = ScreenshotUtils.getMainDirectoryName(this);
+                        customer_signature_path = ScreenshotUtils.store(bitmap_cus, "customer_signature" + ".jpg", saveFile).toString();
                         f.delete();
-                        OutputStream outFile = null;
-                        File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
-                        Log.e("Camera_Path++", file.toString());
-                        customer_signature_path = file.toString();
-                        Log.d("bpcreation", "cust signature id camera image = " + customer_signature_path);
-                        try {
-                            outFile = new FileOutputStream(file);
-                            bitmap_cus.compress(Bitmap.CompressFormat.JPEG, 85, outFile);
-                            outFile.flush();
-                            outFile.close();
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -906,31 +870,13 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     }
                     try {
                         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
-                        bitmap_own = BitmapFactory.decodeFile(f.getAbsolutePath(),
-                                bitmapOptions);
-                        bitmap_own = getResizedBitmap(bitmap_own, 500);
-
+                        bitmap_own = BitmapFactory.decodeFile(f.getAbsolutePath(), bitmapOptions);
                         owner_signature_imageview.setImageBitmap(bitmap_own);
-                        //BitMapToString(bitmap);
-                        String path = getExternalStorageDirectory().getAbsolutePath();
+                        bitmap_own = getResizedBitmap(bitmap_own, 1600);
+                        File saveFile = ScreenshotUtils.getMainDirectoryName(this);
+                        owner_signature_path = ScreenshotUtils.store(bitmap_own, "owner_signature" + ".jpg", saveFile).toString();
                         f.delete();
-                        OutputStream outFile = null;
-                        File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
-                        Log.e("Camera_Path++", file.toString());
-                        owner_signature_path = file.toString();
-                        Log.d("bpcreation", "owner signature id camera image = " + owner_signature_path);
-                        try {
-                            outFile = new FileOutputStream(file);
-                            bitmap_own.compress(Bitmap.CompressFormat.JPEG, 85, outFile);
-                            outFile.flush();
-                            outFile.close();
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -942,7 +888,11 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     try {
                         Bitmap bitmap_ = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathUri_customer);
                         customer_signature_imageview.setImageBitmap(bitmap_);
-                        customer_signature_path = getPath(filePathUri_customer);
+                        bitmap_ = getResizedBitmap(bitmap_, 1600);
+                        File saveFile = ScreenshotUtils.getMainDirectoryName(this);
+                        customer_signature_path = ScreenshotUtils.store(bitmap_, "customer_signature" + ".jpg", saveFile).toString();
+
+                       // customer_signature_path = getPath(filePathUri_customer);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -953,9 +903,13 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                 if (requestCode == REQUEST_CODE_GALLERY_SIGN_PICK_OWNER && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
                     filePathUri_owner = data.getData();
                     try {
-                        bitmap_id = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathUri_owner);
+                        bitmap_own = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathUri_owner);
                         owner_signature_imageview.setImageBitmap(bitmap_id);
-                        owner_signature_path = getPath(filePathUri_owner);
+                        bitmap_own = getResizedBitmap(bitmap_own, 1600);
+                        File saveFile = ScreenshotUtils.getMainDirectoryName(this);
+                        owner_signature_path = ScreenshotUtils.store(bitmap_own, "owner_signature" + ".jpg", saveFile).toString();
+
+                      //  owner_signature_path = getPath(filePathUri_owner);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -1113,19 +1067,15 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     try {
                         jsonObject = new JSONObject(str);
                         Log.e("Response++", jsonObject.toString());
-                        if (jsonObject.getInt("Code") == 200) {
-                            if (jsonObject.has("Message")) {
-                                String Msg = jsonObject.getString("Message");
-                                Toast.makeText(BP_Creation_Form_step2.this, Msg, Toast.LENGTH_SHORT).show();
-                            }
+                        if (jsonObject.getString("Code").equals("200")) {
+                            String Msg = jsonObject.getString("Message");
+                            Toast.makeText(BP_Creation_Form_step2.this, Msg, Toast.LENGTH_SHORT).show();
                             imgUploadError = false;
                             BP_N0_DilogBox();
                         } else {
                             imgUploadError = true;
-                            if (jsonObject.has("Message")) {
-                                String Msg = jsonObject.getString("Message");
-                                Toast.makeText(BP_Creation_Form_step2.this, Msg, Toast.LENGTH_SHORT).show();
-                            }
+                            String Msg = jsonObject.getString("Message");
+                            Toast.makeText(BP_Creation_Form_step2.this, Msg, Toast.LENGTH_SHORT).show();
                         }
 
                     } catch (JSONException e) {
@@ -1142,11 +1092,8 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
 
                 }
             });
-            multipartUploadRequest.setUtf8Charset();
-            multipartUploadRequest.setAutoDeleteFilesAfterSuccessfulUpload(true);
-            multipartUploadRequest.setMaxRetries(5);
-            multipartUploadRequest.setUsesFixedLengthStreamingMode(true);
-            multipartUploadRequest.setUsesFixedLengthStreamingMode(true);
+
+            multipartUploadRequest.setMaxRetries(2);
             multipartUploadRequest.startUpload(); //Starting the upload
 
             Log.e("id_proof", image_path_id);

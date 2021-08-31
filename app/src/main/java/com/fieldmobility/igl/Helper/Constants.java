@@ -2,13 +2,13 @@ package com.fieldmobility.igl.Helper;
 
 public class Constants {
     //LIVE URL
-  //public static String BASE_URL="http://49.50.65.107:8081/";
-   // public static  String BASE_URL_PYTHON = "http://49.50.65.107:8000/"; //PYTHON SERVER
+ public static String BASE_URL="http://49.50.65.107:8081/";
+  public static  String BASE_URL_PYTHON = "http://49.50.65.107:8000/"; //PYTHON SERVER
 
 
     //  UAT URL
-    public static String BASE_URL = "http://49.50.118.112:8080/";
-   public  static String BASE_URL_PYTHON = "http://49.50.68.239:8080/";
+  //  public static String BASE_URL = "http://49.50.118.112:8080/";
+  // public  static String BASE_URL_PYTHON = "http://49.50.68.239:8080/";
 
     //local
     static String localhost = "http://192.168.1.100:8081/";
