@@ -139,7 +139,7 @@ public class KYC_Adapter extends RecyclerView.Adapter<KYC_Adapter.ViewHolder> im
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;
-        public TextView bp_no_text, user_name_text, address_text, date_text, status_text, mobile_text;
+        public TextView bp_no_text, user_name_text, address_text, date_text, status_text, mobile_text,tv_has_image;
         public LinearLayout liner_layout;
         public CardView linearLayout;
 
@@ -152,6 +152,8 @@ public class KYC_Adapter extends RecyclerView.Adapter<KYC_Adapter.ViewHolder> im
             status_text = (TextView) itemView.findViewById(R.id.status_text);
             mobile_text = itemView.findViewById(R.id.mobile_text);
             liner_layout = (LinearLayout) itemView.findViewById(R.id.liner_layout);
+            tv_has_image = itemView.findViewById(R.id.tv_has_image);
+            tv_has_image.setVisibility(View.GONE);
         }
     }
 

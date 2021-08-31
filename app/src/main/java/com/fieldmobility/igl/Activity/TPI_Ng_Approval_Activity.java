@@ -1,16 +1,22 @@
 package com.fieldmobility.igl.Activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -51,6 +57,7 @@ public class TPI_Ng_Approval_Activity extends Activity implements TPI_NgApproval
     View root;
     private LinearLayout top_layout;
     private int responseCode;
+    String log = "ngapproval";
 
 
     private ArrayList<NguserListModel> claimUserList= new ArrayList<>();
@@ -58,6 +65,8 @@ public class TPI_Ng_Approval_Activity extends Activity implements TPI_NgApproval
     private RelativeLayout rel_noNgUserListingData;
     private TextView tv_ngUserListdata;
     private Button btnTryAgain;
+    private Dialog mFilterDialog;
+    RadioGroup radioGroup;
 
 
     public TPI_Ng_Approval_Activity() {
@@ -76,7 +85,7 @@ public class TPI_Ng_Approval_Activity extends Activity implements TPI_NgApproval
         sharedPrefs = new SharedPrefs(this);
         list_count = findViewById(R.id.list_count);
         ng_filter = findViewById(R.id.ng_filter);
-        ng_filter.setVisibility(View.GONE);
+        ng_filter.setVisibility(View.VISIBLE);
         Layout_ID();
     }
 
@@ -152,11 +161,19 @@ public class TPI_Ng_Approval_Activity extends Activity implements TPI_NgApproval
             }
         });
 
+        ng_filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFiltersDialog();
+            }
+        });
+
 
         //Feasivility_List();
         if(Utils.isNetworkConnected(TPI_Ng_Approval_Activity.this)){
             loadNgUserList();
-        }else {
+        }
+        else {
             Utils.showToast(TPI_Ng_Approval_Activity.this,"Please check your connectivity");
         }
     }
@@ -256,5 +273,117 @@ public class TPI_Ng_Approval_Activity extends Activity implements TPI_NgApproval
             Utils.showToast(TPI_Ng_Approval_Activity.this,"Please check your connectivity");
         }
 
+    }
+
+
+    public void showFiltersDialog() {
+        //Toast.makeText(getApplicationContext(),"Filter icon",Toast.LENGTH_SHORT).show();
+        mFilterDialog = new Dialog(this);
+        mFilterDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        mFilterDialog.setCanceledOnTouchOutside(false);
+        mFilterDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        mFilterDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        mFilterDialog.setContentView(getLayoutInflater().inflate(R.layout.dialog_filter_tpi_approval_list,null));
+        LinearLayout rl_dialog_title =   mFilterDialog.findViewById(R.id.rl_dialog_title);
+        Button btn_applyFilters = (Button) mFilterDialog.findViewById(R.id.btn_applyFilters);
+        Button btn_clearAllFilters = (Button) mFilterDialog.findViewById(R.id.btn_clearAllFilters);
+        ImageButton ibCancel =   mFilterDialog.findViewById(R.id.ib_create_cancel);
+        radioGroup = mFilterDialog.findViewById(R.id.radioGroup);
+
+
+        rl_dialog_title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mFilterDialog.dismiss();
+
+            }
+        });
+        ibCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mFilterDialog.dismiss();
+            }
+        });
+
+        btn_clearAllFilters.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                radioGroup.clearCheck();
+                clearFilter();
+                mFilterDialog.dismiss();
+            }
+        });
+
+        btn_applyFilters.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                int checkedId = radioGroup.getCheckedRadioButtonId();
+
+                Log.d("ng approval","checked id = "+checkedId+" res id = "+R.id.radioButton_rfcClaim);
+                switch (radioGroup.getCheckedRadioButtonId())
+                {
+                    case R.id.radioButton_ngdone:
+                        refreshRecyclerDone();
+                        break;
+                    case R.id.radioButton_nghold:
+                        refreshRecyclerHold();
+                        break;
+
+                }
+
+                mFilterDialog.dismiss();
+
+            }
+        });
+
+
+        mFilterDialog.show();
+
+    }
+
+
+    public void refreshRecyclerDone()
+    {
+        ArrayList<NguserListModel> filterList = new ArrayList<>();
+        Log.d(log,"refresh done");
+        for (NguserListModel nguserListModel : claimUserList)
+        {
+            if (nguserListModel.getStatus().equalsIgnoreCase("DP"))
+            {
+
+                    filterList.add(nguserListModel);
+
+            }
+        }
+        list_count.setText("Count\n"+ filterList.size());
+        adapter.setData(filterList);
+    }
+    public void refreshRecyclerHold()
+    {
+        ArrayList<NguserListModel> filterList = new ArrayList<>();
+        Log.d(log,"refresh hold");
+        for (NguserListModel nguserListModel : claimUserList)
+        {
+            if (nguserListModel.getStatus().equalsIgnoreCase("OP"))
+            {
+
+                Log.d(log, "refresh hold  = " + nguserListModel.getClaim());
+                filterList.add(nguserListModel);
+
+            }
+        }
+        list_count.setText("Count\n"+ filterList.size());
+        adapter.setData(filterList);
+
+
+    }
+    public void  clearFilter()
+    {
+        Log.d(log,"clear filter = "+claimUserList.size());
+        adapter.setData(claimUserList);
+        list_count.setText("Count\n"+ claimUserList.size());
     }
 }

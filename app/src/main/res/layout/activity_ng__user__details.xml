@@ -530,6 +530,8 @@
 
                 </LinearLayout>
 
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -551,7 +553,7 @@
                         android:text="Meter No :"
                         android:textSize="@dimen/_10sdp" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/tv_meter_no_value"
                         style="@style/row_details"
                         android:layout_width="match_parent"
@@ -559,14 +561,15 @@
                         android:layout_marginLeft="@dimen/_3sdp"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:layout_weight="1"
-                        android:background="@drawable/background_input_mandatory"
-                        android:drawableEnd="@drawable/ic_pen"
                         android:gravity="center_vertical"
+                        android:textAllCaps="true"
                         android:paddingLeft="@dimen/_5sdp"
                         android:singleLine="true"
                         android:textSize="@dimen/_10sdp" />
 
                 </LinearLayout>
+
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -703,6 +706,86 @@
                         android:layout_marginRight="@dimen/_5sdp"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/_5sdp"
+                        android:singleLine="true"
+                        android:textSize="@dimen/_10sdp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="visible"
+                    android:weightSum="2">
+
+                    <RadioGroup
+                        android:id="@+id/radioGroup_cm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:orientation="horizontal"
+                        >
+
+                        <RadioButton
+                            android:id="@+id/radioButton_cmyes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/gt_walsheim_web"
+                            android:text="Meter is Correct"
+
+                            android:textColor="@color/black_31"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton_cmno"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="false"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/gt_walsheim_web"
+                            android:text="Meter is Incorrect"
+                            android:textColor="@color/black_31"
+                            android:textSize="@dimen/_12sdp" />
+                    </RadioGroup>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/ll_correctedmeter"
+                    android:weightSum="2">
+
+
+                    <TextView
+                        android:id="@+id/tv_cmeter"
+                        style="@style/row_details"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_3sdp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/_5sdp"
+                        android:text="Corrected Meter No :"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <EditText
+                        android:id="@+id/tv_corrected_meter_no_value"
+                        style="@style/row_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/background_input_mandatory"
+                        android:drawableEnd="@drawable/ic_pen"
+                        android:gravity="center_vertical"
+                        android:textAllCaps="true"
                         android:paddingLeft="@dimen/_5sdp"
                         android:singleLine="true"
                         android:textSize="@dimen/_10sdp" />

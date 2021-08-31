@@ -111,6 +111,102 @@ public class RiserTpiListingModel {
         @Expose
         private ArrayList<String> imageList = null;
 
+        @SerializedName("rl12")
+        @Expose
+        private  String rl12 ;
+
+        @SerializedName("rl34")
+        @Expose
+        private  String rl34 ;
+
+        @SerializedName("rl1")
+        @Expose
+        private  String rl1 ;
+
+        @SerializedName("rl2")
+        @Expose
+        private  String rl2 ;
+
+        @SerializedName("iv12")
+        @Expose
+        private  String iv12 ;
+
+        @SerializedName("iv34")
+        @Expose
+        private  String iv34 ;
+
+        @SerializedName("iv1")
+        @Expose
+        private  String iv1 ;
+
+        @SerializedName("iv2")
+        @Expose
+        private  String iv2 ;
+
+        public String getRl12() {
+            return rl12;
+        }
+
+        public void setRl12(String rl12) {
+            this.rl12 = rl12;
+        }
+
+        public String getRl34() {
+            return rl34;
+        }
+
+        public void setRl34(String rl34) {
+            this.rl34 = rl34;
+        }
+
+        public String getRl1() {
+            return rl1;
+        }
+
+        public void setRl1(String rl1) {
+            this.rl1 = rl1;
+        }
+
+        public String getRl2() {
+            return rl2;
+        }
+
+        public void setRl2(String rl2) {
+            this.rl2 = rl2;
+        }
+
+        public String getIv12() {
+            return iv12;
+        }
+
+        public void setIv12(String iv12) {
+            this.iv12 = iv12;
+        }
+
+        public String getIv34() {
+            return iv34;
+        }
+
+        public void setIv34(String iv34) {
+            this.iv34 = iv34;
+        }
+
+        public String getIv1() {
+            return iv1;
+        }
+
+        public void setIv1(String iv1) {
+            this.iv1 = iv1;
+        }
+
+        public String getIv2() {
+            return iv2;
+        }
+
+        public void setIv2(String iv2) {
+            this.iv2 = iv2;
+        }
+
         public String getIglFirstName() {
             return iglFirstName;
         }

@@ -82,9 +82,9 @@ public class To_DO_Task_Adapter extends RecyclerView.Adapter<To_DO_Task_Adapter.
         final To_Do_Item bp_no_item = bp_no_list_array.get(position);
         holder.date_text.setText(bp_no_item.getDate());
         holder.title_text.setText(bp_no_item.getCategory_name());
-        holder.descreption.setText(bp_no_item.getDescription());
+        holder.descreption.setText("Description :- "+bp_no_item.getDescription());
         holder.bp_no_text.setText(bp_no_item.getBp());
-        holder.address_text.setText("Address: "+bp_no_item.getIgl_address());
+        holder.address_text.setText("Address:- "+bp_no_item.getIgl_address());
 
         holder.scheduletask_text.setOnClickListener(new View.OnClickListener() {
             @Override

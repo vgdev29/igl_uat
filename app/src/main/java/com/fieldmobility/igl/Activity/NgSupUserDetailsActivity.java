@@ -5,6 +5,7 @@ import androidx.core.content.FileProvider;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -61,10 +62,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -103,9 +101,9 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
 
     private LinearLayout ll_hold, ll_meterReading,ll_ngStatusreason;
     private TextView et_delayDateValue;
-    private RadioGroup radioGroup;
 
-    private EditText et_initialReading, et_burnerDetails,tv_mobileNoValue , et_nghold_remarks, meternoValue;
+
+    private EditText et_initialReading, et_burnerDetails,tv_mobileNoValue , et_nghold_remarks, corrected_meternoValue;
     private DatePickerDialog pickerDialog_Date;
     private String initialReading, burnerDetails, conversationDate;
     private ImageView hold_image;
@@ -121,10 +119,12 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
 
     private NguserListModel ngUserListModel;
     private NguserListModel intentngUserListModel;
-    TextView metermakeValue , metertypeValue, rfcreadingValue , rfcdate_value;
-
-
+    TextView metermakeValue , metertypeValue, rfcreadingValue , rfcdate_value , meternoValue;
+    LinearLayout ll_cmeter ;
+    RadioGroup meterRadiogroup;
     String log = "nguserdetails";
+    String correctedmeterno = null;
+    boolean meterincorrect = false;
 
 
     @Override
@@ -193,12 +193,16 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                     ll_hold.setVisibility(View.VISIBLE);
                     ll_meterReading.setVisibility(View.GONE);
                     ll_ngStatusreason.setVisibility(View.VISIBLE);
+                    meterRadiogroup.setVisibility(View.GONE);
+                    ll_cmeter.setVisibility(View.GONE);
                     loadResonSpinner();
                     ngUserListModel.setStatus("OP");
                 } else   {
                     ll_ngStatusreason.setVisibility(View.GONE);
                     ll_hold.setVisibility(View.GONE);
                     ll_meterReading.setVisibility(View.VISIBLE);
+                    meterRadiogroup.setVisibility(View.VISIBLE);
+
                     ngUserListModel.setStatus("DP");
                 }
             }
@@ -275,6 +279,8 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                     initialReading = et_initialReading.getText().toString().trim();
                     burnerDetails = et_burnerDetails.getText().toString().trim();
                     String newMob = tv_mobileNoValue.getText().toString().trim();
+
+
                     conversationDate = et_conversationDate.getText().toString().trim();
                     Intent intent = new Intent(NgSupUserDetailsActivity.this, NgSupDoneActivity.class);
                     intent.putExtra("bpno",intentngUserListModel.getBp_no());
@@ -289,6 +295,8 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                     intent.putExtra("reason",selected_description_status);
                     intent.putExtra("substatus","");
                     intent.putExtra("mobile",newMob);
+                    intent.putExtra("meter", correctedmeterno);
+                    intent.putExtra("meterStatus", meterincorrect);
                     startActivity(intent);
                 }
 
@@ -548,6 +556,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
         myAlertDialog.setNegativeButton("Cancel",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
+
                         OptionDialog.dismiss();
                     }
                 });
@@ -590,12 +599,29 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
         et_conversationDate = findViewById(R.id.et_conversationDate);
         et_conversationDate.setText(df.format(c));
         tv_serviceNameValue = findViewById(R.id.tv_serviceNameValue);
-        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        meterRadiogroup = findViewById(R.id.radioGroup_cm);
         rfcreadingValue = findViewById(R.id.tv_rfcreading_value);
         metermakeValue = findViewById(R.id.tv_metermake_value);
         meternoValue = findViewById(R.id.tv_meter_no_value);
         metertypeValue = findViewById(R.id.tv_metertype_value);
         et_nghold_remarks = findViewById(R.id.et_nghold_remarks);
+        ll_cmeter = findViewById(R.id.ll_correctedmeter);
+
+        corrected_meternoValue = findViewById(R.id.tv_corrected_meter_no_value);
+        meterRadiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.radioButton_cmyes:
+                        ll_cmeter.setVisibility(View.GONE);
+                        meterincorrect = false;
+                        break;
+                    case R.id.radioButton_cmno:
+                        ll_cmeter.setVisibility(View.VISIBLE);
+                        meterincorrect = true;
+                        break;
+                }
+            }
+        });
     }
 
     private void loadNgStatusSpinners() {
@@ -787,6 +813,8 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
         double rfc_reading;
         double peak_reading;
         int burner_reading  ;
+
+
         try {
               initial_reading  = Double.parseDouble(et_initialReading.getText().toString().trim());
               rfc_reading = Double.parseDouble(intentngUserListModel.getRfc_initial_reading());
@@ -801,8 +829,15 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
             burner_reading = 0;
         }
 
+
          if (TextUtils.isEmpty(et_initialReading.getText().toString().trim())) {
             et_initialReading.setError("Field can't be empty");
+            isDataValid = false;
+            return isDataValid;
+        }
+       else if(intentngUserListModel.getCustomer_name().toUpperCase().contains("CHILD"))
+        {
+            Toast.makeText(NgSupUserDetailsActivity.this, "KYC is Not updated", Toast.LENGTH_SHORT).show();
             isDataValid = false;
             return isDataValid;
         }
@@ -852,7 +887,18 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
              Toast.makeText(NgSupUserDetailsActivity.this, "Please Select Status", Toast.LENGTH_SHORT).show();
              isDataValid = false;
              return isDataValid;
-         }else {
+         }
+         else if(meterincorrect)
+         {
+             correctedmeterno = corrected_meternoValue.getText().toString().trim().toUpperCase();
+             if (TextUtils.isEmpty(correctedmeterno)) {
+                 Toast.makeText(NgSupUserDetailsActivity.this, "Please Enter Corrected Meter No", Toast.LENGTH_SHORT).show();
+                 isDataValid = false;
+
+             }
+             return isDataValid;
+         }
+         else {
             return isDataValid;
         }
     }
@@ -908,13 +954,14 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
 
     private void updateNg()
     {
-        CommonUtils.startProgressBar(NgSupUserDetailsActivity.this,"Loading...");
+        ProgressDialog progressDialog = ProgressDialog.show(this, "", "Loading", true);
+        progressDialog.setCancelable(false);
         Log.d(log, "updateNg = " +Constants.REFRESH_NG +intentngUserListModel.getBp_no());
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.REFRESH_NG +intentngUserListModel.getBp_no(), new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                CommonUtils.dismissProgressBar(NgSupUserDetailsActivity.this);
+                progressDialog.dismiss();
                 try {
                     JSONObject jsonObject1 = new JSONObject(response);
                     Log.d(log,"response"+ response);
@@ -938,7 +985,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                         CommonUtils.toast_msg(NgSupUserDetailsActivity.this,jsonObject1.getString("message"));
                     }
                     } catch (JSONException e) {
-                    CommonUtils.dismissProgressBar(NgSupUserDetailsActivity.this);
+                    progressDialog.dismiss();
                     CommonUtils.toast_msg(NgSupUserDetailsActivity.this,"Oops..Error loading status!!");
                     e.printStackTrace();
                 }
@@ -946,7 +993,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
         }, new com.android.volley.Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                CommonUtils.dismissProgressBar(NgSupUserDetailsActivity.this);
+                progressDialog.dismiss();
                 CommonUtils.toast_msg(NgSupUserDetailsActivity.this,"Oops..TimeOut!!");
                 error.printStackTrace();
             }

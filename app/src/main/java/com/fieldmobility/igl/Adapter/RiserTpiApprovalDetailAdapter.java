@@ -2,6 +2,7 @@ package com.fieldmobility.igl.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ public class RiserTpiApprovalDetailAdapter extends RecyclerView.Adapter<RiserTpi
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
+        Log.d("riser approval adapter ","holder position = "+ position);
         switch (position) {
             case 0:
                 holder.tv_key.setText("Name :");
@@ -96,22 +98,15 @@ public class RiserTpiApprovalDetailAdapter extends RecyclerView.Adapter<RiserTpi
                 holder.tv_value.setText(data.getHseGi());
                 break;
             case 14:
-                holder.tv_key.setText("Total IB :");
+                holder.tv_key.setText("Total IV :");
                 holder.tv_value.setText(data.getTotalIb());
                 break;
+
             case 15:
-                holder.tv_key.setText("Riser Length :");
-                holder.tv_value.setText(data.getLength());
-                break;
-            case 16:
-                holder.tv_key.setText("Isolation Value :");
-                holder.tv_value.setText(data.getIsolationValve());
-                break;
-            case 17:
                 holder.tv_key.setText("Area Type :");
                 holder.tv_value.setText(data.getAreaType());
                 break;
-            case 18:
+            case 16:
                 holder.tv_key.setText("Laying :");
                 String laying = "Not Done";
                 if (data.getLaying().equals("1")) {
@@ -119,7 +114,7 @@ public class RiserTpiApprovalDetailAdapter extends RecyclerView.Adapter<RiserTpi
             }
             holder.tv_value.setText(laying);
             break;
-            case 19:
+            case 17:
                 holder.tv_key.setText("Testing :");
                 String testing = "Not Done";
                 if (data.getTesting().equals("1")) {
@@ -127,7 +122,7 @@ public class RiserTpiApprovalDetailAdapter extends RecyclerView.Adapter<RiserTpi
                 }
                 holder.tv_value.setText(testing);
                 break;
-            case 20:
+            case 18:
                 holder.tv_key.setText("Commissioning :");
                 String commissioning = "Not Done";
                 if (data.getCommissioning().equals("1")) {
@@ -135,21 +130,53 @@ public class RiserTpiApprovalDetailAdapter extends RecyclerView.Adapter<RiserTpi
                 }
                 holder.tv_value.setText(commissioning);
                 break;
-            case 21:
+            case 20:
                 holder.tv_key.setText("Lateral Tapping :");
                 holder.tv_value.setText(data.getLateralTapping());
                 break;
-            case 22:
+            case 19:
                 holder.tv_key.setText("Contractor :");
                 holder.tv_value.setText(data.getContractorId());
                 break;
-            case 23:
+            case 21:
                 holder.tv_key.setText("Supervisor :");
                 holder.tv_value.setText(data.getSupervisorId());
                 break;
-            case 24:
+            case 22:
                 holder.tv_key.setText("Completion Date :");
                 holder.tv_value.setText(data.getCompletionDate());
+                break;
+            case 23:
+                holder.tv_key.setText("Riser Length G1/2:");
+                holder.tv_value.setText(data.getRl12());
+                break;
+            case 24:
+                holder.tv_key.setText("Riser Length G3/4:");
+                holder.tv_value.setText(data.getRl34());
+                break;
+            case 25:
+                holder.tv_key.setText("Riser Length G1:");
+                holder.tv_value.setText(data.getRl1());
+                break;
+            case 26:
+                holder.tv_key.setText("Riser Length G2:");
+                holder.tv_value.setText(data.getRl2());
+                break;
+            case 27:
+                holder.tv_key.setText("Isolation Valve G1/2 :");
+                holder.tv_value.setText(data.getIv12());
+                break;
+            case 28:
+                holder.tv_key.setText("Isolation Value G3/4:");
+                holder.tv_value.setText(data.getIv34());
+                break;
+            case 29:
+                holder.tv_key.setText("Isolation Value G1:");
+                holder.tv_value.setText(data.getIv1());
+                break;
+            case 30:
+                holder.tv_key.setText("Isolation Value G2:");
+                holder.tv_value.setText(data.getIv2());
                 break;
 
         }
@@ -158,7 +185,7 @@ public class RiserTpiApprovalDetailAdapter extends RecyclerView.Adapter<RiserTpi
 
     @Override
     public int getItemCount() {
-        return 26;
+        return 30;
     }
 
     class MyHolder extends RecyclerView.ViewHolder {

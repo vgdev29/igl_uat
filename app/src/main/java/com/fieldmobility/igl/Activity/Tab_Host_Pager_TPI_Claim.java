@@ -39,14 +39,14 @@ public class Tab_Host_Pager_TPI_Claim extends TabActivity {
 
 
         //Setting up tab 1 name.
-        TabMenu1.setIndicator("NG Pending");
+        TabMenu2.setIndicator("NG Pending");
         //Set tab 1 activity to tab 1 menu.
-        TabMenu1.setContent(new Intent(this, TPI_NgPending_Activity.class));
+        TabMenu2.setContent(new Intent(this, TPI_NgPending_Activity.class));
 
         //Setting up tab 2 name.
-        TabMenu2.setIndicator("NG Approval");
+        TabMenu1.setIndicator("NG Approval");
         //Set tab 3 activity to tab 1 menu.
-        TabMenu2.setContent(new Intent(this, TPI_Ng_Approval_Activity.class));
+        TabMenu1.setContent(new Intent(this, TPI_Ng_Approval_Activity.class));
         //TabMenu3.setIndicator("NG Decline");
         //TabMenu3.setContent(new Intent(this, Ng_Decline_Activity.class));
 

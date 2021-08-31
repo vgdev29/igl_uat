@@ -304,24 +304,20 @@ public class NgSupListActivity extends AppCompatActivity implements ListDataPass
         // priority - 2 is for high color is red
         //            1 is moderate color is blue
         //            0 is for low color is green
-        ArrayList<NguserListModel> highPriorityList= new ArrayList<>();
-        ArrayList<NguserListModel> moderatePriorityList= new ArrayList<>();
-        ArrayList<NguserListModel> lowPriorityList= new ArrayList<>();
-        ArrayList<NguserListModel> filterList= new ArrayList<>();
-        for (NguserListModel nguserListModel : ngUserList){
-            if (Integer.parseInt(nguserListModel.getPriority())==2){
-                highPriorityList.add(nguserListModel);
-            }if (Integer.parseInt(nguserListModel.getPriority())==1){
-                moderatePriorityList.add(nguserListModel);
-            }
-            if (Integer.parseInt(nguserListModel.getPriority())==0){
-                lowPriorityList.add(nguserListModel);
+        List<NguserListModel> filterList = new ArrayList<>();
+        Log.d(log,"refresh unclaim");
+        for (NguserListModel nguserListModel : ngUserList)
+        {
+            if (nguserListModel.getPriority().equalsIgnoreCase("2"))
+            {
+                filterList.add(nguserListModel);
             }
         }
-        filterList.addAll(highPriorityList);
-        filterList.addAll(moderatePriorityList);
-        filterList.addAll(lowPriorityList);
-        setListData(filterList);
+        count_list.setText("Count\n"+ filterList.size());
+        adapter.setDataset(filterList);
+        adapter.notifyDataSetChanged();
+
+
     }
 
     @Override

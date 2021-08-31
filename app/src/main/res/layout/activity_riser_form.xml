@@ -152,7 +152,7 @@
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_weight="1"
                         android:padding="@dimen/_1sdp"
-                        android:text="Agent Name"
+                        android:text="Customer Name"
                         android:textColor="@color/dark_gray"
                         android:textSize="@dimen/_10sdp" />
 
@@ -774,7 +774,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:paddingHorizontal="@dimen/_8sdp"
-                            android:text="Riser Length"
+                            android:text="Riser Length(mtr)"
                             android:textColor="@color/black"></TextView>
 
                         <TextView
@@ -813,6 +813,7 @@
                             android:paddingHorizontal="@dimen/_8sdp"
                             android:paddingVertical="@dimen/_3sdp"
                             android:text="0"
+                            android:inputType="numberDecimal"
                             android:textColor="@color/_313131" />
 
                         <EditText
@@ -826,6 +827,7 @@
                             android:paddingHorizontal="@dimen/_8sdp"
                             android:paddingVertical="@dimen/_3sdp"
                             android:text="0"
+                            android:inputType="number"
                             android:textColor="@color/_313131" />
                     </TableRow>
 
@@ -856,6 +858,7 @@
                             android:paddingHorizontal="@dimen/_8sdp"
                             android:paddingVertical="@dimen/_3sdp"
                             android:text="0"
+                            android:inputType="numberDecimal"
                             android:textColor="@color/_313131" />
 
                         <EditText
@@ -869,6 +872,7 @@
                             android:paddingHorizontal="@dimen/_8sdp"
                             android:paddingVertical="@dimen/_3sdp"
                             android:text="0"
+                            android:inputType="number"
                             android:textColor="@color/_313131" />
                     </TableRow>
 
@@ -899,6 +903,7 @@
                             android:paddingHorizontal="@dimen/_8sdp"
                             android:paddingVertical="@dimen/_3sdp"
                             android:text="0"
+                            android:inputType="numberDecimal"
                             android:textColor="@color/_313131" />
 
                         <EditText
@@ -912,6 +917,7 @@
                             android:paddingHorizontal="@dimen/_8sdp"
                             android:paddingVertical="@dimen/_3sdp"
                             android:text="0"
+                            android:inputType="number"
                             android:textColor="@color/_313131" />
                     </TableRow>
 
@@ -942,6 +948,7 @@
                             android:paddingHorizontal="@dimen/_8sdp"
                             android:paddingVertical="@dimen/_3sdp"
                             android:text="0"
+                            android:inputType="numberDecimal"
                             android:textColor="@color/_313131" />
 
                         <EditText
@@ -955,6 +962,7 @@
                             android:paddingHorizontal="@dimen/_8sdp"
                             android:paddingVertical="@dimen/_3sdp"
                             android:text="0"
+                            android:inputType="number"
                             android:textColor="@color/_313131" />
                     </TableRow>
 

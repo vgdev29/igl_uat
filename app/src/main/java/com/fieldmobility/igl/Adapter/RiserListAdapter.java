@@ -2,6 +2,7 @@ package com.fieldmobility.igl.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,35 @@ public class RiserListAdapter extends RecyclerView.Adapter<RiserListAdapter.MyHo
         holder.tv_name.setText(fullName);
         holder.tv_bp_num.setText(model.getBpNumber());
         holder.tv_mob.setText(model.getMobileNumber());
+        try {
+            holder.tv_tpi.setText(model.getRfctpiname()+"\n"+model.getRfcmobileNo());
+            holder.tv_tpi.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                        callIntent.setData(Uri.parse("tel:"+ model.getRfcmobileNo()));
+                        mContext.startActivity(callIntent);
+                    } catch (NullPointerException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+        catch (Exception e){}
+
+        holder.tv_mob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                    callIntent.setData(Uri.parse("tel:"+ model.getMobileNumber()));
+                    mContext.startActivity(callIntent);
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         holder.tv_assign_date.setText(model.getRiserAssign());
         holder.tv_address.setText(model.getHouseNo()+" "+model.getFloor()+" "+model.getBlockQtrTowerWing()+" "+model.getSociety()+" "+model.getStreetGaliRoad()+", "+model.getArea()+" "+model.getCityRegion()+",\n"+model.getPincode());
     }
@@ -55,7 +85,7 @@ public class RiserListAdapter extends RecyclerView.Adapter<RiserListAdapter.MyHo
     }
 
     class MyHolder extends RecyclerView.ViewHolder {
-        public TextView tv_name, tv_mob, tv_assign_date, tv_address,tv_bp_num;
+        public TextView tv_name, tv_mob, tv_assign_date, tv_address,tv_bp_num,tv_tpi;
 
 
         public MyHolder(View itemView) {
@@ -65,6 +95,7 @@ public class RiserListAdapter extends RecyclerView.Adapter<RiserListAdapter.MyHo
             tv_name =  itemView.findViewById(R.id.tv_name);
             tv_address =  itemView.findViewById(R.id.tv_address);
             tv_assign_date =  itemView.findViewById(R.id.tv_assign_date);
+            tv_tpi = itemView.findViewById(R.id.tv_tpi);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

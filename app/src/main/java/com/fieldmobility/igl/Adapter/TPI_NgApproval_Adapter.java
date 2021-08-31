@@ -91,6 +91,14 @@ public class TPI_NgApproval_Adapter extends RecyclerView.Adapter<TPI_NgApproval_
         } else if (ngUserClaimListModel.getStatus().equalsIgnoreCase("OP")) {
             holder.status_text.setText("NG on Hold");
         }
+        if (ngUserClaimListModel.isMeter_status())
+        {
+            holder.tv_icml.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            holder.tv_icml.setVisibility(View.GONE);
+        }
       /*  holder.btn_approve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,6 +189,11 @@ public class TPI_NgApproval_Adapter extends RecyclerView.Adapter<TPI_NgApproval_
     public long getItemId(int position) {
         return position;
 
+    }
+    public void setData(List<NguserListModel> ngUserClaimLists)
+    {
+        this.ngUserClaimList = ngUserClaimLists;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -283,7 +296,7 @@ public class TPI_NgApproval_Adapter extends RecyclerView.Adapter<TPI_NgApproval_
     }
 
     class NgUserDoneDeclineListViewHolder extends RecyclerView.ViewHolder {
-        TextView tv_bpName, tv_dateTime, tv_perferedTime, tv_address, user_name_text, status_text,tv_zone,tv_mobile;
+        TextView tv_bpName, tv_dateTime, tv_perferedTime, tv_address, user_name_text, status_text,tv_zone,tv_mobile,tv_icml;
         Button  btn_viewDetails,ngSupervisorinfo_text;
         LinearLayout ll_bpNumber;
         View itemView;
@@ -297,7 +310,7 @@ public class TPI_NgApproval_Adapter extends RecyclerView.Adapter<TPI_NgApproval_
             tv_mobile = itemView.findViewById(R.id.mobile_text);
             ngSupervisorinfo_text = itemView.findViewById(R.id.ngSupervisorinfo_text);
             btn_viewDetails = itemView.findViewById(R.id.btn_viewDetails);
-
+            tv_icml = itemView.findViewById(R.id.tv_incorrectmetercase);
             user_name_text = itemView.findViewById(R.id.user_name_text);
             status_text = itemView.findViewById(R.id.status_text);
             this.itemView = itemView;

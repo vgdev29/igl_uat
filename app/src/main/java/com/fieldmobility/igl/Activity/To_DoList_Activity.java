@@ -164,6 +164,7 @@ public class To_DoList_Activity extends Activity implements DatePickerListener {
                 .content("Please wait....")
                 .progress(true, 0)
                 .show();
+        Log.d("todo",Constants.GET_TODO_LIST+date_select+"/"+sharedPrefs.getUUID());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.GET_TODO_LIST+date_select+"/"+sharedPrefs.getUUID(),
                 new Response.Listener<String>() {
                     @Override
@@ -172,24 +173,27 @@ public class To_DoList_Activity extends Activity implements DatePickerListener {
                         try {
                             final JSONObject jsonObject = new JSONObject(response);
                             Log.e("Response++",jsonObject.toString());
-                            final JSONObject Bp_Details = jsonObject.getJSONObject("TODOList");
-                              Message=jsonObject.getString("Message");
-                              JSONArray payload=Bp_Details.getJSONArray("create");
-                              for(int i=0; i<=payload.length();i++) {
-                                JSONObject data_object=payload.getJSONObject(i);
-                                To_Do_Item bp_no_item = new To_Do_Item();
-                                bp_no_item.setBp(data_object.getString("bp"));
-                                bp_no_item.setDate(data_object.getString("date"));
-                                bp_no_item.setTime(data_object.getString("time"));
-                                bp_no_item.setDescription(data_object.getString("description"));
-                                bp_no_item.setCategory_name(data_object.getString("category_name"));
-                                bp_no_item.setIgl_address(data_object.getString("igl_address"));
-                                bp_no_item.setId(data_object.getString("id"));
-                                bp_no_item.setTodo_id(data_object.getString("todo_id"));
-                                todo_lisitng_array.add(bp_no_item);
-                            }
-                            DesignerToast.Custom(To_DoList_Activity.this,Message, Gravity.BOTTOM, Toast.LENGTH_SHORT, R.drawable.shape_cornor_radious,13,"#FFFFFF",R.drawable.ic_success, 50, 200);
 
+                            if (jsonObject.getString("status").equalsIgnoreCase("200")) {
+                                final JSONObject Bp_Details = jsonObject.getJSONObject("TODOList");
+                                Message = jsonObject.getString("Message");
+                                JSONArray payload = Bp_Details.getJSONArray("create");
+                                for (int i = 0; i < payload.length(); i++) {
+                                    JSONObject data_object = payload.getJSONObject(i);
+                                    To_Do_Item bp_no_item = new To_Do_Item();
+                                    bp_no_item.setBp(data_object.getString("bp"));
+                                    bp_no_item.setDate(data_object.getString("date"));
+                                    bp_no_item.setTime(data_object.getString("time"));
+                                    bp_no_item.setDescription(data_object.getString("description"));
+                                    bp_no_item.setCategory_name(data_object.getString("category_name"));
+                                    bp_no_item.setIgl_address(data_object.getString("igl_address"));
+                                    bp_no_item.setId(data_object.getString("id"));
+                                    bp_no_item.setTodo_id(data_object.getString("todo_id"));
+                                    todo_lisitng_array.add(bp_no_item);
+                                }
+                                DesignerToast.Custom(To_DoList_Activity.this, Message, Gravity.BOTTOM, Toast.LENGTH_SHORT, R.drawable.shape_cornor_radious, 13, "#FFFFFF", R.drawable.ic_success, 50, 200);
+
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }catch (NullPointerException e) {

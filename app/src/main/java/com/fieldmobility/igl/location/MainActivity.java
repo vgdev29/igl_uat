@@ -35,7 +35,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
-import com.fieldmobility.igl.Helper.BuildConfig;
+import com.fieldmobility.igl.BuildConfig;
 import com.fieldmobility.igl.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
