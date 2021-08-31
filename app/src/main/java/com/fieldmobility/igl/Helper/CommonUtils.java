@@ -17,7 +17,7 @@ import com.fieldmobility.igl.R;
 public class CommonUtils {
 
     static ProgressDialog progressDialog;
-    public static final boolean isDebugBuild=true; // make it FALSE while giving app to others
+    public static final boolean isDebugBuild=false; // make it FALSE while giving app to others
 
     public static void startProgressBar(Context context, String msg) {
         progressDialog = ProgressDialog.show(context, "", msg, true);
