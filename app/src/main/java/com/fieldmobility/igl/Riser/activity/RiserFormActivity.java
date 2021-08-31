@@ -92,7 +92,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
     ConnectedHouseAdapter connectedHouseAdapter;
     String selectedPropertyType = "low-rise", selectedGasType = "Non Gasified", selectedHSE = "", selectedRiserLength = "Select Diameter", selectedIsolationValue = "Select Diameter", selectedLateralTapping = "", selectedAreaType = "Off Line/Project";
     boolean isRiserTestingDone, isRiserLayingDone, isRiserCommissioningDone;
-    String imagePathOne = "", imagePathTwo = "", imagePathOptional = "";
+    String imagePathOne = "", imagePathTwo = "", imagePathOptional = "",selectedRiserType="New Riser";
     MaterialDialog materialDialog;
     RiserListingModel.BpDetails.User dataModel;
     ArrayList<String> Floor_name1 = new ArrayList<>();
@@ -166,6 +166,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
                     .addParameter("laying", laying)
                     .addParameter("testing", testing)
                     .addParameter("commissioning", commi)
+                    .addParameter("riser_type", selectedRiserType)
                     .addParameter("lateral_tapping", selectedLateralTapping)
                     .addParameter("area_type", selectedAreaType)
                     .addParameter("connected_bp", "" + ConnectedHouse)
@@ -278,7 +279,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
             tv_city, tv_zone, tv_area, tv_society, tv_add_more_hse;
     AutoCompleteTextView hse_tv_bp_num;
     EditText et_gali, et_ib/*, et_connected_house*/, hse_et_house, hse_et_floor, et_rl12, et_iv12, et_rl34, et_iv34, et_rl1, et_iv1, et_rl2, et_iv2;
-    RadioGroup rg_riser_laying, rg_riser_testing, rg_riser_commissioning, rg_pbc_houses;
+    RadioGroup rg_riser_laying, rg_riser_testing, rg_riser_commissioning, rg_pbc_houses,rg_riser_type;
     ImageView iv_one, iv_two, iv_three;
     FrameLayout fl_image1, fl_image2, fl_image3;
     Spinner sp_property_type, sp_gas_type, sp_hse, sp_riser_length, sp_isolation_value, sp_lateral_tapping, sp_area_type;
@@ -300,6 +301,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         });
 //        tv_allocation_num = findViewById(R.id.tv_allocation_num);
 //        tv_sub_allocatio = findViewById(R.id.tv_sub_allocatio);
+        rg_riser_type = findViewById(R.id.rg_riser_type);
         rg_pbc_houses = findViewById(R.id.rg_pbc_houses);
         lt_pbc_houses = findViewById(R.id.lt_pbc_houses);
         et_rl12 = findViewById(R.id.et_rl12);
@@ -389,6 +391,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         rg_riser_laying.setOnCheckedChangeListener(this);
         rg_riser_testing = findViewById(R.id.rg_riser_testing);
         rg_riser_testing.setOnCheckedChangeListener(this);
+        rg_riser_type.setOnCheckedChangeListener(this);
         rg_pbc_houses.setOnCheckedChangeListener(this);
         rg_riser_commissioning = findViewById(R.id.rg_riser_commissioning);
         rg_riser_commissioning.setOnCheckedChangeListener(this);
@@ -761,8 +764,13 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
 
         } else if (group == rg_riser_testing) {
             isRiserTestingDone = checkedId == R.id.rb_rtesting_pos;
+        }
+        else if (group == rg_riser_type) {
+            selectedRiserType = checkedId == R.id.rb_new_riser?"New Riser":"Extended";
 
-        } else if (group == rg_pbc_houses) {
+        }
+
+        else if (group == rg_pbc_houses) {
             if (checkedId == R.id.rb_yes)
                 lt_pbc_houses.setVisibility(View.VISIBLE);
             else

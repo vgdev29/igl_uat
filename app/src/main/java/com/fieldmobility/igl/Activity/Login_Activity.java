@@ -37,6 +37,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.fieldmobility.igl.Helper.AppController;
+import com.fieldmobility.igl.Helper.CommonUtils;
 import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.MainActivity;
@@ -95,6 +96,9 @@ public class Login_Activity extends Activity {
         login_layout = findViewById(R.id.login_layout);
         permission_layout = findViewById(R.id.permission_layout);
         allow_permission = findViewById(R.id.permission_allow_button);
+        if (CommonUtils.isDebugBuild){
+            findLoginDummyViews();
+        }
         Layout_ID();
 
         if ( ContextCompat.checkSelfPermission( this, Manifest.permission.CAMERA ) != PackageManager.PERMISSION_GRANTED
@@ -495,5 +499,31 @@ public class Login_Activity extends Activity {
                 });
         final AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    private void findLoginDummyViews(){
+        findViewById(R.id.lt_login_ids).setVisibility(View.VISIBLE);
+        findViewById(R.id.tv_rfc).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                email.setText("test_rfc_supervisor@gmail.com");
+                password.setText("12345");
+            }
+        });
+        findViewById(R.id.tv_tpi).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                email.setText("test_rfc_tpi@gmail.com");
+                password.setText("12345");
+            }
+        });
+        findViewById(R.id.tv_bp_cre).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                email.setText("ghaziabaddma@igl.co.in");
+                password.setText("igl123");
+            }
+        });
+
     }
 }

@@ -32,7 +32,40 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/_17sdp"
                 android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lt_login_ids"
+                android:paddingHorizontal="@dimen/_16sdp"
+                android:visibility="gone"
+                android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_rfc"
+                android:padding="@dimen/_6sdp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:text="supervisor"></TextView>
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_tpi"
+                    android:padding="@dimen/_6sdp"
+                    android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:text="TPI"></TextView>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_bp_cre"
+                    android:padding="@dimen/_6sdp"
+                    android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:text="BP CREATION"></TextView>
+
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
