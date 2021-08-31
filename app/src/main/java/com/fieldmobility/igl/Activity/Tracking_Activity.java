@@ -27,7 +27,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import com.fieldmobility.igl.Helper.BuildConfig;
+import com.fieldmobility.igl.BuildConfig;
 import com.fieldmobility.igl.Helper.LocationMonitoringService;
 import com.fieldmobility.igl.MataData.MyService;
 import com.fieldmobility.igl.R;

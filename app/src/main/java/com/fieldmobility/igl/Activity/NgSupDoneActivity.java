@@ -145,6 +145,9 @@ public class NgSupDoneActivity extends AppCompatActivity {
             nguserListModel.setCode(getIntent().getStringExtra("code"));
             nguserListModel.setReason(getIntent().getStringExtra("reason"));
             nguserListModel.setSub_status(getIntent().getStringExtra("substatus"));
+            nguserListModel.setCorrected_meter_no(getIntent().getStringExtra("meter"));
+            nguserListModel.setMeter_status(getIntent().getBooleanExtra("meterStatus",false));
+
 
         }
 

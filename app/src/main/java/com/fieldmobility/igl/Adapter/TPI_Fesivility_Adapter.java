@@ -243,7 +243,7 @@ public class TPI_Fesivility_Adapter extends RecyclerView.Adapter<TPI_Fesivility_
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;
-        public TextView bp_no_text,user_name_text,address_text,date_text,status_text,fesibility_date_text,mobile_text;
+        public TextView bp_no_text,user_name_text,address_text,date_text,status_text,fesibility_date_text,mobile_text,tv_has_image;
         public LinearLayout liner_layout;
         public CardView linearLayout;
         ImageButton refresh_data;
@@ -258,6 +258,8 @@ public class TPI_Fesivility_Adapter extends RecyclerView.Adapter<TPI_Fesivility_
             mobile_text =itemView.findViewById(R.id.mobile_text);
             liner_layout = (LinearLayout) itemView.findViewById(R.id.liner_layout);
             refresh_data = itemView.findViewById(R.id.refresh_data);
+            tv_has_image = itemView.findViewById(R.id.tv_has_image);
+            tv_has_image.setVisibility(View.GONE);
             refresh_data.setVisibility(View.VISIBLE);
         }
     }

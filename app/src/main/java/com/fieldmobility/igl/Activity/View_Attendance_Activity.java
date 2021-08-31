@@ -255,6 +255,7 @@ public class View_Attendance_Activity extends AppCompatActivity implements View_
                 .content("Please wait....")
                 .progress(true, 0)
                 .show();
+        Log.d("attendance",Constants.GET_ATTENDENCE_LIST+date_select+"/"+sharedPrefs.getUUID());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.GET_ATTENDENCE_LIST+date_select+"/"+sharedPrefs.getUUID(),
                 new Response.Listener<String>() {
                     @Override
@@ -263,18 +264,20 @@ public class View_Attendance_Activity extends AppCompatActivity implements View_
                         try {
                             final JSONObject jsonObject = new JSONObject(response);
                             Log.e("Response++",jsonObject.toString());
-                            final JSONObject Bp_Details = jsonObject.getJSONObject("List of attendece");
-                            JSONArray payload=Bp_Details.getJSONArray("attend");
-                            for(int i=0; i<=payload.length();i++) {
-                                JSONObject data_object=payload.getJSONObject(i);
-                                View_Leave_Item bp_no_item = new View_Leave_Item();
-                                bp_no_item.setLeave_from_date(data_object.getString("attendence_date"));
-                                bp_no_item.setStart_time(data_object.getString("punch_in"));
-                                bp_no_item.setEnd_time(data_object.getString("punch_out"));
-                                //bp_no_item.setStatus(data_object.getString("status"));
 
-                                bp_no_array.add(bp_no_item);
-                            }
+                                final JSONObject Bp_Details = jsonObject.getJSONObject("List of attendece");
+                                JSONArray payload = Bp_Details.getJSONArray("attend");
+                                for (int i = 0; i <payload.length(); i++) {
+                                    JSONObject data_object = payload.getJSONObject(i);
+                                    View_Leave_Item bp_no_item = new View_Leave_Item();
+                                    bp_no_item.setLeave_from_date(data_object.getString("attendence_date"));
+                                    bp_no_item.setStart_time(data_object.getString("punch_in"));
+                                    bp_no_item.setEnd_time(data_object.getString("punch_out"));
+                                    //bp_no_item.setStatus(data_object.getString("status"));
+
+                                    bp_no_array.add(bp_no_item);
+                                }
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();

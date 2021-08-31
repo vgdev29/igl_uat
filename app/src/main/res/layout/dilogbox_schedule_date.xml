@@ -106,8 +106,7 @@
             android:layout_marginRight="@dimen/_10sdp"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_gravity="center_vertical"
-
-            android:text="Descreption"/>
+            android:text="Description"/>
         <EditText
             android:id="@+id/descreption_edit"
             android:layout_width="match_parent"
@@ -123,7 +122,7 @@
             android:padding="@dimen/_5sdp"
             android:textIsSelectable="true"
             android:maxLines="3"
-            android:hint="Descreption"/>
+            android:hint="Description"/>
         <Button
             android:id="@+id/scheduletask_text"
             android:layout_width="wrap_content"

@@ -78,7 +78,7 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
     private NguserListModel ngUserListModel1;
     private String signatureBinary;
     private static final String IMAGE_DIRECTORY = "/signdemo";
-    TextView metermakeValue , meternoValue, metertypeValue, rfcreadingValue,reasonvalue,substatusvalue , rfcdate_value;
+    TextView metermakeValue , meternoValue, metertypeValue, rfcreadingValue,reasonvalue,substatusvalue , rfcdate_value,tv_corretced_metervalue;
 
 
 
@@ -114,7 +114,14 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
                 if (ngUserListModel1.getStatus().equalsIgnoreCase("OP")) {
                     nguserListModel.setStatus("OH");
                 } else if (ngUserListModel1.getStatus().equalsIgnoreCase("DP")) {
-                    nguserListModel.setStatus("DN");
+                    if (ngUserListModel1.isMeter_status())
+                    {
+                        nguserListModel.setStatus("IM");
+                        nguserListModel.setMeter_status(true);
+                    }
+                    else {
+                        nguserListModel.setStatus("DN");
+                    }
                 }
                 if(validateApproval()) {
                     approveTbyTPI(jmrNo, nguserListModel);
@@ -281,6 +288,7 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
         tv_serviceNameValue = findViewById(R.id.tv_serviceNameValue);
         substatusvalue = findViewById(R.id.tv_substatusValue);
         reasonvalue = findViewById(R.id.tv_NgreasonValue);
+        tv_corretced_metervalue = findViewById(R.id.tv_corrected_meter_no_value);
 
     }
     private void setText(final NguserListModel nguserListModel){
@@ -309,6 +317,14 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
         rfcreadingValue.setText(nguserListModel.getRfc_initial_reading());
         reasonvalue.setText(nguserListModel.getReason());
         substatusvalue.setText(nguserListModel.getSub_status());
+        if (nguserListModel.isMeter_status())
+        {
+            tv_corretced_metervalue.setText(nguserListModel.getCorrected_meter_no());
+        }
+        else
+        {
+            tv_corretced_metervalue.setText("NA");
+        }
 
         String tpi_code_group =  nguserListModel.getCode_group();
         if (!TextUtils.isEmpty(tpi_code_group)) {

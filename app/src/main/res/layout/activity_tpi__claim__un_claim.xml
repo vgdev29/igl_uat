@@ -99,12 +99,13 @@
                 android:layout_marginLeft="@dimen/_3sdp"
                 android:paddingLeft="@dimen/_1sdp"
                 />
+
             <ImageView
+                android:id="@+id/ng_filter"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_height="match_parent"
                 android:layout_weight="0.3"
-                android:src="@drawable/ic_filter_list_black_24dp"
-                android:id="@+id/ng_filter"/>
+                android:src="@drawable/ic_filter_list_black_24dp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"

@@ -7,7 +7,7 @@
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/drawable/ic_refresh_black_24dp.xml" value="0.1" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_m_i_t_d_done.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_n_i_customer.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_ng__user__details.xml" value="0.22" />
+        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_ng__user__details.xml" value="0.25" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_ng_assignment_details.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_ng_user_list.xml" value="0.16145833333333334" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_riser__list.xml" value="0.20416666666666666" />
@@ -16,16 +16,20 @@
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_riser_tpi_approval_detail.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_tpi__claim__un_claim.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_tpiriser__list.xml" value="0.18854166666666666" />
-        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_view_ng_detaills.xml" value="0.33" />
+        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_view_ng_detaills.xml" value="0.21" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/bp_creation_form.xml" value="0.45098039215686275" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/bp_creation_form_2.xml" value="0.2" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/bp_no_listing_item.xml" value="0.18072916666666666" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/customer_signature.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/dialog_filter_ng_user_list.xml" value="0.18854166666666666" />
+        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/dialog_filter_tpi_approval_list.xml" value="0.18854166666666666" />
+        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/dialog_filter_tpi_pending_list.xml" value="0.18854166666666666" />
+        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/dilogbox_schedule_date.xml" value="0.33" />
+        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/document_varification_layout.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/fragment_feasibility_pending_.xml" value="0.16145833333333334" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/homepage_layout.xml" value="0.1578125" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/image_upload_dilogbox.xml" value="0.33" />
-        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/item_riser_list.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/item_riser_list.xml" value="0.33" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/item_simple_detail_sceen_row.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/kyc_form_activity.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/new_bp_no_listing.xml" value="0.18854166666666666" />
@@ -34,9 +38,16 @@
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/rfc_aproval_adapter.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/rfc_connection_layout.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/rfc_pending_layout.xml" value="0.18854166666666666" />
+        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/to_do_task_creation.xml" value="0.22" />
+        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/to_do_task_item.xml" value="0.22" />
+        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/to_dolist_layout.xml" value="0.1125" />
+        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/tpi_item_riser_list.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/tpi_item_riser_pendinglist.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/tpi_layout.xml" value="0.184375" />
+        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/tpi_ng_approve_decline.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/tpi_rfcdone_approval.xml" value="0.1578125" />
+        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.12760416666666666" />
+        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.12760416666666666" />
       </map>
     </option>
   </component>

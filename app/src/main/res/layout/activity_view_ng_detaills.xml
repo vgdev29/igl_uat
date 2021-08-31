@@ -471,7 +471,6 @@
                         style="@style/row_details"
                         android:layout_width="fill_parent"
                         android:layout_height="@dimen/_25sdp"
-
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="Meter No :"
@@ -486,6 +485,36 @@
                         android:layout_weight="1"
                         android:gravity="center"
 
+                        android:singleLine="true"
+                        android:textSize="@dimen/_10sdp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:orientation="horizontal"
+                    android:visibility="visible"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/tv_corrected_meter_no"
+                        style="@style/row_details"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Corrected Meter No :"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_corrected_meter_no_value"
+                        style="@style/row_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_weight="1"
+                        android:gravity="center"
                         android:singleLine="true"
                         android:textSize="@dimen/_10sdp" />
 
@@ -647,6 +676,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
                     android:orientation="horizontal"
+                    android:visibility="gone"
                     android:weightSum="2">
 
 
@@ -681,6 +711,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
                     android:orientation="horizontal"
+                    android:visibility="gone"
                     android:weightSum="2">
 
 

@@ -60,6 +60,8 @@ import com.fieldmobility.igl.Adapter.PlainTextListAdapter;
 import com.fieldmobility.igl.Helper.AppController;
 import com.fieldmobility.igl.Helper.CommonUtils;
 import com.fieldmobility.igl.Helper.Constants;
+import com.fieldmobility.igl.Helper.ImageCompression;
+import com.fieldmobility.igl.Helper.ScreenshotUtils;
 import com.fieldmobility.igl.Listeners.PlainTextListItemSelectListener;
 import com.fieldmobility.igl.Model.ConnectedHouseModel;
 import com.fieldmobility.igl.Model.RiserListingModel;
@@ -72,6 +74,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -122,11 +125,11 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
                 log = latLong[1];
             }
             String bplistData="";
-            if (rg_pbc_houses.getCheckedRadioButtonId()==R.id.rb_yes){
+            //if (rg_pbc_houses.getCheckedRadioButtonId()==R.id.rb_yes){
                 JSONObject jsonArray = connectedHouseAdapter.getJsonData();
                 bplistData=String.valueOf(jsonArray);
                 Log.d("search", "jsonarray = " + jsonArray.toString());
-            }
+           // }
             String riserNum = "R" + dataModel.getZone() + Utils.getRandomNumWithChar(5).toUpperCase();
             String laying = isRiserLayingDone ? "1" : "0";
             String testing = isRiserTestingDone ? "1" : "0";
@@ -175,7 +178,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
                     .addParameter("bplist", bplistData)
                     .addParameter("total_ib", et_ib.getText().toString().trim()) // Edittext
                     .addParameter("contractor_id", dataModel.getRfcadmin()) //admin
-                    .addParameter("tpi_id", dataModel.getRfcTpi()) //tpi
+                    .addParameter("tpi_id", dataModel.getRiserTpi()) //tpi
                     .addParameter("supervisor_id", dataModel.getRiserSup()) //riserSup
                     .addParameter("latitude", lat) //KycResubmission method
                     .addParameter("longitude", log);
@@ -200,8 +203,6 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
                 @Override
                 public void onCompleted(Context context, UploadInfo uploadInfo, ServerResponse serverResponse) {
                     materialDialog.dismiss();
-                    String Uplode = uploadInfo.getSuccessfullyUploadedFiles().toString();
-                    String serverResponse1 = serverResponse.getHeaders().toString();
                     String str = serverResponse.getBodyAsString();
                     Log.e("UPLOADEsinin++", str);
                     final JSONObject jsonObject;
@@ -623,9 +624,9 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
 //                    connectedHouseAdapter.notifyDataSetChanged();
 //                }
                 connectedHseMaxLimit = 5;
-                hseList.add("HSE (g+4)");
-                hseList.add("HSE (g+5)");
-                selectedHSE = "HSE (g+4)";
+                hseList.add("HSE Upto (G+4)");
+                hseList.add("HSE (G+5) & Above");
+                selectedHSE = "HSE Upto (G+4)";
             } else {
                 connectedHseMaxLimit = 15;
                 hseList.add("HSE(g+14 & above)");
@@ -792,9 +793,18 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
                     Uri filePathHomeAddress = data.getData();
                     Bitmap resultBitmap = null;
                     String selectedImagePath = null;
+                    String path = null;
                     try {
                         resultBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathHomeAddress);
-                        selectedImagePath = getPath(filePathHomeAddress);
+
+                        resultBitmap = getResizedBitmap(resultBitmap, 1600);
+                        String newFilePath = getPath(filePathHomeAddress);
+                       //  path =    new ImageCompression(this).compressImage(newFilePath);
+                        Log.d("image path = ",newFilePath+" new path = "+ path );
+                        File saveFile = ScreenshotUtils.getMainDirectoryName(this);
+                        selectedImagePath = ScreenshotUtils.store(resultBitmap, "riser_"+requestCode +"_"+ dataModel.getBpNumber() + ".jpg", saveFile).toString();
+
+//                        selectedImagePath=new ImageCompression(RiserFormActivity.this).compressImage(selectedImagePath);
                         Log.e("image_path_aadhar+,", "" + selectedImagePath);
                     } catch (IOException e) {
                         e.printStackTrace();

@@ -2,6 +2,7 @@ package com.fieldmobility.igl.Riser.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,6 +63,23 @@ public class RiserTpiPendingListAdapter extends RecyclerView.Adapter<RiserTpiPen
         holder.tv_mob.setText(model.getMobileNumber());
         holder.tv_assign_date.setText(model.getRiserAssign());
         holder.tv_address.setText(model.getHouseNo()+" "+model.getFloor()+" "+model.getBlockQtrTowerWing()+" "+model.getSociety()+" "+model.getStreetGaliRoad()+", "+model.getArea()+" "+model.getCityRegion()+",\n"+model.getPincode());
+
+        try {
+            holder.tv_sup.setText(model.getRfctpiname()+"\n"+model.getRfcmobileNo());
+            holder.tv_sup.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                        callIntent.setData(Uri.parse("tel:"+ model.getRfcmobileNo()));
+                        mContext.startActivity(callIntent);
+                    } catch (NullPointerException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+        catch (Exception e){}
 
         if ( model.getRiserClaim().equals("1"))
         {
@@ -144,7 +162,7 @@ public class RiserTpiPendingListAdapter extends RecyclerView.Adapter<RiserTpiPen
     }
 
     class MyHolder extends RecyclerView.ViewHolder {
-        public TextView tv_name, tv_mob, tv_assign_date, tv_address,tv_bp_num;
+        public TextView tv_name, tv_mob, tv_assign_date, tv_address,tv_bp_num,tv_sup;
         Button claim;
 
 
@@ -156,6 +174,8 @@ public class RiserTpiPendingListAdapter extends RecyclerView.Adapter<RiserTpiPen
             tv_address =  itemView.findViewById(R.id.tv_address);
             tv_assign_date =  itemView.findViewById(R.id.tv_assign_date);
             claim = itemView.findViewById(R.id.tpiclaim);
+            tv_sup = itemView.findViewById(R.id.tv_sup);
+
 
 
         }

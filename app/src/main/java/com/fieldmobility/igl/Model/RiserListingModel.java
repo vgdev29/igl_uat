@@ -192,10 +192,10 @@ public class RiserListingModel {
             private Object idproof;
             @SerializedName("rfctpiname")
             @Expose
-            private Object rfctpiname;
+            private String rfctpiname;
             @SerializedName("rfcmobileNo")
             @Expose
-            private Object rfcmobileNo;
+            private String rfcmobileNo;
 
             @SerializedName("zone")
             @Expose
@@ -724,19 +724,19 @@ public class RiserListingModel {
                 this.idproof = idproof;
             }
 
-            public Object getRfctpiname() {
+            public String getRfctpiname() {
                 return rfctpiname;
             }
 
-            public void setRfctpiname(Object rfctpiname) {
+            public void setRfctpiname(String rfctpiname) {
                 this.rfctpiname = rfctpiname;
             }
 
-            public Object getRfcmobileNo() {
+            public String getRfcmobileNo() {
                 return rfcmobileNo;
             }
 
-            public void setRfcmobileNo(Object rfcmobileNo) {
+            public void setRfcmobileNo(String rfcmobileNo) {
                 this.rfcmobileNo = rfcmobileNo;
             }
 

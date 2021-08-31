@@ -1,6 +1,7 @@
 package com.fieldmobility.igl;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -13,6 +14,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -57,6 +59,12 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.play.core.appupdate.AppUpdateInfo;
+import com.google.android.play.core.appupdate.AppUpdateManager;
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
+import com.google.android.play.core.install.model.AppUpdateType;
+import com.google.android.play.core.install.model.UpdateAvailability;
+import com.google.android.play.core.tasks.OnSuccessListener;
 import com.nabinbhandari.android.permissions.PermissionHandler;
 import com.nabinbhandari.android.permissions.Permissions;
 
@@ -92,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int REQUEST_CODE_PERMISSIONS = 101;
     Timer timer;
     TimerTask doAsynchronousTask;
+    AppUpdateManager   appUpdateManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
         customBottomNavigationView1.inflateMenu(R.menu.bottom_menu);
        // customBottomNavigationView1.setSelectedItemId(R.id.action_schedules);
         customBottomNavigationView1.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        inAppUpdate();
         loadFragment(new HomeFragment());
 
     //    mHandler = new IncomingMessageHandler();
@@ -254,68 +264,13 @@ public class MainActivity extends AppCompatActivity {
         timer.schedule(doAsynchronousTask, 0, 300000); //execute in every 50000 ms
     }
 
-    /*public void TPI_Approve(final String latitude, final String longitude) {
-        *//*materialDialog = new MaterialDialog.Builder(getActivity())
-                .content("Please wait....")
-                .progress(true, 0)
-                .show();*//*
-        String login_request = "login_request";
-        StringRequest jr = new StringRequest(Request.Method.POST, Constants.UserTracking,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        //materialDialog.dismiss();
 
-                        try {
-                            JSONObject json = new JSONObject(response);
-                            Log.e("Response Save", json.toString());
-                            //  Toast.makeText(getActivity(), "" + "Successfully", Toast.LENGTH_SHORT).show();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                //   materialDialog.dismiss();
-                NetworkResponse response = error.networkResponse;
-                if (error instanceof ServerError && response != null) {
-                    try {
-                        String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        JSONObject obj = new JSONObject(res);
-                        Log.e("object",obj.toString());
-                        JSONObject error1=obj.getJSONObject("error");
-                        String error_msg=error1.getString("message");
-                        //  Toast.makeText(Forgot_Password_Activity.this, "" + error_msg, Toast.LENGTH_SHORT).show();
-                    } catch (UnsupportedEncodingException e1) {
-                        e1.printStackTrace();
-                    } catch (JSONException e2) {
-                        e2.printStackTrace();
-                    }
-                }            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                try {
-                    Log.e("latitude",latitude);
-                    Log.e("longitude", longitude);
-
-                    params.put("latitude",latitude);
-                    params.put("longitude", longitude);
-                    params.put("id", sharedPrefs.getUUID());
-                } catch (Exception e) {
-                }
-                return params;
-            }
-        };
-        jr.setRetryPolicy(new DefaultRetryPolicy(20 * 10000, 20, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        jr.setTag(login_request);
-        AppController.getInstance().addToRequestQueue(jr, login_request);
-    }*/
     @Override
     public void onResume() {
+
+        inAppUpdate();
         super.onResume();
+        Log.d("mainactivity","on resume");
         //  startStep1();
     }
     /**
@@ -547,5 +502,57 @@ public class MainActivity extends AppCompatActivity {
         startService(startServiceIntent);
         Toast.makeText(MainActivity.this,"Start foreground location updates",Toast.LENGTH_SHORT).show();
     }*/
+
+    private static final int MY_REQUEST_CODE =11 ;
+    public void inAppUpdate()
+    {
+
+        Log.d("update","method called in app update");
+        appUpdateManager = AppUpdateManagerFactory.create(this);
+// Returns an intent object that you use to check for an update.
+        com.google.android.play.core.tasks.Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
+// Checks that the platform will allow the specified type of update.
+        appUpdateInfoTask.addOnSuccessListener(new OnSuccessListener<AppUpdateInfo>() {
+            @Override
+            public void onSuccess(AppUpdateInfo appUpdateInfo) {
+                if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                        // For a flexible update, use AppUpdateType.FLEXIBLE
+                        && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
+                    // Request the update.
+                    try {
+                       // Toast.makeText(MainActivity.this,"add on succes listener - try",Toast.LENGTH_SHORT).show();
+
+                        Log.d("update","method called in app update - try");
+                        appUpdateManager.startUpdateFlowForResult(appUpdateInfo, AppUpdateType.IMMEDIATE, MainActivity.this, MY_REQUEST_CODE);
+
+                    }
+                    catch (IntentSender.SendIntentException exception)
+                    {
+                        //  Toast.makeText(MainActivity.this,"add on succes listener - catch",Toast.LENGTH_SHORT).show();
+                        Log.d("update" , "intent sender = "+exception.getMessage());
+                    }
+                }
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Log.d("update","method onactivity result");
+        if (requestCode == MY_REQUEST_CODE) {
+            Log.d("update","request code match");
+           //  Toast.makeText(this,"Downloading Started",Toast.LENGTH_SHORT).show();
+            if (resultCode != RESULT_OK) {
+               //   Toast.makeText(this,"Downloading failed due to result code",Toast.LENGTH_SHORT).show();
+
+                Log.d("onACtivity Result ","Update flow failed! Result code: " + resultCode);
+                // If the update is cancelled or fails,
+                // you can request to start the update again.
+            }
+        }
+    }
 
 }

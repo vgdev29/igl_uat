@@ -2,6 +2,7 @@ package com.fieldmobility.igl.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,7 @@ public class RiserTpiApprovalListAdapter extends RecyclerView.Adapter<RiserTpiAp
     @NonNull
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new RiserTpiApprovalListAdapter.MyHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_riser_list, parent, false));
+        return new RiserTpiApprovalListAdapter.MyHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.tpi_item_riser_list, parent, false));
     }
 
     @Override
@@ -48,6 +49,9 @@ public class RiserTpiApprovalListAdapter extends RecyclerView.Adapter<RiserTpiAp
         holder.tv_mob.setText(model.getIglMobileNo());
         holder.tv_assign_date.setText(model.getCompletionDate());
         holder.tv_address.setText(model.getIglHouseNo() + " " + model.getIglFloor() + " " + model.getIglBlockQtrTowerWing() + " " + model.getIglSociety() + ", " + model.getIglArea() + " " + model.getIglCityRegion());
+        holder.tv_sup.setText(model.getSupervisorId());
+
+
     }
 
 
@@ -57,7 +61,7 @@ public class RiserTpiApprovalListAdapter extends RecyclerView.Adapter<RiserTpiAp
     }
 
     class MyHolder extends RecyclerView.ViewHolder {
-        public TextView tv_name, tv_mob, tv_assign_date, tv_address, tv_bp_num, tv_date_key;
+        public TextView tv_name, tv_mob, tv_assign_date, tv_address, tv_bp_num, tv_date_key,tv_sup;
 
 
         public MyHolder(View itemView) {
@@ -69,6 +73,7 @@ public class RiserTpiApprovalListAdapter extends RecyclerView.Adapter<RiserTpiAp
             tv_assign_date = itemView.findViewById(R.id.tv_assign_date);
             tv_date_key = itemView.findViewById(R.id.tv_date_key);
             tv_date_key.setText("Completion Date");
+            tv_sup = itemView.findViewById(R.id.tv_sup);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

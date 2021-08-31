@@ -99,6 +99,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static android.os.Environment.getExternalStorageDirectory;
 
@@ -691,6 +693,14 @@ public class BP_Creation_Form extends Activity implements AdapterView.OnItemSele
         dialog.show();
     }
 
+    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
+    public static boolean validate(String emailStr) {
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
+        return matcher.find();
+    }
+
     private boolean validateData() {
         boolean isDataValid = true;
 
@@ -698,15 +708,24 @@ public class BP_Creation_Form extends Activity implements AdapterView.OnItemSele
             isDataValid = false;
             fullname.setError("Enter First Name");
             Toast.makeText(BP_Creation_Form.this, "Enter First Name", Toast.LENGTH_SHORT).show();
+
         } else if (lastname.getText().length() == 0) {
             isDataValid = false;
             lastname.setError("Enter Last Name");
             Toast.makeText(BP_Creation_Form.this, "Enter Last Name", Toast.LENGTH_SHORT).show();
-        } else if (mobile_no.getText().length() == 0 || mobile_no.getText().length() > 10) {
+        } else if (mobile_no.getText().length() == 0 || mobile_no.getText().length() > 10 || mobile_no.getText().length()<10) {
             isDataValid = false;
             mobile_no.setError("Enter Mobile No");
             Toast.makeText(BP_Creation_Form.this, "Enter Valid Mobile no.", Toast.LENGTH_SHORT).show();
-        } else if (city_name.equals("Select City")) {
+        }
+        else if (email_id.getText().toString().length()!=0 && !validate(email_id.getText().toString()))
+        {
+                isDataValid = false;
+                email_id.setError("Enter Valid Email Id");
+                Toast.makeText(BP_Creation_Form.this, "Enter Valid Email Id", Toast.LENGTH_SHORT).show();
+
+        }
+        else if (city_name.equals("Select City")) {
             isDataValid = false;
             Toast.makeText(BP_Creation_Form.this, "Enter City", Toast.LENGTH_SHORT).show();
         } else if (area_name.equals("Select Area")) {
@@ -733,12 +752,16 @@ public class BP_Creation_Form extends Activity implements AdapterView.OnItemSele
         } else if (customer_type.equals("Select Customer Type")) {
             isDataValid = false;
             Toast.makeText(BP_Creation_Form.this, "Select Customer Type", Toast.LENGTH_SHORT).show();
-        } else {
+        }
+
+        else {
             isDataValid = true;
         }
 
         return isDataValid;
     }
+
+
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

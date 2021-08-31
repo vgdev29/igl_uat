@@ -36,6 +36,7 @@ import com.fieldmobility.igl.Activity.Tab_Host_Pager_TPI_Claim;
 import com.fieldmobility.igl.Activity.To_DoList_Activity;
 import com.fieldmobility.igl.Activity.Tracking_Activity;
 import com.fieldmobility.igl.Activity.View_Attendance_Activity;
+import com.fieldmobility.igl.BuildConfig;
 import com.fieldmobility.igl.Helper.LocationMonitoringService;
 import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.MataData.VideoListData1;
@@ -43,7 +44,6 @@ import com.fieldmobility.igl.Mdpe.Mdpe_List_Activity;
 import com.fieldmobility.igl.R;
 //import com.fieldmobility.igl.tracker.MyIntentService;
 import com.fieldmobility.igl.Riser.activity.RiserListActivity;
-import com.fieldmobility.igl.Riser.activity.RiserTpiApprovalActivity;
 import com.fieldmobility.igl.Riser.activity.Tab_Host_Riser;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -79,6 +79,7 @@ public class HomeFragment extends Fragment {
     public static final int REQUEST_CODE_PERMISSIONS = 101;
     public HomeFragment() {
     }
+    TextView version ;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +89,8 @@ public class HomeFragment extends Fragment {
         root = inflater.inflate(R.layout.homepage_layout, container, false);
         sharedPrefs=new SharedPrefs(getActivity());
         mMsgView=root.findViewById(R.id.msgView);
-
+       version = root.findViewById(R.id.version);
+       version.setText(BuildConfig.VERSION_NAME);
         //mHandler = new IncomingMessageHandler();
 
         handler_lat_log.postDelayed(new Runnable() {

@@ -251,6 +251,7 @@
 
                 </LinearLayout>
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -263,12 +264,12 @@
                         android:layout_gravity="top"
                         android:layout_marginTop="@dimen/_3sdp"
                         android:layout_weight="1"
-                        android:text="TPI Info:"
+                        android:text="Supervisor Info:"
                         android:textColor="@color/dark_gray"
                         android:textSize="@dimen/_10sdp" />
 
                     <TextView
-                        android:id="@+id/tv_tpi"
+                        android:id="@+id/tv_sup"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="top"
@@ -276,7 +277,7 @@
                         android:layout_marginTop="@dimen/_3sdp"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:drawableEnd="@drawable/ic_phone_call"
+
                         android:text="8457958648"
                         android:drawablePadding="@dimen/_10sdp"
                         android:textColor="@color/black_31"

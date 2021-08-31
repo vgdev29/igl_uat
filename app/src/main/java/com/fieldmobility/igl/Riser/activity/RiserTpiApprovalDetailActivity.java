@@ -28,6 +28,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.fieldmobility.igl.Adapter.RiserTpiApprovalDetailAdapter;
+import com.fieldmobility.igl.Helper.CommonUtils;
 import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.Model.RiserTpiListingModel;
@@ -74,6 +75,7 @@ public class RiserTpiApprovalDetailActivity extends AppCompatActivity {
         });
         rv_detail = findViewById(R.id.rv_detail);
         iv_one = findViewById(R.id.iv_one);
+
         iv_two = findViewById(R.id.iv_two);
         iv_three = findViewById(R.id.iv_three);
         rg_approve = findViewById(R.id.rg_approve);
@@ -122,10 +124,36 @@ public class RiserTpiApprovalDetailActivity extends AppCompatActivity {
             iv_three.setVisibility(View.VISIBLE);
             iv_two.setVisibility(View.VISIBLE);
             iv_one.setVisibility(View.VISIBLE);
+            try {
+                Picasso.with(RiserTpiApprovalDetailActivity.this).load(imagelist.get(0)).into(iv_one);
+                iv_one.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        CommonUtils.showZoomImageView(RiserTpiApprovalDetailActivity.this,imagelist.get(0));
+                    }
+                });
 
-            Picasso.with(RiserTpiApprovalDetailActivity.this).load(imagelist.get(0)).into(iv_one);
-            Picasso.with(RiserTpiApprovalDetailActivity.this).load(imagelist.get(1)).into(iv_two);
-            Picasso.with(RiserTpiApprovalDetailActivity.this).load(imagelist.get(2)).into(iv_three);
+                if (imagelist.get(1)!=null && !imagelist.get(1).isEmpty()){
+                    Picasso.with(RiserTpiApprovalDetailActivity.this).load(imagelist.get(1)).into(iv_two);
+                    iv_two.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            CommonUtils.showZoomImageView(RiserTpiApprovalDetailActivity.this,imagelist.get(1));
+                        }
+                    });
+                }
+                if (imagelist.get(2)!=null && !imagelist.get(2).isEmpty()) {
+                    Picasso.with(RiserTpiApprovalDetailActivity.this).load(imagelist.get(2)).into(iv_three);
+                    iv_three.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            CommonUtils.showZoomImageView(RiserTpiApprovalDetailActivity.this,imagelist.get(2));
+                        }
+                    });
+
+                }
+
+            }catch (Exception e){}
 
         }
 
