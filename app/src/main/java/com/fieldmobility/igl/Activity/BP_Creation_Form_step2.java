@@ -104,7 +104,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
     MaterialDialog materialDialog;
     ImageView id_imageView, address_imageView, customer_signature_imageview, owner_signature_imageview;
     Button customer_signature_button, id_button, address_button, viewpdf_button;
-    EditText owner_name, chequeno_edit, drawnon_edit, amount_edit;
+    EditText owner_name, chequeno_edit, drawnon_edit, amount_edit,et_total_floor;
     Button submit_button;
     TextView chequedate_edit, tv_pdf_path;
     SharedPrefs sharedPrefs;
@@ -148,8 +148,8 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
     String date_select;
     String emailPattern = "@[A-Z][a-z]+\\.+";
     ImageView adhar_owner_image, iv_cheque;
-    CheckBox check_undertaking_gpa, check_undertaking_owner, check_address_issue, check_multiple_floor;
-    String annexure_gpa = "No", annexure_owner = "No", annexure_address = "No", annexure_floor = "No";
+    CheckBox /*check_undertaking_gpa,*/ /*check_undertaking_owner,*/ check_address_issue, check_multiple_floor;
+    String /*annexure_gpa = "No",*/ /*annexure_owner = "No",*/ annexure_address = "No", annexure_floor = "No";
     LinearLayout ll_ownersig;
     Button owner_sign_button, btn_upload_cheque;
     User_bpData user_bpData;
@@ -164,6 +164,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         user_bpData = (User_bpData) getIntent().getSerializableExtra("data");
         Log.d("bpcreation", "oncreate");
         btn_upload_cheque = findViewById(R.id.btn_upload_cheque);
+        et_total_floor = findViewById(R.id.et_total_floor);
         lt_cheque_image = findViewById(R.id.lt_cheque_image);
         iv_cheque = findViewById(R.id.iv_cheque);
         chequeno_edit = findViewById(R.id.chequeno_edit);
@@ -187,10 +188,27 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         back = findViewById(R.id.back);
         checkBox_term_cond = findViewById(R.id.checkbox);
         checkbox_text = findViewById(R.id.checkbox_text);
-        check_undertaking_gpa = findViewById(R.id.undertaking_gpa);
-        check_undertaking_owner = findViewById(R.id.undertaking_owner);
+//        check_undertaking_gpa = findViewById(R.id.undertaking_gpa);
+//        check_undertaking_owner = findViewById(R.id.undertaking_owner);
         check_multiple_floor = findViewById(R.id.multiple_floor);
+        check_multiple_floor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                    et_total_floor.setVisibility(View.VISIBLE);
+                else
+                    et_total_floor.setVisibility(View.GONE);
+
+            }
+        });
         check_address_issue = findViewById(R.id.address_issue);
+        check_address_issue.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+              //TODO
+
+            }
+        });
         ll_ownersig = findViewById(R.id.ll_ownersig);
         owner_sign_button = findViewById(R.id.owner_signature_button);
 
@@ -290,6 +308,8 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         List<String> idProofList = new ArrayList<String>();
         idProofList.add("AADHAAR CARD");
         idProofList.add("DRIVING LICENCE");
+        idProofList.add("UNDERTAKING (GPA CASE)");
+        idProofList.add("UNDERTAKING (OWNER’s DEATH CASE)");
         idProofList.add("ANY OTHER");
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, idProofList);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -1266,6 +1286,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     params.put("Middle_Name", user_bpData.getIgl_middle_name());
                     params.put("Last_Name", user_bpData.getIgl_last_name());
                     params.put("Mobile_Number", user_bpData.getIgl_mobile_no());
+                    params.put("Alternate_Mobile_Number", user_bpData.getIgl_alternate_mobile_no());
                     params.put("Email_ID", user_bpData.getIgl_email_id());
                     params.put("Father_Name", user_bpData.getIgl_father_name());
                     params.put("Aadhaar_Number", user_bpData.getIgl_aadhaar_no());
@@ -1296,10 +1317,10 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     params.put("id", sharedPrefs.getUUID());
                     params.put("correspondingLanguage", "EN");
                     // params.put("SearchTerm",fullname.getText().toString().toUpperCase() );
-                    params.put("annexure_gpa", annexure_gpa);
+//                    params.put("annexure_gpa", annexure_gpa);
                     params.put("annexure_floor", annexure_floor);
                     params.put("annexure_address", annexure_address);
-                    params.put("annexure_owner", annexure_owner);
+//                    params.put("annexure_owner", annexure_owner);
                     params.put("block_type", user_bpData.getBlock_tower_type());
                     params.put("street_type", user_bpData.getStreet_road_type());
                     params.put("latitude", Latitude);
@@ -1339,10 +1360,10 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     Log.d("id", sharedPrefs.getUUID());
                     Log.d("correspondingLanguage", "EN");
                     // params.put("SearchTerm",fullname.getText().toString().toUpperCase() );
-                    Log.d("annexure_gpa", annexure_gpa);
+//                    Log.d("annexure_gpa", annexure_gpa);
                     Log.d("annexure_floor", annexure_floor);
                     Log.d("annexure_address", annexure_address);
-                    Log.d("annexure_owner", annexure_owner);
+//                    Log.d("annexure_owner", annexure_owner);
                     Log.d("block_type", user_bpData.getBlock_tower_type());
                     Log.d("street_type", user_bpData.getStreet_road_type());
                     Log.d("dma_agency", sharedPrefs.getUUID());
@@ -1416,18 +1437,18 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         } else {
             isDataValid = true;
         }
-        if (check_undertaking_owner.isChecked()) {
-            annexure_owner = "Yes";
-        }
+//        if (check_undertaking_owner.isChecked()) {
+//            annexure_owner = "Yes";
+//        }
         if (check_address_issue.isChecked()) {
             annexure_address = "Yes";
         }
         if (check_multiple_floor.isChecked()) {
             annexure_floor = "Yes";
         }
-        if (check_undertaking_gpa.isChecked()) {
-            annexure_gpa = "Yes";
-        }
+//        if (check_undertaking_gpa.isChecked()) {
+//            annexure_gpa = "Yes";
+//        }
         return isDataValid;
     }
 

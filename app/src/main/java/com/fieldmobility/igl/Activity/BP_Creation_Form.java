@@ -110,7 +110,7 @@ public class BP_Creation_Form extends Activity implements AdapterView.OnItemSele
 
     MaterialDialog materialDialog;
     EditText fullname, middle_name, lastname, mobile_no, email_id, aadhaar_no, landmark,et_father_name,
-            house_no, pincode, lpg_distributer, lpg_consumer, unique_id_no;
+            house_no, pincode, lpg_distributer, lpg_consumer, unique_id_no,alt_mobile_no;
     Button submit_button;
     SharedPrefs sharedPrefs;
     ImageView back;
@@ -380,6 +380,7 @@ public class BP_Creation_Form extends Activity implements AdapterView.OnItemSele
                     userBpData.setIgl_middle_name(middle_name.getText().toString());
                     userBpData.setIgl_last_name(lastname.getText().toString());
                     userBpData.setIgl_mobile_no(mobile_no.getText().toString());
+                    userBpData.setIgl_alternate_mobile_no(alt_mobile_no.getText().toString());
                     userBpData.setIgl_email_id(email_id.getText().toString());
                     userBpData.setIgl_aadhaar_no(aadhaar_no.getText().toString());
                     userBpData.setIgl_father_name(et_father_name.getText().toString());
@@ -874,6 +875,7 @@ public class BP_Creation_Form extends Activity implements AdapterView.OnItemSele
         middle_name = findViewById(R.id.middle_name);
         lastname = findViewById(R.id.lastname);
         mobile_no = findViewById(R.id.mobile_no);
+        alt_mobile_no = findViewById(R.id.alt_mobile_no);
         email_id = findViewById(R.id.email_id);
         aadhaar_no = findViewById(R.id.aadhaar_no);
         et_father_name = findViewById(R.id.et_father_name);

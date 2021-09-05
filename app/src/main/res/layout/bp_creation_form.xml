@@ -131,22 +131,40 @@
                     android:textSize="@dimen/_10sdp" />
 
                 <EditText
-                    android:id="@+id/email_id"
+                    android:id="@+id/alt_mobile_no"
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_25sdp"
-                    android:layout_marginLeft="@dimen/_3sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
                     android:layout_weight="1"
                     android:background="@drawable/shape_blue_border"
-                    android:hint="Email Id"
-                    android:inputType="textCapCharacters"
+                    android:hint="Alternate Mobile No"
+                    android:inputType="number"
+                    android:maxLength="10"
                     android:paddingLeft="@dimen/_5sdp"
                     android:singleLine="true"
-                    android:textSize="@dimen/_10sdp"
+                    android:textSize="@dimen/_10sdp" />
 
-                    />
+
 
             </LinearLayout>
+            <EditText
+                android:id="@+id/email_id"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+
+                android:layout_marginLeft="@dimen/_3sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:background="@drawable/shape_blue_border"
+                android:hint="Email Id"
+                android:inputType="textCapCharacters"
+                android:paddingLeft="@dimen/_5sdp"
+                android:singleLine="true"
+                android:textSize="@dimen/_10sdp"
+
+                />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
