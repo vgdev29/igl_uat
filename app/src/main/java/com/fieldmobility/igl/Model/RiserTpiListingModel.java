@@ -143,6 +143,19 @@ public class RiserTpiListingModel {
         @Expose
         private  String iv2 ;
 
+        @SerializedName("riser_type")
+        @Expose
+        private  String riser_type ;
+
+
+        public String getRiser_type() {
+            return riser_type;
+        }
+
+        public void setRiser_type(String riser_type) {
+            this.riser_type = riser_type;
+        }
+
         public String getRl12() {
             return rl12;
         }

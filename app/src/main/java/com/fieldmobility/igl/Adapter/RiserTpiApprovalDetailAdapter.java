@@ -178,6 +178,10 @@ public class RiserTpiApprovalDetailAdapter extends RecyclerView.Adapter<RiserTpi
                 holder.tv_key.setText("Isolation Value G2:");
                 holder.tv_value.setText(data.getIv2());
                 break;
+            case 31:
+                holder.tv_key.setText("Riser Type:");
+                holder.tv_value.setText(data.getRiser_type());
+                break;
 
         }
     }
@@ -185,7 +189,7 @@ public class RiserTpiApprovalDetailAdapter extends RecyclerView.Adapter<RiserTpi
 
     @Override
     public int getItemCount() {
-        return 30;
+        return 32;
     }
 
     class MyHolder extends RecyclerView.ViewHolder {

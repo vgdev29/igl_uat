@@ -37,7 +37,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.fieldmobility.igl.Helper.AppController;
-import com.fieldmobility.igl.Helper.CommonUtils;
 import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.MainActivity;
@@ -96,7 +95,7 @@ public class Login_Activity extends Activity {
         login_layout = findViewById(R.id.login_layout);
         permission_layout = findViewById(R.id.permission_layout);
         allow_permission = findViewById(R.id.permission_allow_button);
-        if (CommonUtils.isDebugBuild){
+        if (Constants.isDebugBuild){
             findLoginDummyViews();
         }
         Layout_ID();

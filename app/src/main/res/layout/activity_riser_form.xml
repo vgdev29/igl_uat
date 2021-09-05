@@ -1027,7 +1027,7 @@
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_weight="1"
                         android:padding="@dimen/_1sdp"
-                        android:text="Total IB"
+                        android:text="Total IV"
                         android:textColor="@color/dark_gray"
                         android:textSize="@dimen/_10sdp" />
 
