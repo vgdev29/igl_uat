@@ -1,62 +1,61 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         android:background="@color/rad"
         android:orientation="horizontal">
+
         <ImageView
             android:id="@+id/back"
             android:layout_width="@dimen/_23sdp"
             android:layout_height="@dimen/_23sdp"
             android:layout_gravity="center"
-            android:background="@drawable/back"
             android:layout_margin="@dimen/_3sdp"
-            />
+            android:background="@drawable/back" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:layout_marginRight="@dimen/_30sdp"
             android:gravity="center"
             android:text="Form 2"
+            android:textColor="@color/white"
             android:textSize="@dimen/_14sdp"
-            android:textStyle="bold"
-            android:layout_marginRight="@dimen/_30sdp"
-            android:textColor="@color/white"/>
+            android:textStyle="bold" />
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/bottomLayout"
         android:layout_marginTop="@dimen/_40sdp"
-        android:scrollbars="none"
-        android:layout_above="@+id/bottomLayout">
+        android:scrollbars="none">
 
         <LinearLayout
-            android:focusable="true"
-            android:focusableInTouchMode="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/_5sdp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:orientation="vertical">
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_5sdp"
-                android:gravity="center"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:background="@color/peach_light"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:text="Type of Ownership"
                 android:textColor="@color/black"
-                android:textStyle="bold"
                 android:textSize="@dimen/_14sdp"
-                android:text="Type of Ownership" />
+                android:textStyle="bold" />
 
             <RadioGroup
                 android:id="@+id/radioGroup"
@@ -71,94 +70,108 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="Owner" />
+                    android:text="Owner"
+                    android:textSize="@dimen/_10sdp" />
 
                 <androidx.appcompat.widget.AppCompatRadioButton
                     android:id="@+id/rents"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="Rented/Family Member" />
+                    android:text="Rented/Family Member"
+                    android:textSize="@dimen/_10sdp" />
 
             </RadioGroup>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_5sdp"
+                android:text="If rented or otherwise, please submit NOC*(to be issues by the lawful owner of the proprty) OR the valid rent agreement with the lawful owner of the premise."
                 android:textColor="@color/black"
-                android:textStyle="italic"
                 android:textSize="@dimen/_7sdp"
-                android:text="If rented or otherwise, please submit NOC*(to be issues by the lawful owner of the proprty) OR the valid rent agreement with the lawful owner of the premise." />
+                android:textStyle="italic" />
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_5sdp"
-                android:gravity="center"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:background="@color/peach_light"
-                android:textColor="@color/black"
-                android:textStyle="bold"
                 android:layout_weight="1"
+                android:background="@color/peach_light"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:text="Annexure"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_14sdp"
-                android:text="Annexure" />
+                android:textStyle="bold" />
 
             <CheckBox
                 android:id="@+id/multiple_floor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_25sdp"
-                android:text="Ownership of multiple floors"
-                />
+                android:text="Ownership of multiple floors" />
+
             <EditText
                 android:id="@+id/et_total_floor"
-                android:visibility="gone"
-                android:layout_marginHorizontal="@dimen/_50sdp"
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="40.0dip"
-                android:hint="Total Floor"
-                android:paddingLeft="@dimen/_5sdp"
-                android:background="@drawable/shape_blue_border"
-                android:textSize="@dimen/_10sdp"
-                android:inputType="number"
+                android:layout_marginHorizontal="@dimen/_50sdp"
                 android:layout_marginVertical="@dimen/_5sdp"
-                android:singleLine="true" />
+                android:background="@drawable/background_input_mandatory"
+                android:hint="Total Floor"
+                android:inputType="number"
+                android:paddingLeft="@dimen/_5sdp"
+                android:singleLine="true"
+                android:textSize="@dimen/_10sdp"
+                android:visibility="gone" />
 
-<!--            <CheckBox-->
-<!--                android:id="@+id/undertaking_gpa"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginHorizontal="@dimen/_25sdp"-->
-<!--                android:text="Undertaking (GPA Case)"-->
-<!--                />-->
-<!--            <CheckBox-->
-<!--                android:id="@+id/undertaking_owner"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginHorizontal="@dimen/_25sdp"-->
-<!--                android:text="Undertaking (Owner’s Death Case)"-->
-<!--                />-->
+            <!--            <CheckBox-->
+            <!--                android:id="@+id/undertaking_gpa"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginHorizontal="@dimen/_25sdp"-->
+            <!--                android:text="Undertaking (GPA Case)"-->
+            <!--                />-->
+            <!--            <CheckBox-->
+            <!--                android:id="@+id/undertaking_owner"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginHorizontal="@dimen/_25sdp"-->
+            <!--                android:text="Undertaking (Owner’s Death Case)"-->
+            <!--                />-->
             <CheckBox
                 android:id="@+id/address_issue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_25sdp"
-                android:text="Complete Address Issue case"
-                />
+                android:text="Complete Address Issue case" />
+
+            <EditText
+                android:id="@+id/et_address"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_marginHorizontal="@dimen/_50sdp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:background="@drawable/background_input_mandatory"
+                android:gravity="top"
+                android:hint="Enter Complete Ownership Address"
+                android:padding="010dp"
+                android:textSize="@dimen/_10sdp"
+                android:visibility="gone" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_5sdp"
-                android:gravity="center"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:background="@color/peach_light"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:text="Type of Payment"
                 android:textColor="@color/black"
-                android:textStyle="bold"
                 android:textSize="@dimen/_14sdp"
-                android:text="Type of Payment" />
+                android:textStyle="bold" />
 
             <RadioGroup
                 android:id="@+id/rg_payment_type"
@@ -173,134 +186,142 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="Offline" />
+                    android:text="Offline"
+                    android:textSize="@dimen/_10sdp" />
 
                 <androidx.appcompat.widget.AppCompatRadioButton
                     android:id="@+id/rb_online"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="Online" />
+                    android:text="Online"
+                    android:textSize="@dimen/_10sdp" />
 
             </RadioGroup>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_5sdp"
-                android:gravity="center"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:background="@color/peach_light"
-                android:textColor="@color/black"
-                android:textStyle="bold"
                 android:layout_weight="1"
+                android:background="@color/peach_light"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:text="Payment Detail"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_14sdp"
-                android:text="Payment Detail" />
+                android:textStyle="bold" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2">
+
                 <EditText
                     android:id="@+id/chequeno_edit"
                     android:layout_width="fill_parent"
                     android:layout_height="40.0dip"
-                    android:hint="Cheque No"
-                    android:layout_weight="1"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_3sdp"
-                    android:paddingLeft="@dimen/_5sdp"
+                    android:layout_weight="1"
                     android:background="@drawable/shape_blue_border"
-                    android:textSize="@dimen/_10sdp"
-                    android:maxLength="6"
+                    android:hint="Cheque No"
                     android:inputType="number"
-                    android:singleLine="true" />
+                    android:maxLength="6"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_10sdp" />
+
                 <TextView
                     android:id="@+id/chequedate_edit"
                     android:layout_width="fill_parent"
                     android:layout_height="40.0dip"
-                    android:hint="Cheque Date"
                     android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
-                    android:inputType="textEmailAddress"
-                    android:layout_weight="1"
-
-                    android:paddingLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_10sdp"
                     android:layout_marginLeft="@dimen/_3sdp"
                     android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
                     android:background="@drawable/shape_blue_border"
+
+                    android:gravity="center_vertical"
+                    android:hint="Cheque Date"
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="@dimen/_5sdp"
                     android:singleLine="true"
-                    />
+                    android:textSize="@dimen/_10sdp" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2">
+
                 <EditText
                     android:id="@+id/drawnon_edit"
                     android:layout_width="fill_parent"
                     android:layout_height="40.0dip"
-                    android:hint="Drawn On"
-                    android:layout_weight="1"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_3sdp"
-                    android:paddingLeft="@dimen/_5sdp"
+                    android:layout_weight="1"
                     android:background="@drawable/shape_blue_border"
-                    android:textSize="@dimen/_10sdp"
-                    android:maxLength="17"
+                    android:hint="Drawn On"
                     android:inputType="textCapCharacters"
-                    android:singleLine="true" />
+                    android:maxLength="17"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_10sdp" />
+
                 <EditText
                     android:id="@+id/amount_edit"
                     android:layout_width="fill_parent"
                     android:layout_height="40.0dip"
-                    android:hint="Amount"
-                    android:inputType="number"
-                    android:layout_weight="1"
-                    android:paddingLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_10sdp"
                     android:layout_marginLeft="@dimen/_3sdp"
                     android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
                     android:background="@drawable/shape_blue_border"
+                    android:hint="Amount"
+                    android:inputType="number"
+                    android:paddingLeft="@dimen/_5sdp"
                     android:singleLine="true"
-                    />
+                    android:textSize="@dimen/_10sdp" />
             </LinearLayout>
+
             <LinearLayout
+                android:id="@+id/lt_cheque_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/lt_cheque_image"
-                android:paddingHorizontal="@dimen/_10sdp"
                 android:layout_marginVertical="@dimen/value_10dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/_10sdp">
+
                 <ImageView
                     android:id="@+id/iv_cheque"
-                    android:layout_centerVertical="true"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_80sdp"
-                    android:padding="@dimen/_1sdp"
-                    android:scaleType="fitXY"
-                    android:layout_weight="1"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
                     android:background="@drawable/shape_blue_border"
+                    android:padding="@dimen/_1sdp"
+                    android:scaleType="fitXY"
                     android:text="PAN Card" />
+
                 <Button
                     android:id="@+id/btn_upload_cheque"
-                    android:background="#979797"
                     android:layout_width="@dimen/_70sdp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:background="#979797"
+                    android:gravity="center"
                     android:paddingVertical="8dp"
-                    android:textSize="@dimen/_10sdp"
                     android:text="Upload Cheque"
 
-                    android:gravity="center"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp" />
 
 
             </LinearLayout>
@@ -309,64 +330,69 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_5sdp"
-                android:gravity="center"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:background="@color/peach_light"
-                android:textColor="@color/black"
-                android:textStyle="bold"
                 android:layout_weight="1"
+                android:background="@color/peach_light"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:text="Proof Detail"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_14sdp"
-                android:text="Proof Detail" />
-        <LinearLayout
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_width="match_parent"
+                android:textStyle="bold" />
 
-            android:orientation="horizontal"
-            android:weightSum="1"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_26sdp"
-                android:padding="@dimen/_5sdp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_weight=".5"
-                android:gravity="center_vertical"
-               android:layout_gravity="center_vertical"
-                android:textSize="@dimen/_10sdp"
-                android:text="Type of Id Proof" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_26sdp"
-                android:padding="@dimen/_5sdp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_weight=".5"
-                android:gravity="center_vertical"
-                android:layout_gravity="center_vertical"
-                android:textSize="@dimen/_10sdp"
-                android:text="Type of Address Proof" />
-
-        </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="1"
+                android:layout_height="wrap_content"
+
                 android:layout_marginTop="@dimen/_5sdp"
-                android:layout_height="wrap_content">
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_26sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight=".5"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/_5sdp"
+                    android:text="Type of Id Proof"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_26sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight=".5"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/_5sdp"
+                    android:text="Type of Address Proof"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:orientation="horizontal"
+                android:weightSum="1">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_28sdp"
-                    android:orientation="horizontal"
                     android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
-                    android:weightSum="1"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_5sdp"
-                    android:background="@drawable/background_input_mandatory"
-                    android:layout_weight=".5">
+                    android:layout_weight=".5"
+                    android:background="@drawable/shape_blue_border"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
                     <Spinner
                         android:id="@+id/spinner1"
                         android:layout_width="@dimen/_130sdp"
@@ -374,29 +400,31 @@
                         android:layout_margin="3dp"
                         android:layout_weight=".7"
                         android:background="@drawable/shape_white"
-                        android:dropDownSelector="@null"
-                        />
+                        android:dropDownSelector="@null" />
+
                     <ImageView
 
-                        android:layout_centerVertical="true"
                         android:layout_width="@dimen/_11sdp"
                         android:layout_height="@dimen/_11sdp"
+                        android:layout_centerVertical="true"
                         android:layout_gravity="center"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:background="@drawable/dropdown"
                         android:text="PAN Card" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_28sdp"
-                    android:orientation="horizontal"
                     android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
-                    android:weightSum="1"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight=".5"
                     android:background="@drawable/background_input_mandatory"
-                    android:layout_weight=".5">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
                     <Spinner
                         android:id="@+id/spinner2"
                         android:layout_width="@dimen/_130sdp"
@@ -404,13 +432,13 @@
                         android:layout_margin="3dp"
                         android:layout_weight=".7"
                         android:background="@drawable/shape_white"
-                        android:dropDownSelector="@null"
-                        />
+                        android:dropDownSelector="@null" />
+
                     <ImageView
 
-                        android:layout_centerVertical="true"
                         android:layout_width="@dimen/_11sdp"
                         android:layout_height="@dimen/_11sdp"
+                        android:layout_centerVertical="true"
                         android:layout_gravity="center"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:background="@drawable/dropdown" />
@@ -420,228 +448,231 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:orientation="horizontal"
-                android:weightSum="2"
-                android:layout_marginTop="@dimen/_5sdp">
+                android:weightSum="2">
 
                 <ImageView
                     android:id="@+id/adhar_image"
-                    android:layout_centerVertical="true"
                     android:layout_width="@dimen/_140sdp"
                     android:layout_height="@dimen/_80sdp"
-                    android:padding="@dimen/_1sdp"
-                    android:layout_weight="1"
-                    android:scaleType="fitXY"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
                     android:background="@drawable/shape_blue_border"
+                    android:padding="@dimen/_1sdp"
+                    android:scaleType="fitXY"
                     android:text="PAN Card" />
+
                 <ImageView
                     android:id="@+id/address_image"
-                    android:layout_centerVertical="true"
                     android:layout_width="@dimen/_140sdp"
                     android:layout_height="@dimen/_80sdp"
-                    android:padding="@dimen/_1sdp"
-                    android:scaleType="fitXY"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_5sdp"
                     android:layout_weight="1"
-                    android:background="@drawable/shape_blue_border" />
+                    android:background="@drawable/shape_blue_border"
+                    android:padding="@dimen/_1sdp"
+                    android:scaleType="fitXY" />
+
                 <TextView
                     android:id="@+id/tv_pdf_path"
                     android:layout_width="@dimen/_140sdp"
                     android:layout_height="@dimen/_40sdp"
-                    android:paddingHorizontal="@dimen/_6sdp"
-                    android:gravity="center"
-                    android:visibility="gone"
-                    android:hint="Select file to upload"
+                    android:layout_gravity="bottom"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_5sdp"
                     android:layout_weight="1"
-                    android:layout_gravity="bottom"
-                    android:background="@drawable/shape_blue_border" />
+                    android:background="@drawable/shape_blue_border"
+                    android:gravity="center"
+                    android:hint="Select file to upload"
+                    android:paddingHorizontal="@dimen/_6sdp"
+                    android:visibility="gone" />
 
 
             </LinearLayout>
 
 
-
-
-
             <LinearLayout
-                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:orientation="horizontal"
-                android:weightSum="2"
-                android:layout_height="wrap_content">
+                android:weightSum="2">
 
                 <Button
                     android:id="@+id/adhar_button"
-                    android:background="@color/colorPrimary"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_25sdp"
                     android:layout_gravity="center"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="ID Proof"
-                    android:gravity="center"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:layout_weight="1"
-                    android:textColor="@color/white" />
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:text="ID Proof"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp" />
 
-                    <Button
-                        android:id="@+id/address_button"
-                        android:background="@color/colorPrimary"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_25sdp"
-                        android:layout_gravity="center"
-                        android:textSize="@dimen/_10sdp"
-                        android:text="Address Proof"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_marginRight="@dimen/_10sdp"
-                        android:textColor="@color/white" />
+                <Button
+                    android:id="@+id/address_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:text="Address Proof"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp" />
 
 
             </LinearLayout>
 
 
             <LinearLayout
-                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_width="match_parent"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_5sdp">
 
                 <ImageView
                     android:id="@+id/signature_image"
-                    android:layout_centerVertical="true"
                     android:layout_width="@dimen/_140sdp"
                     android:layout_height="@dimen/_80sdp"
-                    android:padding="@dimen/_1sdp"
-                    android:scaleType="fitXY"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:background="@drawable/shape_blue_border"
-                    />
+                    android:padding="@dimen/_1sdp"
+                    android:scaleType="fitXY" />
 
                 <LinearLayout
 
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center|right"
                     android:gravity="right"
-                    android:paddingRight="@dimen/_5sdp"
-                    android:layout_height="match_parent">
+                    android:paddingRight="@dimen/_5sdp">
+
                     <Button
                         android:id="@+id/signature_button"
-                        android:background="@color/colorPrimary"
                         android:layout_width="@dimen/_120sdp"
                         android:layout_height="@dimen/_26sdp"
                         android:layout_gravity="center"
-                        android:textSize="@dimen/_10sdp"
-                        android:text="Customer Signature"
+                        android:background="@color/colorPrimary"
                         android:gravity="center"
-                        android:textColor="@color/white" />
+                        android:text="Customer Signature"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10sdp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ll_ownersig"
-                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_5sdp"
-                android:visibility="gone"
                 android:orientation="vertical"
-                android:layout_height="wrap_content">
+                android:visibility="gone">
 
                 <LinearLayout
 
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:paddingRight="@dimen/_5sdp"
-                    android:weightSum="2"
-                    android:layout_height="wrap_content">
+                    android:weightSum="2">
+
                     <ImageView
                         android:id="@+id/owner_signature_image"
-                        android:layout_centerVertical="true"
                         android:layout_width="@dimen/_140sdp"
                         android:layout_height="@dimen/_80sdp"
-                        android:padding="@dimen/_1sdp"
-                        android:scaleType="fitXY"
-
+                        android:layout_centerVertical="true"
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:background="@drawable/shape_blue_border"
-                        />
+
+                        android:padding="@dimen/_1sdp"
+                        android:scaleType="fitXY" />
+
                     <Button
                         android:id="@+id/owner_signature_button"
-                        android:background="@color/colorPrimary"
                         android:layout_width="@dimen/_120sdp"
                         android:layout_height="@dimen/_26sdp"
                         android:layout_gravity="center"
-                         android:layout_marginStart="@dimen/_30sdp"
-                        android:textSize="@dimen/_10sdp"
-                        android:text="Owner Signature"
+                        android:layout_marginStart="@dimen/_30sdp"
+                        android:background="@color/colorPrimary"
                         android:gravity="center"
-                        android:textColor="@color/white" />
+                        android:text="Owner Signature"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10sdp" />
                 </LinearLayout>
+
                 <EditText
                     android:id="@+id/owner_name"
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_29sdp"
-                    android:inputType="textPersonName"
-                    android:background="@drawable/background_input_mandatory"
-                    android:maxLength="30"
-                    android:hint="Owner Name"
-                    android:textSize="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginLeft="@dimen/_25sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:background="@drawable/background_input_mandatory"
+                    android:hint="Owner Name"
+                    android:inputType="textPersonName"
+                    android:maxLength="30"
                     android:paddingLeft="@dimen/_5sdp"
                     android:singleLine="true"
-                    />
+                    android:textSize="@dimen/_10sdp" />
             </LinearLayout>
 
 
-        <LinearLayout
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:layout_height="wrap_content">
-            <CheckBox
-                android:id="@+id/checkbox"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal"
+                android:weightSum="2">
 
-                android:textColor="@color/black" />
-            <TextView
-                android:id="@+id/checkbox_text"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_26sdp"
-                android:padding="@dimen/_5sdp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_weight=".5"
-                android:gravity="center_vertical"
-                android:layout_gravity="center_vertical"
-                android:textSize="@dimen/_10sdp"
-                android:text="Terms and Condition" />
-        </LinearLayout>
+                <CheckBox
+                    android:id="@+id/checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    android:id="@+id/checkbox_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_26sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight=".5"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/_5sdp"
+                    android:text="Terms and Condition"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
             <RelativeLayout
-                android:padding="@dimen/_10sdp"
-                 android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true">
+                android:layout_alignParentBottom="true"
+                android:padding="@dimen/_10sdp"
+                android:visibility="gone">
 
                 <Button
-                    android:layout_alignParentRight="true"
                     android:id="@+id/viewpdf_button"
-                    android:background="@color/colorPrimary"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_30sdp"
-                    android:textSize="@dimen/_10sdp"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/colorPrimary"
                     android:text="@string/pdf"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp" />
 
             </RelativeLayout>
 
@@ -651,24 +682,23 @@
 
 
     <RelativeLayout
-        android:padding="@dimen/_10sdp"
         android:id="@+id/bottomLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
-
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/_10sdp">
 
 
         <Button
-            android:layout_alignParentRight="true"
             android:id="@+id/submit_button"
-            android:background="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_30sdp"
+            android:layout_alignParentRight="true"
+            android:background="@color/colorPrimary"
 
-            android:textSize="@dimen/_10sdp"
             android:text="@string/submit"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10sdp" />
 
     </RelativeLayout>
 

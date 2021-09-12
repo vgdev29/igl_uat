@@ -104,7 +104,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
     MaterialDialog materialDialog;
     ImageView id_imageView, address_imageView, customer_signature_imageview, owner_signature_imageview;
     Button customer_signature_button, id_button, address_button, viewpdf_button;
-    EditText owner_name, chequeno_edit, drawnon_edit, amount_edit,et_total_floor;
+    EditText owner_name, chequeno_edit, drawnon_edit, amount_edit,et_total_floor,et_address;
     Button submit_button;
     TextView chequedate_edit, tv_pdf_path;
     SharedPrefs sharedPrefs;
@@ -165,6 +165,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         Log.d("bpcreation", "oncreate");
         btn_upload_cheque = findViewById(R.id.btn_upload_cheque);
         et_total_floor = findViewById(R.id.et_total_floor);
+        et_address = findViewById(R.id.et_address);
         lt_cheque_image = findViewById(R.id.lt_cheque_image);
         iv_cheque = findViewById(R.id.iv_cheque);
         chequeno_edit = findViewById(R.id.chequeno_edit);
@@ -205,7 +206,10 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         check_address_issue.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-              //TODO
+                if (isChecked)
+                    et_address.setVisibility(View.VISIBLE);
+                else
+                    et_address.setVisibility(View.GONE);
 
             }
         });
@@ -1325,6 +1329,8 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     params.put("street_type", user_bpData.getStreet_road_type());
                     params.put("latitude", Latitude);
                     params.put("longitude", Longitude);
+                    params.put("ownership_multi_floor", et_total_floor.getText().toString());
+                    params.put("ownership_complete_address", et_address.getText().toString());
                     // params.put("dma_agency",  sharedPrefs.getUUID());
 
                     Log.d("First_Name", user_bpData.getIgl_first_name());
@@ -1418,10 +1424,19 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
     private boolean validateData() {
         boolean isDataValid = true;
 
-        if (image_path_id == null) {
+      /*  if (image_path_id == null) {
             isDataValid = false;
             Toast.makeText(BP_Creation_Form_step2.this, "Please Select Image ID Proof", Toast.LENGTH_SHORT).show();
-        } else if (image_path_address == null && pdf_path == null) {
+        } */
+        if (check_multiple_floor.isChecked() && et_total_floor.getText().length()==0){
+            isDataValid = false;
+            Toast.makeText(BP_Creation_Form_step2.this, "Please Enter Total Floors", Toast.LENGTH_SHORT).show();
+        }
+       else if (check_address_issue.isChecked() && et_address.getText().length()==0){
+            isDataValid = false;
+            Toast.makeText(BP_Creation_Form_step2.this, "Please Enter Ownership Address", Toast.LENGTH_SHORT).show();
+        }
+        else if (image_path_address == null && pdf_path == null) {
             isDataValid = false;
             Toast.makeText(BP_Creation_Form_step2.this, "Please Select Image Address Proof", Toast.LENGTH_SHORT).show();
         } else if (customer_signature_path == null) {
