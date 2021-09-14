@@ -117,18 +117,18 @@ public class NgUserListAdapter extends RecyclerView.Adapter<NgUserListAdapter.Ng
         //            0 is for low color is green
         if (!TextUtils.isEmpty(nguserListModel.getPriority())){
             if (nguserListModel.getPriority().equalsIgnoreCase("2")){
-                holder.relativeLayout.setBackgroundColor(Color.parseColor("#97FF7500"));
+                holder.relativeLayout.setBackgroundColor(Color.parseColor("#90EE90"));
                 holder.tv_priority.setTextColor(Color.BLACK);
-                holder.tv_priority.setText("High Priority");
+                holder.tv_priority.setText("Intrested Customer");
 
             }else if (nguserListModel.getPriority().equalsIgnoreCase("1")){
-                holder.relativeLayout.setBackgroundColor(Color.parseColor("#59FFEB3B"));
+                holder.relativeLayout.setBackgroundColor(Color.parseColor("#90EE90"));
                 holder.tv_priority.setTextColor(Color.BLACK);
-                holder.tv_priority.setText("Moderate Priority");
+                holder.tv_priority.setText("Intrested Customer");
             }else if (nguserListModel.getPriority().equalsIgnoreCase("0")){
-                holder.relativeLayout.setBackgroundColor(Color.parseColor("#FFFAFA"));//
+                holder.relativeLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));//
                 holder.tv_priority.setTextColor(Color.BLACK);
-                holder.tv_priority.setText("Low Priority");
+                holder.tv_priority.setText("Normal Customer");
             }
         }
 

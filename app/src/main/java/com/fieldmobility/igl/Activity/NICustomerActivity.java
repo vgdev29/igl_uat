@@ -450,13 +450,7 @@ public class NICustomerActivity extends AppCompatActivity implements View.OnClic
             et_name.setError("Please Enter Name");
             return  isValidData;
         }
-        if (et_mob.getText().length() == 10) isValidData = true;
-        else {
-            isValidData = false;
-            Toast.makeText(NICustomerActivity.this, "Please Enter Valid Mobile No.", Toast.LENGTH_SHORT).show();
-            et_mob.setError("Please Enter Valid Mobile No.");
-            return  isValidData;
-        }
+
         if (!selectedCityName.isEmpty()) isValidData = true;
         else {
             isValidData = false;
@@ -486,13 +480,6 @@ public class NICustomerActivity extends AppCompatActivity implements View.OnClic
         else {
             isValidData = false;
             Toast.makeText(NICustomerActivity.this, "Please Select Reason", Toast.LENGTH_SHORT).show();
-            return  isValidData;
-        }
-        if (et_remarks.getText().length() >0) isValidData = true;
-        else {
-            isValidData = false;
-            Toast.makeText(NICustomerActivity.this, "Please Enter Remarks", Toast.LENGTH_SHORT).show();
-            et_remarks.setError("Please Enter Remarks");
             return  isValidData;
         }
 

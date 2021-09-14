@@ -63,6 +63,7 @@ public class NICListing extends AppCompatActivity implements View.OnClickListene
                     }
 
                 } catch (Exception e) {
+                    materialDialog.dismiss();
                     e.printStackTrace();
                 }
             }
@@ -71,6 +72,7 @@ public class NICListing extends AppCompatActivity implements View.OnClickListene
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                materialDialog.dismiss();
                 error.printStackTrace();
             }
         });

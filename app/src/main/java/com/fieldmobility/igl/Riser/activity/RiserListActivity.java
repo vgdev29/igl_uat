@@ -12,6 +12,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.DefaultRetryPolicy;
@@ -44,12 +45,14 @@ public class RiserListActivity extends AppCompatActivity implements View.OnClick
     SharedPrefs sharedPrefs;
     RiserListingModel dataModel;
     RiserListAdapter adapter;
+    TextView listcount ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_riser__list);
         sharedPrefs = new SharedPrefs(this);
+        listcount = findViewById(R.id.list_count);
         findViews();
         loadListData();
     }
@@ -70,6 +73,7 @@ public class RiserListActivity extends AppCompatActivity implements View.OnClick
                 try {
 //                    Type userListType = new TypeToken<ArrayList<RiserListingModel>>(){}.getType();
                     dataModel = new Gson().fromJson(response, RiserListingModel.class);
+                    listcount.setText("Count \n"+dataModel.getBpDetails().getUsers().size());
                     if (dataModel != null) {
                         initViews(dataModel);
                     }

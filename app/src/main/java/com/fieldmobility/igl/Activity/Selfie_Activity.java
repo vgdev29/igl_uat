@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.fieldmobility.igl.Helper.ScreenshotUtils;
 import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.R;
 
@@ -139,9 +140,11 @@ public class Selfie_Activity  extends Activity {
                         String path = getExternalStorageDirectory().getAbsolutePath() ;
                         f.delete();
                         OutputStream outFile = null;
-                        File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
+                        File file = new File(path, String.valueOf(System.currentTimeMillis())+"_"+sharedPrefs.getUUID() + ".jpg");
                         Log.e("Camera_Path++",file.toString());
-                        Camera_Path =file.toString();
+                       // Camera_Path =file.toString();
+                        File saveFile = ScreenshotUtils.getMainDirectoryName(this);
+                        Camera_Path = ScreenshotUtils.store(bitmap, String.valueOf(System.currentTimeMillis())+"_"+sharedPrefs.getUUID()  + ".jpg", saveFile).toString();
 
                         try {
                             outFile = new FileOutputStream(file);

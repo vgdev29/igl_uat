@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
@@ -71,7 +73,7 @@ public class RFC_Adapter extends RecyclerView.Adapter<RFC_Adapter.ViewHolder> im
     }
 
     @Override
-    public void onBindViewHolder(RFC_Adapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(RFC_Adapter.ViewHolder holder,  int position) {
         final Bp_No_Item Bp_No_array = bp_no_list_array.get(position);
         if (Bp_No_array.getIgl_rfcvendor_assigndate().equalsIgnoreCase("null")||Bp_No_array.getIgl_rfcvendor_assigndate().equals(null))
         {
@@ -130,6 +132,19 @@ public class RFC_Adapter extends RecyclerView.Adapter<RFC_Adapter.ViewHolder> im
                 Log.d(log,"igl job else = "+Bp_No_array.getJobFlag());
             }
 
+        }
+
+        if (!TextUtils.isEmpty(Bp_No_array.getAmount())){
+            if (Bp_No_array.getAmount().equalsIgnoreCase("2")){
+                holder.relativeLayout.setBackgroundColor(Color.parseColor("#90EE90"));
+                holder.tv_priority.setTextColor(Color.BLACK);
+                holder.tv_priority.setText("Intrested Customer");
+
+            }else if (Bp_No_array.getAmount().equalsIgnoreCase("0")){
+                holder.relativeLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                holder.tv_priority.setTextColor(Color.BLACK);
+                holder.tv_priority.setText("Normal Customer");
+            }
         }
 
         holder.info_button.setOnClickListener(new View.OnClickListener() {
@@ -317,10 +332,11 @@ public class RFC_Adapter extends RecyclerView.Adapter<RFC_Adapter.ViewHolder> im
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;
-        public TextView bp_no_text,user_name_text,address_text,date_text,status_text,mobile_text,descreption_text,cont_id;
+        public TextView bp_no_text,user_name_text,address_text,date_text,status_text,mobile_text,descreption_text,cont_id,tv_priority;
         public CardView linearLayout;
         public Button info_button,jobstart_button;
         ImageButton refresh_data;
+        RelativeLayout relativeLayout;
         public ViewHolder(View itemView) {
             super(itemView);
             mobile_text=(TextView)itemView.findViewById(R.id.mobile_text);
@@ -334,6 +350,8 @@ public class RFC_Adapter extends RecyclerView.Adapter<RFC_Adapter.ViewHolder> im
             jobstart_button = itemView.findViewById(R.id.job_start_button);
             cont_id = itemView.findViewById(R.id.contid_text);
             refresh_data = itemView.findViewById(R.id.refresh_data);
+            tv_priority = itemView.findViewById(R.id.tv_priority);
+            relativeLayout = itemView.findViewById(R.id.rl_rfclist);
             refresh_data.setVisibility(View.VISIBLE);
         }
     }

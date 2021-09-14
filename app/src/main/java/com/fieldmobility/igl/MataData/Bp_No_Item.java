@@ -82,7 +82,6 @@ boolean images;
     String declinedDescription;
     String rfcAdmin;
     String controlRoom;
-
     String id_image;
     String address_image;
     String customer_image;

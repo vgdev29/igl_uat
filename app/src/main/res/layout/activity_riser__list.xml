@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
@@ -42,9 +43,10 @@
         android:weightSum="2">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1.6"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
+            android:layout_margin="@dimen/_2sdp"
             android:background="@drawable/shape_blue_border"
             android:orientation="horizontal">
 
@@ -54,7 +56,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/_8sdp"
                 android:src="@drawable/search_gray"
-                android:tint="#AEAEAE" />
+                app:tint="#AEAEAE" />
 
             <EditText
                 android:id="@+id/editTextSearch"
@@ -73,7 +75,25 @@
             <!--          android:src="@drawable/ic_filter_list_black_24dp"-->
             <!--          android:id="@+id/rfc_filter"/>-->
         </LinearLayout>
-
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_weight=".4"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_blue_border"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/list_count"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Count "
+                android:textSize="@dimen/_8sdp"
+                android:textStyle="bold"
+                android:textColor="@color/rad"/>
+        </LinearLayout>
 
     </LinearLayout>
 <View

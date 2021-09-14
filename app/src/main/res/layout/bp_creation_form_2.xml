@@ -122,6 +122,7 @@
                 android:background="@drawable/background_input_mandatory"
                 android:hint="Total Floor"
                 android:inputType="number"
+                android:maxLength="3"
                 android:paddingLeft="@dimen/_5sdp"
                 android:singleLine="true"
                 android:textSize="@dimen/_10sdp"

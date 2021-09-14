@@ -1,18 +1,18 @@
 package com.fieldmobility.igl.Helper;
 
 public class Constants {
-    public static final boolean isDebugBuild=true; // make it FALSE while giving app to others
+    public static final boolean isDebugBuild=false; // make it FALSE while giving app to others
     //LIVE URL
-//  public static String BASE_URL="http://49.50.65.107:8081/";
-//   public static  String BASE_URL_PYTHON = "http://49.50.65.107:8000/"; //PYTHON SERVER
+   public static String BASE_URL="http://49.50.65.107:8081/";
+    public static  String BASE_URL_PYTHON = "http://49.50.65.107:8000/"; //PYTHON SERVER
 
 
     //  UAT URL
-     public static String BASE_URL = "http://49.50.118.112:8080/";
-    public  static String BASE_URL_PYTHON = "http://49.50.68.239:8080/";
+    // public static String BASE_URL = "http://49.50.118.112:8080/";
+    // public  static String BASE_URL_PYTHON = "http://49.50.68.239:8080/";
 
     //local
-    static String localhost = "http://192.168.1.100:8081/";
+    static String localhost = "http://192.168.31.29:8081/";
 
 
     public static final int LOCATION_INTERVAL = 100000000;
@@ -117,7 +117,7 @@ public class Constants {
    // public static final String REFRESH_NG = localhost + "/bp_details/Refreshng/";
   public static final String REFRESH_RFC = BASE_URL + "ekyc/bp_details/Refreshrfc/";
    // public static final String REFRESH_RFC = localhost + "/bp_details/Refreshrfc/";
-   public static final String REFRESH_FEAS = BASE_URL + "ekyc/bp_details/Refreshrfc/";
+   public static final String REFRESH_FEAS = BASE_URL + "ekyc/bp_details/Refreshfeas/";
     //public static final String REFRESH_FEAS = localhost + "/bp_details/Refreshfeas/";
 
    /* public static final String EKYC_DATA_UPDATE = localhost + "/bp_details/updatekycData/";
@@ -126,7 +126,7 @@ public class Constants {
     public static final String EKYC_SIGNATURE_IMAGEUPDATE = localhost + "/bp_details/updateSignature/"; */
 
 
-    //public static final String BP_Creation = localhost + "/registration/bp_creation";
+//    public static final String BP_Creation = localhost + "/registration/bp_creation";
     //public static final String BP_Images = localhost + "/registration/bp_images";
    // public static final String Document_POST = localhost + "/registration/documents/";
 //    public static final String BP_No_Listing = localhost + "/registration/new_registration_listing";

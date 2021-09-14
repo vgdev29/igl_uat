@@ -118,7 +118,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/curved_editext_bg"
+                    android:background="@drawable/corner_curved_edittext_bg"
                     android:paddingTop="8dp"
                     android:paddingBottom="16dp"
 

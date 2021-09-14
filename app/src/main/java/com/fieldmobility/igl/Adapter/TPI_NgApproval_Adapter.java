@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -78,7 +79,7 @@ public class TPI_NgApproval_Adapter extends RecyclerView.Adapter<TPI_NgApproval_
 
 
     @Override
-    public void onBindViewHolder(@NonNull NgUserDoneDeclineListViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull NgUserDoneDeclineListViewHolder holder,  int position) {
         final NguserListModel ngUserClaimListModel = ngUserClaimList.get(position);
         holder.tv_dateTime.setText("NG Date- "+ngUserClaimListModel.getNg_update_date());
         holder.tv_bpName.setText(ngUserClaimListModel.getBp_no());
@@ -94,6 +95,7 @@ public class TPI_NgApproval_Adapter extends RecyclerView.Adapter<TPI_NgApproval_
         if (ngUserClaimListModel.isMeter_status())
         {
             holder.tv_icml.setVisibility(View.VISIBLE);
+            holder.rl_ngapproval.setBackgroundColor(Color.parseColor("#FFFF00"));
         }
         else
         {
@@ -298,7 +300,7 @@ public class TPI_NgApproval_Adapter extends RecyclerView.Adapter<TPI_NgApproval_
     class NgUserDoneDeclineListViewHolder extends RecyclerView.ViewHolder {
         TextView tv_bpName, tv_dateTime, tv_perferedTime, tv_address, user_name_text, status_text,tv_zone,tv_mobile,tv_icml;
         Button  btn_viewDetails,ngSupervisorinfo_text;
-        LinearLayout ll_bpNumber;
+        RelativeLayout rl_ngapproval;
         View itemView;
 
         NgUserDoneDeclineListViewHolder(View itemView) {
@@ -313,6 +315,7 @@ public class TPI_NgApproval_Adapter extends RecyclerView.Adapter<TPI_NgApproval_
             tv_icml = itemView.findViewById(R.id.tv_incorrectmetercase);
             user_name_text = itemView.findViewById(R.id.user_name_text);
             status_text = itemView.findViewById(R.id.status_text);
+            rl_ngapproval = itemView.findViewById(R.id.rl_ngapproval);
             this.itemView = itemView;
         }
 
@@ -340,7 +343,6 @@ public class TPI_NgApproval_Adapter extends RecyclerView.Adapter<TPI_NgApproval_
             public void onResponse(Call<List<NguserListModel>> call, retrofit2.Response<List<NguserListModel>> response) {
                 Log.e("Mysucess>>>>>>>>>>", "weldone............");
                 materialDialog.dismiss();
-
                 Toast.makeText(mctx, "Approve Successfully", Toast.LENGTH_SHORT).show();
                 notifyDataSetChanged();
 

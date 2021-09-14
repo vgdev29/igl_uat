@@ -14,6 +14,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.DefaultRetryPolicy;
@@ -39,12 +40,14 @@ public class RiserTpiApprovalActivity extends AppCompatActivity implements View.
     SharedPrefs sharedPrefs;
     RiserTpiListingModel dataModel;
     RiserTpiApprovalListAdapter adapter;
+    TextView listcount ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_riser_tpi_approval);
         sharedPrefs = new SharedPrefs(this);
+        listcount = findViewById(R.id.list_count);
         findViews();
         loadListData();
 
@@ -67,6 +70,7 @@ public class RiserTpiApprovalActivity extends AppCompatActivity implements View.
                 try {
 //                    Type userListType = new TypeToken<ArrayList<RiserListingModel>>(){}.getType();
                     dataModel = new Gson().fromJson(response, RiserTpiListingModel.class);
+                    listcount.setText("Count \n"+dataModel.getBpDetails().size());
                     if (dataModel != null) {
                         initViews(dataModel);
                     }

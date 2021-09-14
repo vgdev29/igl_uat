@@ -1027,7 +1027,7 @@
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_weight="1"
                         android:padding="@dimen/_1sdp"
-                        android:text="Total IV"
+                        android:text="Total no. of Regulator"
                         android:textColor="@color/dark_gray"
                         android:textSize="@dimen/_10sdp" />
 
@@ -1401,6 +1401,35 @@
                     </FrameLayout>
 
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Start Point"
+                        android:layout_marginHorizontal="@dimen/_6sdp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Isometric Graph"
+                        android:layout_marginHorizontal="@dimen/_6sdp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="End Point"
+                        android:layout_marginHorizontal="@dimen/_6sdp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        />
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -1408,7 +1437,6 @@
                 android:layout_marginHorizontal="5dp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_weight="1"
-
                 android:orientation="vertical">
 
                 <TextView

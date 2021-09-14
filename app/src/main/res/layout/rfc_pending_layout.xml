@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:id="@+id/liner_layout"
+        android:id="@+id/rl_rfclist"
         android:layout_width="match_parent"
         android:layout_height="190dp"
         android:layout_margin="@dimen/_10sdp"
@@ -105,17 +105,17 @@
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_toEndOf="@+id/ll_details"
-            android:padding="5dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="5dp">
 
             <TextView
                 android:id="@+id/status_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:text="RFC Pending"
-                android:gravity="center"
                 android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:gravity="center"
+                android:text="RFC Pending"
                 android:textColor="@color/green"
                 android:textSize="@dimen/_14sdp"
                 android:textStyle="bold" />
@@ -125,13 +125,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp">
+
                 <Button
                     android:id="@+id/unclaimed_button"
                     android:layout_width="@dimen/_70sdp"
                     android:layout_height="@dimen/_25sdp"
+                    android:layout_gravity="center"
                     android:background="@drawable/shape_cornor_radious"
                     android:text="UnClaim"
-                    android:layout_gravity="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_7sdp"
                     android:textStyle="bold"
@@ -141,9 +142,9 @@
                     android:id="@+id/claimed_button"
                     android:layout_width="@dimen/_70sdp"
                     android:layout_height="@dimen/_25sdp"
+                    android:layout_gravity="center"
                     android:background="@drawable/shape_cornor_radious"
                     android:text="Claim"
-                    android:layout_gravity="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_7sdp"
                     android:textStyle="bold"
@@ -155,14 +156,25 @@
                 android:id="@+id/job_start_button"
                 android:layout_width="@dimen/_70sdp"
                 android:layout_height="@dimen/_25sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/shape_cornor_radious"
                 android:text="Start Job"
-                android:layout_gravity="center"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_7sdp"
                 android:textStyle="bold"
-                android:layout_marginTop="10dp"
                 android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_priority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="Normal Customer"
+                android:textColor="@color/dark_gray"
+                android:textSize="10sp"
+                android:textStyle="italic" />
         </LinearLayout>
 
         <ImageButton

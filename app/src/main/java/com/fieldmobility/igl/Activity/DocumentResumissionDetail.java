@@ -117,6 +117,7 @@ public class DocumentResumissionDetail extends Activity {
         checkbox_text = findViewById(R.id.checkbox_text);
         btn_submit_signature = findViewById(R.id.btn_submit_signature);
         btn_submit_data = findViewById(R.id.btn_submit_data);
+        btn_submit_data.setVisibility(View.GONE);
         btn_submit_id_proof = findViewById(R.id.btn_submit_id_proof);
         btn_submit_address_proof = findViewById(R.id.btn_submit_address_proof);
         tv_fname = findViewById(R.id.tv_fname);
@@ -817,70 +818,70 @@ public class DocumentResumissionDetail extends Activity {
 
     public void uploadMultipart() {
 
-//        try {
-//            materialDialog = new MaterialDialog.Builder(Document_varification_Detail.this)
-//                    .content("Please wait....")
-//                    .progress(true, 0)
-//                    .cancelable(false)
-//                    .show();
-//            String uploadId = UUID.randomUUID().toString();
-//            Log.e("uploadId+,,,,,,,,,,", "" + Constants.Document_POST + getIntent().getStringExtra("Bp_number"));
-//            MultipartUploadRequest multipartUploadRequest = new MultipartUploadRequest(Document_varification_Detail.this, uploadId, Constants.Document_POST + getIntent().getStringExtra("Bp_number"));
-//            multipartUploadRequest.addFileToUpload(image_path_id, "image");
-//            multipartUploadRequest.addFileToUpload(image_path_address, "image");
-//            multipartUploadRequest.addFileToUpload(customer_signature_path, "image");
-//            multipartUploadRequest.addParameter("adressProof", address_proof);
-//            multipartUploadRequest.addParameter("idProof", id_proof);
-//            multipartUploadRequest.setDelegate(new UploadStatusDelegate() {
-//                @Override
-//                public void onProgress(Context context, UploadInfo uploadInfo) {
-//                    Log.e("UplodeINFO++", uploadInfo.getSuccessfullyUploadedFiles().toString());
-//                }
-//
-//                @Override
-//                public void onError(Context context, UploadInfo uploadInfo, Exception exception) {
-//                    exception.printStackTrace();
-//                    materialDialog.dismiss();
-//                    Log.e("Uplodeerror++", uploadInfo.getSuccessfullyUploadedFiles().toString());
-//                }
-//
-//                @Override
-//                public void onCompleted(Context context, UploadInfo uploadInfo, ServerResponse serverResponse) {
-//                    materialDialog.dismiss();
-//                    String str = serverResponse.getBodyAsString();
-//                    final JSONObject jsonObject;
-//                    try {
-//                        jsonObject = new JSONObject(str);
-//                        Log.e("Response++", jsonObject.toString());
-//                        // String Msg=jsonObject.getString("Message");
-//                        // Toast.makeText(New_Regestration_Form.this, Msg, Toast.LENGTH_SHORT).show();
-//                        finish();
-//
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//
-//                @Override
-//                public void onCancelled(Context context, UploadInfo uploadInfo) {
-//                    materialDialog.dismiss();
-//                }
-//            });
-//            multipartUploadRequest.setUtf8Charset();
-//            multipartUploadRequest.setAutoDeleteFilesAfterSuccessfulUpload(true);
-//            multipartUploadRequest.setMaxRetries(5);
-//            multipartUploadRequest.setUsesFixedLengthStreamingMode(true);
-//            multipartUploadRequest.setUsesFixedLengthStreamingMode(true);
-//            multipartUploadRequest.startUpload(); //Starting the upload
-//
-//            Log.e("aadhaar_file", image_path_id);
-//            Log.e("pan_file", image_path_address);
-//            Log.e("sign_file", customer_signature_path);
-//        } catch (Exception exc) {
-//            // Toast.makeText(New_Regestration_Form.this, exc.getMessage(), Toast.LENGTH_SHORT).show();
-//            Toast.makeText(Document_varification_Detail.this, "Please Select ID & Address Proof and Proper Signature", Toast.LENGTH_SHORT).show();
-//            materialDialog.dismiss();
-//        }
+        /*try {
+            materialDialog = new MaterialDialog.Builder(Document_varification_Detail.this)
+                    .content("Please wait....")
+                    .progress(true, 0)
+                    .cancelable(false)
+                    .show();
+            String uploadId = UUID.randomUUID().toString();
+            Log.e("uploadId+,,,,,,,,,,", "" + Constants.Document_POST + getIntent().getStringExtra("Bp_number"));
+            MultipartUploadRequest multipartUploadRequest = new MultipartUploadRequest(Document_varification_Detail.this, uploadId, Constants.Document_POST + getIntent().getStringExtra("Bp_number"));
+            multipartUploadRequest.addFileToUpload(image_path_id, "image");
+            multipartUploadRequest.addFileToUpload(image_path_address, "image");
+            multipartUploadRequest.addFileToUpload(customer_signature_path, "image");
+            multipartUploadRequest.addParameter("adressProof", address_proof);
+            multipartUploadRequest.addParameter("idProof", id_proof);
+            multipartUploadRequest.setDelegate(new UploadStatusDelegate() {
+                @Override
+                public void onProgress(Context context, UploadInfo uploadInfo) {
+                    Log.e("UplodeINFO++", uploadInfo.getSuccessfullyUploadedFiles().toString());
+                }
+
+                @Override
+                public void onError(Context context, UploadInfo uploadInfo, Exception exception) {
+                    exception.printStackTrace();
+                    materialDialog.dismiss();
+                    Log.e("Uplodeerror++", uploadInfo.getSuccessfullyUploadedFiles().toString());
+                }
+
+                @Override
+                public void onCompleted(Context context, UploadInfo uploadInfo, ServerResponse serverResponse) {
+                    materialDialog.dismiss();
+                    String str = serverResponse.getBodyAsString();
+                    final JSONObject jsonObject;
+                    try {
+                        jsonObject = new JSONObject(str);
+                        Log.e("Response++", jsonObject.toString());
+                        // String Msg=jsonObject.getString("Message");
+                        // Toast.makeText(New_Regestration_Form.this, Msg, Toast.LENGTH_SHORT).show();
+                        finish();
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onCancelled(Context context, UploadInfo uploadInfo) {
+                    materialDialog.dismiss();
+                }
+            });
+            multipartUploadRequest.setUtf8Charset();
+            multipartUploadRequest.setAutoDeleteFilesAfterSuccessfulUpload(true);
+            multipartUploadRequest.setMaxRetries(5);
+            multipartUploadRequest.setUsesFixedLengthStreamingMode(true);
+            multipartUploadRequest.setUsesFixedLengthStreamingMode(true);
+            multipartUploadRequest.startUpload(); //Starting the upload
+
+            Log.e("aadhaar_file", image_path_id);
+            Log.e("pan_file", image_path_address);
+            Log.e("sign_file", customer_signature_path);
+        } catch (Exception exc) {
+            // Toast.makeText(New_Regestration_Form.this, exc.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(Document_varification_Detail.this, "Please Select ID & Address Proof and Proper Signature", Toast.LENGTH_SHORT).show();
+            materialDialog.dismiss();
+        }*/
     }
 
 }

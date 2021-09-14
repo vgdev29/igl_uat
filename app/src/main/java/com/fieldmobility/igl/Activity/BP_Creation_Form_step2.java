@@ -1060,7 +1060,9 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                 multipartUploadRequest.addFileToUpload(image_path_cheque, "image", "cheque.jpg");
 
             }
-            multipartUploadRequest.addFileToUpload(image_path_id, "image", "id_proof.jpg");
+            if (image_path_id!=null && !image_path_id.isEmpty()) {
+                multipartUploadRequest.addFileToUpload(image_path_id, "image", "id_proof.jpg");
+            }
             if (isSaleDeedSelected) {
                 multipartUploadRequest.addFileToUpload(pdf_path, "image", "sale_deed.pdf", ContentType.APPLICATION_PDF);
 
@@ -1120,12 +1122,10 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
             multipartUploadRequest.setMaxRetries(2);
             multipartUploadRequest.startUpload(); //Starting the upload
 
-            Log.e("id_proof", image_path_id);
-            Log.e("address_proof", isSaleDeedSelected ? pdf_path : image_path_address);
-            Log.e("sign_file", customer_signature_path);
-            Log.e("ownerSign", owner_signature_path);
+
         } catch (Exception exc) {
             imgUploadError = true;
+            Log.d("exception",exc.getLocalizedMessage());
             Toast.makeText(BP_Creation_Form_step2.this, "Please Select ID & Address Proof and Proper Signature", Toast.LENGTH_SHORT).show();
             materialDialog.dismiss();
         }
@@ -1321,7 +1321,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     params.put("id", sharedPrefs.getUUID());
                     params.put("correspondingLanguage", "EN");
                     // params.put("SearchTerm",fullname.getText().toString().toUpperCase() );
-//                    params.put("annexure_gpa", annexure_gpa);
+ //                   params.put("annexure_gpa", annexure_gpa);
                     params.put("annexure_floor", annexure_floor);
                     params.put("annexure_address", annexure_address);
 //                    params.put("annexure_owner", annexure_owner);
@@ -1375,6 +1375,9 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     Log.d("dma_agency", sharedPrefs.getUUID());
                     Log.d("lattitude", Latitude);
                     Log.d("longitude", Longitude);
+                    Log.d("ownership_multi_floor", et_total_floor.getText().toString());
+                    Log.d("ownership_complete_address", et_address.getText().toString());
+                    Log.d("Alternate_Mobile_Number", user_bpData.getIgl_alternate_mobile_no());
 
                 } catch (Exception e) {
                 }

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -84,7 +86,7 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
     }
 
     @Override
-    public void onBindViewHolder(final TPI_RFC_Pending_Adapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final TPI_RFC_Pending_Adapter.ViewHolder holder,  int position) {
         final BpDetail Bp_No_array = bp_no_list_array.get(position);
 
         if (Bp_No_array.getIgl_rfcvendor_assigndate().equalsIgnoreCase("null")||Bp_No_array.getIgl_rfcvendor_assigndate().equals(null))
@@ -145,6 +147,19 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
                 holder.unclaimed_button.setVisibility(View.GONE);
                 holder.job_start_button.setVisibility(View.GONE);
                 holder.status_text.setText("RFC Claimed by other TPI");
+            }
+        }
+
+        if (!TextUtils.isEmpty(Bp_No_array.getAmount())){
+            if (Bp_No_array.getAmount().equalsIgnoreCase("2")){
+                holder.relativeLayout.setBackgroundColor(Color.parseColor("#90EE90"));
+                holder.tv_priority.setTextColor(Color.BLACK);
+                holder.tv_priority.setText("Intrested Customer");
+
+            }else if (Bp_No_array.getAmount().equalsIgnoreCase("0")){
+                holder.relativeLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                holder.tv_priority.setTextColor(Color.BLACK);
+                holder.tv_priority.setText("Normal Customer");
             }
         }
 
@@ -227,10 +242,11 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;
-        public TextView bp_no_text, user_name_text, address_text, date_text, status_text, zone_text,mobile_text;
+        public TextView bp_no_text, user_name_text, address_text, date_text, status_text, zone_text,mobile_text,tv_priority;
 
         Button claimed_button, unclaimed_button, job_start_button, rfc_info;
         ImageButton refresh_data;
+        RelativeLayout relativeLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -246,6 +262,8 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
             rfc_info = itemView.findViewById(R.id.rfcinfo_text);
             mobile_text = itemView.findViewById(R.id.mobile_text);
             refresh_data = itemView.findViewById(R.id.refresh_data);
+            tv_priority = itemView.findViewById(R.id.tv_priority);
+            relativeLayout = itemView.findViewById(R.id.rl_rfclist);
         }
     }
 

@@ -95,7 +95,7 @@ public class RiserTpiPendingListAdapter extends RecyclerView.Adapter<RiserTpiPen
                 });
             }
             else {
-                holder.claim.setText("Claimed by Other Tpi");
+                holder.claim.setText("Claimed by "+model.getRfctpiname());
                 holder.claim.setEnabled(false);
             }
         }
