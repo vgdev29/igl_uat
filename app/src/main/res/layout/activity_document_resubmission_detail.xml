@@ -918,7 +918,12 @@
                 android:textColor="@color/black_31"
                 android:textSize="@dimen/_10sdp"
                 tools:text="454145148579" />
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/lt_docs"
+    android:visibility="gone">
             <TextView
                 android:id="@+id/btn_submit_data"
                 android:layout_width="match_parent"
@@ -1203,20 +1208,20 @@
                     android:textSize="@dimen/_10sdp"
                     android:textStyle="bold" />
             </LinearLayout>
-
+        </LinearLayout>
             <TextView
                 android:id="@+id/btn_submit_signature"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:layout_marginHorizontal="@dimen/_6sdp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginHorizontal="@dimen/_30sdp"
                 android:layout_marginVertical="@dimen/_15sdp"
                 android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:paddingHorizontal="@dimen/value_14dp"
                 android:paddingVertical="@dimen/_6sdp"
-                android:text="UPDATE SIGNATURE"
+                android:text="SUBMIT DOCUMENTS"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_10sdp" />
             <!--            <LinearLayout-->

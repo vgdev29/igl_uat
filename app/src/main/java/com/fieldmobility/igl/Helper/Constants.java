@@ -1,15 +1,15 @@
 package com.fieldmobility.igl.Helper;
 
 public class Constants {
-    public static final boolean isDebugBuild=false; // make it FALSE while giving app to others
+    public static final boolean isDebugBuild=true; // make it FALSE while giving app to others
     //LIVE URL
-   public static String BASE_URL="http://49.50.65.107:8081/";
-    public static  String BASE_URL_PYTHON = "http://49.50.65.107:8000/"; //PYTHON SERVER
+//   public static String BASE_URL="http://49.50.65.107:8081/";
+//    public static  String BASE_URL_PYTHON = "http://49.50.65.107:8000/"; //PYTHON SERVER
 
 
     //  UAT URL
-    // public static String BASE_URL = "http://49.50.118.112:8080/";
-    // public  static String BASE_URL_PYTHON = "http://49.50.68.239:8080/";
+     public static String BASE_URL = "http://49.50.118.112:8080/";
+     public  static String BASE_URL_PYTHON = "http://49.50.68.239:8080/";
 
     //local
     static String localhost = "http://192.168.31.29:8081/";
@@ -84,8 +84,9 @@ public class Constants {
     public static final String MITD_UPDATE = BASE_URL + "ekyc/bp_details/mitd_update/";
     public static final String BP_Creation = BASE_URL + "bpcreation/registration/bp_creation";
     public static final String BP_Images = BASE_URL + "bpcreation/registration/bp_images";
-    public static final String Document_POST = BASE_URL + "bpcreation/registration/documents/";
+    public static final String Document_POST = BASE_URL + "bpcreation/registration/documents";
     public static final String BP_No_Listing = BASE_URL + "bpcreation/registration/new_registration_listing";
+    public static final String findbpbymob = BASE_URL + "bpcreation/registration/findbpbymob/";
     public static final String BP_CITY_LISTING = BASE_URL + "bpcreation/registration/city/";
     public static final String BP_No_Resubmition_Listing = BASE_URL + "bpcreation/registration/documentResubmissionListing/";
     //NI User

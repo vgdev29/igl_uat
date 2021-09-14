@@ -93,10 +93,10 @@
         <activity android:name=".Activity.Splash_Screen"
             android:screenOrientation="portrait">
 
-             <intent-filter>
-             <action android:name="android.intent.action.MAIN" />
-             <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".Activity.Login_Activity"
@@ -171,6 +171,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.DocumentResumissionDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.DocumentsResubmitStep2"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.NG_Connection_Activity"
@@ -250,6 +253,10 @@
         <activity
             android:name=".Activity.OTP_Forgot_Password"
             android:screenOrientation="portrait" />
+        <activity android:name=".Activity.CheckBpActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
         <activity
             android:name=".Activity.Tab_Host_EKYC"
             android:screenOrientation="portrait" />

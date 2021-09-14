@@ -42,7 +42,6 @@ import com.fieldmobility.igl.MataData.Bp_No_Item;
 import com.fieldmobility.igl.R;
 import com.google.gson.Gson;
 import com.kyanogen.signatureview.SignatureView;
-import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -64,7 +63,7 @@ public class DocumentResumissionDetail extends Activity {
     private Uri filePath_aadhaar, filePath_address, filePath_customer;
     Bitmap bitmap;
     CheckBox checkBox_term_cond;
-    TextView checkbox_text, btn_submit_signature, btn_submit_data, btn_submit_id_proof, btn_submit_address_proof;
+    TextView checkbox_text, btn_submit_docs, btn_submit_data, btn_submit_id_proof, btn_submit_address_proof;
     LinearLayout todo_creation;
     String id_proof;
     EditText descreption_edit;
@@ -115,7 +114,7 @@ public class DocumentResumissionDetail extends Activity {
     private void findViews() {
         checkBox_term_cond = findViewById(R.id.checkbox);
         checkbox_text = findViewById(R.id.checkbox_text);
-        btn_submit_signature = findViewById(R.id.btn_submit_signature);
+        btn_submit_docs = findViewById(R.id.btn_submit_signature);
         btn_submit_data = findViewById(R.id.btn_submit_data);
         btn_submit_data.setVisibility(View.GONE);
         btn_submit_id_proof = findViewById(R.id.btn_submit_id_proof);
@@ -293,15 +292,13 @@ public class DocumentResumissionDetail extends Activity {
                 }
             }
         });
-        btn_submit_signature.setOnClickListener(new View.OnClickListener() {
+        btn_submit_docs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (customer_signature_path == null) {
-                    Toast.makeText(DocumentResumissionDetail.this, "Please Select Customer Signature", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    //TODO API CALL
-                }
+              Intent intent= new Intent(DocumentResumissionDetail.this,DocumentsResubmitStep2.class);
+              String data=new Gson().toJson(bp_No_Item);
+              intent.putExtra("data",data);
+              startActivity(intent);
             }
         });
         btn_submit_id_proof.setOnClickListener(new View.OnClickListener() {
