@@ -408,7 +408,7 @@
                         android:text="Alternate No.  :"
                         android:textSize="@dimen/_10sdp" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/tv_alternateNoValue"
                         style="@style/row_details"
                         android:layout_width="match_parent"
@@ -416,6 +416,10 @@
                         android:layout_marginLeft="@dimen/_3sdp"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:layout_weight="1"
+                        android:maxLength="10"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:background="@drawable/shape_blue_border"
                         android:gravity="center_vertical"
                         android:paddingLeft="@dimen/_5sdp"
                         android:singleLine="true"
@@ -1054,8 +1058,9 @@
                             android:layout_weight="1"
                             android:gravity="center_vertical"
                             android:paddingLeft="@dimen/_5sdp"
-                            android:text="Follow up Date:"
+                            android:text="Future follow up Date:"
                             android:textColor="@color/black_31"
+                            android:textStyle="bold"
                             android:textSize="15sp" />
 
 

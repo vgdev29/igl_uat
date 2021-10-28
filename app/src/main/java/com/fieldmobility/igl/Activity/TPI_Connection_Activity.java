@@ -2,8 +2,10 @@ package com.fieldmobility.igl.Activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,11 +24,14 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.core.content.FileProvider;
@@ -44,11 +49,15 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.fieldmobility.igl.Helper.AppController;
+import com.fieldmobility.igl.Helper.CommonUtils;
 import com.fieldmobility.igl.Helper.ConnectionDetector;
 import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.Helper.GPSLocation;
 import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.R;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.ServerResponse;
@@ -66,6 +75,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -98,22 +108,26 @@ public class TPI_Connection_Activity  extends Activity {
     String type_of_master,type_of_sub_master,type_of_master_id,igl_code,igl_code_group,igl_catagory,catid_Sub_Master;
     String igl_code_Master,igl_code_group_Maaster,igl_catagory_Master,catid_Master;
     EditText descreption_edit;
-    Button approve_button,decline_button;
+    Button approve_button,decline_button,select_image;
     ImageView image_upload;
     Button save_button;
     protected static final int CAMERA_REQUEST = 1;
     private final int PICK_IMAGE_REQUEST = 2;
     private Uri filePath_Image;
-    String filePath_img_string,Status_Master;
+    String filePath_img_string = "",Status_Master;
     Bitmap bitmap;
     JSONArray jsonArray_SubMaster;
     String TPI_Status_Code,Address,Feasibility_Type;
-    TextView bp_no_text,address_text,header_text;
+    TextView bp_no_text,address_text,header_text,start_date, start_time;
     String complete_igl_code,complete_igl_code_group,complete_igl_catagory,complete_catid,pipeline_catagory,bpno;
     private String Latitude;
     private String Longitude;
     private RadioGroup radioGroup;
     String riserStatus = "No";
+    LinearLayout ll_hold_layout;
+    TimePickerDialog pickerDialog_Time;
+    DatePickerDialog pickerDialog_Date;
+     String am_pm1 = "" , cat_master="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,6 +148,7 @@ public class TPI_Connection_Activity  extends Activity {
         bp_no_text=findViewById(R.id.bp_no_text);
         address_text=findViewById(R.id.address_text);
         header_text=findViewById(R.id.header_text);
+        header_text.setText("Feasibility Pending");
         radioGroup = findViewById(R.id.radioGroup);
         Type_Of_Master=new ArrayList<>();
         Type_Of_Master_ID=new ArrayList<>();
@@ -162,7 +177,32 @@ public class TPI_Connection_Activity  extends Activity {
         Feasibility_Type=getIntent().getStringExtra("Feasibility_Type");
         OnClick_Event();
         sharedPrefs = new SharedPrefs(this);
+
+        start_date = findViewById(R.id.start_date_text);
+        start_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                starDate();
+            }
+        });
+        start_time = findViewById(R.id.time_text);
+        start_time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startTime();
+            }
+        });
+        select_image = findViewById(R.id.image_button);
+        select_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chooseImage();
+            }
+        });
+        image_upload = findViewById(R.id.select_image1);
+        ll_hold_layout = findViewById(R.id.ll_hold_layout);
         getLocationUsingInternet();
+
     }
 
     private void OnClick_Event() {
@@ -177,8 +217,28 @@ public class TPI_Connection_Activity  extends Activity {
         approve_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Feasibility_Type.equals("0")){
-                    header_text.setText("Feasibility Pending");
+                if(cat_master.contains("Hold") || cat_master.contains("Failed")){
+
+                    switch (radioGroup.getCheckedRadioButtonId())
+                    {
+                        case R.id.radioButton_riseryes:
+                            riserStatus = "Yes";
+                            break;
+                        default:
+                            riserStatus = "No";
+                            break;
+                    }
+                    if (filePath_img_string.isEmpty()||filePath_img_string.equals(""))
+                    {
+                        CommonUtils.toast_msg(TPI_Connection_Activity.this,"Pls select Image");
+                    }
+                    else {
+                        TPI_Multipart(filePath_img_string);
+                    }
+                }
+                else
+                {
+
                     switch (radioGroup.getCheckedRadioButtonId())
                     {
                         case R.id.radioButton_riseryes:
@@ -197,8 +257,9 @@ public class TPI_Connection_Activity  extends Activity {
         spinner_master.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                String country=  spinner_master.getItemAtPosition(spinner_master.getSelectedItemPosition()).toString();
-                Log.e("Society+",country);
+                 cat_master=  spinner_master.getItemAtPosition(spinner_master.getSelectedItemPosition()).toString();
+                Log.e("cat_master= ",cat_master);
+
                 type_of_master=Type_Of_Master.get(position);
                 igl_code_Master=Igl_Code_Master.get(position);
                 igl_code_group_Maaster=Igl_Code_Group_Master.get(position);
@@ -325,19 +386,28 @@ public class TPI_Connection_Activity  extends Activity {
                     // if(jsonObject.getInt("success")==1){
                     Log.e("SubMaster",jsonObject.toString());
                     jsonArray_SubMaster = jsonObject.getJSONArray("Bp_Details");
-                    for (int i = 0; i < jsonArray_SubMaster.length(); i++) {
-                        JSONObject jsonObject1 = jsonArray_SubMaster.getJSONObject(i);
-                        String society_name_select = jsonObject1.getString("sub_status");
-                        String CatId_code = jsonObject1.getString("sub_status_code");
-                        String igl_code = jsonObject1.getString("igl_code");
-                        String igl_code_group = jsonObject1.getString("igl_code_group");
-                        String igl_catalog = jsonObject1.getString("igl_catalog");
-                        Igl_Code.add(igl_code);
-                        Igl_Code_Group.add(igl_code_group);
-                        Igl_Catalog.add(igl_catalog);
-                        Type_Of_Sub_Master.add(society_name_select);
-                        CatID_Sub_Master.add(CatId_code);
+                    if (jsonArray_SubMaster.length()>0) {
+
+                        for (int i = 0; i < jsonArray_SubMaster.length(); i++) {
+                            JSONObject jsonObject1 = jsonArray_SubMaster.getJSONObject(i);
+                            String society_name_select = jsonObject1.getString("sub_status");
+                            String CatId_code = jsonObject1.getString("sub_status_code");
+                            String igl_code = jsonObject1.getString("igl_code");
+                            String igl_code_group = jsonObject1.getString("igl_code_group");
+                            String igl_catalog = jsonObject1.getString("igl_catalog");
+                            Igl_Code.add(igl_code);
+                            Igl_Code_Group.add(igl_code_group);
+                            Igl_Catalog.add(igl_catalog);
+                            Type_Of_Sub_Master.add(society_name_select);
+                            CatID_Sub_Master.add(CatId_code);
+                        }
+                        ll_hold_layout.setVisibility(View.VISIBLE);
                     }
+                    else
+                    {
+                        ll_hold_layout.setVisibility(View.GONE);
+                    }
+
 
                     spinner_sub_master.setAdapter(new ArrayAdapter<String>(TPI_Connection_Activity.this, android.R.layout.simple_spinner_dropdown_item, Type_Of_Sub_Master));
 
@@ -429,7 +499,7 @@ public class TPI_Connection_Activity  extends Activity {
                         try {
                             JSONObject json = new JSONObject(response);
                             Log.e("Response", json.toString());
-                            Toast.makeText(TPI_Connection_Activity.this, "" + "Successfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TPI_Connection_Activity.this, "" + json.getString("Message"), Toast.LENGTH_SHORT).show();
                             setResult(Activity.RESULT_OK);
                             finish();
                         } catch (JSONException e) {
@@ -519,10 +589,6 @@ public class TPI_Connection_Activity  extends Activity {
         }
     }
     public void TPI_Multipart(String filePath_img_string) {
-        /*if(filePath_img_string==null){
-            filePath_img_string="\\/ekyc\\/bp_details\\/fesabilityAdd";
-            Log.e("filePath_img_string", "" + filePath_img_string);
-        }*/
         if(jsonArray_SubMaster!=null&& jsonArray_SubMaster.length()>0){
             complete_igl_code=igl_code;
             complete_igl_code_group=igl_code_group;
@@ -553,6 +619,11 @@ public class TPI_Connection_Activity  extends Activity {
             request .addParameter("mobile_no", getIntent().getStringExtra("Mobile_number"));
             request .addParameter("email_id", getIntent().getStringExtra("Email_id"));
             request .addParameter("pipeline_id", pipeline_catagory);
+            request .addParameter("latitude", Latitude);
+            request .addParameter("longitude", Longitude);
+            request .addParameter("remarks", descreption_edit.getText().toString().trim());
+            request .addParameter("riserStatus", riserStatus);
+
             request.setDelegate(new UploadStatusDelegate() {
                 @Override
                 public void onProgress(Context context,UploadInfo uploadInfo) {
@@ -571,11 +642,12 @@ public class TPI_Connection_Activity  extends Activity {
                     String Uplode = uploadInfo.getSuccessfullyUploadedFiles().toString();
                     String serverResponse1 = serverResponse.getHeaders().toString();
                     String str = serverResponse.getBodyAsString();
-                    final JSONObject jsonObject;
+                    JsonParser jsonParser = new JsonParser();
+                    JsonObject jsonObject = jsonParser.parse(str).getAsJsonObject();
                     Log.e("UPLOADEsinin++", str);
                     setResult(Activity.RESULT_OK);
                     finish();
-                    Toast.makeText(TPI_Connection_Activity.this, "" + "Succesfully Feasibility Approve", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TPI_Connection_Activity.this, jsonObject.get("Message").toString(), Toast.LENGTH_SHORT).show();
 
                 }
                 @Override
@@ -639,9 +711,7 @@ public class TPI_Connection_Activity  extends Activity {
                         //address_image.setImageBitmap(bitmap1);
                         filePath_img_string = getPath(filePath_Image);
                         Log.e("image_path_aadhar+,", "" + filePath_Image);
-                        if(Feasibility_Type.equals("0")){
-                            TPI_Multipart(filePath_img_string);
-                        }
+
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -669,9 +739,6 @@ public class TPI_Connection_Activity  extends Activity {
                         Log.e("Camera_Path++", file.toString());
                         filePath_img_string = file.toString();
                         // image_path_address1 =file.toString();
-                        if(Feasibility_Type.equals("0")){
-                            TPI_Multipart(filePath_img_string);
-                        }
 
                         try {
                             outFile = new FileOutputStream(file);
@@ -713,5 +780,84 @@ public class TPI_Connection_Activity  extends Activity {
             e.printStackTrace();
         }
         return path;
+    }
+
+    public void startTime()
+    {
+        final Calendar cldr = Calendar.getInstance();
+        int hour = cldr.get(Calendar.HOUR_OF_DAY);
+        int minutes = cldr.get(Calendar.MINUTE);
+
+        // time picker dialog
+        pickerDialog_Time = new TimePickerDialog(TPI_Connection_Activity.this,
+                new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker tp, int hour, int minutes) {
+
+                        //int month = monthOfYear + 1;
+                        String formattedHours = "" + hour;
+                        String formattedMinut = "" + minutes;
+
+                        if (hour < 10) {
+
+                            formattedHours = "0" + hour;
+                        }
+                        if (minutes < 10) {
+
+                            formattedMinut = "0" + minutes;
+                        }
+                        Log.e("Date", (formattedHours) + ":" + formattedMinut);
+                        if (hour > 12) {
+                            am_pm1 = "PM";
+                            hour = hour - 12;
+                        } else {
+                            am_pm1 = "AM";
+                        }
+                        start_time.setText(formattedHours + ":" + formattedMinut + " " + am_pm1);
+                    }
+                }, hour, minutes, true);
+
+        pickerDialog_Time.show();
+    }
+    public void starDate()
+    {
+        final Calendar cldr = Calendar.getInstance();
+        int day = cldr.get(Calendar.DAY_OF_MONTH);
+        int month = cldr.get(Calendar.MONTH);
+        int year = cldr.get(Calendar.YEAR);
+        // date picker dialog
+
+        pickerDialog_Date = new DatePickerDialog(TPI_Connection_Activity.this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+                        int month = monthOfYear + 1;
+                        String formattedMonth = "" + month;
+                        String formattedDayOfMonth = "" + dayOfMonth;
+
+                        if (month < 10) {
+
+                            formattedMonth = "0" + month;
+                        }
+                        if (dayOfMonth < 10) {
+
+                            formattedDayOfMonth = "0" + dayOfMonth;
+                        }
+                        Log.e("Date", year + "-" + (formattedMonth) + "-" + formattedDayOfMonth);
+
+                        start_date.setText(year + "-" + (formattedMonth) + "-" + formattedDayOfMonth);
+                    }
+                }, year, month, day);
+        pickerDialog_Date.show();
+    }
+    public void chooseImage()
+    {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+        Uri photoURI = FileProvider.getUriForFile(TPI_Connection_Activity.this, getApplicationContext().getPackageName() + ".provider", f);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+        //  intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        startActivityForResult(intent, CAMERA_REQUEST);
     }
 }

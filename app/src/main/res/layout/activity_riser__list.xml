@@ -114,6 +114,7 @@
                 android:layout_width="match_parent"
                 android:paddingVertical="@dimen/_6sdp"
                 android:clipToPadding="false"
+
                 android:background="#F2F2F2"
                 android:paddingHorizontal="@dimen/_12sdp"
                 tools:listitem="@layout/item_riser_list"

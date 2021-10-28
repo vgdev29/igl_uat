@@ -2,12 +2,14 @@ package com.fieldmobility.igl.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -46,6 +48,13 @@ public class RiserListAdapter extends RecyclerView.Adapter<RiserListAdapter.MyHo
         holder.tv_name.setText(fullName);
         holder.tv_bp_num.setText(model.getBpNumber());
         holder.tv_mob.setText(model.getMobileNumber());
+        if (model.getRiserStatus().equalsIgnoreCase("3")) {
+            holder.riser_card.setBackgroundColor(Color.parseColor("#90EE90"));
+        }
+        else
+        {
+            holder.riser_card.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        }
         try {
             holder.tv_tpi.setText(model.getRfctpiname()+"\n"+model.getRfcmobileNo());
             holder.tv_tpi.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +95,7 @@ public class RiserListAdapter extends RecyclerView.Adapter<RiserListAdapter.MyHo
 
     class MyHolder extends RecyclerView.ViewHolder {
         public TextView tv_name, tv_mob, tv_assign_date, tv_address,tv_bp_num,tv_tpi;
+        LinearLayout riser_card;
 
 
         public MyHolder(View itemView) {
@@ -96,6 +106,7 @@ public class RiserListAdapter extends RecyclerView.Adapter<RiserListAdapter.MyHo
             tv_address =  itemView.findViewById(R.id.tv_address);
             tv_assign_date =  itemView.findViewById(R.id.tv_assign_date);
             tv_tpi = itemView.findViewById(R.id.tv_tpi);
+            riser_card = itemView.findViewById(R.id.riser_card);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -928,7 +928,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     filePathUri_owner = data.getData();
                     try {
                         bitmap_own = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathUri_owner);
-                        owner_signature_imageview.setImageBitmap(bitmap_id);
+                        owner_signature_imageview.setImageBitmap(bitmap_own);
                         bitmap_own = getResizedBitmap(bitmap_own, 1600);
                         File saveFile = ScreenshotUtils.getMainDirectoryName(this);
                         owner_signature_path = ScreenshotUtils.store(bitmap_own, "owner_signature" + ".jpg", saveFile).toString();

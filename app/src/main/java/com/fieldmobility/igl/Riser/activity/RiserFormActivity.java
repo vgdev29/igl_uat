@@ -598,7 +598,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
 
         //RISER LENGTH, ISOLATION VALUE, LATERAL TAPPING
         giList.add("Select Diameter");
-        giList.add("GI ½");
+        giList.add("GI 1/2");
         giList.add("GI 3/4");
         giList.add("GI 1");
         giList.add("GI 2");
@@ -631,7 +631,6 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
                 connectedHseMaxLimit = 15;
                 hseList.add("HSE(g+14 & above)");
                 selectedHSE = "HSE(g+14 & above)";
-
             }
             ArrayAdapter<String> hseType = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, hseList);
             hseType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

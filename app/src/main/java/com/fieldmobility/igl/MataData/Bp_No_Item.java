@@ -87,6 +87,16 @@ boolean images;
     String customer_image;
     String owner_image;
     String igl_rfcvendor_assigndate;
+    String property_type;
+
+
+    public String getProperty_type() {
+        return property_type;
+    }
+
+    public void setProperty_type(String property_type) {
+        this.property_type = property_type;
+    }
 
     public ArrayList<String> getImageList() {
         return imageList;

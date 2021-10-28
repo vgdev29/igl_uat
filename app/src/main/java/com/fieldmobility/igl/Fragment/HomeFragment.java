@@ -30,6 +30,7 @@ import com.fieldmobility.igl.Activity.MITDDoneActivity;
 import com.fieldmobility.igl.Activity.NgSupListActivity;
 import com.fieldmobility.igl.Activity.PMC_ViewPager_Activity;
 import com.fieldmobility.igl.Activity.RFC_Connection_Listing;
+import com.fieldmobility.igl.Activity.TPI_Module;
 import com.fieldmobility.igl.Activity.TPI_ViewPager_Activity;
 import com.fieldmobility.igl.Activity.Tab_Host_DMA;
 import com.fieldmobility.igl.Activity.Tab_Host_EKYC;
@@ -91,7 +92,7 @@ public class HomeFragment extends Fragment {
         sharedPrefs=new SharedPrefs(getActivity());
         mMsgView=root.findViewById(R.id.msgView);
        version = root.findViewById(R.id.version);
-       version.setText(BuildConfig.VERSION_NAME);
+       version.setText("Version - "+BuildConfig.VERSION_NAME);
         //mHandler = new IncomingMessageHandler();
 
         handler_lat_log.postDelayed(new Runnable() {
@@ -313,8 +314,8 @@ public class HomeFragment extends Fragment {
         tpi_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent tpiIntent = new Intent(getActivity(), TPI_ViewPager_Activity.class);
-                //Intent tpiIntent = new Intent(getActivity(), TPI_Connection_Lisitng.class);
+                Intent tpiIntent = new Intent(getActivity(), TPI_Module.class);
+               // Intent tpiIntent = new Intent(getActivity(), TPI_Connection_Lisitng.class);
                 startActivity(tpiIntent);
             }
         });

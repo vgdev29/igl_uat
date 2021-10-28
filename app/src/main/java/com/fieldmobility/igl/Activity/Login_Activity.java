@@ -131,6 +131,7 @@ public class Login_Activity extends Activity {
         user_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (Utils.isNetworkConnected(Login_Activity.this)){
                     SendLoginRequest_User();
                 }else {

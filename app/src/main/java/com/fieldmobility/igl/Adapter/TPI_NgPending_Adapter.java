@@ -187,7 +187,7 @@ public class TPI_NgPending_Adapter extends RecyclerView.Adapter<TPI_NgPending_Ad
                 nguserListModel.setJmr_no(jmr_number);
                 nguserListModel.setStart_job(false);
                 nguserListModel.setTpi_id("");
-                nguserListModel.setConversion_date("null");
+
                 nguserListModel.setClaim_date("null");
                 //UnClaimed_API_POST(jmr_number,nguserListModel);
                 ((TPI_NgPending_Activity) mctx).UnClaimed_API_POST(jmr_number, nguserListModel);
@@ -206,7 +206,7 @@ public class TPI_NgPending_Adapter extends RecyclerView.Adapter<TPI_NgPending_Ad
                 nguserListModel.setBp_no(ngUserClaimListModel.getBp_no());
                 nguserListModel.setJmr_no(jmr_number);
                 nguserListModel.setStart_job(true);
-                nguserListModel.setConversion_date(date);
+                nguserListModel.setClaim_date(date);
                 //startJob(jmr_number, nguserListModel);
                 ((TPI_NgPending_Activity) mctx).startJob(jmr_number, nguserListModel);
 

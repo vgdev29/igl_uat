@@ -104,7 +104,7 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
         holder.zone_text.setText(Bp_No_array.getZoneCode());
         holder.mobile_text.setText(Bp_No_array.getMobileNumber());
         //logic for cliam and unclaimed button
-        Log.d(log,"claimflag"+" " + Bp_No_array.getClaimFlag()+"  "+Bp_No_array.getBpNumber());
+        //Log.d(log,"claimflag"+" " + Bp_No_array.getClaimFlag()+"  "+Bp_No_array.getBpNumber());
         //logic for status
         if (Bp_No_array.getIglStatus().equals("null")) {
             holder.status_text.setVisibility(View.GONE);
@@ -116,22 +116,22 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
         if (Bp_No_array.getClaimFlag().equals("null") ||Bp_No_array.getClaimFlag()==null )
         {
             claimFlag = "";
-            Log.d(log,"claimflag"+" if" + Bp_No_array.getClaimFlag()+"  "+Bp_No_array.getBpNumber());
+           // Log.d(log,"claimflag"+" if" + Bp_No_array.getClaimFlag()+"  "+Bp_No_array.getBpNumber());
         }
         else {
             claimFlag =Bp_No_array.getClaimFlag();
-            Log.d(log,"claimflag"+"else" + Bp_No_array.getClaimFlag()+"  "+Bp_No_array.getBpNumber());
+         //   Log.d(log,"claimflag"+"else" + Bp_No_array.getClaimFlag()+"  "+Bp_No_array.getBpNumber());
         }
         if (claimFlag.equalsIgnoreCase("") || claimFlag.equalsIgnoreCase("1")) {
             holder.unclaimed_button.setVisibility(View.GONE);
             holder.claimed_button.setVisibility(View.VISIBLE);
             holder.job_start_button.setVisibility(View.GONE);
-            Log.d(log, "if RfcTpi = " + Bp_No_array.getClaimFlag()+"  "+Bp_No_array.getBpNumber());
+          //  Log.d(log, "if RfcTpi = " + Bp_No_array.getClaimFlag()+"  "+Bp_No_array.getBpNumber());
         } else if (claimFlag.equalsIgnoreCase("0")) {
             if ((Bp_No_array.getRfcTpi()!=null||!Bp_No_array.getRfcTpi().equalsIgnoreCase("null")) && Bp_No_array.getRfcTpi().equals(sharedPrefs.getUUID())) {
                 holder.claimed_button.setVisibility(View.GONE);
                 holder.unclaimed_button.setVisibility(View.VISIBLE);
-                Log.d(log, "else RfcTpi = " + Bp_No_array.getClaimFlag() + "  " + Bp_No_array.getBpNumber());
+              //  Log.d(log, "else RfcTpi = " + Bp_No_array.getClaimFlag() + "  " + Bp_No_array.getBpNumber());
                 //LOgic for job start button
                 if (Bp_No_array.getJobFlag().equals("1")) {
                     holder.job_start_button.setVisibility(View.GONE);
@@ -139,8 +139,8 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
                 } else if (Bp_No_array.getJobFlag().equals("0")) {
                     holder.job_start_button.setVisibility(View.VISIBLE);
                 }
-                Log.d(log, "else RfcTpi = " + Bp_No_array.getClaimFlag() + "  " + Bp_No_array.getBpNumber());
-                Log.d(log, "login id = " + sharedPrefs.getUUID() + "  " + Bp_No_array.getBpNumber());
+               // Log.d(log, "else RfcTpi = " + Bp_No_array.getClaimFlag() + "  " + Bp_No_array.getBpNumber());
+               // Log.d(log, "login id = " + sharedPrefs.getUUID() + "  " + Bp_No_array.getBpNumber());
             }
             else {
                 holder.claimed_button.setVisibility(View.GONE);
@@ -236,6 +236,7 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
 
     public void setData(ArrayList<BpDetail> filterList)
     {
+
         this.bp_no_list_array = filterList;
         notifyDataSetChanged();
     }

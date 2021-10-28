@@ -38,6 +38,8 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -198,7 +200,9 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
     private String scanMeterNo;
     private TextView tv_meater_no,rfc_conn_bpno;
     private String image1 , image2 , image3, image4,imageSig;
-
+    EditText fname,mname,lname,mob,email;
+    CheckBox cb_supConsent ;
+    Button updateMob;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -209,6 +213,21 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
         rfcAdmin = getIntent().getStringExtra("rfcAdmin");
         getLocationWithoutInternet();
         getLocationUsingInternet();
+
+        cb_supConsent = findViewById(R.id.checkbox);
+        cb_supConsent.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    cb_supConsent.setChecked(true);
+                    //  Toast.makeText(Kyc_Form_Activity.this, "You checked the checkbox!", Toast.LENGTH_SHORT).show();
+                } else {
+                    cb_supConsent.setChecked(false);
+                    //  Toast.makeText(Kyc_Form_Activity.this, "You unchecked the checkbox!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
 
         meter_text.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -569,8 +588,18 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
 
     private void Layout_Id() {
         rfc_conn_bpno = findViewById(R.id.rfc_conn_bpno);
-        rfc_conn_bpno.setText("BP NO.:- "+getIntent().getStringExtra("Bp_number"));
-
+        String bpno = getIntent().getStringExtra("Bp_number");
+        rfc_conn_bpno.setText("BP NO.:- "+bpno);
+        fname = findViewById(R.id.fullname);
+        fname.setText(getIntent().getStringExtra("First_name"));
+        lname = findViewById(R.id.lastname);
+        lname.setText(getIntent().getStringExtra("Last_name"));
+        mname = findViewById(R.id.middle_name);
+        mname.setText(getIntent().getStringExtra("Middle_name"));
+        mob = findViewById(R.id.mobile_no);
+        mob.setText(getIntent().getStringExtra("mob"));
+        email = findViewById(R.id.email_id);
+        email.setText(getIntent().getStringExtra("email"));
         meter_type_text = findViewById(R.id.meter_type);
         manufacture_make_spinner = findViewById(R.id.manufacture_make_spinner);
         meater_no_spinner = (Spinner) findViewById(R.id.meater_no_spinner);
@@ -664,6 +693,53 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
 
         //RFC_Data();
         Manufacture_Make();
+
+        updateMob = findViewById(R.id.updateMob_rfc);
+        updateMob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String mobile = mob.getText().toString().trim();
+                String mail = email.getText().toString().trim();
+                if(mobile.length()<10)
+                {
+                    CommonUtils.toast_msg(RFC_Connection_Activity.this,"Enter Valid Mobile number");
+                }
+                else {
+                    updateDetails(bpno , mobile , mail);
+                }
+            }
+        });
+    }
+
+    private void updateDetails(String bpno , String mob , String email) {
+        materialDialog = new MaterialDialog.Builder(RFC_Connection_Activity.this)
+                .content("Please wait....")
+                .progress(true, 0)
+                .show();
+        String url =Constants.RFC_MOB_UPDATE+bpno+"&mob="+mob+"&email="+email;
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                materialDialog.dismiss();
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                     String message = jsonObject.getString("Message");
+                     CommonUtils.toast_msg(RFC_Connection_Activity.this , message);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        int socketTimeout = 30000;
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        stringRequest.setRetryPolicy(policy);
+        requestQueue.add(stringRequest);
     }
 
 
@@ -1227,9 +1303,6 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
     }
 
 
-
-
-
     private void Signature_Method() {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -1389,8 +1462,10 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                             final JSONObject jsonObject = new JSONObject(response);
                             Log.e(LOG,"Response++"+ jsonObject.toString());
                             Status_Type = jsonObject.getString("Sucess");
+                            String responsestatus = jsonObject.getString("status");
                             Log.d(LOG, "Status_Type = " + Status_Type);
-                            JSONArray jSONArray = jsonObject.getJSONArray("File_Path");
+                            if (responsestatus.equals("200")) {
+                                JSONArray jSONArray = jsonObject.getJSONArray("File_Path");
 
                                 imageSig = jSONArray.getJSONObject(0).getString("files0");
                                 image1 = jSONArray.getJSONObject(1).getString("files1");
@@ -1398,70 +1473,70 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                                 image3 = jSONArray.getJSONObject(3).getString("files3");
                                 image4 = jSONArray.getJSONObject(4).getString("files4");
 
-                            loadImage();
-                            final JSONObject Bp_Details = jsonObject.getJSONObject("RFCdetails");
-                            JSONArray payload = Bp_Details.getJSONArray("rfc");
-                            for (int i = 0; i <= payload.length(); i++) {
-                                Log.d(LOG, "for rfc= " + i);
-                                JSONObject data_object = payload.getJSONObject(i);
-                                String meter_make = data_object.getString("meter_make");
-                                String meter_type = data_object.getString("meter_type");
-                                meter_no = data_object.getString("meter_no");
-                                String initial_meter_reading = data_object.getString("initial_meter_reading");
-                                String regulator_no = data_object.getString("regulator_no");
-                                String gi_installation = data_object.getString("gi_installation");
-                                String cu_installation = data_object.getString("cu_installation");
-                                String no_of_iv = data_object.getString("no_of_iv");
-                                String no_of_av = data_object.getString("no_of_av");
-                                String meter_installation = data_object.getString("meter_installation");
-                                String pvc_sleeve = data_object.getString("pvc_sleeve");
-                                String clamming = data_object.getString("clamming");
-                                String gas_meter_testing = data_object.getString("gas_meter_testing");
-                                String cementing_of_holes = data_object.getString("cementing_of_holes");
-                                String painting_of_giPipe = data_object.getString("painting_of_giPipe");
-                                String customer1 = data_object.getString("customer1");
-                                String customer2 = data_object.getString("customer2");
-                                String bp = data_object.getString("bp");
-                                String status = data_object.getString("status");
-                                String tpiName = data_object.getString("tpiName");
-                                String tpiLastName = data_object.getString("tpiLastName");
-                                String vendorName = data_object.getString("vendorName");
-                                String address = data_object.getString("address");
-                                String firstName = data_object.getString("firstName");
-                                String lastName = data_object.getString("lastName");
-                                String mobileNo = data_object.getString("mobileNo");
-                                String caNo = data_object.getString("caNo");
-                                String rfctype = data_object.getString("rfctype");
-                                String met_no = data_object.getString("meter_no");
-                                String tfavail= data_object.getString("tfAvail");
-                                String connct= data_object.getString("connectivity");
-                                String extraPipe = data_object.getString("extraPipeLength");
+                                loadImage();
+                                final JSONObject Bp_Details = jsonObject.getJSONObject("RFCdetails");
+                                JSONArray payload = Bp_Details.getJSONArray("rfc");
+                                for (int i = 0; i <= payload.length(); i++) {
+                                    Log.d(LOG, "for rfc= " + i);
+                                    JSONObject data_object = payload.getJSONObject(i);
+                                    String meter_make = data_object.getString("meter_make");
+                                    String meter_type = data_object.getString("meter_type");
+                                    meter_no = data_object.getString("meter_no");
+                                    String initial_meter_reading = data_object.getString("initial_meter_reading");
+                                    String regulator_no = data_object.getString("regulator_no");
+                                    String gi_installation = data_object.getString("gi_installation");
+                                    String cu_installation = data_object.getString("cu_installation");
+                                    String no_of_iv = data_object.getString("no_of_iv");
+                                    String no_of_av = data_object.getString("no_of_av");
+                                    String meter_installation = data_object.getString("meter_installation");
+                                    String pvc_sleeve = data_object.getString("pvc_sleeve");
+                                    String clamming = data_object.getString("clamming");
+                                    String gas_meter_testing = data_object.getString("gas_meter_testing");
+                                    String cementing_of_holes = data_object.getString("cementing_of_holes");
+                                    String painting_of_giPipe = data_object.getString("painting_of_giPipe");
+                                    String customer1 = data_object.getString("customer1");
+                                    String customer2 = data_object.getString("customer2");
+                                    String bp = data_object.getString("bp");
+                                    String status = data_object.getString("status");
+                                    String tpiName = data_object.getString("tpiName");
+                                    String tpiLastName = data_object.getString("tpiLastName");
+                                    String vendorName = data_object.getString("vendorName");
+                                    String address = data_object.getString("address");
+                                    String firstName = data_object.getString("firstName");
+                                    String lastName = data_object.getString("lastName");
+                                    String mobileNo = data_object.getString("mobileNo");
+                                    String caNo = data_object.getString("caNo");
+                                    String rfctype = data_object.getString("rfctype");
+                                    String met_no = data_object.getString("meter_no");
+                                    String tfavail = data_object.getString("tfAvail");
+                                    String connct = data_object.getString("connectivity");
+                                    String extraPipe = data_object.getString("extraPipeLength");
 
 
-                                manufacture_editext.setText(meter_installation);
-                                type_nr_text.setText(meter_type);
-                                meater_no_text.setText(meter_no);
-                                initial_metar_reading_text.setText(initial_meter_reading);
-                                regulater_no_text.setText(regulator_no);
-                                gi_instalation_text.setText(gi_installation);
-                                cu_instalation_text.setText(cu_installation);
-                                pile_length_edit.setText(extraPipe);
-                                vo_of_iv_text.setText(no_of_iv);
-                                no_of_av_text.setText(no_of_av);
-                                meter_text.setText(meter_no);
-                                //pvc_sleeve_radioButton.set
-                                if (pvc_sleeve.equals("Avail")) {
-                                    pvc_sleeve_radioButton.setSelected(true);
-                                } else {
-                                    pvc_sleeve_radioButton.setSelected(false);
-                                }
-                                if (clamming.equals("Done")) {
-                                    clamping_gi_pvc_radioButton.setSelected(true);
-                                } else {
-                                    clamping_gi_pvc_radioButton.setSelected(false);
-                                }
-                                meter_type_text.setText(meter_type);
-                              meter_type_string = meter_type;
+                                    manufacture_editext.setText(meter_installation);
+                                    type_nr_text.setText(meter_type);
+                                    meater_no_text.setText(meter_no);
+                                    initial_metar_reading_text.setText(initial_meter_reading);
+                                    regulater_no_text.setText(regulator_no);
+                                    gi_instalation_text.setText(gi_installation);
+                                    cu_instalation_text.setText(cu_installation);
+                                    pile_length_edit.setText(extraPipe);
+                                    vo_of_iv_text.setText(no_of_iv);
+                                    no_of_av_text.setText(no_of_av);
+                                    meter_text.setText(meter_no);
+                                    //pvc_sleeve_radioButton.set
+                                    if (pvc_sleeve.equals("Avail")) {
+                                        pvc_sleeve_radioButton.setSelected(true);
+                                    } else {
+                                        pvc_sleeve_radioButton.setSelected(false);
+                                    }
+                                    if (clamming.equals("Done")) {
+                                        clamping_gi_pvc_radioButton.setSelected(true);
+                                    } else {
+                                        clamping_gi_pvc_radioButton.setSelected(false);
+                                    }
+                                    meter_type_text.setText(meter_type);
+                                    meter_type_string = meter_type;
 
                                 /*pvc_sleeve_text.setText(pvc_sleeve);
                                 clamping_gi_pvc_text.setText(clamming);
@@ -1473,6 +1548,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                                 name_of_tpi.setText(tpiName+" "+tpiLastName);
                                 bp_no_text.setText(bp);*/
 
+                                }
                             }
 
 
@@ -1939,6 +2015,8 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
             Utils.showToast(this, "Meter no is empty");
             return allOk;
         }
+
+
         else if (meter_text.getText().toString().trim().equalsIgnoreCase("Select Meter no.")) {
             allOk = false;
             Utils.showToast(this, "Please select Meter no");
@@ -2000,6 +2078,12 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
             Utils.showToast(this, "Please select Signature");
             return allOk;
         }
+        else if (!cb_supConsent.isChecked()) {
+            allOk = false;
+            CommonUtils.toast_msg(this, "Please tick to Acknowledge");
+            return allOk;
+        }
+
 
         else {
             return allOk;

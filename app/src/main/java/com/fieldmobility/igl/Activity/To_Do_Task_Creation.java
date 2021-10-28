@@ -314,8 +314,8 @@ public class To_Do_Task_Creation  extends Activity {
                     params.put("date", start_date_text.getText().toString());
                     params.put("time", time_text.getText().toString());
                     params.put("Category_id", todo_catagory_id);
-                    params.put("description", descreption_edit.getText().toString());
-                    params.put("address", getIntent().getStringExtra("Address"));
+                    params.put("description", descreption_edit.getText().toString().trim());
+                    params.put("address", bp_no_edit.getText().toString().trim());
                    /* params.put("leave_date", wisper_edittext.getText().toString());
                     params.put("leave_end_date", wisper_edittext.getText().toString());
                     params.put("start_time", wisper_edittext.getText().toString());

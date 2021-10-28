@@ -133,7 +133,9 @@ public class RiserListActivity extends AppCompatActivity implements View.OnClick
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                adapter.getFilter().filter(s.toString());
+                if (adapter!=null) {
+                    adapter.getFilter().filter(s.toString());
+                }
             }
 
             @Override

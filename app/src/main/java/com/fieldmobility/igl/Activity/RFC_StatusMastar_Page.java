@@ -718,6 +718,9 @@ public class RFC_StatusMastar_Page extends Activity {
                                     intent.putExtra("Bp_number", getIntent().getStringExtra("Bp_number"));
                                     intent.putExtra("First_name", getIntent().getStringExtra("First_name"));
                                     intent.putExtra("Last_name", getIntent().getStringExtra("Last_name"));
+                                    intent.putExtra("Middle_name", getIntent().getStringExtra("Middle_name"));
+                                    intent.putExtra("mob", getIntent().getStringExtra("Mobile_number"));
+                                    intent.putExtra("email", getIntent().getStringExtra("Email_id"));
                                     intent.putExtra("lead_no", getIntent().getStringExtra("lead_no"));
                                     intent.putExtra("rfcAdmin", getIntent().getStringExtra("rfcAdmin"));
                                     intent.putExtra("mitd",master_cat_id);

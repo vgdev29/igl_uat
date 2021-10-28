@@ -3,21 +3,22 @@ package com.fieldmobility.igl.Helper;
 public class Constants {
     public static final boolean isDebugBuild=false; // make it FALSE while giving app to others
     //LIVE URL
-  public static String BASE_URL="http://49.50.65.107:8081/";
-    public static  String BASE_URL_PYTHON = "http://49.50.65.107:8000/"; //PYTHON SERVER
+    public static String BASE_URL="http://49.50.65.107:8081/";
+     public static  String BASE_URL_PYTHON = "http://49.50.65.107:8000/"; //PYTHON SERVER
 
 
     //  UAT URL
- //   public static String BASE_URL = "http://49.50.118.112:8080/";
-  //  public  static String BASE_URL_PYTHON = "http://49.50.68.239:8080/";
+   //  public static String BASE_URL = "http://49.50.118.112:8080/";
+  // public  static String BASE_URL_PYTHON = "http://49.50.68.239:8080/";
 
     //local
-    static String localhost = "http://192.168.31.29:8081/";
-
+  //  static String localhost = "http://192.168.31.29:8081/";
 
     public static final int LOCATION_INTERVAL = 100000000;
     public static final int FASTEST_LOCATION_INTERVAL = 5000000;
-    public static final String Auth_User = BASE_URL + "loginapi/authenticate";
+
+    //added extra 's' at end point - incorporated on 2 OCT
+    public static final String Auth_User = BASE_URL + "loginapi/authenticates";
     public static final String Login_User = BASE_URL + "loginapi/userdetails";
     public static final String SignUp_User = BASE_URL + "register";
     public static final String UPLOAD_IMAGE = BASE_URL + "api/jmr/update?jmr=36655";
@@ -40,7 +41,6 @@ public class Constants {
     public static final String APPLY_LEAVE = BASE_URL + "ekyc/bp_details/applyLeave/";
     public static final String TYPE_MASTER_STATUS = BASE_URL + "ekyc/bp_details/statusDropdown/";
     public static final String  FEAS_STATUS_DROPDOWN = BASE_URL + "ekyc/bp_details/feas_statusDropdown/";
-
     public static final String FESABILITY_ADD = BASE_URL + "ekyc/bp_details/fesabilityAdd";
     public static final String FESABILITY_ADD_Declined = BASE_URL + "ekyc/bp_details/fesabilityAddDeclined";
     public static final String TYPE_SUBMASTER_STATUS = BASE_URL + "ekyc/bp_details/substatusDropdown/";
@@ -52,7 +52,6 @@ public class Constants {
     public static final String RFC_CONNECTION_POST = BASE_URL + "ekyc/bp_details/RFCMobile/";
     public static final String RFCADD = BASE_URL + "ekyc/bp_details/RFCAdd";
     public static final String RFCApproval = BASE_URL + "ekyc/bp_details/RFCApproval";
- //public static final String RFCApproval = localhost + "bp_details/RFCApproval";
     public static final String RFCDetails = BASE_URL + "ekyc/bp_details/RFCDetails";
     public static final String MITDDetails = BASE_URL + "ekyc/bp_details/mitd_update";
     public static final String MITD_DONE = BASE_URL + "ekyc/bp_details/mitd_done";
@@ -69,7 +68,6 @@ public class Constants {
     public static final String Learning = BASE_URL + "ekyc/bp_details/learning";  //todo_id=85
     public static final String UserTracking = BASE_URL + "ekyc/bp_details/userTracking";
     public static final String RFCApprovalMultipart = BASE_URL + "ekyc/bp_details/RFCApprovalMultipart";
-    //public static final String RFCApprovalMultipart =  localhost+ "/bp_details/RFCApprovalMultipart";
     public static final String TPI_FEASIBILITY_PENDING = BASE_URL + "ekyc/bp_details/feasibility_pending_Listing/";
     //api change by adding s to end
     public static final String TPI_RFC_PENDING = BASE_URL + "ekyc/bp_details/rfc_pending_Listings/?zone=";
@@ -94,8 +92,8 @@ public class Constants {
     public static final String ni_user_listing = BASE_URL + "bpcreation/registration/nic_list/";
 
     // RISER MODULE
-//   public static final String RISER_LISTING = BASE_URL + "api/risersuballocations";
-    public static final String RISER_LISTING = BASE_URL + "ekyc/bp_details/RiserListings";
+  //  public static final String RISER_LISTING = localhost + "/bp_details/RiserListings";
+   public static final String RISER_LISTING = BASE_URL + "ekyc/bp_details/RiserListings";
     public static final String RISER_TPIPendingLISTING = BASE_URL + "ekyc/bp_details/RiserTpiPendingListings/";
   //  public static final String RISER_TPIPendingLISTING = localhost + "/bp_details/RiserTpiPendingListings/";
     public static final String RISER_TPIPendingClaim = BASE_URL + "ekyc/bp_details/RiserClaim/";
@@ -120,6 +118,14 @@ public class Constants {
    // public static final String REFRESH_RFC = localhost + "/bp_details/Refreshrfc/";
    public static final String REFRESH_FEAS = BASE_URL + "ekyc/bp_details/Refreshfeas/";
     //public static final String REFRESH_FEAS = localhost + "/bp_details/Refreshfeas/";
+
+    //RFC API
+     public static final String TPI_DATA = BASE_URL + "ekyc/bp_details/tpi_data?zone=";
+      public static final String TPI_RFCPENSEARCH = BASE_URL + "ekyc/bp_details/tpirfcpen_search?zone=";
+     public static final String RFC_MOB_UPDATE = BASE_URL + "ekyc/bp_details/updatemobemail_rfc?bp=";
+    //public static final String RFC_MOB_UPDATE= localhost + "/bp_details/updatemobemail_rfc?bp=";
+    //  public static final String TPI_RFCPENSEARCH = localhost + "/bp_details/tpirfcpen_search?zone=";
+    // public static final String TPI_DATA = localhost + "/bp_details/tpi_data?zone=";
 
    /* public static final String EKYC_DATA_UPDATE = localhost + "/bp_details/updatekycData/";
     public static final String EKYC_ID_IMAGEUPDATE = localhost + "/bp_details/updateIdProof/";

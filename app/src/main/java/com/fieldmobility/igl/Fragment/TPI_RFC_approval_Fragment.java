@@ -60,7 +60,7 @@ public class TPI_RFC_approval_Fragment extends Fragment {
     TPI_RFC_Approval_Adapter tpi_inspection_adapter;
     EditText editTextSearch;
     TextView header_title;
-    TextView list_count;
+    TextView list_count,search_tpibp;
     View root;
     LinearLayout top_layout;
     static String log = "rfcapproval";
@@ -104,12 +104,14 @@ public class TPI_RFC_approval_Fragment extends Fragment {
 
     private void Layout_ID() {
         top_layout=root.findViewById(R.id.top_layout);
-        top_layout.setVisibility(View.GONE);
         list_count=root.findViewById(R.id.list_count);
+        list_count.setVisibility(View.VISIBLE);
+        search_tpibp=root.findViewById(R.id.search_tpibp);
+        search_tpibp.setVisibility(View.GONE);
         rfc_filter = root.findViewById(R.id.rfc_filter);
         rfc_filter.setVisibility(View.GONE);
         header_title=root.findViewById(R.id.header_title);
-        header_title.setText("TPI");
+        header_title.setText("RFC Approval");
 
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) root.findViewById(R.id.swipeToRefresh);

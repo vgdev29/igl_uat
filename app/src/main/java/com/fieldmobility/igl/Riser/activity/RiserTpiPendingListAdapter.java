@@ -82,35 +82,42 @@ public class RiserTpiPendingListAdapter extends RecyclerView.Adapter<RiserTpiPen
         catch (Exception e){}
 
         if ( model.getRiserClaim().equals("1"))
-        {
+        { Log.d("riser claim","get riser 1");
             if (model.getRiserTpi().equals(sharedPrefs.getUUID()))
             {
+                Log.d("riser claim","get riser 1 and unclaim");
                 holder.claim.setText("Unclaim");
-                holder.claim.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+                holder.claim.setTag("0");
 
-                        claim(null, "0", model, position);
-                    }
-                });
             }
             else {
+                Log.d("riser claim","get riser 1 and claimed by");
                 holder.claim.setText("Claimed by "+model.getRfctpiname());
-                holder.claim.setEnabled(false);
+                holder.claim.setTag("2");
             }
         }
         else
         {
+            Log.d("riser claim","get riser 0 ");
             holder.claim.setText("Claim");
-            holder.claim.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    claim(sharedPrefs.getUUID() , "1",model ,position);
-                }
-            });
-        }
+            holder.claim.setTag("1");
 
+        }
+        holder.claim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (holder.claim.getTag().equals("1")) {
+                    Log.d("riser claim", "get riser 1 and claim");
+                    claim(sharedPrefs.getUUID(), "1", model, position);
+                }
+                else  if (holder.claim.getTag().equals("0")) {
+                    Log.d("riser claim", "get riser 0 and claim");
+                    claim(null, "0", model, position);
+                }
+            }
+        });
     }
+
 
     private void claim(String tpi, String s , RiserListingModel.BpDetails.User model , int position) {
       MaterialDialog  materialDialog = new MaterialDialog.Builder(mContext)

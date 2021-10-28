@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.google.firebase.crashlytics'
+apply plugin: 'com.google.gms.google-services'
 android {
     signingConfigs {
         release {
@@ -16,8 +17,8 @@ android {
         applicationId "com.fieldmobility.igl"
         minSdkVersion 24
         targetSdkVersion 29
-        versionCode 20011
-        versionName "2.0"
+        versionCode 20014
+        versionName "2.4"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -110,6 +111,9 @@ dependencies {
     implementation 'com.vincent.filepicker:MultiTypeFilePicker:1.0.8'
     implementation 'com.opensooq.supernova:gligar:1.1.0'
     implementation 'com.google.android.play:core:1.10.0'
-
+//firebase Analytics
+    implementation platform('com.google.firebase:firebase-bom:28.4.1')
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-analytics'
 
 }

@@ -96,14 +96,14 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
     private boolean startJob;
     private List<NguserListModel> nguserdetails;
     private TextView tv_ngUserName, tv_bp_no, tv_jmr_no, tv_houseNoValue, tv_societyValue, tv_preferredDateValue,
-            tv_blockValue, tv_areaValue, tv_alternateNoValue, tv_cityvalue, tv_categoryNameValue, tv_delayDate, tv_floorValue;
+            tv_blockValue, tv_areaValue, tv_cityvalue, tv_categoryNameValue, tv_delayDate, tv_floorValue;
     private Button submit_button, picture_button;
 
     private LinearLayout ll_hold, ll_meterReading,ll_ngStatusreason;
     private TextView et_delayDateValue;
 
 
-    private EditText et_initialReading, et_burnerDetails,tv_mobileNoValue , et_nghold_remarks, corrected_meternoValue;
+    private EditText tv_alternateNoValue, et_initialReading, et_burnerDetails,tv_mobileNoValue , et_nghold_remarks, corrected_meternoValue;
     private DatePickerDialog pickerDialog_Date;
     private String initialReading, burnerDetails, conversationDate;
     private ImageView hold_image;
@@ -266,6 +266,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                             ngUserListModel.setCatalog(selected_catalog_status);
                             ngUserListModel.setCode(selected_code_status);
                             ngUserListModel.setReason(selected_description_status);
+                            ngUserListModel.setAlt_number(tv_alternateNoValue.getText().toString().trim());
                             ngUserListModel.setSub_status(selected_description_substatus + " Tech Remarks - "+et_nghold_remarks.getText().toString().trim());
                             Log.d(log,"sub status  ="+selected_description_substatus + " Tech Remarks - "+et_nghold_remarks.getText().toString().trim());
                             ngUserListModel.setNg_update_date(df.format(c));
@@ -297,6 +298,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                     intent.putExtra("mobile",newMob);
                     intent.putExtra("meter", correctedmeterno);
                     intent.putExtra("meterStatus", meterincorrect);
+                    intent.putExtra("altmob", tv_alternateNoValue.getText().toString().trim());
                     startActivity(intent);
                 }
 
@@ -593,7 +595,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
         et_delayDateValue = findViewById(R.id.et_delayDateValue);
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        et_delayDateValue.setText(df.format(c));
+       // et_delayDateValue.setText(df.format(c));
         et_initialReading = findViewById(R.id.et_initialReading);
         et_burnerDetails = findViewById(R.id.et_burnerDetails);
         et_conversationDate = findViewById(R.id.et_conversationDate);
@@ -799,6 +801,13 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
          {
              et_nghold_remarks.setError("Remarks Mandatory");
              Toast.makeText(NgSupUserDetailsActivity.this, "Pls enter remarks", Toast.LENGTH_SHORT).show();
+             isDataValid = false;
+             return isDataValid;
+         }
+         else if (et_delayDateValue.getText().toString().trim().isEmpty())
+         {
+             et_delayDateValue.setError("Follow Up-date is Mandatory");
+             Toast.makeText(NgSupUserDetailsActivity.this, "Select Follow Up-date", Toast.LENGTH_SHORT).show();
              isDataValid = false;
              return isDataValid;
          }

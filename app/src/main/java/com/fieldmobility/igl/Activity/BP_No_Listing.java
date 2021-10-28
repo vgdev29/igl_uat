@@ -234,6 +234,7 @@ public class BP_No_Listing extends Activity implements New_BP_NO_Adapter.Contact
                                 bp_no_item.setEmail_id(data_object.getString("igl_email_id"));
                                 if (data_object.has("igl_father_name")) {
                                     bp_no_item.setFather_name(data_object.getString("igl_father_name"));
+                                    Log.d("fathersname = ",data_object.getString("igl_father_name"));
                                 }
                                 bp_no_item.setAadhaar_number(data_object.getString("igl_aadhaar_no"));
                                 bp_no_item.setCity_region(data_object.getString("igl_city_region"));
@@ -264,6 +265,7 @@ public class BP_No_Listing extends Activity implements New_BP_NO_Adapter.Contact
                                 bp_no_item.setAddressProof(data_object.getString("igl_address_type"));
                                 bp_no_item.setIdproof(data_object.getString("id_proof_type"));
                                 bp_no_item.setIgl_code_group(data_object.getString("igl_code_group"));
+                                bp_no_item.setProperty_type(data_object.getString("igl_type_of_customer"));
                                 boolean hasImages=data_object.getBoolean("image");
                                 bp_no_item.setImages(hasImages);
 

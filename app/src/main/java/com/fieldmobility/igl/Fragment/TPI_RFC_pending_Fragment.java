@@ -66,11 +66,12 @@ public class TPI_RFC_pending_Fragment extends Fragment {
     TPI_RFC_Pending_Adapter tpi_inspection_adapter;
     EditText editTextSearch;
     TextView header_title;
-    TextView list_count;
+    TextView  search_bp,text_searchdata;
     View root;
     LinearLayout top_layout;
     static String log = "feasibilitypending";
     ArrayList<BpDetail> bpDetails = new ArrayList<>();
+    ArrayList<BpDetail> searchdetails = new ArrayList<>();
     ImageView rfc_filter;
     private Dialog mFilterDialog;
     private RadioGroup radioGroup;
@@ -110,11 +111,14 @@ public class TPI_RFC_pending_Fragment extends Fragment {
 
     private void Layout_ID() {
         top_layout=root.findViewById(R.id.top_layout);
-        top_layout.setVisibility(View.GONE);
-        list_count=root.findViewById(R.id.list_count);
+
+        text_searchdata=root.findViewById(R.id.text_searchdata);
+
         rfc_filter = root.findViewById(R.id.rfc_filter);
         header_title=root.findViewById(R.id.header_title);
-        header_title.setText("TPI");
+        header_title.setText("RFC Pending");
+        search_bp = root.findViewById(R.id.search_tpibp);
+        search_bp.setText("Search");
         mSwipeRefreshLayout = (SwipeRefreshLayout) root.findViewById(R.id.swipeToRefresh);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -142,6 +146,17 @@ public class TPI_RFC_pending_Fragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 tpi_inspection_adapter.getFilter().filter(s.toString());
+                if (start == 0 && count==0)
+                {
+                    if(bpDetails.size()>0) {
+                        tpi_inspection_adapter.setData(bpDetails);
+                        text_searchdata.setText("Count - "+ bpDetails.size());
+
+                    }
+
+                }
+                Log.d("editetxt","start = "+start+" count = "+count+" before = "+before);
+
             }
 
             @Override
@@ -157,6 +172,22 @@ public class TPI_RFC_pending_Fragment extends Fragment {
             }
         });
 
+        search_bp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              String bp = editTextSearch.getText().toString().trim();
+              if (bp.length()>0)
+              {
+                  searchBp_network(bp);
+              }
+            }
+        });
+        text_searchdata.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         Feasivility_List();
     }
@@ -248,7 +279,7 @@ public class TPI_RFC_pending_Fragment extends Fragment {
                 }
             }
         }
-        list_count.setText("Count\n"+ filterList.size());
+        text_searchdata.setText("Search Result - "+ filterList.size());
         tpi_inspection_adapter.setData(filterList);
 
 
@@ -267,7 +298,7 @@ public class TPI_RFC_pending_Fragment extends Fragment {
 
             }
         }
-        list_count.setText("Count\n"+ filterList.size());
+        text_searchdata.setText("Search Result - "+ filterList.size());
         tpi_inspection_adapter.setData(filterList);
 
 
@@ -284,7 +315,7 @@ public class TPI_RFC_pending_Fragment extends Fragment {
                 filterList.add(bpNoItem);
             }
         }
-        list_count.setText("Count\n"+ filterList.size());
+        text_searchdata.setText("Search Result - "+ filterList.size());
         tpi_inspection_adapter.setData(filterList);
 
 
@@ -299,7 +330,7 @@ public class TPI_RFC_pending_Fragment extends Fragment {
                 filterList.add(bpNoItem);
             }
         }
-        list_count.setText("Count\n"+ filterList.size());
+        text_searchdata.setText("Search Result - "+ filterList.size());
         tpi_inspection_adapter.setData(filterList);
 
     }
@@ -308,7 +339,7 @@ public class TPI_RFC_pending_Fragment extends Fragment {
     {
         Log.d(log,"clear filter = "+bpDetails.size());
         tpi_inspection_adapter.setData(bpDetails);
-        list_count.setText("Count\n"+ bpDetails.size());
+        text_searchdata.setText("Count - "+ bpDetails.size());
     }
 
     public void Feasivility_List() {
@@ -337,7 +368,7 @@ public class TPI_RFC_pending_Fragment extends Fragment {
                             if (status.equals("200")) {
                                 rel_nodata.setVisibility(View.GONE);
                             final JSONArray Bp_Details = jsonObject.getJSONArray("Bp_Details");
-                            list_count.setText("Count\n"+String.valueOf(Bp_Details.length()));
+                            text_searchdata.setText("Count - "+String.valueOf(Bp_Details.length()));
                             for(int i=0; i<Bp_Details.length();i++) {
                                 JSONObject data_object = Bp_Details.getJSONObject(i);
                                 BpDetail bp_no_item = new BpDetail();
@@ -402,6 +433,139 @@ public class TPI_RFC_pending_Fragment extends Fragment {
                         tpi_inspection_adapter = new TPI_RFC_Pending_Adapter(context,bpDetails,TPI_RFC_pending_Fragment.this);
                         recyclerView.setAdapter(tpi_inspection_adapter);
                         tpi_inspection_adapter.notifyDataSetChanged();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        CommonUtils.dismissProgressBar(context);
+                        NetworkResponse response = error.networkResponse;
+                        if (error instanceof ServerError && response != null) {
+                            try {
+                                String res = new String(response.data,
+                                        HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                                JSONObject obj = new JSONObject(res);
+                            } catch (UnsupportedEncodingException e1) {
+                                e1.printStackTrace();
+                            } catch (JSONException e2) {
+                                e2.printStackTrace();
+                            }
+                        }
+                    }
+                }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                try {
+                    params.put("id", sharedPrefs.getUUID());
+                } catch (Exception e) {
+                }
+                return params;
+            }
+
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                12000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+    }
+
+    public void searchBp_network(String bp) {
+        searchdetails.clear();
+        CommonUtils.startProgressBar(context,"Please wait....");
+        String url = Constants.TPI_RFCPENSEARCH+sharedPrefs.getZone_Code()+"&bp="+bp;
+        Log.d("tpi",url);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        CommonUtils.dismissProgressBar(context);
+                        try {
+                           /* JSONObject jsonObject = new JSONObject(response);
+                            Log.d(log,"Response++ = "+jsonObject.toString());
+                            Gson gson = new GsonBuilder()
+                                    .setPrettyPrinting()
+                                    .serializeNulls()
+                                    .create();
+                            BpListing bpListing = gson.fromJson(response.toString(), BpListing.class);
+                             bpDetails = bpListing.getBpDetails();
+                            list_count.setText("Count= "+String.valueOf(bpDetails.size()));*/
+                            final JSONObject jsonObject = new JSONObject(response);
+                            Log.d("Response++",jsonObject.toString());
+
+                            String status = jsonObject.getString("status");
+                            String message = jsonObject.getString("Message");
+                            if (status.equals("200")) {
+                                rel_nodata.setVisibility(View.GONE);
+                                final JSONArray Bp_Details = jsonObject.getJSONArray("Bp_Details");
+                                text_searchdata.setText("Search Result - "+String.valueOf(Bp_Details.length()));
+                                for(int i=0; i<Bp_Details.length();i++) {
+                                    JSONObject data_object = Bp_Details.getJSONObject(i);
+                                    BpDetail bp_no_item = new BpDetail();
+                                    bp_no_item.setFirstName(data_object.getString("first_name"));
+                                    bp_no_item.setMiddleName(data_object.getString("middle_name"));
+                                    bp_no_item.setLastName(data_object.getString("last_name"));
+                                    bp_no_item.setMobileNumber(data_object.getString("mobile_number"));
+                                    bp_no_item.setEmailId(data_object.getString("email_id"));
+                                    bp_no_item.setAadhaarNumber(data_object.getString("aadhaar_number"));
+                                    bp_no_item.setCityRegion(data_object.getString("city_region"));
+                                    bp_no_item.setArea(data_object.getString("area"));
+                                    bp_no_item.setSociety(data_object.getString("society"));
+                                    bp_no_item.setLandmark(data_object.getString("landmark"));
+                                    bp_no_item.setHouseType(data_object.getString("house_type"));
+                                    bp_no_item.setHouseNo(data_object.getString("house_no"));
+                                    bp_no_item.setBlockQtrTowerWing(data_object.getString("block_qtr_tower_wing"));
+                                    bp_no_item.setFloor(data_object.getString("floor"));
+                                    bp_no_item.setStreetGaliRoad(data_object.getString("street_gali_road"));
+                                    bp_no_item.setPincode(data_object.getString("pincode"));
+                                    bp_no_item.setCustomerType(data_object.getString("customer_type"));
+                                    bp_no_item.setLpgCompany(data_object.getString("lpg_company"));
+                                    bp_no_item.setBpNumber(data_object.getString("bp_number"));
+                                    bp_no_item.setBpDate(data_object.getString("bp_date"));
+                                    bp_no_item.setIglStatus(data_object.getString("igl_status"));
+                                    bp_no_item.setLpgDistributor(data_object.getString("lpg_distributor"));
+                                    bp_no_item.setLpgConNo(data_object.getString("lpg_conNo"));
+                                    bp_no_item.setUniqueLpgId(data_object.getString("unique_lpg_Id"));
+                                    bp_no_item.setOwnerName(data_object.getString("ownerName"));
+                                    bp_no_item.setChequeNo(data_object.getString("chequeNo"));
+                                    bp_no_item.setChequeDate(data_object.getString("chequeDate"));
+                                    bp_no_item.setLeadNo(data_object.getString("lead_no"));
+                                    bp_no_item.setDrawnOn(data_object.getString("drawnOn"));
+                                    bp_no_item.setAmount(data_object.getString("amount"));
+                                    bp_no_item.setAddressProof(data_object.getString("addressProof"));
+                                    bp_no_item.setIdproof(data_object.getString("idproof"));
+                                    bp_no_item.setIglCodeGroup(data_object.getString("igl_code_group"));
+                                    bp_no_item.setClaimFlag(data_object.getString("claimFlag"));
+                                    bp_no_item.setJobFlag(data_object.getString("jobFlag"));
+                                    bp_no_item.setRfcTpi(data_object.getString("rfcTpi"));
+                                    bp_no_item.setRfcVendor(data_object.getString("rfcVendor"));
+                                    bp_no_item.setRfcAdminName(data_object.getString("rfcAdminName"));
+                                    bp_no_item.setRfcAdminMobileNo(data_object.getString("rfcAdminMobileNo"));
+                                    bp_no_item.setRfcVendorMobileNo(data_object.getString("rfcVendorMobileNo"));
+                                    bp_no_item.setRfcVendorName(data_object.getString("rfcVendorName"));
+                                    bp_no_item.setZoneCode(data_object.getString("zonecode"));
+                                    bp_no_item.setControlRoom(data_object.getString("controlRoom"));
+                                    bp_no_item.setIgl_rfcvendor_assigndate(data_object.getString("supervisor_assigndate"));
+
+                                    searchdetails.add(bp_no_item);
+                                }
+                            }
+                            else
+                            {
+                                CommonUtils.toast_msg(context,message);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }catch (NullPointerException e) {
+                            e.printStackTrace();
+                        }
+
+                        tpi_inspection_adapter.setData(searchdetails);
                     }
                 },
                 new Response.ErrorListener() {

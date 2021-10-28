@@ -35,6 +35,9 @@ public class Splash_Screen extends Activity {
         SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         date_select = date_format.format(c);
         Log.d("CurrentDate",  date_select);
+
+
+
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {

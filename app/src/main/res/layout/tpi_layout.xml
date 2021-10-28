@@ -3,8 +3,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
-
     android:background="@color/white">
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,6 +57,14 @@
                 />
         </LinearLayout>
     </LinearLayout>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:overScrollMode="never">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -314,6 +320,105 @@
                 android:padding="@dimen/_5sdp"
                 android:maxLines="4"
                 android:hint="Description"/>
+
+
+            <LinearLayout
+                android:id="@+id/ll_hold_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="Follow-Up Date &amp; Time"
+                    android:textColor="@color/rad"
+                    android:textSize="@dimen/_12sdp"
+                    android:visibility="gone"
+                    android:textStyle="bold" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/start_date_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_blue_border"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:text="12-2-20202"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        android:id="@+id/time_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_blue_border"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:text="12-10 pm"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+
+                    <ImageView
+                        android:id="@+id/select_image1"
+                        android:layout_width="150dp"
+                        android:layout_height="120dp"
+                        android:layout_weight="1.6"
+                        android:background="@drawable/shape_blue_border"
+                        android:scaleType="fitXY" />
+
+                    <Button
+                        android:id="@+id/image_button"
+                        android:layout_width="120dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_gravity="center|end"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/shape_cornor_radious"
+                        android:gravity="center"
+                        android:text="Take Photo"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -360,4 +465,6 @@
         </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+    </LinearLayout>
+</ScrollView>
 </LinearLayout>

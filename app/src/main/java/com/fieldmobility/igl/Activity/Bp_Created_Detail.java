@@ -90,6 +90,7 @@ public class Bp_Created_Detail extends Activity {
     Spinner address_proof_spinner, id_proof_spinner;
 
     boolean hasImageData = false;
+    RadioButton owner , rents;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,6 +156,16 @@ public class Bp_Created_Detail extends Activity {
         ((TextView) findViewById(R.id.tv_customer_type)).setText(bp_No_Item.getCustomer_type());
         ((TextView) findViewById(R.id.tv_id_type)).setText(bp_No_Item.getIdproof());
         ((TextView) findViewById(R.id.tv_address_proof_type)).setText(bp_No_Item.getAddressProof());
+        owner = findViewById(R.id.owner);
+        rents = findViewById(R.id.rents);
+        if(bp_No_Item.getProperty_type().equalsIgnoreCase("Rented"))
+        {
+            rents.setChecked(true);
+        }
+        else
+        {
+            owner.setChecked(true);
+        }
         ImageView iv_id_proof = findViewById(R.id.iv_id_proof);
         id_image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -336,6 +347,7 @@ public class Bp_Created_Detail extends Activity {
         });
         Type_Of_Owner = "Owner";
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+
         int selectedId = radioGroup.getCheckedRadioButtonId();
 //        genderradioButton = (RadioButton) findViewById(selectedId);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

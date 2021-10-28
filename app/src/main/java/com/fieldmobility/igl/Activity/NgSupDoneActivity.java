@@ -46,9 +46,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -133,11 +135,15 @@ public class NgSupDoneActivity extends AppCompatActivity {
             burnerDetails = getIntent().getStringExtra("burnerDetails");
             conversationDate = getIntent().getStringExtra("conversationDate");
             newMob = getIntent().getStringExtra("mobile");
-            Log.d(log,"date ng update = "+conversationDate);
+            Log.d(log,"date conversion = "+conversationDate);
+            Date c = Calendar.getInstance().getTime();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            Log.d(log,"date ="+df.format(c));
             nguserListModel = new NguserListModel();
             nguserListModel.setInitial_reading(initialReading);
             nguserListModel.setBurner_details(burnerDetails);
-            nguserListModel.setNg_update_date(conversationDate);
+            nguserListModel.setConversion_date(conversationDate);
+            nguserListModel.setNg_update_date(df.format(c));
             nguserListModel.setJmr_no(jmrNo);
             nguserListModel.setMobile_no(newMob);
             nguserListModel.setCat_id(getIntent().getStringExtra("catid"));
@@ -147,6 +153,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
             nguserListModel.setSub_status(getIntent().getStringExtra("substatus"));
             nguserListModel.setCorrected_meter_no(getIntent().getStringExtra("meter"));
             nguserListModel.setMeter_status(getIntent().getBooleanExtra("meterStatus",false));
+            nguserListModel.setAlt_number(getIntent().getStringExtra("altmob"));
 
 
         }
