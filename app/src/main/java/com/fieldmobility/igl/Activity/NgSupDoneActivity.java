@@ -14,6 +14,7 @@ import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -420,7 +421,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
         File wallpaperDirectory = new File(
-                getExternalStorageDirectory() + IMAGE_DIRECTORY /*iDyme folder*/);
+                getFilesDir() + IMAGE_DIRECTORY /*iDyme folder*/);
         if (!wallpaperDirectory.exists()) {
             wallpaperDirectory.mkdirs();
             Log.d("Signature_Page++", wallpaperDirectory.toString());
@@ -526,7 +527,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+                        File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temp.jpg");
                         Uri photoURI = FileProvider.getUriForFile(NgSupDoneActivity.this, getApplicationContext().getPackageName() + ".provider", f);
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -556,7 +557,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+                        File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temp.jpg");
                         Uri photoURI = FileProvider.getUriForFile(NgSupDoneActivity.this, getApplicationContext().getPackageName() + ".provider", f);
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -586,7 +587,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+                        File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temp.jpg");
                         Uri photoURI = FileProvider.getUriForFile(NgSupDoneActivity.this, getApplicationContext().getPackageName() + ".provider", f);
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -616,7 +617,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+                        File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temp.jpg");
                         Uri photoURI = FileProvider.getUriForFile(NgSupDoneActivity.this, getApplicationContext().getPackageName() + ".provider", f);
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -651,10 +652,11 @@ public class NgSupDoneActivity extends AppCompatActivity {
                     try {
 
                         mBitmapHome = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathHomeAddress);
-
                         image_path_HomeAddress = getPath(filePathHomeAddress);
                         if (mBitmapHome != null) {
-                            iv_homeAddress.setImageBitmap(mBitmapHome);
+                            int nh = (int) ( mBitmapHome.getHeight() * (512.0 / mBitmapHome.getWidth()) );
+                            Bitmap scaled = Bitmap.createScaledBitmap(mBitmapHome, 512, nh, true);
+                            iv_homeAddress.setImageBitmap(scaled);
                             homeAddress_pic_binary = change_to_binary(mBitmapHome);
                             //nguserListModel.setHome_address(homeAddress_pic_binary);
                         }
@@ -677,7 +679,9 @@ public class NgSupDoneActivity extends AppCompatActivity {
                         //address_image.setImageBitmap(bitmap1);
                         image_path_meterPhoto = getPath(filePathMeterPhoto);
                         if (mBitmapmeterPhoto != null) {
-                            iv_meterPhoto.setImageBitmap(mBitmapmeterPhoto);
+                            int nh = (int) ( mBitmapmeterPhoto.getHeight() * (512.0 / mBitmapmeterPhoto.getWidth()) );
+                            Bitmap scaled = Bitmap.createScaledBitmap(mBitmapmeterPhoto, 512, nh, true);
+                            iv_meterPhoto.setImageBitmap(scaled);
                             meter_pic_binary = change_to_binary(mBitmapmeterPhoto);
                             //nguserListModel.setMeter_photo(meter_pic_binary);
                         }
@@ -700,7 +704,9 @@ public class NgSupDoneActivity extends AppCompatActivity {
 
                         //  new ImageCompressionAsyncTask(this).execute(image_path_aadhar, getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Silicompressor/images");
                         Log.e("image_path_aadhar+,", "" + image_path_HomeAddress);
-                        iv_installation.setImageBitmap(mBitmapInstallation);
+                        int nh = (int) ( mBitmapInstallation.getHeight() * (512.0 / mBitmapInstallation.getWidth()) );
+                        Bitmap scaled = Bitmap.createScaledBitmap(mBitmapInstallation, 512, nh, true);
+                        iv_installation.setImageBitmap(scaled);
                         if (mBitmapInstallation != null) {
 
                             installation_pic_binary = change_to_binary(mBitmapInstallation);
@@ -722,7 +728,9 @@ public class NgSupDoneActivity extends AppCompatActivity {
 
                         //address_image.setImageBitmap(bitmap1);
                         image_path_service_card = getPath(filePathServiceCard);
-                        iv_serviceCard.setImageBitmap(mBitmapServiceCard);
+                        int nh = (int) ( mBitmapServiceCard.getHeight() * (512.0 / mBitmapServiceCard.getWidth()) );
+                        Bitmap scaled = Bitmap.createScaledBitmap(mBitmapServiceCard, 512, nh, true);
+                        iv_serviceCard.setImageBitmap(scaled);
                         if (mBitmapServiceCard != null) {
 
                             serviceCard_pic_binary = change_to_binary(mBitmapServiceCard);
@@ -751,10 +759,9 @@ public class NgSupDoneActivity extends AppCompatActivity {
 
                         //  new ImageCompressionAsyncTask(this).execute(image_path_aadhar, getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Silicompressor/images");
                         Log.e("image_path_aadhar+,", "" + image_path_signature);
-
-
-
-                        signature_image.setImageBitmap(mBitmapSignature);
+                        int nh = (int) ( mBitmapSignature.getHeight() * (512.0 / mBitmapSignature.getWidth()) );
+                        Bitmap scaled = Bitmap.createScaledBitmap(mBitmapSignature, 512, nh, true);
+                        signature_image.setImageBitmap(scaled);
                         if (mBitmapSignature != null) {
 
                             signatureBinary = change_to_binary(mBitmapSignature);
@@ -769,7 +776,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
                 break;
             case CAMERA_REQUEST_HOME_ADDRESS:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST_HOME_ADDRESS) {
-                    File f = new File(getExternalStorageDirectory().toString());
+                    File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString());
                     for (File temp : f.listFiles()) {
                         if (temp.getName().equals("temp.jpg")) {
                             f = temp;
@@ -781,9 +788,10 @@ public class NgSupDoneActivity extends AppCompatActivity {
                         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
                         mBitmapHome = BitmapFactory.decodeFile(f.getAbsolutePath(),
                                 bitmapOptions);
+                        int nh = (int) ( mBitmapHome.getHeight() * (512.0 / mBitmapHome.getWidth()) );
+                        Bitmap scaled = Bitmap.createScaledBitmap(mBitmapHome, 512, nh, true);
 
-
-                        String path = getExternalStorageDirectory().getAbsolutePath();
+                        String path = getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
                         f.delete();
                         OutputStream outFile = null;
                         File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
@@ -796,7 +804,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
                             mBitmapHome.compress(Bitmap.CompressFormat.JPEG, 75, outFile);
                             outFile.flush();
                             outFile.close();
-                            iv_homeAddress.setImageBitmap(mBitmapHome);
+                            iv_homeAddress.setImageBitmap(scaled);
                             if (mBitmapHome != null) {
 
                                 homeAddress_pic_binary = change_to_binary(mBitmapHome);
@@ -816,7 +824,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
                 break;
             case CAMERA_REQUEST_METER_PHOTO:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST_METER_PHOTO) {
-                    File f = new File(getExternalStorageDirectory().toString());
+                    File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString());
                     for (File temp : f.listFiles()) {
                         if (temp.getName().equals("temp.jpg")) {
                             f = temp;
@@ -830,7 +838,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
                                 bitmapOptions);
 
 
-                        String path = getExternalStorageDirectory().getAbsolutePath();
+                        String path = getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
                         f.delete();
                         OutputStream outFile = null;
                         File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
@@ -863,7 +871,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
                 break;
             case CAMERA_REQUEST_INSTALLATION:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST_INSTALLATION) {
-                    File f = new File(getExternalStorageDirectory().toString());
+                    File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString());
                     for (File temp : f.listFiles()) {
                         if (temp.getName().equals("temp.jpg")) {
                             f = temp;
@@ -876,7 +884,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
                         mBitmapInstallation = BitmapFactory.decodeFile(f.getAbsolutePath(),
                                 bitmapOptions);
 
-                        String path = getExternalStorageDirectory().getAbsolutePath();
+                        String path = getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
                         f.delete();
                         OutputStream outFile = null;
                         File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
@@ -910,7 +918,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
                 break;
             case CAMERA_REQUEST_SERVICE_CARD:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST_SERVICE_CARD) {
-                    File f = new File(getExternalStorageDirectory().toString());
+                    File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString());
                     for (File temp : f.listFiles()) {
                         if (temp.getName().equals("temp.jpg")) {
                             f = temp;
@@ -923,7 +931,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
                         mBitmapServiceCard = BitmapFactory.decodeFile(f.getAbsolutePath(),
                                 bitmapOptions);
 
-                        String path = getExternalStorageDirectory().getAbsolutePath();
+                        String path = getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
                         f.delete();
                         OutputStream outFile = null;
                         File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");

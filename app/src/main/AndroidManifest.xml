@@ -57,13 +57,42 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".MITDtoRFC.MITD_Approval"
+            android:exported="true" />
+        <activity
+            android:name=".MITDtoRFC.MITD_Done"
+            android:exported="true" />
+        <activity
+            android:name=".MITDtoRFC.MITD_ApprovalList"
+            android:exported="true" />
+        <activity
+            android:name=".MITDtoRFC.MITD_PendingList"
+            android:exported="true" />
+        <activity
+            android:name=".MITDtoRFC.Tab_Host_MitdTpi"
+            android:exported="true"
+            android:label="@string/title_activity_tab_host_mitd_tpi"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MITDtoRFC.MitdOther"
+            android:exported="true" />
+        <activity
+            android:name=".MITDtoRFC.MitdOwn"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.Floor_Annexure"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.Address_Annexure"
+            android:exported="true" />
+        <activity
             android:name=".Activity.TPI_Module"
             android:exported="true" />
         <activity
             android:name=".Riser.activity.RiserTpiApprovalDetailActivity"
             android:exported="true" />
-        <activity android:name=".Riser.activity.RiserTpiApprovalActivity"></activity>
-        <activity android:name=".Riser.activity.RiserTpiPendingActivity"></activity>
+        <activity android:name=".Riser.activity.RiserTpiApprovalActivity" />
+        <activity android:name=".Riser.activity.RiserTpiPendingActivity" />
         <activity
             android:name=".Riser.activity.RiserFormActivity"
             android:screenOrientation="portrait" />
@@ -254,7 +283,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.CheckBpActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.Tab_Host_EKYC"
             android:screenOrientation="portrait" />
@@ -266,6 +295,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.Tab_Host_DMA"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MITDtoRFC.Tab_Host_MITD"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Riser.activity.Tab_Host_Riser"

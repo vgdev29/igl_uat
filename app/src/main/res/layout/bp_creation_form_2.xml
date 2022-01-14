@@ -127,6 +127,20 @@
                 android:singleLine="true"
                 android:textSize="@dimen/_10sdp"
                 android:visibility="gone" />
+            <TextView
+                android:id="@+id/floor_text"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_26sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight=".5"
+                android:gravity="center_vertical|center"
+                android:padding="@dimen/_5sdp"
+                android:text="Multiple Floor Annexure"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10sdp"
+                android:visibility="gone"
+                android:textStyle="bold" />
+
 
             <!--            <CheckBox-->
             <!--                android:id="@+id/undertaking_gpa"-->
@@ -161,6 +175,20 @@
                 android:padding="010dp"
                 android:textSize="@dimen/_10sdp"
                 android:visibility="gone" />
+            <TextView
+                android:id="@+id/address_text"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_26sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight=".5"
+                android:gravity="center_vertical|center"
+                android:padding="@dimen/_5sdp"
+                android:text="Address Issue Annexure"
+                android:textColor="@color/black"
+                android:visibility="gone"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold" />
+
 
             <TextView
                 android:layout_width="match_parent"
@@ -397,7 +425,7 @@
                     <Spinner
                         android:id="@+id/spinner1"
                         android:layout_width="@dimen/_130sdp"
-                        android:layout_height="@dimen/_30sdp"
+                        android:layout_height="32dp"
                         android:layout_margin="3dp"
                         android:layout_weight=".7"
                         android:background="@drawable/shape_white"
@@ -628,6 +656,37 @@
                     android:textSize="@dimen/_10sdp" />
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_28sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Form Filling Location"
+                    android:textColor="@color/black_31"
+                    android:textSize="@dimen/_13sdp" />
+
+                <Spinner
+                    android:id="@+id/spinner_formfill"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_blue_border"
+                    android:dropDownSelector="@null" />
+
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -641,9 +700,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-
                     android:textSize="@dimen/_10sdp" />
-
                 <TextView
                     android:id="@+id/checkbox_text"
                     android:layout_width="match_parent"
@@ -656,7 +713,12 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/_10sdp"
                     android:textStyle="bold" />
+
             </LinearLayout>
+
+
+
+
 
             <RelativeLayout
                 android:layout_width="match_parent"

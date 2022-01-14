@@ -70,12 +70,11 @@ public class RFC_Connection_Listing extends Activity implements RFC_Adapter.Cont
     ImageView rfc_filter;
     private Dialog mFilterDialog;
     private RadioGroup radioGroup;
-
     private int filtersDialogOpenCount = 0;
-
     private int mSelectedId;
     RelativeLayout rel_nodata;
     Button refresh ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -447,9 +446,5 @@ public class RFC_Connection_Listing extends Activity implements RFC_Adapter.Cont
 
     }
 
-    /*@Override
-    protected void onRestart() {
-        super.onRestart();
-        Bp_No_List();
-    }*/
+
 }

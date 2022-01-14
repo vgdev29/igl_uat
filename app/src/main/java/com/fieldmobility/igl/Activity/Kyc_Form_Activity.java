@@ -20,6 +20,7 @@ import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Html;
 import android.text.TextUtils;
@@ -638,7 +639,7 @@ public class Kyc_Form_Activity extends Activity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+                        File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temp.jpg");
                         Uri photoURI = FileProvider.getUriForFile(Kyc_Form_Activity.this, getApplicationContext().getPackageName() + ".provider", f);
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -668,7 +669,7 @@ public class Kyc_Form_Activity extends Activity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+                        File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temp.jpg");
                         Uri photoURI = FileProvider.getUriForFile(Kyc_Form_Activity.this, getApplicationContext().getPackageName() + ".provider", f);
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -806,7 +807,7 @@ public class Kyc_Form_Activity extends Activity {
                 break;
             case CAMERA_ID_REQUEST:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_ID_REQUEST) {
-                    File f = new File(getExternalStorageDirectory().toString());
+                    File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString());
                     for (File temp : f.listFiles()) {
                         if (temp.getName().equals("temp.jpg")) {
                             f = temp;
@@ -818,7 +819,7 @@ public class Kyc_Form_Activity extends Activity {
                         Bitmap bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
                                 bitmapOptions);
                         id_image.setImageBitmap(bitmap);
-                        String path = getExternalStorageDirectory().getAbsolutePath();
+                        String path = getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
                         f.delete();
                         OutputStream outFile = null;
                         File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
@@ -864,7 +865,7 @@ public class Kyc_Form_Activity extends Activity {
                 break;
             case CAMERA_REQUEST_ADDRESS:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST_ADDRESS) {
-                    File f = new File(getExternalStorageDirectory().toString());
+                    File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString());
                     for (File temp : f.listFiles()) {
                         if (temp.getName().equals("temp.jpg")) {
                             f = temp;
@@ -877,7 +878,7 @@ public class Kyc_Form_Activity extends Activity {
                                 bitmapOptions);
                         address_image.setImageBitmap(bitmap);
                         //BitMapToString(bitmap);
-                        String path = getExternalStorageDirectory().getAbsolutePath();
+                        String path = getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
                         f.delete();
                         OutputStream outFile = null;
                         File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
@@ -1065,7 +1066,7 @@ public class Kyc_Form_Activity extends Activity {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
         File wallpaperDirectory = new File(
-                getExternalStorageDirectory() + IMAGE_DIRECTORY /*iDyme folder*/);
+                getFilesDir() + IMAGE_DIRECTORY /*iDyme folder*/);
         // have the object build the directory structure, if needed.
         if (!wallpaperDirectory.exists()) {
             wallpaperDirectory.mkdirs();

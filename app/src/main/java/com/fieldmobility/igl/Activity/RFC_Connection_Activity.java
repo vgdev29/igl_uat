@@ -119,12 +119,15 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
     String online_offline, property_type_string, gas_type_string;
     LinearLayout offline_layout;
     String pvc_sleeve_Avail_NotAvail, meater_intalation_OK_NotOk, clamping_gi_pvc_Done_NotDone, gas_meter_Done_NotDone, cementing_of_holes_Done_NotDone, painting_of_gi_pipe_Done_NotDone,
-            hole_drilled_Yes_No, meter_control_valve_testing_Yes_No, natural_gas_usage_Yes_No, ng_conversion_Done_NotDone;
+            hole_drilled_Yes_No, meter_control_valve_testing_Yes_No, natural_gas_usage_Yes_No,
+            ng_conversion_Done_NotDone,area_gassified;
     RadioGroup pvc_sleeve_radioGroup, meater_intalation_radioGroup, clamping_gi_pvc_radioGroup, gas_meter_radioGroup,
-            cementing_of_holes_radioGroup, painting_of_gi_pipe_radioGroup, hole_drilled_radioGroup, meter_control_valve_testing_radioGroup, natural_gas_usage_radioGroup, ng_conversion_radioGroup;
+            cementing_of_holes_radioGroup, painting_of_gi_pipe_radioGroup, hole_drilled_radioGroup, meter_control_valve_testing_radioGroup,
+            natural_gas_usage_radioGroup, ng_conversion_radioGroup,area_gassified_radiogroup;
     RadioButton pvc_sleeve_radioButton, meater_intalation_radioButton, clamping_gi_pvc_radioButton, gas_meter_radioButton,
             cementing_of_holes_radioButton, painting_of_gi_pipe_radioButton, hole_drilled_radioButton,
-            meter_control_valve_testing_radioButton, natural_gas_usage_radioButton, ng_conversion_radioButton;
+            meter_control_valve_testing_radioButton, natural_gas_usage_yes_radioButton,
+            natural_gas_usage_no_radioButton,ng_conversion_yes_radioButton,ng_conversion_no_radioButton;
 
     RadioButton connectivity_radioButton;
     RadioGroup connectivity_radioGroup;
@@ -491,31 +494,50 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
         });
 
         int natural_gas_usage_selectedId = natural_gas_usage_radioGroup.getCheckedRadioButtonId();
-        natural_gas_usage_radioButton = (RadioButton) findViewById(natural_gas_usage_selectedId);
         natural_gas_usage_radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.natural_gas_usage_no:
-                        natural_gas_usage_Yes_No = "Yes";
+                        natural_gas_usage_Yes_No = "NO";
+                        ng_conversion_yes_radioButton.setChecked(true);
+                        ng_conversion_no_radioButton.setChecked(false);
                         break;
                     case R.id.natural_gas_usage_yes:
-                        natural_gas_usage_Yes_No = "No";
+                        natural_gas_usage_Yes_No = "YES";
+                        ng_conversion_no_radioButton.setChecked(true);
+                        ng_conversion_yes_radioButton.setChecked(false);
                         // Toast.makeText(New_Regestration_Form.this, "Type", Toast.LENGTH_LONG).show();
                         break;
                 }
             }
         });
         int ng_conversion_selectedId = ng_conversion_radioGroup.getCheckedRadioButtonId();
-        ng_conversion_radioButton = (RadioButton) findViewById(ng_conversion_selectedId);
         ng_conversion_radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.ng_conversion_yes:
                         ng_conversion_Done_NotDone = "Yes";
+                        natural_gas_usage_no_radioButton.setChecked(true);
+                        natural_gas_usage_yes_radioButton.setChecked(false);
                         break;
                     case R.id.ng_conversion_no:
                         ng_conversion_Done_NotDone = "No";
+                        natural_gas_usage_yes_radioButton.setChecked(true);
+                        natural_gas_usage_no_radioButton.setChecked(false);
                         // Toast.makeText(New_Regestration_Form.this, "Type", Toast.LENGTH_LONG).show();
+                        break;
+                }
+            }
+        });
+        area_gassified_radiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.area_gassified_radiobutton_yes:
+                        area_gassified = "Yes";
+                        break;
+                    case R.id.area_gassified_radiobutton_no:
+                        area_gassified = "No";
                         break;
                 }
             }
@@ -655,8 +677,13 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
         hole_drilled_radioGroup = (RadioGroup) findViewById(R.id.hole_drilled_radioGroup);
         meter_control_valve_testing_radioGroup = (RadioGroup) findViewById(R.id.meter_control_valve_testing_radioGroup);
         natural_gas_usage_radioGroup = (RadioGroup) findViewById(R.id.natural_gas_usage_radioGroup);
+        natural_gas_usage_yes_radioButton = natural_gas_usage_radioGroup.findViewById(R.id.natural_gas_usage_yes);
+        natural_gas_usage_no_radioButton = natural_gas_usage_radioGroup.findViewById(R.id.natural_gas_usage_no);
         ng_conversion_radioGroup = (RadioGroup) findViewById(R.id.ng_conversion_radioGroup);
+        ng_conversion_yes_radioButton = ng_conversion_radioGroup.findViewById(R.id.ng_conversion_yes);
+        ng_conversion_no_radioButton = ng_conversion_radioGroup.findViewById(R.id.ng_conversion_no);
         tf_avail_radioGroup=findViewById(R.id.tf_avail_radioGroup);
+        area_gassified_radiogroup = findViewById(R.id.area_gassified_radiogroup);
         connectivity_radioGroup=findViewById(R.id.connectivity_radioGroup);
         ncap_avail_radioGroup=findViewById(R.id.ncap_avail_radioGroup);
         mScan = findViewById(R.id.mScanbar);
@@ -707,6 +734,71 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                 else {
                     updateDetails(bpno , mobile , mail);
                 }
+            }
+        });
+
+        gi_instalation_text.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+              Double gi = 0.0;
+                Double cu = 0.0;
+                if(!s.toString().trim().isEmpty() && !cu_instalation_text.getText().toString().trim().isEmpty() ) {
+                    try {
+                        cu = Double.valueOf(cu_instalation_text.getText().toString().trim());
+                        gi = Double.valueOf(s.toString());
+                    }catch (Exception e){}
+                }
+              if (gi+cu>15)
+              {
+                  pile_length_edit.setText(""+((gi+cu)-15));
+              }
+              else
+              {
+                  pile_length_edit.setText("0.0" );
+              }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        cu_instalation_text.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                Double cu = 0.0;
+                Double gi = 0.0;
+                if(!s.toString().trim().isEmpty() && !gi_instalation_text.getText().toString().trim().isEmpty()) {
+                    try {
+                        gi = Double.valueOf(gi_instalation_text.getText().toString().trim());
+                        cu = Double.valueOf(s.toString());
+                    }
+                    catch (Exception e){}
+                }
+                if (gi+cu>15)
+                {
+                    pile_length_edit.setText(""+((gi+cu)-15));
+                }
+                else
+                {
+                    pile_length_edit.setText("0.0" );
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
     }
@@ -760,14 +852,32 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
-                        Uri photoURI = FileProvider.getUriForFile(RFC_Connection_Activity.this, getApplicationContext().getPackageName() + ".provider", f);
-                        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                        //  intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                        startActivityForResult(intent, CAMERA_REQUEST);
+                        if (intent.resolveActivity(getPackageManager()) != null) {
+                            // Create the File where the photo should go
+                            File photoFile = null;
+                            try {
+                                photoFile = createImageFile();
+                            } catch (IOException ex) {
+                                // Error occurred while creating the File
+                            }
+                            // Continue only if the File was successfully created
+                            if (photoFile != null) {
+                                Uri photoURI = FileProvider.getUriForFile(RFC_Connection_Activity.this,
+                                        getApplicationContext().getPackageName() + ".provider",
+                                        photoFile);
+                                intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                                startActivityForResult(intent, CAMERA_REQUEST);
+                            }
+                        }
                     }
                 });
         myAlertDialog.show();
+    }
+
+
+    private File createImageFile() throws IOException {
+        File image = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES),"temp.jpg");
+        return image;
     }
 
     private void SelectImage_Method2() {
@@ -787,7 +897,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+                        File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temp.jpg");
                         Uri photoURI = FileProvider.getUriForFile(RFC_Connection_Activity.this, getApplicationContext().getPackageName() + ".provider", f);
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                         // intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -814,7 +924,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+                        File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temp.jpg");
                         Uri photoURI = FileProvider.getUriForFile(RFC_Connection_Activity.this, getApplicationContext().getPackageName() + ".provider", f);
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                         //intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -841,7 +951,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+                        File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temp.jpg");
                         Uri photoURI = FileProvider.getUriForFile(RFC_Connection_Activity.this, getApplicationContext().getPackageName() + ".provider", f);
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                         // intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -859,7 +969,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+                        File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temp.jpg");
                         Uri photoURI = FileProvider.getUriForFile(RFC_Connection_Activity.this, getApplicationContext().getPackageName() + ".provider", f);
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                         // intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -878,14 +988,15 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         //IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        Log.d("rfc",requestCode+"  "+resultCode+"  " );
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case CAMERA_REQUEST:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST) {
-                    File f = new File(getExternalStorageDirectory().toString());
-                    Log.d(LOG,"file f = "+ f.toString()+" "+f.getName()+f.getPath());
+                    File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString());
+                    Log.d(LOG,"file f = "+f.getPath());
                     for (File temp : f.listFiles()) {
-                        Log.d(LOG,"file temp = "+ temp.toString()+" "+temp.getName()+temp.getPath());
+                        Log.d(LOG,"file temp = "+ temp.getName());
                         if (temp.getName().equals("temp.jpg")) {
                             f = temp;
                             break;
@@ -893,23 +1004,23 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                     }
                     try {
                         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
-                        bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
-                                bitmapOptions);
-                        select_image.setImageBitmap(bitmap);
-                        String path = getExternalStorageDirectory().getAbsolutePath();
+                        bitmap = BitmapFactory.decodeFile(f.getAbsolutePath());
+                        int nh = (int) ( bitmap.getHeight() * (512.0 / bitmap.getWidth()) );
+                        Bitmap scaled = Bitmap.createScaledBitmap(bitmap, 512, nh, true);
+                        select_image.setImageBitmap(scaled);
+                        String path = getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
                         Log.d(LOG,"path  = "+ path.toString());
                         f.delete();
                         OutputStream outFile = null;
                         File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
                         Log.d(LOG,"Camera_Path1++"+ file.toString());
                         image_path_string = file.toString();
-                        // image_path_address1 =file.toString();
-                        // TPI_Multipart(filePath_img_string);
                         time_stemp_text.setText(getIntent().getStringExtra("First_name") + " " + getIntent().getStringExtra("Last_name") + "|" + Latitude + "|" + Longitude + "|" + Current_Time + "|" + Current_Date + "|" + getIntent().getStringExtra("Bp_number"));
 
                         try {
                             outFile = new FileOutputStream(file);
                             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outFile);
+                          //  select_image.setImageBitmap(bitmap);
                             outFile.flush();
                             outFile.close();
                         } catch (FileNotFoundException e) {
@@ -929,7 +1040,9 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                    Uri filePathUri_id = data.getData();
                     try {
                        Bitmap bitmap_id = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathUri_id);
-                        select_image.setImageBitmap(bitmap_id);
+                        int nh = (int) ( bitmap_id.getHeight() * (512.0 / bitmap_id.getWidth()) );
+                        Bitmap scaled = Bitmap.createScaledBitmap(bitmap_id, 512, nh, true);
+                       select_image.setImageBitmap(scaled);
                         image_path_string = getPath1(RFC_Connection_Activity.this,filePathUri_id);
                         Log.d("bpcreation", "imagepath id pick image = " + image_path_string);
                         time_stemp_text.setText(getIntent().getStringExtra("First_name") + " " + getIntent().getStringExtra("Last_name") + "|" + Latitude + "|" + Longitude + "|" + Current_Time + "|" + Current_Date + "|" + getIntent().getStringExtra("Bp_number")+" | GALLERY");
@@ -941,7 +1054,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                 break;
             case CAMERA_REQUEST2:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST2) {
-                    File f = new File(getExternalStorageDirectory().toString());
+                    File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString());
                     for (File temp : f.listFiles()) {
                         if (temp.getName().equals("temp.jpg")) {
                             f = temp;
@@ -950,10 +1063,11 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                     }
                     try {
                         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
-                        bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
-                                bitmapOptions);
-                        select_image1.setImageBitmap(bitmap);
-                        String path = getExternalStorageDirectory().getAbsolutePath();
+                        bitmap = BitmapFactory.decodeFile(f.getAbsolutePath());
+                        int nh = (int) ( bitmap.getHeight() * (512.0 / bitmap.getWidth()) );
+                        Bitmap scaled = Bitmap.createScaledBitmap(bitmap, 512, nh, true);
+                        select_image1.setImageBitmap(scaled);
+                        String path = getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
                         f.delete();
                         OutputStream outFile = null;
                         File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
@@ -985,7 +1099,9 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                     Uri filePathUri_id = data.getData();
                     try {
                         Bitmap bitmap_id = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathUri_id);
-                        select_image1.setImageBitmap(bitmap_id);
+                        int nh = (int) ( bitmap_id.getHeight() * (512.0 / bitmap_id.getWidth()) );
+                        Bitmap scaled = Bitmap.createScaledBitmap(bitmap_id, 512, nh, true);
+                        select_image1.setImageBitmap(scaled);
                         image_path_string1 = getPath1(RFC_Connection_Activity.this,filePathUri_id);
                         Log.d("bpcreation", "imagepath id pick image = " + image_path_string1);
                         time_stemp_text1.setText(getIntent().getStringExtra("First_name") + " " + getIntent().getStringExtra("Last_name") + "|" + Latitude + "|" + Longitude + "|" + Current_Time + "|" + Current_Date + "|" + getIntent().getStringExtra("Bp_number")+" | GALLERY");
@@ -997,7 +1113,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                 break;
             case CAMERA_REQUEST3:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST3) {
-                    File f = new File(getExternalStorageDirectory().toString());
+                    File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString());
                     for (File temp : f.listFiles()) {
                         if (temp.getName().equals("temp.jpg")) {
                             f = temp;
@@ -1006,10 +1122,11 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                     }
                     try {
                         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
-                        bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
-                                bitmapOptions);
-                        select_image2.setImageBitmap(bitmap);
-                        String path = getExternalStorageDirectory().getAbsolutePath();
+                        bitmap = BitmapFactory.decodeFile(f.getAbsolutePath());
+                        int nh = (int) ( bitmap.getHeight() * (512.0 / bitmap.getWidth()) );
+                        Bitmap scaled = Bitmap.createScaledBitmap(bitmap, 512, nh, true);
+                        select_image2.setImageBitmap(scaled);
+                        String path = getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
                         f.delete();
                         OutputStream outFile = null;
                         File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
@@ -1041,7 +1158,9 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                     Uri filePathUri_id = data.getData();
                     try {
                         Bitmap bitmap_id = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathUri_id);
-                        select_image2.setImageBitmap(bitmap_id);
+                        int nh = (int) ( bitmap_id.getHeight() * (512.0 / bitmap_id.getWidth()) );
+                        Bitmap scaled = Bitmap.createScaledBitmap(bitmap_id, 512, nh, true);
+                        select_image2.setImageBitmap(scaled);
                         image_path_string2 = getPath1(RFC_Connection_Activity.this,filePathUri_id);
                         Log.d("bpcreation", "imagepath id pick image = " + image_path_string2);
                         time_stemp_text2.setText(getIntent().getStringExtra("First_name") + " " + getIntent().getStringExtra("Last_name") + "|" + Latitude + "|" + Longitude + "|" + Current_Time + "|" + Current_Date + "|" + getIntent().getStringExtra("Bp_number")+" | GALLERY");
@@ -1053,7 +1172,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                 break;
             case CAMERA_REQUEST4:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST4) {
-                    File f = new File(getExternalStorageDirectory().toString());
+                    File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString());
                     for (File temp : f.listFiles()) {
                         if (temp.getName().equals("temp.jpg")) {
                             f = temp;
@@ -1062,10 +1181,11 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                     }
                     try {
                         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
-                        bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
-                                bitmapOptions);
-                        select_image3.setImageBitmap(bitmap);
-                        String path = getExternalStorageDirectory().getAbsolutePath();
+                        bitmap = BitmapFactory.decodeFile(f.getAbsolutePath());
+                        int nh = (int) ( bitmap.getHeight() * (512.0 / bitmap.getWidth()) );
+                        Bitmap scaled = Bitmap.createScaledBitmap(bitmap, 512, nh, true);
+                        select_image3.setImageBitmap(scaled);
+                        String path = getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
                         f.delete();
                         OutputStream outFile = null;
                         File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
@@ -1097,7 +1217,9 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                     Uri filePathUri_id = data.getData();
                     try {
                         Bitmap bitmap_id = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathUri_id);
-                        select_image3.setImageBitmap(bitmap_id);
+                        int nh = (int) ( bitmap_id.getHeight() * (512.0 / bitmap_id.getWidth()) );
+                        Bitmap scaled = Bitmap.createScaledBitmap(bitmap_id, 512, nh, true);
+                        select_image3.setImageBitmap(scaled);
                         image_path_string3 = getPath1(RFC_Connection_Activity.this,filePathUri_id);
                         Log.d("bpcreation", "imagepath id pick image = " + image_path_string3);
                         time_stemp_text3.setText(getIntent().getStringExtra("First_name") + " " + getIntent().getStringExtra("Last_name") + "|" + Latitude + "|" + Longitude + "|" + Current_Time + "|" + Current_Date + "|" + getIntent().getStringExtra("Bp_number")+" | GALLERY");
@@ -1115,8 +1237,10 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                     try {
                         bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePath_customer);
                         // imageView.setImageBitmap(bitmap);
-                        signature_image.setImageBitmap(bitmap);
-                        adhar_owner_image.setImageBitmap(bitmap);
+                        int nh = (int) ( bitmap.getHeight() * (512.0 / bitmap.getWidth()) );
+                        Bitmap scaled = Bitmap.createScaledBitmap(bitmap, 512, nh, true);
+                        signature_image.setImageBitmap(scaled);
+                        adhar_owner_image.setImageBitmap(scaled);
                         customer_image_file = getPath1(this, filePath_customer);
                         Log.e("owner_image_select+", "" + customer_image_select);
                         // new ImageCompressionAsyncTask1(this).execute(image_path_address, getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Silicompressor/images");
@@ -1127,7 +1251,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                 break;
             case PICK_CUSTOMER_IMAGE_SIGNATURE_CAMERA:
                 if (resultCode == RESULT_OK && requestCode == PICK_CUSTOMER_IMAGE_SIGNATURE_CAMERA) {
-                    File f = new File(getExternalStorageDirectory().toString());
+                    File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString());
                     for (File temp : f.listFiles()) {
                         if (temp.getName().equals("temp.jpg")) {
                             f = temp;
@@ -1136,10 +1260,11 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                     }
                     try {
                         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
-                        bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
-                                bitmapOptions);
-                        signature_image.setImageBitmap(bitmap);
-                        String path = getExternalStorageDirectory().getAbsolutePath();
+                        bitmap = BitmapFactory.decodeFile(f.getAbsolutePath());
+                        int nh = (int) ( bitmap.getHeight() * (512.0 / bitmap.getWidth()) );
+                        Bitmap scaled = Bitmap.createScaledBitmap(bitmap, 512, nh, true);
+                        signature_image.setImageBitmap(scaled);
+                        String path = getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
                         f.delete();
                         OutputStream outFile = null;
                         File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
@@ -1252,6 +1377,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                     .addParameter("connectivity", connectivity_Done)
                     .addParameter("ncapAvail", ncap_avail_Done)
                     .addParameter("igl_rfc_status", igl_rfc_status)
+                    .addParameter("area_gassified", area_gassified)
                     .setDelegate(new UploadStatusDelegate() {
                         @Override
                         public void onProgress(Context context, UploadInfo uploadInfo) {
@@ -1343,7 +1469,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
     public String saveImage(Bitmap myBitmap) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
-        File wallpaperDirectory = new File(getExternalStorageDirectory() + IMAGE_DIRECTORY /*iDyme folder*/);
+        File wallpaperDirectory = new File(getFilesDir() + IMAGE_DIRECTORY /*iDyme folder*/);
         if (!wallpaperDirectory.exists()) {
             wallpaperDirectory.mkdirs();
             Log.d("Signature_Page++", wallpaperDirectory.toString());
@@ -1368,7 +1494,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
 
 
     @SuppressLint("NewApi")
-    public static String getPath1(final Context context, final Uri uri) {
+    public   String getPath1(final Context context, final Uri uri) {
         final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
         if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
             if (isExternalStorageDocument(uri)) {
@@ -1376,7 +1502,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                 final String[] split = docId.split(":");
                 final String type = split[0];
                 if ("primary".equalsIgnoreCase(type)) {
-                    return getExternalStorageDirectory() + "/" + split[1];
+                    return getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + split[1];
                 }
             } else if (isDownloadsDocument(uri)) {
                 final String id = DocumentsContract.getDocumentId(uri);

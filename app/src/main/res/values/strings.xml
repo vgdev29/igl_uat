@@ -54,5 +54,9 @@
     <string name="turn_on_flashlight">Turn on Flashlight</string>
     <string name="turn_off_flashlight">Turn off Flashlight</string>
     <string name="contact_details">Contact Details</string>
+    <string name="title_activity_tab_host_mitd">Tab_Host_MITD</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="title_activity_tab_host_mitd_tpi">Tab_Host_MitdTpi</string>
 
 </resources>

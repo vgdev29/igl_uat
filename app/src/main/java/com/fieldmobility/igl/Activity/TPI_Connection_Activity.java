@@ -17,6 +17,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -670,33 +671,7 @@ public class TPI_Connection_Activity  extends Activity {
 
     }
 
-    private void selectImage_address() {
-        AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
-        myAlertDialog.setTitle("Upload Pictures Option");
-        myAlertDialog.setMessage("How do you want to set your picture?");
-        myAlertDialog.setPositiveButton("Gallery",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        Intent intent = new Intent();
-                        intent.setType("image/*");
-                        intent.setAction(Intent.ACTION_GET_CONTENT);
-                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
-                    }
-                });
 
-        myAlertDialog.setNegativeButton("Camera",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
-                        Uri photoURI = FileProvider.getUriForFile(TPI_Connection_Activity.this, getApplicationContext().getPackageName() + ".provider", f);
-                        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                        startActivityForResult(intent, CAMERA_REQUEST);
-                    }
-                });
-        myAlertDialog.show();
-    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -706,12 +681,12 @@ public class TPI_Connection_Activity  extends Activity {
                     filePath_Image = data.getData();
                     try {
                         bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePath_Image);
-                        // imageView.setImageBitmap(bitmap);
-                        image_upload.setImageBitmap(bitmap);
+                        int nh = (int) ( bitmap.getHeight() * (512.0 / bitmap.getWidth()) );
+                        Bitmap scaled = Bitmap.createScaledBitmap(bitmap, 512, nh, true);
+                        image_upload.setImageBitmap(scaled);
                         //address_image.setImageBitmap(bitmap1);
                         filePath_img_string = getPath(filePath_Image);
                         Log.e("image_path_aadhar+,", "" + filePath_Image);
-
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -720,7 +695,7 @@ public class TPI_Connection_Activity  extends Activity {
                 break;
             case CAMERA_REQUEST:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST) {
-                    File f = new File(getExternalStorageDirectory().toString());
+                    File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString());
                     for (File temp : f.listFiles()) {
                         if (temp.getName().equals("temp.jpg")) {
                             f = temp;
@@ -731,8 +706,10 @@ public class TPI_Connection_Activity  extends Activity {
                         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
                         bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
                                 bitmapOptions);
-                        image_upload.setImageBitmap(bitmap);
-                        String path = getExternalStorageDirectory().getAbsolutePath();
+                        int nh = (int) ( bitmap.getHeight() * (512.0 / bitmap.getWidth()) );
+                        Bitmap scaled = Bitmap.createScaledBitmap(bitmap, 512, nh, true);
+                        image_upload.setImageBitmap(scaled);
+                        String path = getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
                         f.delete();
                         OutputStream outFile = null;
                         File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
@@ -757,7 +734,6 @@ public class TPI_Connection_Activity  extends Activity {
                     }
                 }
                 break;
-
         }
     }
     public String getPath(Uri uri) {
@@ -851,13 +827,32 @@ public class TPI_Connection_Activity  extends Activity {
                 }, year, month, day);
         pickerDialog_Date.show();
     }
-    public void chooseImage()
-    {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        File f = new File(getExternalStorageDirectory(), "temp.jpg");
-        Uri photoURI = FileProvider.getUriForFile(TPI_Connection_Activity.this, getApplicationContext().getPackageName() + ".provider", f);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-        //  intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        startActivityForResult(intent, CAMERA_REQUEST);
+
+
+    private void chooseImage() {
+        AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
+        myAlertDialog.setTitle("Upload Pictures Option");
+        myAlertDialog.setMessage("How do you want to set your picture?");
+        myAlertDialog.setPositiveButton("Gallery",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+                    }
+                });
+        myAlertDialog.setNegativeButton("Camera",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temp.jpg");
+                        Uri photoURI = FileProvider.getUriForFile(TPI_Connection_Activity.this, getApplicationContext().getPackageName() + ".provider", f);
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                        //  intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        startActivityForResult(intent, CAMERA_REQUEST);
+                    }
+                });
+        myAlertDialog.show();
     }
 }

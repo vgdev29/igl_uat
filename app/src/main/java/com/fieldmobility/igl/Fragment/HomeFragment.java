@@ -31,9 +31,9 @@ import com.fieldmobility.igl.Activity.NgSupListActivity;
 import com.fieldmobility.igl.Activity.PMC_ViewPager_Activity;
 import com.fieldmobility.igl.Activity.RFC_Connection_Listing;
 import com.fieldmobility.igl.Activity.TPI_Module;
-import com.fieldmobility.igl.Activity.TPI_ViewPager_Activity;
 import com.fieldmobility.igl.Activity.Tab_Host_DMA;
 import com.fieldmobility.igl.Activity.Tab_Host_EKYC;
+import com.fieldmobility.igl.MITDtoRFC.Tab_Host_MITD;
 import com.fieldmobility.igl.Activity.Tab_Host_Pager_TPI_Claim;
 import com.fieldmobility.igl.Activity.To_DoList_Activity;
 import com.fieldmobility.igl.Activity.Tracking_Activity;
@@ -41,6 +41,7 @@ import com.fieldmobility.igl.Activity.View_Attendance_Activity;
 import com.fieldmobility.igl.BuildConfig;
 import com.fieldmobility.igl.Helper.LocationMonitoringService;
 import com.fieldmobility.igl.Helper.SharedPrefs;
+import com.fieldmobility.igl.MITDtoRFC.Tab_Host_MitdTpi;
 import com.fieldmobility.igl.MataData.VideoListData1;
 import com.fieldmobility.igl.Mdpe.Mdpe_List_Activity;
 import com.fieldmobility.igl.R;
@@ -60,7 +61,7 @@ public class HomeFragment extends Fragment {
     View root;
     SharedPrefs sharedPrefs;
     VideoListData1[] myListData;
-    LinearLayout mitd_layout,attendance_layout,to_do_list,learning_layout,new_regestration_layout,ekyc_layout,tpi_layout,
+    LinearLayout mitd_layout,mitd_layout_tpi,attendance_layout,to_do_list,learning_layout,new_regestration_layout,ekyc_layout,tpi_layout,
             rfc_layout,pmc_layout,ng_pending_layout,ng_conversion_layout,riser_layout, lt_tpi_riser,mdpe_layout,checkbp_layout;
     MaterialDialog materialDialog;
     private static final String TAG = Tracking_Activity.class.getSimpleName();
@@ -121,6 +122,7 @@ public class HomeFragment extends Fragment {
         attendance_layout=(LinearLayout)root.findViewById(R.id.attendance_layout);
         to_do_list=(LinearLayout)root.findViewById(R.id.to_do_list);
         mitd_layout=(LinearLayout)root.findViewById(R.id.mitd_layout);
+        mitd_layout_tpi = root.findViewById(R.id.mitd_layout_tpi);
         learning_layout=(LinearLayout)root.findViewById(R.id.learning_layout);
         new_regestration_layout=(LinearLayout)root.findViewById(R.id.new_regestration_layout);
         ekyc_layout=(LinearLayout)root.findViewById(R.id.ekyc_layout);
@@ -163,13 +165,13 @@ public class HomeFragment extends Fragment {
             mdpe_layout.setVisibility(View.GONE);
             riser_layout.setVisibility(View.GONE);
             lt_tpi_riser.setVisibility(View.VISIBLE);
-            mitd_layout.setVisibility(View.VISIBLE);
+            mitd_layout.setVisibility(View.GONE);
+            mitd_layout_tpi.setVisibility(View.VISIBLE);
 
         }
         else if (sharedPrefs.getType_User().equalsIgnoreCase("RFC")){
             new_regestration_layout.setVisibility(View.GONE);
             checkbp_layout.setVisibility(View.GONE);
-
             ekyc_layout.setVisibility(View.GONE);
             tpi_layout.setVisibility(View.GONE);
             ng_pending_layout.setVisibility(View.GONE);
@@ -179,7 +181,7 @@ public class HomeFragment extends Fragment {
             mdpe_layout.setVisibility(View.GONE);
             riser_layout.setVisibility(View.VISIBLE);
             lt_tpi_riser.setVisibility(View.GONE);
-            mitd_layout.setVisibility(View.GONE);
+            mitd_layout.setVisibility(View.VISIBLE);
 
         }
         else if (sharedPrefs.getType_User().equalsIgnoreCase("NG")){
@@ -286,7 +288,16 @@ public class HomeFragment extends Fragment {
         mitd_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent activities=new Intent(getActivity(), MITDDoneActivity.class);
+                Intent activities=new Intent(getActivity(), Tab_Host_MITD.class);
+            //    Intent activities=new Intent(getActivity(), MITDDoneActivity.class);
+                startActivity(activities);
+            }
+        });
+        mitd_layout_tpi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent activities=new Intent(getActivity(), Tab_Host_MitdTpi.class);
+                //    Intent activities=new Intent(getActivity(), MITDDoneActivity.class);
                 startActivity(activities);
             }
         });
@@ -378,6 +389,7 @@ public class HomeFragment extends Fragment {
 
 
     }
+
     public void requestCameraAndStorage() {
         String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         Permissions.check(getActivity(), permissions, null, null, new PermissionHandler() {
@@ -388,6 +400,7 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
     public void requestLocation() {
         String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
         String rationale = "Please provide location permission so that you can ...";

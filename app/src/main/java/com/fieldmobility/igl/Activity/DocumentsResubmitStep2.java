@@ -22,6 +22,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Html;
 import android.util.Log;
@@ -469,7 +470,7 @@ public class DocumentsResubmitStep2 extends Activity implements AdapterView.OnIt
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+                        File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temp.jpg");
                         Uri photoURI = FileProvider.getUriForFile(DocumentsResubmitStep2.this, getApplicationContext().getPackageName() + ".provider", f);
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -497,7 +498,7 @@ public class DocumentsResubmitStep2 extends Activity implements AdapterView.OnIt
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+                        File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temp.jpg");
                         Uri photoURI = FileProvider.getUriForFile(DocumentsResubmitStep2.this, getApplicationContext().getPackageName() + ".provider", f);
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -525,7 +526,7 @@ public class DocumentsResubmitStep2 extends Activity implements AdapterView.OnIt
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+                        File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temp.jpg");
                         Uri photoURI = FileProvider.getUriForFile(DocumentsResubmitStep2.this, getApplicationContext().getPackageName() + ".provider", f);
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -543,7 +544,7 @@ public class DocumentsResubmitStep2 extends Activity implements AdapterView.OnIt
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
 //                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+//                        File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temp.jpg");
 //                        Uri photoURI = FileProvider.getUriForFile(BP_Creation_Form_step2.this, getApplicationContext().getPackageName() + ".provider", f);
 //                        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 //                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -572,7 +573,7 @@ public class DocumentsResubmitStep2 extends Activity implements AdapterView.OnIt
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
 //                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+//                        File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temp.jpg");
 //                        Uri photoURI = FileProvider.getUriForFile(BP_Creation_Form_step2.this, getApplicationContext().getPackageName() + ".provider", f);
 //                        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 //                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -729,7 +730,7 @@ public class DocumentsResubmitStep2 extends Activity implements AdapterView.OnIt
                 break;
             case CAMERA_REQUEST_ID:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST_ID) {
-                    File f = new File(getExternalStorageDirectory().toString());
+                    File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString());
                     for (File temp : f.listFiles()) {
                         if (temp.getName().equals("temp.jpg")) {
                             f = temp;
@@ -743,7 +744,7 @@ public class DocumentsResubmitStep2 extends Activity implements AdapterView.OnIt
                         bitmap_id = getResizedBitmap(bitmap_id, 1600);
 
                         id_imageView.setImageBitmap(bitmap_id);
-                        String path = getExternalStorageDirectory().getAbsolutePath();
+                        String path = getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
                         f.delete();
                         OutputStream outFile = null;
                         File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
@@ -787,7 +788,7 @@ public class DocumentsResubmitStep2 extends Activity implements AdapterView.OnIt
                 break;
             case CAMERA_REQUEST_CHEQUE:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST_CHEQUE) {
-                    File f = new File(getExternalStorageDirectory().toString());
+                    File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString());
                     for (File temp : f.listFiles()) {
                         if (temp.getName().equals("temp.jpg")) {
                             f = temp;
@@ -830,7 +831,7 @@ public class DocumentsResubmitStep2 extends Activity implements AdapterView.OnIt
                 break;
             case CAMERA_REQUEST_ADDRESS:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST_ADDRESS) {
-                    File f = new File(getExternalStorageDirectory().toString());
+                    File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString());
                     for (File temp : f.listFiles()) {
                         if (temp.getName().equals("temp.jpg")) {
                             f = temp;
@@ -854,7 +855,7 @@ public class DocumentsResubmitStep2 extends Activity implements AdapterView.OnIt
 
             case CAMERA_CUSTOMER_SIGNATURE:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_CUSTOMER_SIGNATURE) {
-                    File f = new File(getExternalStorageDirectory().toString());
+                    File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString());
                     for (File temp : f.listFiles()) {
                         if (temp.getName().equals("temp.jpg")) {
                             f = temp;
@@ -878,7 +879,7 @@ public class DocumentsResubmitStep2 extends Activity implements AdapterView.OnIt
 
             case CAMERA_OWNER_SIGNATURE:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_OWNER_SIGNATURE) {
-                    File f = new File(getExternalStorageDirectory().toString());
+                    File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString());
                     for (File temp : f.listFiles()) {
                         if (temp.getName().equals("temp.jpg")) {
                             f = temp;
@@ -942,7 +943,7 @@ public class DocumentsResubmitStep2 extends Activity implements AdapterView.OnIt
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
         File wallpaperDirectory = new File(
-                getExternalStorageDirectory() + IMAGE_DIRECTORY /*iDyme folder*/);
+                getFilesDir() + IMAGE_DIRECTORY /*iDyme folder*/);
         if (!wallpaperDirectory.exists()) {
             wallpaperDirectory.mkdirs();
             Log.d("Signature_Page++", wallpaperDirectory.toString());
@@ -967,7 +968,7 @@ public class DocumentsResubmitStep2 extends Activity implements AdapterView.OnIt
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
         File wallpaperDirectory = new File(
-                getExternalStorageDirectory() + IMAGE_DIRECTORY /*iDyme folder*/);
+                getExternalFilesDir(Environment.DIRECTORY_PICTURES) + IMAGE_DIRECTORY /*iDyme folder*/);
         if (!wallpaperDirectory.exists()) {
             wallpaperDirectory.mkdirs();
             Log.d("Signature_Page++", wallpaperDirectory.toString());

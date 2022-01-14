@@ -14,6 +14,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
@@ -431,7 +432,9 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                         if (bitmap != null) {
                             holdImageBinary = change_to_binary(bitmap);
                             ngUserListModel.setHold_images(holdImageBinary);
-                            hold_image.setImageBitmap(bitmap);
+                            int nh = (int) ( bitmap.getHeight() * (512.0 / bitmap.getWidth()) );
+                            Bitmap scaled = Bitmap.createScaledBitmap(bitmap, 512, nh, true);
+                            hold_image.setImageBitmap(scaled);
                         }
                         image_path_address = getPath(filePath_address);
                         Log.e("image_path_address+", "" + image_path_address);
@@ -443,7 +446,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                 break;
             case CAMERA_REQUEST_ON_HOLD:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST_ON_HOLD) {
-                    File f = new File(getExternalStorageDirectory().toString());
+                    File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString());
                     for (File temp : f.listFiles()) {
                         if (temp.getName().equals("temp.jpg")) {
                             f = temp;
@@ -456,10 +459,13 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                                 bitmapOptions);
                         if (bitmap != null) {
                             holdImageBinary = change_to_binary(bitmap);
+
                             ngUserListModel.setHold_images(holdImageBinary);
-                            hold_image.setImageBitmap(bitmap);
+                            int nh = (int) ( bitmap.getHeight() * (512.0 / bitmap.getWidth()) );
+                            Bitmap scaled = Bitmap.createScaledBitmap(bitmap, 512, nh, true);
+                            hold_image.setImageBitmap(scaled);
                         }
-                        String path = getExternalStorageDirectory().getAbsolutePath();
+                        String path = getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
                         f.delete();
                         OutputStream outFile = null;
                         File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
@@ -532,7 +538,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+                        File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temp.jpg");
                         Uri photoURI = FileProvider.getUriForFile(NgSupUserDetailsActivity.this, getApplicationContext().getPackageName() + ".provider", f);
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);

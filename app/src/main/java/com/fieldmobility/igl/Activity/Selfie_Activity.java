@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -63,7 +64,7 @@ public class Selfie_Activity  extends Activity {
         sharedPrefs = new SharedPrefs(this);
 
        /* Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+        File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temp.jpg");
         Uri photoURI = FileProvider.getUriForFile(Selfie_Activity.this, getApplicationContext().getPackageName() + ".provider", f);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -91,7 +92,7 @@ public class Selfie_Activity  extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                File f = new File(getExternalStorageDirectory(), "temp.jpg");
+                File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temp.jpg");
                 Uri photoURI = FileProvider.getUriForFile(Selfie_Activity.this, getApplicationContext().getPackageName() + ".provider", f);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -106,7 +107,7 @@ public class Selfie_Activity  extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                File f = new File(getExternalStorageDirectory(), "temp.jpg");
+                File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temp.jpg");
                 Uri photoURI = FileProvider.getUriForFile(Selfie_Activity.this, getApplicationContext().getPackageName() + ".provider", f);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -124,7 +125,7 @@ public class Selfie_Activity  extends Activity {
         switch (requestCode) {
             case CAMERA_REQUEST:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST) {
-                    File f = new File(getExternalStorageDirectory().toString());
+                    File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString());
                     for (File temp : f.listFiles()) {
                         if (temp.getName().equals("temp.jpg")) {
                             f = temp;
@@ -137,7 +138,7 @@ public class Selfie_Activity  extends Activity {
                         bitmap = getResizedBitmap(bitmap, 500);
                         selfi_image.setImageBitmap(bitmap);
                         //BitMapToString(bitmap);
-                        String path = getExternalStorageDirectory().getAbsolutePath() ;
+                        String path = getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath() ;
                         f.delete();
                         OutputStream outFile = null;
                         File file = new File(path, String.valueOf(System.currentTimeMillis())+"_"+sharedPrefs.getUUID() + ".jpg");

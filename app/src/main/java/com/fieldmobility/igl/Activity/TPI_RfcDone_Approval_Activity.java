@@ -74,7 +74,7 @@ public class TPI_RfcDone_Approval_Activity extends Activity {
             cementinghole, painting, contractorrep, gastype, proptype, tfavail, connectivity, ncap, rfctype, expipelength, holedrilled, mcvtesting;
     LinearLayout top_layout;
     Button approve, decline, signature_button, clear, save;
-    ImageView image_path, image1_path, image2_path, image3_path, signature_image,image_upload;
+    ImageView image_path, image1_path, image2_path, image3_path,image4_path, signature_image,image_upload;
     String BP_NO, LEAD_NO,   customername, custmob,
             custemail,signature,status,description,declinedImagePath , tf_avail="",Connectivity="" , bp_no,lead_no,meter_no;
     SignatureView signatureView;
@@ -155,6 +155,7 @@ public class TPI_RfcDone_Approval_Activity extends Activity {
         image1_path = (ImageView) findViewById(R.id.image2);
         image2_path = (ImageView) findViewById(R.id.image3);
         image3_path = (ImageView) findViewById(R.id.image4);
+        image4_path = (ImageView) findViewById(R.id.image5);
         signature_image = (ImageView) findViewById(R.id.signature_image);
         signature_button = (Button) findViewById(R.id.signature_button);
 
@@ -326,6 +327,10 @@ public class TPI_RfcDone_Approval_Activity extends Activity {
     public void loadImage()
     {
         if (imagelist.size()>=4) {
+            Log.d("image issue",imagelist.get(imagelist.size()-4));
+            Log.d("image issue",imagelist.get(imagelist.size()-3));
+            Log.d("image issue",imagelist.get(imagelist.size()-2));
+            Log.d("image issue",imagelist.get(imagelist.size()-1));
             Picasso.with(TPI_RfcDone_Approval_Activity.this)
                     .load("http://" + imagelist.get(imagelist.size()-4))
                     .placeholder(R.color.red_light)
@@ -342,10 +347,20 @@ public class TPI_RfcDone_Approval_Activity extends Activity {
                     .load("http://" + imagelist.get(imagelist.size()-1))
                     .placeholder(R.color.red_light)
                     .into(image3_path);
+            Picasso.with(TPI_RfcDone_Approval_Activity.this)
+                    .load("http://" + imagelist.get(imagelist.size()-5))
+                    .placeholder(R.color.red_light)
+                    .into(image4_path);
             image_path.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     CommonUtils.showZoomImageView(TPI_RfcDone_Approval_Activity.this,"http://" +imagelist.get(imagelist.size()-4));
+                }
+            });
+            image4_path.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CommonUtils.showZoomImageView(TPI_RfcDone_Approval_Activity.this,"http://" +imagelist.get(imagelist.size()-5));
                 }
             });
             image1_path.setOnClickListener(new View.OnClickListener() {
@@ -413,7 +428,8 @@ public class TPI_RfcDone_Approval_Activity extends Activity {
     public String saveImage(Bitmap bitmap2) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap2.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
-        File file = new File(Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY);
+      //  File file = new File(Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY);
+        File file = new File(this.getFilesDir()+ IMAGE_DIRECTORY);
         if (!file.exists()) {
             file.mkdirs();
             Log.d("Signature_Page++", file.toString());
@@ -513,6 +529,7 @@ public class TPI_RfcDone_Approval_Activity extends Activity {
             Log.e(NotificationCompat.CATEGORY_STATUS, statcode+status);
             Log.e(str, "declinedImage");
         } catch (Exception unused) {
+            Log.d("rfc","Exception = "+unused.getLocalizedMessage());
             Toast.makeText(this, "Please select Image", Toast.LENGTH_SHORT).show();
             this.materialDialog.dismiss();
         }

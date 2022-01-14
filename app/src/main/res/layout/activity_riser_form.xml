@@ -810,10 +810,10 @@
                             android:layout_marginHorizontal="@dimen/_5sdp"
                             android:layout_weight="1"
                             android:background="@drawable/shape_blue_border"
+                            android:inputType="numberDecimal"
                             android:paddingHorizontal="@dimen/_8sdp"
                             android:paddingVertical="@dimen/_3sdp"
                             android:text="0"
-                            android:inputType="numberDecimal"
                             android:textColor="@color/_313131" />
 
                         <EditText
@@ -824,10 +824,10 @@
                             android:layout_weight="1"
                             android:background="@drawable/filled_form_data_bg"
                             android:enabled="false"
+                            android:inputType="number"
                             android:paddingHorizontal="@dimen/_8sdp"
                             android:paddingVertical="@dimen/_3sdp"
                             android:text="0"
-                            android:inputType="number"
                             android:textColor="@color/_313131" />
                     </TableRow>
 
@@ -855,10 +855,10 @@
                             android:layout_marginHorizontal="@dimen/_5sdp"
                             android:layout_weight="1"
                             android:background="@drawable/shape_blue_border"
+                            android:inputType="numberDecimal"
                             android:paddingHorizontal="@dimen/_8sdp"
                             android:paddingVertical="@dimen/_3sdp"
                             android:text="0"
-                            android:inputType="numberDecimal"
                             android:textColor="@color/_313131" />
 
                         <EditText
@@ -869,10 +869,10 @@
                             android:layout_weight="1"
                             android:background="@drawable/filled_form_data_bg"
                             android:enabled="false"
+                            android:inputType="number"
                             android:paddingHorizontal="@dimen/_8sdp"
                             android:paddingVertical="@dimen/_3sdp"
                             android:text="0"
-                            android:inputType="number"
                             android:textColor="@color/_313131" />
                     </TableRow>
 
@@ -900,10 +900,10 @@
                             android:layout_marginHorizontal="@dimen/_5sdp"
                             android:layout_weight="1"
                             android:background="@drawable/shape_blue_border"
+                            android:inputType="numberDecimal"
                             android:paddingHorizontal="@dimen/_8sdp"
                             android:paddingVertical="@dimen/_3sdp"
                             android:text="0"
-                            android:inputType="numberDecimal"
                             android:textColor="@color/_313131" />
 
                         <EditText
@@ -914,10 +914,10 @@
                             android:layout_weight="1"
                             android:background="@drawable/filled_form_data_bg"
                             android:enabled="false"
+                            android:inputType="number"
                             android:paddingHorizontal="@dimen/_8sdp"
                             android:paddingVertical="@dimen/_3sdp"
                             android:text="0"
-                            android:inputType="number"
                             android:textColor="@color/_313131" />
                     </TableRow>
 
@@ -945,10 +945,10 @@
                             android:layout_marginHorizontal="@dimen/_5sdp"
                             android:layout_weight="1"
                             android:background="@drawable/shape_blue_border"
+                            android:inputType="numberDecimal"
                             android:paddingHorizontal="@dimen/_8sdp"
                             android:paddingVertical="@dimen/_3sdp"
                             android:text="0"
-                            android:inputType="numberDecimal"
                             android:textColor="@color/_313131" />
 
                         <EditText
@@ -959,10 +959,10 @@
                             android:layout_weight="1"
                             android:background="@drawable/filled_form_data_bg"
                             android:enabled="false"
+                            android:inputType="number"
                             android:paddingHorizontal="@dimen/_8sdp"
                             android:paddingVertical="@dimen/_3sdp"
                             android:text="0"
-                            android:inputType="number"
                             android:textColor="@color/_313131" />
                     </TableRow>
 
@@ -983,7 +983,6 @@
                     android:layout_marginHorizontal="5dp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_weight="1"
-
                     android:orientation="vertical">
 
                     <TextView
@@ -1012,41 +1011,6 @@
                         tools:text="454145148579" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_weight="1"
-
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:layout_weight="1"
-                        android:padding="@dimen/_1sdp"
-                        android:text="Total no. of Regulator"
-                        android:textColor="@color/dark_gray"
-                        android:textSize="@dimen/_10sdp" />
-
-                    <EditText
-                        android:id="@+id/et_ib"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_25sdp"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:layout_marginTop="4dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/shape_blue_border"
-                        android:inputType="number"
-                        android:maxLines="1"
-                        android:padding="@dimen/_5sdp"
-                        android:singleLine="true"
-                        android:textColor="@color/black_31"
-                        android:textSize="@dimen/_10sdp"
-                        tools:text="454145148579" />
-                </LinearLayout>
 
             </LinearLayout>
 
@@ -1056,7 +1020,90 @@
                 android:layout_marginHorizontal="5dp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_weight="1"
+                android:orientation="vertical">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/_1sdp"
+                    android:text="Regulator Available"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/_10sdp" />
+
+
+                <RadioGroup
+                    android:id="@+id/rg_regulator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_regulator_pos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Yes"
+                        android:textColor="@color/black_31"/>
+
+                    <RadioButton
+                        android:id="@+id/rb_regulator_neg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="No"
+                        android:textColor="@color/black_31"/>
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/regulator_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/_1sdp"
+                    android:text="Regulator No."
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/_10sdp" />
+
+                <EditText
+                    android:id="@+id/et_regulator"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_blue_border"
+                    android:hint="Enter Regulator No."
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:text="No"
+                    android:textColor="@color/black_31"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="454145148579" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
@@ -1102,7 +1149,6 @@
                 android:layout_marginHorizontal="5dp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_weight="1"
-
                 android:orientation="vertical">
 
                 <TextView
@@ -1401,36 +1447,38 @@
                     </FrameLayout>
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Start Point"
                         android:layout_marginHorizontal="@dimen/_6sdp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        />
+                        android:text="Start Point" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Isometric Graph"
                         android:layout_marginHorizontal="@dimen/_6sdp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        />
+                        android:text="Isometric Graph" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="End Point"
                         android:layout_marginHorizontal="@dimen/_6sdp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        />
+                        android:text="End Point" />
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -1462,8 +1510,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="New Riser"
                         android:checked="true"
+                        android:text="New Riser"
                         android:textColor="@color/black_31"></RadioButton>
 
                     <RadioButton
@@ -1494,9 +1542,9 @@
                     android:textSize="@dimen/_10sdp" />
 
                 <RadioGroup
+                    android:id="@+id/rg_pbc_houses"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/rg_pbc_houses"
                     android:orientation="horizontal">
 
                     <RadioButton
@@ -1516,11 +1564,11 @@
                 </RadioGroup>
 
                 <LinearLayout
+                    android:id="@+id/lt_pbc_houses"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/lt_pbc_houses"
-                    android:visibility="gone"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <include
                         layout="@layout/view_connected_house_form"

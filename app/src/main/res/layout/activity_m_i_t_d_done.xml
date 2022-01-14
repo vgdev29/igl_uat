@@ -103,7 +103,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="-10dp"
         android:overScrollMode="never"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -649,38 +649,7 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="140dp"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/sourcesanspro_regular"
-                        android:text="GI Installation"
-                        android:textColor="#808080"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=": "
-                        android:textColor="#808080"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txt_giinstallation"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:fontFamily="@font/sourcesanspro_regular"
-                        android:text=""
-                        android:textColor="@color/green"
-                        android:textSize="16sp" />
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1186,30 +1155,132 @@
                     android:layout_marginTop="2dp"
                     android:orientation="horizontal">
 
-                    <CheckBox
-                        android:id="@+id/cb_tf_avail"
+                    <TextView
                         android:layout_width="140dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:fontFamily="@font/sourcesanspro_regular"
-                        android:text="TF Avail"
+                        android:text="GI Installation"
                         android:textColor="#808080"
-                        android:textSize="16sp" />
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                         />
 
-                    <CheckBox
-                        android:id="@+id/cb_connectivity"
-                        android:layout_width="140dp"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/sourcesanspro_regular"
-                        android:text="Connectivity"
+                        android:text=": "
                         android:textColor="#808080"
-                        android:textSize="16sp" />
+                        android:textStyle="bold" />
 
+                    <TextView
+                        android:id="@+id/txt_giinstallation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/sourcesanspro_regular"
+                        android:text=""
+                        android:textStyle="bold"
+                        android:textColor="@color/green"
+                        android:textSize="18sp" />
                 </LinearLayout>
 
 
+
+
             </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_white"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/peach_light"
+                android:fontFamily="@font/playfairdisplay_regular"
+                android:gravity="center"
+                android:padding="@dimen/_2sdp"
+                android:text="Update Details"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/cb_tf_avail"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sourcesanspro_regular"
+                    android:text="TF Avail"
+                    android:textColor="#808080"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/cb_connectivity"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sourcesanspro_regular"
+                    android:text="Connectivity"
+                    android:textColor="#808080"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="@dimen/value_2dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sourcesanspro_regular"
+                    android:text="Extra GI"
+                    android:textColor="#808080"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=": "
+                    android:textColor="#808080"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/extra_gi"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_input_mandatory"
+                    android:hint="Extra GI (in meter)"
+                    android:inputType="numberDecimal"
+                    android:maxLength="6"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_10sdp" />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
 
 
             <LinearLayout

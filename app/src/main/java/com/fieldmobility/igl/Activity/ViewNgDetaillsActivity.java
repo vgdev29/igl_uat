@@ -491,7 +491,7 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
         File wallpaperDirectory = new File(
-                getExternalStorageDirectory() + IMAGE_DIRECTORY /*iDyme folder*/);
+                getFilesDir() + IMAGE_DIRECTORY /*iDyme folder*/);
         if (!wallpaperDirectory.exists()) {
             wallpaperDirectory.mkdirs();
             Log.d("Signature_Page++", wallpaperDirectory.toString());

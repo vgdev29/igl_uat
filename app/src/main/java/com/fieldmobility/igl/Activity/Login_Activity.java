@@ -178,7 +178,7 @@ public class Login_Activity extends Activity {
                     public void onResponse(JSONObject response) {
                         progressDialog.dismiss();
 
-                        Log.e("Response", response.toString());
+                        Log.d("login","Response"+ response.toString());
                         try {
                             user_token = response.getString("jwt");
                             sharedPrefs.setToken(response.getString("jwt"));
@@ -196,7 +196,17 @@ public class Login_Activity extends Activity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         progressDialog.dismiss();
-                        Toast.makeText(Login_Activity.this, "" + "Please Enter Valid Credentials", Toast.LENGTH_SHORT).show();
+                        if (error.networkResponse.statusCode==403) {
+                            Toast.makeText(Login_Activity.this,   "Please Enter Valid Credentials", Toast.LENGTH_SHORT).show();
+                        }
+                        else if (error.networkResponse.statusCode==500)
+                        {
+                            Toast.makeText(Login_Activity.this,  "Login not allowed between 00:00 a.m to 8:00 a.m", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            Toast.makeText(Login_Activity.this,  "Something went wrong", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }) {
            /* @Override
@@ -218,13 +228,12 @@ public class Login_Activity extends Activity {
             }*/
         };
 
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(20 * 10000, 20, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(20 * 10000, 1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         jsonObjectRequest.setTag(login_request);
         AppController.getInstance().addToRequestQueue(jsonObjectRequest, login_request);
     }
 
     public void Authoriztion_User() {
-
         progressDialog.show();
         try {
             login_value = new JSONObject();

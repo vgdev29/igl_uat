@@ -94,11 +94,28 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
     int connectedHseMaxLimit = 5;
     ConnectedHouseAdapter connectedHouseAdapter;
     String selectedPropertyType = "low-rise", selectedGasType = "Non Gasified", selectedHSE = "", selectedRiserLength = "Select Diameter", selectedIsolationValue = "Select Diameter", selectedLateralTapping = "", selectedAreaType = "Off Line/Project";
-    boolean isRiserTestingDone, isRiserLayingDone, isRiserCommissioningDone;
+    boolean isRiserTestingDone, isRiserLayingDone, isRiserCommissioningDone,isRegulatorAvailable;
     String imagePathOne = "", imagePathTwo = "", imagePathOptional = "",selectedRiserType="New Riser";
     MaterialDialog materialDialog;
     RiserListingModel.BpDetails.User dataModel;
     ArrayList<String> Floor_name1 = new ArrayList<>();
+    LinearLayout regulator_layout;
+    TextView /*tv_allocation_num, tv_sub_allocatio,*/ tv_bp_num, tv_agent_name, /*tv_po_num,*/
+            tv_city, tv_zone, tv_area, tv_society, tv_add_more_hse;
+    AutoCompleteTextView hse_tv_bp_num;
+    EditText et_gali, et_regulator/*, et_connected_house*/, hse_et_house, hse_et_floor, et_rl12, et_iv12, et_rl34, et_iv34, et_rl1, et_iv1, et_rl2, et_iv2;
+    RadioGroup rg_riser_laying, rg_riser_testing, rg_riser_commissioning, rg_pbc_houses,rg_riser_type,rg_regulator;
+    ImageView iv_one, iv_two, iv_three;
+    FrameLayout fl_image1, fl_image2, fl_image3;
+    Spinner sp_property_type, sp_gas_type, sp_hse, sp_riser_length, sp_isolation_value, sp_lateral_tapping, sp_area_type;
+    Button approve_button;
+    RecyclerView rv_connected_house;
+    LinearLayout lt_pbc_houses;
+    private static final int TRIGGER_AUTO_COMPLETE = 100;
+    private static final long AUTO_COMPLETE_DELAY = 300;
+    private Handler handler;
+    private AutoSuggestAdapter autoSuggestAdapter;
+    Spinner sp_floor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -176,7 +193,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
                     .addParameter("connected_house", "" + ConnectedHouse)
 //                   .addParameter("hse_gi", selectedLateralTapping)
                     .addParameter("bplist", bplistData)
-                    .addParameter("total_ib", et_ib.getText().toString().trim()) // Edittext
+                    .addParameter("total_ib", et_regulator.getText().toString().trim()) // Edittext
                     .addParameter("contractor_id", dataModel.getRfcadmin()) //admin
                     .addParameter("tpi_id", dataModel.getRiserTpi()) //tpi
                     .addParameter("supervisor_id", dataModel.getRiserSup()) //riserSup
@@ -276,22 +293,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         rv_connected_house.setAdapter(connectedHouseAdapter);
     }
 
-    TextView /*tv_allocation_num, tv_sub_allocatio,*/ tv_bp_num, tv_agent_name, /*tv_po_num,*/
-            tv_city, tv_zone, tv_area, tv_society, tv_add_more_hse;
-    AutoCompleteTextView hse_tv_bp_num;
-    EditText et_gali, et_ib/*, et_connected_house*/, hse_et_house, hse_et_floor, et_rl12, et_iv12, et_rl34, et_iv34, et_rl1, et_iv1, et_rl2, et_iv2;
-    RadioGroup rg_riser_laying, rg_riser_testing, rg_riser_commissioning, rg_pbc_houses,rg_riser_type;
-    ImageView iv_one, iv_two, iv_three;
-    FrameLayout fl_image1, fl_image2, fl_image3;
-    Spinner sp_property_type, sp_gas_type, sp_hse, sp_riser_length, sp_isolation_value, sp_lateral_tapping, sp_area_type;
-    Button approve_button;
-    RecyclerView rv_connected_house;
-    LinearLayout lt_pbc_houses;
-    private static final int TRIGGER_AUTO_COMPLETE = 100;
-    private static final long AUTO_COMPLETE_DELAY = 300;
-    private Handler handler;
-    private AutoSuggestAdapter autoSuggestAdapter;
-    Spinner sp_floor;
+
 
     private void findViews() {
         findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
@@ -304,6 +306,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
 //        tv_sub_allocatio = findViewById(R.id.tv_sub_allocatio);
         rg_riser_type = findViewById(R.id.rg_riser_type);
         rg_pbc_houses = findViewById(R.id.rg_pbc_houses);
+        rg_regulator = findViewById(R.id.rg_regulator);
         lt_pbc_houses = findViewById(R.id.lt_pbc_houses);
         et_rl12 = findViewById(R.id.et_rl12);
         et_iv12 = findViewById(R.id.et_iv12);
@@ -380,7 +383,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         tv_add_more_hse.setOnClickListener(this);
         tv_agent_name = findViewById(R.id.tv_agent_name);
 //        tv_po_num = findViewById(R.id.tv_po_num);
-        et_ib = findViewById(R.id.et_ib);
+        et_regulator = findViewById(R.id.et_regulator);
         tv_city = findViewById(R.id.tv_city);
         tv_zone = findViewById(R.id.tv_zone);
         tv_area = findViewById(R.id.tv_area);
@@ -394,6 +397,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         rg_riser_testing.setOnCheckedChangeListener(this);
         rg_riser_type.setOnCheckedChangeListener(this);
         rg_pbc_houses.setOnCheckedChangeListener(this);
+        rg_regulator.setOnCheckedChangeListener(this);
         rg_riser_commissioning = findViewById(R.id.rg_riser_commissioning);
         rg_riser_commissioning.setOnCheckedChangeListener(this);
         approve_button = findViewById(R.id.approve_button);
@@ -424,6 +428,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
         sp_lateral_tapping.setOnItemSelectedListener(this);
         sp_area_type = findViewById(R.id.sp_area_type);
         sp_area_type.setOnItemSelectedListener(this);
+        regulator_layout = findViewById(R.id.regulator_layout);
     }
 
     private void addTextWatchers() {
@@ -756,6 +761,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
+        Log.d("riserform",group.toString());
         if (group == rg_riser_commissioning) {
             isRiserCommissioningDone = checkedId == R.id.rb_rcomm_pos;
 
@@ -775,6 +781,21 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
                 lt_pbc_houses.setVisibility(View.VISIBLE);
             else
                 lt_pbc_houses.setVisibility(View.GONE);
+        }
+        else if (group == rg_regulator)
+        {
+            Log.d("riserform",group.toString());
+            if(checkedId == R.id.rb_regulator_pos)
+            {
+                Log.d("riserform",""+checkedId);
+                regulator_layout.setVisibility(View.VISIBLE);
+                et_regulator.setText("");
+            }
+            else
+            {
+                et_regulator.setText("No");
+                regulator_layout.setVisibility(View.GONE);
+            }
         }
 
     }

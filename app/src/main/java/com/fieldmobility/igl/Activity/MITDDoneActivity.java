@@ -3,6 +3,7 @@ package com.fieldmobility.igl.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,14 +17,18 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.fieldmobility.igl.Helper.AppController;
+import com.fieldmobility.igl.Helper.CommonUtils;
 import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.MataData.Bp_No_Item;
@@ -36,6 +41,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MITDDoneActivity extends AppCompatActivity {
     ProgressDialog materialDialog;
@@ -51,7 +58,7 @@ public class MITDDoneActivity extends AppCompatActivity {
     String BP_NO, LEAD_NO, customername, custmob,
             custemail, tf_avail = "", Connectivity = "", bp_no, lead_no, meter_no;
     private String statcode = "4";
-    EditText editTextSearch;
+    EditText editTextSearch,extra_gi;
     Button submit_button;
     ScrollView scrollview;
 
@@ -116,6 +123,7 @@ public class MITDDoneActivity extends AppCompatActivity {
         proptype = findViewById(R.id.txt_proptype);
         ncap = findViewById(R.id.txt_ncapavail);
         leadno = findViewById(R.id.txt_leadno);
+        extra_gi = findViewById(R.id.extra_gi);
 
         //Bp_No_List();
         findViewById(R.id.tv_search).setOnClickListener(new View.OnClickListener() {
@@ -142,8 +150,17 @@ public class MITDDoneActivity extends AppCompatActivity {
                         int tf = 0, connectivity = 0;
                         connectivity = cb_connectivity.isChecked() ? 1 : 0;
                         tf = cb_tf_avail.isChecked() ? 1 : 0;
-                        MITD_DONE(bp_number, codeGroup, tf, connectivity);
+                        Double gi = detailJson.getDouble("gi_installation");
 
+                        if (extra_gi.getText().toString().trim().isEmpty())
+                        {
+                            CommonUtils.toast_msg(MITDDoneActivity.this,"Please enter extra GI");
+                        }
+                        else {
+                            Double extraGi = Double.valueOf(extra_gi.getText().toString());
+                            Double sumGi = gi+extraGi;
+                            MITD_DONE(bp_number, codeGroup, String.valueOf(tf), String.valueOf(connectivity) , String.valueOf(extraGi) , String.valueOf(sumGi));
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -198,9 +215,10 @@ public class MITDDoneActivity extends AppCompatActivity {
         r2.setRetryPolicy(new DefaultRetryPolicy(12000, 1, 1.0f));
     }
 
-    public void MITD_DONE(String Bp_number, String codeGroup, int tfValue, int connectivity) {
+    public void MITD_DONE(String Bp_number, String codeGroup, String tfValue, String connectivity , String extraGi , String gi) {
         materialDialog.show();
-        StringRequest r2 = new StringRequest(0, Constants.MITD_DONE + "/" + Bp_number + "/" + codeGroup + "/" + tfValue + "/" + connectivity, new Response.Listener<String>() {
+        StringRequest r2 = new StringRequest(Request.Method.POST, Constants.MITD_DONE , new Response.Listener<String>() {
+
             public void onResponse(String str) {
 
                 materialDialog.dismiss();
@@ -240,10 +258,34 @@ public class MITDDoneActivity extends AppCompatActivity {
                 }
             }
         }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                try {
+                    Log.d("mitdone",sharedPrefs.getUUID());
+                    Log.d("mitdone",Bp_number);
+                    Log.d("mitdone",tfValue);
+                    Log.d("mitdone",connectivity);
+                    Log.d("mitdone",codeGroup);
+                    Log.d("mitdone",extraGi);
+                    Log.d("mitdone",gi);
+                    params.put("id", sharedPrefs.getUUID());
+                    params.put("bp_no", Bp_number);
+                    params.put("tfValue", tfValue);
+                    params.put("connectivity", connectivity);
+                    params.put("igl_code_group", codeGroup);
+                    params.put("extraGi", extraGi);
+                    params.put("gi", gi);
+
+                } catch (Exception e) {
+                }
+                return params;
+            }
         };
         Volley.newRequestQueue(this).add(r2);
         r2.setRetryPolicy(new DefaultRetryPolicy(12000, 1, 1.0f));
     }
+
 
 
     private boolean isChecked(String value) {

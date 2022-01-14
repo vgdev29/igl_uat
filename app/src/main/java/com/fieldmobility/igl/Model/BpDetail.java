@@ -133,6 +133,17 @@ public class BpDetail {
     @Expose
     String igl_rfcvendor_assigndate;
 
+    @Expose
+    int tc_status ;
+
+
+    public int getTc_status() {
+        return tc_status;
+    }
+
+    public void setTc_status(int tc_status) {
+        this.tc_status = tc_status;
+    }
 
     public String getIgl_rfcvendor_assigndate() {
         return igl_rfcvendor_assigndate;

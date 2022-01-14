@@ -316,7 +316,7 @@ public class TPI_RfcHold_Approval_Activity extends Activity {
     public String saveImage(Bitmap bitmap2) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap2.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
-        File file = new File(Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY);
+        File file = new File(getFilesDir() + IMAGE_DIRECTORY);
         if (!file.exists()) {
             file.mkdirs();
             Log.d("Signature_Page++", file.toString());

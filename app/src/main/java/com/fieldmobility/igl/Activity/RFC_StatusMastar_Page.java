@@ -1,18 +1,22 @@
 package com.fieldmobility.igl.Activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -93,7 +97,7 @@ public class RFC_StatusMastar_Page extends Activity {
     ArrayList<String> Type_Of_Master = new ArrayList<>();
     ArrayList<String> Type_Of_Master_ID = new ArrayList<>();
     ArrayList<String> CatID_Master = new ArrayList<>();
-    ArrayList<String> Igl_Code_Master = new ArrayList<     >();
+    ArrayList<String> Igl_Code_Master = new ArrayList<>();
     ArrayList<String> Igl_Code_Group_Master = new ArrayList<>();
     ArrayList<String> Igl_Catalog_Master = new ArrayList<>();
     ArrayList<String> PipeLine_Catagory = new ArrayList<>();
@@ -103,15 +107,15 @@ public class RFC_StatusMastar_Page extends Activity {
     Spinner spinner_master, spinner_sub_master, spinner_pipe_line;
     String type_of_master, type_of_sub_master = "", type_of_master_id, igl_code, igl_code_group, igl_catagory, catid_Sub_Master;
     String igl_code_Master, igl_code_group_Maaster, igl_catagory_Master, catid_Master;
-    EditText descreption_edit;
     Button approve_button, decline_button, clear, save, select_image, select_audio, audioFile_button;
     ImageView image_upload;
 
     protected static final int CAMERA_REQUEST = 1;
+    protected static final int PICK_IMAGE_REQUEST = 3;
     private final int AUDIO_REQUEST = 2;
 
     private Uri filePath_Image;
-    String bpno, Status_Master;
+    String bpno, Status_Master, codeGroup = "", acholder = "", acnumber = "", bankname = "", ifsc = "";
     Bitmap bitmap;
     JSONArray jsonArray_SubMaster;
     String TPI_Status_Code, Address, Feasibility_Type;
@@ -127,10 +131,11 @@ public class RFC_StatusMastar_Page extends Activity {
     TimePickerDialog pickerDialog_Time;
     DatePickerDialog pickerDialog_Date;
     String am_pm1 = "";
-    LinearLayout ll_hold_layout;
+    LinearLayout ll_hold_layout, ll_bankdetails;
     String followup = "", description = "", master_cat_id = "";
     private String mediaPath1 = "";
     private String audiopath;
+    EditText descreption_edit, et_acnumber, et_accholdername, et_bankname, et_ifsc;
 
 
     @Override
@@ -139,6 +144,9 @@ public class RFC_StatusMastar_Page extends Activity {
         setContentView(R.layout.rfc_approval_status_mastar);
         sharedPrefs = new SharedPrefs(this);
         back = findViewById(R.id.back);
+        codeGroup = getIntent().getStringExtra("igl_code_group");
+        ll_bankdetails = findViewById(R.id.ll_bankdetails);
+
         spinner_master = (Spinner) findViewById(R.id.spinner_master);
         audioFile_button = findViewById(R.id.audioFile_button);
         audioPath = findViewById(R.id.filename1);
@@ -163,6 +171,11 @@ public class RFC_StatusMastar_Page extends Activity {
         select_audio.setVisibility(View.GONE);
         image_upload = findViewById(R.id.select_image1);
         ll_hold_layout = findViewById(R.id.ll_hold_layout);
+
+        et_accholdername = findViewById(R.id.et_acholder);
+        et_acnumber = findViewById(R.id.et_acnumber);
+        et_bankname = findViewById(R.id.et_bankname);
+        et_ifsc = findViewById(R.id.et_ifsc);
 
         inflateData();
         Date c = Calendar.getInstance().getTime();
@@ -256,12 +269,7 @@ public class RFC_StatusMastar_Page extends Activity {
         select_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                File f = new File(getExternalStorageDirectory(), "temp.jpg");
-                Uri photoURI = FileProvider.getUriForFile(RFC_StatusMastar_Page.this, getApplicationContext().getPackageName() + ".provider", f);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                //  intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                startActivityForResult(intent, CAMERA_REQUEST);
+                chooseImage();
             }
         });
 
@@ -287,12 +295,14 @@ public class RFC_StatusMastar_Page extends Activity {
             public void onClick(View v) {
                 //TPI_Approve();
 
-                if (master_cat_id.equalsIgnoreCase("EMI_56") || master_cat_id.equalsIgnoreCase("EMI_35") || (master_cat_id.equalsIgnoreCase("EMI_51"))||(master_cat_id.equalsIgnoreCase("PVT_19"))
-                ||(master_cat_id.equalsIgnoreCase("PVT_59"))||(master_cat_id.equalsIgnoreCase("EMI_51"))||(master_cat_id.equalsIgnoreCase("GC_LEAD_34"))
-                        ||(master_cat_id.equalsIgnoreCase("BC_LEAD_28"))||(master_cat_id.equalsIgnoreCase("GC_LEAD_05"))||(master_cat_id.equalsIgnoreCase("BC_LEAD_06"))) {
+                if (master_cat_id.equalsIgnoreCase("EMI_56") || master_cat_id.equalsIgnoreCase("EMI_35") || (master_cat_id.equalsIgnoreCase("EMI_51")) || (master_cat_id.equalsIgnoreCase("PVT_19"))
+                        || (master_cat_id.equalsIgnoreCase("PVT_59")) || (master_cat_id.equalsIgnoreCase("EMI_51")) || (master_cat_id.equalsIgnoreCase("GC_LEAD_34"))
+                        || (master_cat_id.equalsIgnoreCase("BC_LEAD_28")) || (master_cat_id.equalsIgnoreCase("GC_LEAD_05")) || (master_cat_id.equalsIgnoreCase("BC_LEAD_06"))) {
                     TPI_Approve();
                 } else {
-                    TPI_Multipart_Update();
+                    if (validate()) {
+                        TPI_Multipart_Update();
+                    }
                 }
             }
         });
@@ -316,13 +326,19 @@ public class RFC_StatusMastar_Page extends Activity {
                 String country = spinner_master.getItemAtPosition(spinner_master.getSelectedItemPosition()).toString();
                 Log.d(log, "Society+= " + country);
                 type_of_master = Type_Of_Master.get(position);
-                //type_of_master_id=CatID_Master.get(position);
-                //loadSpinner_reasion_city(city_id);
                 igl_code_Master = Igl_Code_Master.get(position);
                 igl_code_group_Maaster = Igl_Code_Group_Master.get(position);
                 igl_catagory_Master = Igl_Catalog_Master.get(position);
                 catid_Master = CatID_Master.get(position);
                 master_cat_id = CatID_Master.get(position);
+                if (type_of_master.contains("Failed")) {
+                    if (codeGroup.equalsIgnoreCase("ZLEAD001")) {
+                        ll_bankdetails.setVisibility(View.VISIBLE);
+                    }
+
+                } else {
+                    ll_bankdetails.setVisibility(View.GONE);
+                }
                 loadSpinnerType_Of_SubMaster(catid_Master);
             }
 
@@ -387,9 +403,9 @@ public class RFC_StatusMastar_Page extends Activity {
         fesibility_person_no_text.setText("Feasibility TPI No: " + getIntent().getStringExtra("FesabilityTpimobileNo"));
         rfc_person_no_text.setText("RFC Vendor No: " + getIntent().getStringExtra("VendorMobileNo"));
         Address = getIntent().getStringExtra("House_no") + " " + getIntent().getStringExtra("Floor") + " "
-                + getIntent().getStringExtra("House_type") + " " + getIntent().getStringExtra("Society") +"\n"
-                + " " + getIntent().getStringExtra("Block_qtr_tower_wing") +" " +getIntent().getStringExtra("Street_gali_road")  + " "
-                +getIntent().getStringExtra("Landmark") + "\n"+getIntent().getStringExtra("City_region");
+                + getIntent().getStringExtra("House_type") + " " + getIntent().getStringExtra("Society") + "\n"
+                + " " + getIntent().getStringExtra("Block_qtr_tower_wing") + " " + getIntent().getStringExtra("Street_gali_road") + " "
+                + getIntent().getStringExtra("Landmark") + "\n" + getIntent().getStringExtra("City_region");
         //intent.putExtra("Fesibility_TPI_Name",Fesibility_TPI_Name);
         //intent.putExtra("PipeLine_Length",PipeLine_Length);
         address_text.setText(Address);
@@ -415,9 +431,9 @@ public class RFC_StatusMastar_Page extends Activity {
                 .content("Please wait....")
                 .progress(true, 0)
                 .show();
-        Log.d(log, "spinner master url = " + Constants.TYPE_MASTER_STATUS + Status_Master + "?status=" + TPI_Status_Code+"&bpno="+bpno);
+        Log.d(log, "spinner master url = " + Constants.TYPE_MASTER_STATUS + Status_Master + "?status=" + TPI_Status_Code + "&bpno=" + bpno);
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.TYPE_MASTER_STATUS + Status_Master + "?status=" + TPI_Status_Code+"&bpno="+bpno, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.TYPE_MASTER_STATUS + Status_Master + "?status=" + TPI_Status_Code + "&bpno=" + bpno, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 materialDialog.dismiss();
@@ -494,6 +510,7 @@ public class RFC_StatusMastar_Page extends Activity {
                         ll_hold_layout.setVisibility(View.GONE);
                     } else {
                         ll_hold_layout.setVisibility(View.VISIBLE);
+
                     }
                     spinner_sub_master.setAdapter(new ArrayAdapter<String>(RFC_StatusMastar_Page.this, android.R.layout.simple_spinner_dropdown_item, Type_Of_Sub_Master));
                 } catch (JSONException e) {
@@ -513,50 +530,6 @@ public class RFC_StatusMastar_Page extends Activity {
 
     }
 
-    private void Pipe_Line_Catagory() {
-        PipeLine_Catagory.clear();
-        PipeLine_ID.clear();
-        materialDialog = new MaterialDialog.Builder(RFC_StatusMastar_Page.this)
-                .content("Please wait....")
-                .progress(true, 0)
-                .show();
-        Log.d(log, "spinner pipeline url = " + Constants.PIPELINE);
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.PIPELINE, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                materialDialog.dismiss();
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    Log.e("master_list", response);
-                    // if(jsonObject.getInt("success")==1){
-                    JSONObject jsonObject_pipeline = jsonObject.getJSONObject("pipeLineList");
-                    JSONArray jsonArray_society = jsonObject_pipeline.getJSONArray("pipelineList");
-                    for (int i = 0; i < jsonArray_society.length(); i++) {
-                        JSONObject jsonObject1 = jsonArray_society.getJSONObject(i);
-                        String pileline = jsonObject1.getString("pipelineDescription");
-                        String pipelineId = jsonObject1.getString("pipelineId");
-                        PipeLine_Catagory.add(pileline);
-                        PipeLine_ID.add(pipelineId);
-
-                    }
-                    spinner_pipe_line.setAdapter(new ArrayAdapter<String>(RFC_StatusMastar_Page.this, android.R.layout.simple_spinner_dropdown_item, PipeLine_Catagory));
-                    loadSpinnerType_Master();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-        int socketTimeout = 30000;
-        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        stringRequest.setRetryPolicy(policy);
-        requestQueue.add(stringRequest);
-    }
 
     public void TPI_Multipart_Update() {
         if (jsonArray_SubMaster != null && jsonArray_SubMaster.length() > 0) {
@@ -592,7 +565,7 @@ public class RFC_StatusMastar_Page extends Activity {
             String uploadId = UUID.randomUUID().toString();
             new MultipartUploadRequest(RFC_StatusMastar_Page.this, uploadId, Constants.RFCApprovalMultipart)
                     .addFileToUpload(image_path_string, "image")
-                    .addFileToUpload(mediaPath1, "audiofile")
+                    // .addFileToUpload(mediaPath1, "audiofile")
                     .addParameter("lead_no", getIntent().getStringExtra("lead_no"))
                     .addParameter("bp_no", getIntent().getStringExtra("Bp_number"))
                     .addParameter("cat_id", complete_catid)
@@ -606,10 +579,15 @@ public class RFC_StatusMastar_Page extends Activity {
                     .addParameter("followUp", followup)
                     .addParameter("description", description)
                     .addParameter("master_cat_id", master_cat_id)
+                    .addParameter("acholder", acholder)
+                    .addParameter("acnumber", acnumber)
+                    .addParameter("bank", bankname)
+                    .addParameter("ifsc", ifsc)
                     .setDelegate(new UploadStatusDelegate() {
                         @Override
                         public void onProgress(Context context, UploadInfo uploadInfo) {
                         }
+
                         @Override
                         public void onError(Context context, UploadInfo uploadInfo, Exception exception) {
                             exception.printStackTrace();
@@ -617,6 +595,7 @@ public class RFC_StatusMastar_Page extends Activity {
                             //Dilogbox_Error();
                             Log.d(log, "Uplodeerror++" + uploadInfo.getSuccessfullyUploadedFiles().toString());
                         }
+
                         @Override
                         public void onCompleted(Context context, UploadInfo uploadInfo, ServerResponse serverResponse) {
                             materialDialog.dismiss();
@@ -653,6 +632,7 @@ public class RFC_StatusMastar_Page extends Activity {
                                 e.printStackTrace();
                             }
                         }
+
                         @Override
                         public void onCancelled(Context context, UploadInfo uploadInfo) {
                             materialDialog.dismiss();
@@ -690,8 +670,8 @@ public class RFC_StatusMastar_Page extends Activity {
                 .show();
         Log.d(log, "tpi approval api = " + Constants.RFCApproval + "?lead_no=" + getIntent().getStringExtra("lead_no") + "&bp_no=" + getIntent().getStringExtra("Bp_number") + "&cat_id="
                 + complete_catid + "&igl_code=" + complete_igl_code + "&igl_code_group=" + complete_igl_code_group + "&igl_catalog=" + complete_igl_catagory + "&mobile_no=" + getIntent().getStringExtra("Mobile_number") +
-                "&email_id=" + getIntent().getStringExtra("Email_id")+"&pipeline_id="+getIntent().getStringExtra("PipeLine_Length_Id")
-        +"&reason="+type_of_master + "\n" + type_of_sub_master+"&followUp="+followup+"&description="+description);
+                "&email_id=" + getIntent().getStringExtra("Email_id") + "&pipeline_id=" + getIntent().getStringExtra("PipeLine_Length_Id")
+                + "&reason=" + type_of_master + "\n" + type_of_sub_master + "&followUp=" + followup + "&description=" + description);
         String login_request = "login_request";
         StringRequest jr = new StringRequest(Request.Method.POST, Constants.RFCApproval,
                 new Response.Listener<String>() {
@@ -723,7 +703,7 @@ public class RFC_StatusMastar_Page extends Activity {
                                     intent.putExtra("email", getIntent().getStringExtra("Email_id"));
                                     intent.putExtra("lead_no", getIntent().getStringExtra("lead_no"));
                                     intent.putExtra("rfcAdmin", getIntent().getStringExtra("rfcAdmin"));
-                                    intent.putExtra("mitd",master_cat_id);
+                                    intent.putExtra("mitd", master_cat_id);
                                     startActivity(intent);
                                     finish();
                                 }
@@ -849,7 +829,7 @@ public class RFC_StatusMastar_Page extends Activity {
     public String saveImage(Bitmap myBitmap) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
-        File wallpaperDirectory = new File(getExternalStorageDirectory() + IMAGE_DIRECTORY /*iDyme folder*/);
+        File wallpaperDirectory = new File(getFilesDir() + IMAGE_DIRECTORY /*iDyme folder*/);
         if (!wallpaperDirectory.exists()) {
             wallpaperDirectory.mkdirs();
             Log.d("Signature_Page++", wallpaperDirectory.toString());
@@ -876,9 +856,24 @@ public class RFC_StatusMastar_Page extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
+            case PICK_IMAGE_REQUEST:
+                if (requestCode == PICK_IMAGE_REQUEST && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
+                    filePath_Image = data.getData();
+                    try {
+                        bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePath_Image);
+                        // imageView.setImageBitmap(bitmap);
+                        image_upload.setImageBitmap(bitmap);
+                        //address_image.setImageBitmap(bitmap1);
+                        image_path_string = getPath(filePath_Image);
+                        Log.e("image_path_aadhar+,", "" + filePath_Image);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
             case CAMERA_REQUEST:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST) {
-                    File f = new File(getExternalStorageDirectory().toString());
+                    File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString());
                     for (File temp : f.listFiles()) {
                         if (temp.getName().equals("temp.jpg")) {
                             f = temp;
@@ -890,13 +885,13 @@ public class RFC_StatusMastar_Page extends Activity {
                         bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
                                 bitmapOptions);
                         image_upload.setImageBitmap(bitmap);
-                        String path = getExternalStorageDirectory().getAbsolutePath();
+                        String path = getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
                         f.delete();
                         OutputStream outFile = null;
                         File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
                         Log.d(log, "Camera_Path1++ = " + file.toString());
                         image_path_string = file.toString();
-                        mediaPath1=image_path_string;
+                        mediaPath1 = image_path_string;
                         Log.d(log, "image path++ = " + image_path_string);
 
                         try {
@@ -958,7 +953,7 @@ public class RFC_StatusMastar_Page extends Activity {
                         int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
 
                         mediaPath1 = cursor.getString(columnIndex);
-                        Log.d(log,"mediapatha = "+mediaPath1);
+                        Log.d(log, "mediapatha = " + mediaPath1);
                         audioPath.setText(cursor.getString(columnIndex));
                         cursor.close();
                     } else {
@@ -983,22 +978,93 @@ public class RFC_StatusMastar_Page extends Activity {
         return cursor.getString(column_index);
     }
 
+
     public String getPath(Uri uri) {
-        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-        cursor.moveToFirst();
-        String document_id = cursor.getString(0);
-        document_id = document_id.substring(document_id.lastIndexOf(":") + 1);
-        cursor.close();
-
-        cursor = getContentResolver().query(
-                android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
-                null, MediaStore.Images.Media._ID + " = ? ", new String[]{document_id}, null);
-        cursor.moveToFirst();
-        String path = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.DATA));
-        cursor.close();
-
+        String path = null;
+        try {
+            Cursor cursor = this.getContentResolver().query(uri, null, null, null, null);
+            cursor.moveToFirst();
+            String document_id = cursor.getString(0);
+            document_id = document_id.substring(document_id.lastIndexOf(":") + 1);
+            cursor.close();
+            cursor = this.getContentResolver().query(
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                    null, MediaStore.Images.Media._ID + " = ? ", new String[]{document_id}, null);
+            cursor.moveToFirst();
+            path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+            cursor.close();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        } catch (CursorIndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
         return path;
     }
 
 
+    private void chooseImage() {
+        AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
+        myAlertDialog.setTitle("Upload Pictures Option");
+        myAlertDialog.setMessage("How do you want to set your picture?");
+        myAlertDialog.setPositiveButton("Gallery",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+                    }
+                });
+        myAlertDialog.setNegativeButton("Camera",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temp.jpg");
+                        Uri photoURI = FileProvider.getUriForFile(RFC_StatusMastar_Page.this, getApplicationContext().getPackageName() + ".provider", f);
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                        //  intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        startActivityForResult(intent, CAMERA_REQUEST);
+                    }
+                });
+        myAlertDialog.show();
+    }
+
+
+    public boolean validate() {
+        boolean isDataValid = true;
+        if (type_of_master.contains("Failed")) {
+            if (codeGroup.equalsIgnoreCase("ZLEAD001")) {
+
+                if (et_accholdername.getText().length() == 0) {
+                    isDataValid = false;
+                    et_accholdername.setError("Enter Name");
+                    Toast.makeText(RFC_StatusMastar_Page.this, "Enter A/C Holder Name", Toast.LENGTH_SHORT).show();
+
+                } else if (et_acnumber.getText().length() == 0) {
+                    isDataValid = false;
+                    et_acnumber.setError("Enter A/c Number");
+                    Toast.makeText(RFC_StatusMastar_Page.this, "Enter A/c Number", Toast.LENGTH_SHORT).show();
+                } else if (et_bankname.getText().length() == 0) {
+                    isDataValid = false;
+                    et_bankname.setError("Enter Bank Name");
+                    Toast.makeText(RFC_StatusMastar_Page.this, "Enter Bank Name", Toast.LENGTH_SHORT).show();
+                } else if (et_ifsc.getText().toString().length() == 0) {
+                    isDataValid = false;
+                    et_ifsc.setError("Enter Valid IFSC CODE");
+                    Toast.makeText(RFC_StatusMastar_Page.this, "Enter Valid IFSC CODE", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    isDataValid = true;
+                }
+                return isDataValid;
+
+            } else {
+
+                return isDataValid;
+            }
+        } else {
+            return isDataValid;
+        }
+
+    }
 }

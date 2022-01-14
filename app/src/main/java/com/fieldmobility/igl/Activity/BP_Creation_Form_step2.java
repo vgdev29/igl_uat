@@ -20,6 +20,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Html;
 import android.util.Log;
@@ -130,20 +131,20 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
 
 
     static final String IMAGE_DIRECTORY = "/signdemo";
-    Spinner idproof_Spinner, address_spinner;
+    Spinner idproof_Spinner, address_spinner,spinner_formfill;
     private Uri filePathUri_cheque, filePathUri_id, filePathUri_address, filePathUri_owner, filePathUri_customer;
     String image_path_cheque, image_path_id, image_path_address, owner_image_select, pdf_path;
     String pdf_file_path;
     ImageView back;
 
-    String id_proof, address_proof, Type_Of_Owner, typeOfPayment = "OFFLINE";
+    String id_proof, address_proof, Type_Of_Owner, typeOfPayment = "OFFLINE",form_location;
     String Compress_Address_Image, Compress_Adahar_Image;
 
     Uri compressUri = null;
     String Bp_Number;
 
     CheckBox checkBox_term_cond;
-    TextView checkbox_text;
+    TextView checkbox_text , floor_text , address_text;
     DatePickerDialog pickerDialog_Date;
     String date_select;
     String emailPattern = "@[A-Z][a-z]+\\.+";
@@ -176,6 +177,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         submit_button = findViewById(R.id.submit_button);
         idproof_Spinner = (Spinner) findViewById(R.id.spinner1);
         address_spinner = (Spinner) findViewById(R.id.spinner2);
+        spinner_formfill = findViewById(R.id.spinner_formfill);
         id_imageView = findViewById(R.id.adhar_image);
         address_imageView = findViewById(R.id.address_image);
         customer_signature_imageview = findViewById(R.id.signature_image);
@@ -189,16 +191,22 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         back = findViewById(R.id.back);
         checkBox_term_cond = findViewById(R.id.checkbox);
         checkbox_text = findViewById(R.id.checkbox_text);
+        address_text = findViewById(R.id.address_text);
+        floor_text = findViewById(R.id.floor_text);
 //        check_undertaking_gpa = findViewById(R.id.undertaking_gpa);
 //        check_undertaking_owner = findViewById(R.id.undertaking_owner);
         check_multiple_floor = findViewById(R.id.multiple_floor);
         check_multiple_floor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
+                if (isChecked) {
                     et_total_floor.setVisibility(View.VISIBLE);
-                else
+                    floor_text.setVisibility(View.VISIBLE);
+                }
+                else {
                     et_total_floor.setVisibility(View.GONE);
+                    floor_text.setVisibility(View.GONE);
+                }
 
             }
         });
@@ -206,10 +214,14 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         check_address_issue.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
+                if (isChecked) {
                     et_address.setVisibility(View.VISIBLE);
-                else
+                    address_text.setVisibility(View.VISIBLE);
+                }
+                else {
                     et_address.setVisibility(View.GONE);
+                    address_text.setVisibility(View.GONE);
+                }
 
             }
         });
@@ -315,6 +327,13 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         idProofList.add("UNDERTAKING (GPA CASE)");
         idProofList.add("UNDERTAKING (OWNER’s DEATH CASE)");
         idProofList.add("ANY OTHER");
+
+
+        List<String> formlocation = new ArrayList<String>();
+        formlocation.add("Customer Premises");
+        formlocation.add("Other");
+
+
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, idProofList);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         idproof_Spinner.setAdapter(dataAdapter);
@@ -323,6 +342,10 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, addressProofList);
         dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         address_spinner.setAdapter(dataAdapter1);
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, formlocation);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_formfill.setAdapter(dataAdapter2);
 
         idproof_Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -369,14 +392,47 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
             }
         });
 
+        spinner_formfill.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                form_location = spinner_formfill.getItemAtPosition(spinner_formfill.getSelectedItemPosition()).toString();
+                Log.d("formlocation = ",form_location);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
         String first = "I agree to the ";
         String second = "<font color='#EE0000'> Terms and conditions</font>";
+        String adress_issue = "<font color='#EE0000'>Address Issue Annexure</font>";
+        String floor_issue = "<font color='#EE0000'>Multiple Floor Annexure</font>";
         String third = " of PNG registration.";
         checkbox_text.setText(Html.fromHtml(first + second + third));
+        address_text.setText(Html.fromHtml("Click here to view "+adress_issue));
+        floor_text.setText(Html.fromHtml("Click here to view "+floor_issue));
+
         checkbox_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BP_Creation_Form_step2.this, WebView_Activity.class);
+                startActivity(intent);
+
+            }
+        });
+        address_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BP_Creation_Form_step2.this, Address_Annexure.class);
+                startActivity(intent);
+
+            }
+        });
+        floor_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BP_Creation_Form_step2.this, Floor_Annexure.class);
                 startActivity(intent);
 
             }
@@ -476,7 +532,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+                        File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temp.jpg");
                         Uri photoURI = FileProvider.getUriForFile(BP_Creation_Form_step2.this, getApplicationContext().getPackageName() + ".provider", f);
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -504,7 +560,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+                        File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temp.jpg");
                         Uri photoURI = FileProvider.getUriForFile(BP_Creation_Form_step2.this, getApplicationContext().getPackageName() + ".provider", f);
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -532,7 +588,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+                        File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temp.jpg");
                         Uri photoURI = FileProvider.getUriForFile(BP_Creation_Form_step2.this, getApplicationContext().getPackageName() + ".provider", f);
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -550,7 +606,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
 //                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+//                        File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temp.jpg");
 //                        Uri photoURI = FileProvider.getUriForFile(BP_Creation_Form_step2.this, getApplicationContext().getPackageName() + ".provider", f);
 //                        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 //                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -579,7 +635,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
 //                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                        File f = new File(getExternalStorageDirectory(), "temp.jpg");
+//                        File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temp.jpg");
 //                        Uri photoURI = FileProvider.getUriForFile(BP_Creation_Form_step2.this, getApplicationContext().getPackageName() + ".provider", f);
 //                        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 //                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -736,7 +792,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                 break;
             case CAMERA_REQUEST_ID:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST_ID) {
-                    File f = new File(getExternalStorageDirectory().toString());
+                    File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString());
                     for (File temp : f.listFiles()) {
                         if (temp.getName().equals("temp.jpg")) {
                             f = temp;
@@ -747,10 +803,11 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
                         bitmap_id = BitmapFactory.decodeFile(f.getAbsolutePath(),
                                 bitmapOptions);
-                        bitmap_id = getResizedBitmap(bitmap_id, 1600);
 
-                        id_imageView.setImageBitmap(bitmap_id);
-                        String path = getExternalStorageDirectory().getAbsolutePath();
+                        int nh = (int) ( bitmap_id.getHeight() * (512.0 / bitmap_id.getWidth()) );
+                        Bitmap scaled = Bitmap.createScaledBitmap(bitmap_id, 512, nh, true);
+                        id_imageView.setImageBitmap(scaled);
+                        String path = getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
                         f.delete();
                         OutputStream outFile = null;
                         File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
@@ -794,7 +851,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                 break;
             case CAMERA_REQUEST_CHEQUE:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST_CHEQUE) {
-                    File f = new File(getExternalStorageDirectory().toString());
+                    File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString());
                     for (File temp : f.listFiles()) {
                         if (temp.getName().equals("temp.jpg")) {
                             f = temp;
@@ -837,7 +894,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                 break;
             case CAMERA_REQUEST_ADDRESS:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST_ADDRESS) {
-                    File f = new File(getExternalStorageDirectory().toString());
+                    File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString());
                     for (File temp : f.listFiles()) {
                         if (temp.getName().equals("temp.jpg")) {
                             f = temp;
@@ -861,7 +918,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
 
             case CAMERA_CUSTOMER_SIGNATURE:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_CUSTOMER_SIGNATURE) {
-                    File f = new File(getExternalStorageDirectory().toString());
+                    File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString());
                     for (File temp : f.listFiles()) {
                         if (temp.getName().equals("temp.jpg")) {
                             f = temp;
@@ -885,7 +942,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
 
             case CAMERA_OWNER_SIGNATURE:
                 if (resultCode == RESULT_OK && requestCode == CAMERA_OWNER_SIGNATURE) {
-                    File f = new File(getExternalStorageDirectory().toString());
+                    File f = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString());
                     for (File temp : f.listFiles()) {
                         if (temp.getName().equals("temp.jpg")) {
                             f = temp;
@@ -949,7 +1006,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
         File wallpaperDirectory = new File(
-                getExternalStorageDirectory() + IMAGE_DIRECTORY /*iDyme folder*/);
+                getFilesDir() + IMAGE_DIRECTORY /*iDyme folder*/);
         if (!wallpaperDirectory.exists()) {
             wallpaperDirectory.mkdirs();
             Log.d("Signature_Page++", wallpaperDirectory.toString());
@@ -974,7 +1031,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
         File wallpaperDirectory = new File(
-                getExternalStorageDirectory() + IMAGE_DIRECTORY /*iDyme folder*/);
+                getExternalFilesDir(Environment.DIRECTORY_PICTURES) + IMAGE_DIRECTORY /*iDyme folder*/);
         if (!wallpaperDirectory.exists()) {
             wallpaperDirectory.mkdirs();
             Log.d("Signature_Page++", wallpaperDirectory.toString());
@@ -1331,7 +1388,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     params.put("longitude", Longitude);
                     params.put("ownership_multi_floor", et_total_floor.getText().toString());
                     params.put("ownership_complete_address", et_address.getText().toString());
-                    // params.put("dma_agency",  sharedPrefs.getUUID());
+                    params.put("filling_location", form_location);
 
                     Log.d("First_Name", user_bpData.getIgl_first_name());
                     Log.d("Middle_Name", user_bpData.getIgl_middle_name());
@@ -1378,6 +1435,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     Log.d("ownership_multi_floor", et_total_floor.getText().toString());
                     Log.d("ownership_complete_address", et_address.getText().toString());
                     Log.d("Alternate_Mobile_Number", user_bpData.getIgl_alternate_mobile_no());
+                    Log.d("filling_location", form_location);
 
                 } catch (Exception e) {
                 }
@@ -1564,35 +1622,29 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         Log.d("bpcreation", "on destroy");
     }
 
-    public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
-        int width = image.getWidth();
-        int height = image.getHeight();
-
-        float bitmapRatio = (float) width / (float) height;
-        if (bitmapRatio > 1) {
-            width = maxSize;
-            height = (int) (width / bitmapRatio);
-        } else {
-            height = maxSize;
-            width = (int) (height * bitmapRatio);
-        }
-        return Bitmap.createScaledBitmap(image, width, height, true);
+    public Bitmap getResizedBitmap(Bitmap bitmap, int maxSize) {
+        maxSize = 512;
+        int nh = (int) ( bitmap.getHeight() * (512.0 / bitmap.getWidth()) );
+        Bitmap scaled = Bitmap.createScaledBitmap(bitmap, 512, nh, true);
+        return scaled;
     }
 
     private void getLocationUsingInternet() {
         boolean isInternetConnected = new ConnectionDetector(BP_Creation_Form_step2.this).isConnectingToInternet();
-        if (isInternetConnected) {
-            // getLocation_usingInternet.setEnabled(false);
-            new GPSLocation(BP_Creation_Form_step2.this).turnGPSOn();// First turn on GPS
-            String getLocation = new GPSLocation(BP_Creation_Form_step2.this).getMyCurrentLocation();// Get current location from
-            Log.d("getLocation++", getLocation.toString());
-            Latitude = GPSLocation.Latitude;
-            Longitude = GPSLocation.Longitude;
-            Log.d("Latitude++", Latitude);
-            Log.d("Longitude++", Longitude);
-        } else {
-            Toast.makeText(BP_Creation_Form_step2.this, "There is no internet connection.", Toast.LENGTH_SHORT).show();
-        }
+        try {
+            if (isInternetConnected) {
+                // getLocation_usingInternet.setEnabled(false);
+                new GPSLocation(BP_Creation_Form_step2.this).turnGPSOn();// First turn on GPS
+                String getLocation = new GPSLocation(BP_Creation_Form_step2.this).getMyCurrentLocation();// Get current location from
+                Log.d("getLocation++", getLocation.toString());
+                Latitude = GPSLocation.Latitude;
+                Longitude = GPSLocation.Longitude;
+                Log.d("Latitude++", Latitude);
+                Log.d("Longitude++", Longitude);
+            } else {
+                Toast.makeText(BP_Creation_Form_step2.this, "There is no internet connection.", Toast.LENGTH_SHORT).show();
+            }
+        }catch (Exception e ){ Toast.makeText(BP_Creation_Form_step2.this, "Switch to Mobile data for location.", Toast.LENGTH_SHORT).show();}
     }
 
 }

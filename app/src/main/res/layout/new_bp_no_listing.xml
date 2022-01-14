@@ -140,7 +140,7 @@
             android:id="@+id/tv_ngUserListdata"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/iv_cloudOff_attendance"
+
             android:layout_centerHorizontal="true"
             android:padding="10dp"
             android:gravity="center"
