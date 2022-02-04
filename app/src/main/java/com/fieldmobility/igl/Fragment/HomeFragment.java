@@ -44,6 +44,7 @@ import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.MITDtoRFC.Tab_Host_MitdTpi;
 import com.fieldmobility.igl.MataData.VideoListData1;
 import com.fieldmobility.igl.Mdpe.Mdpe_List_Activity;
+import com.fieldmobility.igl.Mdpe.Mdpe_Tpi_Host;
 import com.fieldmobility.igl.R;
 //import com.fieldmobility.igl.tracker.MyIntentService;
 import com.fieldmobility.igl.Riser.activity.RiserListActivity;
@@ -62,7 +63,7 @@ public class HomeFragment extends Fragment {
     SharedPrefs sharedPrefs;
     VideoListData1[] myListData;
     LinearLayout mitd_layout,mitd_layout_tpi,attendance_layout,to_do_list,learning_layout,new_regestration_layout,ekyc_layout,tpi_layout,
-            rfc_layout,pmc_layout,ng_pending_layout,ng_conversion_layout,riser_layout, lt_tpi_riser,mdpe_layout,checkbp_layout;
+            rfc_layout,pmc_layout,ng_pending_layout,ng_conversion_layout,riser_layout, lt_tpi_riser,mdpe_layout,mdpe_tpi_layout,checkbp_layout;
     MaterialDialog materialDialog;
     private static final String TAG = Tracking_Activity.class.getSimpleName();
    // private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
@@ -134,6 +135,7 @@ public class HomeFragment extends Fragment {
         riser_layout = root.findViewById(R.id.riser_layout);
         lt_tpi_riser = root.findViewById(R.id.lt_tpi_riser);
         mdpe_layout = root.findViewById(R.id.mdpe_layout);
+        mdpe_tpi_layout = root.findViewById(R.id.mdpe_tpi_layout);
        /* new_regestration_layout.setVisibility(View.GONE);
         ekyc_layout.setVisibility(View.GONE);
         tpi_layout.setVisibility(View.GONE);
@@ -163,6 +165,7 @@ public class HomeFragment extends Fragment {
             ng_conversion_layout.setVisibility(View.GONE);
             pmc_layout.setVisibility(View.GONE);
             mdpe_layout.setVisibility(View.GONE);
+            mdpe_tpi_layout.setVisibility(View.VISIBLE);
             riser_layout.setVisibility(View.GONE);
             lt_tpi_riser.setVisibility(View.VISIBLE);
             mitd_layout.setVisibility(View.GONE);
@@ -178,10 +181,11 @@ public class HomeFragment extends Fragment {
             rfc_layout.setVisibility(View.VISIBLE);
             ng_conversion_layout.setVisibility(View.VISIBLE);
             pmc_layout.setVisibility(View.GONE);
-            mdpe_layout.setVisibility(View.GONE);
+            mdpe_layout.setVisibility(View.VISIBLE);
             riser_layout.setVisibility(View.VISIBLE);
             lt_tpi_riser.setVisibility(View.GONE);
             mitd_layout.setVisibility(View.VISIBLE);
+
 
         }
         else if (sharedPrefs.getType_User().equalsIgnoreCase("NG")){
@@ -231,7 +235,6 @@ public class HomeFragment extends Fragment {
         else if (sharedPrefs.getType_User().equals("RISER")){
             new_regestration_layout.setVisibility(View.GONE);
             riser_layout.setVisibility(View.VISIBLE);
-
             ekyc_layout.setVisibility(View.GONE);
             tpi_layout.setVisibility(View.GONE);
             ng_pending_layout.setVisibility(View.GONE);
@@ -242,20 +245,7 @@ public class HomeFragment extends Fragment {
             checkbp_layout.setVisibility(View.GONE);
 
         }
-        else if (sharedPrefs.getType_User().equals("MDPE")){
-            new_regestration_layout.setVisibility(View.GONE);
-            mdpe_layout.setVisibility(View.VISIBLE);
 
-            ekyc_layout.setVisibility(View.GONE);
-            tpi_layout.setVisibility(View.GONE);
-            ng_pending_layout.setVisibility(View.GONE);
-            rfc_layout.setVisibility(View.GONE);
-            ng_conversion_layout.setVisibility(View.GONE);
-            mitd_layout.setVisibility(View.GONE);
-            lt_tpi_riser.setVisibility(View.GONE);
-            checkbp_layout.setVisibility(View.GONE);
-
-        }
 
         else {
             sharedPrefs.setLoginStatus("false");
@@ -382,6 +372,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent mdpeintent = new Intent(getActivity(), Mdpe_List_Activity.class);
+                startActivity(mdpeintent);
+            }
+        });
+        mdpe_tpi_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mdpeintent = new Intent(getActivity(), Mdpe_Tpi_Host.class);
                 startActivity(mdpeintent);
             }
         });

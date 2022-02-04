@@ -3,16 +3,16 @@ package com.fieldmobility.igl.Helper;
 public class Constants {
     public static final boolean isDebugBuild=true; // make it FALSE while giving app to others
     //LIVE URL
-      public static String BASE_URL="http://49.50.65.107:8081/";
-      public static  String BASE_URL_PYTHON = "http://49.50.65.107:8000/"; //PYTHON SERVER
+     // public static String BASE_URL="http://49.50.65.107:8081/";
+     // public static  String BASE_URL_PYTHON = "http://49.50.65.107:8000/"; //PYTHON SERVER
 
 
     //  UAT URL
-    //  public static String BASE_URL = "http://49.50.118.112:8080/";
-    // public static String BASE_URL_PYTHON = "http://49.50.68.239:8080/";
+      public static String BASE_URL = "http://49.50.118.112:8080/";
+     public static String BASE_URL_PYTHON = "http://49.50.68.239:8080/";
 
     //local
-      //      static String localhost = "http://192.168.31.29:8081/";
+          static String localhost = "http://192.168.31.29:8081/";
 
     public static final int LOCATION_INTERVAL = 100000000;
     public static final int FASTEST_LOCATION_INTERVAL = 5000000;
@@ -165,6 +165,9 @@ public class Constants {
       public static final String SUBMITMITDAPPROVAL = BASE_URL + "ekyc/bp_details/approveMitd/";
    // public static final String SUBMITMITDAPPROVAL = localhost + "/bp_details/approveMitd/";
 
+    //MDPE
+    //public static final String MDPELIST_SUP = BASE_URL + "mdpe/suballo/";
+     public static final String MDPELIST_SUP = localhost + "mdpe/suballo/";
 
 
 

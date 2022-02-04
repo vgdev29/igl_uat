@@ -103,7 +103,7 @@
                     android:textSize="@dimen/_6sdp"
                     android:textStyle="bold" />
             </LinearLayout>
-
+            //todo
             <LinearLayout
                 android:id="@+id/to_do_list"
                 android:layout_width="@dimen/_80sdp"
@@ -139,6 +139,7 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
+            //Learning layout
             <LinearLayout
                 android:id="@+id/learning_layout"
                 android:layout_width="@dimen/_80sdp"
@@ -175,6 +176,7 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
+            //new reg
             <LinearLayout
                 android:id="@+id/new_regestration_layout"
                 android:layout_width="@dimen/_80sdp"
@@ -183,6 +185,7 @@
                 android:layout_margin="@dimen/_3sdp"
                 android:background="@color/yellow"
                 android:gravity="center"
+                android:visibility="gone"
                 android:orientation="vertical">
 
                 <ImageView
@@ -210,6 +213,7 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
+            //ekyc layout
             <LinearLayout
                 android:id="@+id/ekyc_layout"
                 android:layout_width="@dimen/_80sdp"
@@ -218,6 +222,7 @@
                 android:layout_margin="@dimen/_3sdp"
                 android:background="@color/yellow"
                 android:gravity="center"
+                android:visibility="gone"
                 android:orientation="vertical">
 
                 <ImageView
@@ -245,6 +250,7 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
+            //feasi tpi layout
             <LinearLayout
                 android:id="@+id/tpi_layout"
                 android:layout_width="@dimen/_80sdp"
@@ -253,6 +259,7 @@
                 android:layout_margin="@dimen/_3sdp"
                 android:background="@color/yellow"
                 android:gravity="center"
+                android:visibility="gone"
                 android:orientation="vertical">
 
                 <ImageView
@@ -280,6 +287,8 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
+
+            //rfc layout
             <LinearLayout
                 android:id="@+id/rfc_layout"
                 android:layout_width="@dimen/_80sdp"
@@ -288,6 +297,7 @@
                 android:layout_margin="@dimen/_3sdp"
                 android:background="@color/yellow"
                 android:gravity="center"
+                android:visibility="gone"
                 android:orientation="vertical">
 
                 <ImageView
@@ -315,6 +325,7 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
+            //pmc
             <LinearLayout
                 android:id="@+id/pmc_layout"
                 android:layout_width="@dimen/_80sdp"
@@ -323,6 +334,7 @@
                 android:layout_margin="@dimen/_3sdp"
                 android:background="@color/yellow"
                 android:gravity="center"
+                android:visibility="gone"
                 android:orientation="vertical">
 
                 <ImageView
@@ -350,6 +362,7 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
+            //ng pending
             <LinearLayout
                 android:id="@+id/ng_pending_layout"
                 android:layout_width="@dimen/_80sdp"
@@ -358,6 +371,7 @@
                 android:layout_margin="@dimen/_3sdp"
                 android:background="@color/yellow"
                 android:gravity="center"
+                android:visibility="gone"
                 android:orientation="vertical">
 
                 <ImageView
@@ -385,6 +399,7 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
+            //ng conversion
             <LinearLayout
                 android:id="@+id/ng_conversion_layout"
                 android:layout_width="@dimen/_80sdp"
@@ -393,6 +408,7 @@
                 android:layout_margin="@dimen/_3sdp"
                 android:background="@color/yellow"
                 android:gravity="center"
+                android:visibility="gone"
                 android:orientation="vertical">
 
                 <ImageView
@@ -420,6 +436,7 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
+            //mdpe
             <LinearLayout
                 android:id="@+id/mdpe_layout"
                 android:layout_width="@dimen/_80sdp"
@@ -428,6 +445,7 @@
                 android:layout_margin="@dimen/_3sdp"
                 android:background="@color/yellow"
                 android:gravity="center"
+                android:visibility="gone"
                 android:orientation="vertical">
 
                 <ImageView
@@ -437,7 +455,7 @@
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_10sdp"
-                    android:src="@drawable/ng_connection" />
+                    android:src="@drawable/ic_pipes" />
 
                 <TextView
 
@@ -455,14 +473,16 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
+            //mdpe tpi
             <LinearLayout
-                android:id="@+id/riser_layout"
+                android:id="@+id/mdpe_tpi_layout"
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="@dimen/_80sdp"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/_3sdp"
                 android:background="@color/yellow"
                 android:gravity="center"
+                android:visibility="gone"
                 android:orientation="vertical">
 
                 <ImageView
@@ -472,7 +492,7 @@
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_10sdp"
-                    android:src="@drawable/ng_connection" />
+                    android:src="@drawable/ic_pipes" />
 
                 <TextView
 
@@ -484,20 +504,23 @@
                     android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
                     android:gravity="center"
-                    android:text="RISER"
+                    android:text="MDPE"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_6sdp"
                     android:textStyle="bold" />
             </LinearLayout>
 
+
+            //riser
             <LinearLayout
-                android:id="@+id/lt_tpi_riser"
+                android:id="@+id/riser_layout"
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="@dimen/_80sdp"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/_3sdp"
                 android:background="@color/yellow"
                 android:gravity="center"
+                android:visibility="gone"
                 android:orientation="vertical">
 
                 <ImageView
@@ -525,6 +548,45 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
+            //riser tpi
+            <LinearLayout
+                android:id="@+id/lt_tpi_riser"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_3sdp"
+                android:background="@color/yellow"
+                android:gravity="center"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <ImageView
+
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/ic_riser" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:text="RISER"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_6sdp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+
+            //mitd new
             <LinearLayout
                 android:id="@+id/mitd_layout"
                 android:layout_width="@dimen/_80sdp"
@@ -533,6 +595,7 @@
                 android:layout_margin="@dimen/_3sdp"
                 android:background="@color/yellow"
                 android:gravity="center"
+                android:visibility="gone"
                 android:orientation="vertical">
 
                 <ImageView
@@ -561,6 +624,7 @@
             </LinearLayout>
 
 
+            //mitd tpi new
             <LinearLayout
                 android:id="@+id/mitd_layout_tpi"
                 android:layout_width="@dimen/_80sdp"
@@ -598,6 +662,7 @@
             </LinearLayout>
 
 
+            //check bp new reg
             <LinearLayout
                 android:id="@+id/checkbp_layout"
                 android:layout_width="@dimen/_80sdp"
@@ -606,6 +671,7 @@
                 android:layout_margin="@dimen/_3sdp"
                 android:background="@color/yellow"
                 android:gravity="center"
+                android:visibility="gone"
                 android:orientation="vertical">
 
                 <ImageView

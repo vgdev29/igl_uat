@@ -57,6 +57,18 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Mdpe.MdpeTiles"
+            android:exported="true" >
+           <!-- <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+        <activity
+            android:name=".Mdpe.Mdpe_Tpi_Host"
+            android:exported="true" />
+        <activity
             android:name=".MITDtoRFC.MITD_Approval"
             android:exported="true" />
         <activity
