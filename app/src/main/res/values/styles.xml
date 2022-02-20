@@ -11,7 +11,22 @@
         <item name="textAllCaps">false</item>
         <item name="android:textAllCaps">false</item>
     </style>
-
+    <style name="table_header">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/abhayalibre_regular</item>
+        <item name="fontFamily">@font/abhayalibre_regular</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="table_row">
+        <item name="android:textSize">17sp</item>
+        <item name="android:fontFamily">@font/sourcesanspro_regular</item>
+        <item name="fontFamily">@font/sourcesanspro_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
     <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:background">@color/white</item>
         <item name="android:textColor">@color/future_stay_gray</item>

@@ -1,5 +1,7 @@
 package com.fieldmobility.igl.Mdpe;
 
+import org.json.JSONObject;
+
 import java.io.Serializable;
 
 public class MdpeSubAllocation implements Serializable {
@@ -25,6 +27,15 @@ public class MdpeSubAllocation implements Serializable {
     public String agentAssignDate;
     public String userName;
     public String userMob;
+    public String contId;
+
+    public String getContId() {
+        return contId;
+    }
+
+    public void setContId(String contId) {
+        this.contId = contId;
+    }
 
     public String getUserName() {
         return userName;

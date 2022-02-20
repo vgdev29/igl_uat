@@ -33,6 +33,8 @@ import com.fieldmobility.igl.Activity.RFC_Connection_Listing;
 import com.fieldmobility.igl.Activity.TPI_Module;
 import com.fieldmobility.igl.Activity.Tab_Host_DMA;
 import com.fieldmobility.igl.Activity.Tab_Host_EKYC;
+import com.fieldmobility.igl.Complain.ComplainTpiApproval;
+import com.fieldmobility.igl.Complain.ComplaintSup;
 import com.fieldmobility.igl.MITDtoRFC.Tab_Host_MITD;
 import com.fieldmobility.igl.Activity.Tab_Host_Pager_TPI_Claim;
 import com.fieldmobility.igl.Activity.To_DoList_Activity;
@@ -63,7 +65,7 @@ public class HomeFragment extends Fragment {
     SharedPrefs sharedPrefs;
     VideoListData1[] myListData;
     LinearLayout mitd_layout,mitd_layout_tpi,attendance_layout,to_do_list,learning_layout,new_regestration_layout,ekyc_layout,tpi_layout,
-            rfc_layout,pmc_layout,ng_pending_layout,ng_conversion_layout,riser_layout, lt_tpi_riser,mdpe_layout,mdpe_tpi_layout,checkbp_layout;
+            rfc_layout,complaintpi_layout,comaplaintech_layout,pmc_layout,ng_pending_layout,ng_conversion_layout,riser_layout, lt_tpi_riser,mdpe_layout,mdpe_tpi_layout,checkbp_layout;
     MaterialDialog materialDialog;
     private static final String TAG = Tracking_Activity.class.getSimpleName();
    // private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
@@ -136,6 +138,8 @@ public class HomeFragment extends Fragment {
         lt_tpi_riser = root.findViewById(R.id.lt_tpi_riser);
         mdpe_layout = root.findViewById(R.id.mdpe_layout);
         mdpe_tpi_layout = root.findViewById(R.id.mdpe_tpi_layout);
+        complaintpi_layout = root.findViewById(R.id.complaintpi_layout);
+        comaplaintech_layout = root.findViewById(R.id.complaintech_layout);
        /* new_regestration_layout.setVisibility(View.GONE);
         ekyc_layout.setVisibility(View.GONE);
         tpi_layout.setVisibility(View.GONE);
@@ -244,9 +248,13 @@ public class HomeFragment extends Fragment {
             lt_tpi_riser.setVisibility(View.GONE);
             checkbp_layout.setVisibility(View.GONE);
 
+        } else if (sharedPrefs.getType_User().equalsIgnoreCase("COM")) {
+            comaplaintech_layout.setVisibility(View.VISIBLE);
         }
+        else if (sharedPrefs.getType_User().equalsIgnoreCase("TPICOM")) {
+            complaintpi_layout.setVisibility(View.VISIBLE);
 
-
+        }
         else {
             sharedPrefs.setLoginStatus("false");
             Intent intent = new Intent(getActivity(), Login_Activity.class);
@@ -384,6 +392,20 @@ public class HomeFragment extends Fragment {
         });
         //requestCameraAndStorage();
 
+        comaplaintech_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent comptech = new Intent(getActivity(), ComplaintSup.class);
+                startActivity(comptech);
+            }
+        });
+        complaintpi_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent comptech = new Intent(getActivity(), ComplainTpiApproval.class);
+                startActivity(comptech);
+            }
+        });
 
     }
 

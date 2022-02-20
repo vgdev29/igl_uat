@@ -186,6 +186,7 @@ public class Mdpe_List_Activity extends AppCompatActivity {
                                     subAllocation.setTpiClaim(data_object.getInt("tpiClaim"));
                                     subAllocation.setClaimDate(data_object.getString("claimDate"));
                                     subAllocation.setTpiId(data_object.getString("tpiId"));
+                                    subAllocation.setContId(data_object.getString("contId"));
                                     subAllocation.setAgentAssignDate(data_object.getString("agentAssignDate"));
 
                                     suballo.add(subAllocation);

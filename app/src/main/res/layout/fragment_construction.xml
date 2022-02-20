@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        tools:context=".Mdpe.MPipeFragment">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_weight="1"
+                android:textSize="@dimen/_13sdp"
+                android:gravity="start|center_vertical"
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:textColor="@color/dark_gray"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="Allocation No." />
+
+            <EditText
+                android:id="@+id/et_allo"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_25sdp"
+                android:background="@drawable/background_input_mandatory"
+                android:hint="5687126"
+                android:layout_weight="1"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:inputType="text"
+                android:textStyle="bold"
+                android:textColor="@color/black_31"
+                android:singleLine="true"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:textSize="@dimen/_12sdp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_weight="1"
+                android:textSize="@dimen/_13sdp"
+                android:gravity="start|center_vertical"
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:textColor="@color/dark_gray"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="Sub Allocation No." />
+
+            <EditText
+                android:id="@+id/et_suballo"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_25sdp"
+                android:background="@drawable/background_input_mandatory"
+                android:hint="6265246"
+                android:layout_weight="1"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:inputType="text"
+                android:textStyle="bold"
+                android:textColor="@color/black_31"
+                android:singleLine="true"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:textSize="@dimen/_12sdp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_weight="1"
+                android:textSize="@dimen/_13sdp"
+                android:gravity="start|center_vertical"
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:textColor="@color/dark_gray"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="DPR No." />
+
+            <EditText
+                android:id="@+id/et_dpr"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_25sdp"
+                android:background="@drawable/background_input_mandatory"
+                android:hint="2022/02/07/1062"
+                android:layout_weight="1"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:inputType="text"
+                android:textStyle="bold"
+                android:textColor="@color/black_31"
+                android:singleLine="true"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:textSize="@dimen/_12sdp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_weight="1"
+                android:textSize="@dimen/_13sdp"
+                android:gravity="start|center_vertical"
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:textColor="@color/dark_gray"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="Latitude" />
+
+            <EditText
+                android:id="@+id/et_lat"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_25sdp"
+                android:background="@drawable/background_input_mandatory"
+                android:hint="62.322"
+                android:layout_weight="1"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:inputType="text"
+                android:textStyle="bold"
+                android:textColor="@color/black_31"
+                android:singleLine="true"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:textSize="@dimen/_12sdp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_weight="1"
+                android:textSize="@dimen/_13sdp"
+                android:gravity="start|center_vertical"
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:textColor="@color/dark_gray"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="Longitude" />
+
+            <EditText
+                android:id="@+id/et_longi"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_25sdp"
+                android:background="@drawable/background_input_mandatory"
+                android:hint="82.333"
+                android:layout_weight="1"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:inputType="text"
+                android:textStyle="bold"
+                android:textColor="@color/black_31"
+                android:singleLine="true"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:textSize="@dimen/_12sdp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/background_input_mandatory"
+            android:weightSum="2">
+
+            <Spinner
+                android:id="@+id/spinner_method"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_26sdp"
+                android:layout_margin="3dp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_weight="2"
+                android:text="Select Size"
+                android:autofillHints="City/Region"
+                android:dropDownSelector="@null"
+                android:spinnerMode="dialog" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/background_input_mandatory"
+            android:weightSum="2">
+
+            <Spinner
+                android:id="@+id/spinner_size"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_26sdp"
+                android:layout_margin="3dp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_weight="2"
+                android:autofillHints="City/Region"
+                android:dropDownSelector="@null"
+                android:spinnerMode="dialog" />
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/_13sdp"
+                android:gravity="start|center_vertical"
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:textColor="@color/dark_gray"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="Length/Unit (mm/no.)" />
+
+            <EditText
+                android:id="@+id/et_length"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_25sdp"
+                android:background="@drawable/background_input_mandatory"
+                android:hint="0.0"
+                android:layout_weight="1"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:inputType="numberDecimal"
+                android:textStyle="bold"
+                android:textColor="@color/black_31"
+                android:singleLine="true"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:textSize="@dimen/_12sdp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_weight="1"
+                android:textSize="@dimen/_13sdp"
+                android:gravity="start|center_vertical"
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:textColor="@color/dark_gray"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="Image" />
+
+            <ImageView
+                android:id="@+id/img_graph"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_55sdp"
+                android:hint="0.0"
+                android:layout_weight="1"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:src="@drawable/add_images" />
+
+        </LinearLayout>
+
+
+
+        <Button
+            android:id="@+id/submit_button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_alignParentRight="true"
+            android:background="@color/colorPrimary"
+            android:text="Submit"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10sdp" />
+
+
+
+
+
+
+    </LinearLayout>
+</layout>

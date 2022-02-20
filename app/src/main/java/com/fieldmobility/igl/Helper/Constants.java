@@ -12,7 +12,7 @@ public class Constants {
      public static String BASE_URL_PYTHON = "http://49.50.68.239:8080/";
 
     //local
-          static String localhost = "http://192.168.31.29:8081/";
+          static String localhost = "http://192.168.31.29:8080/";
 
     public static final int LOCATION_INTERVAL = 100000000;
     public static final int FASTEST_LOCATION_INTERVAL = 5000000;
@@ -166,12 +166,42 @@ public class Constants {
    // public static final String SUBMITMITDAPPROVAL = localhost + "/bp_details/approveMitd/";
 
     //MDPE
-    //public static final String MDPELIST_SUP = BASE_URL + "mdpe/suballo/";
-     public static final String MDPELIST_SUP = localhost + "mdpe/suballo/";
+    public static final String MDPELIST_SUP = BASE_URL + "mdpe/api/suballo/";
+    public static final String MDPEDPR_CREATE = BASE_URL + "mdpe/api/dpr";
+    public static final String MDPETPIPENDING = BASE_URL + "mdpe/api/suballo/zone/";
+    public static final String MDPETPIPENDING_CLAIM = BASE_URL + "mdpe/api/suballo";
+    public static final String MDPEDPR_BYTPID = BASE_URL + "mdpe/api/dpr/";
+    public static final String MDPETPI_DPRDETAILS = BASE_URL + "mdpe/api/dprdetails/";
+    public static final String MDPEDPR_APPROVALUPDATE = BASE_URL + "mdpe/api/dpr_approval";
+
+//    public static final String MDPEDPR_APPROVALUPDATE = localhost + "api/dpr_approval";
+//    public static final String MDPELIST_SUP = localhost + "api/suballo/";
+ //   public static final String MDPEDPR_CREATE = localhost + "api/dpr";
+//    public static final String MDPETPIPENDING = localhost + "api/suballo/zone/";
+//    public static final String MDPETPIPENDING_CLAIM = localhost + "api/suballo";
+//    public static final String MDPEDPR_BYTPID = localhost + "api/dpr/";
+//    public static final String MDPETPI_DPRDETAILS = localhost + "api/dprdetails/";
 
 
+    //COMP
 
+//    public static final String COMPLAIN_SUPID = localhost + "api/compbysup/";
+//    public static final String COMPLAIN_STATUS = localhost + "api/substat/";
+//    public static final String COMPLAIN_MASTERSUBMIT = localhost + "api/compmaster/hold";
+//    public static final String COMPLAIN_GIRMMASTERSUBMIT = localhost + "api/compmaster/girm";
+//    public static final String COMPLAIN_SERVMASTERSUBMIT = localhost + "api/servmaster/girm";
+//    public static final String COMPLAIN_MATMASTERSUBMIT = localhost + "api/matmaster/girm";
+//    public static final String COMPLAIN_ORDER = localhost + "api/order";
+//    public static final String COMPLAIN_SERVICE = localhost + "api/service/";
+//    public static final String COMPLAIN_MATERIAL = localhost + "api/material/";
 
-
-
+    public static final String COMPLAIN_SUPID = BASE_URL + "mdpe/api/compbysup/";
+    public static final String COMPLAIN_STATUS = BASE_URL + "mdpe/api/substat/";
+    public static final String COMPLAIN_MASTERSUBMIT = BASE_URL + "mdpe/api/compmaster/hold";
+    public static final String COMPLAIN_GIRMMASTERSUBMIT = BASE_URL + "mdpe/api/compmaster/girm";
+    public static final String COMPLAIN_SERVMASTERSUBMIT = BASE_URL + "mdpe/api/servmaster/girm";
+    public static final String COMPLAIN_MATMASTERSUBMIT = BASE_URL + "mdpe/api/matmaster/girm";
+    public static final String COMPLAIN_ORDER = BASE_URL + "mdpe/api/order";
+    public static final String COMPLAIN_SERVICE = BASE_URL + "mdpe/api/service/";
+    public static final String COMPLAIN_MATERIAL = BASE_URL + "mdpe/api/material/";
 }

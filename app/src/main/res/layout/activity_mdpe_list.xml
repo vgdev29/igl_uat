@@ -58,6 +58,8 @@
             android:layout_marginTop="@dimen/_3sdp"
             android:layout_weight="1.5"
             android:weightSum="3"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
             android:background="@drawable/shape_blue_border"
             android:orientation="horizontal">
             <ImageView

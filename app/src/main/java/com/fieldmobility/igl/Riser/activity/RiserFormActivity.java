@@ -715,20 +715,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
 
     private boolean isValidData() {
         boolean isValid = false;
-//        if (/*tv_allocation_num.getText().length() > 0 &&*/
-//                /*tv_sub_allocatio.getText().length() > 0 &&*/
-//                tv_agent_name.getText().length() > 0 &&
-///*
-//                tv_po_num.getText().length() > 0 &&
-//*/
-//                tv_zone.getText().length() > 0 &&
-//                tv_society.getText().length() > 0
-//        ) {
-//            isValid = true;
-//        } else {
-//            isValid = false;
-//            return isValid;
-//        }
+
         if ((hasValidValue(et_rl12.getText().toString()) || hasValidValue(et_rl34.getText().toString()) || hasValidValue(et_rl1.getText().toString()) || hasValidValue(et_rl2.getText().toString()))) {
             isValid = true;
 

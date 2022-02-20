@@ -10,6 +10,9 @@ android {
             keyPassword 'igl@12345'
         }
     }
+    dataBinding {
+        enabled true
+    }
     compileSdkVersion 30
     useLibrary 'org.apache.http.legacy'
 

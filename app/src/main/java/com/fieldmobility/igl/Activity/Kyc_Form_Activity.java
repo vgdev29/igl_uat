@@ -533,8 +533,6 @@ public class Kyc_Form_Activity extends Activity {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
-
-
         Lpg_company_name.add("IOCL");
         Lpg_company_name.add("BPCL");
         Lpg_company_name.add("HPCL");
@@ -567,7 +565,6 @@ public class Kyc_Form_Activity extends Activity {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
-
         Block_tower_type_name.add("");
         Block_tower_type_name.add("BLOCK");
         Block_tower_type_name.add("TOWER");
@@ -575,7 +572,6 @@ public class Kyc_Form_Activity extends Activity {
         ArrayAdapter<String> spinner_block_tower_Adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Block_tower_type_name);
         spinner_block_tower_Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_block_tower_type.setAdapter(spinner_block_tower_Adapter);
-
         Street_road_type_name.add("");
         Street_road_type_name.add("STREET");
         Street_road_type_name.add("ROAD");

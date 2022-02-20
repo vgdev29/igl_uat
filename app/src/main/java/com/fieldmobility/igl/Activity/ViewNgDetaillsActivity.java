@@ -487,6 +487,7 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
 
         dialog.show();
     }
+
     public String saveImage(Bitmap myBitmap) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);

@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#DF2C20</color>
     <color name="colorAccent">#DF2C20</color>
 
+    <color name="table_header">#19002F4C</color>
     <color name="white">#FFFFFF</color>
     <color name="transperent_white">#5B000000</color>
     <color name="black">#000000</color>

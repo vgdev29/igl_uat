@@ -111,7 +111,7 @@ public class Utils {
     }
 
     public static String currentDate() {
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("MMdd");
         // get current date time with Date()
         Date date = new Date();
         // System.out.println(dateFormat.format(date));

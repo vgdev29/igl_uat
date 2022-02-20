@@ -57,13 +57,37 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Complain.ComplainGirm"
+            android:exported="true" />
+        <activity
+            android:name=".Complain.CompSupStatus"
+            android:exported="true" />
+        <activity
+            android:name=".Complain.ComplainTpiApproval"
+            android:exported="true" />
+        <activity
+            android:name=".Complain.ComplaintSup"
+            android:exported="true" />
+        <activity
+            android:name=".Mdpe.MdpeTpiApproval"
+            android:exported="true" />
+        <activity
+            android:name=".Mdpe.MdpeTpiDpr"
+            android:exported="true" />
+        <activity
+            android:name=".Mdpe.MdpeTpiPending"
+            android:exported="true" />
+        <activity
             android:name=".Mdpe.MdpeTiles"
-            android:exported="true" >
-           <!-- <intent-filter>
+            android:exported="true">
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
         <activity
             android:name=".Mdpe.Mdpe_Tpi_Host"

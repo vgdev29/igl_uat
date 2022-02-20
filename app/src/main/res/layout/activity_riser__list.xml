@@ -47,6 +47,8 @@
             android:layout_weight="1.6"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_2sdp"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
             android:background="@drawable/shape_blue_border"
             android:orientation="horizontal">
 
