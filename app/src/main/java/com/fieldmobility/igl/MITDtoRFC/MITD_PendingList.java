@@ -232,8 +232,10 @@ public class MITD_PendingList extends AppCompatActivity {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Log.d("mitd pending catch",e.getLocalizedMessage());
                         }catch (NullPointerException e) {
                             e.printStackTrace();
+                            Log.d("mitd pending catch null",e.getLocalizedMessage());
                         }
                         tpi_inspection_adapter = new TPI_MITD_Pending_Adapter(MITD_PendingList.this,bpDetails);
                         recyclerView.setAdapter(tpi_inspection_adapter);
@@ -244,6 +246,7 @@ public class MITD_PendingList extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         progressDialog.dismiss();
+                        Log.d("mitd pending error",error.toString());
                         NetworkResponse response = error.networkResponse;
                         if (error instanceof ServerError && response != null) {
                             try {
@@ -252,8 +255,10 @@ public class MITD_PendingList extends AppCompatActivity {
                                 JSONObject obj = new JSONObject(res);
                             } catch (UnsupportedEncodingException e1) {
                                 e1.printStackTrace();
+                                Log.d("mitd pending error", e1.getLocalizedMessage());
                             } catch (JSONException e2) {
                                 e2.printStackTrace();
+                                Log.d("mitd pending error", e2.getLocalizedMessage());
                             }
                         }
                     }
@@ -273,7 +278,7 @@ public class MITD_PendingList extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(
-                1200,
+                30000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
     }
@@ -400,7 +405,7 @@ public class MITD_PendingList extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(
-                12000,
+                30000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
     }

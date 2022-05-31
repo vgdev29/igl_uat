@@ -212,7 +212,7 @@ public class BP_No_Resubmition_Listing extends Activity implements New_BP_NO_Ada
                 .content("Please wait....")
                 .progress(true, 0)
                 .show();
-        Log.d("Bpcreation", "url = " + Constants.BP_No_Listing + "/" + sharedPrefs.getUUID());
+        Log.d("Bpcreation", "url = " + Constants.BP_No_Resubmition_Listing + "/" + sharedPrefs.getUUID());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.BP_No_Resubmition_Listing + sharedPrefs.getUUID(),
                 new Response.Listener<String>() {
                     @Override

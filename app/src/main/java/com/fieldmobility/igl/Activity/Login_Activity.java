@@ -533,6 +533,13 @@ public class Login_Activity extends Activity {
                 password.setText("igl123");
             }
         });
+        findViewById(R.id.tv_ng_con).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                email.setText("ngsup@gmail.com");
+                password.setText("12345");
+            }
+        });
 
     }
 }

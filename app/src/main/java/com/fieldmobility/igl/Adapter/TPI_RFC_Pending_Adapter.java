@@ -543,8 +543,6 @@ public class TPI_RFC_Pending_Adapter extends RecyclerView.Adapter<TPI_RFC_Pendin
 
                                 bp_no_list_array.set(position,Bp_No_array);
                                 notifyDataSetChanged();
-
-
                             }
 
                         } catch (JSONException e) {

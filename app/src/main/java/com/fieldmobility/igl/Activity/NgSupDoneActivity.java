@@ -140,7 +140,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
             Date c = Calendar.getInstance().getTime();
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             Log.d(log,"date ="+df.format(c));
-            nguserListModel = new NguserListModel();
+            nguserListModel = (NguserListModel) getIntent().getSerializableExtra("model");
             nguserListModel.setInitial_reading(initialReading);
             nguserListModel.setBurner_details(burnerDetails);
             nguserListModel.setConversion_date(conversationDate);

@@ -20,8 +20,8 @@ android {
         applicationId "com.fieldmobility.igl"
         minSdkVersion 24
         targetSdkVersion 30
-        versionCode 20031
-        versionName "3.1"
+        versionCode 20032
+        versionName "3.2"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

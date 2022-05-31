@@ -145,6 +145,7 @@ public class RiserFormActivity extends AppCompatActivity implements AdapterView.
             //if (rg_pbc_houses.getCheckedRadioButtonId()==R.id.rb_yes){
                 JSONObject jsonArray = connectedHouseAdapter.getJsonData();
                 bplistData=String.valueOf(jsonArray);
+                Log.d("bplist","bplist data = "+bplistData);
                 Log.d("search", "jsonarray = " + jsonArray.toString());
            // }
             String riserNum = "R" + dataModel.getZone() + Utils.getRandomNumWithChar(5).toUpperCase();

@@ -52,21 +52,19 @@ public interface Api {
     @GET("ekyc/bp_details/NgTpiDetails")
     Call< TpiDetailResponse> getTpiDetails(@Query("Tpiemailid") String Tpiemailid);
 
-    @PUT("api/jmr/")
+    @PUT("api/jmrhold/")
     Call<List<NguserListModel>> getUpdateNgUserField1(@Query("jmr") String jmr_no,@Body NguserListModel updateNgUserField);
 
     @PUT("api/jmr/")
     Call<List<NguserListModel>> getUpdateNgUserFieldnull(@Query("jmr") String jmr_no,@Query("claim_date") String claim_date);
 
 
-    @PUT("api/jmr/")
+    @PUT("api/jmrdone/")
     Call<List<NguserListModel>> getPostPhoto(@Query("jmr") String jmr_no ,@Body NguserListModel updateNgUserField);
 
     @Multipart
     @PUT("api/jmr/")
-    Call<List<NguserListModel>> uploadFile(@Query("jmr") String jmr_no1,@Part MultipartBody.Part recording,
-
-                                           @Part ("jmr_no") RequestBody jmr_no
+    Call<List<NguserListModel>> uploadFile(@Query("jmr") String jmr_no1,@Part MultipartBody.Part recording, @Part ("jmr_no") RequestBody jmr_no
 
     );
 

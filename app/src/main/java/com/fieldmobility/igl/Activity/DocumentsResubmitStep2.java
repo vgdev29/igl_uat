@@ -1081,7 +1081,6 @@ public class DocumentsResubmitStep2 extends Activity implements AdapterView.OnIt
             multipartUploadRequest.addParameter("ownership_multi_floor", et_total_floor.getText().toString());
             multipartUploadRequest.addParameter("ownership_complete_address", et_address.getText().toString());
             multipartUploadRequest.addParameter("type_of_payment", typeOfPayment);
-
             multipartUploadRequest.setDelegate(new UploadStatusDelegate() {
                 @Override
                 public void onProgress(Context context, UploadInfo uploadInfo) {

@@ -2,17 +2,18 @@ package com.fieldmobility.igl.Helper;
 
 public class Constants {
     public static final boolean isDebugBuild=true; // make it FALSE while giving app to others
-    //LIVE URL
-     // public static String BASE_URL="http://49.50.65.107:8081/";
-     // public static  String BASE_URL_PYTHON = "http://49.50.65.107:8000/"; //PYTHON SERVER
+    //LIVE URLH
+  //    public static String BASE_URL="http://49.50.65.107:8081/";
+    //  public static  String BASE_URL_PYTHON = "http://49.50.65.107:8000/"; //PYTHON SERVER
 
 
     //  UAT URL
       public static String BASE_URL = "http://49.50.118.112:8080/";
-     public static String BASE_URL_PYTHON = "http://49.50.68.239:8080/";
+      //public static String BASE_URL_PYTHON = "http://49.50.68.239:8080/";
+    public static String BASE_URL_PYTHON = "http://192.168.1.102:8080/";
 
     //local
-          static String localhost = "http://192.168.31.29:8080/";
+     //     static String localhost = "http://192.168.31.29:8080/";
 
     public static final int LOCATION_INTERVAL = 100000000;
     public static final int FASTEST_LOCATION_INTERVAL = 5000000;
@@ -110,7 +111,7 @@ public class Constants {
    // public static final String RISER_TPIPendingClaim = localhost + "/bp_details/RiserClaim/";
     public static final String RISER_TPI_APPROVAL_LISTING = BASE_URL + "ekyc/bp_details/RiserApprovalList";
     public static final String RISER__APPROVAL_DECLINE = BASE_URL + "ekyc/bp_details/RiserApproveDecline";
-    public static final String RISER__PROJECT_REPORT = BASE_URL + "ekyc/bp_details/createriser";
+    public static final String RISER__PROJECT_REPORT = BASE_URL + "ekyc/bp_details/createriserzz";
  //   public static final String RISER__PROJECT_REPORT = localhost + "/bp_details/createriser";
     public static final String RISER__SEARCH_BP = BASE_URL + "ekyc/bp_details/searchbp/";
 

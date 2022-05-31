@@ -139,6 +139,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
         mAssignDate = getIntent().getStringExtra("mAssignDate");
         startJob = getIntent().getExtras().getBoolean("startJob");
         intentngUserListModel = (NguserListModel) getIntent().getSerializableExtra("ngmodel");
+        ngUserListModel = intentngUserListModel;
         Log.d(log, "jmr no intent= " + intentngUserListModel.getJmr_no());
         nguserdetails = new ArrayList<>();
         back = findViewById(R.id.back);
@@ -252,7 +253,6 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 submit_button.setClickable(true);
                 submit_button.setEnabled(true);
-
                 if (selected_description_status.contains("Hold")) {
                         if (validateDataHold()) {
                             Date c = Calendar.getInstance().getTime();
@@ -281,9 +281,8 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                     initialReading = et_initialReading.getText().toString().trim();
                     burnerDetails = et_burnerDetails.getText().toString().trim();
                     String newMob = tv_mobileNoValue.getText().toString().trim();
-
-
                     conversationDate = et_conversationDate.getText().toString().trim();
+
                     Intent intent = new Intent(NgSupUserDetailsActivity.this, NgSupDoneActivity.class);
                     intent.putExtra("bpno",intentngUserListModel.getBp_no());
                     intent.putExtra("jmrNo", jmrNo);
@@ -300,6 +299,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                     intent.putExtra("meter", correctedmeterno);
                     intent.putExtra("meterStatus", meterincorrect);
                     intent.putExtra("altmob", tv_alternateNoValue.getText().toString().trim());
+                    intent.putExtra("model", intentngUserListModel);
                     startActivity(intent);
                 }
 

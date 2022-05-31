@@ -386,7 +386,7 @@ public class MITD_Done extends AppCompatActivity {
     private void findRiser() {
 
         materialDialog.show();
-        String url = Constants.FINDRISER + "/" + "6764467378";// "6764467378" BP_NO;
+        String url = Constants.FINDRISER +BP_NO;
         Log.d("riser", url);
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
