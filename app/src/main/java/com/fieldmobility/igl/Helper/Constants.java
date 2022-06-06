@@ -10,7 +10,7 @@ public class Constants {
     //  UAT URL
       public static String BASE_URL = "http://49.50.118.112:8080/";
       //public static String BASE_URL_PYTHON = "http://49.50.68.239:8080/";
-    public static String BASE_URL_PYTHON = "http://192.168.1.102:8080/";
+    public static String BASE_URL_PYTHON = "http://192.168.31.29:8080/";
 
     //local
      //     static String localhost = "http://192.168.31.29:8080/";

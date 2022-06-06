@@ -258,6 +258,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                             Date c = Calendar.getInstance().getTime();
                             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
                             Log.d(log,"date ="+df.format(c));
+                            Log.d(log,"contractor assign date ="+ ngUserListModel.getContractor_assigned_date());
                             ngUserListModel.setSub_status(selected_description_status);
                             ngUserListModel.setDelay_date(et_delayDateValue.getText().toString().trim());
                             ngUserListModel.setJmr_no(jmrNo);

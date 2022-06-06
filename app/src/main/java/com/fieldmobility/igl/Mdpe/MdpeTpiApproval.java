@@ -98,7 +98,8 @@ public class MdpeTpiApproval extends AppCompatActivity {
                 }
                 else
                 {
-                    MdpeDpr_Model dpr_mod = new MdpeDpr_Model(dpr.getIdDpr(),dpr.getAllocation_no(),dpr.getSub_allocation(),dpr.getDpr_no(),dpr.section_id,dpr.getInput(),dpr.getLatitude(),dpr.getLongitude(),
+                    MdpeDpr_Model dpr_mod = new MdpeDpr_Model(dpr.getIdDpr(),dpr.getAllocation_no(),dpr.getSub_allocation(),dpr.getDpr_no(),
+                            dpr.section_id,dpr.getInput(),dpr.getLatitude(),dpr.getLongitude(),
                             dpr.getFiles_path(),dpr.getTpi_id(),dpr.getCreation_date(),2,binding.etDeclineRemarks.getText().toString().trim(),
                             signature_path,"");
                     approve_decline(dpr_mod);
@@ -110,7 +111,8 @@ public class MdpeTpiApproval extends AppCompatActivity {
             public void onClick(View v) {
                 if (validate())
                 {
-                    MdpeDpr_Model dpr_mod = new MdpeDpr_Model(dpr.getIdDpr(),dpr.getAllocation_no(),dpr.getSub_allocation(),dpr.getDpr_no(),dpr.section_id,dpr.getInput(),dpr.getLatitude(),dpr.getLongitude(),
+                    MdpeDpr_Model dpr_mod = new MdpeDpr_Model(dpr.getIdDpr(),dpr.getAllocation_no(),dpr.getSub_allocation(),dpr.getDpr_no(),
+                            dpr.section_id,dpr.getInput(),dpr.getLatitude(),dpr.getLongitude(),
                             dpr.getFiles_path(),dpr.getTpi_id(),dpr.getCreation_date(),1,binding.etDeclineRemarks.getText().toString().trim(),
                             signature_path,"");
                     approve_decline(dpr_mod);

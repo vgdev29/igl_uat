@@ -189,6 +189,11 @@ public class NguserListModel implements Serializable {
     @Expose
     private String supervisor_assigned_date;
 
+    @SerializedName("contractor_assigned_date")
+    @Expose
+    private String contractor_assigned_date;
+
+
     @SerializedName("lattitude")
     @Expose
     private String lattitude;
@@ -244,6 +249,14 @@ public class NguserListModel implements Serializable {
 
     public void setSupervisor_assigned_date(String supervisor_assigned_date) {
         this.supervisor_assigned_date = supervisor_assigned_date;
+    }
+
+    public String getContractor_assigned_date() {
+        return contractor_assigned_date;
+    }
+
+    public void setContractor_assigned_date(String contractor_assigned_date) {
+        this.contractor_assigned_date = contractor_assigned_date;
     }
 
     public String getRfc_initial_reading() {
