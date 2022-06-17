@@ -5,11 +5,13 @@ import android.os.AsyncTask;
 
 import com.fieldmobility.igl.Model.NguserListModel;
 
+import java.util.List;
+
 public  class DatabaseUtil {
 
     public static void saveData(Context context,NguserListModel user,DatabaseSubmitListener listener){
 
-        class SaveTask extends AsyncTask<Void, Void, Void> {
+        class InsertUser extends AsyncTask<Void, Void, Void> {
 
             @Override
             protected Void doInBackground(Void... voids) {
@@ -28,8 +30,50 @@ public  class DatabaseUtil {
             }
         }
 
-        SaveTask st = new SaveTask();
+        InsertUser st = new InsertUser();
         st.execute();
 
     }
+    public static void fetchNgUsersFromDb(Context context,String fetchType,ReadNgUsersListener listener){
+
+        class FetchNgList extends AsyncTask<Void, Void, List<NguserListModel>> {
+
+            @Override
+            protected List<NguserListModel> doInBackground(Void... voids) {
+
+                //adding to database
+                List<NguserListModel> users = null;
+                if (fetchType.equals("DP")) {
+                    users = MyDatabseClient.getInstance(context).getAppDatabase()
+                            .ngUserDao()
+                            .getDPUsers("DP");
+                }
+                else if (fetchType.equals("OP")) {
+                    users = MyDatabseClient.getInstance(context).getAppDatabase()
+                            .ngUserDao()
+                            .getOPUsers("OP");
+                }
+                else {
+                    users = MyDatabseClient.getInstance(context).getAppDatabase()
+                            .ngUserDao()
+                            .getAllUsers();
+                }
+                return users;
+            }
+
+            @Override
+            protected void onPostExecute(List<NguserListModel> list) {
+                super.onPostExecute(list);
+                if (list!=null)
+                listener.onSuccess(list);
+                else
+                    listener.onFailure();
+            }
+        }
+
+        FetchNgList st = new FetchNgList();
+        st.execute();
+
+    }
+
 }

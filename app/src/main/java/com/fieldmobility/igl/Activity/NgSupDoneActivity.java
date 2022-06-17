@@ -15,6 +15,7 @@ import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -39,6 +40,8 @@ import com.fieldmobility.igl.Model.NguserListModel;
 import com.fieldmobility.igl.R;
 import com.fieldmobility.igl.database.DatabaseSubmitListener;
 import com.fieldmobility.igl.database.DatabaseUtil;
+import com.fieldmobility.igl.database.MyDatabseClient;
+import com.fieldmobility.igl.database.ReadNgUsersListener;
 import com.fieldmobility.igl.utils.Utils;
 import com.fieldmobility.igl.rest.Api;
 import com.kyanogen.signatureview.SignatureView;
@@ -88,7 +91,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
     //private RadioGroup radioGroup;
     private String Type_Of_Status;
     //RadioButton genderradioButton;
-    private Button submit_button;
+    private Button submit_button,submit_offline_button;
     ImageView back_button;
     private String homeAddress_pic_binary, meter_pic_binary, installation_pic_binary, serviceCard_pic_binary, signatureBinary;
     private LinearLayout ll_meterReading;
@@ -179,6 +182,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
         iv_installation = findViewById(R.id.iv_installation);
         iv_serviceCard = findViewById(R.id.iv_serviceCard);
         submit_button = findViewById(R.id.submit_button);
+        submit_offline_button = findViewById(R.id.submit_offline_button);
         ll_meterReading = findViewById(R.id.ll_meterReading);
         btn_viewJmrForm = findViewById(R.id.btn_viewJmrForm);
         tv_startWorkValues = findViewById(R.id.tv_startWorkValues);
@@ -241,6 +245,13 @@ public class NgSupDoneActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (validateData())
                     submitData(nguserListModel);
+            }
+        });
+        submit_offline_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (validateData())
+                    submitDataOffline(nguserListModel);
             }
         });
 
@@ -446,6 +457,72 @@ public class NgSupDoneActivity extends AppCompatActivity {
 
     private void submitData(NguserListModel nguserListModel) {
         //  Log.d(log, "hom adress = " + homeAddress_pic_binary);
+
+        nguserListModel.setHome_address(homeAddress_pic_binary);
+        nguserListModel.setMeter_photo(meter_pic_binary);
+        nguserListModel.setInstallation_photo(installation_pic_binary);
+        nguserListModel.setService_photo(serviceCard_pic_binary);
+        nguserListModel.setCustomer_sign(signatureBinary);
+        nguserListModel.setStatus("DP");
+        nguserListModel.setLattitude(Latitude);
+        nguserListModel.setLongitude(Longitude);
+
+        materialDialog = new MaterialDialog.Builder(this)
+                .content("Please wait....")
+                .progress(true, 0)
+                .cancelable(false)
+                .show();
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .connectTimeout(1, TimeUnit.MINUTES)
+                .readTimeout(1, TimeUnit.MINUTES)
+                .writeTimeout(1, TimeUnit.MINUTES)
+                .build();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.BASE_URL)
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        Api api = retrofit.create(Api.class);
+        Call<List<NguserListModel>> call = api.getPostPhoto(jmrNo, nguserListModel);
+
+        call.enqueue(new Callback<List<NguserListModel>>() {
+            @Override
+            public void onResponse(Call<List<NguserListModel>> call, Response<List<NguserListModel>> response) {
+                responseCode = response.code();
+                Log.d(log, "resonse = " + response.toString());
+                materialDialog.dismiss();
+                if (response.body() != null) {
+                    if (responseCode == 200) {
+
+                        Log.d(log, "Mysucess>>>>>>>>>>" + "weldone............");
+
+                        Toast.makeText(getApplicationContext(), "Data submitted successfully", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(NgSupDoneActivity.this, NgSupListActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                    }
+                } else {
+                    if (responseCode == 400) {
+                        materialDialog.dismiss();
+                        Toast.makeText(getApplicationContext(), "Failed to submit please try again", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<NguserListModel>> call, Throwable t) {
+                materialDialog.dismiss();
+                Log.e(log, "My error" + "error comes" + t.getLocalizedMessage());
+                Toast.makeText(getApplicationContext(), "Failed to submit please try again", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+    private void submitDataOffline(NguserListModel nguserListModel) {
+        //  Log.d(log, "hom adress = " + homeAddress_pic_binary);
+
         nguserListModel.setHome_address(homeAddress_pic_binary);
         nguserListModel.setMeter_photo(meter_pic_binary);
         nguserListModel.setInstallation_photo(installation_pic_binary);
@@ -457,68 +534,21 @@ public class NgSupDoneActivity extends AppCompatActivity {
         DatabaseUtil.saveData(getApplicationContext(), nguserListModel, new DatabaseSubmitListener() {
             @Override
             public void onDataSaved() {
-                Log.d(log, "Mysucess>>>>>>>>>>" + "weldone............");
+                Log.e(log,"Data saved successfully");
 
+                Toast.makeText(getApplicationContext(), "Data saved successfully", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(NgSupDoneActivity.this, NgSupListActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
 
             @Override
             public void onFailure() {
+                Toast.makeText(getApplicationContext(), "Failed to submit please try again", Toast.LENGTH_SHORT).show();
 
             }
         });
 
-//        materialDialog = new MaterialDialog.Builder(this)
-//                .content("Please wait....")
-//                .progress(true, 0)
-//                .cancelable(false)
-//                .show();
-//        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-//                .connectTimeout(1, TimeUnit.MINUTES)
-//                .readTimeout(1, TimeUnit.MINUTES)
-//                .writeTimeout(1, TimeUnit.MINUTES)
-//                .build();
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(Api.BASE_URL)
-//                .client(okHttpClient)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//
-//        Api api = retrofit.create(Api.class);
-//        Call<List<NguserListModel>> call = api.getPostPhoto(jmrNo, nguserListModel);
-//
-//        call.enqueue(new Callback<List<NguserListModel>>() {
-//            @Override
-//            public void onResponse(Call<List<NguserListModel>> call, Response<List<NguserListModel>> response) {
-//                responseCode = response.code();
-//                Log.d(log, "resonse = " + response.toString());
-//                materialDialog.dismiss();
-//                if (response.body() != null) {
-//                    if (responseCode == 200) {
-//
-//                        Log.d(log, "Mysucess>>>>>>>>>>" + "weldone............");
-//
-//                        Toast.makeText(getApplicationContext(), "Data submitted successfully", Toast.LENGTH_SHORT).show();
-//                        Intent intent = new Intent(NgSupDoneActivity.this, NgSupListActivity.class);
-//                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                        startActivity(intent);
-//                    }
-//                } else {
-//                    if (responseCode == 400) {
-//                        materialDialog.dismiss();
-//                        Toast.makeText(getApplicationContext(), "Failed to submit please try again", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<NguserListModel>> call, Throwable t) {
-//                materialDialog.dismiss();
-//                Log.e(log, "My error" + "error comes" + t.getLocalizedMessage());
-//                Toast.makeText(getApplicationContext(), "Failed to submit please try again", Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
     }
 
     private void selectHomeAddressImage() {

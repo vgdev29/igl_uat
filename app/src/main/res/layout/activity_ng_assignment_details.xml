@@ -734,7 +734,7 @@
 
         </LinearLayout>
     </ScrollView>
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/bottomLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -747,9 +747,20 @@
             android:layout_height="@dimen/_30sdp"
             android:textSize="@dimen/_10sdp"
             android:text="@string/submit"
+            android:layout_weight="1"
             android:textColor="@color/white" />
+        <Button
+            android:layout_alignParentRight="true"
+            android:id="@+id/submit_offline_button"
+            android:background="#FFC107"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30sdp"
+            android:textSize="@dimen/_10sdp"
+            android:text="SUBMIT OFFLINE"
+            android:layout_weight="1"
+            android:textColor="#292929" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
 
 
