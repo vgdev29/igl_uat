@@ -37,6 +37,8 @@ import com.fieldmobility.igl.Helper.ConnectionDetector;
 import com.fieldmobility.igl.Helper.GPSLocation;
 import com.fieldmobility.igl.Model.NguserListModel;
 import com.fieldmobility.igl.R;
+import com.fieldmobility.igl.database.DatabaseSubmitListener;
+import com.fieldmobility.igl.database.DatabaseUtil;
 import com.fieldmobility.igl.utils.Utils;
 import com.fieldmobility.igl.rest.Api;
 import com.kyanogen.signatureview.SignatureView;
@@ -452,59 +454,71 @@ public class NgSupDoneActivity extends AppCompatActivity {
         nguserListModel.setStatus("DP");
         nguserListModel.setLattitude(Latitude);
         nguserListModel.setLongitude(Longitude);
-
-        materialDialog = new MaterialDialog.Builder(this)
-                .content("Please wait....")
-                .progress(true, 0)
-                .cancelable(false)
-                .show();
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .connectTimeout(1, TimeUnit.MINUTES)
-                .readTimeout(1, TimeUnit.MINUTES)
-                .writeTimeout(1, TimeUnit.MINUTES)
-                .build();
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Api.BASE_URL)
-                .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        Api api = retrofit.create(Api.class);
-        Call<List<NguserListModel>> call = api.getPostPhoto(jmrNo, nguserListModel);
-
-        call.enqueue(new Callback<List<NguserListModel>>() {
+        DatabaseUtil.saveData(getApplicationContext(), nguserListModel, new DatabaseSubmitListener() {
             @Override
-            public void onResponse(Call<List<NguserListModel>> call, Response<List<NguserListModel>> response) {
-                responseCode = response.code();
-                Log.d(log, "resonse = " + response.toString());
-                materialDialog.dismiss();
-                if (response.body() != null) {
-                    if (responseCode == 200) {
-
-                        Log.d(log, "Mysucess>>>>>>>>>>" + "weldone............");
-
-                        Toast.makeText(getApplicationContext(), "Data submitted successfully", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(NgSupDoneActivity.this, NgSupListActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                    }
-                } else {
-                    if (responseCode == 400) {
-                        materialDialog.dismiss();
-                        Toast.makeText(getApplicationContext(), "Failed to submit please try again", Toast.LENGTH_SHORT).show();
-                    }
-                }
+            public void onDataSaved() {
+                Log.d(log, "Mysucess>>>>>>>>>>" + "weldone............");
 
             }
 
             @Override
-            public void onFailure(Call<List<NguserListModel>> call, Throwable t) {
-                materialDialog.dismiss();
-                Log.e(log, "My error" + "error comes" + t.getLocalizedMessage());
-                Toast.makeText(getApplicationContext(), "Failed to submit please try again", Toast.LENGTH_SHORT).show();
+            public void onFailure() {
 
             }
         });
+
+//        materialDialog = new MaterialDialog.Builder(this)
+//                .content("Please wait....")
+//                .progress(true, 0)
+//                .cancelable(false)
+//                .show();
+//        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+//                .connectTimeout(1, TimeUnit.MINUTES)
+//                .readTimeout(1, TimeUnit.MINUTES)
+//                .writeTimeout(1, TimeUnit.MINUTES)
+//                .build();
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(Api.BASE_URL)
+//                .client(okHttpClient)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//
+//        Api api = retrofit.create(Api.class);
+//        Call<List<NguserListModel>> call = api.getPostPhoto(jmrNo, nguserListModel);
+//
+//        call.enqueue(new Callback<List<NguserListModel>>() {
+//            @Override
+//            public void onResponse(Call<List<NguserListModel>> call, Response<List<NguserListModel>> response) {
+//                responseCode = response.code();
+//                Log.d(log, "resonse = " + response.toString());
+//                materialDialog.dismiss();
+//                if (response.body() != null) {
+//                    if (responseCode == 200) {
+//
+//                        Log.d(log, "Mysucess>>>>>>>>>>" + "weldone............");
+//
+//                        Toast.makeText(getApplicationContext(), "Data submitted successfully", Toast.LENGTH_SHORT).show();
+//                        Intent intent = new Intent(NgSupDoneActivity.this, NgSupListActivity.class);
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                        startActivity(intent);
+//                    }
+//                } else {
+//                    if (responseCode == 400) {
+//                        materialDialog.dismiss();
+//                        Toast.makeText(getApplicationContext(), "Failed to submit please try again", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<NguserListModel>> call, Throwable t) {
+//                materialDialog.dismiss();
+//                Log.e(log, "My error" + "error comes" + t.getLocalizedMessage());
+//                Toast.makeText(getApplicationContext(), "Failed to submit please try again", Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
     }
 
     private void selectHomeAddressImage() {
