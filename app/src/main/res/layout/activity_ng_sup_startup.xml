@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.TPI_Module">
+    <FrameLayout
+        android:id="@+id/tpi_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+
+    </FrameLayout>
+    <LinearLayout
+        android:id="@+id/top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_30sdp"
+        android:background="@color/rad"
+        android:weightSum="3"
+
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_weight="1.3"
+            android:layout_marginStart="5dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center"
+                android:visibility="visible"
+                android:background="@drawable/back"
+                android:layout_margin="@dimen/_3sdp"
+
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30sdp"
+
+            android:layout_weight=".4"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/header_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="NG"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_weight="1.3"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/refresh_tpidta"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_refresh_black"
+                android:visibility="invisible"
+                android:layout_margin="@dimen/_2sdp"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_ngpen"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:backgroundTint="@color/rad"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginHorizontal="@dimen/_30sdp"
+        app:cardCornerRadius="8dp">
+        <TextView
+            android:id="@+id/feas_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NG Pending"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15sdp"/>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_nghold"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:backgroundTint="@color/rad"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginHorizontal="@dimen/_30sdp"
+        app:cardCornerRadius="8dp">
+        <TextView
+            android:id="@+id/rfcpen_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sync NG hold"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15sdp"/>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_ngdone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:backgroundTint="@color/rad"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginHorizontal="@dimen/_30sdp"
+        app:cardCornerRadius="8dp">
+        <TextView
+            android:id="@+id/rfcapp_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sync NG Done"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15sdp"/>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
