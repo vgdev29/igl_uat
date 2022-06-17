@@ -18,9 +18,9 @@
             android:layout_marginTop="@dimen/_3sdp"
             android:layout_weight="1.5"
             android:weightSum="3"
+            android:background="@drawable/shape_blue_border"
             android:focusableInTouchMode="true"
             android:focusable="true"
-            android:background="@drawable/shape_blue_border"
             android:orientation="horizontal">
             <ImageView
                 android:layout_width="0dp"
@@ -34,6 +34,7 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_30sdp"
                 android:hint=""
+                android:defaultFocusHighlightEnabled="false"
                 android:singleLine="true"
                 android:layout_weight="2.4"
                 android:layout_marginTop="@dimen/_2sdp"
@@ -42,6 +43,8 @@
                 android:background="@drawable/shape_blue"
                 android:layout_marginLeft="@dimen/_3sdp"
                 android:paddingLeft="@dimen/_1sdp"
+                android:focusableInTouchMode="true"
+
                 />
             <ImageView
                 android:layout_width="0dp"

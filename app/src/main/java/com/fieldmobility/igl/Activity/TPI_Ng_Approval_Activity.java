@@ -192,17 +192,21 @@ public class TPI_Ng_Approval_Activity extends Activity implements TPI_NgApproval
         Api api = retrofit.create(Api.class);
         //Call<ArrayList<NguserListModel>> call = api.getNgPendingList("PG");
         Call<ArrayList<NguserListModel>> call = api.getNgListForApproval("OP","DP","1",sharedPrefs.getEmail());
+       Log.d(log,call.toString());
         call.enqueue(new Callback<ArrayList<NguserListModel>>() {
             @Override
             public void onResponse(Call<ArrayList<NguserListModel>> call, retrofit2.Response<ArrayList<NguserListModel>> response) {
                 //if (response.isSuccessful()){
                     responseCode = response.code();
+                Log.d("response" , response.body().toString());
+                Log.d("response" , ""+response.code());
                     if (response.body()!=null){
                         claimUserList = response.body();
-                        Log.e("response" , claimUserList.toString());
+                        Log.d("response" , claimUserList.toString());
                         setListData(claimUserList,responseCode);
 
                     }else {
+                        Log.d("response" , claimUserList.toString());
                         setListData(claimUserList,responseCode);
                     }
                 //}

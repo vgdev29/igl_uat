@@ -24,7 +24,9 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.fasterxml.jackson.databind.SerializationConfig;
 import com.fieldmobility.igl.Helper.CommonUtils;
+import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.Model.NguserListModel;
 import com.fieldmobility.igl.R;
 import com.fieldmobility.igl.utils.Utils;
@@ -89,9 +91,10 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
         jmrNo = getIntent().getStringExtra("jmr_no");
         intent_nguserlist = (NguserListModel) getIntent().getSerializableExtra("nglist");
         ngUserListModel1 = intent_nguserlist;
+        Log.d("ngUserListModel1 ng",ngUserListModel1.getClaim_date());
         nguserdetails = new ArrayList<>();
         findViews();
-       setText(intent_nguserlist);
+        setText(intent_nguserlist);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,7 +111,10 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
         btn_tpiApprove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NguserListModel nguserListModel= new NguserListModel();
+                Log.d("tpi approve button ",intent_nguserlist.getClaim_date());
+
+                NguserListModel nguserListModel= intent_nguserlist;
+                Log.d("tpi approve button 2",nguserListModel.getClaim_date());
                 nguserListModel.setJmr_no(jmrNo);
                 nguserListModel.setExecutive_sign(signatureBinary);
                 if (ngUserListModel1.getStatus().equalsIgnoreCase("OP")) {
@@ -133,15 +139,16 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String reamrks = et_decline_remarks.getText().toString().trim();
-                    NguserListModel nguserListModel = new NguserListModel();
+                    NguserListModel nguserListModel = intent_nguserlist;
                     nguserListModel.setRemarks(reamrks);
                     nguserListModel.setJmr_no(jmrNo);
                 nguserListModel.setTpi_id("");
                 nguserListModel.setSupervisor_id("");
                 nguserListModel.setClaim(false);
                 nguserListModel.setStart_job(false);
-                nguserListModel.setClaim_date("null");
-                nguserListModel.setConversion_date("null");
+
+             //   nguserListModel.setClaim_date("null");
+            //    nguserListModel.setConversion_date("null");
                     if (ngUserListModel1.getStatus().equalsIgnoreCase("OP")) {
                         nguserListModel.setStatus("PG");
                     } else if (ngUserListModel1.getStatus().equalsIgnoreCase("DP")) {
@@ -157,6 +164,7 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
     //ll_remarks
 
     private void declineNg(String jmr_number, NguserListModel nguserListModel) {
+        Log.d("decline ng",nguserListModel.getClaim_date());
         materialDialog = new MaterialDialog.Builder(this)
                 .content("Please wait....")
                 .progress(true, 0)
@@ -168,7 +176,7 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
                 .build();
 
         Api api = retrofit.create(Api.class);
-        Call<List<NguserListModel>> call = api.getUpdateNgUserField1(jmr_number, nguserListModel);
+        Call<List<NguserListModel>> call = api.tpiApproval(jmr_number, nguserListModel);
         //Call<List<NguserListModel>> call =  api.getUpdateNgUserField(preferences.getString("jmr_no" , ""),nguserListModel);
 
         call.enqueue(new Callback<List<NguserListModel>>() {
@@ -200,6 +208,7 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
     }
 
     private void approveTbyTPI(String jmr_number, NguserListModel nguserListModel) {
+        Log.d("approveTbyTPI ng",nguserListModel.getClaim_date());
         materialDialog = new MaterialDialog.Builder(this)
                 .content("Please wait....")
                 .progress(true, 0)
@@ -211,7 +220,7 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
                 .build();
 
         Api api = retrofit.create(Api.class);
-        Call<List<NguserListModel>> call = api.getUpdateNgUserField1(jmr_number, nguserListModel);
+        Call<List<NguserListModel>> call = api.tpiApproval(jmr_number, nguserListModel);
         //Call<List<NguserListModel>> call =  api.getUpdateNgUserField(preferences.getString("jmr_no" , ""),nguserListModel);
 
         call.enqueue(new Callback<List<NguserListModel>>() {

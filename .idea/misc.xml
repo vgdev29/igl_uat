@@ -26,10 +26,13 @@
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_complaint_sup.xml" value="0.1546875" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_document_resubmission_detail.xml" value="0.13645833333333332" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_floor_annexure.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_kyc_resubmission.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_m_i_t_d_done.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_main.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_mdpe_approval.xml" value="0.16" />
+        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_mdpe_declined_dpr.xml" value="0.23046875" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_mdpe_list.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_mdpe_sup_host.xml" value="0.2" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_mdpe_tiles.xml" value="0.14" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_mdpe_tpi_dpr.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_mdpe_tpi_host.xml" value="0.18802083333333333" />
@@ -41,7 +44,7 @@
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_mitd_own.xml" value="0.25" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_mitd_pending.xml" value="0.16" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_n_i_customer.xml" value="0.22" />
-        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_ng__user__details.xml" value="0.33" />
+        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_ng__user__details.xml" value="0.22" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_ng_assignment_details.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_ng_user_list.xml" value="0.16145833333333334" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_niclisting.xml" value="0.1" />
@@ -89,6 +92,7 @@
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/layout_resubmit.xml" value="0.140625" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/login_layout.xml" value="0.140625" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/material_adapter.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/mdpedeclined_dpr.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/mdpelist_adapter.xml" value="0.25" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/mdpetpi_adapter.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/mdpetpidpr_adapter.xml" value="0.22" />

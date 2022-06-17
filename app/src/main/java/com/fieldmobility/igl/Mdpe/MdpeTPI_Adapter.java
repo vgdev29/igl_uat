@@ -150,9 +150,11 @@ public class MdpeTPI_Adapter extends RecyclerView.Adapter<MdpeTPI_Adapter.ViewHo
                 .progress(true, 0)
                 .show();
         String jsonInString = new Gson().toJson(subAllocation);
+        Log.d(log,"jsoninstring suballo = "+ jsonInString);
         JSONObject mJSONObject = null;
         try {
             mJSONObject = new JSONObject(jsonInString);
+            Log.d(log,"jsoninstring suballo obj= "+ mJSONObject.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -110,14 +110,14 @@ public class MCommonFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         Log.d(log, "  on craete view");
         cmmnbinding = FragmentMCommonBinding.inflate(inflater, container, false);
         initSection(type);
         cmmnbinding.etAllo.setText(allocation);
         cmmnbinding.etSuballo.setText(suballocation);
         String date = Utils.currentDate();
-        dpr = allocation+"/"+suballocation+"/"+date+"/"+sharedPrefs.getUUID();
+        date.replace("-","");
+        dpr = date+"/"+sharedPrefs.getUUID();
         cmmnbinding.etDpr.setText(dpr);
         if (!Utils.getLocationUsingInternet(activity).isEmpty()) {
             String latLong[] = Utils.getLocationUsingInternet(activity).split("/");
@@ -414,7 +414,6 @@ public class MCommonFragment extends Fragment {
 
         progressDialog = ProgressDialog.show(activity, "", "Submitting Data....", true);
         progressDialog.setCancelable(false);
-
         JSONObject dpr_obj = new JSONObject();
         try {
             dpr_obj.put("allocationNo", allocation);
@@ -425,8 +424,10 @@ public class MCommonFragment extends Fragment {
             dpr_obj.put("latitude", lati);
             dpr_obj.put("longitude", longi);
             dpr_obj.put("tpiId", tpiId);
+            dpr_obj.put("supId", sharedPrefs.getUUID());
             dpr_obj.put("contId", contId);
             dpr_obj.put("zone", zone);
+            dpr_obj.put("dprtype", ""+type);
             dpr_obj.put("filesPath", imagepath);
         } catch (JSONException e) {
             e.printStackTrace();

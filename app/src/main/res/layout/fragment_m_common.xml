@@ -23,7 +23,7 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_25sdp"
+                android:layout_height="@dimen/_15sdp"
                 android:layout_weight="1"
                 android:textSize="@dimen/_13sdp"
                 android:gravity="start|center_vertical"
@@ -33,15 +33,12 @@
                 android:fontFamily="@font/montserrat_regular"
                 android:text="Allocation No." />
 
-            <EditText
+            <TextView
                 android:id="@+id/et_allo"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_25sdp"
-                android:background="@drawable/background_input_mandatory"
-                android:hint="5687126"
+                android:layout_height="@dimen/_15sdp"
                 android:layout_weight="1"
                 android:layout_marginBottom="@dimen/_3sdp"
-                android:inputType="text"
                 android:textStyle="bold"
                 android:textColor="@color/black_31"
                 android:singleLine="true"
@@ -55,12 +52,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:weightSum="2">
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_25sdp"
+                android:layout_height="@dimen/_15sdp"
                 android:layout_weight="1"
                 android:textSize="@dimen/_13sdp"
                 android:gravity="start|center_vertical"
@@ -70,15 +67,12 @@
                 android:fontFamily="@font/montserrat_regular"
                 android:text="Sub Allocation No." />
 
-            <EditText
+            <TextView
                 android:id="@+id/et_suballo"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_25sdp"
-                android:background="@drawable/background_input_mandatory"
-                android:hint="6265246"
+                android:layout_height="@dimen/_15sdp"
                 android:layout_weight="1"
                 android:layout_marginBottom="@dimen/_3sdp"
-                android:inputType="text"
                 android:textStyle="bold"
                 android:textColor="@color/black_31"
                 android:singleLine="true"
@@ -92,12 +86,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:weightSum="2">
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_25sdp"
+                android:layout_height="@dimen/_15sdp"
                 android:layout_weight="1"
                 android:textSize="@dimen/_13sdp"
                 android:gravity="start|center_vertical"
@@ -107,15 +101,12 @@
                 android:fontFamily="@font/montserrat_regular"
                 android:text="DPR No." />
 
-            <EditText
+            <TextView
                 android:id="@+id/et_dpr"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_25sdp"
-                android:background="@drawable/background_input_mandatory"
-                android:hint="2022/02/07/1062"
+                android:layout_height="@dimen/_15sdp"
                 android:layout_weight="1"
                 android:layout_marginBottom="@dimen/_3sdp"
-                android:inputType="text"
                 android:textStyle="bold"
                 android:textColor="@color/black_31"
                 android:singleLine="true"
@@ -129,12 +120,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:weightSum="2">
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_25sdp"
+                android:layout_height="@dimen/_15sdp"
                 android:layout_weight="1"
                 android:textSize="@dimen/_13sdp"
                 android:gravity="start|center_vertical"
@@ -144,15 +135,14 @@
                 android:fontFamily="@font/montserrat_regular"
                 android:text="Latitude" />
 
-            <EditText
+            <TextView
                 android:id="@+id/et_lat"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_25sdp"
-                android:background="@drawable/background_input_mandatory"
-                android:hint="62.322"
+                android:layout_height="@dimen/_15sdp"
+
                 android:layout_weight="1"
                 android:layout_marginBottom="@dimen/_3sdp"
-                android:inputType="text"
+
                 android:textStyle="bold"
                 android:textColor="@color/black_31"
                 android:singleLine="true"
@@ -166,12 +156,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:weightSum="2">
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_25sdp"
+                android:layout_height="@dimen/_15sdp"
                 android:layout_weight="1"
                 android:textSize="@dimen/_13sdp"
                 android:gravity="start|center_vertical"
@@ -181,15 +171,14 @@
                 android:fontFamily="@font/montserrat_regular"
                 android:text="Longitude" />
 
-            <EditText
+            <TextView
                 android:id="@+id/et_longi"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_25sdp"
-                android:background="@drawable/background_input_mandatory"
-                android:hint="82.333"
+                android:layout_height="@dimen/_15sdp"
+
                 android:layout_weight="1"
                 android:layout_marginBottom="@dimen/_3sdp"
-                android:inputType="text"
+
                 android:textStyle="bold"
                 android:textColor="@color/black_31"
                 android:singleLine="true"
@@ -244,7 +233,7 @@
                 android:layout_marginBottom="@dimen/_3sdp"
                 android:textColor="@color/dark_gray"
                 android:fontFamily="@font/montserrat_regular"
-                android:text="Length/Unit (mm/no.)" />
+                android:text="Length/Unit/Volume (mm/no./m3)" />
 
             <EditText
                 android:id="@+id/et_length"

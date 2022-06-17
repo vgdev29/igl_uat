@@ -101,7 +101,7 @@ public class MConstrFragment extends Fragment {
             Log.d(log,allocation+"  on craete "+suballocation+"  "+contId);
         }
         sharedPrefs = new SharedPrefs(activity);
-
+        Log.d(log,"get class = "+getClass());
         methodlist.add(new MapKeyValue_Model("0","Select Construction work"));
         methodlist.add(new MapKeyValue_Model("1","Valve Chamber"));
         methodlist.add(new MapKeyValue_Model("2","Trench in Builder Segment"));
@@ -124,7 +124,9 @@ public class MConstrFragment extends Fragment {
         constbinding.etAllo.setText(allocation);
         constbinding.etSuballo.setText(suballocation);
         String date = Utils.currentDate();
-        dpr = allocation+"/"+suballocation+"/"+date+"/"+sharedPrefs.getUUID();
+        date.replace("-","");
+
+        dpr = date+"/"+sharedPrefs.getUUID();
         constbinding.etDpr.setText(dpr);
         if (!Utils.getLocationUsingInternet(activity).isEmpty()) {
             String latLong[] = Utils.getLocationUsingInternet(activity).split("/");
@@ -469,8 +471,10 @@ public class MConstrFragment extends Fragment {
             dpr_obj.put("latitude", lati);
             dpr_obj.put("longitude", longi);
             dpr_obj.put("tpiId", tpiId);
+            dpr_obj.put("supId", sharedPrefs.getUUID());
             dpr_obj.put("contId", contId);
             dpr_obj.put("zone", zone);
+            dpr_obj.put("dprtype", "8");
             dpr_obj.put("filesPath", imagepath);
         } catch (JSONException e) {
             e.printStackTrace();

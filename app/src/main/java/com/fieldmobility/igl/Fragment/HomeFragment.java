@@ -46,6 +46,7 @@ import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.MITDtoRFC.Tab_Host_MitdTpi;
 import com.fieldmobility.igl.MataData.VideoListData1;
 import com.fieldmobility.igl.Mdpe.Mdpe_List_Activity;
+import com.fieldmobility.igl.Mdpe.Mdpe_Sup_Host;
 import com.fieldmobility.igl.Mdpe.Mdpe_Tpi_Host;
 import com.fieldmobility.igl.R;
 //import com.fieldmobility.igl.tracker.MyIntentService;
@@ -379,7 +380,7 @@ public class HomeFragment extends Fragment {
         mdpe_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mdpeintent = new Intent(getActivity(), Mdpe_List_Activity.class);
+                Intent mdpeintent = new Intent(getActivity(), Mdpe_Sup_Host.class);
                 startActivity(mdpeintent);
             }
         });

@@ -39,11 +39,13 @@ public interface Api {
     @GET("api/jmr")
     Call<ArrayList<NguserListModel>> getNgPendingList(@Query("status") String status);
 
+    //java
+    @GET("api/jmrtpi")
+    Call<ArrayList<NguserListModel>> getNgListForApproval(@Query("status") String statusDP,@Query("statusop") String statusop,@Query("claim") String claim, @Query("tpi_id") String tpi_id);
+
+    //python
     @GET("api/jmr")
-    Call<ArrayList<NguserListModel>> getNgListForApproval(@Query("status") String statusOP,@Query("status") String statusDP,@Query("claim") String claim, @Query("tpi_id") String tpi_id);
-  /*  @GET("api/jmr")
-    Call<ArrayList<NguserListModel>> getNgListForApproval(@Query("status") String statusOP,@Query("status") String statusDP,@Query("status") String statusOH,@Query("claim") String claim);
-*/
+    Call<ArrayList<NguserListModel>> getTpiListForApproval(@Query("status") String statusOP,@Query("status") String statusDP,@Query("status") String statusOH,@Query("claim") String claim);
 
     @GET("api/jmr/")
     Call<List<NguserListModel>> getParticularUser(@Query("jmr") String jmr);
@@ -54,6 +56,12 @@ public interface Api {
 
     @PUT("api/jmrhold/")
     Call<List<NguserListModel>> getUpdateNgUserField1(@Query("jmr") String jmr_no,@Body NguserListModel updateNgUserField);
+
+    //java
+    @PUT("api/jmrtpi/")
+    Call<List<NguserListModel>> tpiApproval(@Query("jmr") String jmr_no,@Body NguserListModel updateNgUserField);
+
+
 
     @PUT("api/jmr/")
     Call<List<NguserListModel>> getUpdateNgUserFieldnull(@Query("jmr") String jmr_no,@Query("claim_date") String claim_date);

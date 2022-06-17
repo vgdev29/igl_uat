@@ -27,6 +27,7 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.fieldmobility.igl.Activity.TPI_RfcDone_Approval_Activity;
 import com.fieldmobility.igl.Helper.CommonUtils;
 import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.R;
@@ -34,6 +35,7 @@ import com.fieldmobility.igl.databinding.ActivityMdpeApprovalBinding;
 import com.google.gson.Gson;
 import com.itextpdf.text.pdf.security.SecurityConstants;
 import com.kyanogen.signatureview.SignatureView;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -79,6 +81,23 @@ public class MdpeTpiApproval extends AppCompatActivity {
         binding.tvAlloNum.setText(dpr.getAllocation_no());
         binding.tvSuballo.setText(dpr.getSub_allocation());
         binding.tvWbs.setText(dpr.getWbs_number());
+        String file_path_image = dpr.getFiles_path();
+        int x = file_path_image.indexOf("mdpedocapp");
+        String strname = file_path_image.substring(x,file_path_image.length());
+        strname = Constants.BASE_URL+strname;
+        strname.replace("\\", "/");
+        Picasso.with(MdpeTpiApproval.this)
+                .load(strname)
+                .placeholder(R.color.red_light)
+                .into(binding.image);
+
+        String finalStrname = strname;
+        binding.image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommonUtils.showZoomImageView(MdpeTpiApproval.this, finalStrname);
+            }
+        });
         binding.tvAssignDate.setText(dpr.getAgent_assign_date());
         binding.tvTpi.setText(dpr.getAgent()+"\n"+dpr.getAgent_mob());
         binding.tvAssignment.setText(dpr.getMethod()+"\n"+dpr.getSize()+"\n"+dpr.getArea_type()+"\n"+dpr.getTrenchless_method()+"\n"+dpr.getLength());
