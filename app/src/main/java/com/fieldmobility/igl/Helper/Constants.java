@@ -11,13 +11,13 @@ public class Constants {
     //  UAT URL
       public static String BASE_URL = "http://49.50.118.112:8080/";
       // public static String BASE_URL_PYTHON = "http://49.50.68.239:8080/";
-       public static String BASE_URL_PYTHON = "http://49.50.118.112:8080/ng/";
+    //   public static String BASE_URL_PYTHON = "http://49.50.118.112:8080/ng/";
 
 
 
     //local
      // static String localhost = "http://172.20.10.7:8080/";
-   // public static String BASE_URL_PYTHON = "http://192.168.31.29:8080/";
+   public static String BASE_URL_PYTHON = "http://192.168.31.29:8080/";
 
     public static final int LOCATION_INTERVAL = 100000000;
     public static final int FASTEST_LOCATION_INTERVAL = 5000000;
@@ -211,4 +211,9 @@ public class Constants {
     public static final String COMPLAIN_ORDER = BASE_URL + "mdpe/api/order";
     public static final String COMPLAIN_SERVICE = BASE_URL + "mdpe/api/service/";
     public static final String COMPLAIN_MATERIAL = BASE_URL + "mdpe/api/material/";
+
+
+
+    //NG SYNC
+    public static final String NGHOLD_SYNC= BASE_URL + "/api/jmrholdsync";
 }

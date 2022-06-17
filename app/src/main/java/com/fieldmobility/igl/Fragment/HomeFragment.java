@@ -28,6 +28,7 @@ import com.fieldmobility.igl.Activity.Learning_Activity;
 import com.fieldmobility.igl.Activity.Login_Activity;
 import com.fieldmobility.igl.Activity.MITDDoneActivity;
 import com.fieldmobility.igl.Activity.NgSupListActivity;
+import com.fieldmobility.igl.Activity.NgSupStartup;
 import com.fieldmobility.igl.Activity.PMC_ViewPager_Activity;
 import com.fieldmobility.igl.Activity.RFC_Connection_Listing;
 import com.fieldmobility.igl.Activity.TPI_Module;
@@ -351,7 +352,7 @@ public class HomeFragment extends Fragment {
         ng_conversion_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent attendance=new Intent(getActivity(), NgSupListActivity.class);
+                Intent attendance=new Intent(getActivity(), NgSupStartup.class);
                 startActivity(attendance);
             }
         });

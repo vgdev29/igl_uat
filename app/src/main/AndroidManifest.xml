@@ -57,10 +57,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Activity.NgSupStartup"
+            android:exported="false" />
+        <activity
             android:name=".Mdpe.MdpeDeclinedDpr"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Mdpe.Mdpe_Sup_Host"
             android:exported="false"
