@@ -40,29 +40,26 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
-
-public class Mdpe_List_Activity extends AppCompatActivity {
+public class MdpeDeclinedDpr extends AppCompatActivity {
     SharedPrefs sharedPrefs;
     RecyclerView recyclerView;
     SwipeRefreshLayout mSwipeRefreshLayout;
-    MdpeList_Adapter mdpeList_adapter;
+    MdpeDeclinedDPR_Adapter mdpeDpr_adapter;
     EditText editTextSearch;
-    TextView  text_count;
+    TextView text_count;
     ProgressDialog progressDialog;
-    static String log = "mdpepending";
-    ArrayList<MdpeSubAllocation> suballo = new ArrayList<>();
-    ImageView rfc_filter,back;
+    static String log = "mdpeDECLINED";
+    ArrayList<DprDetails_Model> dprlist = new ArrayList<>();
+    ImageView rfc_filter;
     private Dialog mFilterDialog;
     private RadioGroup radioGroup;
     RelativeLayout rel_nodata;
     Button refresh ;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mdpe_list);
+        setContentView(R.layout.activity_mdpe_declined_dpr);
         sharedPrefs = new SharedPrefs(this);
         Layout_ID();
         rel_nodata =  findViewById(R.id.rel_nodata);
@@ -70,12 +67,10 @@ public class Mdpe_List_Activity extends AppCompatActivity {
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pendingNetwork_call();
+                dprNetwork_call();
             }
         });
-
     }
-
     private void Layout_ID() {
         text_count = findViewById(R.id.list_count);
         rfc_filter = findViewById(R.id.rfc_filter);
@@ -86,8 +81,8 @@ public class Mdpe_List_Activity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 try {
-                    suballo.clear();
-                    pendingNetwork_call();
+                    dprlist.clear();
+                    dprNetwork_call();
                     mSwipeRefreshLayout.setRefreshing(false);
                 } catch (NullPointerException e) {
                     e.printStackTrace();
@@ -106,12 +101,12 @@ public class Mdpe_List_Activity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mdpeList_adapter.getFilter().filter(s.toString());
+                mdpeDpr_adapter.getFilter().filter(s.toString());
                 if (start == 0 && count==0)
                 {
-                    if(suballo.size()>0) {
-                        mdpeList_adapter.setData(suballo);
-                        text_count.setText("Count - "+ suballo.size());
+                    if(dprlist.size()>0) {
+                        mdpeDpr_adapter.setData(dprlist);
+                        text_count.setText("Count - "+ dprlist.size());
 
                     }
 
@@ -134,14 +129,13 @@ public class Mdpe_List_Activity extends AppCompatActivity {
         });
 
 
-        pendingNetwork_call();
+        dprNetwork_call();
     }
-
-    public void pendingNetwork_call() {
-        suballo.clear();
+    public void dprNetwork_call() {
+        dprlist.clear();
         progressDialog = ProgressDialog.show(this, "", "Loading data", true);
         progressDialog.setCancelable(false);
-        String url = Constants.MDPELIST_SUP+sharedPrefs.getUUID();
+        String url = Constants.MDPETPI_DECLINEDDPR+sharedPrefs.getUUID();
         Log.d(log,url);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -149,7 +143,6 @@ public class Mdpe_List_Activity extends AppCompatActivity {
                     public void onResponse(String response) {
                         progressDialog.dismiss();
                         try {
-
                             final JSONObject jsonObject = new JSONObject(response);
                             Log.d("Response++",jsonObject.toString());
                             final String status = jsonObject.getString("status");
@@ -159,31 +152,45 @@ public class Mdpe_List_Activity extends AppCompatActivity {
                                 text_count.setText("Count - "+String.valueOf(data_array.length()));
                                 for(int i=0; i<data_array.length();i++) {
                                     JSONObject data_object = data_array.getJSONObject(i);
-                                    MdpeSubAllocation subAllocation = new MdpeSubAllocation();
-                                    subAllocation.setId(data_object.getLong("id"));
-                                    subAllocation.setAllocationNumber(data_object.getString("allocationNumber"));
-                                    subAllocation.setSuballocationNumber(data_object.getString("suballocationNumber"));
-                                    subAllocation.setAgentId(data_object.getString("agentId"));
-                                    subAllocation.setPoNumber(data_object.getString("poNumber"));
-                                    subAllocation.setCity(data_object.getString("city"));
-                                    subAllocation.setZone(data_object.getString("zone"));
-                                    subAllocation.setArea(data_object.getString("area"));
-                                    subAllocation.setSociety(data_object.getString("society"));
-                                    subAllocation.setWbsNumber(data_object.getString("wbsNumber"));
-                                    subAllocation.setMethod(data_object.getString("method"));
-                                    subAllocation.setAreaType(data_object.getString("areaType"));
-                                    subAllocation.setSize(data_object.getString("size"));
-                                    subAllocation.setTrenchlessMethod(data_object.getString("trenchlessMethod"));
-                                    subAllocation.setLength(data_object.getString("length"));
-                                    subAllocation.setUserName(data_object.getString("tpi_name"));
-                                    subAllocation.setUserMob(data_object.getString("tpi_mob"));
-                                    subAllocation.setTpiClaim(data_object.getInt("tpiClaim"));
-                                    subAllocation.setClaimDate(data_object.getString("claimDate"));
-                                    subAllocation.setTpiId(data_object.getString("tpiId"));
-                                    subAllocation.setContId(data_object.getString("contId"));
-                                    subAllocation.setAgentAssignDate(data_object.getString("agentAssignDate"));
-
-                                    suballo.add(subAllocation);
+                                    DprDetails_Model dpr = new DprDetails_Model();
+                                    dpr.setAllocation_no(data_object.getString("allocation_no"));
+                                    dpr.setSub_allocation(data_object.getString("sub_allocation"));
+                                    dpr.setAgent_id(data_object.getString("agent_id"));
+                                    dpr.setPo_number(data_object.getString("po_number"));
+                                    dpr.setCity(data_object.getString("city"));
+                                    dpr.setZone(data_object.getString("zone"));
+                                    dpr.setArea(data_object.getString("area"));
+                                    dpr.setSociety(data_object.getString("society"));
+                                    dpr.setWbs_number(data_object.getString("wbs_number"));
+                                    dpr.setMethod(data_object.getString("method"));
+                                    dpr.setArea_type(data_object.getString("area_type"));
+                                    dpr.setSize(data_object.getString("size"));
+                                    dpr.setTrenchless_method(data_object.getString("trenchless_method"));
+                                    dpr.setLength(data_object.getString("length"));
+                                    dpr.setClaim_date(data_object.getString("claim_date"));
+                                    dpr.setTpi_claim(data_object.getInt("tpi_claim"));
+                                    dpr.setTpi_id(data_object.getString("tpi_id"));
+                                    dpr.setAgent_assign_date(data_object.getString("agent_assign_date"));
+                                    dpr.setAgent(data_object.getString("agent"));
+                                    dpr.setAgent_mob(data_object.getString("agent_mob"));
+                                    dpr.setSection_id(data_object.getString("section_id"));
+                                    dpr.setCategory(data_object.getString("category"));
+                                    dpr.setSection(data_object.getString("section"));
+                                    dpr.setSub_Section(data_object.getString("sub_Section"));
+                                    dpr.setInput_unit(data_object.getString("input_unit"));
+                                    dpr.setDpr_no(data_object.getString("dpr_no"));
+                                    dpr.setFiles_path(data_object.getString("files_path"));
+                                    dpr.setInput(data_object.getDouble("input"));
+                                    dpr.setLatitude(data_object.getString("latitude"));
+                                    dpr.setLongitude(data_object.getString("longitude"));
+                                    dpr.setCreation_date(data_object.getString("creation_date"));
+                                    dpr.setIdDpr(data_object.getLong("idDpr"));
+                                    dpr.setIdSection(data_object.getLong("idSection"));
+                                    dpr.setIdSuballo(data_object.getLong("idSuballo"));
+                                    dpr.setTpiaction(data_object.getString("tpi_action"));
+                                    dpr.setTpiremarks(data_object.getString("tpi_remarks"));
+                                    dpr.setDeclined_type(data_object.getString("declined_type"));
+                                    dprlist.add(dpr);
                                 }
                             }
                             else
@@ -196,9 +203,9 @@ public class Mdpe_List_Activity extends AppCompatActivity {
                         }catch (NullPointerException e) {
                             e.printStackTrace();
                         }
-                        mdpeList_adapter = new MdpeList_Adapter(Mdpe_List_Activity.this,suballo);
-                        recyclerView.setAdapter(mdpeList_adapter);
-                        mdpeList_adapter.notifyDataSetChanged();
+                        mdpeDpr_adapter = new MdpeDeclinedDPR_Adapter(MdpeDeclinedDpr.this,dprlist);
+                        recyclerView.setAdapter(mdpeDpr_adapter);
+                        mdpeDpr_adapter.notifyDataSetChanged();
                     }
                 },
                 new Response.ErrorListener() {

@@ -50,13 +50,13 @@ public class MdpeTiles extends AppCompatActivity {
                 tilesBinding.frameContainer.setVisibility(View.VISIBLE);
                 tilesBinding.headerTitle.setText("Pipe Line");
                 fragment = MPipeFragment.newInstance(this,subAllocation.getAllocationNumber(),subAllocation.getSuballocationNumber(),subAllocation.getTpiId(),subAllocation.getContId(),subAllocation.getZone());
-                loadFragment(fragment);
+                loadFragment(fragment);  // type = 7
                 break;
             case R.id.ll_construction:
                 tilesBinding.frameContainer.setVisibility(View.VISIBLE);
                 tilesBinding.headerTitle.setText("Construction");
                 fragment = MConstrFragment.newInstance(this,subAllocation.getAllocationNumber(),subAllocation.getSuballocationNumber(),subAllocation.getTpiId(),subAllocation.getContId(),subAllocation.getZone());
-                loadFragment(fragment);
+                loadFragment(fragment);  // type = 8
                 break;
             case R.id.ll_excavation:
                 tilesBinding.frameContainer.setVisibility(View.VISIBLE);

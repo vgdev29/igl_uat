@@ -39,6 +39,34 @@ public class DprDetails_Model implements Serializable {
     public int tpi_claim;
     public String agent_assign_date;
 
+    String tpiaction;
+    String tpiremarks;
+    String declined_type;
+
+    public String getDeclined_type() {
+        return declined_type;
+    }
+
+    public void setDeclined_type(String declined_type) {
+        this.declined_type = declined_type;
+    }
+
+    public String getTpiaction() {
+        return tpiaction;
+    }
+
+    public void setTpiaction(String tpiaction) {
+        this.tpiaction = tpiaction;
+    }
+
+    public String getTpiremarks() {
+        return tpiremarks;
+    }
+
+    public void setTpiremarks(String tpiremarks) {
+        this.tpiremarks = tpiremarks;
+    }
+
     public long getIdDpr() {
         return idDpr;
     }

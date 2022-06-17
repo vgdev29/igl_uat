@@ -5,6 +5,7 @@ public class Constants {
       //LIVE URLH
      // public static String BASE_URL="http://49.50.65.107:8081/";
     //  public static  String BASE_URL_PYTHON = "http://49.50.65.107:8000/"; //PYTHON SERVER
+    //  public static  String BASE_URL_PYTHON = "http://49.50.65.107:8001/"; //JAVA SERVER
 
 
     //  UAT URL
@@ -13,9 +14,10 @@ public class Constants {
        public static String BASE_URL_PYTHON = "http://49.50.118.112:8080/ng/";
 
 
+
     //local
-     // static String localhost = "http://192.168.31.29:8080/";
-  //  public static String BASE_URL_PYTHON = "http://192.168.31.29:8080/";
+     // static String localhost = "http://172.20.10.7:8080/";
+   // public static String BASE_URL_PYTHON = "http://192.168.31.29:8080/";
 
     public static final int LOCATION_INTERVAL = 100000000;
     public static final int FASTEST_LOCATION_INTERVAL = 5000000;
@@ -176,14 +178,16 @@ public class Constants {
     public static final String MDPEDPR_BYTPID = BASE_URL + "mdpe/api/dpr/";
     public static final String MDPETPI_DPRDETAILS = BASE_URL + "mdpe/api/dprdetails/";
     public static final String MDPEDPR_APPROVALUPDATE = BASE_URL + "mdpe/api/dpr_approval";
+    public static final String MDPETPI_DECLINEDDPR = BASE_URL + "mdpe/api/dprdeclined/";
 
-//    public static final String MDPEDPR_APPROVALUPDATE = localhost + "api/dpr_approval";
+   // public static final String MDPEDPR_APPROVALUPDATE = localhost + "api/dpr_approval";
 //    public static final String MDPELIST_SUP = localhost + "api/suballo/";
- //   public static final String MDPEDPR_CREATE = localhost + "api/dpr";
+    //public static final String MDPEDPR_CREATE = localhost + "api/dpr";
 //    public static final String MDPETPIPENDING = localhost + "api/suballo/zone/";
 //    public static final String MDPETPIPENDING_CLAIM = localhost + "api/suballo";
 //    public static final String MDPEDPR_BYTPID = localhost + "api/dpr/";
-//    public static final String MDPETPI_DPRDETAILS = localhost + "api/dprdetails/";
+    //public static final String MDPETPI_DPRDETAILS = localhost + "api/dprdetails/";
+//    public static final String MDPETPI_DECLINEDDPR = localhost + "api/dprdeclined/";
 
 
     //COMP

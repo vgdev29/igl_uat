@@ -124,7 +124,8 @@ public class MPipeFragment extends Fragment {
         pipeBinding.etAllo.setText(allocation);
         pipeBinding.etSuballo.setText(suballocation);
         String date = Utils.currentDate();
-        dpr = allocation+"/"+suballocation+"/"+date+"/"+sharedPrefs.getUUID();
+        date.replace("-","");
+        dpr = date+"/"+sharedPrefs.getUUID();
         pipeBinding.etDpr.setText(dpr);
         if (!Utils.getLocationUsingInternet(activity).isEmpty()) {
             String latLong[] = Utils.getLocationUsingInternet(activity).split("/");
@@ -459,8 +460,10 @@ public class MPipeFragment extends Fragment {
                 dpr_obj.put("latitude", lati);
                 dpr_obj.put("longitude", longi);
                 dpr_obj.put("tpiId", tpiId);
+                dpr_obj.put("supId", sharedPrefs.getUUID());
                 dpr_obj.put("contId", contId);
                 dpr_obj.put("zone", zone);
+                dpr_obj.put("dprtype", "7");
                 dpr_obj.put("filesPath", imagepath);
             } catch (JSONException e) {
                 e.printStackTrace();
