@@ -105,14 +105,30 @@
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginHorizontal="@dimen/_30sdp"
         app:cardCornerRadius="8dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
         <TextView
             android:id="@+id/rfcpen_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:text="Sync NG hold"
-            android:layout_gravity="center"
             android:textColor="@color/white"
             android:textSize="@dimen/_15sdp"/>
+            <TextView
+                android:id="@+id/rfcpen_count_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="0"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:textColor="#E8E8E8"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -123,14 +139,30 @@
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginHorizontal="@dimen/_30sdp"
         app:cardCornerRadius="8dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
         <TextView
             android:id="@+id/rfcapp_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sync NG Done"
-            android:layout_gravity="center"
+            android:layout_centerInParent="true"
             android:textColor="@color/white"
             android:textSize="@dimen/_15sdp"/>
+            <TextView
+                android:id="@+id/rfcdone_count_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="0"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:textColor="#E8E8E8"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"/>
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>

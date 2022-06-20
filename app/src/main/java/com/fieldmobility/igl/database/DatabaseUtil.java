@@ -75,5 +75,30 @@ public  class DatabaseUtil {
         st.execute();
 
     }
+    public static void deleteUserByJmrNo(Context context,List<String> jmr_nos,DatabseDeleteListener listener){
+
+        class InsertUser extends AsyncTask<Void, Void, Void> {
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+
+                //adding to database
+                MyDatabseClient.getInstance(context).getAppDatabase()
+                        .ngUserDao()
+                        .deleteUserByJmrNos(jmr_nos);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                listener.onDataDeleted();
+            }
+        }
+
+        InsertUser st = new InsertUser();
+        st.execute();
+
+    }
 
 }

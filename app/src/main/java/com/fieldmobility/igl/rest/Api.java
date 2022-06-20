@@ -4,6 +4,7 @@ import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.Model.NgSupervisorResponse;
 import com.fieldmobility.igl.Model.NguserListModel;
 import com.fieldmobility.igl.Model.TpiDetailResponse;
+import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,6 +83,8 @@ public interface Api {
     Call<NgSupervisorResponse> getNgAgentData(@Query("Supervisoremailid") String Supervisoremailid,@Query("Contractoremailid") String Contractoremailid);
 
 
+    @PUT("api/jmrholdsync/")
+    Call<JsonObject> jmrholdsync(@Body List<NguserListModel> s);
 
 
 }
