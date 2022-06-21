@@ -17,6 +17,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -65,9 +66,7 @@ public class MdpeDeclinedDPR_Adapter extends RecyclerView.Adapter<MdpeDeclinedDP
         holder.mdpe_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, MdpeTpiApproval.class);
-                intent.putExtra("dpr",dpr);
-                context.startActivity(intent);
+                Toast.makeText(context,"Please fill the DPR Again with correction",Toast.LENGTH_LONG).show();
 
             }
         });

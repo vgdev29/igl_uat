@@ -58,11 +58,12 @@ public class MConstrFragment extends Fragment {
     private static final String ARG_TPI = "tpiid";
     private static final String ARG_CONT = "contid";
     private static final String ARG_ZONE = "zone";
+    private static final String ARG_WBS = "wbs";
     String log = "pipefragment";
     FragmentConstructionBinding constbinding;
     ArrayList<MapKeyValue_Model> methodlist = new ArrayList<>();
     ArrayList<MapKeyValue_Model> sizelist = new ArrayList<>();
-    public String allocation="",suballocation="",dpr="",lati="",longi="",imagepath="",section="", tpiId ="", contId= "",zone = "";
+    public String allocation="",wbs = "",suballocation="",dpr="",lati="",longi="",imagepath="",section="", tpiId ="", contId= "",zone = "";
     double input = 0.0;
     Context activity;
     SharedPrefs sharedPrefs;
@@ -76,7 +77,7 @@ public class MConstrFragment extends Fragment {
 
     }
 
-    public static MConstrFragment newInstance(Activity activity,String allo, String suballo,String tpi,String cont,String zone) {
+    public static MConstrFragment newInstance(Activity activity,String allo, String suballo,String tpi,String cont,String zone,String wbsno) {
         MConstrFragment fragment = new MConstrFragment();
         fragment.activity = activity;
         Bundle args = new Bundle();
@@ -85,6 +86,7 @@ public class MConstrFragment extends Fragment {
         args.putString(ARG_TPI, tpi);
         args.putString(ARG_CONT, cont);
         args.putString(ARG_ZONE, zone);
+        args.putString(ARG_WBS,wbsno);
         fragment.setArguments(args);
         return fragment;
     }
@@ -98,6 +100,7 @@ public class MConstrFragment extends Fragment {
             tpiId = getArguments().getString(ARG_TPI);
             contId = getArguments().getString(ARG_CONT);
             zone = getArguments().getString(ARG_ZONE);
+            wbs = getArguments().getString(ARG_WBS);
             Log.d(log,allocation+"  on craete "+suballocation+"  "+contId);
         }
         sharedPrefs = new SharedPrefs(activity);
@@ -476,6 +479,7 @@ public class MConstrFragment extends Fragment {
             dpr_obj.put("zone", zone);
             dpr_obj.put("dprtype", "8");
             dpr_obj.put("filesPath", imagepath);
+            dpr_obj.put("wbsNumber", wbs);
         } catch (JSONException e) {
             e.printStackTrace();
         }

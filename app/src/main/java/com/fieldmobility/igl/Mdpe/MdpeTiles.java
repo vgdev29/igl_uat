@@ -49,49 +49,49 @@ public class MdpeTiles extends AppCompatActivity {
             case R.id.ll_pipeline:
                 tilesBinding.frameContainer.setVisibility(View.VISIBLE);
                 tilesBinding.headerTitle.setText("Pipe Line");
-                fragment = MPipeFragment.newInstance(this,subAllocation.getAllocationNumber(),subAllocation.getSuballocationNumber(),subAllocation.getTpiId(),subAllocation.getContId(),subAllocation.getZone());
+                fragment = MPipeFragment.newInstance(this,subAllocation.getAllocationNumber(),subAllocation.getSuballocationNumber(),subAllocation.getTpiId(),subAllocation.getContId(),subAllocation.getZone(),subAllocation.getWbsNumber());
                 loadFragment(fragment);  // type = 7
                 break;
             case R.id.ll_construction:
                 tilesBinding.frameContainer.setVisibility(View.VISIBLE);
                 tilesBinding.headerTitle.setText("Construction");
-                fragment = MConstrFragment.newInstance(this,subAllocation.getAllocationNumber(),subAllocation.getSuballocationNumber(),subAllocation.getTpiId(),subAllocation.getContId(),subAllocation.getZone());
+                fragment = MConstrFragment.newInstance(this,subAllocation.getAllocationNumber(),subAllocation.getSuballocationNumber(),subAllocation.getTpiId(),subAllocation.getContId(),subAllocation.getZone(),subAllocation.getWbsNumber());
                 loadFragment(fragment);  // type = 8
                 break;
             case R.id.ll_excavation:
                 tilesBinding.frameContainer.setVisibility(View.VISIBLE);
                 tilesBinding.headerTitle.setText("Excavation");
-                fragment = MCommonFragment.newInstance(this,subAllocation.getAllocationNumber(),subAllocation.getSuballocationNumber(),subAllocation.getTpiId(),1,subAllocation.getContId(),subAllocation.getZone());
+                fragment = MCommonFragment.newInstance(this,subAllocation.getAllocationNumber(),subAllocation.getSuballocationNumber(),subAllocation.getTpiId(),1,subAllocation.getContId(),subAllocation.getZone(),subAllocation.getWbsNumber());
                 loadFragment(fragment);
                 break;
             case R.id.ll_restoration:
                 tilesBinding.frameContainer.setVisibility(View.VISIBLE);
                 tilesBinding.headerTitle.setText("Restoration");
-                fragment = MCommonFragment.newInstance(this,subAllocation.getAllocationNumber(),subAllocation.getSuballocationNumber(),subAllocation.getTpiId(),2,subAllocation.getContId(),subAllocation.getZone());
+                fragment = MCommonFragment.newInstance(this,subAllocation.getAllocationNumber(),subAllocation.getSuballocationNumber(),subAllocation.getTpiId(),2,subAllocation.getContId(),subAllocation.getZone(),subAllocation.getWbsNumber());
                 loadFragment(fragment);
                 break;
             case R.id.ll_survey:
                 tilesBinding.frameContainer.setVisibility(View.VISIBLE);
                 tilesBinding.headerTitle.setText("Survey");
-                fragment = MCommonFragment.newInstance(this,subAllocation.getAllocationNumber(),subAllocation.getSuballocationNumber(),subAllocation.getTpiId(),3,subAllocation.getContId(),subAllocation.getZone());
+                fragment = MCommonFragment.newInstance(this,subAllocation.getAllocationNumber(),subAllocation.getSuballocationNumber(),subAllocation.getTpiId(),3,subAllocation.getContId(),subAllocation.getZone(),subAllocation.getWbsNumber());
                 loadFragment(fragment);
                 break;
             case R.id.ll_marker:
                 tilesBinding.frameContainer.setVisibility(View.VISIBLE);
                 tilesBinding.headerTitle.setText("Marker");
-                fragment = MCommonFragment.newInstance(this,subAllocation.getAllocationNumber(),subAllocation.getSuballocationNumber(),subAllocation.getTpiId(),4,subAllocation.getContId(),subAllocation.getZone());
+                fragment = MCommonFragment.newInstance(this,subAllocation.getAllocationNumber(),subAllocation.getSuballocationNumber(),subAllocation.getTpiId(),4,subAllocation.getContId(),subAllocation.getZone(),subAllocation.getWbsNumber());
                 loadFragment(fragment);
                 break;
             case R.id.ll_liasioning:
                 tilesBinding.frameContainer.setVisibility(View.VISIBLE);
                 tilesBinding.headerTitle.setText("Liasioning");
-                fragment = MCommonFragment.newInstance(this,subAllocation.getAllocationNumber(),subAllocation.getSuballocationNumber(),subAllocation.getTpiId(),5,subAllocation.getContId(),subAllocation.getZone());
+                fragment = MCommonFragment.newInstance(this,subAllocation.getAllocationNumber(),subAllocation.getSuballocationNumber(),subAllocation.getTpiId(),5,subAllocation.getContId(),subAllocation.getZone(),subAllocation.getWbsNumber());
                 loadFragment(fragment);
                 break;
             case R.id.ll_shifting:
                 tilesBinding.frameContainer.setVisibility(View.VISIBLE);
                 tilesBinding.headerTitle.setText("Shifting Works");
-                fragment = MCommonFragment.newInstance(this,subAllocation.getAllocationNumber(),subAllocation.getSuballocationNumber(),subAllocation.getTpiId(),6,subAllocation.getContId(),subAllocation.getZone());
+                fragment = MCommonFragment.newInstance(this,subAllocation.getAllocationNumber(),subAllocation.getSuballocationNumber(),subAllocation.getTpiId(),6,subAllocation.getContId(),subAllocation.getZone(),subAllocation.getWbsNumber());
                 loadFragment(fragment);
                 break;
 

@@ -61,10 +61,11 @@ public class MCommonFragment extends Fragment {
     private static final String ARG_TYPE = "type";
     private static final String ARG_CONT = "contid";
     private static final String ARG_ZONE = "zone";
+    private static final String ARG_WBS = "wbs";
     String log = "pipefragment";
     FragmentMCommonBinding cmmnbinding;
     ArrayList<MapKeyValue_Model> sectionlist = new ArrayList<>();
-    public String allocation="",suballocation="",dpr="",lati="",longi="",imagepath="",section="", tpiId ="", contId= "",zone = "";
+    public String allocation="",wbs = "", suballocation="",dpr="",lati="",longi="",imagepath="",section="", tpiId ="", contId= "",zone = "";
     double input = 0.0;
     int type=0;
     Context activity;
@@ -78,7 +79,7 @@ public class MCommonFragment extends Fragment {
 
     }
 
-    public static MCommonFragment newInstance(Activity activity, String allo, String suballo, String tpi, int type,String cont,String zone) {
+    public static MCommonFragment newInstance(Activity activity, String allo, String suballo, String tpi, int type,String cont,String zone, String wbsno) {
         MCommonFragment fragment = new MCommonFragment();
         fragment.activity = activity;
         Bundle args = new Bundle();
@@ -88,6 +89,7 @@ public class MCommonFragment extends Fragment {
         args.putString(ARG_CONT, cont);
         args.putString(ARG_ZONE, zone);
         args.putInt(ARG_TYPE, type);
+        args.putString(ARG_WBS,wbsno);
         fragment.setArguments(args);
         return fragment;
     }
@@ -102,6 +104,7 @@ public class MCommonFragment extends Fragment {
             type = getArguments().getInt(ARG_TYPE);
             contId = getArguments().getString(ARG_CONT);
             zone = getArguments().getString(ARG_ZONE);
+            wbs = getArguments().getString(ARG_WBS);
             Log.d(log,allocation+"  on craete "+suballocation+"  "+tpiId);
         }
         sharedPrefs = new SharedPrefs(activity);
@@ -429,6 +432,7 @@ public class MCommonFragment extends Fragment {
             dpr_obj.put("zone", zone);
             dpr_obj.put("dprtype", ""+type);
             dpr_obj.put("filesPath", imagepath);
+            dpr_obj.put("wbsNumber", wbs);
         } catch (JSONException e) {
             e.printStackTrace();
         }

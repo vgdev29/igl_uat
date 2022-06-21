@@ -69,7 +69,7 @@ public class MdpeList_Adapter extends RecyclerView.Adapter<MdpeList_Adapter.View
         holder.tv_address.setText(mdpesuball.getCity()+" "+mdpesuball.getArea()+" "+mdpesuball.getSociety()+" "+mdpesuball.getZone());
         holder.tv_assign_date.setText(mdpesuball.getAgentAssignDate());
         holder.tv_assignment.setText(
-        mdpesuball.getMethod()+" "+mdpesuball.getAreaType()+" "+mdpesuball.getSize()+" "+mdpesuball.getLength()+" "+mdpesuball.getTrenchlessMethod());
+       mdpesuball.getAreaType()+" "+mdpesuball.getSize()+" "+mdpesuball.getLength()+" "+mdpesuball.getTrenchlessMethod());
 
         try {
             holder.tv_tpi.setText(mdpesuball.getUserName()+"\n"+mdpesuball.getUserMob());
