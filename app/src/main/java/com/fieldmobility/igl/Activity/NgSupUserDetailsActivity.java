@@ -40,6 +40,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.fieldmobility.igl.Helper.CommonUtils;
 import com.fieldmobility.igl.Helper.Constants;
+import com.fieldmobility.igl.database.DatabaseSubmitListener;
+import com.fieldmobility.igl.database.DatabaseUtil;
 import com.fieldmobility.igl.utils.Utils;
 import com.fieldmobility.igl.rest.Api;
 import com.fieldmobility.igl.Model.NguserListModel;
@@ -98,7 +100,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
     private List<NguserListModel> nguserdetails;
     private TextView tv_ngUserName, tv_bp_no, tv_jmr_no, tv_houseNoValue, tv_societyValue, tv_preferredDateValue,
             tv_blockValue, tv_areaValue, tv_cityvalue, tv_categoryNameValue, tv_delayDate, tv_floorValue;
-    private Button submit_button, picture_button;
+    private Button submit_button, picture_button,submit_offline_button;
 
     private LinearLayout ll_hold, ll_meterReading,ll_ngStatusreason;
     private TextView et_delayDateValue;
@@ -199,13 +201,14 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                     ll_cmeter.setVisibility(View.GONE);
                     loadResonSpinner();
                     ngUserListModel.setStatus("OP");
+                    submit_offline_button.setVisibility(View.VISIBLE);
                 } else   {
                     ll_ngStatusreason.setVisibility(View.GONE);
                     ll_hold.setVisibility(View.GONE);
                     ll_meterReading.setVisibility(View.VISIBLE);
                     meterRadiogroup.setVisibility(View.VISIBLE);
-
                     ngUserListModel.setStatus("DP");
+                    submit_offline_button.setVisibility(View.GONE);
                 }
             }
             @Override
@@ -304,6 +307,39 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
 
+            }
+        });
+        submit_offline_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submit_offline_button.setClickable(true);
+                submit_offline_button.setEnabled(true);
+                if (selected_description_status.contains("Hold")) {
+                    if (validateDataHold()) {
+                        Date c = Calendar.getInstance().getTime();
+                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                        Log.d(log,"date ="+df.format(c));
+                        Log.d(log,"contractor assign date ="+ ngUserListModel.getContractor_assigned_date());
+                        ngUserListModel.setSub_status(selected_description_status);
+                        ngUserListModel.setDelay_date(et_delayDateValue.getText().toString().trim());
+                        ngUserListModel.setJmr_no(jmrNo);
+                        ngUserListModel.setClaim(true);
+                        ngUserListModel.setMobile_no(tv_mobileNoValue.getText().toString().trim());
+                        ngUserListModel.setCat_id(selected_cat_status);
+                        ngUserListModel.setCatalog(selected_catalog_status);
+                        ngUserListModel.setCode(selected_code_status);
+                        ngUserListModel.setReason(selected_description_status);
+                        ngUserListModel.setAlt_number(tv_alternateNoValue.getText().toString().trim());
+                        ngUserListModel.setSub_status(selected_description_substatus + " Tech Remarks - "+et_nghold_remarks.getText().toString().trim());
+                        Log.d(log,"sub status  ="+selected_description_substatus + " Tech Remarks - "+et_nghold_remarks.getText().toString().trim());
+                        ngUserListModel.setNg_update_date(df.format(c));
+                        if (isNetworkConnected(NgSupUserDetailsActivity.this)) {
+                            submitDataOffline(ngUserListModel);
+                        } else {
+                            Utils.showToast(NgSupUserDetailsActivity.this, "Please check internet connection");
+                        }
+                    }
+                }
             }
         });
 
@@ -589,6 +625,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
         tv_mobileNoValue = findViewById(R.id.tv_mobileNoValue);
         tv_alternateNoValue = findViewById(R.id.tv_alternateNoValue);
         submit_button = findViewById(R.id.submit_button);
+        submit_offline_button = findViewById(R.id.submit_offline_button);
         picture_button = findViewById(R.id.picture_button);
         hold_image = findViewById(R.id.hold_image);
         tv_delayDate = findViewById(R.id.tv_delayDate);
@@ -964,6 +1001,27 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    private void submitDataOffline(NguserListModel nguserListModel) {
+
+        DatabaseUtil.saveData(getApplicationContext(), nguserListModel, new DatabaseSubmitListener() {
+            @Override
+            public void onDataSaved() {
+                Log.e(log,"Data saved successfully");
+
+                Toast.makeText(getApplicationContext(), "Data saved successfully", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(NgSupUserDetailsActivity.this, NgSupListActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFailure() {
+                Toast.makeText(getApplicationContext(), "Failed to submit please try again", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
     }
 
 

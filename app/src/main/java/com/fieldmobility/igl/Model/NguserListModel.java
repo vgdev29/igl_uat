@@ -1,12 +1,27 @@
 package com.fieldmobility.igl.Model;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Entity(tableName = "ng_users_table")
 public class NguserListModel implements Serializable {
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @SerializedName("jmr_no")
     @Expose
     private String jmr_no;

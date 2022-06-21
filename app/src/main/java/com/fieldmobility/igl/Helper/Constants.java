@@ -3,27 +3,27 @@ package com.fieldmobility.igl.Helper;
 public class Constants {
     public static final boolean isDebugBuild=true; // make it FALSE while giving app to others
       //LIVE URLH
-    //  public static String BASE_URL="http://49.50.65.107:8081/";
+     // public static String BASE_URL="http://49.50.65.107:8081/";
     //  public static  String BASE_URL_PYTHON = "http://49.50.65.107:8000/"; //PYTHON SERVER
-     // public static  String BASE_URL_PYTHON = "http://49.50.65.107:8001/ng"; //JAVA SERVER
+    //  public static  String BASE_URL_PYTHON = "http://49.50.65.107:8001/"; //JAVA SERVER
 
 
     //  UAT URL
       public static String BASE_URL = "http://49.50.118.112:8080/";
       // public static String BASE_URL_PYTHON = "http://49.50.68.239:8080/";
-      public static String BASE_URL_PYTHON = "http://49.50.118.112:8080/ng/";
+       public static String BASE_URL_PYTHON = "http://49.50.118.112:8080/ng/";
 
 
 
     //local
      // static String localhost = "http://172.20.10.7:8080/";
-  // public static String BASE_URL_PYTHON = "http://192.168.31.29:8080/";
+//   public static String BASE_URL_PYTHON = "http://192.168.31.29:8080/";
 
     public static final int LOCATION_INTERVAL = 100000000;
     public static final int FASTEST_LOCATION_INTERVAL = 5000000;
 
     //added extra 's' at end point - incorporated on 2 OCT - prod
-   //  public static final String Auth_User = BASE_URL + "loginapi/authenticates";
+    // public static final String Auth_User = BASE_URL + "loginapi/authenticates";
 
     //for uat /testing ('s' is not updated at uat environment
     public static final String Auth_User = BASE_URL + "loginapi/authenticate";
@@ -215,5 +215,6 @@ public class Constants {
 
 
     //NG SYNC
-    public static final String NGHOLD_SYNC= BASE_URL + "/api/jmrholdsync";
+    public static final String NGHOLD_SYNC= BASE_URL_PYTHON + "api/jmrholdsync";
+    public static final String NGDONE_SYNC= BASE_URL_PYTHON + "api/jmrdonesync";
 }
