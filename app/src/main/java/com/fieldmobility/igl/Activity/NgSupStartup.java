@@ -126,6 +126,12 @@ public class NgSupStartup extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         refreshNgHoldCount();
         refreshNgDoneCount();
     }
