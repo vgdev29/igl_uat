@@ -115,7 +115,7 @@ public class Constants {
    // public static final String RISER_TPIPendingClaim = localhost + "/bp_details/RiserClaim/";
     public static final String RISER_TPI_APPROVAL_LISTING = BASE_URL + "ekyc/bp_details/RiserApprovalList";
     public static final String RISER__APPROVAL_DECLINE = BASE_URL + "ekyc/bp_details/RiserApproveDecline";
-    public static final String RISER__PROJECT_REPORT = BASE_URL + "ekyc/bp_details/createriserzz";
+    public static final String RISER__PROJECT_REPORT = BASE_URL + "ekyc/bp_details/createriser";
  //   public static final String RISER__PROJECT_REPORT = localhost + "/bp_details/createriser";
     public static final String RISER__SEARCH_BP = BASE_URL + "ekyc/bp_details/searchbp/";
 
