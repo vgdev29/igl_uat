@@ -7,8 +7,6 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.fieldmobility.igl.Model.NguserListModel;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Dao

@@ -200,7 +200,7 @@
                         android:layout_gravity="top"
                         android:layout_marginTop="@dimen/_3sdp"
                         android:id="@+id/tv_action"
-                        android:text="TPI Action Date :"
+                        android:text="Action Date :"
                         android:layout_weight="1"
                         android:textColor="@color/dark_gray"
                         android:textSize="@dimen/_9sdp" />
@@ -233,7 +233,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="top"
                         android:layout_marginTop="@dimen/_3sdp"
-                        android:text="TPI Remarks :"
+                        android:text="Remarks :"
                         android:layout_weight="1"
                         android:textColor="@color/dark_gray"
                         android:textSize="@dimen/_9sdp" />
@@ -253,6 +253,8 @@
                         tools:text="14-11-2021" />
 
                 </LinearLayout>
+
+
 
 
 

@@ -5,11 +5,11 @@ public class Constants {
       //LIVE URLH
      // public static String BASE_URL="http://49.50.65.107:8081/";
     //  public static  String BASE_URL_PYTHON = "http://49.50.65.107:8000/"; //PYTHON SERVER
-    //  public static  String BASE_URL_PYTHON = "http://49.50.65.107:8001/"; //JAVA SERVER
+   //  public static  String BASE_URL_PYTHON = "http://49.50.65.107:8081/ng/"; //JAVA SERVER
 
 
     //  UAT URL
-      public static String BASE_URL = "http://49.50.118.112:8080/";
+     public static String BASE_URL = "http://49.50.118.112:8080/";
       // public static String BASE_URL_PYTHON = "http://49.50.68.239:8080/";
        public static String BASE_URL_PYTHON = "http://49.50.118.112:8080/ng/";
 
@@ -23,7 +23,7 @@ public class Constants {
     public static final int FASTEST_LOCATION_INTERVAL = 5000000;
 
     //added extra 's' at end point - incorporated on 2 OCT - prod
-    // public static final String Auth_User = BASE_URL + "loginapi/authenticates";
+  //   public static final String Auth_User = BASE_URL + "loginapi/authenticates";
 
     //for uat /testing ('s' is not updated at uat environment
     public static final String Auth_User = BASE_URL + "loginapi/authenticate";

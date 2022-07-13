@@ -198,7 +198,7 @@ public class TPI_Ng_Approval_Activity extends Activity implements TPI_NgApproval
             public void onResponse(Call<ArrayList<NguserListModel>> call, retrofit2.Response<ArrayList<NguserListModel>> response) {
                 //if (response.isSuccessful()){
                     responseCode = response.code();
-                Log.d("response" , response.body().toString());
+              //  Log.d("response" , response.body().toString());
                 Log.d("response" , ""+response.code());
                     if (response.body()!=null){
                         claimUserList = response.body();
@@ -257,7 +257,9 @@ public class TPI_Ng_Approval_Activity extends Activity implements TPI_NgApproval
 
         try {
             //bp_no_array.clear();
-            adapter.notifyDataSetChanged();
+           // if (tv_ngUserListdata.length()!=0) {
+                adapter.notifyDataSetChanged();
+          //  }
             if(Utils.isNetworkConnected(TPI_Ng_Approval_Activity.this)){
                 loadNgUserList();
             }else {

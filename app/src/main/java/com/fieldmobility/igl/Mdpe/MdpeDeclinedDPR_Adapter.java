@@ -63,6 +63,7 @@ public class MdpeDeclinedDPR_Adapter extends RecyclerView.Adapter<MdpeDeclinedDP
         holder.tv_tpiaction.setText(dpr.tpiaction);
         holder.tv_tpiremarks.setText(dpr.tpiremarks);
 
+
         holder.mdpe_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,6 +101,7 @@ public class MdpeDeclinedDPR_Adapter extends RecyclerView.Adapter<MdpeDeclinedDP
             mdpe_card = itemView.findViewById(R.id.mdpe_card);
             tv_tpiaction = itemView.findViewById(R.id.tv_tpiaction);
             tv_tpiremarks = itemView.findViewById(R.id.tv_tpiremarks);
+
 
 
         }
