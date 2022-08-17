@@ -209,6 +209,7 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
 
     private void approveTbyTPI(String jmr_number, NguserListModel nguserListModel) {
         Log.d("approveTbyTPI ng",nguserListModel.getClaim_date());
+        Log.d("approveTbyTPI ng",""+nguserListModel.getPushed_to_crm());
         materialDialog = new MaterialDialog.Builder(this)
                 .content("Please wait....")
                 .progress(true, 0)
@@ -245,7 +246,7 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<NguserListModel>> call, Throwable t) {
-                Log.e("My error", "error comes");
+                Log.e("My error", "error comes"+t.getLocalizedMessage());
                 materialDialog.dismiss();
                 Toast.makeText(getApplicationContext(), "Fail to success", Toast.LENGTH_SHORT).show();
 
@@ -353,16 +354,17 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
         }
 
         if (!TextUtils.isEmpty(nguserListModel.getHold_images())){
+          //  nguserListModel.setHold_images("http://49.50.65.107:8000/media/"+nguserListModel.getHold_images());
             RequestOptions options = new RequestOptions()
                     .centerCrop()
                     .placeholder(R.mipmap.ic_launcher_round)
                     .error(R.mipmap.ic_launcher_round);
 
-            Glide.with(this).load(nguserListModel.getHold_images()).apply(options).into(hold_image);
+            Glide.with(this).load(Constants.PYTHON_BASE_IMAGE+nguserListModel.getHold_images()).apply(options).into(hold_image);
             hold_image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    CommonUtils.showZoomImageView(ViewNgDetaillsActivity.this,nguserListModel.getHold_images());
+                    CommonUtils.showZoomImageView(ViewNgDetaillsActivity.this,Constants.PYTHON_BASE_IMAGE+nguserListModel.getHold_images());
                 }
             });
         }
@@ -372,11 +374,11 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
                     .placeholder(R.mipmap.ic_launcher_round)
                     .error(R.mipmap.ic_launcher_round);
 
-            Glide.with(this).load(nguserListModel.getHome_address()).apply(options).into(iv_homeAddress);
+            Glide.with(this).load(Constants.PYTHON_BASE_IMAGE+nguserListModel.getHome_address()).apply(options).into(iv_homeAddress);
             iv_homeAddress.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    CommonUtils.showZoomImageView(ViewNgDetaillsActivity.this,nguserListModel.getHome_address());
+                    CommonUtils.showZoomImageView(ViewNgDetaillsActivity.this,Constants.PYTHON_BASE_IMAGE+nguserListModel.getHome_address());
                 }
             });
         }
@@ -386,11 +388,11 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
                     .placeholder(R.mipmap.ic_launcher_round)
                     .error(R.mipmap.ic_launcher_round);
 
-            Glide.with(this).load(nguserListModel.getMeter_photo()).apply(options).into(iv_meterPhoto);
+            Glide.with(this).load(Constants.PYTHON_BASE_IMAGE+nguserListModel.getMeter_photo()).apply(options).into(iv_meterPhoto);
             iv_meterPhoto.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    CommonUtils.showZoomImageView(ViewNgDetaillsActivity.this,nguserListModel.getMeter_photo());
+                    CommonUtils.showZoomImageView(ViewNgDetaillsActivity.this,Constants.PYTHON_BASE_IMAGE+nguserListModel.getMeter_photo());
                 }
             });
         }
@@ -400,11 +402,11 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
                     .placeholder(R.mipmap.ic_launcher_round)
                     .error(R.mipmap.ic_launcher_round);
 
-            Glide.with(this).load(nguserListModel.getInstallation_photo()).apply(options).into(iv_installation);
+            Glide.with(this).load(Constants.PYTHON_BASE_IMAGE+nguserListModel.getInstallation_photo()).apply(options).into(iv_installation);
             iv_installation.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    CommonUtils.showZoomImageView(ViewNgDetaillsActivity.this,nguserListModel.getInstallation_photo());
+                    CommonUtils.showZoomImageView(ViewNgDetaillsActivity.this,Constants.PYTHON_BASE_IMAGE+nguserListModel.getInstallation_photo());
                 }
             });
         }
@@ -414,11 +416,11 @@ public class ViewNgDetaillsActivity extends AppCompatActivity {
                     .placeholder(R.mipmap.ic_launcher_round)
                     .error(R.mipmap.ic_launcher_round);
 
-            Glide.with(this).load(nguserListModel.getService_photo()).apply(options).into(iv_serviceCard);
+            Glide.with(this).load(Constants.PYTHON_BASE_IMAGE+nguserListModel.getService_photo()).apply(options).into(iv_serviceCard);
             iv_serviceCard.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    CommonUtils.showZoomImageView(ViewNgDetaillsActivity.this,nguserListModel.getService_photo());
+                    CommonUtils.showZoomImageView(ViewNgDetaillsActivity.this,Constants.PYTHON_BASE_IMAGE+nguserListModel.getService_photo());
                 }
             });
         }

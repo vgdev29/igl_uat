@@ -503,14 +503,14 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
     }
 
     private void  selectPdf() {
-//        Intent intent = new Intent();
-//        intent.setType("application/pdf");
-//        intent.setAction(Intent.ACTION_GET_CONTENT);
-//        startActivityForResult(Intent.createChooser(intent, "Select PDF"), REQUEST_CODE_PDF_PICKER);
-        Intent intent4 = new Intent(this, NormalFilePickActivity.class);
+        Intent intent = new Intent();
+        intent.setType("application/pdf");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select PDF"), REQUEST_CODE_PDF_PICKER);
+      /*  Intent intent4 = new Intent(this, NormalFilePickActivity.class);
         intent4.putExtra(Constant.MAX_NUMBER, 1);
         intent4.putExtra(NormalFilePickActivity.SUFFIX, new String[]{"pdf"});
-        startActivityForResult(intent4, Constant.REQUEST_CODE_PICK_FILE);
+        startActivityForResult(intent4, Constant.REQUEST_CODE_PICK_FILE);*/
 
 
     }
@@ -748,11 +748,13 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         switch (requestCode) {
             case REQUEST_CODE_PDF_PICKER:
                 if (requestCode == REQUEST_CODE_PDF_PICKER && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
-//                    Uri pdf_uri = data.getData();
-//                    pdf_path = FilePath.getPath(this, pdf_uri);
-//                    tv_pdf_path.setText(pdf_path);
+                    Uri pdf_uri = data.getData();
+                    Log.d("bpcreation","pdf uri = "+pdf_uri);
+                  //  pdf_path = FilePath.getPath(this, pdf_uri);
+                    pdf_path = pdf_uri.getPath();
 
-
+                    Log.d("bpcreation","pdf path = "+pdf_uri);
+                    tv_pdf_path.setText(pdf_path);
                     Log.d("bpcreation", "imagepath id pick image = " + image_path_id);
 
 
@@ -767,8 +769,6 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                         Log.d("bpcreation", "pdf path = " + pdf_path);
                         tv_pdf_path.setText(list.get(0).getName());
                     }
-
-
                 }
                 break;
 
@@ -1294,6 +1294,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                         materialDialog.dismiss();
                         try {
                             JSONObject json = new JSONObject(response);
+                            Log.d("BPCreationResponse++", json.toString());
                             //jsonObject = new JSONObject(str);
                             if (json.getString("Code").equals("200")) {
                                 Log.d("BPCreationResponse++", json.toString());
@@ -1306,6 +1307,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                                     uploadMultipart(Bp_Number);
                                 }
                             } else {
+                                //uploadMultipart("12345677");
                                 Toast.makeText(BP_Creation_Form_step2.this, "Bp not created, " + json.getString("Details"), Toast.LENGTH_SHORT).show();
 
                             }

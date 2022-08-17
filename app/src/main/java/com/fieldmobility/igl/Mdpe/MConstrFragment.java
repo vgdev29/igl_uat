@@ -62,6 +62,7 @@ public class MConstrFragment extends Fragment {
     String log = "pipefragment";
     FragmentConstructionBinding constbinding;
     ArrayList<MapKeyValue_Model> methodlist = new ArrayList<>();
+    ArrayList<String> unitlist = new ArrayList<>();
     ArrayList<MapKeyValue_Model> sizelist = new ArrayList<>();
     public String allocation="",wbs = "",suballocation="",dpr="",lati="",longi="",imagepath="",section="", tpiId ="", contId= "",zone = "";
     double input = 0.0;
@@ -103,6 +104,7 @@ public class MConstrFragment extends Fragment {
             wbs = getArguments().getString(ARG_WBS);
             Log.d(log,allocation+"  on craete "+suballocation+"  "+contId);
         }
+
         sharedPrefs = new SharedPrefs(activity);
         Log.d(log,"get class = "+getClass());
         methodlist.add(new MapKeyValue_Model("0","Select Construction work"));
@@ -124,6 +126,7 @@ public class MConstrFragment extends Fragment {
         Log.d(log, "  on craete view");
         constbinding = FragmentConstructionBinding.inflate(inflater, container, false);
         initMethod();
+        initUnit();
         constbinding.etAllo.setText(allocation);
         constbinding.etSuballo.setText(suballocation);
         String date = Utils.currentDate();
@@ -254,6 +257,36 @@ public class MConstrFragment extends Fragment {
                 MapKeyValue_Model keyValue = (MapKeyValue_Model) parent.getSelectedItem();
                 initSize(keyValue);
             }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }
+
+    public void initUnit()
+    {
+        unitlist.clear();
+        unitlist.add("Select Unit");
+        unitlist.add("mtr");
+        unitlist.add("nos");
+        unitlist.add("cu.m");
+        unitlist.add("sq.m");
+        unitlist.add("mm");
+
+        constbinding.spinnerUnit.setAdapter(new ArrayAdapter<String>(activity, android.R.layout.simple_spinner_dropdown_item, unitlist));
+        constbinding.spinnerUnit.setSelection(0);
+        constbinding.spinnerUnit.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String keyValue = (String) parent.getSelectedItem();
+
+                //CommonUtils.toast_msg(activity,section);
+            }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -480,6 +513,7 @@ public class MConstrFragment extends Fragment {
             dpr_obj.put("dprtype", "8");
             dpr_obj.put("filesPath", imagepath);
             dpr_obj.put("wbsNumber", wbs);
+            dpr_obj.put("location",constbinding.etLocation.getText().toString().trim());
         } catch (JSONException e) {
             e.printStackTrace();
         }

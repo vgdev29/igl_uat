@@ -183,6 +183,7 @@ public class NgSupDoneActivity extends AppCompatActivity {
         iv_serviceCard = findViewById(R.id.iv_serviceCard);
         submit_button = findViewById(R.id.submit_button);
         submit_offline_button = findViewById(R.id.submit_offline_button);
+        submit_offline_button.setVisibility(View.GONE); //TODO
         ll_meterReading = findViewById(R.id.ll_meterReading);
         btn_viewJmrForm = findViewById(R.id.btn_viewJmrForm);
         tv_startWorkValues = findViewById(R.id.tv_startWorkValues);

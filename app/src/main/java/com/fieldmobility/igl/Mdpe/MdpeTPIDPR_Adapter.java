@@ -57,6 +57,7 @@ public class MdpeTPIDPR_Adapter extends RecyclerView.Adapter<MdpeTPIDPR_Adapter.
         holder.tv_suballo.setText(dpr.getSub_allocation());
         holder.tv_dpr.setText(dpr.getDpr_no());
         holder.tv_submit_date.setText(dpr.getCreation_date());
+        holder.tv_address.setText(dpr.getLocation());
 
         holder.mdpe_card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +88,7 @@ public class MdpeTPIDPR_Adapter extends RecyclerView.Adapter<MdpeTPIDPR_Adapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tv_allo, tv_dpr, tv_submit_date,tv_suballo;
+        public TextView tv_allo, tv_dpr, tv_submit_date,tv_suballo,tv_address;
         LinearLayout mdpe_card;
 
         public ViewHolder(View itemView) {
@@ -97,6 +98,7 @@ public class MdpeTPIDPR_Adapter extends RecyclerView.Adapter<MdpeTPIDPR_Adapter.
             tv_dpr =  itemView.findViewById(R.id.tv_dpr);
             tv_submit_date =  itemView.findViewById(R.id.tv_submit_date);
             mdpe_card = itemView.findViewById(R.id.mdpe_card);
+            tv_address = itemView.findViewById(R.id.tv_address);
 
 
         }

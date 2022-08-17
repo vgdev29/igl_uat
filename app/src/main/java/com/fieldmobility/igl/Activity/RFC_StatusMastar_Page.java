@@ -566,6 +566,7 @@ public class RFC_StatusMastar_Page extends Activity {
             new MultipartUploadRequest(RFC_StatusMastar_Page.this, uploadId, Constants.RFCApprovalMultipart)
                     .addFileToUpload(image_path_string, "image")
                     // .addFileToUpload(mediaPath1, "audiofile")
+
                     .addParameter("lead_no", getIntent().getStringExtra("lead_no"))
                     .addParameter("bp_no", getIntent().getStringExtra("Bp_number"))
                     .addParameter("cat_id", complete_catid)

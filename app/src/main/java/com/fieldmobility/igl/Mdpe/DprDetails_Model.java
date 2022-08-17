@@ -42,6 +42,15 @@ public class DprDetails_Model implements Serializable {
     String tpiaction;
     String tpiremarks;
     String declined_type;
+    String location;
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
     public String getDeclined_type() {
         return declined_type;

@@ -65,6 +65,7 @@ public class MCommonFragment extends Fragment {
     String log = "pipefragment";
     FragmentMCommonBinding cmmnbinding;
     ArrayList<MapKeyValue_Model> sectionlist = new ArrayList<>();
+    ArrayList<String> unitlist = new ArrayList<>();
     public String allocation="",wbs = "", suballocation="",dpr="",lati="",longi="",imagepath="",section="", tpiId ="", contId= "",zone = "";
     double input = 0.0;
     int type=0;
@@ -116,6 +117,7 @@ public class MCommonFragment extends Fragment {
         Log.d(log, "  on craete view");
         cmmnbinding = FragmentMCommonBinding.inflate(inflater, container, false);
         initSection(type);
+        initUnit();
         cmmnbinding.etAllo.setText(allocation);
         cmmnbinding.etSuballo.setText(suballocation);
         String date = Utils.currentDate();
@@ -214,6 +216,36 @@ public class MCommonFragment extends Fragment {
 
             }
         });
+    }
+
+    public void initUnit()
+    {
+        unitlist.clear();
+        unitlist.add("Select Unit");
+        unitlist.add("mtr");
+        unitlist.add("nos");
+        unitlist.add("cu.m");
+        unitlist.add("sq.m");
+        unitlist.add("mm");
+
+        cmmnbinding.spinnerUnit.setAdapter(new ArrayAdapter<String>(activity, android.R.layout.simple_spinner_dropdown_item, unitlist));
+        cmmnbinding.spinnerUnit.setSelection(0);
+        cmmnbinding.spinnerUnit.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String keyValue = (String) parent.getSelectedItem();
+
+                //CommonUtils.toast_msg(activity,section);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 
     public void statusCheck() {
@@ -373,6 +405,7 @@ public class MCommonFragment extends Fragment {
 
         }
     }
+
     public boolean validate()
     {
         boolean isValid = true;
@@ -433,6 +466,7 @@ public class MCommonFragment extends Fragment {
             dpr_obj.put("dprtype", ""+type);
             dpr_obj.put("filesPath", imagepath);
             dpr_obj.put("wbsNumber", wbs);
+            dpr_obj.put("location",cmmnbinding.etLocation.getText().toString().trim());
         } catch (JSONException e) {
             e.printStackTrace();
         }

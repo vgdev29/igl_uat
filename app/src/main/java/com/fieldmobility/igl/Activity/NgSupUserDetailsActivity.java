@@ -201,7 +201,7 @@ public class NgSupUserDetailsActivity extends AppCompatActivity {
                     ll_cmeter.setVisibility(View.GONE);
                     loadResonSpinner();
                     ngUserListModel.setStatus("OP");
-                    submit_offline_button.setVisibility(View.VISIBLE);
+                    submit_offline_button.setVisibility(View.GONE); //ToDo
                 } else   {
                     ll_ngStatusreason.setVisibility(View.GONE);
                     ll_hold.setVisibility(View.GONE);

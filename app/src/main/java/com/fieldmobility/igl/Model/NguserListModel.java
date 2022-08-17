@@ -171,7 +171,7 @@ public class NguserListModel implements Serializable {
     private Boolean old;
     @SerializedName("pushed_to_crm")
     @Expose
-    private Boolean pushed_to_crm;
+    private int pushed_to_crm;
     @SerializedName("claim_date")
     @Expose
     private String claim_date;
@@ -722,11 +722,11 @@ public class NguserListModel implements Serializable {
         this.old = old;
     }
 
-    public Boolean getPushed_to_crm() {
+    public int getPushed_to_crm() {
         return pushed_to_crm;
     }
 
-    public void setPushed_to_crm(Boolean pushed_to_crm) {
+    public void setPushed_to_crm(int pushed_to_crm) {
         this.pushed_to_crm = pushed_to_crm;
     }
 }

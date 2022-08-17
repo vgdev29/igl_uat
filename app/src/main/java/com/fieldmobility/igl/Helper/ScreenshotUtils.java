@@ -113,7 +113,7 @@ public class ScreenshotUtils {
         File file = new File(saveFilePath.getAbsolutePath(), fileName);
         try {
             FileOutputStream fOut = new FileOutputStream(file);
-            bm.compress(Bitmap.CompressFormat.JPEG, 85, fOut);
+            bm.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
             fOut.flush();
             fOut.close();
         } catch (Exception e) {

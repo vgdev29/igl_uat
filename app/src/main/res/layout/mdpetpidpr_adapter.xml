@@ -187,6 +187,40 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:id="@+id/tv_address_key"
+                        android:text="Address :"
+                        android:layout_weight="1"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_9sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/value_10dp"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        android:textColor="@color/black_31"
+                        android:textIsSelectable="true"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/_9sdp"
+                        tools:text="" />
+
+                </LinearLayout>
+
 
 
 

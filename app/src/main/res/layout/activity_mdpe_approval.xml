@@ -597,6 +597,38 @@
                             android:textStyle="bold" />
 
                     </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="top"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:layout_weight="1"
+                            android:text="Location :"
+                            android:textColor="@color/dark_gray"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <TextView
+                            android:id="@+id/tv_address_appr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/value_10dp"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:textColor="@color/black_31"
+                            android:textIsSelectable="true"
+                            android:textSize="@dimen/_12sdp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -651,6 +683,36 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginHorizontal="20dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_55sdp"
+                        android:layout_marginBottom="@dimen/_3sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:gravity="start|center_vertical"
+                        android:text="Selfie"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_13sdp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/img_selfie"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_55sdp"
+                        android:layout_marginBottom="@dimen/_3sdp"
+                        android:layout_weight="1"
+                        android:hint="0.0"
+                        android:src="@drawable/add_images" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_tpiSign"

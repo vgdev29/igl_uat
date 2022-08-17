@@ -1201,7 +1201,7 @@
                         android:layout_height="@dimen/_30sdp"
                         android:layout_alignParentRight="true"
                         android:background="@color/colorPrimary"
-android:layout_weight="1"
+                        android:layout_weight="1"
                         android:text="@string/submit"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_10sdp" />

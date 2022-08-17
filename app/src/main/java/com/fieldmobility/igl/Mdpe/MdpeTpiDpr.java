@@ -190,6 +190,7 @@ public class MdpeTpiDpr extends AppCompatActivity {
                                     dpr.setIdDpr(data_object.getLong("idDpr"));
                                     dpr.setIdSection(data_object.getLong("idSection"));
                                     dpr.setIdSuballo(data_object.getLong("idSuballo"));
+                                    dpr.setLocation(data_object.getString("location"));
                                     dprlist.add(dpr);
                                 }
                             }

@@ -1,32 +1,33 @@
 package com.fieldmobility.igl.Helper;
 
 public class Constants {
-    public static final boolean isDebugBuild=true; // make it FALSE while giving app to others
+    public static final boolean isDebugBuild=false; // make it FALSE while giving app to others
       //LIVE URLH
-     // public static String BASE_URL="http://49.50.65.107:8081/";
-    //  public static  String BASE_URL_PYTHON = "http://49.50.65.107:8000/"; //PYTHON SERVER
-   //  public static  String BASE_URL_PYTHON = "http://49.50.65.107:8081/ng/"; //JAVA SERVER
+      public static String BASE_URL="http://49.50.65.107:8081/";
+   //   public static  String BASE_URL_PYTHON = "http://49.50.65.107:8000/"; //PYTHON SERVER
+     public static  String BASE_URL_PYTHON = "http://49.50.65.107:8081/ng/"; //JAVA SERVER
+    public static String PYTHON_BASE_IMAGE = "http://49.50.65.107:8000/media/";
 
 
     //  UAT URL
-     public static String BASE_URL = "http://49.50.118.112:8080/";
+   //  public static String BASE_URL = "http://49.50.118.112:8080/";
       // public static String BASE_URL_PYTHON = "http://49.50.68.239:8080/";
-       public static String BASE_URL_PYTHON = "http://49.50.118.112:8080/ng/";
+    // public static String BASE_URL_PYTHON = "http://49.50.118.112:8080/ng/";
 
 
 
     //local
-     // static String localhost = "http://172.20.10.7:8080/";
+   //   static String localhost = "http://172.16.0.28:8080/";
 //   public static String BASE_URL_PYTHON = "http://192.168.31.29:8080/";
 
     public static final int LOCATION_INTERVAL = 100000000;
     public static final int FASTEST_LOCATION_INTERVAL = 5000000;
 
     //added extra 's' at end point - incorporated on 2 OCT - prod
-  //   public static final String Auth_User = BASE_URL + "loginapi/authenticates";
+     public static final String Auth_User = BASE_URL + "loginapi/authenticates";
 
     //for uat /testing ('s' is not updated at uat environment
-    public static final String Auth_User = BASE_URL + "loginapi/authenticate";
+  //  public static final String Auth_User = BASE_URL + "loginapi/authenticate";
 
    //  public static final String Auth_User = localhost + "/authenticates";
 
@@ -186,7 +187,7 @@ public class Constants {
 //    public static final String MDPETPIPENDING = localhost + "api/suballo/zone/";
 //    public static final String MDPETPIPENDING_CLAIM = localhost + "api/suballo";
 //    public static final String MDPEDPR_BYTPID = localhost + "api/dpr/";
-    //public static final String MDPETPI_DPRDETAILS = localhost + "api/dprdetails/";
+   // public static final String MDPETPI_DPRDETAILS = localhost + "api/dprdetails/";
 //    public static final String MDPETPI_DECLINEDDPR = localhost + "api/dprdeclined/";
 
 

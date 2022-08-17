@@ -12,13 +12,16 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,6 +41,7 @@ import com.fieldmobility.igl.Helper.CommonUtils;
 import com.fieldmobility.igl.Helper.Constants;
 import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.databinding.FragmentPipeBinding;
+import com.fieldmobility.igl.utils.FilePath;
 import com.fieldmobility.igl.utils.Utils;
 
 import org.json.JSONException;
@@ -49,6 +53,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 
@@ -64,6 +71,7 @@ public class MPipeFragment extends Fragment {
     FragmentPipeBinding pipeBinding ;
     ArrayList<MapKeyValue_Model> methodlist = new ArrayList<>();
     ArrayList<MapKeyValue_Model> sizelist = new ArrayList<>();
+    ArrayList<String> unitlist = new ArrayList<>();
     public String allocation="",wbs = "",suballocation="",dpr="",lati="",longi="",imagepath="",section="", tpiId ="", contId= "",zone = "";
     double input = 0.0;
     Context activity;
@@ -73,6 +81,10 @@ public class MPipeFragment extends Fragment {
     private Uri filepath;
     private Bitmap mBitmap;
     ProgressDialog progressDialog;
+    private final int REQUEST_CODE_PDF_PICKER = 1001;
+    public String pdf_path;
+    String displayName = null;
+    String size = null;
     public MPipeFragment() {
 
     }
@@ -123,6 +135,7 @@ public class MPipeFragment extends Fragment {
         Log.d(log, "  on craete view");
         pipeBinding = FragmentPipeBinding.inflate(inflater, container, false);
         initMethod();
+        initUnit();
         pipeBinding.etAllo.setText(allocation);
         pipeBinding.etSuballo.setText(suballocation);
         String date = Utils.currentDate();
@@ -144,6 +157,13 @@ public class MPipeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 selectImage();
+            }
+        });
+
+        pipeBinding.pdfButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectPdf();
             }
         });
         pipeBinding.submitButton.setOnClickListener(new View.OnClickListener() {
@@ -250,6 +270,36 @@ public class MPipeFragment extends Fragment {
 
     }
 
+    public void initUnit()
+    {
+        unitlist.clear();
+        unitlist.add("Select Unit");
+        unitlist.add("mtr");
+        unitlist.add("nos");
+        unitlist.add("cu.m");
+        unitlist.add("sq.m");
+        unitlist.add("mm");
+
+        pipeBinding.spinnerUnit.setAdapter(new ArrayAdapter<String>(activity, android.R.layout.simple_spinner_dropdown_item, unitlist));
+        pipeBinding.spinnerUnit.setSelection(0);
+        pipeBinding.spinnerUnit.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String keyValue = (String) parent.getSelectedItem();
+
+                //CommonUtils.toast_msg(activity,section);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }
+
     public void statusCheck() {
         final LocationManager manager = (LocationManager) activity.getSystemService(Context.LOCATION_SERVICE);
         if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
@@ -325,6 +375,19 @@ public class MPipeFragment extends Fragment {
             e.printStackTrace();
         }
         return path;
+    }
+
+    private void  selectPdf() {
+        Intent intent = new Intent();
+        intent.setType("application/pdf");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select PDF"), REQUEST_CODE_PDF_PICKER);
+      /*  Intent intent4 = new Intent(this, NormalFilePickActivity.class);
+        intent4.putExtra(Constant.MAX_NUMBER, 1);
+        intent4.putExtra(NormalFilePickActivity.SUFFIX, new String[]{"pdf"});
+        startActivityForResult(intent4, Constant.REQUEST_CODE_PICK_FILE);*/
+
+
     }
     private String  change_to_binary(Bitmap bitmapOrg) {
         ByteArrayOutputStream bao = new ByteArrayOutputStream();
@@ -404,8 +467,62 @@ public class MPipeFragment extends Fragment {
                 }
                 break;
 
+            case REQUEST_CODE_PDF_PICKER:
+                if (requestCode == REQUEST_CODE_PDF_PICKER && resultCode == getActivity().RESULT_OK && data != null && data.getData() != null) {
+                    Uri pdf_uri = data.getData();
+                    Log.d("mpipefragment","pdf uri = "+pdf_uri);
+                    //  pdf_path = FilePath.getPath(getActivity(), pdf_uri);
+                    pdf_path = pdf_uri.getPath();
 
+                    String uriString = pdf_uri.toString();
+                    File myFile = new File(uriString);
+                    pdf_path = myFile.getAbsolutePath();
+                    Log.d("mpipefragment","pdf path = "+pdf_path);
+
+                    if (uriString.startsWith("content://")) {
+                        Cursor cursor = null;
+                        try {
+                            cursor = getActivity().getContentResolver().query(pdf_uri, null, null, null, null);
+                            if (cursor != null && cursor.moveToFirst()) {
+                                displayName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                            }
+
+                            int sizeIndex = cursor.getColumnIndex(OpenableColumns.SIZE);
+
+                            if (!cursor.isNull(sizeIndex)) {
+                                size = cursor.getString(sizeIndex);
+                            } else {
+                                size = "Unknown";
+                            }
+                        }
+                        finally {
+                            cursor.close();
+                        }
+                    } else if (uriString.startsWith("file://")) {
+                        displayName = myFile.getName();
+                    }
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        try {
+                            pdf_path = changetoByte(pdf_path);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            Log.d("mpipefragment","IOException = "+e.getLocalizedMessage());
+                        }
+                    }
+                    Log.d("mpipefragment","pdf path = "+pdf_path);
+                    pipeBinding.txtPdf.setText(displayName);
+                }
+                break;
         }
+    }
+
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public String changetoByte(String path) throws IOException {
+        byte[] bytes = Files.readAllBytes(Paths.get(path));
+        return bytes.toString();
     }
     public boolean validate()
     {
@@ -468,6 +585,7 @@ public class MPipeFragment extends Fragment {
                 dpr_obj.put("dprtype", "7");
                 dpr_obj.put("filesPath", imagepath);
                 dpr_obj.put("wbsNumber", wbs);
+                dpr_obj.put("location",pipeBinding.etLocation.getText().toString().trim());
             } catch (JSONException e) {
                 e.printStackTrace();
             }

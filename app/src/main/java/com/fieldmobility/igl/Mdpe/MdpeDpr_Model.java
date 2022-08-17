@@ -20,6 +20,7 @@ public class MdpeDpr_Model implements Serializable {
 	String tpiRemarks;
 	String tpiSignature;
 	String tpiActionOn;
+	String tpiSelfie;
 
 	public MdpeDpr_Model(long id, String allocationNo, String subAllocation, String dprNo, String sectionId, Double input, String latitude, String longitude, String filesPath, String tpiId, String creationDate, int dprStatus, String tpiRemarks, String tpiSignature, String tpiActionOn) {
 		this.id = id;
@@ -38,8 +39,34 @@ public class MdpeDpr_Model implements Serializable {
 		this.tpiSignature = tpiSignature;
 		this.tpiActionOn = tpiActionOn;
 	}
+	public MdpeDpr_Model(long id, String allocationNo, String subAllocation, String dprNo, String sectionId, Double input, String latitude, String longitude, String filesPath, String tpiId, String creationDate, int dprStatus, String tpiRemarks, String tpiSignature, String tpiActionOn , String selfie) {
+		this.id = id;
+		this.allocationNo = allocationNo;
+		this.subAllocation = subAllocation;
+		this.dprNo = dprNo;
+		this.sectionId = sectionId;
+		this.input = input;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.filesPath = filesPath;
+		this.tpiId = tpiId;
+		this.creationDate = creationDate;
+		this.dprStatus = dprStatus;
+		this.tpiRemarks = tpiRemarks;
+		this.tpiSignature = tpiSignature;
+		this.tpiActionOn = tpiActionOn;
+		this.tpiSelfie = selfie;
+	}
 
 	public MdpeDpr_Model() {
+	}
+
+	public String getTpiSelfie() {
+		return tpiSelfie;
+	}
+
+	public void setTpiSelfie(String tpiSelfie) {
+		this.tpiSelfie = tpiSelfie;
 	}
 
 	public int getDprStatus() {

@@ -138,7 +138,7 @@ public class HomeFragment extends Fragment {
         ng_conversion_layout=(LinearLayout)root.findViewById(R.id.ng_conversion_layout);
         riser_layout = root.findViewById(R.id.riser_layout);
         lt_tpi_riser = root.findViewById(R.id.lt_tpi_riser);
-        mdpe_layout = root.findViewById(R.id.mdpe_layout);
+        mdpe_layout =  root.findViewById(R.id.mdpe_layout);
         mdpe_tpi_layout = root.findViewById(R.id.mdpe_tpi_layout);
         complaintpi_layout = root.findViewById(R.id.complaintpi_layout);
         comaplaintech_layout = root.findViewById(R.id.complaintech_layout);
@@ -352,7 +352,8 @@ public class HomeFragment extends Fragment {
         ng_conversion_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent attendance=new Intent(getActivity(), NgSupStartup.class);
+              //  Intent attendance=new Intent(getActivity(), NgSupStartup.class);
+                Intent attendance=new Intent(getActivity(), NgSupListActivity.class);
                 startActivity(attendance);
             }
         });

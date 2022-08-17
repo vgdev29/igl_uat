@@ -29,7 +29,7 @@
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_kyc_resubmission.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_m_i_t_d_done.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_main.xml" value="0.18854166666666666" />
-        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_mdpe_approval.xml" value="0.16" />
+        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_mdpe_approval.xml" value="0.2" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_mdpe_declined_dpr.xml" value="0.23046875" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_mdpe_list.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/activity_mdpe_sup_host.xml" value="0.2" />
@@ -96,7 +96,7 @@
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/mdpedeclined_dpr.xml" value="0.25" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/mdpelist_adapter.xml" value="0.25" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/mdpetpi_adapter.xml" value="0.18854166666666666" />
-        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/mdpetpidpr_adapter.xml" value="0.22" />
+        <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/mdpetpidpr_adapter.xml" value="0.33" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/mitdrfcadapter.xml" value="0.2" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/new_bp_no_listing.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/animesh.anand/Documents/Android Workspace/igl-mobile-app/app/src/main/res/layout/ng_connection_layout.xml" value="0.18854166666666666" />
