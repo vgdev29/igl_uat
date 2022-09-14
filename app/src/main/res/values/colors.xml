@@ -21,7 +21,7 @@
     <color name="ng_fontcolor">#4D4D4D</color>
     <color name="color_light_gray">#ededed</color>
     <color name="future_stay_gray">#60646E</color>
-    <color name="color_primary_dark">#5555f9</color>
+    <color name="color_primary_dark">#F85555F9</color>
     <color name="color_primary_blue">#0095da</color>
     <color name="inactive_tab_text">#9EA0AB</color>
 
@@ -43,4 +43,6 @@
     <color name="fade_text2">#A11B1919</color>
     <color name="fade_text">#B67979</color>
     <color name="color_202020">#202020</color>
+
+   <!-- <color name="color_202020">#DA003366</color>-->
 </resources>
