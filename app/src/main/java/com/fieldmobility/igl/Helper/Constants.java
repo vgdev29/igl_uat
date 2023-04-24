@@ -3,14 +3,14 @@ package com.fieldmobility.igl.Helper;
 public class Constants {
     public static final boolean isDebugBuild=false; // make it FALSE while giving app to others
       //LIVE URLH
-      public static String BASE_URL="http://49.50.65.107:8081/";
+   //   public static String BASE_URL="http://49.50.65.107:8081/";
    //   public static  String BASE_URL_PYTHON = "http://49.50.65.107:8000/"; //PYTHON SERVER
      public static  String BASE_URL_PYTHON = "http://49.50.65.107:8081/ng/"; //JAVA SERVER
     public static String PYTHON_BASE_IMAGE = "http://49.50.65.107:8000/media/";
 
 
     //  UAT URL
-   //  public static String BASE_URL = "http://49.50.118.112:8080/";
+     public static String BASE_URL = "http://49.50.118.112:8080/";
       // public static String BASE_URL_PYTHON = "http://49.50.68.239:8080/";
     // public static String BASE_URL_PYTHON = "http://49.50.118.112:8080/ng/";
 
@@ -24,10 +24,10 @@ public class Constants {
     public static final int FASTEST_LOCATION_INTERVAL = 5000000;
 
     //added extra 's' at end point - incorporated on 2 OCT - prod
-     public static final String Auth_User = BASE_URL + "loginapi/authenticates";
+  //   public static final String Auth_User = BASE_URL + "loginapi/authenticates";
 
     //for uat /testing ('s' is not updated at uat environment
-  //  public static final String Auth_User = BASE_URL + "loginapi/authenticate";
+    public static final String Auth_User = BASE_URL + "loginapi/authenticate";
 
    //  public static final String Auth_User = localhost + "/authenticates";
 
@@ -97,6 +97,7 @@ public class Constants {
     public static final String CON_SUP_DETAILS = BASE_URL + "ekyc/bp_details/userDetails?";
     public static final String MITD_UPDATE = BASE_URL + "ekyc/bp_details/mitd_update/";
     public static final String BP_Creation = BASE_URL + "bpcreation/registration/bp_creation";
+   // public static final String BP_Creation = "http://172.16.0.83:8080/registration/bp_creation";
     public static final String BP_Images = BASE_URL + "bpcreation/registration/bp_images";
     public static final String Document_POST = BASE_URL + "bpcreation/registration/documents";
     public static final String BP_No_Listing = BASE_URL + "bpcreation/registration/new_registration_listing";
@@ -218,4 +219,9 @@ public class Constants {
     //NG SYNC
     public static final String NGHOLD_SYNC= BASE_URL_PYTHON + "api/jmrholdsync";
     public static final String NGDONE_SYNC= BASE_URL_PYTHON + "api/jmrdonesync";
+
+
+    //otp
+    public static final String Generate_Otp =   "http://49.50.118.112:8080/gaatha/gaatha/generateotp";
+    public static final String Verify_Otp = "http://49.50.118.112:8080/gaatha/gaatha/verifyotp";
 }

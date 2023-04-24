@@ -26,13 +26,13 @@ public class Mdpe_Tpi_Host extends TabActivity {
             }
         });
         tpibinding.headerTitle.setText("MDPE");
-     //   TabHost.TabSpec TabMenu1 = tpibinding.tabhost.newTabSpec("Allocation Claim");
+        TabHost.TabSpec TabMenu1 = tpibinding.tabhost.newTabSpec("Allocation Claim");
         TabHost.TabSpec TabMenu2 = tpibinding.tabhost.newTabSpec("DPR Approval");
         TabMenu2.setIndicator("DPR Approval");
         TabMenu2.setContent(new Intent(this, MdpeTpiDpr.class));
-      //  TabMenu1.setIndicator("Allocation Claim");
-      //  TabMenu1.setContent(new Intent(this, MdpeTpiPending.class));
-      //  tpibinding.tabhost.addTab(TabMenu1);
+        TabMenu1.setIndicator("Allocation Claim");
+        TabMenu1.setContent(new Intent(this, MdpeTpiPending.class));
+        tpibinding.tabhost.addTab(TabMenu1);
         tpibinding.tabhost.addTab(TabMenu2);
 
     }

@@ -57,6 +57,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".OtpActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.NgSupStartup"
             android:exported="false" />
         <activity
@@ -177,6 +180,10 @@
         </activity>
         <activity
             android:name=".Activity.Login_Activity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Activity.OtpActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
@@ -375,6 +382,13 @@
         <activity
             android:name=".Activity.RFC_Declined_Listing"
             android:screenOrientation="portrait" />
+
+        <service
+            android:name=".Helper.LogoutService"
+            android:exported="false"
+            android:enabled="true" />
+
+
         <!--
      <activity android:name=".Activity.CompletePlayerActivity"
                 android:showOnLockScreen="true"

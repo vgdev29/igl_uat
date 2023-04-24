@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black_31"
+        android:textSize="25sp"
+        android:layout_marginHorizontal="15dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="20dp"
+        android:textStyle="bold"
+        android:text="Otp Verification"/>
+
+    <TextView
+        android:id="@+id/otp_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black_31"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:layout_marginHorizontal="30dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="20dp"
+        android:text="Enter verification code recieved on "/>
+
+    <LinearLayout
+        android:id="@+id/root_otp_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:layout_marginHorizontal="30dp"
+        android:orientation="horizontal"
+        >
+
+        <EditText
+            android:id="@+id/otp_edit_box1"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:focusedByDefault="true"
+            android:cursorVisible="false"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textSize="30sp"
+            android:background="@drawable/edittext_curve_bg_otp">
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/otp_edit_box2"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:cursorVisible="false"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:inputType="number"
+            android:maxLength="1"
+            android:background="@drawable/edittext_curve_bg_otp"/>
+
+        <EditText
+            android:id="@+id/otp_edit_box3"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:cursorVisible="false"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:inputType="number"
+            android:maxLength="1"
+            android:background="@drawable/edittext_curve_bg_otp"/>
+
+        <EditText
+            android:id="@+id/otp_edit_box4"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:gravity="center"
+            android:cursorVisible="false"
+            android:textSize="30sp"
+            android:inputType="number"
+            android:maxLength="1"
+            android:background="@drawable/edittext_curve_bg_otp" />
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/otp_submit"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="Verify"
+        android:layout_marginHorizontal="25dp"
+        android:background="@drawable/button_login"
+        android:textColor="@color/snow_white"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginVertical="15dp"/>
+    <ProgressBar
+        android:id="@+id/progressBar_cyclic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+</LinearLayout>

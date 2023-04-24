@@ -4,7 +4,8 @@ apply plugin: 'com.google.gms.google-services'
 android {
     signingConfigs {
         release {
-            storeFile file('D:\\IGL_KEYSTORE\\igl(igl@12345).jks')
+//            storeFile file('D:\\IGL_KEYSTORE\\igl(igl@12345).jks')
+            storeFile file('/Users/apple/Documents/android/IGL/IGL_KEYSTORE/igl(igl@12345).jks')
             storePassword 'igl@12345'
             keyAlias = 'igl(igl@12345)'
             keyPassword 'igl@12345'

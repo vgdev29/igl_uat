@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -38,10 +39,14 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.fieldmobility.igl.Helper.AppController;
 import com.fieldmobility.igl.Helper.Constants;
+import com.fieldmobility.igl.Helper.CustomRequest;
 import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.MainActivity;
+import com.fieldmobility.igl.Model.Otp;
+import com.fieldmobility.igl.Model.OtpResponse;
 import com.fieldmobility.igl.R;
 import com.fieldmobility.igl.utils.Utils;
+import com.google.gson.Gson;
 import com.nabinbhandari.android.permissions.PermissionHandler;
 import com.nabinbhandari.android.permissions.Permissions;
 
@@ -77,7 +82,7 @@ public class Login_Activity extends Activity {
     ScrollView login_layout;
     LinearLayout permission_layout;
     Button allow_permission;
-
+    private ProgressDialog progressDialog_submit;
 
     public static final int REQUEST_CODE_PERMISSIONS = 101;
     @Override
@@ -299,7 +304,7 @@ public class Login_Activity extends Activity {
                     @Override
                     public void onResponse(String response) {
                         progressDialog.dismiss();
-
+                        Log.d(log,"response = "+response.toString());
                         //User_Admin_Id="2";
                         try {
                             JSONObject json = new JSONObject(response);
@@ -319,15 +324,26 @@ public class Login_Activity extends Activity {
                             startActivity(intent);
                             ///finish();*/
                           //  Toast.makeText(Login_Activity.this, "" + "Succesfully Login", Toast.LENGTH_SHORT).show();
+
+                            int status = json.getInt("status");
                             if(sharedPrefs.getType_User().equals("WEB")){
                                 sharedPrefs.setLoginStatus("false");
 
                                 Toast.makeText(Login_Activity.this, "" + "Login Failed", Toast.LENGTH_SHORT).show();
 
-                            }else {
+                            }
+                            else if(status==0){
+                                sharedPrefs.setLoginStatus("false");
+
+                                Toast.makeText(Login_Activity.this, "" + "User Blocked. Contact Admin!!!", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+
+                                //changes done fr poc date - 15 mar 23 by Animesh
+                              //  otpnetworkCall(sharedPrefs.getMobile());
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(intent);
-                                ///finish();
+                                finish();
                                 Toast.makeText(Login_Activity.this, "" + "Succesfully Login", Toast.LENGTH_SHORT).show();
                             }
                             //sharedPrefs.setState(json_paylode.getString("Status"));
@@ -541,5 +557,73 @@ public class Login_Activity extends Activity {
             }
         });
 
+    }
+
+
+    public void otpnetworkCall(final String mobile) {
+        progressDialog_submit = new ProgressDialog(Login_Activity.this);
+        progressDialog_submit.setMessage("Please Wait...");
+        progressDialog_submit.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog_submit.setCancelable(false);
+        progressDialog_submit.show();
+        String url = Constants.Generate_Otp;
+        JSONObject object_mob = new JSONObject();
+        try {
+            object_mob.put("mobileNo", mobile);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, object_mob,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        progressDialog_submit.dismiss();
+                        try {
+                            int status = response.getInt("status");
+                            Log.d("otp", ""+status);
+                            if (status==200) {
+
+                                OtpResponse resp = new Gson().fromJson(response.toString(),OtpResponse.class);
+                                Otp otp = resp.getData();
+                                Intent intent = new Intent(Login_Activity.this, OtpActivity.class);
+                                intent.putExtra("otp", otp);
+                                startActivity(intent);
+                            }
+                            else
+                            {
+                                String msg = response.getString("message");
+                                toast_msg(msg);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                progressDialog_submit.dismiss();
+                toast_msg(error.getLocalizedMessage());
+                Log.d("Reserterror0", "error in reseting pwd ");
+                // networkCall(email);
+            }
+
+
+        });
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                12000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        CustomRequest.getInstance(this).addToRequestQue(jsonObjectRequest);
+
+
+    }
+
+    public void toast_msg(String msg) {
+        Toast toast = Toast.makeText(this, msg, Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
     }
 }

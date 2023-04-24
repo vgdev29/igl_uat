@@ -22,6 +22,7 @@ import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Messenger;
@@ -43,6 +44,7 @@ import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
+import com.fieldmobility.igl.Helper.LogoutService;
 import com.fieldmobility.igl.R;
 import com.fieldmobility.igl.Activity.Login_Activity;
 import com.fieldmobility.igl.Activity.Tracking_Activity;
@@ -101,10 +103,13 @@ public class MainActivity extends AppCompatActivity {
     Timer timer;
     TimerTask doAsynchronousTask;
     AppUpdateManager   appUpdateManager;
+    LogoutService logoutService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         sharedPrefs=new SharedPrefs(this);
         CustomBottomNavigationView1 customBottomNavigationView1 = findViewById(R.id.customBottomBar);
         customBottomNavigationView1.inflateMenu(R.menu.bottom_menu);
@@ -112,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
         customBottomNavigationView1.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         inAppUpdate();
         loadFragment(new HomeFragment());
+
+
 
     //    mHandler = new IncomingMessageHandler();
 
@@ -130,6 +137,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         requestCameraAndStorage();
+
+
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -271,6 +281,7 @@ public class MainActivity extends AppCompatActivity {
         inAppUpdate();
         super.onResume();
         Log.d("mainactivity","on resume");
+      //  timers.start();
         //  startStep1();
     }
     /**
@@ -398,6 +409,12 @@ public class MainActivity extends AppCompatActivity {
         stopService(new Intent(MainActivity.this, LocationMonitoringService.class));
         mAlreadyStartedService = false;
         super.onDestroy();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // timers.cancel();
     }
     /*class IncomingMessageHandler extends Handler {
         @Override

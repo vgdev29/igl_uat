@@ -27,6 +27,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -206,6 +207,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
     EditText fname,mname,lname,mob,email;
     CheckBox cb_supConsent ;
     Button updateMob;
+    String mId = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -213,6 +215,8 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
         setContentView(R.layout.rfc_connection_layout);
         sharedPrefs = new SharedPrefs(this);
         Layout_Id();
+          mId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+        Log.d(LOG,"mId  = "+ mId);
         rfcAdmin = getIntent().getStringExtra("rfcAdmin");
         getLocationWithoutInternet();
         getLocationUsingInternet();
@@ -1015,7 +1019,9 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                         File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
                         Log.d(LOG,"Camera_Path1++"+ file.toString());
                         image_path_string = file.toString();
-                        time_stemp_text.setText(getIntent().getStringExtra("First_name") + " " + getIntent().getStringExtra("Last_name") + "|" + Latitude + "|" + Longitude + "|" + Current_Time + "|" + Current_Date + "|" + getIntent().getStringExtra("Bp_number"));
+
+
+                        time_stemp_text.setText(getIntent().getStringExtra("First_name") + " " + getIntent().getStringExtra("Last_name") + "|" + Latitude + "|" + Longitude + "|" + Current_Time + "|" + Current_Date + "|" + getIntent().getStringExtra("Bp_number")+" |"+mId);
 
                         try {
                             outFile = new FileOutputStream(file);
@@ -1045,7 +1051,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                        select_image.setImageBitmap(scaled);
                         image_path_string = getPath1(RFC_Connection_Activity.this,filePathUri_id);
                         Log.d("bpcreation", "imagepath id pick image = " + image_path_string);
-                        time_stemp_text.setText(getIntent().getStringExtra("First_name") + " " + getIntent().getStringExtra("Last_name") + "|" + Latitude + "|" + Longitude + "|" + Current_Time + "|" + Current_Date + "|" + getIntent().getStringExtra("Bp_number")+" | GALLERY");
+                        time_stemp_text.setText(getIntent().getStringExtra("First_name") + " " + getIntent().getStringExtra("Last_name") + "|" + Latitude + "|" + Longitude + "|" + Current_Time + "|" + Current_Date + "|" + getIntent().getStringExtra("Bp_number")+" | GALLERY"+" |"+mId);
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -1075,7 +1081,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                         image_path_string1 = file.toString();
                         // image_path_address1 =file.toString();
                         // TPI_Multipart(filePath_img_string);
-                        time_stemp_text1.setText(getIntent().getStringExtra("First_name") + " " + getIntent().getStringExtra("Last_name") + "|" + Latitude + "|" + Longitude + "|" + Current_Time + "|" + Current_Date + "|" + getIntent().getStringExtra("Bp_number"));
+                        time_stemp_text1.setText(getIntent().getStringExtra("First_name") + " " + getIntent().getStringExtra("Last_name") + "|" + Latitude + "|" + Longitude + "|" + Current_Time + "|" + Current_Date + "|" + getIntent().getStringExtra("Bp_number")+" |"+mId);
 
                         try {
                             outFile = new FileOutputStream(file);
@@ -1104,7 +1110,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                         select_image1.setImageBitmap(scaled);
                         image_path_string1 = getPath1(RFC_Connection_Activity.this,filePathUri_id);
                         Log.d("bpcreation", "imagepath id pick image = " + image_path_string1);
-                        time_stemp_text1.setText(getIntent().getStringExtra("First_name") + " " + getIntent().getStringExtra("Last_name") + "|" + Latitude + "|" + Longitude + "|" + Current_Time + "|" + Current_Date + "|" + getIntent().getStringExtra("Bp_number")+" | GALLERY");
+                        time_stemp_text1.setText(getIntent().getStringExtra("First_name") + " " + getIntent().getStringExtra("Last_name") + "|" + Latitude + "|" + Longitude + "|" + Current_Time + "|" + Current_Date + "|" + getIntent().getStringExtra("Bp_number")+" | GALLERY"+" |"+mId);
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -1134,7 +1140,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                         image_path_string2 = file.toString();
                         // image_path_address1 =file.toString();
                         // TPI_Multipart(filePath_img_string);
-                        time_stemp_text2.setText(getIntent().getStringExtra("First_name") + " " + getIntent().getStringExtra("Last_name") + "|" + Latitude + "|" + Longitude + "|" + Current_Time + "|" + Current_Date + "|" + getIntent().getStringExtra("Bp_number"));
+                        time_stemp_text2.setText(getIntent().getStringExtra("First_name") + " " + getIntent().getStringExtra("Last_name") + "|" + Latitude + "|" + Longitude + "|" + Current_Time + "|" + Current_Date + "|" + getIntent().getStringExtra("Bp_number")+" |"+mId);
 
                         try {
                             outFile = new FileOutputStream(file);
@@ -1163,7 +1169,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                         select_image2.setImageBitmap(scaled);
                         image_path_string2 = getPath1(RFC_Connection_Activity.this,filePathUri_id);
                         Log.d("bpcreation", "imagepath id pick image = " + image_path_string2);
-                        time_stemp_text2.setText(getIntent().getStringExtra("First_name") + " " + getIntent().getStringExtra("Last_name") + "|" + Latitude + "|" + Longitude + "|" + Current_Time + "|" + Current_Date + "|" + getIntent().getStringExtra("Bp_number")+" | GALLERY");
+                        time_stemp_text2.setText(getIntent().getStringExtra("First_name") + " " + getIntent().getStringExtra("Last_name") + "|" + Latitude + "|" + Longitude + "|" + Current_Time + "|" + Current_Date + "|" + getIntent().getStringExtra("Bp_number")+" | GALLERY"+" |"+mId);
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -1193,7 +1199,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                         image_path_string3 = file.toString();
                         // image_path_address1 =file.toString();
                         // TPI_Multipart(filePath_img_string);
-                        time_stemp_text3.setText(getIntent().getStringExtra("First_name") + " " + getIntent().getStringExtra("Last_name") + "|" + Latitude + "|" + Longitude + "|" + Current_Time + "|" + Current_Date + "|" + getIntent().getStringExtra("Bp_number"));
+                        time_stemp_text3.setText(getIntent().getStringExtra("First_name") + " " + getIntent().getStringExtra("Last_name") + "|" + Latitude + "|" + Longitude + "|" + Current_Time + "|" + Current_Date + "|" + getIntent().getStringExtra("Bp_number")+" |"+mId);
 
                         try {
                             outFile = new FileOutputStream(file);
@@ -1222,7 +1228,7 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                         select_image3.setImageBitmap(scaled);
                         image_path_string3 = getPath1(RFC_Connection_Activity.this,filePathUri_id);
                         Log.d("bpcreation", "imagepath id pick image = " + image_path_string3);
-                        time_stemp_text3.setText(getIntent().getStringExtra("First_name") + " " + getIntent().getStringExtra("Last_name") + "|" + Latitude + "|" + Longitude + "|" + Current_Time + "|" + Current_Date + "|" + getIntent().getStringExtra("Bp_number")+" | GALLERY");
+                        time_stemp_text3.setText(getIntent().getStringExtra("First_name") + " " + getIntent().getStringExtra("Last_name") + "|" + Latitude + "|" + Longitude + "|" + Current_Time + "|" + Current_Date + "|" + getIntent().getStringExtra("Bp_number")+" | GALLERY"+" |"+mId);
 
                     } catch (IOException e) {
                         e.printStackTrace();
