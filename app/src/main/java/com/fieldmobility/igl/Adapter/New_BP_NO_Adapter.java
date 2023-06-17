@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fieldmobility.igl.Activity.Bp_Created_Detail;
 import com.fieldmobility.igl.Activity.DocumentResumissionDetail;
+import com.fieldmobility.igl.Activity.DocumentStatusActivity;
 import com.fieldmobility.igl.Activity.Document_varification_Detail;
 import com.fieldmobility.igl.MataData.Bp_No_Item;
 import com.fieldmobility.igl.R;
@@ -76,8 +77,8 @@ public class New_BP_NO_Adapter extends RecyclerView.Adapter<New_BP_NO_Adapter.Vi
             public void onClick(View v) {
                 String dataJson = new Gson().toJson(bp_no_list_array.get(position));
                 Intent intent;
-
-                intent = new Intent(context, isForResubmition ? DocumentResumissionDetail.class : Bp_Created_Detail.class);
+             //animesh - 9 may 23
+                intent = new Intent(context, isForResubmition ? DocumentStatusActivity.class : Bp_Created_Detail.class); //DocumentStatusActivity.class);
                 intent.putExtra("data", dataJson);
                 context.startActivity(intent);
             }

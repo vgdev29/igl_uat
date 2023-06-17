@@ -1,5 +1,7 @@
 package com.fieldmobility.igl.Helper;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 public class Constants {
     public static final boolean isDebugBuild=false; // make it FALSE while giving app to others
       //LIVE URLH
@@ -224,4 +226,15 @@ public class Constants {
     //otp
     public static final String Generate_Otp =   "http://49.50.118.112:8080/gaatha/gaatha/generateotp";
     public static final String Verify_Otp = "http://49.50.118.112:8080/gaatha/gaatha/verifyotp";
+
+
+    //Document Resubmision
+    public static final String Doc_Resub_Status = BASE_URL + "bpcreation/registration/igl_status_doclist/";
+  //  public static final String Doc_Resub_Status = "http://192.168.29.202:8080/"+ "registration/igl_status_doclist/";
+
+
+     public static final String Doc_Resub_Submit = BASE_URL + "bpcreation/registration/bpcrecat?CAT_ID=";
+   // public static final String Doc_Resub_Submit = "http://192.168.29.202:8080/"+ "registration/bpcrecat?CAT_ID=";
+
+
 }

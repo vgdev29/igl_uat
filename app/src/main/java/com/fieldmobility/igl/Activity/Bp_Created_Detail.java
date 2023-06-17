@@ -98,8 +98,14 @@ public class Bp_Created_Detail extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bp_created_detail);
         String dataJson = getIntent().getStringExtra("data");
+        Log.d("dataJson","datajspn  = "+dataJson);
         lt_proof_detail = findViewById(R.id.lt_proof_detail);
         lt_resubmit = findViewById(R.id.lt_resubmit);
+        if (dataJson != null && !dataJson.isEmpty()) {
+            bp_No_Item = new Gson().fromJson(dataJson, Bp_No_Item.class);
+            initViews();
+
+        }
         if (dataJson != null && !dataJson.isEmpty()) {
             bp_No_Item = new Gson().fromJson(dataJson, Bp_No_Item.class);
             hasImageData = bp_No_Item.isImages();
@@ -159,13 +165,14 @@ public class Bp_Created_Detail extends Activity {
         ((TextView) findViewById(R.id.tv_address_proof_type)).setText(bp_No_Item.getAddressProof());
         owner = findViewById(R.id.owner);
         rents = findViewById(R.id.rents);
-        if(bp_No_Item.getProperty_type().equalsIgnoreCase("Rented"))
+        if(bp_No_Item.getProperty_type()==null||bp_No_Item.getProperty_type().equalsIgnoreCase("null"))
+
         {
-            rents.setChecked(true);
+            owner.setChecked(true);
         }
         else
         {
-            owner.setChecked(true);
+            rents.setChecked(true);
         }
         ImageView iv_id_proof = findViewById(R.id.iv_id_proof);
         id_image.setOnClickListener(new View.OnClickListener() {

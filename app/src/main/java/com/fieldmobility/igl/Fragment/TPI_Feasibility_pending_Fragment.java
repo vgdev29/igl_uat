@@ -216,7 +216,7 @@ public class TPI_Feasibility_pending_Fragment extends Fragment {
                                     bp_no_item.setAddressProof(data_object.getString("addressProof"));
                                     bp_no_item.setIdproof(data_object.getString("idproof"));
                                     bp_no_item.setIgl_code_group(data_object.getString("igl_code_group"));
-                                    bp_no_item.setFesabilityDate(data_object.getString("assigndate"));
+                                //    bp_no_item.setFesabilityDate(data_object.getString("assigndate"));
                                     bp_no_item.setControlRoom(data_object.getString("controlRoom"));
                                     bpDetails.add(bp_no_item);
                                 }

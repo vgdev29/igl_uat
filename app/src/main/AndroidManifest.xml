@@ -57,6 +57,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".DocumentStatusActivity"
+            android:exported="false" />
+        <activity
             android:name=".OtpActivity"
             android:exported="false" />
         <activity
@@ -377,6 +380,9 @@
             android:name=".Activity.PoolTask_Activity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".Activity.DocumentStatusActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".Activity.TPI_Approval_Activity"
             android:screenOrientation="portrait" />
         <activity
@@ -385,10 +391,8 @@
 
         <service
             android:name=".Helper.LogoutService"
-            android:exported="false"
-            android:enabled="true" />
-
-
+            android:enabled="true"
+            android:exported="false" />
         <!--
      <activity android:name=".Activity.CompletePlayerActivity"
                 android:showOnLockScreen="true"
