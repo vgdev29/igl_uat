@@ -484,7 +484,7 @@ public class TPI_RfcDone_Approval_Activity extends Activity {
         }
         else if (statcode.equalsIgnoreCase("3")){statcode = "4";}
         Log.d("rfc","statcode = "+statcode);
-        String url =  Constants.TPI_RFC_APPROVAl_DECLINE_CASE1 + "?lead_no"+lead_no+"&bp_no="+bp_no+"&status="+status+"&meterNo="+meter_no+"&statcode="+statcode;
+        String url =  Constants.TPI_RFC_APPROVAl_DECLINE_CASE1 + "?lead_no="+lead_no+"&bp_no="+bp_no+"&status="+status+"&meterNo="+meter_no+"&statcode="+statcode;
         Log.d("tpi approve = ","tpi deline url = "+url);
         materialDialog.show();
         try {
