@@ -179,7 +179,7 @@
                     android:background="@drawable/shape_blue_border"
                     android:hint="Father's/Husband Name"
                     android:inputType="textCapWords"
-                    android:maxLength="12"
+                    android:maxLength="40"
                     android:paddingLeft="@dimen/_5sdp"
                     android:singleLine="true"
                     android:textSize="@dimen/_10sdp" />

@@ -12,14 +12,14 @@ public class Constants {
 
 
     //  UAT URL
-  //   public static String BASE_URL = "http://49.50.118.112:8080/";
+   //  public static String BASE_URL = "http://49.50.118.112:8080/";
       // public static String BASE_URL_PYTHON = "http://49.50.68.239:8080/";
     // public static String BASE_URL_PYTHON = "http://49.50.118.112:8080/ng/";
 
 
 
     //local
-      static String localhost = "http://172.16.0.83:8081/";
+     // static String localhost = "http://172.16.0.83:8081/";
 //   public static String BASE_URL_PYTHON = "http://192.168.31.29:8080/";
 
     public static final int LOCATION_INTERVAL = 100000000;
@@ -93,8 +93,8 @@ public class Constants {
     public static final String TPI_RFC_APPROVAl = BASE_URL + "ekyc/bp_details/rfc_onHold_Listings/";
     public static final String TPI_RFCDONE_APPROVAl_Data = BASE_URL + "ekyc/bp_details/Tpi_Listing_Done?bpno=";
 
-   // public static final String TPI_RFC_APPROVAl_DECLINE_CASE1 = BASE_URL + "ekyc/bp_details/TPI_ApprovalDecline_CASE1";
-    public static final String TPI_RFC_APPROVAl_DECLINE_CASE1 = localhost + "bp_details/TPI_ApprovalDecline_CASE1";
+    public static final String TPI_RFC_APPROVAl_DECLINE_CASE1 = BASE_URL + "ekyc/bp_details/TPI_ApprovalDecline_CASE1";
+   // public static final String TPI_RFC_APPROVAl_DECLINE_CASE1 = localhost + "bp_details/TPI_ApprovalDecline_CASE1";
     public static final String TPI_RFC_HOLD_APPROVAl_DECLINE_CASE2 = BASE_URL + "ekyc/bp_details/TPI_ApprovalDecline_CASE2";
     public static final String TPI_RFCHOLD_APPROVAl_Data = BASE_URL + "ekyc/bp_details/Tpi_Listing_Hold?bpno=";
     public static final String TPI_DECLINE = BASE_URL + "ekyc/bp_details/TPI_Decline";

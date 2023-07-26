@@ -66,6 +66,8 @@ import com.fieldmobility.igl.MainActivity;
 import com.fieldmobility.igl.Model.User_bpData;
 import com.fieldmobility.igl.R;
 import com.fieldmobility.igl.utils.FilePath;
+import com.hbisoft.pickit.PickiT;
+import com.hbisoft.pickit.PickiTCallbacks;
 import com.iceteck.silicompressorr.SiliCompressor;
 import com.kyanogen.signatureview.SignatureView;
 import com.vincent.filepicker.Constant;
@@ -101,7 +103,7 @@ import java.util.UUID;
 
 import static android.os.Environment.getExternalStorageDirectory;
 
-public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnItemSelectedListener {
+public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnItemSelectedListener, PickiTCallbacks {
     MaterialDialog materialDialog;
     ImageView id_imageView, address_imageView, customer_signature_imageview, owner_signature_imageview;
     Button customer_signature_button, id_button, address_button, viewpdf_button;
@@ -155,7 +157,8 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
     Button owner_sign_button, btn_upload_cheque;
     User_bpData user_bpData;
     String Latitude, Longitude;
-
+    //Animesh for pdf selection
+    PickiT pickiT;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -228,8 +231,13 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         ll_ownersig = findViewById(R.id.ll_ownersig);
         owner_sign_button = findViewById(R.id.owner_signature_button);
 
+        //Initialize PickiT
+        //context, listener, activity
+        pickiT = new PickiT(this, this, this);
 
         Click_Event();
+
+
 
     }
 
@@ -506,7 +514,9 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
         Intent intent = new Intent();
         intent.setType("application/pdf");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select PDF"), REQUEST_CODE_PDF_PICKER);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+     //   startActivityForResult(Intent.createChooser(intent, "Select PDF"), REQUEST_CODE_PDF_PICKER);
+        startActivityForResult(intent, REQUEST_CODE_PDF_PICKER);
       /*  Intent intent4 = new Intent(this, NormalFilePickActivity.class);
         intent4.putExtra(Constant.MAX_NUMBER, 1);
         intent4.putExtra(NormalFilePickActivity.SUFFIX, new String[]{"pdf"});
@@ -750,10 +760,12 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                 if (requestCode == REQUEST_CODE_PDF_PICKER && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
                     Uri pdf_uri = data.getData();
                     Log.d("bpcreation","pdf uri = "+pdf_uri);
-                  //  pdf_path = FilePath.getPath(this, pdf_uri);
-                    pdf_path = pdf_uri.getPath();
 
-                    Log.d("bpcreation","pdf path = "+pdf_uri);
+                    pdf_path = pdf_uri.getPath();
+                    pickiT.getPath(data.getData(), Build.VERSION.SDK_INT);
+
+                    Log.d("bpcreation","pdf path = "+pdf_path);
+
                     tv_pdf_path.setText(pdf_path);
                     Log.d("bpcreation", "imagepath id pick image = " + image_path_id);
 
@@ -776,6 +788,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                 if (requestCode == PICK_IMAGE_REQUEST_ID && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
                     filePathUri_id = data.getData();
                     try {
+
                         bitmap_id = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathUri_id);
                         bitmap_id = getResizedBitmap(bitmap_id, 1600);
                         id_imageView.setImageBitmap(bitmap_id);
@@ -837,6 +850,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                 if (requestCode == PICK_IMAGE_REQUEST_CHEQUE && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
                     filePathUri_cheque = data.getData();
                     try {
+
                         bitmap_cheque = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathUri_cheque);
                         iv_cheque.setImageBitmap(bitmap_cheque);
                        // image_path_cheque = getPath(filePathUri_cheque);
@@ -878,6 +892,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     filePathUri_address = data.getData();
                     Log.e("Camera_Pathaddress++", filePathUri_address.toString());
                     try {
+
                         bitmap_address = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePathUri_address);
                         // imageView.setImageBitmap(bitmap);
                         address_imageView.setImageBitmap(bitmap_address);
@@ -1221,6 +1236,52 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
             }
         });
         dialog.show();
+    }
+
+    @Override
+    public void PickiTonUriReturned() {
+
+    }
+
+    @Override
+    public void PickiTonStartListener() {
+
+    }
+
+    @Override
+    public void PickiTonProgressUpdate(int i) {
+
+    }
+
+    @Override
+    public void PickiTonCompleteListener(String path, boolean wasDriveFile, boolean wasUnknownProvider, boolean wasSuccessful, String reason) {
+        //  Check if it was a Drive/local/unknown provider file and display a Toast
+        if (wasDriveFile) {
+            Log.d("bpcreation","Drive file was selected");
+        }
+        else if (wasUnknownProvider) {
+
+            Log.d("bpcreation","File was selected from unknown provider");
+        } else {
+            Log.d("bpcreation","Local file was selected");
+        }
+
+        //  Chick if it was successful
+        if (wasSuccessful) {
+            //  Set returned path to TextView
+            Log.d("bpcreation","pickit path = "+path);
+            if (path.contains("/proc/")) {
+             //   pickitTv.setText("Sub-directory inside Downloads was selected." + "\n" + " We will be making use of the /proc/ protocol." + "\n" + " You can use this path as you would normally." + "\n\n" + "PickiT path:" + "\n" + path);
+           pdf_path = path;
+            } else {
+                pdf_path = path;
+            }
+    }
+    }
+
+    @Override
+    public void PickiTonMultipleCompleteListener(ArrayList<String> arrayList, boolean b, String s) {
+        Log.d("bpcreation","pickit path multiple = "+arrayList.toString());
     }
 
     class ImageCompressionAsyncTask extends AsyncTask<String, Void, String> {
@@ -1622,6 +1683,15 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
     protected void onDestroy() {
         super.onDestroy();
         Log.d("bpcreation", "on destroy");
+        if (!isChangingConfigurations()) {
+            pickiT.deleteTemporaryFile(this);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        pickiT.deleteTemporaryFile(this);
+        super.onBackPressed();
     }
 
     public Bitmap getResizedBitmap(Bitmap bitmap, int maxSize) {
