@@ -92,6 +92,17 @@
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:textStyle="bold"
                     android:textSize="@dimen/_13sdp"/>
+                <TextView
+                    android:id="@+id/customerType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black_31"
+                    android:text="Customer Type"
+                    android:textIsSelectable="true"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textStyle="italic"
+                    android:textSize="10sp"/>
 
             </LinearLayout>
             <LinearLayout

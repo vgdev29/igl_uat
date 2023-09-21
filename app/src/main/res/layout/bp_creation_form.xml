@@ -46,11 +46,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/green"
+                android:background="@color/peach_light"
                 android:gravity="center"
                 android:padding="@dimen/_5sdp"
                 android:text="Personal Details"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_14sdp"
                 android:textStyle="bold" />
 
@@ -58,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:weightSum="3">
 
 
@@ -66,13 +66,15 @@
                     android:id="@+id/fullname"
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_25sdp"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_3sdp"
+                    android:layout_marginLeft="@dimen/_3sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:paddingLeft="@dimen/_5sdp"
                     android:layout_weight="1"
                     android:background="@drawable/background_input_mandatory"
                     android:hint="First Name"
                     android:inputType="textCapCharacters"
-                    android:paddingLeft="@dimen/_5sdp"
+
                     android:singleLine="true"
                     android:textSize="@dimen/_10sdp" />
 
@@ -82,12 +84,13 @@
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_25sdp"
                     android:layout_marginLeft="@dimen/_3sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_5sdp"
+                    android:paddingLeft="@dimen/_5sdp"
                     android:layout_weight="1"
                     android:background="@drawable/shape_blue_border"
                     android:hint="Middle Name"
                     android:inputType="textCapCharacters"
-                    android:paddingLeft="@dimen/_5sdp"
                     android:singleLine="true"
                     android:textSize="@dimen/_10sdp" />
 
@@ -97,12 +100,13 @@
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_25sdp"
                     android:layout_marginLeft="@dimen/_3sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_5sdp"
+                    android:paddingLeft="@dimen/_5sdp"
                     android:layout_weight="1"
                     android:background="@drawable/background_input_mandatory"
                     android:hint="Last Name"
                     android:inputType="textCapCharacters"
-                    android:paddingLeft="@dimen/_5sdp"
                     android:singleLine="true"
                     android:textSize="@dimen/_10sdp" />
 
@@ -155,11 +159,11 @@
                 android:layout_marginLeft="@dimen/_3sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_5sdp"
+                android:paddingLeft="@dimen/_5sdp"
                 android:layout_weight="1"
                 android:background="@drawable/shape_blue_border"
                 android:hint="Email Id"
                 android:inputType="textCapCharacters"
-                android:paddingLeft="@dimen/_5sdp"
                 android:singleLine="true"
                 android:textSize="@dimen/_10sdp" />
 
@@ -215,19 +219,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:background="@color/green"
+                android:background="@color/peach_light"
                 android:gravity="center"
                 android:padding="@dimen/_5sdp"
                 android:text="Address Details"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_14sdp"
                 android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2">
+                android:orientation="vertical"
+                >
 
                 <TextView
                     android:layout_width="match_parent"
@@ -238,26 +242,6 @@
                     android:text="Select City"
                     android:textColor="@color/dark_gray"
                     android:textSize="@dimen/_10sdp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_weight="1"
-                    android:padding="@dimen/_1sdp"
-                    android:text="Select Area "
-                    android:textColor="@color/dark_gray"
-                    android:textSize="@dimen/_10sdp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_30sdp"
@@ -290,6 +274,25 @@
                         android:layout_marginRight="@dimen/_5sdp"
                         android:background="@drawable/dropdown" />
                 </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/_1sdp"
+                    android:text="Select Area "
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/_10sdp" />
 
                 <LinearLayout
                     android:layout_width="fill_parent"
@@ -344,8 +347,76 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal"
-                android:weightSum="2">
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/_1sdp"
+                    android:text="Select Society "
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/_10sdp" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_input_mandatory"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <!--                    <Spinner-->
+                    <!--                        android:id="@+id/spinner_area"-->
+                    <!--                        android:layout_width="@dimen/_130sdp"-->
+                    <!--                        android:layout_height="@dimen/_26sdp"-->
+                    <!--                        android:layout_margin="3dp"-->
+                    <!--                        android:layout_marginRight="@dimen/_5sdp"-->
+                    <!--                        android:layout_weight=".2"-->
+                    <!--                        android:spinnerMode="dialog"-->
+                    <!--                        android:autofillHints="City/Region"-->
+                    <!--                        android:layout_marginLeft="@dimen/_5sdp"-->
+                    <!--                        android:background="@drawable/shape_white"-->
+                    <!--                        android:dropDownSelector="@null"-->
+                    <!--                        />-->
+                    <TextView
+                        android:id="@+id/tv_select_society"
+                        android:layout_width="@dimen/_130sdp"
+                        android:layout_height="@dimen/_26sdp"
+                        android:layout_margin="3dp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_weight=".2"
+                        android:background="@drawable/shape_white"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/_4sdp"
+                        android:text="Select Society"
+                        android:textColor="@color/black_31"
+                        android:textSize="13sp"></TextView>
+
+                    <ImageView
+                        android:layout_width="@dimen/_11sdp"
+                        android:layout_height="@dimen/_11sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:background="@drawable/dropdown" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
 
                 <TextView
                     android:layout_width="match_parent"
@@ -356,26 +427,6 @@
                     android:text="Select Society"
                     android:textColor="@color/dark_gray"
                     android:textSize="@dimen/_10sdp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_weight="1"
-                    android:padding="@dimen/_1sdp"
-                    android:text="Landmark"
-                    android:textColor="@color/dark_gray"
-                    android:textSize="@dimen/_10sdp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_30sdp"
@@ -395,6 +446,7 @@
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:layout_weight=".2"
+
                         android:autofillHints="City/Region"
                         android:background="@drawable/shape_white"
                         android:dropDownSelector="@null"
@@ -410,10 +462,31 @@
                         android:background="@drawable/dropdown" />
                 </LinearLayout>
 
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:orientation="vertical"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/_1sdp"
+                    android:text="Landmark"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/_10sdp" />
+
+
                 <EditText
                     android:id="@+id/landmark"
                     android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_5sdp"
                     android:layout_weight="1"
@@ -514,7 +587,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:weightSum="2">
 
                 <TextView
@@ -526,25 +599,6 @@
                     android:text="Select Block Tower"
                     android:textColor="@color/dark_gray"
                     android:textSize="@dimen/_10sdp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_weight="1"
-                    android:padding="@dimen/_1sdp"
-                    android:text="Select Floor"
-                    android:textColor="@color/dark_gray"
-                    android:textSize="@dimen/_10sdp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal"
-                android:weightSum="2">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -625,6 +679,27 @@
                 </LinearLayout>
 
 
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:orientation="vertical"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/_1sdp"
+                    android:text="Select Floor"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/_10sdp" />
+
+
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_30sdp"
@@ -666,7 +741,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:weightSum="2">
 
                 <TextView
@@ -679,24 +754,6 @@
                     android:textColor="@color/dark_gray"
                     android:textSize="@dimen/_10sdp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_weight="1"
-                    android:padding="@dimen/_1sdp"
-                    android:text="Pin Code"
-                    android:textColor="@color/dark_gray"
-                    android:textSize="@dimen/_10sdp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal"
-                android:weightSum="2">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -778,10 +835,31 @@
                 </LinearLayout>
 
 
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:orientation="vertical"
+                android:weightSum="2">
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/_1sdp"
+                    android:text="Pin Code"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/_10sdp" />
                 <EditText
                     android:id="@+id/pincode"
                     android:layout_width="fill_parent"
-                    android:layout_height="@dimen/_29sdp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_5sdp"
                     android:layout_weight="1"
@@ -793,6 +871,21 @@
                     android:textSize="@dimen/_10sdp" />
 
             </LinearLayout>
+
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/peach_light"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:text="Type of Customer"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -965,20 +1058,6 @@
                     android:textSize="@dimen/_10sdp" />
 
             </LinearLayout>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:background="@color/green"
-                android:gravity="center"
-                android:padding="@dimen/_5sdp"
-                android:text="Type of Customer"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_14sdp"
-                android:textStyle="bold" />
-
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/_30sdp"

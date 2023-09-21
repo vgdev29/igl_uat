@@ -119,7 +119,7 @@ public class TPI_Connection_Activity  extends Activity {
     Bitmap bitmap;
     JSONArray jsonArray_SubMaster;
     String TPI_Status_Code,Address,Feasibility_Type;
-    TextView bp_no_text,address_text,header_text,start_date, start_time;
+    TextView bp_no_text,address_text,header_text,start_date, start_time,customerType;
     String complete_igl_code,complete_igl_code_group,complete_igl_catagory,complete_catid,pipeline_catagory,bpno;
     private String Latitude;
     private String Longitude;
@@ -128,7 +128,7 @@ public class TPI_Connection_Activity  extends Activity {
     LinearLayout ll_hold_layout;
     TimePickerDialog pickerDialog_Time;
     DatePickerDialog pickerDialog_Date;
-     String am_pm1 = "" , cat_master="";
+     String am_pm1 = "" , cat_master="" , customertype = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,6 +149,7 @@ public class TPI_Connection_Activity  extends Activity {
         bp_no_text=findViewById(R.id.bp_no_text);
         address_text=findViewById(R.id.address_text);
         header_text=findViewById(R.id.header_text);
+        customerType = findViewById(R.id.customerType);
         header_text.setText("Feasibility Pending");
         radioGroup = findViewById(R.id.radioGroup);
         Type_Of_Master=new ArrayList<>();
@@ -165,6 +166,8 @@ public class TPI_Connection_Activity  extends Activity {
 
         address_text.setText(Address);
         bp_no_text.setText(getIntent().getStringExtra("Bp_number"));
+        customertype = getIntent().getStringExtra("Customer_type");
+        customerType.setText(customertype);
         bpno = getIntent().getStringExtra("Bp_number");
         CatID_Master=new ArrayList<>();
         Igl_Code_Master=new ArrayList<>();
@@ -317,6 +320,11 @@ public class TPI_Connection_Activity  extends Activity {
         Igl_Code_Group_Master.clear();
         Igl_Catalog_Master.clear();
         CatID_Master.clear();
+        if (customertype.equalsIgnoreCase("OUTSIDE PLUG")){
+            TPI_Status_Code = "2";
+        }else{
+            TPI_Status_Code = "0";
+        }
         materialDialog = new MaterialDialog.Builder(TPI_Connection_Activity.this)
                 .content("Please wait....")
                 .progress(true, 0)

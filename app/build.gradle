@@ -11,18 +11,21 @@ android {
             keyPassword 'igl@12345'
         }
     }
-    dataBinding {
+   /* dataBinding {
         enabled true
     }
-    compileSdkVersion 30
+    viewBinding {
+        enabled=true
+    }*/
+    compileSdkVersion 31
     useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         applicationId "com.fieldmobility.igl"
         minSdkVersion 24
-        targetSdkVersion 30
-        versionCode 20035
-        versionName "3.5"
+        targetSdkVersion 31
+        versionCode 20036
+        versionName "3.6"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -44,6 +47,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    buildFeatures {
+        dataBinding = true
     }
     configurations {
         all*.exclude module: 'jsr305'

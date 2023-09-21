@@ -65,7 +65,7 @@ public class BP_Creation_Form extends Activity implements AdapterView.OnItemSele
     SharedPrefs sharedPrefs;
     ImageView back;
     Spinner spinner_city;
-    TextView tv_select_area;
+    TextView tv_select_area,tv_select_society;
     ArrayList<String> CityName = new ArrayList<>();
     ArrayList<String> CityId = new ArrayList<>();
     ArrayList<String> CityName1 = new ArrayList<>();
@@ -76,6 +76,7 @@ public class BP_Creation_Form extends Activity implements AdapterView.OnItemSele
     ArrayList<String> Area_ID1 = new ArrayList<>();
     ArrayList<String> Society = new ArrayList<>();
     ArrayList<String> Society1 = new ArrayList<>();
+    ArrayList<String> SocietyId = new ArrayList<>();
     ArrayList<String> Landmark = new ArrayList<>();
     ArrayList<String> Customer_Type = new ArrayList<>();
     ArrayList<String> Customer_Type1 = new ArrayList<>();
@@ -146,6 +147,17 @@ public class BP_Creation_Form extends Activity implements AdapterView.OnItemSele
 
             }
         });
+        tv_select_society.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!area_name.equals("Select Area")) {
+                    openSocietyDialogBox();
+                } else {
+                    Toast.makeText(BP_Creation_Form.this, "Please Select the Area", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
         spinner_city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
@@ -188,6 +200,8 @@ public class BP_Creation_Form extends Activity implements AdapterView.OnItemSele
                 String country = spinner_society.getItemAtPosition(spinner_society.getSelectedItemPosition()).toString();
                 Log.e("Society+", country);
                 soceity_name = Society1.get(position);
+               // ((TextView) adapterView.getChildAt(0)).setTextColor(Color.BLUE);
+                ((TextView) adapterView.getChildAt(0)).setTextSize(12);
             }
 
             @Override
@@ -477,6 +491,7 @@ public class BP_Creation_Form extends Activity implements AdapterView.OnItemSele
                 .progress(true, 0)
                 .show();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        Log.d("Bpcreation","url = "+Constants.Arealist_reason_Socity + "/" + city_id);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.Arealist_reason_Socity + "/" + city_id, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -508,8 +523,9 @@ public class BP_Creation_Form extends Activity implements AdapterView.OnItemSele
                     JSONArray jsonArray_customer_type = jsonObject.getJSONArray("customer_type");
                     for (int i = 0; i < jsonArray_customer_type.length(); i++) {
                         JSONObject jsonObject1 = jsonArray_customer_type.getJSONObject(i);
-                        String society_name_select = jsonObject1.getString("customer_type");
-                        Customer_Type.add(society_name_select);
+                        String customer_name_select = jsonObject1.getString("customer_type");
+                        Customer_Type.add(customer_name_select);
+                        Customer_Type.remove("");
                         Collections.reverse(Customer_Type);
                     }
                     String customer_type_select1 = "Select Customer Type";
@@ -577,9 +593,9 @@ public class BP_Creation_Form extends Activity implements AdapterView.OnItemSele
     }
 
     private void loadSpinnerSocity(String area_Id) {
-
         Society.clear();
         Society1.clear();
+        SocietyId.clear();
         materialDialog = new MaterialDialog.Builder(BP_Creation_Form.this)
                 .content("Please wait....")
                 .progress(true, 0)
@@ -597,12 +613,12 @@ public class BP_Creation_Form extends Activity implements AdapterView.OnItemSele
                         JSONObject jsonObject1 = jsonArray_society.getJSONObject(i);
                         String society_name_select = jsonObject1.getString("society_name");
                         String society_id = jsonObject1.getString("society_id");
-                        // Society_Id.add(society_id);
+                         SocietyId.add(society_id);
                         Society.add(society_name_select);
 
                     }
                     String area_select1 = "Select Society";
-                    Society1.add(area_select1);
+                 //   Society1.add(area_select1);
                     Society1.addAll(Society);
                     spinner_society.setAdapter(new ArrayAdapter<String>(BP_Creation_Form.this, android.R.layout.simple_spinner_dropdown_item, Society1));
                 } catch (JSONException e) {
@@ -819,8 +835,71 @@ public class BP_Creation_Form extends Activity implements AdapterView.OnItemSele
         dialog.show();
     }
 
+    private void openSocietyDialogBox() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setContentView(R.layout.popup_text_search);
+        dialog.setCancelable(true);
+        ImageView crose_img = dialog.findViewById(R.id.crose_img);
+        RecyclerView recyclerView = (RecyclerView) dialog.findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        crose_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        PlainTextListAdapter dropDown_adapter = new PlainTextListAdapter(BP_Creation_Form.this, new PlainTextListItemSelectListener() {
+            @Override
+            public void onPlainTextItemSelect(String item, int itemPosition) {
+                String country = item;
+                tv_select_society.setText(country);
+                Log.e("society_name+", country);
+                soceity_name = item;
+                int originalPosition = Society1.indexOf(item);
+               // area_Id = Society1.get(originalPosition);
+               // Log.e("area_Id+", area_Id);
+               // Log.e("area_name+", area_name);
+               // loadSpinnerSocity(area_Id);
+                dialog.dismiss();
+            }
+
+
+        });
+        recyclerView.setAdapter(dropDown_adapter);
+        dropDown_adapter.setData(Society1);
+
+        EditText editTextSearch = (EditText) dialog.findViewById(R.id.editTextSearch);
+        editTextSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //  bookadapter.getFilter().filter(s.toString());
+                dropDown_adapter.getFilter().filter(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.copyFrom(dialog.getWindow().getAttributes());
+        layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+        layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT;
+        dialog.getWindow().setAttributes(layoutParams);
+        dialog.show();
+        dialog.show();
+    }
+
     private void findViews() {
         tv_select_area = findViewById(R.id.tv_select_area);
+        tv_select_society = findViewById(R.id.tv_select_society);
         fullname = findViewById(R.id.fullname);
         middle_name = findViewById(R.id.middle_name);
         lastname = findViewById(R.id.lastname);

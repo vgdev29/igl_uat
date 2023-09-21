@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="15sp"
                 android:gravity="center"
                 android:textStyle="bold"
                 android:layout_gravity="center"
@@ -40,7 +40,7 @@
                 android:layout_marginTop="@dimen/_5sdp"
 
                 android:layout_marginBottom="@dimen/_20sdp"
-                android:textSize="@dimen/_16sdp"
+                android:textSize="18sp"
                 android:textStyle="normal"
                 android:layout_gravity="center"
                 android:gravity="center"

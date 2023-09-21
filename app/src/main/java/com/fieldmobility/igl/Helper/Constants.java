@@ -5,14 +5,14 @@ import com.afollestad.materialdialogs.MaterialDialog;
 public class Constants {
     public static final boolean isDebugBuild=false; // make it FALSE while giving app to others
       //LIVE URLH
-      public static String BASE_URL="http://49.50.65.107:8081/";
-   //   public static  String BASE_URL_PYTHON = "http://49.50.65.107:8000/"; //PYTHON SERVER
+     public static String BASE_URL="http://49.50.65.107:8081/";
+   //  public static  String BASE_URL_PYTHON = "http://49.50.65.107:8000/"; //PYTHON SERVER
      public static  String BASE_URL_PYTHON = "http://49.50.65.107:8081/ng/"; //JAVA SERVER
-    public static String PYTHON_BASE_IMAGE = "http://49.50.65.107:8000/media/";
+    public static String PYTHON_BASE_IMAGE = "http://49.50.65.107:8000/media/"; //PYTHON IMAGE
 
 
     //  UAT URL
-   //  public static String BASE_URL = "http://49.50.118.112:8080/";
+  //   public static String BASE_URL = "http://49.50.118.112:8080/";
       // public static String BASE_URL_PYTHON = "http://49.50.68.239:8080/";
     // public static String BASE_URL_PYTHON = "http://49.50.118.112:8080/ng/";
 
@@ -29,9 +29,9 @@ public class Constants {
   //   public static final String Auth_User = BASE_URL + "loginapi/authenticates";
 
     //for uat /testing ('s' is not updated at uat environment
-    public static final String Auth_User = BASE_URL + "loginapi/authenticates";
+  //  public static final String Auth_User = BASE_URL + "loginapi/authenticate";
      // Livee
-   //  public static final String Auth_User = localhost + "/authenticates";
+     public static final String Auth_User = BASE_URL + "loginapi/authenticates";
 
     public static final String Login_User = BASE_URL + "loginapi/userdetails";
     public static final String SignUp_User = BASE_URL + "register";
@@ -100,8 +100,8 @@ public class Constants {
     public static final String TPI_DECLINE = BASE_URL + "ekyc/bp_details/TPI_Decline";
     public static final String CON_SUP_DETAILS = BASE_URL + "ekyc/bp_details/userDetails?";
     public static final String MITD_UPDATE = BASE_URL + "ekyc/bp_details/mitd_update/";
-    public static final String BP_Creation = BASE_URL + "bpcreation/registration/bp_creation";
-   // public static final String BP_Creation = "http://172.16.0.83:8080/registration/bp_creation";
+    public static final String BP_Creation = BASE_URL + "bpcreation/registration/bp_creation_new";
+  // public static final String BP_Creation = "http://172.16.0.224:8081/registration/bp_creation_new";
     public static final String BP_Images = BASE_URL + "bpcreation/registration/bp_images";
     public static final String Document_POST = BASE_URL + "bpcreation/registration/documents";
     public static final String BP_No_Listing = BASE_URL + "bpcreation/registration/new_registration_listing";
