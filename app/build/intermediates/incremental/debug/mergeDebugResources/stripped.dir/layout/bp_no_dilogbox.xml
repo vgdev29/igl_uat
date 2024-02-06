@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="230dp"
+        android:layout_height="140dp"
+        app:cardElevation="4dp"
+        app:cardCornerRadius="8dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/bp_no_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/green"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textIsSelectable="true"
+                android:fontFamily="@font/abhayalibre_regular"
+                android:text="BP No"
+                android:textSize="@dimen/_14sdp"/>
+
+            <TextView
+                android:id="@+id/vendar_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:paddingTop="@dimen/_2sdp"
+                android:textStyle="bold"
+                android:fontFamily="@font/abhayalibre_regular"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:text="Successfully Created BP NO"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:weightSum="2">
+
+
+
+                <Button
+                    android:id="@+id/ok_button"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:text="OK"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textSize="18dp"
+                    android:fontFamily="@font/abhayalibre_regular"
+                    android:paddingLeft="5dp"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/shape_cornor_radious"/>
+                <Button
+                    android:id="@+id/cancle_button"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:text="Cancel"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textSize="18dp"
+                    android:paddingLeft="5dp"
+                    android:visibility="gone"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/shape_cornor_radious"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

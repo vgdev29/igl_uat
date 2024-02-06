@@ -67,9 +67,6 @@ import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
 import com.google.android.play.core.install.model.AppUpdateType;
 import com.google.android.play.core.install.model.UpdateAvailability;
 import com.google.android.play.core.tasks.OnSuccessListener;
-import com.nabinbhandari.android.permissions.PermissionHandler;
-import com.nabinbhandari.android.permissions.Permissions;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -228,32 +225,67 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
-
+    String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.ACCESS_FINE_LOCATION};
+    private static final int PERMISSION_REQUEST_CODE = 123;
     public void requestCameraAndStorage() {
-        String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        Permissions.check(this, permissions, null, null, new PermissionHandler() {
-            @Override
-            public void onGranted() {
-                //Toast.makeText(getActivity(), "Camera+Storage granted.", Toast.LENGTH_SHORT).show();
-                requestLocation();
+        for (String permission : permissions) {
+            if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+                // Permission is not granted; request it from the user.
+                ActivityCompat.requestPermissions(this, permissions, PERMISSION_REQUEST_CODE);
+                return; // Exit the loop after requesting permissions.
             }
-        });
+        }
     }
-    public void requestLocation() {
-        String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
-        String rationale = "Please provide location permission so that you can ...";
-        Permissions.Options options = new Permissions.Options().setRationaleDialogTitle("Info").setSettingsDialogTitle("Warning");
-        Permissions.check(this, permissions, rationale, options, new PermissionHandler() {
-            @Override
-            public void onGranted() {
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+
+            boolean foreground = false, background = false;
+
+            for (int i = 0; i < permissions.length; i++) {
+                if (permissions[i].equalsIgnoreCase(Manifest.permission.ACCESS_FINE_LOCATION)) {
+                    //foreground permission allowed
+                    if (grantResults[i] >= 0) {
+                        foreground = true;
+                        Toast.makeText(this, "Foreground location permission allowed", Toast.LENGTH_SHORT).show();
+
+                        continue;
+                    } else {
+                        Toast.makeText(this, "Location Permission denied", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                }
+            }
+        }
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            boolean allPermissionsGranted = true;
+
+            // Check if all requested permissions are granted
+            for (int grantResult : grantResults) {
+                Log.d("login", "Grant Result" + grantResult + "  " + PackageManager.PERMISSION_GRANTED);
+                Log.d("login", "Permissions" + permissions[0].toString() + permissions[1].toString());
+                if (grantResult != PackageManager.PERMISSION_GRANTED) {
+                    allPermissionsGranted = false;
+                    break; // Exit the loop if any permission is not granted.
+                }
+            }
+
+            if (allPermissionsGranted) {
+                // All requested permissions are granted; proceed with your app's logic.
                 requestLocationPermission();
+                Log.d("login", "All permission granted");
+            } else {
+                Log.d("login", "All permission not granted");
+                requestLocationPermission();
+                // Some permissions were denied; handle this situation, e.g., inform the user or implement alternative behavior.
             }
-            @Override
-            public void onDenied(Context context, ArrayList<String> deniedPermissions) {
-                // Toast.makeText(getActivity(), "Location denied.", Toast.LENGTH_SHORT).show();
-            }
-        });
+        }
+
     }
+
     public void callAsynchronousTask() {
         final Handler handler = new Handler();
          timer = new Timer();
@@ -458,49 +490,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_CODE_PERMISSIONS) {
-
-            boolean foreground = false, background = false;
-
-            for (int i = 0; i < permissions.length; i++) {
-                if (permissions[i].equalsIgnoreCase(Manifest.permission.ACCESS_FINE_LOCATION)) {
-                    //foreground permission allowed
-                    if (grantResults[i] >= 0) {
-                        foreground = true;
-                        Toast.makeText(this, "Foreground location permission allowed", Toast.LENGTH_SHORT).show();
-
-                        continue;
-                    } else {
-                        Toast.makeText(this, "Location Permission denied", Toast.LENGTH_SHORT).show();
-                        break;
-                    }
-                }
-
-                /*if (permissions[i].equalsIgnoreCase(Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
-                    if (grantResults[i] >= 0) {
-                        foreground = true;
-                        background = true;
-                        Toast.makeText(this, "Background location location permission allowed", Toast.LENGTH_SHORT).show();
-
-                    } else {
-                        Toast.makeText(this, "Background location location permission denied", Toast.LENGTH_SHORT).show();
-                    }
-
-                }*/
-            }
-
-            /*if (foreground) {
-                if (background) {
-                    handleLocationUpdates();
-                } else {
-                    handleForegroundLocationUpdates();
-                }
-            }*/
-        }
-    }
 
     /*private void handleLocationUpdates() {
         //foreground and background

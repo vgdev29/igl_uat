@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.fieldmobility.igl"
+    android:versionCode="20037"
+    android:versionName="3.7" >
+
+    <uses-sdk
+        android:minSdkVersion="24"
+        android:targetSdkVersion="33" />
+    <!--
+        <uses-permission android:name="android.permission.INTERNET" />
+        <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+        <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <permission
+        android:name="android.permission.BLUETOOTH"
+        android:label="BLUETOOTH" />
+    <permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission
+        android:name="android.permission.INTERACT_ACROSS_USERS_FULL"
+        android:protectionLevel="normal" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature
+        android:name="android.hardware.camera.flash"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+
+    <uses-feature
+        android:name="android.hardware.screen.landscape"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.wifi"
+        android:required="false" />
+
+    <application
+        android:name="com.fieldmobility.igl.Helper.AppController"
+        android:allowBackup="true"
+        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+        android:extractNativeLibs="false"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true" >
+        <activity
+            android:name="com.fieldmobility.igl.Activity.DocumentStatusActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.OtpActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.NgSupStartup"
+            android:exported="false" />
+        <activity
+            android:name="com.fieldmobility.igl.Mdpe.MdpeDeclinedDpr"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.fieldmobility.igl.Mdpe.Mdpe_Sup_Host"
+            android:exported="false"
+            android:label="@string/title_activity_mdpe_sup_host"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.fieldmobility.igl.Complain.ComplainGirm"
+            android:exported="true" />
+        <activity
+            android:name="com.fieldmobility.igl.Complain.CompSupStatus"
+            android:exported="true" />
+        <activity
+            android:name="com.fieldmobility.igl.Complain.ComplainTpiApproval"
+            android:exported="true" />
+        <activity
+            android:name="com.fieldmobility.igl.Complain.ComplaintSup"
+            android:exported="true" />
+        <activity
+            android:name="com.fieldmobility.igl.Mdpe.MdpeTpiApproval"
+            android:exported="true" />
+        <activity
+            android:name="com.fieldmobility.igl.Mdpe.MdpeTpiDpr"
+            android:exported="true" />
+        <activity
+            android:name="com.fieldmobility.igl.Mdpe.MdpeTpiPending"
+            android:exported="true" />
+        <activity
+            android:name="com.fieldmobility.igl.Mdpe.MdpeTiles"
+            android:exported="true" >
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+        <activity
+            android:name="com.fieldmobility.igl.Mdpe.Mdpe_Tpi_Host"
+            android:exported="true" />
+        <activity
+            android:name="com.fieldmobility.igl.MITDtoRFC.MITD_Approval"
+            android:exported="true" />
+        <activity
+            android:name="com.fieldmobility.igl.MITDtoRFC.MITD_Done"
+            android:exported="true" />
+        <activity
+            android:name="com.fieldmobility.igl.MITDtoRFC.MITD_ApprovalList"
+            android:exported="true" />
+        <activity
+            android:name="com.fieldmobility.igl.MITDtoRFC.MITD_PendingList"
+            android:exported="true" />
+        <activity
+            android:name="com.fieldmobility.igl.MITDtoRFC.Tab_Host_MitdTpi"
+            android:exported="true"
+            android:label="@string/title_activity_tab_host_mitd_tpi"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.fieldmobility.igl.MITDtoRFC.MitdOther"
+            android:exported="true" />
+        <activity
+            android:name="com.fieldmobility.igl.MITDtoRFC.MitdOwn"
+            android:exported="true" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.Floor_Annexure"
+            android:exported="true" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.Address_Annexure"
+            android:exported="true" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.TPI_Module"
+            android:exported="true" />
+        <activity
+            android:name="com.fieldmobility.igl.Riser.activity.RiserTpiApprovalDetailActivity"
+            android:exported="true" />
+        <activity android:name="com.fieldmobility.igl.Riser.activity.RiserTpiApprovalActivity" />
+        <activity android:name="com.fieldmobility.igl.Riser.activity.RiserTpiPendingActivity" />
+        <activity
+            android:name="com.fieldmobility.igl.Riser.activity.RiserFormActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.MITDDoneActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name="com.fieldmobility.igl.Activity.NICustomerActivity" />
+        <activity android:name="com.fieldmobility.igl.Mdpe.Mdpe_List_Activity" />
+        <activity android:name="com.fieldmobility.igl.Riser.activity.RiserListActivity" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.KYC_VerificationDetails"
+            android:screenOrientation="portrait" />
+        <activity android:name="com.fieldmobility.igl.Activity.CustomScannerActivity" />
+        <activity android:name="com.fieldmobility.igl.Activity.CustomPdfViewActivity" />
+        <activity android:name="com.fieldmobility.igl.Activity.NgUserClaimListActivity" />
+        <activity android:name="com.fieldmobility.igl.Activity.NgSupDoneActivity" />
+        <activity android:name="com.fieldmobility.igl.Activity.NgSupUserDetailsActivity" />
+        <activity android:name="com.fieldmobility.igl.Activity.NgSupListActivity" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.NICListing"
+            android:screenOrientation="portrait" />
+        <activity android:name="com.fieldmobility.igl.Activity.ViewNgDetaillsActivity" />
+        <activity android:name="com.fieldmobility.igl.Activity.PMC_ViewPager_Activity" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.Splash_Screen"
+            android:exported="true"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.fieldmobility.igl.Activity.Login_Activity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.Sign_Up_Activty"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.Regestar_View_Pager"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.HomePage_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.Attendance_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.Activities_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.TPI_RfcHold_Approval_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.TPI_RfcDone_Approval_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.Learning_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.To_DoList_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.Location_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.Selfie_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.Task_List_Astivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.New_Regestration"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.Kyc_Form_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.KycResubmissionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.KYC_Pending_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.BP_Creation_Form"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.BP_Creation_Form_step2"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.BP_No_Listing"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.BP_No_Resubmition_Listing"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.Bp_Created_Detail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.DocumentResumissionDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.DocumentsResubmitStep2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.NG_Connection_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.RFC_Connection_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.To_Do_Task_Creation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.Leave_Approval_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.TPI_Connection_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.View_Leave_LIsting_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.View_Attendance_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.TPI_Connection_Lisitng"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.RFC_Connection_Listing"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.TPI_ViewPager_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.RFC_StatusMastar_Page"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.TPI_Inspection_RFC_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.To_Do_Task_Creation_TPI"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.WebView_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.Waveview_NewData"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.Tab_Host_Pager"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.Tab_Host_Pager_TPI_Claim"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.TPI_NgPending_Activity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.TPI_Ng_Approval_Activity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name="com.fieldmobility.igl.Fragment.Ng_Decline_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Fragment.Ng_Done_Fragment"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Fragment.Ready_Inspection_Tpi_Fragment"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Fragment.Feasibility_Tpi_Fragment"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.Forgot_Password"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.OTP_Forgot_Password"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.CheckBpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.Tab_Host_EKYC"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.KYC_Verification_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.Video_View"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.Tab_Host_DMA"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.MITDtoRFC.Tab_Host_MITD"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Riser.activity.Tab_Host_Riser"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.BP_Document_Verification"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.Document_varification_Detail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.PMCSI_Approval_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.Tab_Host_Inspection"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.Tab_Host_PMC"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.PoolTask_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.TPI_Approval_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fieldmobility.igl.Activity.RFC_Declined_Listing"
+            android:screenOrientation="portrait" />
+
+        <service
+            android:name="com.fieldmobility.igl.Helper.LogoutService"
+            android:enabled="true"
+            android:exported="false" />
+        <!--
+     <activity android:name=".Activity.CompletePlayerActivity"
+                android:showOnLockScreen="true"
+                android:screenOrientation="portrait"/>
+            <activity android:name="com.veer.exvidplayer.VideoPlayer.ExVidPlayerActivity"
+                android:showOnLockScreen="true"
+                android:configChanges="orientation|screenSize"></activity>
+        -->
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <provider
+            android:name="com.fieldmobility.igl.Activity.GenericFileProvider"
+            android:authorities="com.fieldmobility.igl.provider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <meta-data
+            android:name="android.app.searchable"
+            android:resource="@xml/searchable" />
+
+        <service android:name="com.fieldmobility.igl.Helper.LocationMonitoringService" />
+        <service
+            android:name="com.fieldmobility.igl.MataData.MyService"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name="com.fieldmobility.igl.location.LocationUpdatesIntentService"
+            android:exported="false" />
+        <!--
+<service
+            android:name=".tracker.MyIntentService"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+        -->
+        <receiver
+            android:name="com.fieldmobility.igl.location.LocationUpdatesBroadcastReceiver"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.example.igl.location.LocationUpdatesBroadcastReceiver.ACTION_PROCESS_UPDATES" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.vincent.filepicker.activity.ImagePickActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/vw_FilePickerTheme" />
+        <activity
+            android:name="com.vincent.filepicker.activity.ImageBrowserActivity"
+            android:hardwareAccelerated="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/vw_FilePickerTheme" />
+        <activity
+            android:name="com.vincent.filepicker.activity.VideoPickActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/vw_FilePickerTheme" />
+        <activity
+            android:name="com.vincent.filepicker.activity.AudioPickActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/vw_FilePickerTheme" />
+        <activity
+            android:name="com.vincent.filepicker.activity.NormalFilePickActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/vw_FilePickerTheme" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.fieldmobility.igl.provider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity
+            android:name="com.opensooq.supernova.gligar.ui.ImagePickerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/LibTheme" />
+
+        <service
+            android:name="net.gotev.uploadservice.UploadService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
+
+        <activity
+            android:name="pub.devrel.easypermissions.AppSettingsDialogHolderActivity"
+            android:exported="false"
+            android:label=""
+            android:theme="@style/EasyPermissions.Transparent" />
+
+        <provider
+            android:name="com.iceteck.silicompressorr.provider.GenericFileProvider"
+            android:authorities="com.fieldmobility.igl.iceteck.silicompressor.provider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <activity
+            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <receiver
+            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+            android:enabled="true"
+            android:exported="false" >
+        </receiver>
+
+        <service
+            android:name="com.google.android.gms.measurement.AppMeasurementService"
+            android:enabled="true"
+            android:exported="false" />
+        <service
+            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name="com.google.firebase.components.ComponentDiscoveryService"
+            android:directBootAware="true"
+            android:exported="false" >
+            <meta-data
+                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar" />
+            <meta-data
+                android:name="com.google.firebase.components:com.google.firebase.crashlytics.CrashlyticsRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar" />
+            <meta-data
+                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar" />
+        </service>
+
+        <provider
+            android:name="com.google.firebase.provider.FirebaseInitProvider"
+            android:authorities="com.fieldmobility.igl.firebaseinitprovider"
+            android:directBootAware="true"
+            android:exported="false"
+            android:initOrder="100" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:clearTaskOnLaunch="true"
+            android:screenOrientation="sensorLandscape"
+            android:stateNotNeeded="true"
+            android:theme="@style/zxing_CaptureTheme"
+            android:windowSoftInputMode="stateAlwaysHidden" /> <!-- The activities will be merged into the manifest of the hosting app. -->
+        <activity
+            android:name="com.google.android.play.core.missingsplits.PlayCoreMissingSplitsActivity"
+            android:enabled="false"
+            android:exported="false"
+            android:launchMode="singleInstance"
+            android:process=":playcore_missing_splits_activity"
+            android:stateNotNeeded="true" />
+        <activity
+            android:name="com.google.android.play.core.common.PlayCoreDialogWrapperActivity"
+            android:enabled="false"
+            android:exported="false"
+            android:stateNotNeeded="true"
+            android:theme="@style/Theme.PlayCore.Transparent" /> <!-- The services will be merged into the manifest of the hosting app. -->
+        <service
+            android:name="com.google.android.play.core.assetpacks.AssetPackExtractionService"
+            android:enabled="false"
+            android:exported="true" >
+            <meta-data
+                android:name="com.google.android.play.core.assetpacks.versionCode"
+                android:value="11000" />
+        </service>
+        <service
+            android:name="com.google.android.play.core.assetpacks.ExtractionForegroundService"
+            android:enabled="false"
+            android:exported="false" />
+        <service
+            android:name="androidx.room.MultiInstanceInvalidationService"
+            android:directBootAware="true"
+            android:exported="false" />
+        <service
+            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+            android:exported="false" >
+            <meta-data
+                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+                android:value="cct" />
+        </service>
+
+        <provider
+            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+            android:authorities="com.fieldmobility.igl.lifecycle-process"
+            android:exported="false"
+            android:multiprocess="true" />
+
+        <service
+            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" >
+        </service>
+
+        <receiver
+            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+            android:exported="false" />
+    </application>
+
+</manifest>

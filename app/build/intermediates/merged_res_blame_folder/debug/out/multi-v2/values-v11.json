@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.fieldmobility.igl.app-mergeDebugResources-49:/values-v11/values-v11.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-3\\70a1096068cd5d556606f46217369201\\transformed\\jetified-core-0.8.5.9\\res\\values-v11\\values-v11.xml",
+                    "from": {
+                        "startLines": "2,19",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,1094",
+                        "endLines": "18,35",
+                        "endColumns": "12,12",
+                        "endOffsets": "1089,2110"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -47,8 +48,7 @@ import com.fieldmobility.igl.Model.OtpResponse;
 import com.fieldmobility.igl.R;
 import com.fieldmobility.igl.utils.Utils;
 import com.google.gson.Gson;
-import com.nabinbhandari.android.permissions.PermissionHandler;
-import com.nabinbhandari.android.permissions.Permissions;
+
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -61,7 +61,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-public class Login_Activity extends Activity {
+public class Login_Activity extends AppCompatActivity {
 
 
     LinearLayout user_login;
@@ -112,6 +112,7 @@ public class Login_Activity extends Activity {
         ) {
             login_layout.setVisibility(View.GONE);
             permission_layout.setVisibility(View.VISIBLE);
+
         }
         else
         {
@@ -121,7 +122,10 @@ public class Login_Activity extends Activity {
         allow_permission.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                requestCameraAndStorage();
+               // requestCameraAndStorage();
+               // requestLocation();
+                //requestLocationPermission();
+                checkPermissions();
             }
         });
 
@@ -394,29 +398,49 @@ public class Login_Activity extends Activity {
     public void requestCameraAndStorage() {
         Log.d("login","requestcamera");
         String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        Permissions.check(this, permissions, null, null, new PermissionHandler() {
+      /*  Permissions.check(this, permissions,null, null, new PermissionHandler() {
             @Override
             public void onGranted() {
-                //Toast.makeText(getActivity(), "Camera+Storage granted.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Login_Activity.this, "Camera+Storage granted.", Toast.LENGTH_SHORT).show();
                 requestLocation();
             }
-        });
+        });*/
     }
+    String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.ACCESS_FINE_LOCATION};
+    private static final int PERMISSION_REQUEST_CODE = 123;
+
+    private void checkPermissions() {
+        // Iterate through the permissions and check each one
+        for (String permission : permissions) {
+            if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+                // Permission is not granted; request it from the user.
+                ActivityCompat.requestPermissions(this, permissions, PERMISSION_REQUEST_CODE);
+                return; // Exit the loop after requesting permissions.
+            }
+        }
+
+        // All permissions are granted; you can proceed with your app's logic.
+    }
+
+
+
+
     public void requestLocation() {
         Log.d("login","request Loaction");
         String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
         String rationale = "Please provide location permission so that you can ...";
-        Permissions.Options options = new Permissions.Options().setRationaleDialogTitle("Info").setSettingsDialogTitle("Warning");
+     /*   Permissions.Options options = new Permissions.Options().setRationaleDialogTitle("Info").setSettingsDialogTitle("Warning");
         Permissions.check(this, permissions, rationale, options, new PermissionHandler() {
             @Override
             public void onGranted() {
+                Log.d("login","Request Location");
                 requestLocationPermission();
             }
             @Override
             public void onDenied(Context context, ArrayList<String> deniedPermissions) {
                 // Toast.makeText(getActivity(), "Location denied.", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
     }
 
 
@@ -445,6 +469,28 @@ public class Login_Activity extends Activity {
         permission_layout.setVisibility(View.GONE);
     }
 
+/*    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            boolean allPermissionsGranted = true;
+
+            // Check if all requested permissions are granted
+            for (int grantResult : grantResults) {
+                if (grantResult != PackageManager.PERMISSION_GRANTED) {
+                    allPermissionsGranted = false;
+                    break; // Exit the loop if any permission is not granted.
+                }
+            }
+
+            if (allPermissionsGranted) {
+                // All requested permissions are granted; proceed with your app's logic.
+            } else {
+                // Some permissions were denied; handle this situation, e.g., inform the user or implement alternative behavior.
+            }
+        }
+    }*/
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -465,28 +511,32 @@ public class Login_Activity extends Activity {
                         break;
                     }
                 }
+            }
+        }
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            boolean allPermissionsGranted = true;
 
-               /* if (permissions[i].equalsIgnoreCase(Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
-                    if (grantResults[i] >= 0) {
-                        foreground = true;
-                        background = true;
-                        Toast.makeText(getActivity(), "Background location location permission allowed", Toast.LENGTH_SHORT).show();
-
-                    } else {
-                        Toast.makeText(getActivity(), "Background location location permission denied", Toast.LENGTH_SHORT).show();
-                    }
-
-                }*/
+            // Check if all requested permissions are granted
+            for (int grantResult : grantResults) {
+                Log.d("login", "Grant Result" + grantResult + "  " + PackageManager.PERMISSION_GRANTED);
+                Log.d("login", "Permissions" + permissions[0].toString() + permissions[1].toString());
+                if (grantResult != PackageManager.PERMISSION_GRANTED) {
+                    allPermissionsGranted = false;
+                    break; // Exit the loop if any permission is not granted.
+                }
             }
 
-            /*if (foreground) {
-                if (background) {
-                    handleLocationUpdates();
-                } else {
-                    handleForegroundLocationUpdates();
-                }
-            }*/
+            if (allPermissionsGranted) {
+                // All requested permissions are granted; proceed with your app's logic.
+                requestLocationPermission();
+                Log.d("login", "All permission granted");
+            } else {
+                Log.d("login", "All permission not granted");
+                requestLocationPermission();
+                // Some permissions were denied; handle this situation, e.g., inform the user or implement alternative behavior.
+            }
         }
+
     }
 
     private void handleLocationUpdates() {

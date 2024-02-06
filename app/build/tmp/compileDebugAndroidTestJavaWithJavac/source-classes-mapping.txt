@@ -1,0 +1,4 @@
+com/fieldmobility/igl/test/BuildConfig.java
+ com.fieldmobility.igl.test.BuildConfig
+com/fieldmobility/igl/ExampleInstrumentedTest.java
+ com.fieldmobility.igl.ExampleInstrumentedTest

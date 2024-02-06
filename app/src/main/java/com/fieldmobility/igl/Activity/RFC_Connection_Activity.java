@@ -1801,13 +1801,14 @@ public class RFC_Connection_Activity extends Activity implements DropDown_Adapte
                 .progress(true, 0)
                 .show();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        Log.d(LOG, "metertype_list_url = " +Constants.MeterType+"?meter_no="+meterNo);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.MeterType+"?meter_no="+meterNo, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 materialDialog.dismiss();
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    Log.d(LOG, "master_list = " + response);
+                    Log.d(LOG, "metertype_response = " + response);
                     // if(jsonObject.getInt("success")==1){
                     JSONObject jsonObject_pipeline = jsonObject.getJSONObject("meter_details");
                     JSONArray jsonArray_society = jsonObject_pipeline.getJSONArray("mt");

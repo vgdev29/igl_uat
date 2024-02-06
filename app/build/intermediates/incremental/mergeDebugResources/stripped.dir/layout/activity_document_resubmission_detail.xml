@@ -1,0 +1,1279 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@color/rad"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="@dimen/_23sdp"
+            android:layout_height="@dimen/_23sdp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_3sdp"
+            android:background="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="Document Verification"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomLayout"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_5sdp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/green"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:text="Personal Details"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/_1sdp"
+                        android:text="First Name"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <EditText
+                        android:id="@+id/tv_fname"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/background_input_mandatory"
+                        android:maxLines="1"
+                        android:padding="@dimen/_5sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/black_31"
+                        android:textSize="@dimen/_10sdp"
+                        tools:text="Ashish" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/_1sdp"
+                        android:text="Middle Name"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <EditText
+                        android:id="@+id/tv_mname"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_blue_border"
+                        android:maxLines="1"
+                        android:padding="@dimen/_5sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/black_31"
+                        android:textSize="@dimen/_10sdp"
+                        tools:text="" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/_1sdp"
+                        android:text="Last Name"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <EditText
+                        android:id="@+id/tv_lname"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/background_input_mandatory"
+                        android:maxLines="1"
+                        android:padding="@dimen/_5sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/black_31"
+                        android:textSize="@dimen/_10sdp"
+                        tools:text="Anand" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/_1sdp"
+                        android:text="Mobile No"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <EditText
+                        android:id="@+id/tv_mobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/background_input_mandatory"
+                        android:maxLines="1"
+                        android:padding="@dimen/_5sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/black_31"
+                        android:textSize="@dimen/_10sdp"
+                        tools:text="8448755968" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/_1sdp"
+                        android:text="Email id"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <EditText
+                        android:id="@+id/tv_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_blue_border"
+                        android:padding="@dimen/_5sdp"
+                        android:textColor="@color/black_31"
+                        android:textSize="@dimen/_10sdp"
+                        tools:text="anandashish37@gmail.com" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_weight="1"
+
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/_1sdp"
+                    android:text="Father's Name"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/_10sdp" />
+
+                <EditText
+                    android:id="@+id/tv_father_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_blue_border"
+                    android:maxLines="1"
+                    android:padding="@dimen/_5sdp"
+                    android:singleLine="true"
+                    android:textColor="@color/black_31"
+                    android:textSize="@dimen/_10sdp"
+                    tools:text="454145148579" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/_1sdp"
+                        android:text="Aadhaar No"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <EditText
+                        android:id="@+id/tv_aadhaar"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_blue_border"
+                        android:maxLines="1"
+                        android:padding="@dimen/_5sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/black_31"
+                        android:textSize="@dimen/_10sdp"
+                        tools:text="454145148579" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/green"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:text="Address Details"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/_1sdp"
+                        android:text="City"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_city"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/filled_form_data_bg"
+                        android:maxLines="1"
+                        android:padding="@dimen/_5sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/black_31"
+                        android:textSize="@dimen/_10sdp"
+                        tools:text="New Delhi" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/_1sdp"
+                        android:text="Area"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_area"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/filled_form_data_bg"
+                        android:maxLines="1"
+                        android:padding="@dimen/_5sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/black_31"
+                        android:textSize="@dimen/_10sdp"
+                        tools:text="Laxmi Nagar" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/_1sdp"
+                        android:text="Society"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_society"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/filled_form_data_bg"
+                        android:maxLines="1"
+                        android:padding="@dimen/_5sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/black_31"
+                        android:textSize="@dimen/_10sdp"
+                        tools:text="New Delhi" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/_1sdp"
+                        android:text="Landmark"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <EditText
+                        android:id="@+id/tv_landmark"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_blue_border"
+                        android:maxLines="1"
+                        android:padding="@dimen/_5sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/black_31"
+                        android:textSize="@dimen/_10sdp"
+                        tools:text="Laxmi Nagar" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/_1sdp"
+                        android:text="House Type"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_house_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/filled_form_data_bg"
+                        android:maxLines="1"
+                        android:padding="@dimen/_5sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/black_31"
+                        android:textSize="@dimen/_10sdp"
+                        tools:text="New Delhi" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/_1sdp"
+                        android:text="House No"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <EditText
+                        android:id="@+id/tv_house_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/background_input_mandatory"
+                        android:maxLines="1"
+                        android:padding="@dimen/_5sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/black_31"
+                        android:textSize="@dimen/_10sdp"
+                        tools:text="Laxmi Nagar" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/_1sdp"
+                        android:text="Block/Tower"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_hblock"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/filled_form_data_bg"
+                        android:maxLines="1"
+                        android:padding="@dimen/_5sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/black_31"
+                        android:textSize="@dimen/_10sdp"
+                        tools:text="New Delhi" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/_1sdp"
+                        android:text="Floor"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <EditText
+                        android:id="@+id/tv_hfloor"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/background_input_mandatory"
+                        android:maxLines="1"
+                        android:padding="@dimen/_5sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/black_31"
+                        android:textSize="@dimen/_10sdp"
+                        tools:text="Laxmi Nagar" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/_1sdp"
+                        android:text="Street/Road"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_street"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/filled_form_data_bg"
+                        android:maxLines="1"
+                        android:padding="@dimen/_5sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/black_31"
+                        android:textSize="@dimen/_10sdp"
+                        tools:text="New Delhi" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/_1sdp"
+                        android:text="Pin Code"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <EditText
+                        android:id="@+id/tv_pin"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/background_input_mandatory"
+                        android:maxLines="1"
+                        android:padding="@dimen/_5sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/black_31"
+                        android:textSize="@dimen/_10sdp"
+                        tools:text="Laxmi Nagar" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/_1sdp"
+                        android:text="LPG Company"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_lpg_company"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/filled_form_data_bg"
+                        android:maxLines="1"
+                        android:padding="@dimen/_5sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/black_31"
+                        android:textSize="@dimen/_10sdp"
+                        tools:text="New Delhi" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/_1sdp"
+                        android:text="LPG Distributor"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <EditText
+                        android:id="@+id/tv_lpg_dist"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_blue_border"
+                        android:maxLines="1"
+                        android:padding="@dimen/_5sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/black_31"
+                        android:textSize="@dimen/_10sdp"
+                        tools:text="New Delhi" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/_1sdp"
+                        android:text="LPG Consumer No"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <EditText
+                        android:id="@+id/tv_lpg_cnum"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_blue_border"
+                        android:maxLines="1"
+                        android:padding="@dimen/_5sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/black_31"
+                        android:textSize="@dimen/_10sdp"
+                        tools:text="Laxmi Nagar" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:padding="@dimen/_1sdp"
+                        android:text="Unique ID NO"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <EditText
+                        android:id="@+id/tv_uid"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_blue_border"
+                        android:maxLines="1"
+                        android:padding="@dimen/_5sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/black_31"
+                        android:textSize="@dimen/_10sdp"
+                        tools:text="New Delhi" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:background="@color/green"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:text="Type of Customer"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/tv_customer_type"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/filled_form_data_bg"
+                android:maxLines="1"
+                android:padding="@dimen/_5sdp"
+                android:singleLine="true"
+                android:textColor="@color/black_31"
+                android:textSize="@dimen/_10sdp"
+                tools:text="454145148579" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/lt_docs"
+    android:visibility="gone">
+            <TextView
+                android:id="@+id/btn_submit_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="@dimen/_30sdp"
+                android:layout_marginVertical="@dimen/_18sdp"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:paddingVertical="@dimen/_6sdp"
+
+                android:text="UPDATE DATA"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:background="@color/green"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:text="Proof Details"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_26sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight=".5"
+                android:gravity="center_vertical"
+                android:padding="@dimen/_5sdp"
+                android:text="Type of Id Proof"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_28sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight=".5"
+                    android:background="@drawable/background_input_mandatory"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <Spinner
+                        android:id="@+id/spinner1"
+                        android:layout_width="@dimen/_130sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="3dp"
+                        android:layout_weight=".7"
+                        android:background="@drawable/shape_white"
+                        android:dropDownSelector="@null" />
+
+                    <ImageView
+
+                        android:layout_width="@dimen/_11sdp"
+                        android:layout_height="@dimen/_11sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:background="@drawable/dropdown"
+                        android:text="PAN Card" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/adhar_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_gravity="center"
+
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:text="ID Proof"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/adhar_image"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_200sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:background="@drawable/shape_blue_border"
+                android:padding="@dimen/_1sdp"
+                android:scaleType="fitXY"
+                android:text="PAN Card" />
+
+            <TextView
+                android:id="@+id/btn_submit_id_proof"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="@dimen/_30sdp"
+                android:layout_marginVertical="@dimen/_15sdp"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/value_14dp"
+                android:paddingVertical="@dimen/_6sdp"
+                android:text="UPDATE ID PROOF"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_26sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight=".5"
+                android:gravity="center_vertical"
+                android:padding="@dimen/_5sdp"
+                android:text="Type of Address Proof"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_28sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight=".5"
+                    android:background="@drawable/background_input_mandatory"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <Spinner
+                        android:id="@+id/spinner2"
+                        android:layout_width="@dimen/_130sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="3dp"
+                        android:layout_weight=".7"
+                        android:background="@drawable/shape_white"
+                        android:dropDownSelector="@null" />
+
+                    <ImageView
+
+                        android:layout_width="@dimen/_11sdp"
+                        android:layout_height="@dimen/_11sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:background="@drawable/dropdown" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/address_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:text="Address Proof"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp" />
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/address_image"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_200sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:background="@drawable/shape_blue_border"
+                android:padding="@dimen/_1sdp"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:id="@+id/btn_submit_address_proof"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="@dimen/_30sdp"
+                android:layout_marginVertical="@dimen/_15sdp"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/value_14dp"
+                android:paddingVertical="@dimen/_6sdp"
+                android:text="UPDATE ADDRESS PROOF"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_5sdp">
+
+                <ImageView
+                    android:id="@+id/signature_image"
+                    android:layout_width="@dimen/_140sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:background="@drawable/shape_blue_border"
+                    android:padding="@dimen/_1sdp"
+                    android:scaleType="fitXY" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center|right"
+                    android:gravity="right"
+                    android:paddingRight="@dimen/_5sdp">
+
+                    <Button
+                        android:id="@+id/signature_button"
+                        android:layout_width="@dimen/_120sdp"
+                        android:layout_height="@dimen/_26sdp"
+                        android:layout_gravity="center"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Signature"
+                        android:textColor="@color/white"
+
+                        android:textSize="@dimen/_10sdp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <CheckBox
+                    android:id="@+id/checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    android:id="@+id/checkbox_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_26sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight=".5"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/_5sdp"
+                    android:text="Terms and Condition"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+            <TextView
+                android:id="@+id/btn_submit_signature"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginHorizontal="@dimen/_6sdp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginVertical="@dimen/_15sdp"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/value_14dp"
+                android:paddingVertical="@dimen/_6sdp"
+                android:text="SUBMIT DOCUMENTS"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp" />
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:weightSum="2"-->
+            <!--                android:orientation="horizontal">-->
+            <!--                <Button-->
+            <!--                    android:layout_alignParentRight="true"-->
+            <!--                    android:id="@+id/approve_button"-->
+            <!--                    android:background="@drawable/shape_cornor_radious"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="@dimen/_30sdp"-->
+            <!--                    android:layout_marginTop="@dimen/_20sdp"-->
+            <!--                    android:layout_marginLeft="@dimen/_5sdp"-->
+            <!--                    android:layout_marginRight="@dimen/_5sdp"-->
+            <!--                    android:textSize="@dimen/_10sdp"-->
+            <!--                    android:layout_marginBottom="@dimen/_20sdp"-->
+            <!--                    android:text="Submit"-->
+            <!--                    android:layout_weight="1"-->
+            <!--                    android:textColor="@color/white" />-->
+            <!--                <Button-->
+            <!--                    android:layout_alignParentRight="true"-->
+            <!--                    android:id="@+id/decline_button"-->
+            <!--                    android:background="@drawable/shape_cornor_radious"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="@dimen/_30sdp"-->
+            <!--                    android:layout_marginTop="@dimen/_20sdp"-->
+            <!--                    android:layout_marginLeft="@dimen/_5sdp"-->
+            <!--                    android:layout_marginRight="@dimen/_5sdp"-->
+            <!--                    android:textSize="@dimen/_10sdp"-->
+            <!--                    android:layout_marginBottom="@dimen/_20sdp"-->
+            <!--                    android:text="Decline"-->
+            <!--                    android:visibility="gone"-->
+            <!--                    android:layout_weight="1"-->
+            <!--                    android:textColor="@color/white" />-->
+            <!--            </LinearLayout>-->
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <RelativeLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/_10sdp">
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

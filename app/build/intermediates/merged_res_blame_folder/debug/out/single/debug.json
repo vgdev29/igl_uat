@@ -1,0 +1,1434 @@
+[
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_signin_arrow.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/signin_arrow.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_kyc_form_activity.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/kyc_form_activity.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/font_beautifulpeoplepersonaluse_de0g.ttf.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/font/beautifulpeoplepersonaluse_de0g.ttf"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ic_pen.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ic_pen.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_content_mdpe_sup_host.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/content_mdpe_sup_host.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_mdpe_sup_host.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_mdpe_sup_host.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_rfc_approval_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/rfc_approval_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_to_do_task_creation.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/to_do_task_creation.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_complain_girm.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_complain_girm.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ic_chevron_right_black_24px.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ic_chevron_right_black_24px.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/font_lato_semibold.ttf.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/font/lato_semibold.ttf"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable-v24/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ic_filter_none_black_24px.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ic_filter_none_black_24px.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ng_connection.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ng_connection.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_email.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/email.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_edit_text_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/edit_text_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_tab_host_mitd_tpi.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_tab_host_mitd_tpi.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_selfie.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/selfie.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/font_montserrat_extralight.ttf.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/font/montserrat_extralight.ttf"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/font_opensans_regular.ttf.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/font/opensans_regular.ttf"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_mitd_approval2.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_mitd_approval2.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_shape_round_button.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/shape_round_button.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ic_refresh_black_24dp.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ic_refresh_black_24dp.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ic_refresh_black.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ic_refresh_black.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/font_roboto_regular.ttf.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/font/roboto_regular.ttf"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_login_bg.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/login_bg.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ic_ng.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ic_ng.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_view_ng_detaills.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_view_ng_detaills.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ic_gassified.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ic_gassified.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/font_abhayalibre_regular.ttf.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/font/abhayalibre_regular.ttf"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_tpi_module.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_tpi_module.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_tab_host_mitd.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_tab_host_mitd.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/font_opensans_semibold.ttf.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/font/opensans_semibold.ttf"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_tpi_inspection_rfc_details.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/tpi_inspection_rfc_details.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_password.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/password.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_setting_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/setting_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_ng_sup_startup.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_ng_sup_startup.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ic_sort_black_24dp.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ic_sort_black_24dp.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_tpi_ng_approve_decline.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/tpi_ng_approve_decline.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_mitd_own.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_mitd_own.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_ng_assignment_details.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_ng_assignment_details.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_mitd_pending.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_mitd_pending.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/font_montserrat_regular.ttf.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/font/montserrat_regular.ttf"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ic_zoom_in_black_24px.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ic_zoom_in_black_24px.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_tracking.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/tracking.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_custom_scanner.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_custom_scanner.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_light_green.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/light_green.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_selfie_active.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/selfie_active.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_new_registration.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/new_registration.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_cross.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/cross.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_popup_bp_search.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/popup_bp_search.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_pipeline.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/pipeline.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_custom_toast.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/custom_toast.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_servicelist_adapter.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/servicelist_adapter.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_homepage_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/homepage_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_rfc_pending_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/rfc_pending_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_shape_black.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/shape_black.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_splash_screen.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/splash_screen.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_comp_qty_dialog.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/comp_qty_dialog.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_leave_icon.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/leave_icon.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ic_zoom_out_black_24px.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ic_zoom_out_black_24px.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_tab_host_inspection.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/tab_host_inspection.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_rfc_connection_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/rfc_connection_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_document_status.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_document_status.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_location_active.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/location_active.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/font_roboto_light.ttf.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/font/roboto_light.ttf"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ic_riser.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ic_riser.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_profile.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/profile.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_tpi_rfcdone_approval.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/tpi_rfcdone_approval.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_kyc_verification_details.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_kyc_verification_details.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_downarrow_bottomsheet.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/downarrow_bottomsheet.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_customer_signature.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/customer_signature.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/xml_network_security_config.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/xml/network_security_config.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_calendar_active.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/calendar_active.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_fragment_be_partner_step_three.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/fragment_be_partner_step_three.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/font_poppins_medium.otf.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/font/poppins_medium.otf"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/font_roboto_thin.ttf.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/font/roboto_thin.ttf"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_comsuplist_adapter.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/comsuplist_adapter.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_view_attendance_item.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/view_attendance_item.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_regestration_view_pager.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/regestration_view_pager.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_mdpe_tpi_pending.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_mdpe_tpi_pending.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_liasioning.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/liasioning.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_add.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/add.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_construction.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/construction.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_item_simple_detail_sceen_row.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/item_simple_detail_sceen_row.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/anim_myactivity_slide_up.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/anim/myactivity_slide_up.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_custom_pdf_view.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_custom_pdf_view.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_view_leave_item.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/view_leave_item.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ic_complain.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ic_complain.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_corner_curved_edittext_bg.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/corner_curved_edittext_bg.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/mipmap-xxxhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ic_add_user_svgrepo_com.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ic_add_user_svgrepo_com.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_search_icon.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/search_icon.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_tpi__details_.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_tpi__details_.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/font_roboto_black.ttf.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/font/roboto_black.ttf"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_setting.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/setting.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_item_riser_list.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/item_riser_list.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_document_collection.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/document_collection.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_next.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/next.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_edittext_shap.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/edittext_shap.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_attendance_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/attendance_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_pic2.jpg.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/pic2.jpg"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_add_images.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/add_images.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_home_adapter.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/home_adapter.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_riser_tpi_approval.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_riser_tpi_approval.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_icon_star.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/icon_star.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/font_playfairdisplay_regular.ttf.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/font/playfairdisplay_regular.ttf"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_selfie_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/selfie_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_mitd_done.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_mitd_done.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_tpi_item_riser_list.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/tpi_item_riser_list.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_mitd_approval.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_mitd_approval.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_qr_code_icon.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/qr_code_icon.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_cancel.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/cancel.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_learning_item.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/learning_item.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_shifting_frs.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/shifting_frs.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_edit.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/edit.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_activation.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/activation.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_webview_new.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/webview_new.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_video_view_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/video_view_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_tab_host_mitd2.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_tab_host_mitd2.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_product_white_curved_bg.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/product_white_curved_bg.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ng_approval.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ng_approval.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_material_adapter.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/material_adapter.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_tpi_connection_listing.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/tpi_connection_listing.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_kyc_regestration_form.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/kyc_regestration_form.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_kyc.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/kyc.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_otp_forgot_password.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/otp_forgot_password.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activities_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activities_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_selfie_bg.jpg.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/selfie_bg.jpg"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_curved_yellow.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/curved_yellow.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_mdpe_tpi_host.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_mdpe_tpi_host.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_mitd_other.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_mitd_other.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_forgot_password.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/forgot_password.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_survey.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/survey.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_mitdrfcadapter.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/mitdrfcadapter.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ic_pause.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ic_pause.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_button_login.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/button_login.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_filled_form_data_bg.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/filled_form_data_bg.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_sheet_filter_ng.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/sheet_filter_ng.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_notification.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/notification.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_to_do_tasklist.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/to_do_tasklist.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/mipmap-hdpi_ic_launcher_foreground.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/mipmap-hdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ic_baseline_arrow_back_24.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ic_baseline_arrow_back_24.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/font_poppins_light.otf.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/font/poppins_light.otf"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_task_list_adapter.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/task_list_adapter.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_shape_blue.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/shape_blue.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_fragment_be_partner_step_two.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/fragment_be_partner_step_two.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_floor_annexure.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_floor_annexure.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_shape_dark_gray.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/shape_dark_gray.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/xml_searchable.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/xml/searchable.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_view_leave_list_recyclerview.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/view_leave_list_recyclerview.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_bp_creation_form_2.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/bp_creation_form_2.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_pic3.jpg.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/pic3.jpg"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_complaint_sup.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_complaint_sup.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_bp_no_listing_item.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/bp_no_listing_item.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_fragment_construction.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/fragment_construction.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_fragment_tab__host__mitd_tpi.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/fragment_tab__host__mitd_tpi.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_ng_done_row_item.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/ng_done_row_item.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_pdf_dilogbox.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/pdf_dilogbox.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/menu_menu_main.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/menu/menu_main.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_rfc_info_dialog.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/rfc_info_dialog.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_document_varification_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/document_varification_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_to_dolist_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/to_dolist_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_mdpe_approval.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_mdpe_approval.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_mdpetpidpr_adapter.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/mdpetpidpr_adapter.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_background_input_mandatory.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/background_input_mandatory.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_layout_proposed_order.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/layout_proposed_order.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_shape_yellow_color_cornor.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/shape_yellow_color_cornor.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_calendar.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/calendar.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/font_abhayalibre_medium.ttf.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/font/abhayalibre_medium.ttf"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_simple_text_picker_bottomsheet.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/simple_text_picker_bottomsheet.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_dropdown_recyclerview.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/dropdown_recyclerview.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/xml_provider_paths.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/xml/provider_paths.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_splash.jpg.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/splash.jpg"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_notification_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/notification_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_shape_blue_border.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/shape_blue_border.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_tpi_item_riser_pendinglist.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/tpi_item_riser_pendinglist.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_signature_dialog_box.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/signature_dialog_box.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/menu_bottom_menu.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/menu/bottom_menu.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_kyc_resubmission.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_kyc_resubmission.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_task_list_recyclerview.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/task_list_recyclerview.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_mdpelist_adapter.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/mdpelist_adapter.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_location.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/location.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_main1.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_main1.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_mdpe_list.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_mdpe_list.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_riser_form.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_riser_form.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_fragment_m_common.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/fragment_m_common.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_user.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/user.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_notification_recyclerview.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/notification_recyclerview.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_search_gray.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/search_gray.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_shape_oval.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/shape_oval.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/mipmap-mdpi_ic_launcher_foreground.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/mipmap-mdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_red_shape_round.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/red_shape_round.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_permission_bg.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/permission_bg.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_bp_creation_form.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/bp_creation_form.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_edittext_shape.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/edittext_shape.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_logout.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/logout.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ic_pipes.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ic_pipes.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_view_attendance_list_recyclerview.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/view_attendance_list_recyclerview.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ic_baseline_person_add_alt_1_24.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ic_baseline_person_add_alt_1_24.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_item_nic_list.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/item_nic_list.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ic_cloud_off.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ic_cloud_off.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_appointment.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/appointment.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_logo.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/logo.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_fragment_pipe.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/fragment_pipe.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_shape_gray.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/shape_gray.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_add_user.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/add_user.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_leave_approval_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/leave_approval_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/font_roboto_medium.ttf.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/font/roboto_medium.ttf"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_item_simple_text_list.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/item_simple_text_list.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_bp_no_dilogbox.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/bp_no_dilogbox.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_item_connected_hse.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/item_connected_hse.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_pipeline_shade.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/pipeline_shade.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_comp_schedule_dialog.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/comp_schedule_dialog.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/font_beautifulpeoplepersonaluse_ppy2.ttf.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/font/beautifulpeoplepersonaluse_ppy2.ttf"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_update_traking.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/update_traking.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/font_abhayalibre_semibold.ttf.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/font/abhayalibre_semibold.ttf"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_calendar_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/calendar_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_dialog_filter_ng_user_list.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/dialog_filter_ng_user_list.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_pic5.jpg.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/pic5.jpg"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_location_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/location_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_bottomsheet_item_simple_text.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/bottomsheet_item_simple_text.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ic_local_phone_black_24dp.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ic_local_phone_black_24dp.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_tpi__claim__un_claim.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_tpi__claim__un_claim.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_ng_user_list.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_ng_user_list.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_learning_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/learning_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/font_roboto.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/font/roboto.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_logo_newwhite.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/logo_newwhite.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_layout_resubmit.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/layout_resubmit.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_item_check_bp.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/item_check_bp.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_dilogbox_schedule_date.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/dilogbox_schedule_date.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ic_chevron_left_black_24px.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ic_chevron_left_black_24px.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_view_connected_house_form.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/view_connected_house_form.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_shape_white.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/shape_white.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_main.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_app_logo.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/app_logo.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_pic4.jpg.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/pic4.jpg"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_attendance.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/attendance.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_sign_up_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/sign_up_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_fragment_first.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/fragment_first.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable-v24_ic_filter_list_black_24dp.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable-v24/ic_filter_list_black_24dp.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_mdpedeclined_dpr.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/mdpedeclined_dpr.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_restoration.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/restoration.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_tab_host_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/tab_host_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_riser__list.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_riser__list.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_dialog_filter_tpi_pending_list.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/dialog_filter_tpi_pending_list.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_menu_icon.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/menu_icon.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_ng__user__details.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_ng__user__details.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_home_bg.jpg.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/home_bg.jpg"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_curved_bg_stroke.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/curved_bg_stroke.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/font_raleway_medium.ttf.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/font/raleway_medium.ttf"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_feasibility_task.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/feasibility_task.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_rfc_task.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/rfc_task.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_view_zoomimageview.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/view_zoomimageview.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_red_light_shape.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/red_light_shape.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_bg.jpg.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/bg.jpg"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_regestration_page_1.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/regestration_page_1.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_dialog_filter_tpi_approval_list.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/dialog_filter_tpi_approval_list.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/font_sourcesanspro_regular.otf.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/font/sourcesanspro_regular.otf"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_marker.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/marker.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_otp.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_otp.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_webview.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/webview.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_to_do_task_item.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/to_do_task_item.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_task_location.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/task_location.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/mipmap-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/mipmap-xhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_pdf_icon.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/pdf_icon.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_dropdown_text.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/dropdown_text.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_tab_host_layout_tpi_claim.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/tab_host_layout_tpi_claim.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_dropdown.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/dropdown.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_fragment_be_partner_step_one.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/fragment_be_partner_step_one.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_tpi_claim_row_item.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/tpi_claim_row_item.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_home.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/home.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_new_bp_no_listing.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/new_bp_no_listing.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_mdpe_tpi_dpr.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_mdpe_tpi_dpr.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_pipeline_new.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/pipeline_new.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_dilogbox_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/dilogbox_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_image_upload_dilogbox.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/image_upload_dilogbox.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_location_bg.jpg.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/location_bg.jpg"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_tpi_fesibility_adapter.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/tpi_fesibility_adapter.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_shape_oval_green_sort.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/shape_oval_green_sort.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_document_resubmission_detail.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_document_resubmission_detail.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_fragment_second.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/fragment_second.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_backbutton_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/backbutton_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_light_green_shape.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/light_green_shape.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_back.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/back.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_mdpe_declined_dpr.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_mdpe_declined_dpr.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_mdpetpi_adapter.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/mdpetpi_adapter.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/menu_take_order_search_and_filter_button.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/menu/take_order_search_and_filter_button.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_payment_collection.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/payment_collection.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_shape_green.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/shape_green.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_ng_connection_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/ng_connection_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_user_profile_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/user_profile_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_bp_created_detail.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/bp_created_detail.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_pic1.jpg.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/pic1.jpg"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_popup_text_search.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/popup_text_search.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_rfc_aproval_adapter.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/rfc_aproval_adapter.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_to_do_list.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/to_do_list.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_tpi_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/tpi_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ic_share_invoice_disabled.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ic_share_invoice_disabled.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_document_varification_detail.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/document_varification_detail.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_mdpe_tiles.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_mdpe_tiles.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_ng_user_list_row_items.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/ng_user_list_row_items.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ic_play_button.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ic_play_button.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_comp_sup_status.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_comp_sup_status.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_learning.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/learning.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/navigation_nav_graph.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/navigation/nav_graph.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_tpi_approval_adapter.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/tpi_approval_adapter.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ic_stop_button.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ic_stop_button.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_address_annexure.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_address_annexure.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_custom_barcode_scanner.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/custom_barcode_scanner.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/font_gt_walsheim_web.ttf.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/font/gt_walsheim_web.ttf"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable-v24_ic_star.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable-v24/ic_star.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_n_i_customer.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_n_i_customer.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable-v24_category_filters_border.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable-v24/category_filters_border.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_m_i_t_d_done.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_m_i_t_d_done.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_dialog_filter_rfc_user_list.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/dialog_filter_rfc_user_list.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_barcode_meter_no.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/barcode_meter_no.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_tpi_ng_decline_list.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/tpi_ng_decline_list.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_new_home_page.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/new_home_page.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_background_input_edit.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/background_input_edit.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_excavation.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/excavation.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_login_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/login_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/anim_myactivity_slide_down.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/anim/myactivity_slide_down.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_rfc_approval.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/rfc_approval.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_complain_tpi_approval.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_complain_tpi_approval.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_tab_viewpager_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/tab_viewpager_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_curved_editext_bg.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/curved_editext_bg.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_riser_tpi_approval_detail.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_riser_tpi_approval_detail.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_rfc_approval_status_mastar.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/rfc_approval_status_mastar.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_tpi_rfchold_approval.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/tpi_rfchold_approval.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_fingar_tuch.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/fingar_tuch.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_fragment_feasibility_pending_.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/fragment_feasibility_pending_.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_new_regestration.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/new_regestration.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/mipmap-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/mipmap-xxhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ic_phone_call.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ic_phone_call.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_niclisting.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_niclisting.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_activity_check_bp.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/activity_check_bp.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_rounded_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/rounded_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable-v24_filter_close_cross_24dp.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable-v24/filter_close_cross_24dp.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_dropdown_icon.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/dropdown_icon.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/layout_video_layout.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/layout/video_layout.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable-v24_search.png.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable-v24/search.png"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_shape_cornor_radious.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/shape_cornor_radious.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_bottomsheet_curved_background.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/bottomsheet_curved_background.xml"
+    },
+    {
+        "merged": "com.fieldmobility.igl.app-merged_res-51:/drawable_edittext_curve_bg_otp.xml.flat",
+        "source": "com.fieldmobility.igl.app-main-53:/drawable/edittext_curve_bg_otp.xml"
+    }
+]

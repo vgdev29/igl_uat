@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottomsheet_curved_background"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="-15dp"
+        android:src="@drawable/downarrow_bottomsheet"></ImageView>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-10dp"
+        android:paddingHorizontal="16dp"
+        android:text="Select City"
+        android:textColor="@color/black_31"
+        android:textSize="@dimen/value_18sp"></TextView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="12dp"
+        android:id="@+id/lt_search"
+        android:background="@drawable/corner_curved_edittext_bg">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/_2sdp"
+            android:layout_marginHorizontal="16dp"
+            android:background="#fff"
+            android:hint="Enter City Name"
+            android:id="@+id/et_search"
+            android:paddingVertical="8dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="14dp"
+            android:textSize="15sp"
+            android:textStyle="italic"></EditText>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:src="@drawable/search_gray"></ImageView>
+    </FrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_bottomsheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="14dp"
+        android:clipToPadding="false"
+        android:paddingHorizontal="14dp"
+        tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/bottomsheet_item_simple_text"></androidx.recyclerview.widget.RecyclerView>
+</LinearLayout>

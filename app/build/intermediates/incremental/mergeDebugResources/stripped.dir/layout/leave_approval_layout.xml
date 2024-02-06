@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_white">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@color/rad"
+        android:weightSum="3"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+
+            android:layout_weight="1.2"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center"
+                android:background="@drawable/back"
+                android:layout_margin="@dimen/_3sdp"
+                />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight=".6"
+            android:text="LEAVE APPROVAL"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+
+            android:textColor="@color/white"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+
+            android:layout_weight="1.2"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/view_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="@dimen/_8sdp"
+                android:visibility="gone"
+                android:textColor="@color/white"
+                android:text="LEAVE LIST"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity=""
+        android:layout_marginTop="@dimen/_20sdp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/rad"
+
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_gravity="center_vertical"
+                android:gravity="left"
+
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:text="Start Date"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/rad"
+
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_gravity="center_vertical"
+                android:gravity="left"
+
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:text="End Date"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/start_date_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:layout_weight=".4"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:background="@drawable/shape_blue_border"
+                    android:layout_marginRight="@dimen/_10sdp"
+
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text="12-2-20202"/>
+                <Button
+                    android:id="@+id/start_date_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:textSize="@dimen/_5sdp"
+                    android:text="select date"
+                    android:layout_weight=".6"
+                    android:background="@drawable/shape_cornor_radious"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:paddingEnd="@dimen/_5sdp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/end_date_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:layout_weight=".4"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:background="@drawable/shape_blue_border"
+                    android:layout_marginRight="@dimen/_10sdp"
+
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text="12-2-20202"/>
+                <Button
+                    android:id="@+id/end_date_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:textSize="@dimen/_5sdp"
+                    android:text="select date"
+                    android:layout_weight=".6"
+                    android:background="@drawable/shape_cornor_radious"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:paddingEnd="@dimen/_5sdp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/rad"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_gravity="center_vertical"
+                android:gravity="left"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:text="Start Time"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/rad"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_gravity="center_vertical"
+                android:gravity="left"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:text="End Time"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+             android:layout_weight="1"
+            android:layout_margin="@dimen/_10sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/start_time_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:layout_weight=".4"
+                android:paddingLeft="@dimen/_5sdp"
+                android:background="@drawable/shape_blue_border"
+                android:layout_marginRight="@dimen/_10sdp"
+
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:text="12-10 pm"/>
+            <Button
+                android:id="@+id/start_time_button"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_25sdp"
+                android:textSize="@dimen/_5sdp"
+                android:text="select Time"
+                android:layout_weight=".6"
+                android:background="@drawable/shape_cornor_radious"
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingEnd="@dimen/_5sdp"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/end_time_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:layout_weight=".4"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:background="@drawable/shape_blue_border"
+                    android:layout_marginRight="@dimen/_10sdp"
+
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text="12-10 pm"/>
+                <Button
+                    android:id="@+id/end_time_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:textSize="@dimen/_5sdp"
+                    android:text="select Time"
+                    android:layout_weight=".6"
+                    android:background="@drawable/shape_cornor_radious"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:paddingEnd="@dimen/_5sdp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_13sdp"
+            android:textColor="@color/rad"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:textStyle="bold"
+            android:layout_gravity="center_vertical"
+            android:text="Descreption"/>
+        <EditText
+            android:id="@+id/descreption_edit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_80sdp"
+            android:textSize="@dimen/_10sdp"
+            android:textColor="@color/black"
+            android:background="@drawable/shape_blue_border"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_gravity="center_vertical"
+            android:gravity="top"
+            android:padding="@dimen/_5sdp"
+            android:textIsSelectable="true"
+            android:maxLines="3"
+            android:hint="Description"/>
+        <Button
+            android:id="@+id/submit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_28sdp"
+            android:textSize="@dimen/_9sdp"
+            android:text="Submit"
+            android:background="@drawable/shape_cornor_radious"
+            android:gravity="center"
+            android:paddingLeft="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+
+            android:layout_gravity="center"
+
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+    </LinearLayout>
+        </ScrollView>
+</LinearLayout>

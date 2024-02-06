@@ -1,0 +1,1434 @@
+[
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_rfc_approval_status_mastar.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\rfc_approval_status_mastar.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_fingar_tuch.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\fingar_tuch.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_setting.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\setting.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_mitd_done.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_mitd_done.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_item_nic_list.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\item_nic_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_pipeline_shade.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\pipeline_shade.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_mitd_pending.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_mitd_pending.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_pic3.jpg.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\pic3.jpg"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_layout_proposed_order.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\layout_proposed_order.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_backbutton_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\backbutton_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\font_roboto_light.ttf.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\font\\roboto_light.ttf"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_selfie_bg.jpg.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\selfie_bg.jpg"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_riser.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ic_riser.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_popup_text_search.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\popup_text_search.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_complain_girm.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_complain_girm.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_mdpelist_adapter.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\mdpelist_adapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_view_leave_list_recyclerview.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\view_leave_list_recyclerview.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_document_varification_detail.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\document_varification_detail.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_mdpe_sup_host.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_mdpe_sup_host.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_shape_cornor_radious.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\shape_cornor_radious.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_ng_connection_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\ng_connection_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_notification_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\notification_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_setting_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\setting_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_mdpe_approval.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_mdpe_approval.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_dialog_filter_rfc_user_list.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\dialog_filter_rfc_user_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_webview.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\webview.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_m_i_t_d_done.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_m_i_t_d_done.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_liasioning.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\liasioning.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_view_connected_house_form.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\view_connected_house_form.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_item_check_bp.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\item_check_bp.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_new_bp_no_listing.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\new_bp_no_listing.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_bp_creation_form.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\bp_creation_form.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_search_gray.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\search_gray.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_home.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\home.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_item_riser_list.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\item_riser_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_gassified.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ic_gassified.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_edittext_shap.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\edittext_shap.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_edittext_shape.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\edittext_shape.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_pic2.jpg.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\pic2.jpg"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_chevron_left_black_24px.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ic_chevron_left_black_24px.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable-v24_category_filters_border.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable-v24\\category_filters_border.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activities_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activities_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_riser_form.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_riser_form.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_complain_tpi_approval.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_complain_tpi_approval.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_cancel.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\cancel.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_address_annexure.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_address_annexure.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_mdpetpidpr_adapter.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\mdpetpidpr_adapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_dropdown.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\dropdown.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_pic5.jpg.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\pic5.jpg"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_shape_blue_border.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\shape_blue_border.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_fragment_construction.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\fragment_construction.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_fragment_pipe.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\fragment_pipe.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_edit.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\edit.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\xml_searchable.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\xml\\searchable.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_profile.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\profile.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\menu_menu_main.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\menu\\menu_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_pen.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ic_pen.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_new_registration.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\new_registration.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_bp_creation_form_2.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\bp_creation_form_2.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_otp_forgot_password.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\otp_forgot_password.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_simple_text_picker_bottomsheet.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\simple_text_picker_bottomsheet.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_fragment_tab__host__mitd_tpi.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\fragment_tab__host__mitd_tpi.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_ng_done_row_item.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\ng_done_row_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_barcode_meter_no.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\barcode_meter_no.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\font_beautifulpeoplepersonaluse_de0g.ttf.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\font\\beautifulpeoplepersonaluse_de0g.ttf"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_construction.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\construction.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ng_connection.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ng_connection.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_new_regestration.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\new_regestration.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_learning_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\learning_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_tab_host_mitd.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_tab_host_mitd.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_riser_tpi_approval.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_riser_tpi_approval.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_login_bg.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\login_bg.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_popup_bp_search.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\popup_bp_search.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_qr_code_icon.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\qr_code_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_mdpe_tiles.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_mdpe_tiles.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_pdf_icon.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\pdf_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\font_roboto_black.ttf.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\font\\roboto_black.ttf"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_tpi__details_.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_tpi__details_.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_to_dolist_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\to_dolist_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_leave_icon.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\leave_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_location_bg.jpg.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\location_bg.jpg"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\font_roboto_thin.ttf.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\font\\roboto_thin.ttf"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_tpi_claim_row_item.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\tpi_claim_row_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\font_opensans_regular.ttf.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\font\\opensans_regular.ttf"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_custom_toast.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\custom_toast.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_shape_gray.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\shape_gray.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_to_do_list.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\to_do_list.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\font_lato_semibold.ttf.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\font\\lato_semibold.ttf"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\xml_network_security_config.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\xml\\network_security_config.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_product_white_curved_bg.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\product_white_curved_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_payment_collection.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\payment_collection.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_pipeline.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\pipeline.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\font_abhayalibre_medium.ttf.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\font\\abhayalibre_medium.ttf"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_fragment_be_partner_step_two.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\fragment_be_partner_step_two.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_baseline_arrow_back_24.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ic_baseline_arrow_back_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_mitd_approval.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_mitd_approval.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ng_approval.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ng_approval.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_sort_black_24dp.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ic_sort_black_24dp.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_tab_host_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\tab_host_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_task_location.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\task_location.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_shape_green.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\shape_green.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_document_varification_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\document_varification_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_niclisting.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_niclisting.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_logo_newwhite.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\logo_newwhite.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\font_abhayalibre_regular.ttf.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\font\\abhayalibre_regular.ttf"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_tpi_connection_listing.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\tpi_connection_listing.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_mdpe_list.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_mdpe_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_stop_button.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ic_stop_button.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_survey.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\survey.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_tracking.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\tracking.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_selfie_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\selfie_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_tpi_rfchold_approval.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\tpi_rfchold_approval.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_permission_bg.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\permission_bg.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\mipmap-hdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_dialog_filter_tpi_pending_list.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\dialog_filter_tpi_pending_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_bottomsheet_curved_background.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\bottomsheet_curved_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_ng_assignment_details.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_ng_assignment_details.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_item_simple_detail_sceen_row.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\item_simple_detail_sceen_row.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_n_i_customer.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_n_i_customer.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_forgot_password.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\forgot_password.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_red_shape_round.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\red_shape_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_splash.jpg.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\splash.jpg"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_view_attendance_item.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\view_attendance_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_shape_white.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\shape_white.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_login_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\login_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_image_upload_dilogbox.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\image_upload_dilogbox.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_background_input_mandatory.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\background_input_mandatory.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_fragment_be_partner_step_three.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\fragment_be_partner_step_three.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_kyc_verification_details.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_kyc_verification_details.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_mitdrfcadapter.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\mitdrfcadapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_shifting_frs.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\shifting_frs.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_chevron_right_black_24px.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ic_chevron_right_black_24px.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_comp_sup_status.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_comp_sup_status.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_cross.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\cross.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_mitd_own.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_mitd_own.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_material_adapter.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\material_adapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_dropdown_text.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\dropdown_text.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_document_collection.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\document_collection.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_tpi_item_riser_pendinglist.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\tpi_item_riser_pendinglist.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable-v24_search.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable-v24\\search.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_view_ng_detaills.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_view_ng_detaills.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_tpi_ng_approve_decline.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\tpi_ng_approve_decline.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_rfc_aproval_adapter.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\rfc_aproval_adapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\anim_myactivity_slide_down.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\anim\\myactivity_slide_down.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_filter_none_black_24px.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ic_filter_none_black_24px.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\font_sourcesanspro_regular.otf.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\font\\sourcesanspro_regular.otf"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_learning.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\learning.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_complain.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ic_complain.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_mdpe_tpi_host.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_mdpe_tpi_host.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_bp_created_detail.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\bp_created_detail.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_video_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\video_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_appointment.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\appointment.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_pic1.jpg.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\pic1.jpg"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_sheet_filter_ng.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\sheet_filter_ng.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_tab_host_mitd_tpi.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_tab_host_mitd_tpi.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\font_poppins_light.otf.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\font\\poppins_light.otf"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_tab_host_inspection.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\tab_host_inspection.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_downarrow_bottomsheet.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\downarrow_bottomsheet.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_tab_host_mitd2.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_tab_host_mitd2.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_floor_annexure.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_floor_annexure.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_bg.jpg.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\bg.jpg"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_learning_item.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\learning_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_tab_viewpager_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\tab_viewpager_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_tpi_approval_adapter.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\tpi_approval_adapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_homepage_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\homepage_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_comp_qty_dialog.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\comp_qty_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_next.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\next.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_mdpe_tpi_dpr.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_mdpe_tpi_dpr.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\menu_bottom_menu.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\menu\\bottom_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_kyc_form_activity.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\kyc_form_activity.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_calendar_active.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\calendar_active.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_riser_tpi_approval_detail.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_riser_tpi_approval_detail.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_attendance_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\attendance_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_excavation.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\excavation.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\xml_provider_paths.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\xml\\provider_paths.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_button_login.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\button_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_icon_star.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\icon_star.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_add_images.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\add_images.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_mitd_approval2.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_mitd_approval2.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_email.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\email.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_mdpe_tpi_pending.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_mdpe_tpi_pending.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_document_resubmission_detail.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_document_resubmission_detail.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\font_roboto.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\font\\roboto.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_tpi_inspection_rfc_details.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\tpi_inspection_rfc_details.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_splash_screen.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\splash_screen.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_shape_black.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\shape_black.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_shape_dark_gray.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\shape_dark_gray.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_fragment_feasibility_pending_.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\fragment_feasibility_pending_.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_rfc_approval_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\rfc_approval_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_menu_icon.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\menu_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_local_phone_black_24dp.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ic_local_phone_black_24dp.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_light_green.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\light_green.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_dialog_filter_tpi_approval_list.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\dialog_filter_tpi_approval_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_location_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\location_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_home_adapter.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\home_adapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_zoom_out_black_24px.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ic_zoom_out_black_24px.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_video_view_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\video_view_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_marker.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\marker.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_pipes.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ic_pipes.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_new_home_page.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\new_home_page.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_notification.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\notification.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_complaint_sup.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_complaint_sup.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_sign_up_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\sign_up_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_ng_user_list.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_ng_user_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable-v24_ic_star.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable-v24\\ic_star.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_activation.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\activation.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_fragment_be_partner_step_one.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\fragment_be_partner_step_one.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_layout_resubmit.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\layout_resubmit.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_to_do_task_creation.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\to_do_task_creation.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_shape_yellow_color_cornor.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\shape_yellow_color_cornor.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_add_user_svgrepo_com.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ic_add_user_svgrepo_com.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_edittext_curve_bg_otp.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\edittext_curve_bg_otp.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_task_list_recyclerview.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\task_list_recyclerview.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_bp_no_dilogbox.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\bp_no_dilogbox.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_rfc_info_dialog.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\rfc_info_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_mitd_other.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_mitd_other.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_regestration_view_pager.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\regestration_view_pager.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_kyc.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\kyc.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_main1.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_main1.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_app_logo.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\app_logo.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_refresh_black_24dp.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ic_refresh_black_24dp.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_location.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\location.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_zoom_in_black_24px.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ic_zoom_in_black_24px.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_task_list_adapter.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\task_list_adapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_user_profile_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\user_profile_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_fragment_first.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\fragment_first.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_shape_blue.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\shape_blue.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_ng.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ic_ng.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_tpi_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\tpi_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable-v24_filter_close_cross_24dp.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable-v24\\filter_close_cross_24dp.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_home_bg.jpg.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\home_bg.jpg"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\font_raleway_medium.ttf.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\font\\raleway_medium.ttf"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\mipmap-mdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_webview_new.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\webview_new.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_tpi_module.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_tpi_module.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_update_traking.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\update_traking.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_play_button.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ic_play_button.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_cloud_off.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ic_cloud_off.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_tpi_ng_decline_list.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\tpi_ng_decline_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_otp.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_otp.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_curved_editext_bg.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\curved_editext_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_dilogbox_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\dilogbox_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\font_montserrat_extralight.ttf.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\font\\montserrat_extralight.ttf"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_riser__list.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_riser__list.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_custom_scanner.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_custom_scanner.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_to_do_tasklist.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\to_do_tasklist.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_edit_text_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\edit_text_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_rfc_task.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\rfc_task.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_ng_sup_startup.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_ng_sup_startup.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\menu_take_order_search_and_filter_button.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\menu\\take_order_search_and_filter_button.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_leave_approval_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\leave_approval_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_item_simple_text_list.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\item_simple_text_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_calendar_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\calendar_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_curved_yellow.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\curved_yellow.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_dilogbox_schedule_date.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\dilogbox_schedule_date.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_share_invoice_disabled.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ic_share_invoice_disabled.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_tpi_rfcdone_approval.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\tpi_rfcdone_approval.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\font_gt_walsheim_web.ttf.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\font\\gt_walsheim_web.ttf"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_bp_no_listing_item.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\bp_no_listing_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable-v24_ic_filter_list_black_24dp.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable-v24\\ic_filter_list_black_24dp.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_check_bp.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_check_bp.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_signature_dialog_box.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\signature_dialog_box.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\font_beautifulpeoplepersonaluse_ppy2.ttf.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\font\\beautifulpeoplepersonaluse_ppy2.ttf"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_rounded_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\rounded_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_pause.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ic_pause.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\font_opensans_semibold.ttf.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\font\\opensans_semibold.ttf"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_corner_curved_edittext_bg.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\corner_curved_edittext_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_notification_recyclerview.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\notification_recyclerview.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_tpi_fesibility_adapter.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\tpi_fesibility_adapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_curved_bg_stroke.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\curved_bg_stroke.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_kyc_regestration_form.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\kyc_regestration_form.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\font_playfairdisplay_regular.ttf.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\font\\playfairdisplay_regular.ttf"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_fragment_m_common.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\fragment_m_common.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_ng_user_list_row_items.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\ng_user_list_row_items.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_restoration.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\restoration.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_comp_schedule_dialog.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\comp_schedule_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_custom_barcode_scanner.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\custom_barcode_scanner.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_pipeline_new.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\pipeline_new.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_kyc_resubmission.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_kyc_resubmission.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_baseline_person_add_alt_1_24.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ic_baseline_person_add_alt_1_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_location_active.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\location_active.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\font_roboto_medium.ttf.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\font\\roboto_medium.ttf"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_light_green_shape.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\light_green_shape.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_tab_host_layout_tpi_claim.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\tab_host_layout_tpi_claim.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_dropdown_icon.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\dropdown_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_bottomsheet_item_simple_text.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\bottomsheet_item_simple_text.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_refresh_black.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ic_refresh_black.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_item_connected_hse.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\item_connected_hse.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\font_poppins_medium.otf.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\font\\poppins_medium.otf"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_add_user.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\add_user.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_background_input_edit.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\background_input_edit.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_tpi__claim__un_claim.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_tpi__claim__un_claim.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_view_leave_item.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\view_leave_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_search_icon.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\search_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_selfie.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\selfie.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_selfie_active.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\selfie_active.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_dropdown_recyclerview.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\dropdown_recyclerview.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_view_attendance_list_recyclerview.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\view_attendance_list_recyclerview.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_attendance.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\attendance.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_logo.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\logo.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_to_do_task_item.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\to_do_task_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_fragment_second.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\fragment_second.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_custom_pdf_view.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_custom_pdf_view.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_ng__user__details.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_ng__user__details.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_user.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\user.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_mdpedeclined_dpr.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\mdpedeclined_dpr.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_regestration_page_1.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\regestration_page_1.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_phone_call.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\ic_phone_call.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_calendar.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\calendar.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_password.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\password.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\font_montserrat_regular.ttf.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\font\\montserrat_regular.ttf"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_pdf_dilogbox.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\pdf_dilogbox.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_rfc_connection_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\rfc_connection_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_rfc_pending_layout.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\rfc_pending_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_view_zoomimageview.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\view_zoomimageview.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_red_light_shape.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\red_light_shape.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_back.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\back.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_tpi_item_riser_list.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\tpi_item_riser_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\font_abhayalibre_semibold.ttf.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\font\\abhayalibre_semibold.ttf"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_add.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\add.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_mdpe_declined_dpr.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_mdpe_declined_dpr.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_mdpetpi_adapter.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\mdpetpi_adapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_rfc_approval.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\rfc_approval.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_content_mdpe_sup_host.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\content_mdpe_sup_host.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_shape_oval_green_sort.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\shape_oval_green_sort.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\anim_myactivity_slide_up.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\anim\\myactivity_slide_up.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_servicelist_adapter.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\servicelist_adapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_document_status.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_document_status.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_filled_form_data_bg.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\filled_form_data_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_pic4.jpg.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\pic4.jpg"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_shape_round_button.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\shape_round_button.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_logout.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\logout.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_comsuplist_adapter.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\comsuplist_adapter.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\navigation_nav_graph.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\navigation\\nav_graph.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_feasibility_task.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\feasibility_task.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_signin_arrow.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\signin_arrow.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_customer_signature.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\customer_signature.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\drawable_shape_oval.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\drawable\\shape_oval.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\font_roboto_regular.ttf.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\font\\roboto_regular.ttf"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\res\\merged\\release\\layout_dialog_filter_ng_user_list.xml.flat",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\dialog_filter_ng_user_list.xml"
+    }
+]

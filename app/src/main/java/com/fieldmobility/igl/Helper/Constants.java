@@ -1,7 +1,5 @@
 package com.fieldmobility.igl.Helper;
 
-import com.afollestad.materialdialogs.MaterialDialog;
-
 public class Constants {
     public static final boolean isDebugBuild=false; // make it FALSE while giving app to others
       //LIVE URLH
@@ -12,14 +10,14 @@ public class Constants {
 
 
     //  UAT URL
-  //   public static String BASE_URL = "http://49.50.118.112:8080/";
+    // public static String BASE_URL = "http://49.50.118.112:8080/";
       // public static String BASE_URL_PYTHON = "http://49.50.68.239:8080/";
     // public static String BASE_URL_PYTHON = "http://49.50.118.112:8080/ng/";
 
 
 
     //local
-     // static String localhost = "http://172.16.0.83:8081/";
+  //    static String localhost = "http://172.16.0.125:8081/";
 //   public static String BASE_URL_PYTHON = "http://192.168.31.29:8080/";
 
     public static final int LOCATION_INTERVAL = 100000000;
@@ -29,7 +27,7 @@ public class Constants {
   //   public static final String Auth_User = BASE_URL + "loginapi/authenticates";
 
     //for uat /testing ('s' is not updated at uat environment
-  //  public static final String Auth_User = BASE_URL + "loginapi/authenticate";
+   // public static final String Auth_User = BASE_URL + "loginapi/authenticate";
      // Livee
      public static final String Auth_User = BASE_URL + "loginapi/authenticates";
 
@@ -100,8 +98,9 @@ public class Constants {
     public static final String TPI_DECLINE = BASE_URL + "ekyc/bp_details/TPI_Decline";
     public static final String CON_SUP_DETAILS = BASE_URL + "ekyc/bp_details/userDetails?";
     public static final String MITD_UPDATE = BASE_URL + "ekyc/bp_details/mitd_update/";
+    //TODO
     public static final String BP_Creation = BASE_URL + "bpcreation/registration/bp_creation_new";
-  // public static final String BP_Creation = "http://172.16.0.224:8081/registration/bp_creation_new";
+  // public static final String BP_Creation = localhost+"/registration/bp_creation_new";
     public static final String BP_Images = BASE_URL + "bpcreation/registration/bp_images";
     public static final String Document_POST = BASE_URL + "bpcreation/registration/documents";
     public static final String BP_No_Listing = BASE_URL + "bpcreation/registration/new_registration_listing";

@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\fragment_m_common.xml",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\fragment_m_common.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\activity_mdpe_tpi_pending.xml",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_mdpe_tpi_pending.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\fragment_pipe.xml",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\fragment_pipe.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\activity_mdpe_tpi_host.xml",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_mdpe_tpi_host.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\fragment_construction.xml",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\fragment_construction.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\activity_mdpe_sup_host.xml",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_mdpe_sup_host.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\activity_mdpe_approval.xml",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_mdpe_approval.xml"
+    },
+    {
+        "merged": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\activity_mdpe_tiles.xml",
+        "source": "C:\\Users\\admin\\Documents\\Android\\IGL\\igl-mobile-app\\app\\src\\main\\res\\layout\\activity_mdpe_tiles.xml"
+    }
+]

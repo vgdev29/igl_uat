@@ -1380,7 +1380,16 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                         Log.d(TAG,"Image path cheq null");
                     }
 
-                    params.put("id_img", image_path_id);
+                    if (image_path_id!=null && !image_path_id.isEmpty()){
+                        params.put("id_img",image_path_id);
+                        Log.d(TAG,"Image path id selected");
+                    }
+                    else{
+                        params.put("id_img","null");
+                        Log.d(TAG,"Image path id null");
+                    }
+
+                  //  params.put("id_img", image_path_id);
 
                     if (isSaleDeedSelected){
                         params.put("address_img", "null");
@@ -1396,6 +1405,7 @@ public class BP_Creation_Form_step2 extends Activity implements AdapterView.OnIt
                     params.put("cust_img", customer_signature_path);
                     params.put("own_img", owner_signature_path);
 
+                    Log.d(TAG, "params size = "+params.size());
 
                     Log.d("First_Name", user_bpData.getIgl_first_name());
                     Log.d("Middle_Name", user_bpData.getIgl_middle_name());

@@ -56,8 +56,6 @@ import com.fieldmobility.igl.Riser.activity.Tab_Host_Riser;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.material.snackbar.Snackbar;
-import com.nabinbhandari.android.permissions.PermissionHandler;
-import com.nabinbhandari.android.permissions.Permissions;
 
 import java.util.ArrayList;
 
@@ -414,19 +412,19 @@ public class HomeFragment extends Fragment {
 
     public void requestCameraAndStorage() {
         String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        Permissions.check(getActivity(), permissions, null, null, new PermissionHandler() {
+       /* Permissions.check(getActivity(), permissions, null, null, new PermissionHandler() {
             @Override
             public void onGranted() {
                 //Toast.makeText(getActivity(), "Camera+Storage granted.", Toast.LENGTH_SHORT).show();
                 requestLocation();
             }
-        });
+        });*/
     }
 
     public void requestLocation() {
         String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
         String rationale = "Please provide location permission so that you can ...";
-        Permissions.Options options = new Permissions.Options().setRationaleDialogTitle("Info").setSettingsDialogTitle("Warning");
+       /* Permissions.Options options = new Permissions.Options().setRationaleDialogTitle("Info").setSettingsDialogTitle("Warning");
         Permissions.check(getActivity(), permissions, rationale, options, new PermissionHandler() {
             @Override
             public void onGranted() {
@@ -436,7 +434,7 @@ public class HomeFragment extends Fragment {
             public void onDenied(Context context, ArrayList<String> deniedPermissions) {
                // Toast.makeText(getActivity(), "Location denied.", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
    /* }
     public void callAsynchronousTask() {
         final Handler handler = new Handler();

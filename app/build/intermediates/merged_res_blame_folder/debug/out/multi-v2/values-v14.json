@@ -1,0 +1,28 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.fieldmobility.igl.app-mergeDebugResources-49:/values-v14/values-v14.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-3\\70a1096068cd5d556606f46217369201\\transformed\\jetified-core-0.8.5.9\\res\\values-v14\\values-v14.xml",
+                    "from": {
+                        "startLines": "2,9",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,428",
+                        "endLines": "8,17",
+                        "endColumns": "12,12",
+                        "endOffsets": "423,855"
+                    },
+                    "to": {
+                        "startLines": "2,9",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,428",
+                        "endLines": "8,14",
+                        "endColumns": "12,12",
+                        "endOffsets": "423,727"
+                    }
+                }
+            ]
+        }
+    ]
+}

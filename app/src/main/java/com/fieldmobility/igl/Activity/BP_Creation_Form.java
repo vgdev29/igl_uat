@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -23,6 +24,9 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,8 +45,6 @@ import com.fieldmobility.igl.Helper.SharedPrefs;
 import com.fieldmobility.igl.Listeners.PlainTextListItemSelectListener;
 import com.fieldmobility.igl.Model.User_bpData;
 import com.fieldmobility.igl.R;
-import com.nabinbhandari.android.permissions.PermissionHandler;
-import com.nabinbhandari.android.permissions.Permissions;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -381,14 +383,20 @@ public class BP_Creation_Form extends Activity implements AdapterView.OnItemSele
     }
 
 
-    private void checkPermission() {
-        String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        Permissions.check(this, permissions, null, null, new PermissionHandler() {
-            @Override
-            public void onGranted() {
+    String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.ACCESS_FINE_LOCATION};
+    private static final int PERMISSION_REQUEST_CODE = 123;
 
+    private void checkPermission() {
+        // Iterate through the permissions and check each one
+        for (String permission : permissions) {
+            if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+                // Permission is not granted; request it from the user.
+                ActivityCompat.requestPermissions(this, permissions, PERMISSION_REQUEST_CODE);
+                return; // Exit the loop after requesting permissions.
             }
-        });
+        }
+
+        // All permissions are granted; you can proceed with your app's logic.
     }
 
 

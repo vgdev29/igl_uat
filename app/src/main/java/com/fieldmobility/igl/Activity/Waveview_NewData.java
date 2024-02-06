@@ -42,8 +42,9 @@ public class Waveview_NewData extends Activity {
         type.setText(getIntent().getStringExtra("type"));
         webView =(WebView)findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setAppCacheEnabled(true);
-        webView.getSettings().setAppCachePath(getApplicationContext().getCacheDir().getPath());
+     //   webView.getSettings().setAppCacheEnabled(true);
+     //   webView.getSettings().setAppCachePath(getApplicationContext().getCacheDir().getPath());
+        webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
        // webView.setWebViewClient(new WebViewClient());
 
